@@ -108,16 +108,17 @@
                 button.frame = CGRectMake(X, Y, SELECTIMAGE_WIDTH, h);
             }
         }
+        //暂时去掉钻石相关
         
-        if (self.wh_isGroup) {
-            // 钻石
-            n = (n + 1) >= 4 ? 0 : n + 1;
-            m += 1;
-            X = m > 8 ? SELECTIMAGE_WIDTH *n + (n+1)*inset+JX_SCREEN_WIDTH : SELECTIMAGE_WIDTH *n + (n+1)*inset;
-            Y = m > 4 && m <=8 ? h+margeY*2 : margeY;
-            button = [self WH_create_WHButtonWithImage:@"diamond_btn" highlight:@"diamond_btn" target:delegate selector:self.onDiamond title:@"发钻石"];
-            button.frame = CGRectMake(X, Y, SELECTIMAGE_WIDTH, h);
-        }
+//        if (self.wh_isGroup) {
+//            // 钻石
+//            n = (n + 1) >= 4 ? 0 : n + 1;
+//            m += 1;
+//            X = m > 8 ? SELECTIMAGE_WIDTH *n + (n+1)*inset+JX_SCREEN_WIDTH : SELECTIMAGE_WIDTH *n + (n+1)*inset;
+//            Y = m > 4 && m <=8 ? h+margeY*2 : margeY;
+//            button = [self WH_create_WHButtonWithImage:@"diamond_btn" highlight:@"diamond_btn" target:delegate selector:self.onDiamond title:@"发钻石"];
+//            button.frame = CGRectMake(X, Y, SELECTIMAGE_WIDTH, h);
+//        }
             
         if (!self.wh_isGroup) {
             // 戳一戳

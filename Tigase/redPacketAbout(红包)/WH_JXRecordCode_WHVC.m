@@ -145,7 +145,7 @@
     [cell.timeLabel setFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 13]];
     
     //交易金额
-    cell.moneyLabel.text = [NSString stringWithFormat:@"%@ %@",cellModel[@"money"],Localized(@"JX_ChinaMoney")];
+    cell.moneyLabel.text = [NSString stringWithFormat:@"%@ %@",cellModel[@"money"],@"HOTC"];
     //是否退款
     cell.refundLabel.text = @"";
     

@@ -158,7 +158,7 @@
 //    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8*60*60]];//中国专用
     cell.timeLabel.text = [dateFormatter stringFromDate:date];
     //金额
-    cell.moneyLabel.text = [NSString stringWithFormat:@"%.2f %@",[dict[@"money"] doubleValue],Localized(@"JX_ChinaMoney")];
+    cell.moneyLabel.text = [NSString stringWithFormat:@"%.2f %@",[dict[@"money"] doubleValue],@"HOTC"];
     //隐藏 hahaha
     cell.contentLab.hidden = YES;
     return cell;

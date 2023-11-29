@@ -158,7 +158,7 @@
         [cashTitle setFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 17]];
         [_inputView addSubview:cashTitle];
         
-        UILabel * rmbLabel = [UIFactory WH_create_WHLabelWith:CGRectMake(drawMarginX, CGRectGetMaxY(cashTitle.frame), 20, drawHei) text:@"KKC"];
+        UILabel * rmbLabel = [UIFactory WH_create_WHLabelWith:CGRectMake(drawMarginX, CGRectGetMaxY(cashTitle.frame), 20, drawHei) text:@"HOTC"];
         [rmbLabel setTextColor:HEXCOLOR(0x3A404C)];
         rmbLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size: 30];
         rmbLabel.textAlignment = NSTextAlignmentLeft;

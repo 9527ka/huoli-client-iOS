@@ -57,7 +57,7 @@
         [moneyView addSubview:cashTitle];
         [self.wh_contentView addSubview:moneyView];
         
-        UILabel * rmbLabel = [UIFactory WH_create_WHLabelWith:CGRectMake(drawMarginX, CGRectGetMaxY(cashTitle.frame), 35, drawHei) text:@"KKC"];
+        UILabel * rmbLabel = [UIFactory WH_create_WHLabelWith:CGRectMake(drawMarginX, CGRectGetMaxY(cashTitle.frame), 35, drawHei) text:@"HOTC"];
         rmbLabel.font = sysBoldFontWithSize(28);
         rmbLabel.textAlignment = NSTextAlignmentLeft;
         [moneyView addSubview:rmbLabel];

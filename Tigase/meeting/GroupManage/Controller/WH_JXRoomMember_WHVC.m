@@ -971,17 +971,25 @@
     self.topDiamondView.layer.borderColor = g_factory.cardBorderColor.CGColor;
     self.topDiamondView.layer.borderWidth = g_factory.cardBorderWithd;
     [self.wh_tableBody addSubview:self.topDiamondView];
-    self.wh_iv = [self WH_createMiXinButton:@"我的钻石" drawTop:NO drawBottom:NO must:NO click:nil ParentView:self.topDiamondView];
-    self.wh_iv.frame = CGRectMake(0, 0, self.topDiamondView.frame.size.width, HEIGHT);
-    _diamondNum = [self WH_createLabel:self.wh_iv default:@"100" isClick:NO];
-    membHeight+=self.wh_iv.frame.size.height;
-    membHeight+=topBottomMargin;
+    
+    
+    //先去掉钻石相关的
+    
+    
+//    self.wh_iv = [self WH_createMiXinButton:@"我的钻石" drawTop:NO drawBottom:NO must:NO click:nil ParentView:self.topDiamondView];
+//    self.wh_iv.frame = CGRectMake(0, 0, self.topDiamondView.frame.size.width, HEIGHT);
+//    _diamondNum = [self WH_createLabel:self.wh_iv default:@"100" isClick:NO];
+//    membHeight+=self.wh_iv.frame.size.height;
+//    membHeight+=topBottomMargin;
     
     if ([data.role intValue] == 1 || [data.role intValue] == 2) {
-        self.topDiamondView.height = HEIGHT * 2;
-        self.wh_iv = [self WH_createMiXinButton:@"成员钻石列表" drawTop:NO drawBottom:NO must:NO click:@selector(groupDiamoundListAction) ParentView:self.topDiamondView];
-        self.wh_iv.frame = CGRectMake(0, HEIGHT, self.topDiamondView.frame.size.width, HEIGHT);
-        membHeight+=self.wh_iv.frame.size.height;
+//        self.topDiamondView.height = HEIGHT * 2;
+        //暂时先去掉钻石相关的
+        self.topDiamondView.height = HEIGHT * 0;
+        
+//        self.wh_iv = [self WH_createMiXinButton:@"成员钻石列表" drawTop:NO drawBottom:NO must:NO click:@selector(groupDiamoundListAction) ParentView:self.topDiamondView];
+//        self.wh_iv.frame = CGRectMake(0, HEIGHT, self.topDiamondView.frame.size.width, HEIGHT);
+//        membHeight+=self.wh_iv.frame.size.height;
         
         ///禁言
         [self.topFiveView removeFromSuperview];

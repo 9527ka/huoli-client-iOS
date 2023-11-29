@@ -94,9 +94,15 @@
 - (void)buildTopView{
     NSArray *titles = _isDiamond ? @[@"手气钻石", @"专属钻石", @"口令钻石", @"普通钻石"] : (_isRoom ? @[Localized(@"JX_LuckGift"),Localized(@"JX_MesGift"),Localized(@"JX_UsualGift")] : @[Localized(@"JX_MesGift"),Localized(@"JX_UsualGift")]);
     if (self.isDiamond) {
-        _redPacketSwitch = [[WH_SegmentSwitch alloc] initWithFrame:CGRectMake(60, JX_SCREEN_TOP - 8 - 28, 256, 28) titles:titles slideColor:HEXCOLOR(0xED6350)];
+//        _redPacketSwitch = [[WH_SegmentSwitch alloc] initWithFrame:CGRectMake(60, JX_SCREEN_TOP - 8 - 28, 256, 28) titles:titles slideColor:HEXCOLOR(0xED6350)];
+        _redPacketSwitch = [[WH_SegmentSwitch alloc] initWithFrame:CGRectMake((JX_SCREEN_WIDTH - 256)/2, JX_SCREEN_TOP - 8 - 28, 256, 28) titles:titles slideColor:HEXCOLOR(0xED6350)];
+        
+        
     } else {
-        _redPacketSwitch = [[WH_SegmentSwitch alloc] initWithFrame:CGRectMake(_isRoom ? 92 : 110, JX_SCREEN_TOP - 8 - 28, _isRoom ? 192 : 155, 28) titles:titles slideColor:HEXCOLOR(0xED6350)];
+//        _redPacketSwitch = [[WH_SegmentSwitch alloc] initWithFrame:CGRectMake(_isRoom ? 92 : 110, JX_SCREEN_TOP - 8 - 28, _isRoom ? 192 : 155, 28) titles:titles slideColor:HEXCOLOR(0xED6350)];
+        
+        _redPacketSwitch = [[WH_SegmentSwitch alloc] initWithFrame:CGRectMake(_isRoom ? (JX_SCREEN_WIDTH -192)/2 : (JX_SCREEN_WIDTH -155)/2, JX_SCREEN_TOP - 8 - 28, _isRoom ? 192 : 155, 28) titles:titles slideColor:HEXCOLOR(0xED6350)];
+        
     }
     [self.wh_tableHeader addSubview:_redPacketSwitch];
 

@@ -73,7 +73,7 @@
     for (WH_JXGetPacketList * memberObj in _wh_OpenMember) {
         if ([memberObj.userId intValue] == [MY_USER_ID intValue]) {
             self.replyContent = memberObj.reply;
-//            self.money = [NSString stringWithFormat:@"%.2f %@",memberObj.money,Localized(@"JX_ChinaMoney")];
+//            self.money = [NSString stringWithFormat:@"%.2f %@",memberObj.money,@"HOTC"];
             self.money = [NSString stringWithFormat:@"HOTC%.2f ",memberObj.money];
         }
     }
@@ -370,7 +370,7 @@
     _wh_returnMoneyLabel = [[UILabel alloc]initWithFrame:headerView.frame];
     
     _wh_returnMoneyLabel.font = pingFangRegularFontWithSize(12);
-    _wh_returnMoneyLabel.text = [NSString stringWithFormat:@"%@(%.2f%@)%@",Localized(@"WaHu_JXredPacketDetail_WaHuVC_ReturnMoney1"),_wh_packetObj.over,Localized(@"JX_ChinaMoney"),Localized(@"WaHu_JXredPacketDetail_WaHuVC_ReturnMoney2")];
+    _wh_returnMoneyLabel.text = [NSString stringWithFormat:@"%@(%.2f%@)%@",Localized(@"WaHu_JXredPacketDetail_WaHuVC_ReturnMoney1"),_wh_packetObj.over,@"HOTC",Localized(@"WaHu_JXredPacketDetail_WaHuVC_ReturnMoney2")];
     _wh_returnMoneyLabel.textAlignment = NSTextAlignmentCenter;
     _wh_returnMoneyLabel.center = headerView.center;
     [headerView addSubview:_wh_returnMoneyLabel];
@@ -378,7 +378,7 @@
 //填写界面上的数据
 - (void)WH_setViewData{
     [g_server WH_getHeadImageSmallWIthUserId:_wh_packetObj.userId userName:_wh_packetObj.userName imageView:_wh_headerImageView];
-    _wh_totalMoneyLabel.text = [NSString stringWithFormat:@"%@%.2f%@",Localized(@"WaHu_JXredPacketDetail_WaHuVC_All"),_wh_packetObj.money,Localized(@"JX_ChinaMoney")];
+    _wh_totalMoneyLabel.text = [NSString stringWithFormat:@"%@%.2f%@",Localized(@"WaHu_JXredPacketDetail_WaHuVC_All"),_wh_packetObj.money,@"HOTC"];
     _wh_fromUserLabel.text = [NSString stringWithFormat:@"%@%@", _wh_packetObj.userName,Localized(@"JX_WhoIsRedEnvelopes")];
     _wh_greetLabel.text = _wh_packetObj.greetings;
     NSString * isCanOpen = nil;
@@ -421,7 +421,7 @@
         if (_wh_packetObj.over < 0.01) {
             _wh_showNumLabel.text = [NSString stringWithFormat:@"%@%ld/%ld,%@",Localized(@"WaHu_JXredPacketDetail_WaHuVC_Drawed"),[_wh_OpenMember count],_wh_packetObj.count,isCanOpen];
         }else{
-            _wh_showNumLabel.text = [NSString stringWithFormat:@"%@%ld/%ld, %@%.2f%@,%@",Localized(@"WaHu_JXredPacketDetail_WaHuVC_Drawed"),[_wh_OpenMember count],_wh_packetObj.count,Localized(@"WaHu_JXredPacketDetail_WaHuVC_Rest"),_wh_packetObj.over,Localized(@"JX_ChinaMoney"),isCanOpen];
+            _wh_showNumLabel.text = [NSString stringWithFormat:@"%@%ld/%ld, %@%.2f%@,%@",Localized(@"WaHu_JXredPacketDetail_WaHuVC_Drawed"),[_wh_OpenMember count],_wh_packetObj.count,Localized(@"WaHu_JXredPacketDetail_WaHuVC_Rest"),_wh_packetObj.over,@"HOTC",isCanOpen];
         }
     }
 }
@@ -467,7 +467,7 @@
 //    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8*60*60]];//中国专用
     cell.timeLabel.text = [dateFormatter stringFromDate:date];
     //金额
-    cell.moneyLabel.text = [NSString stringWithFormat:@"%.2f %@",memberObj.money,Localized(@"JX_ChinaMoney")];
+    cell.moneyLabel.text = [NSString stringWithFormat:@"%.2f %@",memberObj.money,@"HOTC"];
     
     
     

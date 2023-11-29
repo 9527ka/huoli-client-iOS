@@ -71,7 +71,7 @@ static NSString * WH_JXRecharge_WHCellID = @"WH_JXRecharge_WHCellID";
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WH_JXRecharge_WHCell * cell = [tableView dequeueReusableCellWithIdentifier:WH_JXRecharge_WHCellID forIndexPath:indexPath];
-    NSString * money = [NSString stringWithFormat:@"%@%@",_rechargeMoneyArray[indexPath.row],Localized(@"JX_ChinaMoney")];
+    NSString * money = [NSString stringWithFormat:@"%@%@",_rechargeMoneyArray[indexPath.row],@"HOTC"];
     cell.textLabel.text = money;
     if(_checkIndex == indexPath.row){
         cell.wh_checkButton.selected = YES;

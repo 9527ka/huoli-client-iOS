@@ -55,7 +55,7 @@
     [self.wh_tableBody addSubview:self.cView];
     
     int membHeight = 0;
-    UIView *tView = [self createBGViewWithOrginY:12 height:HEIGHT*4 supView:self.cView];
+    UIView *tView = [self createBGViewWithOrginY:12 height:HEIGHT*3 supView:self.cView];
     
     WH_JXImageView *iv;
     UILabel *label;
@@ -78,9 +78,8 @@
 //    iv.frame = CGRectMake(0, membHeight, tView.frame.size.width, HEIGHT);
 //    membHeight = CGRectGetMaxY(iv.frame);
     
-//    membHeight = tView.frame.origin.y + tView.frame.size.height + 12;
+    membHeight = tView.frame.origin.y + tView.frame.size.height + 12;
     
-    membHeight = tView.frame.origin.y + tView.frame.size.height - 12;
     
     CGFloat viewOrginY = membHeight;
     NSLog(@"roomId:%@" ,self.room.roomId);

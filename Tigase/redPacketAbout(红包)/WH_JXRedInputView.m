@@ -110,7 +110,7 @@
         }
     }
     _wh_moneyView.frame = CGRectMake(INSETS, _moneyY, self.frame.size.width-INSETS*2, RowHeight);
-    _wh_moneyUnit.frame = CGRectMake(CGRectGetWidth(_wh_moneyView.frame)-15-40, 0, 40, RowHeight);
+    _wh_moneyUnit.frame = CGRectMake(CGRectGetWidth(_wh_moneyView.frame)-15-45, 0, 50, RowHeight);
     _wh_moneyTextField.frame = CGRectMake(CGRectGetMaxX(_wh_moneyTitle.frame), 0, CGRectGetMinX(_wh_moneyUnit.frame)-8.f-CGRectGetMaxX(_wh_moneyTitle.frame), RowHeight);
     
     _wh_sendButton.frame = CGRectMake(CGRectGetMinX(_wh_moneyView.frame), sendBtnY, CGRectGetWidth(_wh_moneyView.frame), 40);
@@ -132,7 +132,7 @@
     _wh_countTitle.text = self.isDiamond ? @"钻石个数" : Localized(@"JXRed_numberPackets");// @"红包个数";//
     _wh_moneyTitle.text = self.isDiamond ? @"总数量" : Localized(@"JXRed_totalAmount");//@"总金额";//
     _wh_countUnit.text = self.isDiamond ? @"个" : Localized(@"JXRed_A");//@"个";//
-    _wh_moneyUnit.text = self.isDiamond ? @"钻石" : Localized(@"JX_ChinaMoney");//@"元";//
+    _wh_moneyUnit.text = self.isDiamond ? @"钻石" : @"HOTC";//@"元";//
     
     if (IS_SHOW_EXCLUSIVEREDPACKET || self.type == 4) {
         _wh_canClaimTitle.text = @"谁可以领";

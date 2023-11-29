@@ -157,7 +157,7 @@
     }
     
 
-    _salary = [self labelWithTitle:Localized(@"JX_ChinaMoney") textColor:[UIColor darkGrayColor] font:sysFontWithSize(12)];
+    _salary = [self labelWithTitle:@"HOTC" textColor:[UIColor darkGrayColor] font:sysFontWithSize(12)];
     _salary.frame = CGRectMake(_expertName.frame.origin.x, _expertName.frame.origin.y+_expertName.frame.size.height+3, 80, 12);
     [self.contentView addSubview:_salary];
 
