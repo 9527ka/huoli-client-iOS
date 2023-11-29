@@ -1,0 +1,28 @@
+/* Localized versions of Info.plist keys */
+
+CFBundleDisplayName = "火力"; // APP名字
+
+NSCalendarsUsageDescription = "يلزم معلومات تقويمية لتوقيع، هل يسمح بالوصول إلى التقويم؟";
+NSCameraUsageDescription = "تحتاج إلى مسح رمز مزدوج أو التقاط صورة لتوصيل الجهاز المربوط، هل يسمح بتشغيل الكاميرا؟";
+NSContactsUsageDescription = "الحاجة إلى تحميل بيانات الدليل إلى الخادم لمعرفة ما إذا كان الأصدقاء الذين يستخدمون هذا التطبيق بشكل مشترك يسمح لهم بالوصول إليه؟";
+NSLocationAlwaysAndWhenInUseUsageDescription = "معلومات الموقع الجغرافي للحصول على معلومات صديق المقرب، هل يسمح باستخدام الموقع؟";
+NSLocationAlwaysUsageDescription = "معلومات الموقع الجغرافي للحصول على معلومات صديق المقرب، هل يسمح باستخدام الموقع؟";
+NSLocationWhenInUseUsageDescription = "معلومات الموقع الجغرافي للحصول على معلومات صديق المقرب، هل يسمح باستخدام الموقع؟";
+NSMicrophoneUsageDescription = "تحتاج إلى تسجيل الصوت لإرسال معلومات الدردشة الصوتية، هل يسمح بتشغيل الميكروفون؟";
+NSPhotoLibraryAddUsageDescription = "تحتاج إلى إضافة صور وتخزين صور، هل يسمح بالوصول إلى ألبوم الصور؟";
+NSPhotoLibraryUsageDescription = "بحاجة إلى عرض الصور وإرسال الصور، هل يسمح بالوصول إلى ألبوم الصور؟";
+
+
+//NSCalendarsUsageDescription = "Calendar information is required to check in. Do you allow calendar access?";
+//NSCameraUsageDescription = "You need to scan a QR code or take a photo to connect to the binding device. Is it allowed to open the camera?";
+//NSContactsUsageDescription = "Need to upload address book data to the server in order to find friends who use this app in common, is it allowed to access the address book?";
+//NSLocationAlwaysAndWhenInUseUsageDescription = "Need geographic location information to get information about nearby friends. Is location allowed?";
+//NSLocationAlwaysUsageDescription = "Location information is needed to get information about nearby friends. Is location allowed?";
+//NSLocationWhenInUseUsageDescription = "Need geographic location information to get information about nearby friends. Is location allowed?";
+//NSMicrophoneUsageDescription = "You need to record audio for sending voice chat messages. Is it allowed to turn on the microphone?";
+//NSPhotoLibraryAddUsageDescription = "You need to add and store pictures. Do you want to allow access to the album?";
+//NSPhotoLibraryUsageDescription = "Need to view and send pictures, do you allow access to the album?";
+
+
+
+

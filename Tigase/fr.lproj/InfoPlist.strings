@@ -1,0 +1,24 @@
+/* Localized versions of Info.plist keys */
+
+CFBundleDisplayName = "火力"; // APP名字
+
+
+NSCalendarsUsageDescription = "Des informations sur le calendrier sont requises pour l'enregistrement, êtes-vous autorisé à accéder au calendrier ?";
+NSCameraUsageDescription = "Vous devez scanner le code QR ou prendre une photo pour vous connecter à l'appareil lié. Êtes-vous autorisé à ouvrir l'appareil photo ?";
+NSContactsUsageDescription = "Vous devez télécharger les données du carnet d'adresses sur le serveur afin de trouver des amis qui utilisent cette APP ensemble. Autorisez-vous l'accès au carnet d'adresses ?";
+NSLocationAlwaysAndWhenInUseUsageDescription = "Vous avez besoin d'informations de localisation géographique pour obtenir des informations sur vos amis, autorisez-vous l'utilisation de la localisation ?";
+NSLocationAlwaysUsageDescription = "Les informations de localisation sont nécessaires pour obtenir des informations sur les amis à proximité, est-il permis d'utiliser la localisation ?";
+NSLocationWhenInUseUsageDescription = "Vous avez besoin d'informations de localisation géographique pour obtenir des informations sur vos amis, est-il autorisé d'utiliser la localisation ?";
+NSMicrophoneUsageDescription = "L'enregistrement audio est requis pour envoyer des informations sur le chat vocal, êtes-vous autorisé à ouvrir le microphone ?";
+NSPhotoLibraryAddUsageDescription = "Vous avez besoin d'ajouter des images et de stocker des images, êtes-vous autorisé à accéder à l'album ?";
+NSPhotoLibraryUsageDescription = "Vous avez besoin de visualiser et d'envoyer des photos, êtes-vous autorisé à accéder à l'album ?";
+
+//NSLocationAlwaysUsageDescription = "Les informations de localisation sont nécessaires pour obtenir des informations sur les amis à proximité, est-il permis d'utiliser la localisation ?" ;
+//NSLocationWhenInUseUsageDescription = "Vous avez besoin d'informations de localisation géographique pour obtenir des informations sur vos amis, est-il autorisé d'utiliser la localisation ?" ;
+//NSMicrophoneUsageDescription = "L'enregistrement audio est requis pour envoyer des informations sur le chat vocal, êtes-vous autorisé à ouvrir le microphone ?" ;
+//NSPhotoLibraryAddUsageDescription = "Vous avez besoin d'ajouter des images et de stocker des images, êtes-vous autorisé à accéder à l'album ?" ;
+//NSPhotoLibraryUsageDescription = "Vous avez besoin de visualiser et d'envoyer des photos, êtes-vous autorisé à accéder à l'album ?";
+
+
+
+
