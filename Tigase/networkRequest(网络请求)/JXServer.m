@@ -1554,6 +1554,9 @@
     if (user.birthday) {
         [p setPostValue:[NSNumber numberWithLongLong:[user.birthday timeIntervalSince1970]] forKey:@"birthday"];
     }
+    //邮箱
+    [p setPostValue:user.email.length > 0?user.email:@"" forKey:@"email"];
+    
     if (user.sex != nil) {
         [p setPostValue:user.sex forKey:@"sex"];
     }

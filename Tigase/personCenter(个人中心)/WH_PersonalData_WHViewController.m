@@ -74,6 +74,8 @@
     if ([g_config.isOpenTelnum intValue] == 1) {
         [tempArr2 addObject:tStr];
     }
+    //邮箱
+    [tempArr2 addObject:@"邮箱"];
     [tempArr2 addObject:Localized(@"New_account_number")];
     if ([g_config.registerInviteCode intValue] == 2) {//注册邀请码   0：关闭,1:开启一对一邀请（一码一用，且必填），2:开启一对多邀请（一码多用，选填项）
         [tempArr2 addObject:Localized(@"JX_InvitationCode")];
@@ -264,6 +266,13 @@
                 btn.tag = 101;
                 //手机号
                 [btn addSubview:[self createLabelWithWidth:self.wh_cTableView.frame.size.width - 90 -12 text:g_myself.telephone?:@""]];
+            }else if ([currentTitleString isEqualToString:@"邮箱"]) {
+                btn.tag = 104;
+                if (self.wh_email) {
+                    [self.wh_email removeFromSuperview];
+                }
+                self.wh_email = [self WH_createMiXinTextField:btn default:self.user.email?:@"" hint:@"请输入邮箱账号"];
+                [self.wh_email addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
             }else if ([currentTitleString isEqualToString:Localized(@"New_account_number")]) {
                 btn.tag = 102;
                 //通讯号
@@ -514,6 +523,12 @@
         }
             break;
             
+        case 104://邮箱
+        {
+            
+        }
+            break;
+            
         case 1001://点击更新
         {
             [self onUpdate];
@@ -551,6 +566,7 @@
     }
     self.user.userNickname = self.wh_name.text;
     self.user.birthday = self.wh_date.wh_date;
+    self.user.email = self.wh_email.text;
     self.user.sex = [NSNumber numberWithBool:_wh_sex.selectedSegmentIndex];
     return  YES;
 }
@@ -558,6 +574,7 @@
 -(void)onUpdate{
     if(![self getInputValue])
         return;
+    
     [g_server WH_updateUser:self.user toView:self];
 }
 

@@ -19,6 +19,7 @@
 @property (nonatomic,strong) NSString* phone; //!< 未加区号,暂未存数据库
 
 @property (nonatomic, strong) NSString *name; //!< 
+@property (nonatomic, strong) NSString *email;
 @property (nonatomic, strong) NSString *active; //!<
 @property (nonatomic, strong) NSString *anonymous;
 @property (nonatomic, strong) NSString *carrier;

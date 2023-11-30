@@ -69,6 +69,7 @@
 @property (nonatomic,strong) NSString* userId;//!< 房间时，等于roomJid
 @property (nonatomic,strong) NSString* roomId;//!< 接口的roomId
 @property (nonatomic,strong) NSString* userNickname;
+@property (nonatomic,strong) NSString* email;//邮箱
 @property (nonatomic,strong) NSString* remarkName;  //!< 备注
 @property (nonatomic,strong) NSString *describe; //!< 描述
 @property (nonatomic,strong) NSString* createUserId;  //!< 创建者userId
