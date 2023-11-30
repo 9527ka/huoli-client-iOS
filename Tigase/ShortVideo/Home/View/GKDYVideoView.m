@@ -163,10 +163,10 @@
 
 #pragma mark - Private Methods
 - (void)playVideoFrom:(GKDYVideoControlView *)fromView {
+    
     // 移除原来的播放
     [self.player removeVideo];
-    
-    // 取消原来视图的代理
+       // 取消原来视图的代理
     self.wh_currentPlayView.delegate = nil;
     
     // 切换播放视图
@@ -417,7 +417,7 @@
 
 - (GH_GKDYVideoPlayer *)player {
     if (!_player) {
-        _player = [GH_GKDYVideoPlayer new];
+        _player = [[GH_GKDYVideoPlayer alloc] init];
         _player.delegate = self;
     }
     return _player;

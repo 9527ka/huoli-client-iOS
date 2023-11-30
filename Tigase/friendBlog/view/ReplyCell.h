@@ -15,6 +15,8 @@
 @property (nonatomic, strong) UIImageView *icon;
 @property (nonatomic, strong) UILabel *name;
 
+@property (nonatomic,strong) UILabel *timeLab;
+
 @property(nonatomic,assign) int wh_pointIndex;
 
 

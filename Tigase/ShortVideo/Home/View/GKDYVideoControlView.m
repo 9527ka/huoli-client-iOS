@@ -610,10 +610,9 @@
 {
     WeiboReplyData * data=[self.wh_model.replys objectAtIndex:indexPath.row];
     CGFloat height = [JXXMPP getLabelHeightWithContent:[self getLabelText:data] andLabelWidth:JX_SCREEN_WIDTH - 80 andLabelFontSize:13];
-    return height+46;
+    return height+46 + 0;
 }
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSInteger n = [self.wh_model.replys count];
     //    NSLog(@"count:%d",n);
     return n;
@@ -676,13 +675,20 @@
     
 //    cell.label.wh_match=match;
     cell.label.text =  [self getLabelText:data];
-    [JXXMPP getAttributeTextWithLabel:cell.label textString:data.body color:HEXCOLOR(0x333333)];
+    [JXXMPP getAttributeTextWithLabel:cell.label textString:data.body color:[UIColor whiteColor]];
     CGFloat height = [JXXMPP getLabelHeightWithContent:[self getLabelText:data] andLabelWidth:JX_SCREEN_WIDTH - 80 andLabelFontSize:13];
     cell.label.userInteractionEnabled=NO;
     CGRect frame=cell.label.frame;
     cell.backgroundColor=[UIColor clearColor];
     frame.size.height= height + 3;
     cell.label.frame=frame;
+    
+    
+//    CGRect timeFrame = cell.timeLab.frame;
+//    timeFrame.origin.y = cell.frame.size.height - 24;
+//    cell.timeLab.frame = timeFrame;
+//    cell.timeLab.text = @"刚刚";//data.createTime
+    
     //    }
     //设置回复被点击后颜色不变
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -697,14 +703,19 @@
                data.match.attrString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@回复%@", userA.remarkName.length ? userA.remarkName : userA.userNickname, userB.remarkName.length ? userB.remarkName : userB.userNickname]];
                data.title = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@回复%@", userA.remarkName.length ? userA.remarkName : userA.userNickname, userB.remarkName.length ? userB.remarkName : userB.userNickname]];
            }
+        
+        return [NSString stringWithFormat:@"%@:%@", data.title.string, data.body];
+        
        } else {
            WH_JXUserObject *userA = [[WH_JXUserObject sharedUserInstance] getFriendWithUserId:data.userId];
            if (userA.remarkName.length) {
                data.match.attrString = [[NSMutableAttributedString alloc] initWithString:userA.remarkName];
                data.title = [[NSAttributedString alloc] initWithString:userA.remarkName];
            }
+           
+           return [NSString stringWithFormat:@"%@",data.body];
        }
-    return [NSString stringWithFormat:@"%@:%@", data.title.string, data.body];
+//    return [NSString stringWithFormat:@"%@:%@", data.title.string, data.body];
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

@@ -29,5 +29,41 @@
     }
     return self;
 }
+/**
+ 根据指定url在指定视图上播放视频
+ 
+ @param playView 播放视图
+ @param url 播放地址
+ */
+- (void)playVideoWithView:(UIView *)playView url:(NSString *)url{
+    
+}
+
+/**
+ 停止播放并移除播放视图
+ */
+- (void)removeVideo{
+    
+}
+
+/**
+ 暂停播放
+ */
+- (void)pause{
+    
+}
+
+/**
+ 恢复播放
+ */
+- (void)resume{
+    
+}
+- (void)sp_getMediaData{
+    
+}
+
+
+
  
 @end

@@ -7139,16 +7139,16 @@
 		4CABBBF5293F06F700C17F42 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4CABBBFD293F06F700C17F42 /* GKDYScrollView.h */,
+				4CABBBFA293F06F700C17F42 /* GKDYScrollView.m */,
+				4CABBBFC293F06F700C17F42 /* GKDYVideoControlView.h */,
 				4CABBBF6293F06F700C17F42 /* GKDYVideoControlView.m */,
 				4CABBBF7293F06F700C17F42 /* GKDYVideoView.h */,
-				4CABBBF8293F06F700C17F42 /* JXSelectMusicCell.h */,
-				4CABBBF9293F06F700C17F42 /* JXSmallVideoCell.m */,
-				4CABBBFA293F06F700C17F42 /* GKDYScrollView.m */,
 				4CABBBFB293F06F700C17F42 /* GKDYVideoView.m */,
-				4CABBBFC293F06F700C17F42 /* GKDYVideoControlView.h */,
-				4CABBBFD293F06F700C17F42 /* GKDYScrollView.h */,
-				4CABBBFE293F06F700C17F42 /* JXSmallVideoCell.h */,
+				4CABBBF8293F06F700C17F42 /* JXSelectMusicCell.h */,
 				4CABBBFF293F06F700C17F42 /* JXSelectMusicCell.m */,
+				4CABBBFE293F06F700C17F42 /* JXSmallVideoCell.h */,
+				4CABBBF9293F06F700C17F42 /* JXSmallVideoCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -7175,8 +7175,8 @@
 		4CABBC04293F06F700C17F42 /* GKDYVideoPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				4CABBC05293F06F700C17F42 /* GH_GKDYVideoPlayer.m */,
 				4CABBC06293F06F700C17F42 /* GH_GKDYVideoPlayer.h */,
+				4CABBC05293F06F700C17F42 /* GH_GKDYVideoPlayer.m */,
 			);
 			path = GKDYVideoPlayer;
 			sourceTree = "<group>";
