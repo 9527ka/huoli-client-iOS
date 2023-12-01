@@ -7540,11 +7540,41 @@
             [GKMessageTool showText:@"禁言状态下不能@群成员！"];
             return;
         }else{
-            /// @群成员
-            memberData * mem = [self.room getMember:msg.fromUserId];
-            if (mem) {
-                [self atSelectMemberDelegate:mem];
+            //弹框 专属红包、@他发言、对他禁言、取消
+            UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+            
+            memberData * myMem = [self.room getMember:MY_USER_ID];
+            
+            NSArray *typeArray = (_isAdmin || [myMem.role integerValue] == 1 || [myMem.role integerValue] == 2)? @[@"专属红包", @"@Ta发言", @"对Ta禁言"]:@[@"专属红包", @"@Ta发言"];
+            for (NSString *type in typeArray) {
+                [actionSheet addAction:[UIAlertAction actionWithTitle:type style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    if([action.title isEqualToString:@"专属红包"]){
+                        
+                        [self sendGiftToRoom];
+                        
+                        
+                    }else if ([action.title isEqualToString:@"@Ta发言"]){
+                        
+                        /// @群成员
+                        memberData * mem = [self.room getMember:msg.fromUserId];
+                        if (mem) {
+                            [self atSelectMemberDelegate:mem];
+                        }
+                        
+                    }else if ([action.title isEqualToString:@"对Ta禁言"]){
+                        
+                    }
+                                        
+                }]];
             }
+            [actionSheet addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                
+            }]];
+            [self presentViewController:actionSheet animated:YES completion:NULL];
+            
+            
+            
+            
         }
     }
 }

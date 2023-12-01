@@ -50,9 +50,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     WH_JXGroupEnterAndOutCell *cell = (WH_JXGroupEnterAndOutCell *)[tableView dequeueReusableCellWithIdentifier:@"WH_JXGroupEnterAndOutCell" forIndexPath:indexPath];
-    cell.memberLabel.text = @"张三\n123";
+    cell.memberLabel.text = @"张三张三张\n123";
     cell.timeLabel.text = @"2023-01-01\n00:00:00";
-    cell.operatorLabel.text = @"李四\n321";
+    cell.operatorLabel.text = @"李四李四李\n321";
+    [g_server WH_getHeadImageSmallWIthUserId:g_myself.userId userName:g_myself.userNickname imageView:cell.operatorImage];
+    [g_server WH_getHeadImageSmallWIthUserId:g_myself.userId userName:g_myself.userNickname imageView:cell.memberImage];
+    
     return cell;
 }
 

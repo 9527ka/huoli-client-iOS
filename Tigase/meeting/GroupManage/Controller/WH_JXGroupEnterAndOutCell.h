@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *memberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *operatorLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *memberImage;//被邀请人头像
+@property (weak, nonatomic) IBOutlet UIImageView *operatorImage;//邀请人头像
 
 @end
 

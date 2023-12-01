@@ -268,7 +268,7 @@
         [dict setObject:[rs stringForColumn:_sysName]?:@"" forKey:[rs stringForColumn:@"ios"]];
         num++;
     }
-    NSLog(@"语言适配条数：%ld", num);
+    NSLog(@"语言适配条数：%ld====%@", num,dict);
     return dict;
     
 }
