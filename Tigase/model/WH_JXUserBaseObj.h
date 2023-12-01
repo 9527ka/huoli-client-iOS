@@ -124,6 +124,7 @@
 @property (nonatomic, strong) NSNumber *category;   //!< 群组类型 510:手机联系人群组
 @property (nonatomic,strong) NSDate*   joinTime; //!< 群组分页获取群成员，最后一个成员加入时间
 @property (nonatomic,strong) NSDate*   clearChatTime; //!< 清除聊天记录时间
+@property (nonatomic, strong) NSNumber *showAllValidRedPacket;   //!< 群成员使用长时间未领取红包 1：允许
 
 //数据库增删改查
 -(BOOL)insert;

@@ -954,7 +954,7 @@
         self.wh_iv.frame = CGRectMake(0, HEIGHT, self.redPacketView.frame.size.width, HEIGHT);
         membHeight+=self.wh_iv.frame.size.height;
     }
-    if ([data.role intValue] == 1 || [data.role intValue] == 2) {
+    if ([data.role intValue] == 1 || [data.role intValue] == 2 || self.wh_room.showAllValidRedPacket) {//群主开启了也可以使用
         self.wh_iv = [self WH_createMiXinButton:@"长时间未领取红包" drawTop:NO drawBottom:NO must:NO click:@selector(groupMemberRedPacketUnclaimedAction) ParentView:self.redPacketView];
         self.wh_iv.frame = CGRectMake(0, self.redPacketView.height, self.redPacketView.frame.size.width, HEIGHT);
         self.redPacketView.height += HEIGHT;

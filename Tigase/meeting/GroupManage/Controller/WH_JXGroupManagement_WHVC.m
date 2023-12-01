@@ -132,7 +132,7 @@
     UIView *unclaimedView = [self createBGViewWithOrginY:membHeight height:HEIGHT supView:self.cView];
     iv = [self WH_createMiXinButton:@"允许群成员使用长时间未领取红包" supView:unclaimedView drawTop:NO drawBottom:NO must:NO click:nil];
     iv.frame = CGRectMake(0, 0, CGRectGetWidth(unclaimedView.frame), CGRectGetHeight(unclaimedView.frame));
-    [self createSwitchWithParent:iv tag:2501 isOn:YES];
+    [self createSwitchWithParent:iv tag:2501 isOn:self.room.showAllValidRedPacket];
     label =[self createLabelWithParent:self.wh_tableBody frameY:CGRectGetMaxY(unclaimedView.frame) + 2 text:@"关闭后，仅群主和管理员可以使用"];
     
     membHeight = CGRectGetMaxY(label.frame) + 12;
@@ -493,6 +493,9 @@
             [self isSignInRecordSwitchAction:switchView];
             break;
         case 2501:
+            //长时间未领取红包
+            [self isRedReceiveSwitchAction:switchView];
+            
             break;
         default:
             break;
@@ -616,6 +619,13 @@
     self.room.isShowSignIn = switchView.on;
     [g_server updateRoomShowRead:self.room key:@"isShowSignIn" value:self.room.isShowSignIn toView:self];
 }
+#pragma mark 长时间未领取红包
+- (void)isRedReceiveSwitchAction:(UISwitch *)switchView {
+//    self.updateType = [NSNumber numberWithInt:kRoomRemind_GroupSignIn];eeee
+    self.room.showAllValidRedPacket = switchView.on;
+    [g_server updateRoomShowRead:self.room key:@"showAllValidRedPacket" value:self.room.showAllValidRedPacket toView:self];
+}
+
 
 - (void)hideKeyboard {
     [self.view endEditing:YES];
@@ -642,6 +652,7 @@
         user.allowUploadFile = [NSNumber numberWithBool:self.room.allowUploadFile];
         user.allowConference = [NSNumber numberWithBool:self.room.allowConference];
         user.allowSpeakCourse = [NSNumber numberWithBool:self.room.allowSpeakCourse];
+        user.showAllValidRedPacket = [NSNumber numberWithBool:self.room.showAllValidRedPacket];
         [user update];
         
         if ([self.updateType intValue] == kRoomRemind_ShowRead || [self.updateType intValue] == kRoomRemind_ShowMember || [self.updateType intValue] == kRoomRemind_allowSendCard || [self.updateType intValue] == kRoomRemind_RoomAllowInviteFriend || [self.updateType intValue] == kRoomRemind_RoomAllowUploadFile || [self.updateType intValue] == kRoomRemind_RoomAllowConference || [self.updateType intValue] == kRoomRemind_RoomAllowSpeakCourse || [self.updateType integerValue] == kRoomRemind_GroupSignIn) {

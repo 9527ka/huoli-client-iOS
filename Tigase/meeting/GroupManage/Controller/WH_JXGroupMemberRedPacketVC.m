@@ -30,6 +30,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //设置展示样式
+    self.datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+    
     
     [self.datePicker setMaximumDate:[NSDate date]];
     [self.startDateBtn setTitle:[NSDate date].xmppDateString forState:UIControlStateNormal];

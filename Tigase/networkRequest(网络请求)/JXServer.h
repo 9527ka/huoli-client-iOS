@@ -263,6 +263,7 @@
 #define wh_act_roomMemberSetOfflineNoPushMsg   @"room/member/setOfflineNoPushMsg"  // 设置群消息免打扰
 
 // 标签
+
 #define wh_act_FriendGroupAdd      @"friendGroup/add" // 添加标签
 #define wh_act_FriendGroupUpdateGroupUserList  @"friendGroup/updateGroupUserList"// 修改好友标签
 #define wh_act_FriendGroupUpdate   @"friendGroup/update"  // 更新标签名
@@ -395,6 +396,7 @@
 //钻石相关
 #define act_diamond_allocation @"CustomerService/diamondRedPacket/assignDiamond"//修改成员钻石数量
 #define act_diamond_send @"CustomerService/diamondRedPacket/sendDiamondRedPacket/v1"//发送钻石
+#define wh_receiv_RedList @"api/query_group_valid_red_packet"    //长时间未领取的红包列表
 
 @protocol JXServerResult;
 @class AlixPayResult;
@@ -1187,6 +1189,10 @@
 #pragma mark -- 发送钻石
 - (void)sendDiamond:(NSString *)roomJid diamondNumber:(NSString *)diamondNumber count:(NSString *)count type:(NSInteger)type greetings:(NSString *)greetings toUserId:(NSString *)toUserId time:(NSString *)time secret:(NSString *)secret toDelegate:(id)toDelegate;
 
+#pragma mark -- 获取长时间未领取红包列表
+- (void)WH_redListPageIndex:(NSInteger)pageIndex roomId:(NSString *)roomId toView:(id)toView;
+
+
 @property(nonatomic) long user_id;
 @property(nonatomic) long user_type;
 @property(nonatomic) long count_money;
@@ -1231,6 +1237,7 @@
 -(int) WH_didServerConnect_WHError:(WH_JXConnection*)aDownload error:(NSError *)error;//error为空时，代表超时
 #pragma mark - 开始请求服务器回调
 -(void) WH_didServerConnect_WHStart:(WH_JXConnection*)aDownload;
+
 
 
 @end

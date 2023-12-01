@@ -269,6 +269,8 @@
     self.createTime = [[dict objectForKey:@"createTime"] longLongValue];
     self.updateTime = [[dict objectForKey:@"updateTime"] longLongValue];
     
+    self.showAllValidRedPacket = [[dict objectForKey:@"showAllValidRedPacket"] boolValue];
+    
     self.isLook = [[dict objectForKey:@"isLook"] boolValue];
     self.isNeedVerify = [[dict objectForKey:@"isNeedVerify"] boolValue];
     self.showMember = [[dict objectForKey:@"showMember"] boolValue];

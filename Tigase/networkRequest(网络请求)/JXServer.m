@@ -4549,4 +4549,17 @@
     [p go];
 }
 
+// 获取长时间未领取红包列表
+- (void)WH_redListPageIndex:(NSInteger)pageIndex roomId:(NSString *)roomId toView:(id)toView {
+    WH_JXConnection* p = [self addTask:wh_receiv_RedList param:nil toView:toView];
+    
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:[NSNumber numberWithInteger:pageIndex] forKey:@"page"];
+    [p setPostValue:[NSNumber numberWithInteger:60] forKey:@"limit"];
+    [p setPostValue:roomId forKey:@"roomJId"];
+        
+    [p go];
+}
+
+
 @end

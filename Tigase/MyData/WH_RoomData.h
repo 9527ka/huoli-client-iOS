@@ -46,6 +46,8 @@
 @property (nonatomic, assign) BOOL allowConference; // 允许成员召开会议，1：允许  0：不允许  默认允许
 @property (nonatomic, assign) BOOL allowSpeakCourse; // 允许群成员发起讲课，1：允许  0：不允许  默认允许
 
+@property (nonatomic, assign) BOOL showAllValidRedPacket;   //!< 群成员使用长时间未领取红包 1：允许
+
 @property (nonatomic, assign) BOOL allowForceNotice;//允许发强提醒公告// 1: 允许 0:不允许 默认不允许
 
 @property (nonatomic, assign) BOOL isAttritionNotice; // 群组减员通知，1：开启通知  0：不通知  默认通知
@@ -54,6 +56,8 @@
 @property (nonatomic,strong) NSString*   chatRecordTimeOut; // 消息保留天数
 
 @property (nonatomic ,assign) NSInteger isShowSignIn ; //是否开启群签到 1:开启
+
+@property (nonatomic ,assign) BOOL showAllValidRedPacket; //是否显示长时间未领取红包 1:开启
 
 @property(nonatomic,assign) double longitude;
 @property(nonatomic,assign) double latitude;
