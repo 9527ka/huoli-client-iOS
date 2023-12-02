@@ -4555,7 +4555,7 @@
     
     [p setPostValue:self.access_token forKey:@"access_token"];
     [p setPostValue:[NSNumber numberWithInteger:pageIndex] forKey:@"page"];
-    [p setPostValue:[NSNumber numberWithInteger:60] forKey:@"limit"];
+    [p setPostValue:[NSNumber numberWithInteger:200] forKey:@"limit"];
     [p setPostValue:roomId forKey:@"roomJId"];
         
     [p go];

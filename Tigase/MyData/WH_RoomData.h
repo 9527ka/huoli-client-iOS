@@ -57,8 +57,6 @@
 
 @property (nonatomic ,assign) NSInteger isShowSignIn ; //是否开启群签到 1:开启
 
-@property (nonatomic ,assign) BOOL showAllValidRedPacket; //是否显示长时间未领取红包 1:开启
-
 @property(nonatomic,assign) double longitude;
 @property(nonatomic,assign) double latitude;
 @property(nonatomic,strong) NSMutableArray* members;    //房间成员列表

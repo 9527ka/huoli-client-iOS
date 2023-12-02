@@ -396,7 +396,7 @@
 //钻石相关
 #define act_diamond_allocation @"CustomerService/diamondRedPacket/assignDiamond"//修改成员钻石数量
 #define act_diamond_send @"CustomerService/diamondRedPacket/sendDiamondRedPacket/v1"//发送钻石
-#define wh_receiv_RedList @"api/query_group_valid_red_packet"    //长时间未领取的红包列表
+#define wh_receiv_RedList @"room/query_group_valid_red_packet"    //长时间未领取的红包列表
 
 @protocol JXServerResult;
 @class AlixPayResult;
