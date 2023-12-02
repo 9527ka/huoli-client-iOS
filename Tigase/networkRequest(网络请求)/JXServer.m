@@ -1909,18 +1909,27 @@
 }
 
 // 获得发送的红包
-- (void)WH_redPacketGetSendRedPacketListIndex:(NSInteger)index toView:(id)toView {
+- (void)WH_redPacketGetSendRedPacketListIndex:(NSInteger)index startTime:(NSString *)startTime endTime:(NSString *)endTime type:(NSInteger)type toView:(id)toView {
     WH_JXConnection *p = [self addTask:wh_act_redPacketGetSendRedPacketList param:nil toView:toView];
     [p setPostValue:self.access_token forKey:@"access_token"];
     [p setPostValue:[NSNumber numberWithInteger:index] forKey:@"pageIndex"];
     //    [p setPostValue:[NSNumber numberWithInteger:10] forKey:@"pageSize"];
+    [p setPostValue:[NSNumber numberWithInteger:20] forKey:@"pageSize"];
+    [p setPostValue:[NSNumber numberWithInteger:type] forKey:@"type"];
+    [p setPostValue:startTime forKey:@"startTime"];
+    [p setPostValue:endTime forKey:@"endTime"];
+    
     [p go];
 }
 // 获得接收的红包
-- (void)WH_redPacketGetRedReceiveListIndex:(NSInteger)index toView:(id)toView {
+- (void)WH_redPacketGetRedReceiveListIndex:(NSInteger)index startTime:(NSString *)startTime endTime:(NSString *)endTime type:(NSInteger)type toView:(id)toView {
     WH_JXConnection *p = [self addTask:wh_act_redPacketGetRedReceiveList param:nil toView:toView];
     [p setPostValue:self.access_token forKey:@"access_token"];
     [p setPostValue:[NSNumber numberWithInteger:index] forKey:@"pageIndex"];
+    [p setPostValue:[NSNumber numberWithInteger:20] forKey:@"pageSize"];
+    [p setPostValue:[NSNumber numberWithInteger:type] forKey:@"type"];
+    [p setPostValue:startTime forKey:@"startTime"];
+    [p setPostValue:endTime forKey:@"endTime"];
 
     [p go];
 }

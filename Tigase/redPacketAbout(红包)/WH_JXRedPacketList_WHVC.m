@@ -104,9 +104,9 @@
 - (void) WH_getServerData {
     
     if (_selIndex == 0) {
-        [g_server WH_redPacketGetRedReceiveListIndex:_page toView:self];
+        [g_server WH_redPacketGetRedReceiveListIndex:_page startTime:@"" endTime:@"" type:0 toView:self];
     }else {
-        [g_server WH_redPacketGetSendRedPacketListIndex:_page toView:self];
+        [g_server WH_redPacketGetSendRedPacketListIndex:_page startTime:@"" endTime:@"" type:0 toView:self];
     }
 }
 

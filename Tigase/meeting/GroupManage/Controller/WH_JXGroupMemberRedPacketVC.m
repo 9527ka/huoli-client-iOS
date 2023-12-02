@@ -8,9 +8,14 @@
 
 #import "WH_JXGroupMemberRedPacketVC.h"
 #import "WH_JXGroupMemberRedPacketCell.h"
+#import "MJRefreshFooterView.h"
+#import "MJRefreshHeaderView.h"
 
 @interface WH_JXGroupMemberRedPacketVC ()<UITableViewDataSource, UITableViewDelegate> {
     BOOL isSelectStartDate;
+    MJRefreshFooterView *_footer;
+    MJRefreshHeaderView *_header;
+    ATMHud* _wait;
 }
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
@@ -24,21 +29,70 @@
 
 @property (nonatomic, strong) NSMutableArray *dataSource;
 
+@property (nonatomic,copy)NSString *startTime;//yyyy-MM-dd HH:mm:ss
+@property (nonatomic,copy)NSString *endTime;//yyyy-MM-dd HH:mm:ss
+@property (nonatomic,assign)NSInteger type;//红包类型：0:全部 1：普通红包 2：拼手气红包 3:口令红包
+
+@property (nonatomic,assign)NSInteger page;
+
+@property (nonatomic, assign) NSInteger selIndex;
+
 @end
 
 @implementation WH_JXGroupMemberRedPacketVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.dataSource = [NSMutableArray array];
     //设置展示样式
     self.datePicker.datePickerMode = UIDatePickerModeDateAndTime;
     
-    
     [self.datePicker setMaximumDate:[NSDate date]];
+    self.type = 0;
+    //开始时间
+    NSString *startTimeStr = [NSString stringWithFormat:@"%@ 00:00:00",[NSDate date].xmppDateString];
+    self.startTime = startTimeStr;
     [self.startDateBtn setTitle:[NSDate date].xmppDateString forState:UIControlStateNormal];
+    
+    //结束时间
+    NSString *endTimeStr = [NSString stringWithFormat:@"%@ 23:59:59",[NSDate date].xmppDateString];
+    self.endTime = endTimeStr;
+    
     [self.endDateBtn setTitle:[NSDate date].xmppDateString forState:UIControlStateNormal];
-    self.dataSource = (NSMutableArray *)[memberData fetchAllMembers:self.room.roomId sortByName:NO];
     [self.tableView registerNib:[UINib nibWithNibName:@"WH_JXGroupMemberRedPacketCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WH_JXGroupMemberRedPacketCell"];
+    
+    //设置刷新的头部以及加载
+    [self setTableHeaderAndFotter];
+    [self WH_getServerData];
+    
+}
+//设置刷新以及加载
+-(void)setTableHeaderAndFotter{
+    _footer = [MJRefreshFooterView footer];
+    _footer.scrollView = self.tableView;
+    __weak WH_JXGroupMemberRedPacketVC *weakSelf = self;
+    _footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+        weakSelf.page ++;
+        [weakSelf WH_getServerData];
+        //        NSLog(@"%@----开始进入刷新状态", refreshView.class);
+    };
+    
+    
+    _header = [MJRefreshHeaderView header];
+    _header.scrollView = self.tableView;
+    _header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+        weakSelf.page = 0;
+        // 进入刷新状态就会回调这个Block
+        [weakSelf WH_getServerData];
+    };
+}
+- (void) WH_getServerData {
+    
+    if (_selIndex == 1) {
+        [g_server WH_redPacketGetRedReceiveListIndex:self.page startTime:self.startTime endTime:self.endTime type:self.type toView:self];
+    }else {
+        [g_server WH_redPacketGetSendRedPacketListIndex:self.page startTime:self.startTime endTime:self.endTime type:self.type toView:self];
+    }
 }
 
 - (IBAction)didTapBack {
@@ -46,17 +100,30 @@
 }
 
 - (IBAction)didTapSegmented:(UISegmentedControl *)sender {
-    
+    self.page = 0;
+    self.selIndex = sender.selectedSegmentIndex;
+
+    [self WH_getServerData];
 }
 
 - (IBAction)didTapType {
     UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     NSArray *typeArray = @[@"全部", @"手气红包", @"口令红包", @"专属红包"];
-    for (NSString *type in typeArray) {
+    ////红包类型：0:全部 1：普通红包 2：拼手气红包 3:口令红包
+    NSArray *tagArray = @[@(0),@(2),@(3),@(1)];
+    
+    for (int i = 0; i < typeArray.count; i++) {
+        NSString *type = typeArray[i];
+        NSNumber *chooseType = tagArray[i];
         [actionSheet addAction:[UIAlertAction actionWithTitle:type style:[type isEqualToString:self.typeBtn.currentTitle] ? UIAlertActionStyleDestructive : UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self.typeBtn setTitle:type forState:UIControlStateNormal];
+            self.type = chooseType.integerValue;
+            self.page = 0;
+            //刷新接口
+            [self WH_getServerData];
         }]];
     }
+    
     [actionSheet addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         
     }]];
@@ -86,14 +153,21 @@
             return;
         }
         [self.startDateBtn setTitle:self.datePicker.date.xmppDateString forState:UIControlStateNormal];
+        
+        self.startTime = [NSString stringWithFormat:@"%@:00",self.datePicker.date.xmppDateSSString];
+        
     } else {
         if ([self.datePicker.date timeIntervalSinceDate:[NSDate dateWithXmppDateString:self.startDateBtn.currentTitle]] < 0) {
             [GKMessageTool showError:@"结束时间不能比开始时间小"];
             return;
         }
         [self.endDateBtn setTitle:self.datePicker.date.xmppDateString forState:UIControlStateNormal];
+        
+        self.endTime = [NSString stringWithFormat:@"%@:00",self.datePicker.date.xmppDateSSString];
     }
     self.dateContentView.hidden = YES;
+    self.page = 0;
+    [self WH_getServerData];
 }
 
 #pragma mark - UITableViewDataSource, UITableViewDelegate
@@ -103,12 +177,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     WH_JXGroupMemberRedPacketCell *cell = (WH_JXGroupMemberRedPacketCell *)[tableView dequeueReusableCellWithIdentifier:@"WH_JXGroupMemberRedPacketCell" forIndexPath:indexPath];
-    memberData *data = (memberData *)(self.dataSource[indexPath.row]);
-    [g_server WH_getHeadImageSmallWIthUserId:[NSString stringWithFormat:@"%ld", data.userId] userName:data.userNickName imageView:cell.avatarImage];
+    if(self.dataSource.count > indexPath.row    ){
+        NSDictionary *dic = self.dataSource[indexPath.row];
+        [g_server WH_getHeadImageSmallWIthUserId:[NSString stringWithFormat:@"%@",self.selIndex == 0? dic[@"userId"]:dic[@"sendId"]] userName:[NSString stringWithFormat:@"%@",self.selIndex == 0?dic[@"userName"]:dic[@"sendName"]] imageView:cell.avatarImage];
+        
+        cell.nicknameLabel.text = [NSString stringWithFormat:@"%@", self.selIndex == 0?dic[@"userName"]:dic[@"sendName"]];
+        cell.moneyLabel.text = [NSString stringWithFormat:@"￥%.2f",[NSString stringWithFormat:@"%@",dic[@"money"]].doubleValue];
+    }
+
     
-    WH_JXUserObject *user = [[WH_JXUserObject alloc] init];
-    user = [user getUserById:[NSString stringWithFormat:@"%ld",data.userId]];
-    cell.nicknameLabel.text = data.lordRemarkName.length > 0 ? data.lordRemarkName : user.remarkName.length > 0  ? user.remarkName : data.userNickName;
     if (indexPath.row < 3) {
         cell.medalIcon.hidden = NO;
         cell.medalIcon.image = [UIImage imageNamed:@[@"gold_medal", @"silver_medal", @"bronze_medal"][indexPath.row]];
@@ -118,6 +195,41 @@
         cell.numberLabel.text = [NSString stringWithFormat:@"%ld", indexPath.row + 1];
     }
     return cell;
+}
+#pragma mark - 请求成功回调
+-(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{
+    [_wait stop];
+    [self WH_stopLoading];
+    
+    if (self.page == 0) {
+        [self.dataSource removeAllObjects];
+        [self.dataSource addObjectsFromArray:array1];
+    }else {
+        [self.dataSource addObjectsFromArray:array1];
+    }
+    
+    [self.tableView reloadData];
+}
+#pragma mark - 请求失败回调
+-(int) WH_didServerResult_WHFailed:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict{
+    [_wait stop];
+    
+    return WH_show_error;
+}
+
+#pragma mark - 请求出错回调
+-(int) WH_didServerConnect_WHError:(WH_JXConnection*)aDownload error:(NSError *)error{//error为空时，代表超时
+    [_wait stop];
+    return WH_show_error;
+}
+
+#pragma mark - 开始请求服务器回调
+-(void) WH_didServerConnect_WHStart:(WH_JXConnection*)aDownload{
+    [_wait start];
+}
+- (void)WH_stopLoading {
+    [_footer endRefreshing];
+    [_header endRefreshing];
 }
 
 @end
