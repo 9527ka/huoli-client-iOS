@@ -14,6 +14,8 @@
                 <outlet property="dateContentView" destination="DUd-WB-dk7" id="baH-9K-UWw"/>
                 <outlet property="datePicker" destination="UTc-7X-gGg" id="XP6-SS-IRI"/>
                 <outlet property="endDateBtn" destination="Oep-RJ-wOT" id="cTf-wi-QX8"/>
+                <outlet property="nodataImage" destination="Wf7-Ka-TPq" id="v9v-vv-rgH"/>
+                <outlet property="nodataLab" destination="HUq-AL-PjN" id="MLy-fn-wL5"/>
                 <outlet property="segmentedControl" destination="urd-Jj-VMM" id="NXl-3H-eo7"/>
                 <outlet property="startDateBtn" destination="z0M-30-OAj" id="545-Sh-V56"/>
                 <outlet property="tableView" destination="adP-sg-bGy" id="jln-FF-fFz"/>
@@ -176,6 +178,19 @@
                         <constraint firstItem="UTc-7X-gGg" firstAttribute="centerX" secondItem="DUd-WB-dk7" secondAttribute="centerX" id="vSC-pw-dg4"/>
                     </constraints>
                 </view>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂无数据" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HUq-AL-PjN">
+                    <rect key="frame" x="168" y="510" width="57.333333333333343" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" systemColor="systemGray2Color"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_not_found" translatesAutoresizingMaskIntoConstraints="NO" id="Wf7-Ka-TPq">
+                    <rect key="frame" x="136.66666666666666" y="366" width="119.99999999999997" height="120"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="120" id="2nN-5Y-kzc"/>
+                        <constraint firstAttribute="width" constant="120" id="9Yv-Y3-k2r"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -183,8 +198,10 @@
                 <constraint firstItem="Oep-RJ-wOT" firstAttribute="leading" secondItem="IhG-Qg-Pfm" secondAttribute="trailing" constant="5" id="2Ud-82-H3y"/>
                 <constraint firstItem="H7w-DP-mnV" firstAttribute="top" secondItem="urd-Jj-VMM" secondAttribute="bottom" constant="10" id="3qx-oj-zXN"/>
                 <constraint firstItem="urd-Jj-VMM" firstAttribute="top" secondItem="WmV-Im-xgT" secondAttribute="bottom" constant="17" id="8TJ-fA-ORI"/>
+                <constraint firstItem="HUq-AL-PjN" firstAttribute="top" secondItem="Wf7-Ka-TPq" secondAttribute="bottom" constant="24" id="Bde-yU-Z8b"/>
                 <constraint firstItem="H7w-DP-mnV" firstAttribute="leading" secondItem="WmV-Im-xgT" secondAttribute="leading" id="DMM-Vr-Fcd"/>
                 <constraint firstItem="IhG-Qg-Pfm" firstAttribute="leading" secondItem="z0M-30-OAj" secondAttribute="trailing" constant="5" id="Fxu-zv-WVJ"/>
+                <constraint firstItem="Wf7-Ka-TPq" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="JG1-sO-NSk"/>
                 <constraint firstItem="WmV-Im-xgT" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="7" id="La4-EW-SRM"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="adP-sg-bGy" secondAttribute="bottom" id="NM7-y9-tKX"/>
                 <constraint firstItem="WmV-Im-xgT" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="10" id="NiK-Tn-oPi"/>
@@ -195,9 +212,11 @@
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="UTc-7X-gGg" secondAttribute="bottom" id="YxW-Qu-oRB"/>
                 <constraint firstItem="UUq-Qd-GAw" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="aZB-GJ-6Jf"/>
                 <constraint firstItem="DUd-WB-dk7" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="b3S-jg-HR4"/>
+                <constraint firstItem="Wf7-Ka-TPq" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dJe-PE-2nH"/>
                 <constraint firstItem="adP-sg-bGy" firstAttribute="top" secondItem="H7w-DP-mnV" secondAttribute="bottom" constant="15" id="ent-Ke-NP6"/>
                 <constraint firstItem="adP-sg-bGy" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="fL2-WH-WbE"/>
                 <constraint firstItem="DUd-WB-dk7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="foH-R5-D72"/>
+                <constraint firstItem="HUq-AL-PjN" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="gZK-VX-xbh"/>
                 <constraint firstItem="Oep-RJ-wOT" firstAttribute="centerY" secondItem="z0M-30-OAj" secondAttribute="centerY" id="hJR-RG-ajg"/>
                 <constraint firstItem="lft-af-90K" firstAttribute="leading" secondItem="H7w-DP-mnV" secondAttribute="trailing" constant="2" id="k9G-h9-Vny"/>
                 <constraint firstItem="UUq-Qd-GAw" firstAttribute="centerY" secondItem="WmV-Im-xgT" secondAttribute="centerY" id="mCY-nB-9rn"/>
@@ -210,6 +229,7 @@
         </view>
     </objects>
     <resources>
+        <image name="icon_not_found" width="147" height="147"/>
         <image name="icon_right_arrow" width="11" height="11"/>
         <image name="title_back" width="28" height="28"/>
         <systemColor name="systemBackgroundColor">

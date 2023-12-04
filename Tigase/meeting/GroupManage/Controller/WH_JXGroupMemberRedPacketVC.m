@@ -37,6 +37,9 @@
 
 @property (nonatomic, assign) NSInteger selIndex;
 
+@property (weak, nonatomic) IBOutlet UIImageView *nodataImage;
+@property (weak, nonatomic) IBOutlet UILabel *nodataLab;
+
 @end
 
 @implementation WH_JXGroupMemberRedPacketVC
@@ -89,9 +92,9 @@
 - (void) WH_getServerData {
     
     if (_selIndex == 1) {
-        [g_server WH_redPacketGetRedReceiveListIndex:self.page startTime:self.startTime endTime:self.endTime type:self.type toView:self];
+        [g_server WH_redPacketGetRedReceiveListIndex:self.page startTime:self.startTime endTime:self.endTime type:self.type roomJId:self.room.roomJid toView:self];
     }else {
-        [g_server WH_redPacketGetSendRedPacketListIndex:self.page startTime:self.startTime endTime:self.endTime type:self.type toView:self];
+        [g_server WH_redPacketGetSendRedPacketListIndex:self.page startTime:self.startTime endTime:self.endTime type:self.type roomJId:self.room.roomJid toView:self];
     }
 }
 
@@ -185,7 +188,6 @@
         cell.moneyLabel.text = [NSString stringWithFormat:@"￥%.2f",[NSString stringWithFormat:@"%@",dic[@"money"]].doubleValue];
     }
 
-    
     if (indexPath.row < 3) {
         cell.medalIcon.hidden = NO;
         cell.medalIcon.image = [UIImage imageNamed:@[@"gold_medal", @"silver_medal", @"bronze_medal"][indexPath.row]];
@@ -204,6 +206,8 @@
     if (self.page == 0) {
         [self.dataSource removeAllObjects];
         [self.dataSource addObjectsFromArray:array1];
+        
+        self.nodataImage.hidden = self.nodataLab.hidden = array1.count > 0?YES:NO;
     }else {
         [self.dataSource addObjectsFromArray:array1];
     }

@@ -194,6 +194,7 @@
 #define wh_act_getRedPacket @"redPacket/getRedPacket"//获取红包详情
 #define wh_act_openRedPacket @"redPacket/openRedPacket"//领取红包
 #define wh_act_redPacketGetSendRedPacketList @"redPacket/getSendRedPacketList"// 获取发送的红包
+#define wh_act_getSendRedPacketList @"redPacket/group/all"// 获取发送的红包
 #define wh_act_redPacketGetRedReceiveList @"redPacket/getRedReceiveList"   // 收到的红包
 #define wh_act_redPacketReply @"redPacket/reply"   // 红包回复
 #define wh_act_userWithdrawMethodSet @"user/withdrawMethodSet"//增加提现账号
@@ -397,6 +398,8 @@
 #define act_diamond_allocation @"CustomerService/diamondRedPacket/assignDiamond"//修改成员钻石数量
 #define act_diamond_send @"CustomerService/diamondRedPacket/sendDiamondRedPacket/v1"//发送钻石
 #define wh_receiv_RedList @"room/query_group_valid_red_packet"    //长时间未领取的红包列表
+#define wh_rememBer_inList @"room/query_group_in_log"    //群成员进群列表
+#define wh_rememBer_outList @"room/query_group_out_log"    //群成员出群列表
 
 @protocol JXServerResult;
 @class AlixPayResult;
@@ -761,9 +764,9 @@
 //获取红包记录
 - (void)WH_getConsumeRecordWithIndex:(NSInteger)pageIndex toView:(id)toView;
 // 获得发送的红包
-- (void)WH_redPacketGetSendRedPacketListIndex:(NSInteger)index startTime:(NSString *)startTime endTime:(NSString *)endTime type:(NSInteger)type toView:(id)toView;
+- (void)WH_redPacketGetSendRedPacketListIndex:(NSInteger)index startTime:(NSString *)startTime endTime:(NSString *)endTime type:(NSInteger)type roomJId:(NSString *)roomJId toView:(id)toView;
 // 获得接收的红包
-- (void)WH_redPacketGetRedReceiveListIndex:(NSInteger)index startTime:(NSString *)startTime endTime:(NSString *)endTime type:(NSInteger)type toView:(id)toView;
+- (void)WH_redPacketGetRedReceiveListIndex:(NSInteger)index startTime:(NSString *)startTime endTime:(NSString *)endTime type:(NSInteger)type roomJId:(NSString *)roomJId toView:(id)toView;
 // 红包回复
 - (void)WH_redPacketReplyWithRedPacketid:(NSString *)redPacketId content:(NSString *)content toView:(id)toView;
 - (void)WH_addWithdrawalAccountWithParam:(NSDictionary *)param toView:(id)toView;// 增加提现账号
@@ -1191,6 +1194,8 @@
 
 #pragma mark -- 获取长时间未领取红包列表
 - (void)WH_redListPageIndex:(NSInteger)pageIndex roomId:(NSString *)roomId toView:(id)toView;
+// 获取进出群列表列表
+- (void)WH_OutListPageIndex:(NSInteger)pageIndex roomId:(NSString *)roomId selectIndex:(NSInteger)selectIndex toView:(id)toView;
 
 
 @property(nonatomic) long user_id;

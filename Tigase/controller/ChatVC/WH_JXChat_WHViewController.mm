@@ -262,6 +262,10 @@
 @property (nonatomic, strong) YJCircleView *circularView;
 @property (nonatomic, strong) NSTimer *changeTimer;
 
+
+
+@property (nonatomic, strong) memberData *notalkMember;//被禁言的对象
+
 //@property (nonatomic ,strong) UIView *bottomView;//阅后即焚使用
 //@property (nonatomic ,strong) UIImageView *clockImageV;
 //@property (nonatomic, strong) UILabel *bottomTitleLb;
@@ -6362,6 +6366,42 @@
             [g_notify postNotificationName:kCellDeleteMsgNotifaction object:[NSNumber numberWithInt:self.indexNum]];
         if(index == 1)
             [g_notify postNotificationName:kCellResendMsgNotifaction object:[NSNumber numberWithInt:self.indexNum]];
+    }else if (actionSheet.wh_tag == 10010){//禁言
+        NSTimeInterval n = [[NSDate date] timeIntervalSince1970];
+        switch (index) {
+            case 0:
+                self.notalkMember.talkTime = 0;
+                break;
+            case 1:
+                self.notalkMember.talkTime = 10*60+n;
+                break;
+            case 2:
+                self.notalkMember.talkTime = 1*3600+n;
+                break;
+            case 3:
+                self.notalkMember.talkTime = 24*3600+n;
+                break;
+            case 4:
+                self.notalkMember.talkTime = 3*24*3600+n;
+                break;
+            case 5:
+                self.notalkMember.talkTime = 7*24*3600+n;
+                break;
+            case 6:
+                self.notalkMember.talkTime = 15*24*3600+n;
+                break;
+            default:
+                break;
+        }
+    
+        [g_server WH_setDisableSayWithRoomId:self.room.roomId member:self.notalkMember toView:self];
+
+//        self.toUserId = [NSString stringWithFormat:@"%ld",member.userId];
+//        self.toUserName = member.userNickName;
+
+    //    [self sendSelfMsg:kRoomRemind_DisableSay content:[NSString stringWithFormat:@"%f",member.talkTime]];
+
+        self.notalkMember = nil;
     }else {
         
         if (self.roomJid || [g_config.isOpenCluster integerValue] != 1) {
@@ -7562,7 +7602,23 @@
                         }
                         
                     }else if ([action.title isEqualToString:@"对Ta禁言"]){
+                        memberData * member = [self.room getMember:msg.fromUserId];
                         
+                        self.notalkMember = member;
+                        
+                        if ([member.role intValue] == 1 || [member.role intValue] == 2) {
+                            [g_App showAlert:Localized(@"JX_Can'tBanManager")];
+                            return;
+                        }
+                        if ([member.role intValue] == 4) {
+                            [g_App showAlert:Localized(@"JX_YouCan'tKeepYourMouthShut")];
+                            return;
+                        }
+                        if ([member.role intValue] == 5) {
+                            [g_App showAlert:Localized(@"New_cant_shut_up_monitor")];
+                            return;
+                        }
+                        [self onDisableSay:nil];
                     }
                                         
                 }]];
@@ -7577,6 +7633,24 @@
             
         }
     }
+}
+//目前需求不需要弹框了，直接禁言
+-(void)onDisableSay:(WH_JXImageView*)sender{
+    NSTimeInterval n = [[NSDate date] timeIntervalSince1970];
+    //最高15天
+    self.notalkMember.talkTime = 15*24*3600+n;
+    
+    [g_server WH_setDisableSayWithRoomId:self.room.roomId member:self.notalkMember toView:self];
+    
+    self.notalkMember = nil;
+    
+    
+
+//    WH_JXActionSheet_WHVC *actionVC = [[WH_JXActionSheet_WHVC alloc] initWithImages:@[] names:@[Localized(@"JXAlert_NotGag"),Localized(@"JXAlert_GagTenMinute"),Localized(@"JXAlert_GagOneHour"),Localized(@"JXAlert_GagOne"),Localized(@"JXAlert_GagThere"),Localized(@"JXAlert_GagOneWeek"),Localized(@"JXAlert_GagFifteen")]];
+//    actionVC.delegate = self;
+//    actionVC.wh_tag = 10010;
+//    [self presentViewController:actionVC animated:NO completion:nil];
+
 }
 
 // 重新发送转账消息

@@ -26,6 +26,9 @@
 @property(nonatomic,strong)NSMutableArray *dataArray;
 @property(nonatomic,assign)NSInteger page;
 @property(nonatomic,assign)BOOL isDidRedPacketRemind;
+@property (weak, nonatomic) IBOutlet UIImageView *nodataImage;
+@property (weak, nonatomic) IBOutlet UILabel *nodataLab;
+
 
 @end
 
@@ -79,6 +82,9 @@
         if (self.page == 0) {
             [self.dataArray removeAllObjects];
             [self.dataArray addObjectsFromArray:array1];
+            
+            self.nodataLab.hidden = self.nodataImage.hidden = array1.count > 0?YES:NO;
+            
         }else {
             [self.dataArray addObjectsFromArray:array1];
         }
