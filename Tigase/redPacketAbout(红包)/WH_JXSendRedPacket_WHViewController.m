@@ -241,7 +241,7 @@
         _moneyText = _orderView.wh_moneyTextField.text;
         _countText = _orderView.wh_countTextField.text;
         _greetText = _orderView.wh_greetTextField.text;//口令
-    } else if(button.tag == 4){
+    } else if(button.tag == 4){//专属红包
         _moneyText = _exclusiveView.wh_moneyTextField.text;
         _countText = _exclusiveView.wh_countTextField.text;
         _greetText = _exclusiveView.wh_greetTextField.text;

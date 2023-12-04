@@ -1924,7 +1924,7 @@
 }
 // 获得接收的红包
 - (void)WH_redPacketGetRedReceiveListIndex:(NSInteger)index startTime:(NSString *)startTime endTime:(NSString *)endTime type:(NSInteger)type roomJId:(NSString *)roomJId toView:(id)toView {
-    WH_JXConnection *p = [self addTask:wh_act_redPacketGetRedReceiveList param:nil toView:toView];
+    WH_JXConnection *p = [self addTask:wh_act_getRedReceiveList param:nil toView:toView];
     [p setPostValue:self.access_token forKey:@"access_token"];
     [p setPostValue:[NSNumber numberWithInteger:index] forKey:@"pageIndex"];
     [p setPostValue:[NSNumber numberWithInteger:20] forKey:@"pageSize"];

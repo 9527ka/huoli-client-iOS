@@ -193,9 +193,15 @@
 #define wh_act_sendRedPacketV1 @"redPacket/sendRedPacket/v1"//发红包(新)
 #define wh_act_getRedPacket @"redPacket/getRedPacket"//获取红包详情
 #define wh_act_openRedPacket @"redPacket/openRedPacket"//领取红包
+
+//我的
 #define wh_act_redPacketGetSendRedPacketList @"redPacket/getSendRedPacketList"// 获取发送的红包
-#define wh_act_getSendRedPacketList @"redPacket/group/all"// 获取发送的红包
 #define wh_act_redPacketGetRedReceiveList @"redPacket/getRedReceiveList"   // 收到的红包
+
+//群成员的
+#define wh_act_getSendRedPacketList @"redPacket/group/all"// 获取发送的红包
+#define wh_act_getRedReceiveList @"redPacket/group/received"   // 收到的红包
+
 #define wh_act_redPacketReply @"redPacket/reply"   // 红包回复
 #define wh_act_userWithdrawMethodSet @"user/withdrawMethodSet"//增加提现账号
 #define wh_act_userWithdrawMethodGet @"user/withdrawMethodGet"//获取提现账号列表
