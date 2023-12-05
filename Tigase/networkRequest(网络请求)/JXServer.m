@@ -1935,6 +1935,21 @@
 
     [p go];
 }
+
+// 获得群接收与发送的红包
+- (void)WH_redPacketGetAndSendRedReceiveListIndex:(NSInteger)index startTime:(NSString *)startTime endTime:(NSString *)endTime type:(NSInteger)type roomJId:(NSString *)roomJId pageIndex:(NSInteger)pageIndex toView:(id)toView {
+    WH_JXConnection *p = [self addTask:index > 0?wh_act_redPacketGetRedReceiveList:wh_act_redPacketGetSendRedPacketList param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:[NSNumber numberWithInteger:pageIndex] forKey:@"pageIndex"];
+    [p setPostValue:[NSNumber numberWithInteger:20] forKey:@"pageSize"];
+    [p setPostValue:[NSNumber numberWithInteger:type] forKey:@"type"];
+    [p setPostValue:startTime forKey:@"startTime"];
+    [p setPostValue:endTime forKey:@"endTime"];
+    [p setPostValue:roomJId forKey:@"roomJId"];
+
+    [p go];
+}
+
 // 红包回复
 - (void)WH_redPacketReplyWithRedPacketid:(NSString *)redPacketId content:(NSString *)content toView:(id)toView {
     WH_JXConnection *p = [self addTask:wh_act_redPacketReply param:nil toView:toView];

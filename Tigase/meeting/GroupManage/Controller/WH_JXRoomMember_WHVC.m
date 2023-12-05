@@ -1670,6 +1670,7 @@
 // MARK: -- 群红包
 - (void)groupRedPacketAction {
     WH_JXGroupRedPacketVC *vc = [[WH_JXGroupRedPacketVC alloc] init];
+    vc.room = self.wh_room;
     [g_navigation pushViewController:vc animated:YES];
 }
 
@@ -2364,46 +2365,13 @@
     if(sender.tag >= [wh_room.members count])
         return;
     _disable = (int)sender.tag;
-
-    LXActionSheet* _menu = [[LXActionSheet alloc]
-                            initWithTitle:nil
-                            delegate:self
-                            cancelButtonTitle:nil
-                            destructiveButtonTitle:Localized(@"JX_Cencal")
-                            otherButtonTitles:@[Localized(@"JXAlert_NotGag"),Localized(@"JXAlert_GagTenMinute"),Localized(@"JXAlert_GagOneHour"),Localized(@"JXAlert_GagOne"),Localized(@"JXAlert_GagThere"),Localized(@"JXAlert_GagOneWeek"),Localized(@"JXAlert_GagOver")]];
-    [g_window addSubview:_menu];
-//    [_menu release];
     
-}
-
-- (void)didClickOnButtonIndex:(LXActionSheet*)sender buttonIndex:(int)buttonIndex{
-    if(buttonIndex==0)
-        return;
+    
     NSTimeInterval n = [[NSDate date] timeIntervalSince1970];
     memberData* member = [wh_room.members objectAtIndex:_disable];
-    switch (buttonIndex) {
-        case 1:
-            member.talkTime = 0;
-            break;
-        case 2:
-            member.talkTime = 10*60+n;
-            break;
-        case 3:
-            member.talkTime = 1*3600+n;
-            break;
-        case 4:
-            member.talkTime = 24*3600+n;
-            break;
-        case 5:
-            member.talkTime = 3*24*3600+n;
-            break;
-        case 6:
-            member.talkTime = 7*24*3600+n;
-            break;
-        case 7:
-            member.talkTime = 3000*24*3600+n;
-            break;
-    }
+    
+    member.talkTime = member.talkTime > 0?0: 15*24*3600+n;
+    
     [g_server WH_setDisableSayWithRoomId:wh_room.roomId member:member toView:self];
 
     _modifyType = kRoomRemind_DisableSay;
@@ -2412,7 +2380,61 @@
 //    [self sendSelfMsg:_modifyType content:[NSString stringWithFormat:@"%f",member.talkTime]];
 
     member = nil;
+    
+    
+
+//    LXActionSheet* _menu = [[LXActionSheet alloc]
+//                            initWithTitle:nil
+//                            delegate:self
+//                            cancelButtonTitle:nil
+//                            destructiveButtonTitle:Localized(@"JX_Cencal")
+//                            otherButtonTitles:@[Localized(@"JXAlert_NotGag"),Localized(@"JXAlert_GagTenMinute"),Localized(@"JXAlert_GagOneHour"),Localized(@"JXAlert_GagOne"),Localized(@"JXAlert_GagThere"),Localized(@"JXAlert_GagOneWeek"),Localized(@"JXAlert_GagOver")]];
+//    [g_window addSubview:_menu];
+//    [_menu release];
+    
 }
+
+//- (void)didClickOnButtonIndex:(LXActionSheet*)sender buttonIndex:(int)buttonIndex{
+//    if(buttonIndex==0)
+//        return;
+//    NSTimeInterval n = [[NSDate date] timeIntervalSince1970];
+//    memberData* member = [wh_room.members objectAtIndex:_disable];
+//
+//    member.talkTime = member.talkTime > 0?0: 15*24*3600+n;
+//
+//
+//    switch (buttonIndex) {
+//        case 1:
+//            member.talkTime = 0;
+//            break;
+//        case 2:
+//            member.talkTime = 10*60+n;
+//            break;
+//        case 3:
+//            member.talkTime = 1*3600+n;
+//            break;
+//        case 4:
+//            member.talkTime = 24*3600+n;
+//            break;
+//        case 5:
+//            member.talkTime = 3*24*3600+n;
+//            break;
+//        case 6:
+//            member.talkTime = 7*24*3600+n;
+//            break;
+//        case 7:
+//            member.talkTime = 3000*24*3600+n;
+//            break;
+//    }
+//    [g_server WH_setDisableSayWithRoomId:wh_room.roomId member:member toView:self];
+//
+//    _modifyType = kRoomRemind_DisableSay;
+//    _toUserId = [NSString stringWithFormat:@"%ld",member.userId];
+//    _toUserName = member.userNickName;
+////    [self sendSelfMsg:_modifyType content:[NSString stringWithFormat:@"%f",member.talkTime]];
+//
+//    member = nil;
+//}
 -(void)switchAction:(id) sender{
 //    UILabel* p = (UILabel*)[_blackBtn viewWithTag:TAG_LABEL];
     UISwitch *switchButton = (UISwitch*)sender;

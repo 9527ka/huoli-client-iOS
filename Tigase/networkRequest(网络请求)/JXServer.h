@@ -773,6 +773,8 @@
 - (void)WH_redPacketGetSendRedPacketListIndex:(NSInteger)index startTime:(NSString *)startTime endTime:(NSString *)endTime type:(NSInteger)type roomJId:(NSString *)roomJId toView:(id)toView;
 // 获得接收的红包
 - (void)WH_redPacketGetRedReceiveListIndex:(NSInteger)index startTime:(NSString *)startTime endTime:(NSString *)endTime type:(NSInteger)type roomJId:(NSString *)roomJId toView:(id)toView;
+// 获得群接收与发送的红包
+- (void)WH_redPacketGetAndSendRedReceiveListIndex:(NSInteger)index startTime:(NSString *)startTime endTime:(NSString *)endTime type:(NSInteger)type roomJId:(NSString *)roomJId pageIndex:(NSInteger)pageIndex toView:(id)toView;
 // 红包回复
 - (void)WH_redPacketReplyWithRedPacketid:(NSString *)redPacketId content:(NSString *)content toView:(id)toView;
 - (void)WH_addWithdrawalAccountWithParam:(NSDictionary *)param toView:(id)toView;// 增加提现账号

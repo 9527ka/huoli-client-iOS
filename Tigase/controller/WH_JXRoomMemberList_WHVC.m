@@ -731,41 +731,35 @@
 }
 
 -(void)onDisableSay:(WH_JXImageView*)sender{
-
-    WH_JXActionSheet_WHVC *actionVC = [[WH_JXActionSheet_WHVC alloc] initWithImages:@[] names:@[Localized(@"JXAlert_NotGag"),Localized(@"JXAlert_GagTenMinute"),Localized(@"JXAlert_GagOneHour"),Localized(@"JXAlert_GagOne"),Localized(@"JXAlert_GagThere"),Localized(@"JXAlert_GagOneWeek"),Localized(@"JXAlert_GagFifteen")]];
-    actionVC.delegate = self;
-    [self presentViewController:actionVC animated:NO completion:nil];
-
-}
-
-- (void)actionSheet:(WH_JXActionSheet_WHVC *)actionSheet didButtonWithIndex:(NSInteger)index {
+    
     NSTimeInterval n = [[NSDate date] timeIntervalSince1970];
     memberData* member = _currentMember;
-    switch (index) {
-        case 0:
-            member.talkTime = 0;
-            break;
-        case 1:
-            member.talkTime = 10*60+n;
-            break;
-        case 2:
-            member.talkTime = 1*3600+n;
-            break;
-        case 3:
-            member.talkTime = 24*3600+n;
-            break;
-        case 4:
-            member.talkTime = 3*24*3600+n;
-            break;
-        case 5:
-            member.talkTime = 7*24*3600+n;
-            break;
-        case 6:
-            member.talkTime = 15*24*3600+n;
-            break;
-        default:
-            break;
-    }
+    member.talkTime = [[NSDate date] timeIntervalSince1970] > member.talkTime?0: 15*24*3600+n;
+//    switch (index) {
+//        case 0:
+//            member.talkTime = 0;
+//            break;
+//        case 1:
+//            member.talkTime = 10*60+n;
+//            break;
+//        case 2:
+//            member.talkTime = 1*3600+n;
+//            break;
+//        case 3:
+//            member.talkTime = 24*3600+n;
+//            break;
+//        case 4:
+//            member.talkTime = 3*24*3600+n;
+//            break;
+//        case 5:
+//            member.talkTime = 7*24*3600+n;
+//            break;
+//        case 6:
+//            member.talkTime = 15*24*3600+n;
+//            break;
+//        default:
+//            break;
+//    }
     
     [g_server WH_setDisableSayWithRoomId:self.room.roomId member:member toView:self];
     
@@ -775,6 +769,16 @@
 //    [self sendSelfMsg:kRoomRemind_DisableSay content:[NSString stringWithFormat:@"%f",member.talkTime]];
     
     member = nil;
+    
+    
+    
+    
+    
+
+//    WH_JXActionSheet_WHVC *actionVC = [[WH_JXActionSheet_WHVC alloc] initWithImages:@[] names:@[Localized(@"JXAlert_NotGag"),Localized(@"JXAlert_GagTenMinute"),Localized(@"JXAlert_GagOneHour"),Localized(@"JXAlert_GagOne"),Localized(@"JXAlert_GagThere"),Localized(@"JXAlert_GagOneWeek"),Localized(@"JXAlert_GagFifteen")]];
+//    actionVC.delegate = self;
+//    [self presentViewController:actionVC animated:NO completion:nil];
+
 }
 
 -(void)sendSelfMsg:(int)type content:(NSString*)content{

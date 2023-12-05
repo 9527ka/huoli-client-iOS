@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WH_JXGroupRedPacketVC : UIViewController
 
+@property (nonatomic,strong) WH_RoomData *room;
+
 @end
 
 NS_ASSUME_NONNULL_END

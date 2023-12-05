@@ -5917,6 +5917,9 @@
             chatPerson.groupStatus = [NSNumber numberWithInt:2];
             [chatPerson WH_updateGroupInvalid];
         }
+    }else if([aDownload.action isEqualToString:wh_act_roomMemberSet]){//禁言
+        self.chatPerson.talkTime = [self.chatPerson.talkTime longLongValue] > 0?@(0):@(15*24*3600+30);
+//        [JXMyTools showTipView:[NSString stringWithFormat:@"%@已被%@禁言",self.chatPerson.userNickname,[self.chatPerson.talkTime longLongValue] > 0?@"":@"解除"]];
     }
 //    [_table reloadData];
 }
@@ -6366,42 +6369,6 @@
             [g_notify postNotificationName:kCellDeleteMsgNotifaction object:[NSNumber numberWithInt:self.indexNum]];
         if(index == 1)
             [g_notify postNotificationName:kCellResendMsgNotifaction object:[NSNumber numberWithInt:self.indexNum]];
-    }else if (actionSheet.wh_tag == 10010){//禁言
-        NSTimeInterval n = [[NSDate date] timeIntervalSince1970];
-        switch (index) {
-            case 0:
-                self.notalkMember.talkTime = 0;
-                break;
-            case 1:
-                self.notalkMember.talkTime = 10*60+n;
-                break;
-            case 2:
-                self.notalkMember.talkTime = 1*3600+n;
-                break;
-            case 3:
-                self.notalkMember.talkTime = 24*3600+n;
-                break;
-            case 4:
-                self.notalkMember.talkTime = 3*24*3600+n;
-                break;
-            case 5:
-                self.notalkMember.talkTime = 7*24*3600+n;
-                break;
-            case 6:
-                self.notalkMember.talkTime = 15*24*3600+n;
-                break;
-            default:
-                break;
-        }
-    
-        [g_server WH_setDisableSayWithRoomId:self.room.roomId member:self.notalkMember toView:self];
-
-//        self.toUserId = [NSString stringWithFormat:@"%ld",member.userId];
-//        self.toUserName = member.userNickName;
-
-    //    [self sendSelfMsg:kRoomRemind_DisableSay content:[NSString stringWithFormat:@"%f",member.talkTime]];
-
-        self.notalkMember = nil;
     }else {
         
         if (self.roomJid || [g_config.isOpenCluster integerValue] != 1) {
@@ -7576,16 +7543,17 @@
             }
         }
         
-        if ([self.chatPerson.talkTime longLongValue] > 0) {
-            [GKMessageTool showText:@"禁言状态下不能@群成员！"];
-            return;
-        }else{
+//        if ([self.chatPerson.talkTime longLongValue] > 0) {
+//            [GKMessageTool showText:@"禁言状态下不能@群成员！"];
+//            return;
+//        }else{
             //弹框 专属红包、@他发言、对他禁言、取消
             UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
             
             memberData * myMem = [self.room getMember:MY_USER_ID];
+            memberData * member = [self.room getMember:msg.fromUserId];
             
-            NSArray *typeArray = (_isAdmin || [myMem.role integerValue] == 1 || [myMem.role integerValue] == 2)? @[@"专属红包", @"@Ta发言", @"对Ta禁言"]:@[@"专属红包", @"@Ta发言"];
+            NSArray *typeArray = (_isAdmin || [myMem.role integerValue] == 1 || [myMem.role integerValue] == 2)? @[@"专属红包", @"@Ta发言", member.talkTime > 0?@"不禁言":@"对Ta禁言"]:@[@"专属红包", @"@Ta发言"];
             for (NSString *type in typeArray) {
                 [actionSheet addAction:[UIAlertAction actionWithTitle:type style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                     if([action.title isEqualToString:@"专属红包"]){
@@ -7601,8 +7569,8 @@
                             [self atSelectMemberDelegate:mem];
                         }
                         
-                    }else if ([action.title isEqualToString:@"对Ta禁言"]){
-                        memberData * member = [self.room getMember:msg.fromUserId];
+                    }else if ([action.title isEqualToString:@"对Ta禁言"] || [action.title isEqualToString:@"不禁言"]){
+//                        memberData * member = [self.room getMember:msg.fromUserId];
                         
                         self.notalkMember = member;
                         
@@ -7631,25 +7599,18 @@
             
             
             
-        }
+//        }
     }
 }
 //目前需求不需要弹框了，直接禁言
 -(void)onDisableSay:(WH_JXImageView*)sender{
     NSTimeInterval n = [[NSDate date] timeIntervalSince1970];
     //最高15天
-    self.notalkMember.talkTime = 15*24*3600+n;
+    self.notalkMember.talkTime = [self.chatPerson.talkTime longLongValue] > 0?0:15*24*3600+n;
     
     [g_server WH_setDisableSayWithRoomId:self.room.roomId member:self.notalkMember toView:self];
     
     self.notalkMember = nil;
-    
-    
-
-//    WH_JXActionSheet_WHVC *actionVC = [[WH_JXActionSheet_WHVC alloc] initWithImages:@[] names:@[Localized(@"JXAlert_NotGag"),Localized(@"JXAlert_GagTenMinute"),Localized(@"JXAlert_GagOneHour"),Localized(@"JXAlert_GagOne"),Localized(@"JXAlert_GagThere"),Localized(@"JXAlert_GagOneWeek"),Localized(@"JXAlert_GagFifteen")]];
-//    actionVC.delegate = self;
-//    actionVC.wh_tag = 10010;
-//    [self presentViewController:actionVC animated:NO completion:nil];
 
 }
 
