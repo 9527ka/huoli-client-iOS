@@ -120,6 +120,12 @@
     listBtn.layer.borderWidth = g_factory.cardBorderWithd;
     listBtn.layer.cornerRadius = CGRectGetHeight(listBtn.frame) / 2.f;
     listBtn.layer.masksToBounds = YES;
+    
+    NSString *roomJId = @"";
+    if(_wh_dataDict[@"data"][@"packet"][@"roomJid"]){
+        roomJId = [NSString stringWithFormat:@"%@",_wh_dataDict[@"data"][@"packet"][@"roomJid"]];
+    }
+    listBtn.hidden = roomJId.length > 0?NO:YES;
     [_wh_headImgV addSubview:listBtn];
     
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP - 32, JX_SCREEN_WIDTH, 20)];
@@ -339,6 +345,9 @@
 
 - (void)listBtnAction:(UIButton *)btn {
     WH_JXRedPacketList_WHVC *vc = [[WH_JXRedPacketList_WHVC alloc] init];
+    
+    NSString *roomJId = [NSString stringWithFormat:@"%@",_wh_dataDict[@"data"][@"packet"][@"roomJid"]];
+    vc.roomJid = roomJId;
     [g_navigation pushViewController:vc animated:YES];
 }
 

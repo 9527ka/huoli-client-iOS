@@ -196,20 +196,20 @@
         cell.typeLabel.text = type;
         
         
-        NSString *time = [NSString stringWithFormat:@"%@",dic[@"sendTime"]];
+        NSString *time = [NSString stringWithFormat:@"%@",self.selIndex > 0?dic[@"time"]:dic[@"sendTime"]];
         //时间
         cell.timeLabel.text = [self getTimeFrom:time.doubleValue];
         
         //抢到的红包金额
+        NSString *monyStr = [NSString stringWithFormat:@"%@",self.selIndex > 0?dic[@"money"]:dic[@"money"]];
         
-//        cell.moneyLabel.text = [NSString stringWithFormat:@"￥%.2fHOTC",[NSString stringWithFormat:@"%@",self.selIndex > 0?dic[@"money"]].doubleValue:dic[@"money"]].doubleValue];
-        
+        cell.moneyLabel.text = [NSString stringWithFormat:@"￥%.2fHOTC",monyStr.doubleValue];
         
         NSString *receiveCount = [NSString stringWithFormat:@"%@",dic[@"receiveCount"]];//已领个数
         NSString *count = [NSString stringWithFormat:@"%@",dic[@"count"]];//红包个数
         
         
-        cell.stateLabel.text = [NSString stringWithFormat:@"已领%@/%@",receiveCount,count];
+        cell.stateLabel.text = self.selIndex > 0?@"":[NSString stringWithFormat:@"已领%@/%@",receiveCount,count];
         
     }
     return cell;
@@ -231,18 +231,19 @@
 -(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{
     [_wait stop];
     [self WH_stopLoading];
+    NSArray *array = dict[@"data"];
     
     if (self.page == 0) {
         [self.dataSource removeAllObjects];
-        [self.dataSource addObjectsFromArray:array1];
+        [self.dataSource addObjectsFromArray:array];
         //红包个数
         self.numberLabel.text = [NSString stringWithFormat:@"共%@个红包",dict[@"total"]];
         //金额
-//        self.moneyLabel.text = [NSString stringWithFormat:@"%.2f",dict[@""]];
+        self.moneyLabel.text = [NSString stringWithFormat:@"%.2fHOTC",[NSString stringWithFormat:@"%@",dict[@"extraData"][@"totalMoney"]].doubleValue];
         
 //        self.nodataImage.hidden = self.nodataLab.hidden = array1.count > 0?YES:NO;
     }else {
-        [self.dataSource addObjectsFromArray:array1];
+        [self.dataSource addObjectsFromArray:array];
     }
     
     [self.tableView reloadData];
@@ -250,13 +251,14 @@
 #pragma mark - 请求失败回调
 -(int) WH_didServerResult_WHFailed:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict{
     [_wait stop];
-    
+    [self WH_stopLoading];
     return WH_show_error;
 }
 
 #pragma mark - 请求出错回调
 -(int) WH_didServerConnect_WHError:(WH_JXConnection*)aDownload error:(NSError *)error{//error为空时，代表超时
     [_wait stop];
+    [self WH_stopLoading];
     return WH_show_error;
 }
 

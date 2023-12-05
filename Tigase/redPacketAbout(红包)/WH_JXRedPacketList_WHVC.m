@@ -85,9 +85,9 @@
     _sendBtn.selected = !_sendBtn.selected;
     _page = 0;
     if (btn.tag == 1000) {
-        _selIndex = 0;
-    }else {
         _selIndex = 1;
+    }else {
+        _selIndex = 0;
     }
     [self WH_getServerData];
 }
@@ -103,11 +103,7 @@
 
 - (void) WH_getServerData {
     
-    if (_selIndex == 0) {
-        [g_server WH_redPacketGetRedReceiveListIndex:_page startTime:@"" endTime:@"" type:0 roomJId:@"" toView:self];
-    }else {
-        [g_server WH_redPacketGetSendRedPacketListIndex:_page startTime:@"" endTime:@"" type:0 roomJId:@"" toView:self];
-    }
+    [g_server WH_redPacketGetAndSendRedReceiveListIndex:_selIndex startTime:@"" endTime:@"" type:0 roomJId:self.roomJid pageIndex:_page toView:self];
 }
 
 
@@ -133,26 +129,34 @@
     cell.headImageWidthCon.constant = 0;
     //用户名
     cell.nameLabel.text = dict[@"sendName"];
-    if(_selIndex == 1) {
-        NSString *str;
-        int type = [dict[@"type"] intValue];
-        if (type == 1) {
-            str = Localized(@"JX_UsualGift");
+    if(_selIndex == 0) {
+        //红包类型 1.普通红包   2.拼手气   3.口令
+        NSString *type = @"普通红包";
+        NSNumber *redType = [NSNumber numberWithInteger:[NSString stringWithFormat:@"%@",dict[@"type"]].integerValue];
+        if(redType.intValue == 2){
+            type = @"手气红包";
+        }else if (redType.intValue == 3){
+            type = @"口令红包";
         }
-        if (type == 2) {
-            str = Localized(@"JX_LuckGift");
-        }
-        if (type == 3) {
-            str = Localized(@"JX_MesGift");
-        }
-        cell.nameLabel.text = str;
+//        NSString *str;
+//        int type = [dict[@"type"] intValue];
+//        if (type == 1) {
+//            str = Localized(@"JX_UsualGift");
+//        }
+//        if (type == 2) {
+//            str = Localized(@"JX_LuckGift");
+//        }
+//        if (type == 3) {
+//            str = Localized(@"JX_MesGift");
+//        }
+        cell.nameLabel.text = type;
     }
     //日期
     NSTimeInterval  getTime = [dict[@"time"] longLongValue];
-    if (_selIndex == 1) {
+    if (_selIndex == 0) {
         getTime = [dict[@"sendTime"] longLongValue];
     }
-    NSDate * date = [NSDate dateWithTimeIntervalSince1970:getTime/1000];
+    NSDate * date = [NSDate dateWithTimeIntervalSince1970:getTime];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
 //    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8*60*60]];//中国专用
@@ -176,12 +180,12 @@
 -(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{
     [_wait stop];
     [self WH_stopLoading];
-    
+    NSArray *array = dict[@"data"];
     if (_page == 0) {
         [_array removeAllObjects];
-        [_array addObjectsFromArray:array1];
+        [_array addObjectsFromArray:array];
     }else {
-        [_array addObjectsFromArray:array1];
+        [_array addObjectsFromArray:array];
     }
     
     [self.tableView reloadData];

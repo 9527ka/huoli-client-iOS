@@ -10,6 +10,7 @@
 
 @interface WH_JXRedPacketList_WHVC : WH_JXTableViewController
 
+@property (nonatomic,copy) NSString *roomJid;
 
 - (void)sp_checkUserInfo:(NSString *)mediaInfo;
 @end

@@ -261,6 +261,11 @@
                     dict = resultObject;
                 }
                 
+                //如果是群红包接口
+                if ([task.action isEqualToString:wh_act_redPacketGetSendRedPacketList]||[task.action isEqualToString:wh_act_redPacketGetRedReceiveList]) {
+                    dict = resultObject;
+                }
+                
                 if ([task.action isEqualToString:wh_act_deleteMemebers]) {
                     dict = resultObject;
                 }else{
@@ -268,11 +273,14 @@
                     if( [resultObject isKindOfClass:[NSArray class]] ){
                         array = resultObject;
                     }else{
+//                        NSDictionary *orignDic = [NSDictionary dictionaryWithDictionary:resultObject];
+                        
                         resultObject = [resultObject objectForKey:@"data"];
                         if( [resultObject isKindOfClass:[NSDictionary class]] )
                             dict  = resultObject;
                         if( [resultObject isKindOfClass:[NSArray class]] )
                             array = resultObject;
+
                     }
                 }
                 if( [task.toView respondsToSelector:@selector(WH_didServerResult_WHSucces:dict:array:)] )
@@ -1943,8 +1951,12 @@
     [p setPostValue:[NSNumber numberWithInteger:pageIndex] forKey:@"pageIndex"];
     [p setPostValue:[NSNumber numberWithInteger:20] forKey:@"pageSize"];
     [p setPostValue:[NSNumber numberWithInteger:type] forKey:@"type"];
-    [p setPostValue:startTime forKey:@"startTime"];
-    [p setPostValue:endTime forKey:@"endTime"];
+    if(startTime.length > 0){
+        [p setPostValue:startTime forKey:@"startTime"];
+    }
+    if(endTime.length > 0){
+        [p setPostValue:endTime forKey:@"endTime"];
+    }
     [p setPostValue:roomJId forKey:@"roomJId"];
 
     [p go];

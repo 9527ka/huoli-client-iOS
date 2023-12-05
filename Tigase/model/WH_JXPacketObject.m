@@ -30,6 +30,7 @@
         obj.userId = dictPocket[@"userId"];
         obj.userIds = dictPocket[@"userIds"];
         obj.userName = dictPocket[@"userName"];
+        
         return obj;
     }
     return nil;

@@ -5919,6 +5919,7 @@
         }
     }else if([aDownload.action isEqualToString:wh_act_roomMemberSet]){//禁言
         self.chatPerson.talkTime = [self.chatPerson.talkTime longLongValue] > 0?@(0):@(15*24*3600+30);
+        [JXMyTools showTipView:@"设置成功"];
 //        [JXMyTools showTipView:[NSString stringWithFormat:@"%@已被%@禁言",self.chatPerson.userNickname,[self.chatPerson.talkTime longLongValue] > 0?@"":@"解除"]];
     }
 //    [_table reloadData];
