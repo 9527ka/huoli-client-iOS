@@ -26,7 +26,8 @@
 @property (nonatomic, strong) WH_JXRedInputView * luckyView;
 @property (nonatomic, strong) WH_JXRedInputView * nomalView;
 @property (nonatomic, strong) WH_JXRedInputView * orderView;
-@property (nonatomic, strong) WH_JXRedInputView * exclusiveView;
+@property (nonatomic, strong) WH_JXRedInputView * exclusiveDiamondView;
+@property (nonatomic, strong) WH_JXRedInputView * exclusiveView;//专属红包
 @property (nonatomic, strong) WH_JXVerifyPay_WHVC * verVC;
 
 
@@ -72,27 +73,60 @@
     [self buildTopView];
     
     if(_isRoom){
-        [self.wh_tableBody addSubview:self.luckyView];
+        [self.wh_tableBody addSubview:self.luckyView];//手气红包
         [_luckyView.wh_sendButton addTarget:self action:@selector(WH_sendRedPacketWithMoneyNum:) forControlEvents:UIControlEventTouchUpInside];
         [_luckyView.wh_canclaimBtn addTarget:self action:@selector(wh_canCalimRedPacketPeopleNum:) forControlEvents:UIControlEventTouchUpInside];
     }
     if (self.isDiamond) {
-        [self.wh_tableBody addSubview:self.exclusiveView];
+        [self.wh_tableBody addSubview:self.exclusiveDiamondView];
+        [_exclusiveDiamondView.wh_sendButton addTarget:self action:@selector(WH_sendRedPacketWithMoneyNum:) forControlEvents:UIControlEventTouchUpInside];
+        [_exclusiveDiamondView.wh_canclaimBtn addTarget:self action:@selector(wh_canCalimRedPacketPeopleNum:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    [self.wh_tableBody addSubview:self.orderView];//口令
+    
+    if(_isRoom){
+        //专属红包
+        [self.wh_tableBody addSubview:self.exclusiveView];//手气红包
         [_exclusiveView.wh_sendButton addTarget:self action:@selector(WH_sendRedPacketWithMoneyNum:) forControlEvents:UIControlEventTouchUpInside];
         [_exclusiveView.wh_canclaimBtn addTarget:self action:@selector(wh_canCalimRedPacketPeopleNum:) forControlEvents:UIControlEventTouchUpInside];
+    }else{//不是群聊才有普通红包
+        [self.wh_tableBody addSubview:self.nomalView];//普通
     }
-    [self.wh_tableBody addSubview:self.orderView];
-    [self.wh_tableBody addSubview:self.nomalView];
-    
+   
     [_nomalView.wh_sendButton addTarget:self action:@selector(WH_sendRedPacketWithMoneyNum:) forControlEvents:UIControlEventTouchUpInside];
     [_nomalView.wh_canclaimBtn addTarget:self action:@selector(wh_canCalimRedPacketPeopleNum:) forControlEvents:UIControlEventTouchUpInside];
     
     [_orderView.wh_sendButton addTarget:self action:@selector(WH_sendRedPacketWithMoneyNum:) forControlEvents:UIControlEventTouchUpInside];
     [_orderView.wh_canclaimBtn addTarget:self action:@selector(wh_canCalimRedPacketPeopleNum:) forControlEvents:UIControlEventTouchUpInside];
+    
+    //判断是不是专属红包，是的话直接选中专属模块并赋值
+    if(self.selectIds.count > 0){
+        [self exclusiveData];
+    }
+}
+//专属红包赋值
+-(void)exclusiveData{
+    self.redPacketSwitch.wh_currentIndex = 2;
+    self.indexInt = 4;
+    self.wh_tableBody.contentOffset = CGPointMake(JX_SCREEN_WIDTH * 2, 0);
+    [self performSelector:@selector(setExclusiveData) withObject:nil afterDelay:0.2];
+    
+}
+-(void)setExclusiveData{
+    [_exclusiveView.wh_canClaimPeoples setTextColor:HEXCOLOR(0x333333)];
+    NSString *name = [NSString stringWithFormat:@"%@",self.selectNames.firstObject];
+    [_exclusiveView.wh_canClaimPeoples setText:name];
+    _exclusiveView.wh_canClaimPeoples.alpha = 1;
+    [_exclusiveView.receiveNoticeLabel setText:[NSString stringWithFormat:@"群人数%@人，已选定%lu人可领" ,self.memberCount ,(unsigned long)self.selectIds.count]];
 }
 
 - (void)buildTopView{
-    NSArray *titles = _isDiamond ? @[@"手气钻石", @"专属钻石", @"口令钻石", @"普通钻石"] : (_isRoom ? @[Localized(@"JX_LuckGift"),Localized(@"JX_MesGift"),Localized(@"JX_UsualGift")] : @[Localized(@"JX_MesGift"),Localized(@"JX_UsualGift")]);
+//    NSArray *titles = _isDiamond ? @[@"手气钻石", @"专属钻石", @"口令钻石", @"普通钻石"] : (_isRoom ? @[Localized(@"JX_LuckGift"),Localized(@"JX_MesGift"),Localized(@"JX_UsualGift")] : @[Localized(@"JX_MesGift"),Localized(@"JX_UsualGift")]);
+    
+    
+    NSArray *titles = _isDiamond ? @[@"手气钻石", @"专属钻石", @"口令钻石", @"普通钻石"] : (_isRoom ? @[Localized(@"JX_LuckGift"),Localized(@"JX_MesGift"),@"专属红包"] : @[Localized(@"JX_MesGift"),Localized(@"JX_UsualGift")]);
+    
+    
     if (self.isDiamond) {
 //        _redPacketSwitch = [[WH_SegmentSwitch alloc] initWithFrame:CGRectMake(60, JX_SCREEN_TOP - 8 - 28, 256, 28) titles:titles slideColor:HEXCOLOR(0xED6350)];
         _redPacketSwitch = [[WH_SegmentSwitch alloc] initWithFrame:CGRectMake((JX_SCREEN_WIDTH - 256)/2, JX_SCREEN_TOP - 8 - 28, 256, 28) titles:titles slideColor:HEXCOLOR(0xED6350)];
@@ -120,9 +154,15 @@
 }
 -(WH_JXRedInputView *)exclusiveView {
     if (!_exclusiveView) {
-        _exclusiveView = [[WH_JXRedInputView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_luckyView.frame), 0, JX_SCREEN_WIDTH, self.wh_tableBody.contentSize.height) type:4 isRoom:_isRoom isDiamond:_isDiamond roomMemebers:self.memberCount delegate:self];
+        _exclusiveView = [[WH_JXRedInputView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_orderView.frame), 0, JX_SCREEN_WIDTH, self.wh_tableBody.contentSize.height) type:4 isRoom:_isRoom isDiamond:_isDiamond roomMemebers:self.memberCount delegate:self];
     }
     return _exclusiveView;
+}
+-(WH_JXRedInputView *)exclusiveDiamondView {
+    if (!_exclusiveDiamondView) {
+        _exclusiveDiamondView = [[WH_JXRedInputView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_luckyView.frame), 0, JX_SCREEN_WIDTH, self.wh_tableBody.contentSize.height) type:4 isRoom:_isRoom isDiamond:_isDiamond roomMemebers:self.memberCount delegate:self];
+    }
+    return _exclusiveDiamondView;
 }
 -(WH_JXRedInputView *)nomalView {
     if (!_nomalView) {
@@ -132,7 +172,7 @@
 }
 -(WH_JXRedInputView *)orderView {
     if (!_orderView) {
-        _orderView = [[WH_JXRedInputView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.isDiamond ? _exclusiveView.frame : _luckyView.frame), 0, JX_SCREEN_WIDTH, self.wh_tableBody.contentSize.height) type:3 isRoom:_isRoom isDiamond:_isDiamond roomMemebers:self.memberCount delegate:self];
+        _orderView = [[WH_JXRedInputView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.isDiamond ? _exclusiveDiamondView.frame : _luckyView.frame), 0, JX_SCREEN_WIDTH, self.wh_tableBody.contentSize.height) type:3 isRoom:_isRoom isDiamond:_isDiamond roomMemebers:self.memberCount delegate:self];
     }
     return _orderView;
 }
@@ -145,7 +185,7 @@
         _topSiftView.wh_preferred = 0;
         NSArray * itemsArray;
         if (_isRoom) {
-            itemsArray = [[NSArray alloc] initWithObjects:Localized(@"JX_LuckGift"),Localized(@"JX_UsualGift"),Localized(@"JX_MesGift"), nil];
+            itemsArray = [[NSArray alloc] initWithObjects:Localized(@"JX_LuckGift"),@"专属红包",Localized(@"JX_MesGift"), nil];
         }else{
             itemsArray = [[NSArray alloc] initWithObjects:Localized(@"JX_UsualGift"),Localized(@"JX_MesGift"), nil];
         }
@@ -173,6 +213,7 @@
     [_nomalView stopEdit];
     [_orderView stopEdit];
     [_exclusiveView stopEdit];
+    [_exclusiveDiamondView stopEdit];
 }
 
 #pragma mark -------------ScrollDelegate----------------
@@ -219,10 +260,18 @@
             _orderView.wh_canClaimPeoples.alpha = 1;
             [_orderView.receiveNoticeLabel setText:[NSString stringWithFormat:@"群人数%@人，已选定%lu人可领" ,self.memberCount ,(unsigned long)ids.count]];
         } else {
-            [_exclusiveView.wh_canClaimPeoples setTextColor:HEXCOLOR(0x333333)];
-            [_exclusiveView.wh_canClaimPeoples setText:ns];
-            _exclusiveView.wh_canClaimPeoples.alpha = 1;
-            [_exclusiveView.receiveNoticeLabel setText:[NSString stringWithFormat:@"群人数%@人，已选定%lu人可领" ,self.memberCount ,(unsigned long)ids.count]];
+            if(self.isDiamond){
+                [_exclusiveDiamondView.wh_canClaimPeoples setTextColor:HEXCOLOR(0x333333)];
+                [_exclusiveDiamondView.wh_canClaimPeoples setText:ns];
+                _exclusiveDiamondView.wh_canClaimPeoples.alpha = 1;
+                [_exclusiveDiamondView.receiveNoticeLabel setText:[NSString stringWithFormat:@"群人数%@人，已选定%lu人可领" ,self.memberCount ,(unsigned long)ids.count]];
+            }else{
+                [_exclusiveView.wh_canClaimPeoples setTextColor:HEXCOLOR(0x333333)];
+                [_exclusiveView.wh_canClaimPeoples setText:ns];
+                _exclusiveView.wh_canClaimPeoples.alpha = 1;
+                [_exclusiveView.receiveNoticeLabel setText:[NSString stringWithFormat:@"群人数%@人，已选定%lu人可领" ,self.memberCount ,(unsigned long)ids.count]];
+            }
+            
         }
     }];
 }
@@ -242,9 +291,16 @@
         _countText = _orderView.wh_countTextField.text;
         _greetText = _orderView.wh_greetTextField.text;//口令
     } else if(button.tag == 4){//专属红包
-        _moneyText = _exclusiveView.wh_moneyTextField.text;
-        _countText = _exclusiveView.wh_countTextField.text;
-        _greetText = _exclusiveView.wh_greetTextField.text;
+        if(self.isDiamond){
+            _moneyText = _exclusiveDiamondView.wh_moneyTextField.text;
+            _countText = _exclusiveDiamondView.wh_countTextField.text;
+            _greetText = _exclusiveDiamondView.wh_greetTextField.text;
+        }else{
+            _moneyText = _exclusiveView.wh_moneyTextField.text;
+            _countText = _exclusiveView.wh_countTextField.text;
+            _greetText = _exclusiveView.wh_greetTextField.text;
+        }
+       
     }
     if (_moneyText == nil || [_moneyText isEqualToString:@""]) {
         [g_App showAlert:self.isDiamond ? @"请输入钻石数量" : Localized(@"JX_InputGiftCount")];

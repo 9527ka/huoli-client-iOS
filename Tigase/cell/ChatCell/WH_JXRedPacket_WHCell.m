@@ -124,7 +124,7 @@
 }
 
 -(void)didTouch:(UIButton*)button{
-    if ([self.msg.fileName isEqualToString:@"3"]) {
+    if ([self.msg.fileName isEqualToString:@"3"] || [self.msg.fileName isEqualToString:@"4"]) {
 //        //如果可以打开
 //        if([self.msg.fileSize intValue] != 2){
 //            [g_App showAlert:Localized(@"JX_WantOpenGift")];

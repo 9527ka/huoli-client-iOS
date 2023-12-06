@@ -7292,7 +7292,29 @@
     
     
 }
-
+#pragma mark 群聊发专属红包
+- (void)sendExclusiveGiftToRoom:(memberData *)member{
+    [self hideKeyboard:YES];
+    if([self showDisableSay])
+        return;
+    if([self sendMsgCheck]){
+        return;
+    }
+    WH_JXSendRedPacket_WHViewController * sendGiftVC = [[WH_JXSendRedPacket_WHViewController alloc] init];
+    sendGiftVC.isRoom = YES;
+    sendGiftVC.delegate = self;
+    sendGiftVC.wh_roomJid = self.roomJid;
+    sendGiftVC.wh_roomId = self.roomId;
+    sendGiftVC.room = self.room;
+    NSArray * memberArray = [memberData fetchAllMembers:_room.roomId];
+    sendGiftVC.memberCount = [NSString stringWithFormat:@"%lu" ,(unsigned long)memberArray.count];
+    //专属红包指定参数
+    sendGiftVC.selectNames = [NSMutableArray arrayWithArray:@[[NSString stringWithFormat:@"%@",member.userNickName]]];
+    sendGiftVC.selectIds = [NSMutableArray arrayWithArray:@[[NSString stringWithFormat:@"%ld",member.userId]]];
+    
+    [g_navigation pushViewController:sendGiftVC animated:YES];
+    
+}
 #pragma mark 群聊发红包
 - (void)sendGiftToRoom{
     [self hideKeyboard:YES];
@@ -7559,7 +7581,7 @@
                 [actionSheet addAction:[UIAlertAction actionWithTitle:type style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                     if([action.title isEqualToString:@"专属红包"]){
                         
-                        [self sendGiftToRoom];
+                        [self sendExclusiveGiftToRoom:member];
                         
                         
                     }else if ([action.title isEqualToString:@"@Ta发言"]){

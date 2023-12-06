@@ -1883,7 +1883,7 @@
     [p setPostValue:roomJid forKey:@"roomJid"];
     [p setPostValue:toUserId forKey:@"toUserId"];
     [p setPostValue:[NSNumber numberWithDouble:money] forKey:@"moneyStr"];
-    [p setPostValue:[NSNumber numberWithInteger:type] forKey:@"type"];
+    [p setPostValue:[NSNumber numberWithInteger:type==4?1:type] forKey:@"type"];
     [p setPostValue:[NSNumber numberWithInteger:count] forKey:@"count"];
     [p setPostValue:greet forKey:@"greetings"];
     [p setPostValue:[NSString stringWithFormat:@"%ld",time] forKey:@"time"];
