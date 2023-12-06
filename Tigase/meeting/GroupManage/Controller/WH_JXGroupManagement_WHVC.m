@@ -734,7 +734,8 @@
             _currentMember.role = [NSNumber numberWithInt:2];
             str = Localized(@"WaHu_JXRoomMember_WaHuVC_SetAdministratorSuccess");
         }
-//        [_currentMember updateRole];
+        //更改数据库信息
+        [_currentMember updateRole];
         [g_server showMsg:str];
     }
     

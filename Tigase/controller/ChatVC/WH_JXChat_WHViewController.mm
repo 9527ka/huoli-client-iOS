@@ -544,6 +544,24 @@
     
     self.screenShotView.frame = CGRectMake(self.screenShotView.frame.origin.x, self.wh_tableFooter.frame.origin.y - self.screenShotView.frame.size.height - 10, self.screenShotView.frame.size.width, self.screenShotView.frame.size.height);
     
+//    //获取聊天信息
+//    [self receiveChatInfoData];
+    
+   //同步消息
+    [self messageSync];
+    
+    if (chatPerson.lastInput.length > 0) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            _messageText.inputView = nil;
+            [_messageText reloadInputViews];
+            [self doBeginEdit];
+            [_messageText becomeFirstResponder];
+            [_faceView removeFromSuperview];
+        });
+    }
+}
+//获取聊天信息
+-(void)receiveChatInfoData{
     if (!self.roomJid) {
         // 如果是自己的其他端，不调用接口
         if (chatPerson && [chatPerson.userId rangeOfString:MY_USER_ID].location != NSNotFound) {
@@ -566,20 +584,8 @@
     } else {
         [g_server WH_roomGetRoom:self.roomId toView:self];
     }
-    
-   //同步消息
-    [self messageSync];
-    
-    if (chatPerson.lastInput.length > 0) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            _messageText.inputView = nil;
-            [_messageText reloadInputViews];
-            [self doBeginEdit];
-            [_messageText becomeFirstResponder];
-            [_faceView removeFromSuperview];
-        });
-    }
 }
+
 - (void)chatVCMessageSync:(NSNotification *)noti {
     long long timeSend = [noti.object longLongValue];
     self.chatPerson.timeSend = [NSDate dateWithTimeIntervalSince1970:timeSend];
@@ -850,6 +856,8 @@
     [super viewWillAppear:animated];
     //进入界面即开启定时器
     [self.noticeTimer setFireDate:[NSDate distantPast]];
+    //获取聊天信息
+    [self receiveChatInfoData];
     
 }
 
