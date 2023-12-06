@@ -857,7 +857,7 @@
     //进入界面即开启定时器
     [self.noticeTimer setFireDate:[NSDate distantPast]];
     //获取聊天信息
-    [self receiveChatInfoData];
+//    [self receiveChatInfoData];
     
 }
 
@@ -2819,10 +2819,10 @@
                 return [WH_JXRemind_WHCell getChatCellHeight:msg];
                 break;
             case kWCMessageTypeRedPacket:
-                return [WH_JXRedPacket_WHCell getChatCellHeight:msg];
+                return [WH_JXRedPacket_WHCell getChatCellHeight:msg] - 12;
                 break;
             case kWCMessageTypeRedPacketExclusive:
-                return [WH_JXRedPacket_WHCell getChatCellHeight:msg];
+                return [WH_JXRedPacket_WHCell getChatCellHeight:msg] - 12;
                 break;
             case kWCMessageTypeTransfer:
                 return [WH_JXTransfer_WHCell getChatCellHeight:msg];

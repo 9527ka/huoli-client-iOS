@@ -159,6 +159,18 @@
 }
 - (void)lianxikehu{
     
+    
+//    WH_Recharge_WHViewController *rechargeVC = [[WH_Recharge_WHViewController alloc] init];
+//    [g_navigation pushViewController:rechargeVC animated:YES];
+    
+//    WH_NewRecharge_WHViewController *rechargeVC = [[WH_NewRecharge_WHViewController alloc] init];
+//    [g_navigation pushViewController:rechargeVC animated:YES];
+//
+//    return;
+    
+    
+    
+    
 //    NSArray *friends = [[WH_JXUserObject sharedUserInstance] WH_fetchAllFriendsFromLocal];
 //    WH_JXUserObject *user;
 //
@@ -197,6 +209,7 @@
             //aliPayStatus;  //支付宝充值状态 1:开启 2：关闭 wechatWithdrawStatus; //微信提现状态1：开启 2：关闭
             [GKMessageTool showText:Localized(@"New_not_open_temporarily")];
             [self lianxikehu];
+           
             return;
             
         }else {

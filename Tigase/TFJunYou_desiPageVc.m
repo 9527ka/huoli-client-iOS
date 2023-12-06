@@ -286,6 +286,7 @@
     contentView.showsVerticalScrollIndicator = NO;
     contentView.pagingEnabled = YES;
     contentView.bounces=NO;
+    contentView.scrollEnabled = NO;
     
     NSArray *lastUrl = @[@"消息",@"群组"];
     contentView.contentSize = CGSizeMake(contentView.xmg_width * lastUrl.count, 0);

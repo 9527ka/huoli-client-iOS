@@ -25,7 +25,7 @@
 #define IS_LOCATE_ATFIRST 1 //解决国外手机号由于定位问题崩溃(定位会闪退)  1:定位  0:不定位
 #define IS_CanAdd_WithdrawAccount  1 //是否可以添加提现账号 1可以添加 0不可以添加,每次提现手动输入
 #define AppStoreString  @"https://itunes.apple.com/cn/app/%E5%93%87%E5%91%BC/id1410002160?mt=8"//此处修改
-#define IS_SHOW_EXCLUSIVEREDPACKET 0 //是否显示专属红包 1：显示 0:不显示
+#define IS_SHOW_EXCLUSIVEREDPACKET 1 //是否显示专属红包 1：显示 0:不显示
 
 #define IS_WITHDRAWTOPLATFORM 1 //是否提现到平台 1：是 0：否
 #define IS_SHOW_BATCHDELETION_ROOMMEMBERS 1 //是否允许批量删除群成员 1：允许 0：不允许

@@ -112,6 +112,13 @@
         _nameLabel.text = self.msg.content;
         _title.text = ([self.msg.type intValue] == kWCMessageTypeRedPacketExclusive)?@"专属红包":Localized(@"JXredPacket");
     }
+    //专属红包更改红包颜色
+    if([self.msg.type intValue] == kWCMessageTypeRedPacketExclusive){
+        UIImage *image = [[UIImage imageNamed:@"WH_hongbao_background"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+        _imageBackground.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        [_imageBackground setTintColor:[UIColor colorWithRed:245/255.0 green:145/255.0 blue:85/255.0 alpha:1.0]];//HEXCOLOR(0x)
+    }
+    _title.textColor = [self.msg.type intValue] == kWCMessageTypeRedPacketExclusive?[UIColor whiteColor]:HEXCOLOR(0x8C9AB8);
     
     if ([self.msg.fileSize intValue] == 2) {
         

@@ -189,6 +189,7 @@
     _wh_showNumLabel = [UIFactory WH_create_WHLabelWith:CGRectMake(10, 12, JX_SCREEN_WIDTH - 10, 17) text:Localized(@"JX_ ReceiveRed")];
     _wh_showNumLabel.textColor = HEXCOLOR(0x969696);
     _wh_showNumLabel.font = sysFontWithSize(12);
+    _wh_showNumLabel.numberOfLines = 2;
     [headView addSubview:_wh_showNumLabel];
     
 //    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 30 - 1, JX_SCREEN_WIDTH, 1)];
