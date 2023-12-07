@@ -6657,14 +6657,15 @@
             self.title = [NSString stringWithFormat:@"%@(%lu)",p.content,(unsigned long)_room.members.count];
         }
         if([p.type intValue] == kRoomRemind_DisableSay){
-            if([p.toUserId isEqualToString:MY_USER_ID])
+            if([p.toUserId isEqualToString:g_myself.userId]){
                 _personalBannedTime = [p.content longLongValue];
                 _disableSay = [p.content longLongValue];
             
-            [self setChatFieldUserInterEnbale:_disableSay > 0?NO:YES];
+                [self setChatFieldUserInterEnbale:_disableSay > 0?NO:YES];
+            }
         }
         if([p.type intValue] == kRoomRemind_DelMember){
-            if([p.toUserId isEqualToString:MY_USER_ID])
+            if([p.toUserId isEqualToString:g_myself.userId])
                 self.groupStatus = [NSNumber numberWithInt:1];
 //                [self actionQuit];
             

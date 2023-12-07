@@ -61,7 +61,7 @@
     NSString* _tableName;
 }
 
-@property (nonatomic,strong) NSString* toUserId;//目标userId
+@property (nonatomic,copy) NSString* toUserId;//目标userId
 @property (nonatomic,strong) NSString* toUserName;//目标name
 @property (nonatomic,strong) NSString* content;//内容
 @property (nonatomic,strong) NSString* userId;//源UserId

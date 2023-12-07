@@ -66,7 +66,7 @@
 #define friend_status_system 8 //!< 系统号
 #define friend_status_hide   9 //!< 非显示系统号
 
-@property (nonatomic,strong) NSString* userId;//!< 房间时，等于roomJid
+@property (nonatomic,copy) NSString* userId;//!< 房间时，等于roomJid
 @property (nonatomic,strong) NSString* roomId;//!< 接口的roomId
 @property (nonatomic,strong) NSString* userNickname;
 @property (nonatomic,strong) NSString* email;//邮箱
