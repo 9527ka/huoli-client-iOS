@@ -545,7 +545,7 @@
     self.screenShotView.frame = CGRectMake(self.screenShotView.frame.origin.x, self.wh_tableFooter.frame.origin.y - self.screenShotView.frame.size.height - 10, self.screenShotView.frame.size.width, self.screenShotView.frame.size.height);
     
 //    //获取聊天信息
-//    [self receiveChatInfoData];
+    [self receiveChatInfoData];
     
    //同步消息
     [self messageSync];
@@ -5871,19 +5871,11 @@
                     if ([role intValue] == 4) {
                         _talkTimeLabel.text = @"禁止发言";
                     }
-                    _messageText.userInteractionEnabled = NO;
-                    _shareMore.enabled = NO;
-                    _recordBtnLeft.enabled = NO;
-                    _btnFace.enabled = NO;
-                    _messageText.text = nil;
-                    _recordBtn.enabled = NO;
+                    [self setChatFieldUserInterEnbale:NO];
+                    
                 }else {
-                    _talkTimeLabel.hidden = YES;
-                    _shareMore.enabled = YES;
-                    _recordBtnLeft.enabled = YES;
-                    _btnFace.enabled = YES;
-                    _messageText.userInteractionEnabled = YES;
-                    _recordBtn.enabled = YES;
+                    [self setChatFieldUserInterEnbale:YES];
+    
                 }
                 
                 self.chatPerson.showRead = [dict objectForKey:@"showRead"];
@@ -5932,7 +5924,24 @@
     }
 //    [_table reloadData];
 }
-
+//是否被禁言
+-(void)setChatFieldUserInterEnbale:(BOOL)isCan{
+    if (isCan) {
+        _talkTimeLabel.hidden = YES;
+        _shareMore.enabled = YES;
+        _recordBtnLeft.enabled = YES;
+        _btnFace.enabled = YES;
+        _messageText.userInteractionEnabled = YES;
+        _recordBtn.enabled = YES;
+    }else{
+        _messageText.userInteractionEnabled = NO;
+        _shareMore.enabled = NO;
+        _recordBtnLeft.enabled = NO;
+        _btnFace.enabled = NO;
+        _messageText.text = nil;
+        _recordBtn.enabled = NO;
+    }
+}
 
 #pragma mark - 请求失败回调
 -(int) WH_didServerResult_WHFailed:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict{
@@ -6651,6 +6660,8 @@
             if([p.toUserId isEqualToString:MY_USER_ID])
                 _personalBannedTime = [p.content longLongValue];
                 _disableSay = [p.content longLongValue];
+            
+            [self setChatFieldUserInterEnbale:_disableSay > 0?NO:YES];
         }
         if([p.type intValue] == kRoomRemind_DelMember){
             if([p.toUserId isEqualToString:MY_USER_ID])

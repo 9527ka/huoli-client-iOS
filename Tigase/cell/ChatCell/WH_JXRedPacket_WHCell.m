@@ -109,6 +109,7 @@
         _nameLabel.text = [NSString stringWithFormat:@"%@%@",Localized(@"JX_Message"),self.msg.content];
         _title.text = ([self.msg.type intValue] == kWCMessageTypeRedPacketExclusive)?@"专属红包":Localized(@"JX_MesGift");
     }else{
+//        NSArray *gree
         _nameLabel.text = self.msg.content;
         _title.text = ([self.msg.type intValue] == kWCMessageTypeRedPacketExclusive)?@"专属红包":Localized(@"JXredPacket");
     }
