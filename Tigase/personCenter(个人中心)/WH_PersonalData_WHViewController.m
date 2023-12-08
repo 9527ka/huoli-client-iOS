@@ -644,12 +644,12 @@
     self.image = [ImageResize image:[info objectForKey:@"UIImagePickerControllerEditedImage"] fillSize:CGSizeMake(640, 640)];
     self.head.image = self.image;
     if (self.image) {
-    for (id label in self.head.subviews) {
-        if ([label isKindOfClass:[UILabel class]]) {
-            [label removeFromSuperview];
+        for (id label in self.head.subviews) {
+            if ([label isKindOfClass:[UILabel class]]) {
+                [label removeFromSuperview];
+            }
         }
     }
-        }
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -711,6 +711,7 @@
 - (void)sp_didUserInfoFailed {
     NSLog(@"Get Info Success");
 }
+
 
 
 @end

@@ -721,6 +721,14 @@
 		3306DA782B0F34EA0059793A /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3306DA772B0F34E90059793A /* SafariServices.framework */; };
 		334FB9EC2B14241600230991 /* serverList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 334FB9EB2B14241600230991 /* serverList.plist */; };
 		334FB9EE2B1425C000230991 /* userInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 334FB9ED2B1425C000230991 /* userInfo.plist */; };
+		33946A7B2B21A4C30002A8D6 /* WH_RechargeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33946A792B21A4C30002A8D6 /* WH_RechargeVC.m */; };
+		33946A7C2B21A4C30002A8D6 /* WH_RechargeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33946A7A2B21A4C30002A8D6 /* WH_RechargeVC.xib */; };
+		33946A832B21A79A0002A8D6 /* WH_RechargeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33946A812B21A79A0002A8D6 /* WH_RechargeCell.m */; };
+		33946A842B21A79A0002A8D6 /* WH_RechargeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33946A822B21A79A0002A8D6 /* WH_RechargeCell.xib */; };
+		33946A8B2B22B2310002A8D6 /* WH_WithDreawCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33946A892B22B2310002A8D6 /* WH_WithDreawCell.m */; };
+		33946A8C2B22B2310002A8D6 /* WH_WithDreawCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33946A8A2B22B2310002A8D6 /* WH_WithDreawCell.xib */; };
+		33946A902B22B2640002A8D6 /* WH_WithDreawVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33946A8E2B22B2640002A8D6 /* WH_WithDreawVC.m */; };
+		33946A912B22B2640002A8D6 /* WH_WithDreawVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33946A8F2B22B2640002A8D6 /* WH_WithDreawVC.xib */; };
 		33E591672B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E5914E2B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		33E591682B16E6B900E578A3 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E591572B16E6B900E578A3 /* ViewController+MASAdditions.m */; };
 		33E591692B16E6B900E578A3 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E5915B2B16E6B900E578A3 /* MASCompositeConstraint.m */; };
@@ -3072,6 +3080,18 @@
 		3306DA772B0F34E90059793A /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		334FB9EB2B14241600230991 /* serverList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = serverList.plist; sourceTree = "<group>"; };
 		334FB9ED2B1425C000230991 /* userInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = userInfo.plist; sourceTree = "<group>"; };
+		33946A782B21A4C30002A8D6 /* WH_RechargeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_RechargeVC.h; sourceTree = "<group>"; };
+		33946A792B21A4C30002A8D6 /* WH_RechargeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_RechargeVC.m; sourceTree = "<group>"; };
+		33946A7A2B21A4C30002A8D6 /* WH_RechargeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_RechargeVC.xib; sourceTree = "<group>"; };
+		33946A802B21A79A0002A8D6 /* WH_RechargeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_RechargeCell.h; sourceTree = "<group>"; };
+		33946A812B21A79A0002A8D6 /* WH_RechargeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_RechargeCell.m; sourceTree = "<group>"; };
+		33946A822B21A79A0002A8D6 /* WH_RechargeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_RechargeCell.xib; sourceTree = "<group>"; };
+		33946A882B22B2310002A8D6 /* WH_WithDreawCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_WithDreawCell.h; sourceTree = "<group>"; };
+		33946A892B22B2310002A8D6 /* WH_WithDreawCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_WithDreawCell.m; sourceTree = "<group>"; };
+		33946A8A2B22B2310002A8D6 /* WH_WithDreawCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_WithDreawCell.xib; sourceTree = "<group>"; };
+		33946A8D2B22B2640002A8D6 /* WH_WithDreawVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_WithDreawVC.h; sourceTree = "<group>"; };
+		33946A8E2B22B2640002A8D6 /* WH_WithDreawVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_WithDreawVC.m; sourceTree = "<group>"; };
+		33946A8F2B22B2640002A8D6 /* WH_WithDreawVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_WithDreawVC.xib; sourceTree = "<group>"; };
 		33E5914D2B16E6B900E578A3 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		33E5914E2B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
 		33E5914F2B16E6B900E578A3 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -10430,6 +10450,18 @@
 		DE5C692F232666D400321406 /* RechargeCashWithdrawalSystem */ = {
 			isa = PBXGroup;
 			children = (
+				33946A8D2B22B2640002A8D6 /* WH_WithDreawVC.h */,
+				33946A8E2B22B2640002A8D6 /* WH_WithDreawVC.m */,
+				33946A8F2B22B2640002A8D6 /* WH_WithDreawVC.xib */,
+				33946A882B22B2310002A8D6 /* WH_WithDreawCell.h */,
+				33946A892B22B2310002A8D6 /* WH_WithDreawCell.m */,
+				33946A8A2B22B2310002A8D6 /* WH_WithDreawCell.xib */,
+				33946A782B21A4C30002A8D6 /* WH_RechargeVC.h */,
+				33946A792B21A4C30002A8D6 /* WH_RechargeVC.m */,
+				33946A7A2B21A4C30002A8D6 /* WH_RechargeVC.xib */,
+				33946A802B21A79A0002A8D6 /* WH_RechargeCell.h */,
+				33946A812B21A79A0002A8D6 /* WH_RechargeCell.m */,
+				33946A822B21A79A0002A8D6 /* WH_RechargeCell.xib */,
 				DE5C6932232666D400321406 /* MiXin_ConfirmWithdraw_MiXinVC.h */,
 				DE5C6954232666D400321406 /* MiXin_ConfirmWithdraw_MiXinVC.m */,
 				DE5C6955232666D400321406 /* WH_NewRecharge_WHViewController.h */,
@@ -10863,6 +10895,7 @@
 				B203A85A23238EB6001B2575 /* down@2x.png in Resources */,
 				CC3017141951BABF0059BADA /* f059.png in Resources */,
 				CC3017361951BABF0059BADA /* f076.png in Resources */,
+				33946A7C2B21A4C30002A8D6 /* WH_RechargeVC.xib in Resources */,
 				184AE6AE22B4C4A6008EF485 /* title_back@3x.png in Resources */,
 				CC3017351951BABF0059BADA /* f075@2x.png in Resources */,
 				1851A3742307B09400BA24A1 /* icon_emot_unSel@2x.png in Resources */,
@@ -10901,6 +10934,7 @@
 				CC3016E81951BABF0059BADA /* f037.png in Resources */,
 				CC30170D1951BABF0059BADA /* f055@2x.png in Resources */,
 				CC3016B81951BABF0059BADA /* f013.png in Resources */,
+				33946A842B21A79A0002A8D6 /* WH_RechargeCell.xib in Resources */,
 				63E1E9A41F442927004548C5 /* accept@2x.png in Resources */,
 				18ABD6901D07FDAE000F43FC /* avatar_normal@2x.png in Resources */,
 				CC30173E1951BABF0059BADA /* f080.png in Resources */,
@@ -10975,6 +11009,7 @@
 				0FCC71791F6941250026859D /* feeds_play_btn@2x.png in Resources */,
 				0F77DCE22A30B9C900CF8D54 /* WH_JXGroupRedPacketVC.xib in Resources */,
 				12A955D628A136E6008D7F12 /* tuijianUserCY.plist in Resources */,
+				33946A8C2B22B2310002A8D6 /* WH_WithDreawCell.xib in Resources */,
 				CC3017241951BABF0059BADA /* f067.png in Resources */,
 				CC3016FE1951BABF0059BADA /* f048.png in Resources */,
 				CC3017471951BABF0059BADA /* f084@2x.png in Resources */,
@@ -11111,6 +11146,7 @@
 				CC3017651951BABF0059BADA /* f099@2x.png in Resources */,
 				CC171B33198BD56000BE57A1 /* im_10001@2x.png in Resources */,
 				0F1F9D2F204E85800037AF27 /* ic_password_display@3x.png in Resources */,
+				33946A912B22B2640002A8D6 /* WH_WithDreawVC.xib in Resources */,
 				CC30174A1951BABF0059BADA /* f086.png in Resources */,
 				185091231D12B6BF00C98E17 /* search@2x.png in Resources */,
 				CC30172C1951BABF0059BADA /* f071.png in Resources */,
@@ -11488,6 +11524,7 @@
 				63B517DF222A2EBA00EFBE03 /* WH_JXTransferDeatil_WHVC.m in Sources */,
 				6317CCB11FB9798500CEF9EF /* LFLiveSession.m in Sources */,
 				4CABBC6B293F06F800C17F42 /* UINavigationItem+GKCategory.m in Sources */,
+				33946A8B2B22B2310002A8D6 /* WH_WithDreawCell.m in Sources */,
 				0FA2D66D1FB05CCD00D51BB9 /* GPUImageShiTomasiFeatureDetectionFilter.m in Sources */,
 				63F4E44221C0AE7800C61204 /* WH_KKCutGridView.m in Sources */,
 				B2A8A1BA232656B8003A3254 /* WH_JXBaseChat_WHCell.m in Sources */,
@@ -11608,6 +11645,7 @@
 				18BCFFDA23851513001F49AC /* WH_WithdrawalList_WHViewController.m in Sources */,
 				0FA2D5851FB05CCC00D51BB9 /* GPUImageAmatorkaFilter.m in Sources */,
 				0F304DE72153AD0E001EC77E /* XMPPTransports.m in Sources */,
+				33946A7B2B21A4C30002A8D6 /* WH_RechargeVC.m in Sources */,
 				B22AA2072339B55600906412 /* WH_JXRoomMember_WHVC.m in Sources */,
 				6336AA871E52F11B00F831D8 /* WH_JXVideoPlayer_WHVC.m in Sources */,
 				CC6D87201939E51A00AE1EBA /* WH_JXWaitingView.m in Sources */,
@@ -11884,6 +11922,7 @@
 				0F5A70C61FCD07EA00547904 /* UIImageView+AFNetworking.m in Sources */,
 				CC5AD39B1942B5F20083B236 /* WH_admob_WHViewController.m in Sources */,
 				63DD4F5421314DB800DC45F8 /* RITLFilter.m in Sources */,
+				33946A902B22B2640002A8D6 /* WH_WithDreawVC.m in Sources */,
 				CCFD208D19592D1D00B98494 /* smbPitchShift.m in Sources */,
 				126D6638285228EE000BEF41 /* NSObject+AvoidCrash.m in Sources */,
 				625C1473248BA16D00493825 /* WH_WeiboSearchViewController.m in Sources */,
@@ -12235,6 +12274,7 @@
 				0FB49ED81F0A271400DCFE13 /* JXBlogRemind.m in Sources */,
 				18DC42461D75794C005EA299 /* WH_JXPacketObject.m in Sources */,
 				CC8759D919361892007D2DA1 /* UIFactory.mm in Sources */,
+				33946A832B21A79A0002A8D6 /* WH_RechargeCell.m in Sources */,
 				CCEBFFF2196EB63800BC2E0E /* ATMTextLayer.m in Sources */,
 				33E5916B2B16E6B900E578A3 /* MASLayoutConstraint.m in Sources */,
 				33E591682B16E6B900E578A3 /* ViewController+MASAdditions.m in Sources */,

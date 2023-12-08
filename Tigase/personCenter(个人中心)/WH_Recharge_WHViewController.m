@@ -274,6 +274,10 @@
 //        NSString *callbackUrl = @"http://43.139.105.230:8092/pay/callbackUrl"; //
         
         NSString *callbackUrl = @"http://192.168.1.88:8092/pay/callbackUrl"; // @"http://api.域名/pay/callbackUrl";
+        //测试环境
+//        NSString *callbackUrl = @" http://195.54.171.69:8092/pay/callbackUrl";
+   
+        
         
         NSString *tOrderNumber = [FCUUID uuid];
         NSString *money = [NSString stringWithFormat:@"%ld",(long)(self.wh_moneyText.text.floatValue * 100)]; //金额转换为分单位

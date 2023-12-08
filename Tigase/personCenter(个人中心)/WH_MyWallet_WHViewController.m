@@ -28,6 +28,8 @@
 
 #import "WH_JXChat_WHViewController.h"
 #import "WH_webpage_WHVC.h"
+#import "WH_RechargeVC.h"
+#import "WH_WithDreawVC.h"
 
 #define View_Height (IS_SHOW_BLACK_HOURSE_DEAL)?(384):(384-44-12)
 
@@ -214,8 +216,11 @@
             
         }else {
             
-            WH_Recharge_WHViewController *rechargeVC = [[WH_Recharge_WHViewController alloc] init];
+            WH_RechargeVC *rechargeVC = [[WH_RechargeVC alloc] init];
             [g_navigation pushViewController:rechargeVC animated:YES];
+            
+//            WH_Recharge_WHViewController *rechargeVC = [[WH_Recharge_WHViewController alloc] init];
+//            [g_navigation pushViewController:rechargeVC animated:YES];
             
             
             //            WH_NewRecharge_WHViewController *rechargeVC = [[WH_NewRecharge_WHViewController alloc] init];
@@ -258,14 +263,24 @@
                 //提现到后台审核
                 g_myself.isPayPassword = [g_default objectForKey:PayPasswordKey];
                 if ([g_myself.isPayPassword boolValue]) {
-                    WH_WithdrawalToBackground_WHViewController *withdrawalBGVC = [[WH_WithdrawalToBackground_WHViewController alloc] init];
-                    [g_navigation pushViewController:withdrawalBGVC animated:YES];
+                    
+                    WH_WithDreawVC *tranVC = [[WH_WithDreawVC alloc] init];
+                    [g_navigation pushViewController:tranVC animated:YES];
+                    
+//                    WH_WithdrawalToBackground_WHViewController *withdrawalBGVC = [[WH_WithdrawalToBackground_WHViewController alloc] init];
+//                    [g_navigation pushViewController:withdrawalBGVC animated:YES];
+                    
+                    
                 }else {//没有支付密码
                     [BindTelephoneChecker checkBindPhoneWithViewController:self entertype:JXEnterTypeDefault];
                 }
             } else {
-                WH_JXCashWithDraw_WHViewController *cashWithVC = [[WH_JXCashWithDraw_WHViewController alloc] init];
-                [g_navigation pushViewController:cashWithVC animated:YES];
+                 
+                WH_WithDreawVC *tranVC = [[WH_WithDreawVC alloc] init];
+                [g_navigation pushViewController:tranVC animated:YES];
+                
+//                WH_JXCashWithDraw_WHViewController *cashWithVC = [[WH_JXCashWithDraw_WHViewController alloc] init];
+//                [g_navigation pushViewController:cashWithVC animated:YES];
             }
         }
     }else if ([actionTitle isEqualToString:Localized(@"H5提现")]) {

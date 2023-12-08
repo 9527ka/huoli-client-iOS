@@ -13,7 +13,7 @@
 #import "WH_JXVerifyPay_WHVC.h"
 #import "WH_JXPayPassword_WHVC.h"
 #import "WH_SegmentSwitch.h"
-#import "WH_Recharge_WHViewController.h"
+#import "WH_RechargeVC.h"
 #import "BindTelephoneChecker.h"
 
 #import "WH_SelectReceiveRedPacket_ViewController.h"
@@ -456,8 +456,11 @@
         
     }else {
         
-        WH_Recharge_WHViewController *rechargeVC = [[WH_Recharge_WHViewController alloc] init];
+        WH_RechargeVC *rechargeVC = [[WH_RechargeVC alloc] init];
         [g_navigation pushViewController:rechargeVC animated:YES];
+        
+//        WH_Recharge_WHViewController *rechargeVC = [[WH_Recharge_WHViewController alloc] init];
+//        [g_navigation pushViewController:rechargeVC animated:YES];
         
         //            WH_NewRecharge_WHViewController *rechargeVC = [[WH_NewRecharge_WHViewController alloc] init];
         //            [g_navigation pushViewController:rechargeVC animated:YES];

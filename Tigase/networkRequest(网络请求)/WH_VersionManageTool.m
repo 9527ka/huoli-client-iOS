@@ -574,6 +574,9 @@
 //    NSString* defApiUrl = @"http://47.96.30.105:8092/config";
     
     NSString* defApiUrl = @"http://192.168.1.88:8092/config";
+    //测试环境
+//    NSString* defApiUrl = @"http://195.54.171.69:8092/config";
+
     
 //    NSString* defApiUrl = @"http://43.139.105.230:8092/config";
 
@@ -596,6 +599,9 @@
 //    NSString *defApiUrl = @"http://45.248.10.35:8092/config";
     
     NSString *defApiUrl = @"http://192.168.1.88:8092/config";
+    
+    //测试环境
+//    NSString* defApiUrl = @"http://195.54.171.69:8092/config";
     
 //    NSString* defApiUrl = @"http://43.139.105.230:8092/config";
     
