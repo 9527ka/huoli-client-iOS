@@ -31,7 +31,7 @@
 #import "WH_RechargeVC.h"
 #import "WH_WithDreawVC.h"
 
-#define View_Height (IS_SHOW_BLACK_HOURSE_DEAL)?(384):(384-44-12)
+#define View_Height (IS_SHOW_BLACK_HOURSE_DEAL)?(384 + 66):(384)
 
 @interface WH_MyWallet_WHViewController ()
 
@@ -113,13 +113,15 @@
     if ([g_config.hmPayStatus integerValue] == 1 && [g_config.hmWithdrawStatus integerValue] == 1) {
         array = @[Localized(@"JXLiveVC_Recharge") ,@"H5充值",Localized(@"JXMoney_withdrawals"),@"H5提现"];
     }
+    NSMutableArray *titleArr = [NSMutableArray arrayWithArray:array];
+    [titleArr addObject:@"联系客服"];
     
-    for (int i = 0; i < array.count; i++) {
-        NSString *titleStr = [array objectAtIndex:i];
+    for (int i = 0; i < titleArr.count; i++) {
+        NSString *titleStr = [titleArr objectAtIndex:i];
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setFrame:CGRectMake(15, (CGRectGetMaxY(self.wh_moneyLabel.frame) + 20) + i*(12 + 44), cView.frame.size.width - 30, 44)];
         [btn setTag:i];
-        [btn setTitle:[array objectAtIndex:i] forState:UIControlStateNormal];
+        [btn setTitle:[titleArr objectAtIndex:i] forState:UIControlStateNormal];
         [btn setTitleColor:([titleStr isEqualToString:Localized(@"JXLiveVC_Recharge")] || [titleStr isEqualToString:@"H5充值"])?HEXCOLOR(0xffffff):HEXCOLOR(0x8C9AB8) forState:UIControlStateNormal];
         [btn setTitleColor:([titleStr isEqualToString:Localized(@"JXLiveVC_Recharge")] || [titleStr isEqualToString:@"H5充值"])?HEXCOLOR(0xffffff):HEXCOLOR(0x8C9AB8) forState:UIControlStateHighlighted];
         [btn setBackgroundColor:([titleStr isEqualToString:Localized(@"JXLiveVC_Recharge")] || [titleStr isEqualToString:@"H5充值"])?HEXCOLOR(0x0093FF):HEXCOLOR(0xffffff)];
@@ -287,6 +289,8 @@
         WH_H5Transaction_JXViewController *tranVC = [[WH_H5Transaction_JXViewController alloc] init];
         tranVC.transactionType = 2;
         [g_navigation pushViewController:tranVC animated:YES];
+    }else if ([actionTitle isEqualToString:@"联系客服"]){
+        [self lianxikehu];
     }
 }
 //未设置支付密码，设置支付密码

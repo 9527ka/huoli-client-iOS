@@ -19,7 +19,7 @@
     
     //添加圆角以及阴影
     self.bgTopView.layer.cornerRadius = self.bgBottomView.layer.cornerRadius = 8.0f;
-    self.bgTopView.layer.shadowColor = self.bgBottomView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.bgTopView.layer.shadowColor = self.bgBottomView.layer.shadowColor = [UIColor grayColor].CGColor;
     self.bgTopView.layer.shadowOffset = self.bgBottomView.layer.shadowOffset = CGSizeMake(0, 0);
     self.bgTopView.layer.shadowOpacity = self.bgBottomView.layer.shadowOpacity = 0.5;
     self.numCopyBtn.layer.cornerRadius = 16.0f;
@@ -38,7 +38,6 @@
         countBtn.layer.borderWidth = 0.6f;
         countBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     }
-    
     self.numCopyBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     
 }
@@ -54,12 +53,14 @@
 }
 - (IBAction)countAction:(UIButton *)sender {
     [self endEditing:YES];
+    sender.titleLabel.font = [UIFont systemFontOfSize:12];
     NSString *countStr = [NSString stringWithFormat:@"%ld",sender.tag];
     self.monyField.text = countStr;
 }
 //复制
 - (IBAction)copyAction:(id)sender {
     [self endEditing:YES];
+    self.numCopyBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     UIPasteboard *pastBoard = [UIPasteboard generalPasteboard];
     pastBoard.string = self.addressLab.text;
     [g_server showMsg:@"复制成功"];

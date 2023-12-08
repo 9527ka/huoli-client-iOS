@@ -7123,19 +7123,19 @@
 		4CABBBDD293F06F700C17F42 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				4CABBBDE293F06F700C17F42 /* WH_GKDYPlayer_WHViewController.m */,
-				4CABBBDF293F06F700C17F42 /* WH_GKDYSearch_WHViewController.m */,
-				4CABBBE0293F06F700C17F42 /* WH_GKDYBase_WHViewController.m */,
-				4CABBBE1293F06F700C17F42 /* WH_GKDYHome_WHViewController.m */,
-				4CABBBE2293F06F700C17F42 /* WH_JXRecordVideo_WHVC.h */,
-				4CABBBE3293F06F700C17F42 /* WH_GKDYPersonal_WHViewController.h */,
-				4CABBBE4293F06F700C17F42 /* WH_JXSelectMusic_WHVC.h */,
-				4CABBBE5293F06F700C17F42 /* WH_GKDYPlayer_WHViewController.h */,
-				4CABBBE6293F06F700C17F42 /* WH_GKDYHome_WHViewController.h */,
 				4CABBBE7293F06F700C17F42 /* WH_GKDYBase_WHViewController.h */,
-				4CABBBE8293F06F700C17F42 /* WH_GKDYSearch_WHViewController.h */,
+				4CABBBE0293F06F700C17F42 /* WH_GKDYBase_WHViewController.m */,
+				4CABBBE6293F06F700C17F42 /* WH_GKDYHome_WHViewController.h */,
+				4CABBBE1293F06F700C17F42 /* WH_GKDYHome_WHViewController.m */,
+				4CABBBE3293F06F700C17F42 /* WH_GKDYPersonal_WHViewController.h */,
 				4CABBBE9293F06F700C17F42 /* WH_GKDYPersonal_WHViewController.m */,
+				4CABBBE5293F06F700C17F42 /* WH_GKDYPlayer_WHViewController.h */,
+				4CABBBDE293F06F700C17F42 /* WH_GKDYPlayer_WHViewController.m */,
+				4CABBBE8293F06F700C17F42 /* WH_GKDYSearch_WHViewController.h */,
+				4CABBBDF293F06F700C17F42 /* WH_GKDYSearch_WHViewController.m */,
+				4CABBBE2293F06F700C17F42 /* WH_JXRecordVideo_WHVC.h */,
 				4CABBBEA293F06F700C17F42 /* WH_JXRecordVideo_WHVC.m */,
+				4CABBBE4293F06F700C17F42 /* WH_JXSelectMusic_WHVC.h */,
 				4CABBBEB293F06F700C17F42 /* WH_JXSelectMusic_WHVC.m */,
 			);
 			path = Controller;

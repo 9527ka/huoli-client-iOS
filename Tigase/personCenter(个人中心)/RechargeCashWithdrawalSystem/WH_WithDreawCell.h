@@ -12,6 +12,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WH_WithDreawCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIView *bgTopView;
+@property (weak, nonatomic) IBOutlet UIView *bgBottomView;
+@property (weak, nonatomic) IBOutlet UITextField *monyField;//提现金额
+@property (weak, nonatomic) IBOutlet UILabel *monyCountLab;
+@property (weak, nonatomic) IBOutlet UITextField *orderNoField;//交易hash
+@property (weak, nonatomic) IBOutlet UIButton *allBtn;
+@property (weak, nonatomic) IBOutlet UIButton *certainBtn;
+
 @end
 
 NS_ASSUME_NONNULL_END
