@@ -258,6 +258,10 @@
         self.location = [p objectForKey:@"location"];
     }
     
+    if ([p objectForKey:@"sysUsdtUrl"]) {
+        self.sysUsdtUrl = [p objectForKey:@"sysUsdtUrl"];
+    }
+    
     if([p objectForKey:@"downloadUrl"])
         self.downloadUrl = [p objectForKey:@"downloadUrl"];
     if([p objectForKey:@"downloadAvatarUrl"]) {

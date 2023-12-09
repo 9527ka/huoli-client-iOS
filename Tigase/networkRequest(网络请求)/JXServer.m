@@ -4610,7 +4610,82 @@
         
     [p go];
 }
-
+#pragma mark --  充值
+- (void)WH_RechargeWithAmount:(NSString *)amount picUrl:(NSString *)picUrl context:(NSString *)context toView:(id)toView {
+    WH_JXConnection* p = [self addTask:wh_user_offlineRechargeToAdmin param:nil toView:toView];
+    
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:amount forKey:@"amount"];
+    [p setPostValue:picUrl forKey:@"picUrl"];
+    [p setPostValue:context forKey:@"context"];
+        
+    [p go];
+}
+#pragma mark --  提现
+- (void)WH_WithdrawWithAmount:(NSString *)amount usdtUrl:(NSString *)usdtUrl payPassword:(NSString *)payPassword toView:(id)toView {
+    WH_JXConnection* p = [self addTask:wh_user_transferToAdmin param:nil toView:toView];
+    
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:amount forKey:@"amount"];
+    [p setPostValue:usdtUrl forKey:@"usdtUrl"];
+    // 获取当前时间0秒后的时间
+    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:0];
+    // *1000 是精确到毫秒，不乘就是精确到秒
+    NSTimeInterval time = [date timeIntervalSince1970];
+    NSString *timeStr = [NSString stringWithFormat:@"%.0f", time];
+    [p setPostValue:timeStr forKey:@"time"];
+        
+    NSString *secret = [self secretEncryption:myself.userId amount:amount time:time payPassword:payPassword];
+    [p setPostValue:secret forKey:@"secret"];
+    
+    [p go];
+}
+- (NSString *)secretEncryption:(NSString *)openId amount:(NSString *)amount time:(long)time payPassword:(NSString *)payPassword {
+    NSString *secret = [NSString string];
+    
+        NSMutableString *str1 = [NSMutableString string];
+    [str1 appendString:APIKEY];
+    [str1 appendString:[NSString stringWithFormat:@"%ld",time]];
+    [str1 appendString:amount];
+    str1 =  [[g_server WH_getMD5StringWithStr:str1] mutableCopy];
+    
+    NSMutableString *str2 = [NSMutableString string];
+    [str2 appendString:MY_USER_ID];
+    [str2 appendString:g_server.access_token];
+//    [str2 appendString:payPassword];
+    
+//    str2 = [[g_server WH_getMD5StringWithStr:str2] mutableCopy];
+    
+    [str1 appendString:str2];
+    NSMutableString *str3 = [NSMutableString string];
+    str3 = [[g_server WH_getMD5StringWithStr:payPassword] mutableCopy];
+    [str1 appendString:str3];
+    
+    secret = [g_server WH_getMD5StringWithStr:str1];
+    
+    
+    
+    
+//    NSMutableString *str1 = [NSMutableString string];
+//    [str1 appendString:APIKEY];
+//    [str1 appendString:openId];
+//    [str1 appendString:MY_USER_ID];
+//
+//    NSMutableString *str2 = [NSMutableString string];
+//    [str2 appendString:g_server.access_token];
+//    [str2 appendString:amount];
+//    [str2 appendString:[NSString stringWithFormat:@"%ld",time]];
+//    str2 = [[g_server WH_getMD5StringWithStr:str2] mutableCopy];
+//
+//    [str1 appendString:str2];
+//    NSMutableString *str3 = [NSMutableString string];
+//    str3 = [[g_server WH_getMD5StringWithStr:payPassword] mutableCopy];
+//    [str1 appendString:str3];
+//
+//    secret = [g_server WH_getMD5StringWithStr:str1];
+    
+    return secret;
+}
 
 
 @end

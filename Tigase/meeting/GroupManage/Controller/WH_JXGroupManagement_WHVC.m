@@ -108,17 +108,17 @@
     }
     
     //显示已读人数
-//    UIView *ydView = [self createBGViewWithOrginY:viewOrginY height:HEIGHT supView:self.cView];
-//    
-//    iv = [self WH_createMiXinButton:Localized(@"JX_RoomShowRead") supView:ydView drawTop:NO drawBottom:NO must:NO click:nil];
-//    iv.frame = CGRectMake(0, 0, CGRectGetWidth(ydView.frame), CGRectGetHeight(ydView.frame));
-//    [self createSwitchWithParent:iv tag:2456 isOn:self.room.showRead];
-//    label = [self createLabelWithParent:self.wh_tableBody frameY:CGRectGetMaxY(ydView.frame) + 2 text:Localized(@"JX_ReadPeopleList")];
-//    
-//    membHeight = CGRectGetMaxY(label.frame) + 12;
+    UIView *ydView = [self createBGViewWithOrginY:viewOrginY height:HEIGHT supView:self.cView];
+    
+    iv = [self WH_createMiXinButton:Localized(@"JX_RoomShowRead") supView:ydView drawTop:NO drawBottom:NO must:NO click:nil];
+    iv.frame = CGRectMake(0, 0, CGRectGetWidth(ydView.frame), CGRectGetHeight(ydView.frame));
+    [self createSwitchWithParent:iv tag:2456 isOn:self.room.showRead];
+    label = [self createLabelWithParent:self.wh_tableBody frameY:CGRectGetMaxY(ydView.frame) + 2 text:Localized(@"JX_ReadPeopleList")];
+    
+    membHeight = CGRectGetMaxY(label.frame) + 12;
     
     // 群验证
-    UIView *yzView = [self createBGViewWithOrginY:viewOrginY height:HEIGHT supView:self.cView];
+    UIView *yzView = [self createBGViewWithOrginY:membHeight height:HEIGHT supView:self.cView];
     
     iv = [self WH_createMiXinButton:Localized(@"JX_GroupInvitationConfirmation")  supView:yzView drawTop:NO drawBottom:NO must:NO click:nil];
     

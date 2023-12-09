@@ -24,7 +24,14 @@
     self.bgTopView.layer.shadowOpacity = self.bgBottomView.layer.shadowOpacity = 0.5;
     self.certainBtn.layer.cornerRadius = 8.0f;
     self.allBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+    self.monyCountLab.text = [NSString stringWithFormat:@"余额HOTC%.2f = USDT%.2f",g_App.myMoney,g_App.myMoney];
+    [self.monyField addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
     
+}
+-(void)textFieldChanged:(UITextField *)textField{
+    if(textField.text.doubleValue > g_App.myMoney){
+        self.monyField.text = [NSString stringWithFormat:@"%.2f",g_App.myMoney];
+    }
 }
 -(void)endEdtingAction{
     [self endEditing:YES];
@@ -41,6 +48,22 @@
 //确认
 - (IBAction)certainAction:(id)sender {
     [self endEditing:YES];
+    if(self.monyField.text.length == 0 || self.monyField.text.floatValue < 100){
+        [g_server showMsg:@"请输入100以上的HOTC金额"];
+        return;
+    }
+    if(self.monyField.text.floatValue > 10000){
+        [g_server showMsg:@"请输入10000以内的HOTC金额"];
+        return;
+    }
+    if(self.orderNoField.text.length == 0){
+        [g_server showMsg:@"请填写USDT-TRC20"];
+        return;
+    }
+    if(self.certainBlock){
+        self.certainBlock(self.monyField.text, self.orderNoField.text);
+    }
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

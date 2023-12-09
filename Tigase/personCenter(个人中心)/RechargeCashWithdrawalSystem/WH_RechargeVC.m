@@ -14,10 +14,15 @@
 
 #import "UIView+WH_CustomAlertView.h"
 
-@interface WH_RechargeVC ()<UITableViewDataSource, UITableViewDelegate,WH_JXCamera_WHVCDelegate ,UIImagePickerControllerDelegate>
+@interface WH_RechargeVC ()<UITableViewDataSource, UITableViewDelegate,WH_JXCamera_WHVCDelegate ,UIImagePickerControllerDelegate>{
+    ATMHud* _wait;
+}
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic,strong) UIImage *image;
+@property(nonatomic,copy) NSString *amount;
+@property(nonatomic,copy) NSString *context;
+
 
 @end
 
@@ -46,11 +51,78 @@
     cell.chooseImageBlock = ^{
         [weakSelf chooseImageAction];
     };
+    cell.certainBlock = ^(NSString * _Nonnull amountStr, NSString * _Nonnull orderNoStr) {
+        [weakSelf rechargeWithNum:amountStr context:orderNoStr];
+    };
     if(self.image){
         cell.uploadImage.image = self.image;
     }
         
     return cell;
+}
+//确认的点击事件
+-(void)rechargeWithNum:(NSString *)amount context:(NSString *)context{
+    if(!self.image){
+        [g_server showMsg:@"请上传您的交易凭证"];
+        return;
+    }
+    self.amount = amount;
+    self.context = context;
+    //保存图片到本地
+    NSString* file = [FileInfo getUUIDFileName:@"jpg"];
+    [g_server WH_saveImageToFileWithImage:self.image file:file isOriginal:NO];
+    //上传图片
+    [g_server uploadFile:file validTime:@"-1" messageId:nil toView:self];
+    
+}
+#pragma mark - 请求成功回调
+-(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{
+    [_wait hide];
+    if ([aDownload.action isEqualToString:wh_act_UploadFile]){
+        NSArray * listArray = @[@"audios",@"images",@"others",@"videos"];
+        NSString * fileUrl = nil;
+        NSString * fileName = nil;
+        int tbreak = 0;
+        for (int i = 0; i<listArray.count; i++) {
+            NSArray * dataArray = [dict objectForKey:listArray[i]];
+            if ([dataArray count]) {
+                for (NSDictionary * dataDict in dataArray) {
+                    fileUrl = dataDict[@"oUrl"];
+                    fileName = dataDict[@"oFileName"];
+                    tbreak = 1;
+                }
+            }
+            if (tbreak == 1){
+                break;
+            }
+        }
+        
+        [g_server WH_RechargeWithAmount:self.amount picUrl:fileUrl context:self.context toView:self];
+    }else if ([aDownload.action isEqualToString:wh_user_offlineRechargeToAdmin]){
+        [g_server showMsg:@"充值提交成功，请等待核实"];
+        [g_navigation WH_dismiss_WHViewController:self animated:YES];
+    }
+}
+
+#pragma mark - 请求失败回调
+-(int) WH_didServerResult_WHFailed:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict{
+    [_wait hide];
+    return WH_show_error;
+}
+
+#pragma mark - 请求出错回调
+-(int) WH_didServerConnect_WHError:(WH_JXConnection*)aDownload error:(NSError *)error{//error为空时，代表超时
+    [_wait hide];
+    return WH_show_error;
+}
+
+#pragma mark - 开始请求服务器回调
+-(void) WH_didServerConnect_WHStart:(WH_JXConnection*)aDownload{
+    if ([aDownload.action isEqualToString:wh_act_UploadFile]) {
+        [_wait start:Localized(@"JXFile_uploading")];
+    }else{
+        [_wait start];
+    }
 }
 //选择图片
 -(void)chooseImageAction{
@@ -84,9 +156,9 @@
             UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
             ipc.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
             ipc.delegate = weakSelf;
-            ipc.allowsEditing = YES;
+//            ipc.allowsEditing = YES;
             //选择图片模式
-            ipc.modalPresentationStyle = UIModalPresentationCurrentContext;
+//            ipc.modalPresentationStyle = UIModalPresentationCurrentContext;
             //    [g_window addSubview:ipc.view];
             if (IS_PAD) {
                 UIPopoverController *pop =  [[UIPopoverController alloc] initWithContentViewController:ipc];
@@ -102,13 +174,15 @@
 }
 
 - (void)cameraVC:(WH_JXCamera_WHVC *)vc didFinishWithImage:(UIImage *)image {
-    self.image = [ImageResize image:image fillSize:CGSizeMake(720, 384)];
+    self.image = [ImageResize image:image fillSize:CGSizeMake(JX_SCREEN_WIDTH, JX_SCREEN_HEIGHT)];
     [self.tableView reloadData];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    self.image = [ImageResize image:[info objectForKey:@"UIImagePickerControllerEditedImage"] fillSize:CGSizeMake(720, 384)];
+//    self.image = [ImageResize image:[info objectForKey:@"UIImagePickerControllerEditedImage"] fillSize:CGSizeMake(JX_SCREEN_WIDTH, JX_SCREEN_HEIGHT)];
+    
+    self.image = [ImageResize image:[info objectForKey:@"UIImagePickerControllerOriginalImage"] fillSize:CGSizeMake(JX_SCREEN_WIDTH, JX_SCREEN_HEIGHT)];
     [self.tableView reloadData];
     
     [picker dismissViewControllerAnimated:YES completion:nil];

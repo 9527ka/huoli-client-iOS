@@ -114,7 +114,7 @@
         array = @[Localized(@"JXLiveVC_Recharge") ,@"H5充值",Localized(@"JXMoney_withdrawals"),@"H5提现"];
     }
     NSMutableArray *titleArr = [NSMutableArray arrayWithArray:array];
-    [titleArr addObject:@"联系客服"];
+    [titleArr addObject:@"联系客服充值"];
     
     for (int i = 0; i < titleArr.count; i++) {
         NSString *titleStr = [titleArr objectAtIndex:i];
@@ -289,7 +289,7 @@
         WH_H5Transaction_JXViewController *tranVC = [[WH_H5Transaction_JXViewController alloc] init];
         tranVC.transactionType = 2;
         [g_navigation pushViewController:tranVC animated:YES];
-    }else if ([actionTitle isEqualToString:@"联系客服"]){
+    }else if ([actionTitle isEqualToString:@"联系客服充值"]){
         [self lianxikehu];
     }
 }

@@ -133,6 +133,8 @@
 
 @property (nonatomic ,copy) NSString *maxSendRedPagesAmount; //发红包最大金额
 @property (nonatomic ,copy) NSString *isDelAfterReading; //是否开启阅后即焚
+@property (nonatomic ,strong) NSDictionary *popularAPP;
+@property (nonatomic ,copy) NSString *sysUsdtUrl;
 
 @property(nonatomic,copy) void (^block)(void);
 -(void)getDefaultValue;

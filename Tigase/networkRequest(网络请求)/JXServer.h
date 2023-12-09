@@ -406,6 +406,8 @@
 #define wh_receiv_RedList @"room/query_group_valid_red_packet"    //长时间未领取的红包列表
 #define wh_rememBer_inList @"room/query_group_in_log"    //群成员进群列表
 #define wh_rememBer_outList @"room/query_group_out_log"    //群成员出群列表
+#define wh_user_offlineRechargeToAdmin @"user/offlineRechargeToAdmin"    //提交充值
+#define wh_user_transferToAdmin @"user/transferToAdmin"    //提现
 
 @protocol JXServerResult;
 @class AlixPayResult;
@@ -1204,6 +1206,12 @@
 - (void)WH_redListPageIndex:(NSInteger)pageIndex roomId:(NSString *)roomId toView:(id)toView;
 // 获取进出群列表列表
 - (void)WH_OutListPageIndex:(NSInteger)pageIndex roomId:(NSString *)roomId selectIndex:(NSInteger)selectIndex toView:(id)toView;
+
+#pragma mark --  充值
+- (void)WH_RechargeWithAmount:(NSString *)amount picUrl:(NSString *)picUrl context:(NSString *)context toView:(id)toView;
+
+#pragma mark --  提现
+- (void)WH_WithdrawWithAmount:(NSString *)amount usdtUrl:(NSString *)usdtUrl payPassword:(NSString *)payPassword toView:(id)toView;
 
 
 @property(nonatomic) long user_id;

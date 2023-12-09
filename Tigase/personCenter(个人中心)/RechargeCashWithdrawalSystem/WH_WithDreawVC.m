@@ -8,10 +8,18 @@
 
 #import "WH_WithDreawVC.h"
 #import "WH_WithDreawCell.h"
+#import "BindTelephoneChecker.h"
+#import "WH_JXVerifyPay_WHVC.h"
 
-@interface WH_WithDreawVC ()<UITableViewDataSource, UITableViewDelegate>
+@interface WH_WithDreawVC ()<UITableViewDataSource, UITableViewDelegate>{
+    ATMHud* _wait;
+}
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) WH_JXVerifyPay_WHVC *verVC;
+@property (nonatomic, copy) NSString *amountStr;
+@property (nonatomic, copy) NSString *orderNoStr;
+
 
 @end
 
@@ -37,10 +45,70 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     WH_WithDreawCell *cell = (WH_WithDreawCell *)[tableView dequeueReusableCellWithIdentifier:@"WH_WithDreawCell" forIndexPath:indexPath];
-//    __weak typeof (self)weakSelf = self;
+    __weak typeof (self)weakSelf = self;
+    cell.certainBlock = ^(NSString * _Nonnull amountStr, NSString * _Nonnull orderNoStr) {
+        weakSelf.amountStr = amountStr;
+        weakSelf.orderNoStr = orderNoStr;
+        
+        if ([g_myself.isPayPassword boolValue]) {
+            self.verVC = [WH_JXVerifyPay_WHVC alloc];
+            self.verVC.type = JXVerifyTypeWithdrawal;
+            self.verVC.wh_RMB = amountStr;
+            self.verVC.delegate = self;
+            self.verVC.didDismissVC = @selector(WH_dismiss_WHVerifyPayVC);
+            self.verVC.didVerifyPay = @selector(WH_didVerifyPay:);
+            self.verVC = [self.verVC init];
+            
+            [self.view addSubview:self.verVC.view];
+            
+        }else {//没有支付密码
+            [BindTelephoneChecker checkBindPhoneWithViewController:weakSelf entertype:JXEnterTypeDefault];
+        }
+        
+        
+    };
     
         
     return cell;
+}
+- (void)WH_didVerifyPay:(NSString *)sender {
+    NSString *payPassword = [NSString stringWithString:sender];
+    
+    [g_server WH_WithdrawWithAmount:self.amountStr usdtUrl:self.orderNoStr payPassword:payPassword toView:self];
+
+}
+- (void)WH_dismiss_WHVerifyPayVC {
+    [self.verVC.view removeFromSuperview];
+}
+
+#pragma mark - 请求成功回调
+-(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{
+    [_wait hide];
+    if ([aDownload.action isEqualToString:wh_user_transferToAdmin]){
+        [g_server showMsg:@"提交成功，请等待核实"];
+        [g_navigation WH_dismiss_WHViewController:self animated:YES];
+    }
+}
+
+#pragma mark - 请求失败回调
+-(int) WH_didServerResult_WHFailed:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict{
+    [_wait hide];
+    return WH_show_error;
+}
+
+#pragma mark - 请求出错回调
+-(int) WH_didServerConnect_WHError:(WH_JXConnection*)aDownload error:(NSError *)error{//error为空时，代表超时
+    [_wait hide];
+    return WH_show_error;
+}
+
+#pragma mark - 开始请求服务器回调
+-(void) WH_didServerConnect_WHStart:(WH_JXConnection*)aDownload{
+    if ([aDownload.action isEqualToString:wh_act_UploadFile]) {
+        [_wait start:Localized(@"JXFile_uploading")];
+    }else{
+        [_wait start];
+    }
 }
 
 

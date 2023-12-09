@@ -7,7 +7,7 @@
 //
 
 #import "WH_RechargeCell.h"
-
+#import "WH_webpage_WHVC.h"
 
 @implementation WH_RechargeCell
 
@@ -35,11 +35,18 @@
         UIButton *countBtn = (UIButton *)[self.bgTopView viewWithTag:tag.intValue];
         countBtn.layer.cornerRadius = 13.0f;
         countBtn.layer.borderColor = [UIColor systemBlueColor].CGColor;
-        countBtn.layer.borderWidth = 0.6f;
+        countBtn.layer.borderWidth = 0.8f;
         countBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     }
     self.numCopyBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     
+    [self.monyField addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
+    
+    self.addressLab.text = [NSString stringWithFormat:@"%@",g_config.sysUsdtUrl];
+    
+}
+-(void)textFieldChanged:(UITextField *)textField{
+    self.monyCountLab.text = [NSString stringWithFormat:@"HOTC %.2f",textField.text.length > 0?textField.text.doubleValue:0.00];
 }
 -(void)endEdtingAction{
     [self endEditing:YES];
@@ -68,10 +75,27 @@
 //确认
 - (IBAction)certainAction:(id)sender {
     [self endEditing:YES];
+    if(self.monyField.text.length == 0){
+        [g_server showMsg:@"请输入充值的HOTC金额"];
+        return;
+    }
+    if(self.orderNoField.text.length == 0){
+        [g_server showMsg:@"请填写交易TXID或者交易HASH"];
+        return;
+    }
+    if(self.certainBlock){
+        self.certainBlock(self.monyField.text, self.orderNoField.text);
+    }
 }
 //指南
 - (IBAction)guideAction:(id)sender {
     [self endEditing:YES];
+    WH_webpage_WHVC *webVC = [WH_webpage_WHVC alloc];
+    webVC.wh_isGotoBack= YES;
+    webVC.isSend = YES;
+    webVC.url = @"";
+    webVC = [webVC init];
+    [g_navigation.navigationView addSubview:webVC.view];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

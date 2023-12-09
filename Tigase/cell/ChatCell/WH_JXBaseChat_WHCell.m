@@ -318,6 +318,11 @@ static double g_timeSend=0;
     _readNum.textAlignment = NSTextAlignmentCenter;
     [_readView addSubview:_readNum];
     
+    _readLab = [[UILabel alloc] init];
+    _readLab.textColor = [UIColor grayColor];
+    _readLab.font = [UIFont systemFontOfSize:10];
+    [self.contentView addSubview:_readLab];
+    
     _nicknameLabel = [[UILabel alloc] init];
     _nicknameLabel.textColor = [UIColor grayColor];
     _nicknameLabel.font = sysFontWithSize(12.0);
@@ -587,6 +592,8 @@ static double g_timeSend=0;
     }else {
         _readView.hidden = YES;
     }
+    //!self.msg.isGroup &&
+    _readLab.hidden = self.msg.isMySend?NO:YES;
     
     //依数据过滤不需要bgImage的cell
     if ([_msg.type intValue] == kWCMessageTypePhoneAsk || [_msg.type intValue] == kWCMessageTypeResumeAsk) {
@@ -604,10 +611,17 @@ static double g_timeSend=0;
         _readView.frame = CGRectMake(_bubbleBg.frame.origin.x - _readView.frame.size.width - INSETS - 2,  _bubbleBg.frame.origin.y + 2, _readView.frame.size.width, _readView.frame.size.height);
         _readNum.frame = CGRectMake(_readView.frame.size.width - 30, _readNum.frame.origin.y, _readNum.frame.size.width, _readNum.frame.size.height);
         
+        _readLab.frame = CGRectMake(_bubbleBg.frame.origin.x - 24 - INSETS - 2,  _bubbleBg.frame.origin.y + h - 28, 24, 18);
+        
     }else{
         _wait.frame = CGRectMake(_bubbleBg.frame.origin.x+_bubbleBg.frame.size.width+INSETS, (h-n)/2+INSETS, n, n);
         _readView.frame = CGRectMake(_bubbleBg.frame.origin.x+_bubbleBg.frame.size.width+INSETS + 2, _bubbleBg.frame.origin.y + 2, _readView.frame.size.width, _readView.frame.size.height);
         _readNum.frame = CGRectMake(0, _readNum.frame.origin.y, _readNum.frame.size.width, _readNum.frame.size.height);
+        
+        
+        _readLab.frame = CGRectMake(_bubbleBg.frame.origin.x+_bubbleBg.frame.size.width+INSETS + 2, _bubbleBg.frame.origin.y + h - 28, 24, 18);
+        
+        
     }
     if (self.msg.isShowTime) {
         CGRect frame = _wait.frame;
@@ -665,7 +679,7 @@ static double g_timeSend=0;
         
         if([self.msg.type intValue] != kWCMessageTypeVoice && [self.msg.type intValue] != kWCMessageTypeVideo && [self.msg.type intValue] != kWCMessageTypeFile && [self.msg.type intValue] != kWCMessageTypeLocation && [self.msg.type intValue] != kWCMessageTypeCard && [self.msg.type intValue] != kWCMessageTypeLink && [self.msg.type intValue] != kWCMessageTypeMergeRelay)
             _readImage.hidden = YES;
-        _sendFailed.hidden = YES;
+            _sendFailed.hidden = YES;
         }
     
         if ([_msg.type intValue] == kWCMessageTypeImage || [_msg.type intValue] == kWCMessageTypeVideo || [_msg.type intValue] == kWCMessageTypeLocation || [_msg.type intValue] == kWCMessageTypeRedPacket || [_msg.type intValue] == kWCMessageTypeRedPacketExclusive || [_msg.type intValue] == kWCMessageTypeFile || [_msg.type intValue] == kWCMessageTypeCard || [_msg.type intValue] == kWCMessageTypeLink || [_msg.type intValue] == kWCMessageTypeGif || [_msg.type intValue] == kWCMessageTypeShake || [_msg.type intValue] == kWCMessageTypeMergeRelay || [_msg.type intValue] == kWCMessageTypeShare || [_msg.type intValue] == kWCMessageTypeTransfer) {
@@ -673,13 +687,14 @@ static double g_timeSend=0;
         }
     
         if(_msg.isMySend){
+            
             [_bubbleBg setBackgroundImage:[self returnResizableImageWithImageName:@"chat_bg_blue"] forState:UIControlStateNormal];
             [_bubbleBg setBackgroundImage:[self returnResizableImageWithImageName:@"chat_bg_blue_press"] forState:UIControlStateHighlighted];
 
         }else{
-
             [_bubbleBg setBackgroundImage:[self returnResizableImageWithImageName: @"chat_bg_white"] forState:UIControlStateNormal];
             [_bubbleBg setBackgroundImage:[self returnResizableImageWithImageName:@"chat_bg_white_press"] forState:UIControlStateHighlighted];
+            
     }
 }
 
@@ -883,19 +898,22 @@ static double g_timeSend=0;
 }
 
 -(void)drawSendOrReadImage{
+    
     //消息发送失败
     if([self.msg.isSend intValue] == transfer_status_no){
         _readImage.hidden = YES;
         _sendFailed.hidden = NO;
+        _readLab.hidden = YES;
         return;
     }
+    
     //消息发送成功
     if([self.msg.isSend intValue] == transfer_status_yes){
-
         _sendFailed.hidden = YES;
         //不显示的条件
         if ([self.msg.type intValue] == kWCMessageTypeRemind || self.msg.isGroup || !self.msg.isVisible || [_msg isPinbaMsg]) {
             _readImage.hidden = YES;
+            _readLab.hidden = YES;
             return;
         }
         
@@ -932,7 +950,9 @@ static double g_timeSend=0;
         }else{
             _readImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_read",[self getLangueType]]];
         }
-        if (   [self.msg.toUserId isEqualToString:@"10000219"]||[self.msg.toUserId isEqualToString:@"10000220"]||
+        _readLab.text = [self.msg.isRead intValue] == 1?@"已读":@"未读";
+        
+        if ([self.msg.toUserId isEqualToString:@"10000219"]||[self.msg.toUserId isEqualToString:@"10000220"]||
                 [self.msg.toUserId isEqualToString:@"10000221"]||[self.msg.toUserId isEqualToString:@"10000222"]||
                 [self.msg.toUserId isEqualToString:@"10000223"]||[self.msg.toUserId isEqualToString:@"10000224"]||
                 [self.msg.toUserId isEqualToString:@"10000225"]||[self.msg.toUserId isEqualToString:@"10000226"]||
@@ -1021,8 +1041,10 @@ static double g_timeSend=0;
                 [self.msg.toUserId isEqualToString:@"10000198"]||[self.msg.toUserId isEqualToString:@"10000199"]||[self.msg.toUserId isEqualToString:@"10000200"]){
  
             _readImage.hidden = YES;
+            _readLab.hidden = YES;
         }else{
            _readImage.hidden = NO;
+//            _readLab.hidden = NO;
         }
         if (([_msg.type intValue] == kWCMessageTypeText || [_msg.type intValue] == kWCMessageTypeImage || [_msg.type intValue] == kWCMessageTypeVoice || [_msg.type intValue] == kWCMessageTypeVideo)) {
             _burnImage.hidden = ![_msg.isReadDel boolValue];
@@ -1034,6 +1056,7 @@ static double g_timeSend=0;
     if (self.isCourse) {
         _sendFailed.hidden = YES;
         _readImage.hidden = YES;
+        _readLab.hidden = YES;
         _burnImage.hidden = YES;
     }
 }
@@ -1086,11 +1109,13 @@ static double g_timeSend=0;
     }else{
         _sendFailed.hidden = YES;
         _readImage.hidden = NO;
+        _readLab.hidden = NO;
     }
     
     if (self.isCourse) {
         _sendFailed.hidden = YES;
         _readImage.hidden = YES;
+        _readLab.hidden = YES;
     }
 }
 

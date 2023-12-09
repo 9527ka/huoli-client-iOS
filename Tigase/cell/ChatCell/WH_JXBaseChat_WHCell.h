@@ -75,6 +75,7 @@ typedef enum : NSUInteger {
 @property (nonatomic,strong) WH_JXImageView * sendFailed;
 @property (nonatomic,strong) JXLabel * readView;
 @property (nonatomic,strong) JXLabel * readNum;
+@property (nonatomic,strong) UILabel * readLab;//私聊界面已读未读
 @property (nonatomic,strong) UIActivityIndicatorView * wait;
 @property (nonatomic,strong) WH_JXMessageObject * msg;
 @property (nonatomic,strong) UIImageView * headImage;
