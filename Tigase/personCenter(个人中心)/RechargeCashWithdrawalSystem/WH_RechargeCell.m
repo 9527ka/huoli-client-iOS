@@ -46,7 +46,12 @@
     
 }
 -(void)textFieldChanged:(UITextField *)textField{
-    self.monyCountLab.text = [NSString stringWithFormat:@"HOTC %.2f",textField.text.length > 0?textField.text.doubleValue:0.00];
+    if(self.monyField.text.length > 0 && g_App.rate.doubleValue > 0.0){
+        
+        self.monyCountLab.text = [NSString stringWithFormat:@"应付：USDT%.2f",self.monyField.text.doubleValue/g_App.rate.doubleValue];
+    }else{
+        self.monyCountLab.text = @"应付：USDT0.00";
+    }
 }
 -(void)endEdtingAction{
     [self endEditing:YES];
@@ -96,6 +101,14 @@
     webVC.url = @"";
     webVC = [webVC init];
     [g_navigation.navigationView addSubview:webVC.view];
+}
+
+-(void)reSetRate{
+    self.rateLab.text = [NSString stringWithFormat:@"充值USDT 1 = HOTC %@",g_App.rate];
+    if(self.monyField.text.length > 0){
+        
+        self.monyCountLab.text = [NSString stringWithFormat:@"应付：USDT%.2f",self.monyField.text.doubleValue/g_App.rate.doubleValue];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

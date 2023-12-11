@@ -32,6 +32,8 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"WH_WithDreawCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WH_WithDreawCell"];
+    //获取汇率
+    [g_server WH_receiveRateWithToView:self];
     
 }
 - (IBAction)didTapBack {
@@ -67,6 +69,9 @@
         
         
     };
+    if(g_App.rate.doubleValue > 0.0){
+        [cell reSetRate];
+    }
     
         
     return cell;
@@ -87,6 +92,11 @@
     if ([aDownload.action isEqualToString:wh_user_transferToAdmin]){
         [g_server showMsg:@"提交成功，请等待核实"];
         [g_navigation WH_dismiss_WHViewController:self animated:YES];
+    }else if ([aDownload.action isEqualToString:wh_rate_current]){
+        NSString *rate = [NSString stringWithFormat:@"%@",dict[@"data"]];
+        g_App.rate = rate;
+        [self.tableView reloadData];
+        
     }
 }
 

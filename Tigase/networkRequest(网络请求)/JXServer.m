@@ -265,6 +265,10 @@
                 if ([task.action isEqualToString:wh_act_redPacketGetSendRedPacketList]||[task.action isEqualToString:wh_act_redPacketGetRedReceiveList]) {
                     dict = resultObject;
                 }
+                //如果是汇率接口
+                if ([task.action isEqualToString:wh_rate_current]) {
+                    dict = resultObject;
+                }
                 
                 if ([task.action isEqualToString:wh_act_deleteMemebers]) {
                     dict = resultObject;
@@ -4652,9 +4656,6 @@
     NSMutableString *str2 = [NSMutableString string];
     [str2 appendString:MY_USER_ID];
     [str2 appendString:g_server.access_token];
-//    [str2 appendString:payPassword];
-    
-//    str2 = [[g_server WH_getMD5StringWithStr:str2] mutableCopy];
     
     [str1 appendString:str2];
     NSMutableString *str3 = [NSMutableString string];
@@ -4663,28 +4664,15 @@
     
     secret = [g_server WH_getMD5StringWithStr:str1];
     
-    
-    
-    
-//    NSMutableString *str1 = [NSMutableString string];
-//    [str1 appendString:APIKEY];
-//    [str1 appendString:openId];
-//    [str1 appendString:MY_USER_ID];
-//
-//    NSMutableString *str2 = [NSMutableString string];
-//    [str2 appendString:g_server.access_token];
-//    [str2 appendString:amount];
-//    [str2 appendString:[NSString stringWithFormat:@"%ld",time]];
-//    str2 = [[g_server WH_getMD5StringWithStr:str2] mutableCopy];
-//
-//    [str1 appendString:str2];
-//    NSMutableString *str3 = [NSMutableString string];
-//    str3 = [[g_server WH_getMD5StringWithStr:payPassword] mutableCopy];
-//    [str1 appendString:str3];
-//
-//    secret = [g_server WH_getMD5StringWithStr:str1];
-    
     return secret;
+}
+
+#pragma mark --  获取汇率
+- (void)WH_receiveRateWithToView:(id)toView {
+    WH_JXConnection* p = [self addTask:wh_rate_current param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p go];
+    
 }
 
 

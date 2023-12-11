@@ -339,6 +339,7 @@
                 <outlet property="monyField" destination="xvz-eT-hNA" id="VV2-jg-Ymy"/>
                 <outlet property="numCopyBtn" destination="CuI-U9-xdb" id="7RU-7l-OgW"/>
                 <outlet property="orderNoField" destination="mS8-eL-xRN" id="hEP-ap-Xy7"/>
+                <outlet property="rateLab" destination="8b4-Bw-IPO" id="XOo-2q-Mvl"/>
                 <outlet property="uploadImage" destination="m2Z-qN-a9Y" id="KoX-Zj-2BT"/>
             </connections>
             <point key="canvasLocation" x="-417" y="-38"/>

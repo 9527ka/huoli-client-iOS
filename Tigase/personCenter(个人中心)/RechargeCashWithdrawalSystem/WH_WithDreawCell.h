@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *certainBtn;
 @property (nonatomic,copy) void(^certainBlock)(NSString *amountStr,NSString *orderNoStr);
 
+-(void)reSetRate;
+
 @end
 
 NS_ASSUME_NONNULL_END

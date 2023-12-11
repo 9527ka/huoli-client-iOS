@@ -26,6 +26,9 @@
     self.allBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     self.monyCountLab.text = [NSString stringWithFormat:@"余额HOTC%.2f = USDT%.2f",g_App.myMoney,g_App.myMoney];
     [self.monyField addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
+    if(g_App.usdtUrl.length > 0){
+        self.orderNoField.text = g_App.usdtUrl;
+    }
     
 }
 -(void)textFieldChanged:(UITextField *)textField{
@@ -70,6 +73,13 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+-(void)reSetRate{
+    if(g_App.myMoney > 0.0){
+        self.monyCountLab.text = [NSString stringWithFormat:@"余额HOTC%.2f = USDT%.2f",g_App.myMoney,g_App.myMoney/g_App.rate.doubleValue];
+    }
+    
 }
 
 @end

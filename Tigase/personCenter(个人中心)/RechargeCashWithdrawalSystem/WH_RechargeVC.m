@@ -34,6 +34,8 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"WH_RechargeCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WH_RechargeCell"];
+    //获取汇率
+    [g_server WH_receiveRateWithToView:self];
     
 }
 - (IBAction)didTapBack {
@@ -57,6 +59,10 @@
     if(self.image){
         cell.uploadImage.image = self.image;
     }
+    if(g_App.rate.doubleValue > 0.0){
+        [cell reSetRate];
+    }
+    
         
     return cell;
 }
@@ -101,6 +107,11 @@
     }else if ([aDownload.action isEqualToString:wh_user_offlineRechargeToAdmin]){
         [g_server showMsg:@"充值提交成功，请等待核实"];
         [g_navigation WH_dismiss_WHViewController:self animated:YES];
+    }else if ([aDownload.action isEqualToString:wh_rate_current]){
+        NSString *rate = [NSString stringWithFormat:@"%@",dict[@"data"]];
+        g_App.rate = rate;
+        [self.tableView reloadData];
+        
     }
 }
 

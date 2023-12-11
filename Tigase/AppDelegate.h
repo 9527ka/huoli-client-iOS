@@ -63,6 +63,8 @@
 
 @property (strong, nonatomic) NSString * isShowRedPacket;
 @property (assign, nonatomic) double myMoney;
+@property (copy, nonatomic) NSString *usdtUrl;
+@property (copy, nonatomic) NSString *rate;//汇率
 
 @property (nonatomic, strong) WH_JXCommonService *commonService;
 

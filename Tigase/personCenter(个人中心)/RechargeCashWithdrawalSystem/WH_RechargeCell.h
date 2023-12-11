@@ -23,6 +23,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *numCopyBtn;
 @property (nonatomic,copy) void(^chooseImageBlock)(void);
 @property (nonatomic,copy) void(^certainBlock)(NSString *amountStr,NSString *orderNoStr);
+@property (weak, nonatomic) IBOutlet UILabel *rateLab;
+
+-(void)reSetRate;
 
 
 @end

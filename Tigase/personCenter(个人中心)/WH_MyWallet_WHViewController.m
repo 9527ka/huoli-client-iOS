@@ -157,6 +157,9 @@
     
     if ([aDownload.action isEqualToString:wh_act_getUserMoeny]) {
         g_App.myMoney = [dict[@"balance"] doubleValue];
+        if([dict objectForKey:@"usdtUrl"]){
+            g_App.usdtUrl = [NSString stringWithFormat:@"%@",[dict objectForKey:@"usdtUrl"]];
+        }
         NSString * moneyStr = [NSString stringWithFormat:@"HOTC%.2f",g_App.myMoney];
         self.wh_moneyLabel.text = moneyStr;
     }
