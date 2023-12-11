@@ -13,6 +13,7 @@
 
 #import "WH_SignInRecord_WHViewController.h"
 #import "WH_JXGroupRedPacketSetupVC.h"
+#import "WH_GroupAccountSetViewController.h"
 
 #define HEIGHT 55
 #define IMGSIZE 170
@@ -55,7 +56,7 @@
     [self.wh_tableBody addSubview:self.cView];
     
     int membHeight = 0;
-    UIView *tView = [self createBGViewWithOrginY:12 height:HEIGHT*3 supView:self.cView];
+    UIView *tView = [self createBGViewWithOrginY:12 height:HEIGHT*4 supView:self.cView];
     
     WH_JXImageView *iv;
     UILabel *label;
@@ -72,6 +73,12 @@
     iv.tag = 100;
     iv.frame = CGRectMake(0, membHeight, tView.frame.size.width, HEIGHT);
     membHeight = CGRectGetMaxY(iv.frame);
+    
+    // 收款账号管理
+    iv = [self WH_createMiXinButton:@"收款账号管理" supView:tView drawTop:NO drawBottom:YES must:NO click:@selector(grounpAccountAction:)];
+    iv.frame = CGRectMake(0, membHeight, tView.frame.size.width, HEIGHT);
+    membHeight = CGRectGetMaxY(iv.frame);
+    
     // 群钻石设置
 //    iv = [self WH_createMiXinButton:@"群钻石设置" supView:tView drawTop:NO drawBottom:NO must:NO click:@selector(redPacketSetup:)];
 //    iv.tag = 200;
@@ -355,6 +362,13 @@
     vc.type = (view.tag == 100) ? 0 : 1;
     [g_navigation pushViewController:vc animated:YES];
 }
+#pragma mark 收款账号管理
+-(void)grounpAccountAction:(WH_JXImageView *)view {
+    WH_GroupAccountSetViewController *vc = [[WH_GroupAccountSetViewController alloc] init];
+    vc.room = self.room;
+    [g_navigation pushViewController:vc animated:YES];
+}
+
 
 //设置隐身人
 - (void)specifyInvisibleMan {

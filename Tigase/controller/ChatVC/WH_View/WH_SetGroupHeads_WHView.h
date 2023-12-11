@@ -14,7 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) void (^wh_selectActionBlock)(NSInteger buttonTag);
 
+
 - (instancetype)initWithFrame:(CGRect)frame;
+
+- (instancetype)initWithFrame:(CGRect)frame titleArray:(NSArray *)titleArray;
 
 
 

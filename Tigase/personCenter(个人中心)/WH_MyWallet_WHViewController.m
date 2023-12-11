@@ -165,33 +165,10 @@
     }
 }
 - (void)lianxikehu{
-    
-    
-//    WH_Recharge_WHViewController *rechargeVC = [[WH_Recharge_WHViewController alloc] init];
-//    [g_navigation pushViewController:rechargeVC animated:YES];
-    
-//    WH_NewRecharge_WHViewController *rechargeVC = [[WH_NewRecharge_WHViewController alloc] init];
-//    [g_navigation pushViewController:rechargeVC animated:YES];
-//
-//    return;
-    
-    
-    
-    
-//    NSArray *friends = [[WH_JXUserObject sharedUserInstance] WH_fetchAllFriendsFromLocal];
-//    WH_JXUserObject *user;
-//
-//    for (NSInteger i = 0; i < friends.count; i ++) {
-//        WH_JXUserObject *friend = friends[i];
-//        if (friend.userType.intValue == 4) {
-////            [friend updateNewMsgUserId:friend.userId num:0];
-//            user = friend;
-//            break;
-//        }
-//    }
+
     
     WH_JXUserObject *userobj = [[WH_JXUserObject alloc]init];
-    userobj.userId = @"10000008";
+    userobj.userId = [NSString stringWithFormat:@"%@",g_myself.officialCSUid];
     userobj.userNickname = Localized(@"New_online_service");
     WH_JXChat_WHViewController *sendView=[WH_JXChat_WHViewController alloc];
     
@@ -203,7 +180,6 @@
         sendView.chatPerson = userobj;
 //    }
     sendView = [sendView init];
-//    [g_App.window addSubview:sendView.view];
     [g_navigation pushViewController:sendView animated:YES];
 }
 - (void)buttonClickMethod:(UIButton *)button {

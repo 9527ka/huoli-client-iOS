@@ -62,6 +62,7 @@
     self.role = userInfo[@"role"] ?: @[];
     self.serInviteCode = userInfo[@"serInviteCode"] ?: @"";
     self.setAccountCount = userInfo[@"setAccountCount"] ?: @"";
+    self.officialCSUid = userInfo[@"officialCSUid"] ?: @"";
 
     /*-----Friend Begin------*/
     self.isBeenBlack = userInfo[@"friends"][@"blacklist"];

@@ -729,6 +729,18 @@
 		33946A8C2B22B2310002A8D6 /* WH_WithDreawCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33946A8A2B22B2310002A8D6 /* WH_WithDreawCell.xib */; };
 		33946A902B22B2640002A8D6 /* WH_WithDreawVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33946A8E2B22B2640002A8D6 /* WH_WithDreawVC.m */; };
 		33946A912B22B2640002A8D6 /* WH_WithDreawVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33946A8F2B22B2640002A8D6 /* WH_WithDreawVC.xib */; };
+		33946A962B26A3010002A8D6 /* WH_GroupAccountSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33946A942B26A3000002A8D6 /* WH_GroupAccountSetViewController.m */; };
+		33946A972B26A3010002A8D6 /* WH_GroupAccountSetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33946A952B26A3000002A8D6 /* WH_GroupAccountSetViewController.xib */; };
+		33946A9B2B26BD420002A8D6 /* WH_GroupAccountSetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33946A992B26BD420002A8D6 /* WH_GroupAccountSetCell.m */; };
+		33946A9C2B26BD420002A8D6 /* WH_GroupAccountSetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33946A9A2B26BD420002A8D6 /* WH_GroupAccountSetCell.xib */; };
+		33946AA02B26D1C60002A8D6 /* WH_GroupRechargeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33946A9E2B26D1C60002A8D6 /* WH_GroupRechargeViewController.m */; };
+		33946AA12B26D1C60002A8D6 /* WH_GroupRechargeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33946A9F2B26D1C60002A8D6 /* WH_GroupRechargeViewController.xib */; };
+		33946AA52B26E2FC0002A8D6 /* WH_AddAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33946AA32B26E2FC0002A8D6 /* WH_AddAccountViewController.m */; };
+		33946AA62B26E2FC0002A8D6 /* WH_AddAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33946AA42B26E2FC0002A8D6 /* WH_AddAccountViewController.xib */; };
+		33946AAA2B26E4DC0002A8D6 /* WH_AddAccountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33946AA82B26E4DB0002A8D6 /* WH_AddAccountCell.m */; };
+		33946AAB2B26E4DC0002A8D6 /* WH_AddAccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33946AA92B26E4DC0002A8D6 /* WH_AddAccountCell.xib */; };
+		33946AAF2B2701B00002A8D6 /* WH_GroupRechargeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33946AAD2B2701B00002A8D6 /* WH_GroupRechargeCell.m */; };
+		33946AB02B2701B00002A8D6 /* WH_GroupRechargeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33946AAE2B2701B00002A8D6 /* WH_GroupRechargeCell.xib */; };
 		33E591672B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E5914E2B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		33E591682B16E6B900E578A3 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E591572B16E6B900E578A3 /* ViewController+MASAdditions.m */; };
 		33E591692B16E6B900E578A3 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E5915B2B16E6B900E578A3 /* MASCompositeConstraint.m */; };
@@ -3092,6 +3104,24 @@
 		33946A8D2B22B2640002A8D6 /* WH_WithDreawVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_WithDreawVC.h; sourceTree = "<group>"; };
 		33946A8E2B22B2640002A8D6 /* WH_WithDreawVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_WithDreawVC.m; sourceTree = "<group>"; };
 		33946A8F2B22B2640002A8D6 /* WH_WithDreawVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_WithDreawVC.xib; sourceTree = "<group>"; };
+		33946A932B26A2FF0002A8D6 /* WH_GroupAccountSetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_GroupAccountSetViewController.h; sourceTree = "<group>"; };
+		33946A942B26A3000002A8D6 /* WH_GroupAccountSetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_GroupAccountSetViewController.m; sourceTree = "<group>"; };
+		33946A952B26A3000002A8D6 /* WH_GroupAccountSetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_GroupAccountSetViewController.xib; sourceTree = "<group>"; };
+		33946A982B26BD420002A8D6 /* WH_GroupAccountSetCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_GroupAccountSetCell.h; sourceTree = "<group>"; };
+		33946A992B26BD420002A8D6 /* WH_GroupAccountSetCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_GroupAccountSetCell.m; sourceTree = "<group>"; };
+		33946A9A2B26BD420002A8D6 /* WH_GroupAccountSetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_GroupAccountSetCell.xib; sourceTree = "<group>"; };
+		33946A9D2B26D1C60002A8D6 /* WH_GroupRechargeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_GroupRechargeViewController.h; sourceTree = "<group>"; };
+		33946A9E2B26D1C60002A8D6 /* WH_GroupRechargeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_GroupRechargeViewController.m; sourceTree = "<group>"; };
+		33946A9F2B26D1C60002A8D6 /* WH_GroupRechargeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_GroupRechargeViewController.xib; sourceTree = "<group>"; };
+		33946AA22B26E2FC0002A8D6 /* WH_AddAccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_AddAccountViewController.h; sourceTree = "<group>"; };
+		33946AA32B26E2FC0002A8D6 /* WH_AddAccountViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_AddAccountViewController.m; sourceTree = "<group>"; };
+		33946AA42B26E2FC0002A8D6 /* WH_AddAccountViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_AddAccountViewController.xib; sourceTree = "<group>"; };
+		33946AA72B26E4DB0002A8D6 /* WH_AddAccountCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_AddAccountCell.h; sourceTree = "<group>"; };
+		33946AA82B26E4DB0002A8D6 /* WH_AddAccountCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_AddAccountCell.m; sourceTree = "<group>"; };
+		33946AA92B26E4DC0002A8D6 /* WH_AddAccountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_AddAccountCell.xib; sourceTree = "<group>"; };
+		33946AAC2B2701B00002A8D6 /* WH_GroupRechargeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_GroupRechargeCell.h; sourceTree = "<group>"; };
+		33946AAD2B2701B00002A8D6 /* WH_GroupRechargeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_GroupRechargeCell.m; sourceTree = "<group>"; };
+		33946AAE2B2701B00002A8D6 /* WH_GroupRechargeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_GroupRechargeCell.xib; sourceTree = "<group>"; };
 		33E5914D2B16E6B900E578A3 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		33E5914E2B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
 		33E5914F2B16E6B900E578A3 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -8838,6 +8868,24 @@
 				0F28D20B2A5A588A00B9DD92 /* WH_JXGroupRedPacketSetupMemberCell.h */,
 				0F28D20C2A5A588A00B9DD92 /* WH_JXGroupRedPacketSetupMemberCell.m */,
 				0F28D20D2A5A588A00B9DD92 /* WH_JXGroupRedPacketSetupMemberCell.xib */,
+				33946A932B26A2FF0002A8D6 /* WH_GroupAccountSetViewController.h */,
+				33946A942B26A3000002A8D6 /* WH_GroupAccountSetViewController.m */,
+				33946A952B26A3000002A8D6 /* WH_GroupAccountSetViewController.xib */,
+				33946A982B26BD420002A8D6 /* WH_GroupAccountSetCell.h */,
+				33946A992B26BD420002A8D6 /* WH_GroupAccountSetCell.m */,
+				33946A9A2B26BD420002A8D6 /* WH_GroupAccountSetCell.xib */,
+				33946A9D2B26D1C60002A8D6 /* WH_GroupRechargeViewController.h */,
+				33946A9E2B26D1C60002A8D6 /* WH_GroupRechargeViewController.m */,
+				33946A9F2B26D1C60002A8D6 /* WH_GroupRechargeViewController.xib */,
+				33946AAC2B2701B00002A8D6 /* WH_GroupRechargeCell.h */,
+				33946AAD2B2701B00002A8D6 /* WH_GroupRechargeCell.m */,
+				33946AAE2B2701B00002A8D6 /* WH_GroupRechargeCell.xib */,
+				33946AA22B26E2FC0002A8D6 /* WH_AddAccountViewController.h */,
+				33946AA32B26E2FC0002A8D6 /* WH_AddAccountViewController.m */,
+				33946AA42B26E2FC0002A8D6 /* WH_AddAccountViewController.xib */,
+				33946AA72B26E4DB0002A8D6 /* WH_AddAccountCell.h */,
+				33946AA82B26E4DB0002A8D6 /* WH_AddAccountCell.m */,
+				33946AA92B26E4DC0002A8D6 /* WH_AddAccountCell.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -10838,7 +10886,9 @@
 				CC3016DA1951BABF0059BADA /* f030.png in Resources */,
 				1851A37C2307B09400BA24A1 /* biaoqing_add@3x.png in Resources */,
 				18ABD68C1D07FDAE000F43FC /* add_picture@2x.png in Resources */,
+				33946A9C2B26BD420002A8D6 /* WH_GroupAccountSetCell.xib in Resources */,
 				0F28D20A2A5A55D700B9DD92 /* WH_JXGroupRedPacketSetupMemberVC.xib in Resources */,
+				33946AB02B2701B00002A8D6 /* WH_GroupRechargeCell.xib in Resources */,
 				B203A878232394C7001B2575 /* SearchIcon@2x.png in Resources */,
 				18ABD6B01D07FDAE000F43FC /* navBarBackground@3x.png in Resources */,
 				CC3016B51951BABF0059BADA /* f011@2x.png in Resources */,
@@ -10951,6 +11001,7 @@
 				63E1E9911F44291B004548C5 /* closeCamera@3x.png in Resources */,
 				CC3016F01951BABF0059BADA /* f041.png in Resources */,
 				CC30175D1951BABF0059BADA /* f095@2x.png in Resources */,
+				33946AA62B26E2FC0002A8D6 /* WH_AddAccountViewController.xib in Resources */,
 				1851A3682307B09400BA24A1 /* biaoqing_btnbg2@3x.png in Resources */,
 				CCC7B03B197FA18900A828A8 /* new_tips.png in Resources */,
 				CC30172D1951BABF0059BADA /* f071@2x.png in Resources */,
@@ -11061,6 +11112,7 @@
 				0F995F4522618EE700FD93E9 /* prohibit.png in Resources */,
 				CC3016DF1951BABF0059BADA /* f032@2x.png in Resources */,
 				CC3016DB1951BABF0059BADA /* f030@2x.png in Resources */,
+				33946AAB2B26E4DC0002A8D6 /* WH_AddAccountCell.xib in Resources */,
 				0F1F9D2D204E85800037AF27 /* ic_password_hide@2x.png in Resources */,
 				CC3016991951BABF0059BADA /* AlbumTriangleB@2x.png in Resources */,
 				CC3016D31951BABF0059BADA /* f026@2x.png in Resources */,
@@ -11136,6 +11188,7 @@
 				0FB836A72A27773600B2BEF8 /* WH_JXGroupDiamondCell.xib in Resources */,
 				185091351D12C26F00C98E17 /* Check@2x.png in Resources */,
 				0F1F9D30204E85800037AF27 /* ic_password_hide@3x.png in Resources */,
+				33946A972B26A3010002A8D6 /* WH_GroupAccountSetViewController.xib in Resources */,
 				1851A37A2307B09400BA24A1 /* message_placeholder@2x.png in Resources */,
 				CC3017181951BABF0059BADA /* f061.png in Resources */,
 				CC3016E41951BABF0059BADA /* f035.png in Resources */,
@@ -11143,6 +11196,7 @@
 				CC3016A91951BABF0059BADA /* f005@2x.png in Resources */,
 				CC3017271951BABF0059BADA /* f068@2x.png in Resources */,
 				CC3016B61951BABF0059BADA /* f012.png in Resources */,
+				33946AA12B26D1C60002A8D6 /* WH_GroupRechargeViewController.xib in Resources */,
 				CC3017651951BABF0059BADA /* f099@2x.png in Resources */,
 				CC171B33198BD56000BE57A1 /* im_10001@2x.png in Resources */,
 				0F1F9D2F204E85800037AF27 /* ic_password_display@3x.png in Resources */,
@@ -11342,6 +11396,7 @@
 				63DD4F5E21314DB800DC45F8 /* RITLPhotosMaker.m in Sources */,
 				0F304DAE2153AD0D001EC77E /* XMPPRosterMemoryStorage.m in Sources */,
 				0FA2D62F1FB05CCC00D51BB9 /* GPUImageMovieComposition.m in Sources */,
+				33946A962B26A3010002A8D6 /* WH_GroupAccountSetViewController.m in Sources */,
 				0F304E212153AD0E001EC77E /* XMPPSRVResolver.m in Sources */,
 				63DD4F4A21314DB800DC45F8 /* RITLTitleButton.m in Sources */,
 				0FA0D8001F5ABD350017D522 /* WH_JXReadList_WHCell.m in Sources */,
@@ -11600,6 +11655,7 @@
 				0FA9E95821A664DB0074416D /* MBProgressHUD.m in Sources */,
 				CC28559F1A60DE9E00F21DAC /* WH_JXUserInfo_WHVC.m in Sources */,
 				0F304E4B2153AD0E001EC77E /* DDXMLElement.m in Sources */,
+				33946AA52B26E2FC0002A8D6 /* WH_AddAccountViewController.m in Sources */,
 				185CD637232247AB00FD5AA8 /* WH_ComplaintViewController.m in Sources */,
 				0F304D9B2153AD0D001EC77E /* XMPPJID.m in Sources */,
 				0F304E152153AD0E001EC77E /* XMPPMUCLight.m in Sources */,
@@ -12074,6 +12130,7 @@
 				DED9FA2B22EEFDB5008C89EE /* WH_TopPrompt_WHView.m in Sources */,
 				DE39FF8324371A0E00E90FE5 /* EventSource.swift in Sources */,
 				0FB628A221280B3800E35A49 /* JXSynTask.m in Sources */,
+				33946AAA2B26E4DC0002A8D6 /* WH_AddAccountCell.m in Sources */,
 				18BCFFDD23853025001F49AC /* WH_AddWithdrawalAccount_WHVC.m in Sources */,
 				CC8FD3321E4B399E0058686C /* WH_Gif_GHViewController.m in Sources */,
 				63F4E44021C0AE7800C61204 /* WH_KKCutCircle.m in Sources */,
@@ -12293,6 +12350,7 @@
 				0FA2D67F1FB05CCD00D51BB9 /* GPUImageSphereRefractionFilter.m in Sources */,
 				0F304E032153AD0E001EC77E /* XMPPIQ+OMEMO.m in Sources */,
 				0F304DE22153AD0E001EC77E /* XMPPRoomCoreDataStorage.m in Sources */,
+				33946AA02B26D1C60002A8D6 /* WH_GroupRechargeViewController.m in Sources */,
 				6336AA841E52F11B00F831D8 /* WH_JXCaptureMedia.m in Sources */,
 				CC3017761951BABF0059BADA /* HBHttpImageDownloader.m in Sources */,
 				0FA2D5F51FB05CCC00D51BB9 /* GPUImageHoughTransformLineDetector.m in Sources */,
@@ -12360,6 +12418,7 @@
 				0F304E472153AD0E001EC77E /* stringprep.c in Sources */,
 				0F77DCE12A30B9C900CF8D54 /* WH_JXGroupRedPacketVC.m in Sources */,
 				63DD4F4821314DB800DC45F8 /* RITLSearchView.m in Sources */,
+				33946AAF2B2701B00002A8D6 /* WH_GroupRechargeCell.m in Sources */,
 				0FA2D66F1FB05CCD00D51BB9 /* GPUImageSingleComponentGaussianBlurFilter.m in Sources */,
 				CC8FCA6A1E4B01CE0058686C /* WH_JXredPacketDetail_WHVC.m in Sources */,
 				0F6D75661FDA404D003CD7A2 /* WH_JXSetChatBackground_WHVC.m in Sources */,
@@ -12472,6 +12531,7 @@
 				CC4DD7421A5E2A660002FFEB /* WH_JXSetting_WHVC.mm in Sources */,
 				0FCB3BBC21368D2C00563B5A /* JXAddressBook.m in Sources */,
 				1887A10B234F4E7900E1C89F /* WH_AdvertisingView.m in Sources */,
+				33946A9B2B26BD420002A8D6 /* WH_GroupAccountSetCell.m in Sources */,
 				0F304DC32153AD0E001EC77E /* XMPPvCardTempTel.m in Sources */,
 				638A6F2C1FA3372F00D6D17C /* WH_JXMyMoney_WHViewController.m in Sources */,
 				CC6E169F19794B5A006ADA8A /* QBImagePickerAssetCell.m in Sources */,

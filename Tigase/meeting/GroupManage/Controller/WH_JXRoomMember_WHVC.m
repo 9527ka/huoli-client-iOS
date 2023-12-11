@@ -51,6 +51,7 @@
 #import "WH_JXGroupMemberRedPacketVC.h"
 #import "WH_JXGroupMemberRedPacketUnclaimedVC.h"
 #import "WH_JXGroupEnterAndOutVC.h"
+#import "WH_GroupRechargeViewController.h"
 
 #define HEIGHT 55
 #define IMGSIZE 170
@@ -960,6 +961,13 @@
         self.redPacketView.height += HEIGHT;
         membHeight+=self.wh_iv.frame.size.height;
     }
+    //只有不是群主才能购买
+    if([data.role intValue] != 1){
+        self.wh_iv = [self WH_createMiXinButton:@"群内充值" drawTop:NO drawBottom:NO must:NO click:@selector(groupRechargAction) ParentView:self.redPacketView];
+        self.wh_iv.frame = CGRectMake(0, self.redPacketView.height, self.redPacketView.frame.size.width, HEIGHT);
+        self.redPacketView.height += HEIGHT;
+        membHeight+=self.wh_iv.frame.size.height;
+    }
     membHeight+=topBottomMargin;
     
     [self.topDiamondView removeFromSuperview];
@@ -1161,6 +1169,12 @@
     WH_GroupSignIn_WHViewController *gsiVC = [[WH_GroupSignIn_WHViewController alloc] init];
     gsiVC.room = self.wh_room;
     [g_navigation pushViewController:gsiVC animated:YES];
+}
+#pragma mark 群内充值
+-(void)groupRechargAction{
+    WH_GroupRechargeViewController *vc = [[WH_GroupRechargeViewController alloc] init];
+    vc.room = self.wh_room;
+    [g_navigation pushViewController:vc animated:YES];
 }
 
 - (void)settingRoomIcon {
