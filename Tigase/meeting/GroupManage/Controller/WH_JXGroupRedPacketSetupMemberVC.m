@@ -81,7 +81,8 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.dataSource[section] count];
+    NSArray *list = [self.dataSource objectAtIndex:section];
+    return list.count;
 }
 
 - (NSArray<NSString *> *)sectionIndexTitlesForTableView:(UITableView *)tableView {

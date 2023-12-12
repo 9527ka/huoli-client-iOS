@@ -304,7 +304,8 @@ static NSString *buttonCellIdentifier = @"buttonCellIdentifier";
     return dataArray.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [dataArray[section] count];
+    NSArray *list = dataArray[section];
+    return list.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     WH_RoundCornerCell *cell = nil;
@@ -326,8 +327,8 @@ static NSString *buttonCellIdentifier = @"buttonCellIdentifier";
             cell = [self buttonCellForIndexPath:indexPath];
         }
     }
-    
-    NSInteger count = [dataArray[indexPath.section] count];
+    NSArray *list = dataArray[indexPath.section];
+    NSInteger count = list.count;
     if (count == 1) {
         cell.separatorInset = UIEdgeInsetsMake(0, JX_SCREEN_WIDTH/2, 0, JX_SCREEN_WIDTH/2);
     }else {

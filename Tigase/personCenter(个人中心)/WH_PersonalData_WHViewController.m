@@ -316,7 +316,8 @@
     }else if (indexPath.section == self.array.count - 1){
         return 8+44;
     } else {
-        return [[self.array objectAtIndex:indexPath.section] count]*55;
+        NSArray *list = [self.array objectAtIndex:indexPath.section];
+        return list.count*55;
     }
     
 }

@@ -8,11 +8,14 @@
 
 #import "WH_GroupRechargeViewController.h"
 #import "WH_GroupRechargeCell.h"
+#import "WH_JXBuyPayViewController.h"
 
 @interface WH_GroupRechargeViewController ()<UITableViewDataSource, UITableViewDelegate>{
     ATMHud* _wait;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property(nonatomic,assign)NSInteger type;
+@property(nonatomic,copy)NSString *count;
 
 @end
 
@@ -20,8 +23,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView.estimatedRowHeight = 784;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
+//    self.tableView.estimatedRowHeight = 784;
+//    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.rowHeight = 680;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"WH_GroupRechargeCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WH_GroupRechargeCell"];
 }
@@ -38,10 +42,24 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     WH_GroupRechargeCell *cell = (WH_GroupRechargeCell *)[tableView dequeueReusableCellWithIdentifier:@"WH_GroupRechargeCell" forIndexPath:indexPath];
     __weak typeof (self)weakSelf = self;
-    
+    cell.certainBlock = ^(NSString * _Nonnull count, NSInteger type) {
+        weakSelf.count = count;
+        weakSelf.type = type;
+        [weakSelf certainAction];
+    };
+    cell.groupNameLab.text = self.room.userNickName.length > 0?self.room.userNickName:@"";
     
         
     return cell;
+}
+-(void)certainAction{
+    self.room.type = self.type;
+    self.room.count = self.count;
+    
+    WH_JXBuyPayViewController *vc = [[WH_JXBuyPayViewController alloc] init];
+    vc.room = self.room;
+    [g_navigation pushViewController:vc animated:YES];
+    
 }
 
 #pragma mark - 请求成功回调

@@ -200,7 +200,8 @@
     if (self.seekTextField.text.length > 0) {
         return self.searchArray.count;
     }else{
-        return [[self.letterResultArr objectAtIndex:section] count];
+        NSArray *list = [self.letterResultArr objectAtIndex:section];
+        return list.count;
     }
 }
 - (NSArray<NSString *> *)sectionIndexTitlesForTableView:(UITableView *)tableView {

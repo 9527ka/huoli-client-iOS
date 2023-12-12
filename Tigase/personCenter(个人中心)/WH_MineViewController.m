@@ -243,7 +243,8 @@
     if (indexPath.section == 0) {
         return 80;
     } else {
-        return [[self.wh_dataArray objectAtIndex:indexPath.section] count]*55;
+        NSArray *list = [self.wh_dataArray objectAtIndex:indexPath.section];
+        return list.count*55;
     }
     
 }

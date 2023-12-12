@@ -741,6 +741,8 @@
 		33946AAB2B26E4DC0002A8D6 /* WH_AddAccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33946AA92B26E4DC0002A8D6 /* WH_AddAccountCell.xib */; };
 		33946AAF2B2701B00002A8D6 /* WH_GroupRechargeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33946AAD2B2701B00002A8D6 /* WH_GroupRechargeCell.m */; };
 		33946AB02B2701B00002A8D6 /* WH_GroupRechargeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33946AAE2B2701B00002A8D6 /* WH_GroupRechargeCell.xib */; };
+		33946AB42B2833D50002A8D6 /* WH_JXBuyPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33946AB22B2833D50002A8D6 /* WH_JXBuyPayViewController.m */; };
+		33946AB52B2833D50002A8D6 /* WH_JXBuyPayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33946AB32B2833D50002A8D6 /* WH_JXBuyPayViewController.xib */; };
 		33E591672B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E5914E2B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		33E591682B16E6B900E578A3 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E591572B16E6B900E578A3 /* ViewController+MASAdditions.m */; };
 		33E591692B16E6B900E578A3 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E5915B2B16E6B900E578A3 /* MASCompositeConstraint.m */; };
@@ -3122,6 +3124,9 @@
 		33946AAC2B2701B00002A8D6 /* WH_GroupRechargeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_GroupRechargeCell.h; sourceTree = "<group>"; };
 		33946AAD2B2701B00002A8D6 /* WH_GroupRechargeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_GroupRechargeCell.m; sourceTree = "<group>"; };
 		33946AAE2B2701B00002A8D6 /* WH_GroupRechargeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_GroupRechargeCell.xib; sourceTree = "<group>"; };
+		33946AB12B2833D50002A8D6 /* WH_JXBuyPayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXBuyPayViewController.h; sourceTree = "<group>"; };
+		33946AB22B2833D50002A8D6 /* WH_JXBuyPayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXBuyPayViewController.m; sourceTree = "<group>"; };
+		33946AB32B2833D50002A8D6 /* WH_JXBuyPayViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXBuyPayViewController.xib; sourceTree = "<group>"; };
 		33E5914D2B16E6B900E578A3 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		33E5914E2B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
 		33E5914F2B16E6B900E578A3 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -8886,6 +8891,9 @@
 				33946AA72B26E4DB0002A8D6 /* WH_AddAccountCell.h */,
 				33946AA82B26E4DB0002A8D6 /* WH_AddAccountCell.m */,
 				33946AA92B26E4DC0002A8D6 /* WH_AddAccountCell.xib */,
+				33946AB12B2833D50002A8D6 /* WH_JXBuyPayViewController.h */,
+				33946AB22B2833D50002A8D6 /* WH_JXBuyPayViewController.m */,
+				33946AB32B2833D50002A8D6 /* WH_JXBuyPayViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -10976,6 +10984,7 @@
 				CC3016C81951BABF0059BADA /* f021.png in Resources */,
 				18ABD6BF1D07FDAE000F43FC /* video_contrl_pause@2x.png in Resources */,
 				639A50821ED97E3B00C21D30 /* unableCheck@3x.png in Resources */,
+				33946AB52B2833D50002A8D6 /* WH_JXBuyPayViewController.xib in Resources */,
 				CC3016C61951BABF0059BADA /* f020.png in Resources */,
 				CC3016E51951BABF0059BADA /* f035@2x.png in Resources */,
 				18F6660122C4ADBA004323DD /* send@3x.png in Resources */,
@@ -12527,6 +12536,7 @@
 				630F55CF21E43536009D5073 /* JXSmallVideoViewController.m in Sources */,
 				6370B3DB1ECD3CE1004AE95B /* WH_Employee_WHTableViewCell.m in Sources */,
 				0FA2D5D71FB05CCC00D51BB9 /* GPUImageGammaFilter.m in Sources */,
+				33946AB42B2833D50002A8D6 /* WH_JXBuyPayViewController.m in Sources */,
 				DE64B3DA22AF506E00FDDB15 /* WH_JXHaveInverted_WHCell.m in Sources */,
 				CC4DD7421A5E2A660002FFEB /* WH_JXSetting_WHVC.mm in Sources */,
 				0FCB3BBC21368D2C00563B5A /* JXAddressBook.m in Sources */,

@@ -182,7 +182,8 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return startSearch ? _telAreaArray.count : [allCountiesDic[indexArray[section]] count];//[[_areaArray objectAtIndex:section] count];
+    NSArray *list = allCountiesDic[indexArray[section]];
+    return startSearch ? _telAreaArray.count : list.count ;//[[_areaArray objectAtIndex:section] count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

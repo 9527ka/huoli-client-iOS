@@ -241,7 +241,8 @@
     }else if (_selMenu == 1) {
         tmpArr = _allGroupArray;
     }
-    return [[tmpArr objectAtIndex:section] count];
+    NSArray *list = [tmpArr objectAtIndex:section];
+    return list.count;
 }
 
 -(NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView{

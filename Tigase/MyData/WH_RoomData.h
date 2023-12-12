@@ -12,6 +12,10 @@
 @interface WH_RoomData : NSObject{
     NSString* _tableName;
 }
+//自定义的两个字段
+@property(nonatomic,assign)NSInteger type;
+@property(nonatomic,copy)NSString *count;
+
 @property(nonatomic,assign) int countryId;//国家
 @property(nonatomic,assign) int provinceId;//省份
 @property(nonatomic,assign) int cityId;//城市

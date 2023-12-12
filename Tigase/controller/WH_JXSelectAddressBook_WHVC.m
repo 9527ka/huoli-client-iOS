@@ -137,7 +137,8 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self.letterResultArr objectAtIndex:section] count];
+    NSArray *list = [self.letterResultArr objectAtIndex:section];
+    return list.count;
 }
 -(NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView{
     

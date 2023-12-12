@@ -362,7 +362,8 @@
     }else if (self.isTimeSorting) {
         return self.timeArray.count;
     }else{
-        return [[self.letterResultArr objectAtIndex:section] count];
+        NSArray *list = [self.letterResultArr objectAtIndex:section];
+        return list.count;
     }
     
 }

@@ -5462,12 +5462,17 @@
 //        [self actionQuit];
     }
     if([aDownload.action isEqualToString:wh_act_UploadFile]){
+        
+        NSArray *audios = [dict objectForKey:@"audios"];
+        NSArray *images = [dict objectForKey:@"images"];
+        NSArray *videos = [dict objectForKey:@"videos"];
+        
         NSDictionary* p = nil;
-        if([[dict objectForKey:@"audios"] count]>0)
+        if(audios.count>0)
             p = [[dict objectForKey:@"audios"] objectAtIndex:0];
-        if([[dict objectForKey:@"images"] count]>0)
+        if(images.count>0)
             p = [[dict objectForKey:@"images"] objectAtIndex:0];
-        if([[dict objectForKey:@"videos"] count]>0)
+        if(videos.count>0)
             p = [[dict objectForKey:@"videos"] objectAtIndex:0];
         if(p==nil)
             p = [[dict objectForKey:@"others"] objectAtIndex:0];
