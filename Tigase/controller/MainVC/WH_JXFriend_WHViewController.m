@@ -292,7 +292,7 @@
     
     //搜索输入框
     
-    backView = [[UIView alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP, JX_SCREEN_WIDTH, 44+121)];
+    backView = [[UIView alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP, JX_SCREEN_WIDTH, 44+121 + 48)];
     backView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:backView];
     self.tableView.tableHeaderView = backView;
@@ -342,7 +342,7 @@
 //    iv.frame = CGRectMake(0, CGRectGetMaxY(lineView.frame), JX_SCREEN_WIDTH, HEIGHT);
 //    h = iv.frame.size.height + iv.frame.origin.y;
     
-    _menuView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.seekTextField.frame)+9.f, JX_SCREEN_WIDTH, 242.f-48)];
+    _menuView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.seekTextField.frame)+9.f, JX_SCREEN_WIDTH, 242.f + 48)];
     [backView addSubview:_menuView];
     
 //    int inset = 0;
@@ -521,9 +521,12 @@
 //        [button layoutButtonWithEdgeInsetsStyle:LLButtonStyleTextBottom imageTitleSpace:8.f];
 //    }
 //    Localized(@"WaHu_LifeCircle_WaHu")
+    //获取官方客服的信息
+    WH_JXUserObject *user = [[WH_JXUserObject sharedUserInstance] getUserById:[NSString stringWithFormat:@"%@",g_myself.officialCSUid]];
+    
     NSArray *buttonInfoArray = @[@{@"title":Localized(@"JXNewFriendVC_NewFirend"),@"image":@"WH_addressbook_new_friend"},
                           @{@"title":Localized(@"JX_ManyPerChat"),@"image":@"WH_addressbook_group"},
-                          @{@"title":Localized(@"JX_Label"),@"image":@"WH_addressbook_label"}
+                                 @{@"title":Localized(@"JX_Label"),@"image":@"WH_addressbook_label"},@{@"title":user.name.length > 0?user.name:@"官方客服",@"image":@"WH_addressbook_newFriend"}
 //                                 ,
 //                          @{@"title":@"我的同事",@"image":@"WH_addressbook_colleague"}
     ];
@@ -584,23 +587,40 @@
         //标签
         [self labelAction:nil];
     } else if (button.tag == 13) {
-        //我的同事
-        [self myColleaguesAction:nil];
+        //联系客服
+        [self lianxikehu];
+        
+//        //我的同事
+//        [self myColleaguesAction:nil];
     } else {
         //黑名单
         [self blackFriendAction:nil];
     }
 }
+- (void)lianxikehu{
 
+    
+    WH_JXUserObject *userobj = [[WH_JXUserObject alloc]init];
+    userobj.userId = [NSString stringWithFormat:@"%@",g_myself.officialCSUid];
+    userobj.userNickname = Localized(@"New_online_service");
+    WH_JXChat_WHViewController *sendView=[WH_JXChat_WHViewController alloc];
+    
+    sendView.scrollLine = 0;
+    sendView.title = Localized(@"New_online_service");
+
+    sendView.chatPerson = userobj;
+    sendView = [sendView init];
+    [g_navigation pushViewController:sendView animated:YES];
+}
 
 - (void)showMenuView { // 显示菜单栏
     _menuView.hidden = NO;
     CGRect backFrame = backView.frame;
-    backFrame.size.height = 44+242-48;
+    backFrame.size.height = 44+242;
     backView.frame = backFrame;
     
     CGRect menuFrame = _menuView.frame;
-    menuFrame.size.height = 242.f-48;
+    menuFrame.size.height = 242.f;
     _menuView.frame = menuFrame;
     self.tableView.tableHeaderView = backView;
 }
