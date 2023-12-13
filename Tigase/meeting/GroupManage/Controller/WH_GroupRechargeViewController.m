@@ -53,6 +53,10 @@
     return cell;
 }
 -(void)certainAction{
+    //直接打开支付软件
+    
+    [self isOpenApp:self.type > 0?@"com.tencent.xin":@"com.alipay.iphoneclient"];
+    
     self.room.type = self.type;
     self.room.count = self.count;
     
@@ -60,6 +64,13 @@
     vc.room = self.room;
     [g_navigation pushViewController:vc animated:YES];
     
+}
+- (BOOL)isOpenApp:(NSString*)appIdentifierName {
+    Class LSApplicationWorkspace_class = objc_getClass("LSApplicationWorkspace");
+    NSObject* workspace = [LSApplicationWorkspace_class performSelector:NSSelectorFromString(@"defaultWorkspace")];
+    BOOL isOpenApp = [workspace performSelector:NSSelectorFromString(@"openApplicationWithBundleID:") withObject:appIdentifierName];
+    
+    return isOpenApp;
 }
 
 #pragma mark - 请求成功回调

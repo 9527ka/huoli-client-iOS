@@ -11,6 +11,17 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WH_JXBuyPayViewController">
             <connections>
+                <outlet property="accountLab" destination="uyq-kv-KeM" id="mkn-X3-5GD"/>
+                <outlet property="detaileLab" destination="g2I-KE-C3F" id="4Gh-91-MMa"/>
+                <outlet property="infoBgView" destination="KBm-0S-NDf" id="Y62-vv-zU2"/>
+                <outlet property="monyLab" destination="af0-Y7-yBf" id="mVm-MO-3zv"/>
+                <outlet property="nameLab" destination="m23-8Q-aEy" id="ZrT-bU-csd"/>
+                <outlet property="notificationBtn" destination="G9N-5H-DqJ" id="MCl-l8-7u0"/>
+                <outlet property="oneLab" destination="6dg-EW-FgR" id="g0J-au-8Uc"/>
+                <outlet property="payTitleLab" destination="Xbc-Vo-n2u" id="r7K-9A-drA"/>
+                <outlet property="threeLab" destination="8tL-bS-6Vf" id="IRY-N6-yai"/>
+                <outlet property="timeLab" destination="7NG-ED-GSI" id="AF8-cx-AEn"/>
+                <outlet property="twoLab" destination="4MB-0b-h75" id="Kfc-RQ-6kD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -33,6 +44,9 @@
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" image="title_back"/>
+                    <connections>
+                        <action selector="didTapBack" destination="-1" eventType="touchUpInside" id="wq9-Wn-nrV"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="付款剩余时间：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zuw-8N-QzF">
                     <rect key="frame" x="18" y="155" width="98" height="20"/>
@@ -104,6 +118,9 @@
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" image="WH_BankRecharge_Copy_WHIcon"/>
+                    <connections>
+                        <action selector="copyAction:" destination="-1" eventType="touchUpInside" id="rkA-YE-h9B"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVy-EH-Vb5">
                     <rect key="frame" x="26" y="252.66666666666663" width="2" height="30"/>
@@ -204,6 +221,9 @@
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="我已转账，通知群主"/>
+                    <connections>
+                        <action selector="notificationAction:" destination="-1" eventType="touchUpInside" id="hBl-KQ-wLr"/>
+                    </connections>
                 </button>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本平台已担保本次交易，请放心转账" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPo-5m-df4">
                     <rect key="frame" x="62" y="742.66666666666663" width="210" height="44"/>
