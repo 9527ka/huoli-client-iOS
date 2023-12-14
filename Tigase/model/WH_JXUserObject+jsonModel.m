@@ -63,6 +63,9 @@
     self.serInviteCode = userInfo[@"serInviteCode"] ?: @"";
     self.setAccountCount = userInfo[@"setAccountCount"] ?: @"";
     self.officialCSUid = userInfo[@"officialCSUid"] ?: @"";
+//    if (self.officialCSUid.length > 0) {
+//        [[NSUserDefaults standardUserDefaults] setObject:self.officialCSUid forKey:@"officialCSUid"];
+//    }
 
     /*-----Friend Begin------*/
     self.isBeenBlack = userInfo[@"friends"][@"blacklist"];

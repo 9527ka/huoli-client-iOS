@@ -41,7 +41,12 @@
     
 }
 -(void)textChanged:(UITextField *)textField{
+    if(textField.text.doubleValue > self.balance.doubleValue){
+        textField.text = self.balance;
+    }
+    
     self.payCountLab.text = [NSString stringWithFormat:@"应付 ￥%.2f",textField.text.length > 0?textField.text.doubleValue:0.00];
+
 }
 -(void)rulerAction{
     WH_webpage_WHVC *webVC = [WH_webpage_WHVC alloc];
@@ -53,7 +58,7 @@
 }
 //最大的点击事件
 - (IBAction)bigAction:(id)sender {
-    self.countField.text = @"10000";
+    self.countField.text = self.balance;
 }
 - (IBAction)certainAction:(id)sender {
     if(self.countField.text.length == 0){
@@ -88,11 +93,13 @@
         NSString *type = [NSString stringWithFormat:@"%@",dic[@"type"]];
         if(type.intValue == 1){//微信
             self.zfbBgView.hidden = YES;
+            self.vxBgView.hidden = NO;
             self.vxViewTopConstant.constant = 24;
             self.vxChooseImage.hidden = NO;
             [self.contentView bringSubviewToFront:self.vxBgView];
         }else{//支付宝
             self.vxBgView.hidden = YES;
+            self.zfbBgView.hidden = NO;
             self.vxViewTopConstant.constant = 24;
             self.zfbChooseImage.hidden = NO;
             [self.contentView bringSubviewToFront:self.zfbBgView];
@@ -104,6 +111,10 @@
         self.vxBgView.hidden = self.zfbBgView.hidden = NO;
         self.vxViewTopConstant.constant = 128;
     }
+}
+-(void)setBalance:(NSString *)balance{
+    _balance = balance;
+    self.limitCountLab.text = [NSString stringWithFormat:@"限额：0.00-%.2fHOTC",balance.doubleValue];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

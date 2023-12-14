@@ -1173,9 +1173,8 @@
             _array=[[WH_JXUserObject sharedUserInstance] WH_fetchAllFriendsFromLocal];
             //过滤掉客服
             NSMutableArray *userList = [NSMutableArray arrayWithArray:_array];
-            NSString *officialCSUid = [NSString stringWithFormat:@"%@",g_myself.officialCSUid];
             for (WH_JXUserObject *user in _array) {
-                if([user.userId isEqualToString:officialCSUid]){
+                if(user.userType.intValue == 4){
                     [userList removeObject:user];
                 }
             }

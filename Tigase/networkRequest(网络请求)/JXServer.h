@@ -413,6 +413,7 @@
 #define wh_List_userAccount @"user/account/"    //用户帐户列表
 #define wh_delete_userAccount @"user/account/delete"    //删除用户账户
 #define wh_change_userAccount @"user/account/update"    //修改支付账号
+#define wh_balance_userAccount @"user/query/balance/"    //
 
 
 @protocol JXServerResult;
@@ -1228,7 +1229,8 @@
 - (void)WH_ReceiveAccountListWithRoomJid:(NSString *)roomJid toView:(id)toView;
 #pragma mark --  获取收款账号删除
 - (void)WH_DeleteAccountWithId:(NSString *)recordId toView:(id)toView;
-
+#pragma mark --  获取限额
+- (void)WH_BalanceAccountWithId:(NSString *)roomJid toView:(id)toView;
 
 
 

@@ -4686,7 +4686,7 @@
     [p setPostValue:roomJid forKey:@"roomJid"];
     [p setPostValue:qrCode forKey:@"qrCode"];
     if(addId.length > 0){
-        [p setPostValue:addId forKey:@"addId"];
+        [p setPostValue:addId forKey:@"id"];
     }
     [p setPostValue:@(type) forKey:@"type"];
     
@@ -4740,6 +4740,12 @@
     [p setPostValue:self.access_token forKey:@"access_token"];
     [p setPostValue:recordId forKey:@"id"];
         
+    [p go];
+}
+#pragma mark --  获取限额
+- (void)WH_BalanceAccountWithId:(NSString *)roomJid toView:(id)toView {
+    WH_JXConnection* p = [self addTask:[NSString stringWithFormat:@"%@%@",wh_balance_userAccount,roomJid] param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
     [p go];
 }
 

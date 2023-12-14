@@ -18,6 +18,8 @@
 @property(nonatomic,copy)NSString *count;
 @property(nonatomic,strong)NSMutableArray *dataArray;
 
+@property(nonatomic,copy)NSString *balance;//限额
+
 @end
 
 @implementation WH_GroupRechargeViewController
@@ -32,8 +34,10 @@
     self.tableView.rowHeight = 680;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"WH_GroupRechargeCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WH_GroupRechargeCell"];
-    
+    //获取支付方式
     [g_server WH_ReceiveAccountListWithRoomJid:self.room.roomJid toView:self];
+    //获取限额
+    [g_server WH_BalanceAccountWithId:self.room.roomJid toView:self];
 }
 
 - (IBAction)didTapBack {
@@ -54,10 +58,14 @@
         [weakSelf certainAction];
     };
     cell.groupNameLab.text = self.room.userNickName.length > 0?self.room.userNickName:@"";
-    cell.payArray = self.dataArray;
+    if(self.balance.length > 0){
+        cell.balance = self.balance;
+    }
+    if(self.dataArray.count > 0){
+        cell.payArray = self.dataArray;
+    }
     
-        
-    return cell;
+        return cell;
 }
 -(void)certainAction{
     
@@ -89,8 +97,14 @@
 -(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{
     [_wait hide];
     NSString *url = [NSString stringWithFormat:@"%@%@",wh_List_userAccount,self.room.roomJid];
+    
+    NSString *balanceUrl = [NSString stringWithFormat:@"%@%@",wh_balance_userAccount,self.room.roomJid];
+    
     if ([aDownload.action isEqualToString:url]){
         self.dataArray = [NSMutableArray arrayWithArray:array1];
+        [self.tableView reloadData];
+    }else if ([aDownload.action isEqualToString:balanceUrl]){
+        self.balance = [NSString stringWithFormat:@"%@",dict[@"balance"]];
         [self.tableView reloadData];
     }
    
