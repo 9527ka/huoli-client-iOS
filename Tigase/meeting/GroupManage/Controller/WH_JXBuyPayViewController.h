@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface WH_JXBuyPayViewController : UIViewController
 
 @property (nonatomic,strong) WH_RoomData* room;
+@property (nonatomic,strong) NSDictionary *payDic;
 
 @end
 

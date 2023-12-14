@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *unitLab;//单位
 @property (weak, nonatomic) IBOutlet UILabel *rightPayLab;
 @property (weak, nonatomic) IBOutlet UILabel *nameLab;
-@property (weak, nonatomic) IBOutlet UILabel *monyLab;
+@property (weak, nonatomic) IBOutlet UIButton *deleteBtn;
 
 @property (nonatomic,copy)void(^deleteBlock)(void);
 

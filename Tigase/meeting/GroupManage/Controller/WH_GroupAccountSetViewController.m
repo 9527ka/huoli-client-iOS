@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *noDataImage;
 @property (nonatomic,strong) NSMutableArray *dataArray;
 @property (strong, nonatomic) UILabel *noticeLab;
+@property (weak, nonatomic) IBOutlet UIButton *addBtn;
 
 @end
 
@@ -33,6 +34,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.addBtn.hidden = self.room.financialAccountCount > 1?YES:NO;
+    
     self.dataArray = [NSMutableArray array];
     self.tableView.estimatedRowHeight = 100;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -111,6 +115,7 @@
         self.dataArray = [NSMutableArray arrayWithArray:array1];
         [self.tableView reloadData];
         self.nodataLab.hidden = self.noDataImage.hidden = array1.count > 0?YES:NO;
+        self.addBtn.hidden = array1.count > 1?YES:NO;
     }else if ([aDownload.action isEqualToString:wh_delete_userAccount]){//
         [g_server showMsg:@"删除成功"];
         [g_server WH_ReceiveAccountListWithRoomJid:self.room.roomJid toView:self];

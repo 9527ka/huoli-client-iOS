@@ -112,7 +112,7 @@
                                 <rect key="frame" x="12" y="184" width="296" height="72"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="即时付款" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFi-Yh-7t7">
-                                        <rect key="frame" x="95.666666666666671" y="40.666666666666657" width="60.000000000000014" height="18"/>
+                                        <rect key="frame" x="95.666666666666671" y="11.666666666666657" width="60.000000000000014" height="18"/>
                                         <color key="backgroundColor" red="0.89019607840000003" green="0.99607843139999996" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="GCL-WV-AgT"/>
@@ -148,12 +148,12 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="AY5-LG-2o6" firstAttribute="leading" secondItem="YKg-X8-EKl" secondAttribute="leading" id="4hb-uw-A39"/>
-                                    <constraint firstItem="NFi-Yh-7t7" firstAttribute="centerY" secondItem="gOq-tS-Ugk" secondAttribute="centerY" id="5QM-gW-G3P"/>
                                     <constraint firstItem="4l6-Nt-itv" firstAttribute="top" secondItem="YKg-X8-EKl" secondAttribute="top" constant="12" id="7Sq-bo-m3V"/>
                                     <constraint firstItem="gOq-tS-Ugk" firstAttribute="top" secondItem="4l6-Nt-itv" secondAttribute="bottom" constant="12" id="ApD-hJ-dGZ"/>
                                     <constraint firstAttribute="bottom" secondItem="AY5-LG-2o6" secondAttribute="bottom" id="AvL-8q-YFu"/>
                                     <constraint firstAttribute="trailing" secondItem="qB3-Sv-dHB" secondAttribute="trailing" constant="16" id="Itr-2y-l2e"/>
                                     <constraint firstItem="AY5-LG-2o6" firstAttribute="top" secondItem="YKg-X8-EKl" secondAttribute="top" id="KBs-nX-yVG"/>
+                                    <constraint firstItem="NFi-Yh-7t7" firstAttribute="centerY" secondItem="4l6-Nt-itv" secondAttribute="centerY" id="QsT-bh-ksv"/>
                                     <constraint firstItem="NFi-Yh-7t7" firstAttribute="leading" secondItem="gOq-tS-Ugk" secondAttribute="trailing" constant="8" id="RwD-Sn-Dzl"/>
                                     <constraint firstAttribute="height" constant="72" id="eTs-ty-sPn"/>
                                     <constraint firstItem="qB3-Sv-dHB" firstAttribute="centerY" secondItem="YKg-X8-EKl" secondAttribute="centerY" id="oCJ-z2-DRG"/>
@@ -166,7 +166,7 @@
                                 <rect key="frame" x="12" y="288" width="296" height="72"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="即时付款" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64q-4M-iyf">
-                                        <rect key="frame" x="82" y="40.666666666666686" width="60" height="18"/>
+                                        <rect key="frame" x="82" y="11.666666666666686" width="60" height="18"/>
                                         <color key="backgroundColor" red="0.89019607840000003" green="0.99607843139999996" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="1EX-Bw-vkU"/>
@@ -207,10 +207,10 @@
                                     <constraint firstAttribute="height" constant="72" id="Jjw-O9-6Bb"/>
                                     <constraint firstItem="Ytj-or-BgV" firstAttribute="top" secondItem="ldU-yU-GuM" secondAttribute="top" constant="12" id="JxP-YH-AZU"/>
                                     <constraint firstAttribute="trailing" secondItem="gJH-Ck-ddQ" secondAttribute="trailing" id="Pca-Lg-FOC"/>
+                                    <constraint firstItem="64q-4M-iyf" firstAttribute="centerY" secondItem="Ytj-or-BgV" secondAttribute="centerY" id="VSO-E2-bnP"/>
                                     <constraint firstItem="64q-4M-iyf" firstAttribute="leading" secondItem="Frq-IE-NCu" secondAttribute="trailing" constant="8" id="XeI-VD-HFe"/>
                                     <constraint firstItem="gJH-Ck-ddQ" firstAttribute="top" secondItem="ldU-yU-GuM" secondAttribute="top" id="aH8-mc-8a4"/>
                                     <constraint firstItem="Ytj-or-BgV" firstAttribute="leading" secondItem="ldU-yU-GuM" secondAttribute="leading" constant="16" id="bZm-5P-saQ"/>
-                                    <constraint firstItem="64q-4M-iyf" firstAttribute="centerY" secondItem="Frq-IE-NCu" secondAttribute="centerY" id="f3a-lj-uQl"/>
                                     <constraint firstItem="Frq-IE-NCu" firstAttribute="top" secondItem="Ytj-or-BgV" secondAttribute="bottom" constant="12" id="pk7-4k-8Cv"/>
                                     <constraint firstItem="gJH-Ck-ddQ" firstAttribute="leading" secondItem="ldU-yU-GuM" secondAttribute="leading" id="yIf-NG-3ux"/>
                                     <constraint firstItem="MGV-jb-Bmo" firstAttribute="centerY" secondItem="ldU-yU-GuM" secondAttribute="centerY" id="ymP-fz-lMP"/>

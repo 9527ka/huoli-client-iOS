@@ -60,6 +60,8 @@
 @property (nonatomic,strong) NSString*   chatRecordTimeOut; // 消息保留天数
 
 @property (nonatomic ,assign) NSInteger isShowSignIn ; //是否开启群签到 1:开启
+@property (nonatomic ,assign) NSInteger financialAccountCount ; //配置 的收款帐号的条数
+
 
 @property(nonatomic,assign) double longitude;
 @property(nonatomic,assign) double latitude;

@@ -16,6 +16,11 @@
     self.unitLab.layer.cornerRadius = 4.0f;
     self.rightPayLab.layer.cornerRadius = 9.0f;
     
+    UIImage *image = [UIImage imageNamed:@"blog_delete"];
+    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [self.deleteBtn setImage:image forState:UIControlStateNormal];
+    self.deleteBtn.tintColor = [UIColor redColor];
+    
     //添加长按手势
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressAction:)];
     [self.contentView addGestureRecognizer:longPress];
@@ -27,6 +32,11 @@
         if(self.deleteBlock){
             self.deleteBlock();
         }
+    }
+}
+- (IBAction)deleteAction:(id)sender {
+    if(self.deleteBlock){
+        self.deleteBlock();
     }
 }
 

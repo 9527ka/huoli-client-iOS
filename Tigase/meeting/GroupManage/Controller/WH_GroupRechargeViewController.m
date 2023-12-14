@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic,assign)NSInteger type;
 @property(nonatomic,copy)NSString *count;
+@property(nonatomic,strong)NSMutableArray *dataArray;
 
 @end
 
@@ -25,9 +26,14 @@
     [super viewDidLoad];
 //    self.tableView.estimatedRowHeight = 784;
 //    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
+    self.dataArray = [NSMutableArray array];
+    
     self.tableView.rowHeight = 680;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"WH_GroupRechargeCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WH_GroupRechargeCell"];
+    
+    [g_server WH_ReceiveAccountListWithRoomJid:self.room.roomJid toView:self];
 }
 
 - (IBAction)didTapBack {
@@ -48,38 +54,46 @@
         [weakSelf certainAction];
     };
     cell.groupNameLab.text = self.room.userNickName.length > 0?self.room.userNickName:@"";
+    cell.payArray = self.dataArray;
     
         
     return cell;
 }
 -(void)certainAction{
-    //直接打开支付软件
-    
-    [self isOpenApp:self.type > 0?@"com.tencent.xin":@"com.alipay.iphoneclient"];
     
     self.room.type = self.type;
     self.room.count = self.count;
+    NSDictionary *dic;
+    //获取支付方式数据
+    if(self.dataArray.count == 1){
+        dic = self.dataArray.firstObject;
+    }else{
+        for (NSDictionary *dataDic in self.dataArray) {
+            NSString *type = [NSString stringWithFormat:@"%@",dataDic[@"type"]];
+            if(self.type == 1 && type.intValue == 1){//微信
+                dic = dataDic;
+            }else if(self.type == 0 && type.intValue == 2){
+                dic = dataDic;
+            }
+        }
+    }
     
     WH_JXBuyPayViewController *vc = [[WH_JXBuyPayViewController alloc] init];
     vc.room = self.room;
+    vc.payDic = dic;
     [g_navigation pushViewController:vc animated:YES];
     
-}
-- (BOOL)isOpenApp:(NSString*)appIdentifierName {
-    Class LSApplicationWorkspace_class = objc_getClass("LSApplicationWorkspace");
-    NSObject* workspace = [LSApplicationWorkspace_class performSelector:NSSelectorFromString(@"defaultWorkspace")];
-    BOOL isOpenApp = [workspace performSelector:NSSelectorFromString(@"openApplicationWithBundleID:") withObject:appIdentifierName];
-    
-    return isOpenApp;
 }
 
 #pragma mark - 请求成功回调
 -(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{
     [_wait hide];
-    if ([aDownload.action isEqualToString:wh_act_UploadFile]){
-        
-        
+    NSString *url = [NSString stringWithFormat:@"%@%@",wh_List_userAccount,self.room.roomJid];
+    if ([aDownload.action isEqualToString:url]){
+        self.dataArray = [NSMutableArray arrayWithArray:array1];
+        [self.tableView reloadData];
     }
+   
 }
 
 #pragma mark - 请求失败回调

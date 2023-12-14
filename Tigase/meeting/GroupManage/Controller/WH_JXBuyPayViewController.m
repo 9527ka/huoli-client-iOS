@@ -20,6 +20,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *accountLab;
 @property (weak, nonatomic) IBOutlet UILabel *detaileLab;
 @property (weak, nonatomic) IBOutlet UIButton *notificationBtn;
+@property (weak, nonatomic) IBOutlet UIButton *jumpBtn;
+@property (weak, nonatomic) IBOutlet UIView *zzView;
+@property (weak, nonatomic) IBOutlet UIView *codeBgView;
+@property (weak, nonatomic) IBOutlet UIImageView *codeImage;
+@property (weak, nonatomic) IBOutlet UILabel *noticeLab;
 
 @end
 
@@ -27,8 +32,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //添加手势
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenCodeView)];
+    [self.zzView addGestureRecognizer:tap];
+    
+    self.codeBgView.layer.cornerRadius = 8.0f;
+    self.noticeLab.layer.cornerRadius = 6.0f;
     
     [self initUI];
+}
+-(void)hiddenCodeView{
+    self.zzView.hidden = self.codeBgView.hidden = YES;
 }
 - (IBAction)didTapBack {
     [g_navigation WH_dismiss_WHViewController:self animated:YES];
@@ -45,6 +59,14 @@
     self.detaileLab.attributedText = att;
     
     self.payTitleLab.text = [NSString stringWithFormat:@"请使用%@转账",self.room.type > 0?@"微信":@"支付宝"];
+    [self.jumpBtn setTitle: [NSString stringWithFormat:@"点击跳转%@",self.room.type > 0?@"微信":@"支付宝"] forState:UIControlStateNormal];
+    
+    //姓名账号
+    self.nameLab.text = [NSString stringWithFormat:@"%@",self.payDic[@"accountName"]];
+    self.accountLab.text = [NSString stringWithFormat:@"%@",self.payDic[@"accountNo"]];
+    
+    //二维码
+    [self.codeImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.payDic[@"qrCode"]]]];
     
     //添加倒计时
     __block NSInteger second = 1199;
@@ -80,7 +102,23 @@
 }
 
 - (IBAction)copyAction:(id)sender {
+    UIPasteboard *pastBord = [UIPasteboard generalPasteboard];
+    pastBord.string = [NSString stringWithFormat:@"%@",self.payDic[@"accountNo"]];
+    [g_server showMsg:@"复制成功"];
+}
+- (IBAction)jumpAction:(id)sender {
+    //直接打开支付软件
+    [self isOpenApp:self.room.type > 0?@"com.tencent.xin":@"com.alipay.iphoneclient"];
+}
+- (BOOL)isOpenApp:(NSString*)appIdentifierName {
+    Class LSApplicationWorkspace_class = objc_getClass("LSApplicationWorkspace");
+    NSObject* workspace = [LSApplicationWorkspace_class performSelector:NSSelectorFromString(@"defaultWorkspace")];
+    BOOL isOpenApp = [workspace performSelector:NSSelectorFromString(@"openApplicationWithBundleID:") withObject:appIdentifierName];
     
+    return isOpenApp;
+}
+- (IBAction)lookCodeAction:(id)sender {
+    self.zzView.hidden = self.codeBgView.hidden = NO;
 }
 
 

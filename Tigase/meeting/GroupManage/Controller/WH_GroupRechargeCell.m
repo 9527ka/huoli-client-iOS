@@ -80,6 +80,32 @@
     [self endEditing:YES];
 }
 
+-(void)setPayArray:(NSArray *)payArray{
+    _payArray = payArray;
+    //只有一个的时候看看是什么类型
+    if(payArray.count == 1){
+        NSDictionary *dic = payArray.firstObject;
+        NSString *type = [NSString stringWithFormat:@"%@",dic[@"type"]];
+        if(type.intValue == 1){//微信
+            self.zfbBgView.hidden = YES;
+            self.vxViewTopConstant.constant = 24;
+            self.vxChooseImage.hidden = NO;
+            [self.contentView bringSubviewToFront:self.vxBgView];
+        }else{//支付宝
+            self.vxBgView.hidden = YES;
+            self.vxViewTopConstant.constant = 24;
+            self.zfbChooseImage.hidden = NO;
+            [self.contentView bringSubviewToFront:self.zfbBgView];
+        }
+    }else if (payArray.count == 0){
+        self.vxBgView.hidden = self.zfbBgView.hidden = YES;
+        self.vxViewTopConstant.constant = 24;
+    }else{
+        self.vxBgView.hidden = self.zfbBgView.hidden = NO;
+        self.vxViewTopConstant.constant = 128;
+    }
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

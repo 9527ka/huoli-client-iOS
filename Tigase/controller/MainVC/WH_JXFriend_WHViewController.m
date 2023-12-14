@@ -217,6 +217,7 @@
     [newobj.message WH_updateNewMsgsTo0];
     
     NSArray *friends = [[WH_JXFriendObject sharedInstance] WH_fetchAllFriendsFromLocal];
+    
     for (NSInteger i = 0; i < friends.count; i ++) {
         WH_JXFriendObject *friend = friends[i];
         if ([friend.msgsNew integerValue] > 0) {
@@ -1170,6 +1171,16 @@
             
             //从数据库获取好友staus为2且不是room的
             _array=[[WH_JXUserObject sharedUserInstance] WH_fetchAllFriendsFromLocal];
+            //过滤掉客服
+            NSMutableArray *userList = [NSMutableArray arrayWithArray:_array];
+            NSString *officialCSUid = [NSString stringWithFormat:@"%@",g_myself.officialCSUid];
+            for (WH_JXUserObject *user in _array) {
+                if([user.userId isEqualToString:officialCSUid]){
+                    [userList removeObject:user];
+                }
+            }
+            _array = userList;
+            
             //选择拼音 转换的 方法
             BMChineseSortSetting.share.sortMode = 2; // 1或2
             //排序 Person对象

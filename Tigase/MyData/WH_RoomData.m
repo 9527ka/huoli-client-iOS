@@ -250,6 +250,9 @@
 }
 
 -(void)WH_getDataFromDict:(NSDictionary*)dict{
+    
+    
+    self.financialAccountCount = [[dict objectForKey:@"financialAccountCount"] intValue];
     self.countryId = [[dict objectForKey:@"countryId"] intValue];
     self.provinceId = [[dict objectForKey:@"provinceId"] intValue];
     self.cityId = [[dict objectForKey:@"cityId"] intValue];
