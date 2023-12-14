@@ -145,7 +145,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aij-0Z-EOD">
-                                <rect key="frame" x="24" y="556.33333333333337" width="272" height="44"/>
+                                <rect key="frame" x="24" y="596.33333333333337" width="272" height="44"/>
                                 <color key="backgroundColor" systemColor="linkColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="yn1-Gy-xa5"/>
@@ -157,18 +157,29 @@
                                     <action selector="certainAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="6cs-ns-un8"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入交易密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8zU-kS-bRe">
+                                <rect key="frame" x="24" y="524.33333333333337" width="272" height="46"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="EMf-2w-eU1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Aij-0Z-EOD" firstAttribute="top" secondItem="Hbi-cD-2W0" secondAttribute="bottom" constant="44" id="2UL-zO-hJl"/>
+                            <constraint firstItem="Aij-0Z-EOD" firstAttribute="top" secondItem="Hbi-cD-2W0" secondAttribute="bottom" constant="84" id="2UL-zO-hJl"/>
                             <constraint firstItem="wNG-XB-f5e" firstAttribute="top" secondItem="Lk5-eY-yT4" secondAttribute="bottom" constant="8" id="2nW-TY-zjw"/>
                             <constraint firstAttribute="trailing" secondItem="Lk5-eY-yT4" secondAttribute="trailing" constant="24" id="65L-mR-01e"/>
+                            <constraint firstItem="8zU-kS-bRe" firstAttribute="leading" secondItem="arY-Da-dwb" secondAttribute="leading" id="66A-5p-LXV"/>
                             <constraint firstItem="Hbi-cD-2W0" firstAttribute="top" secondItem="rlh-p2-dnf" secondAttribute="bottom" constant="12" id="BMK-Mp-eTi"/>
                             <constraint firstItem="rlh-p2-dnf" firstAttribute="top" secondItem="arY-Da-dwb" secondAttribute="bottom" constant="24" id="Fyq-QU-ShD"/>
                             <constraint firstItem="Hbi-cD-2W0" firstAttribute="top" secondItem="rlh-p2-dnf" secondAttribute="bottom" constant="12" id="GCA-OD-oIE"/>
                             <constraint firstAttribute="trailing" secondItem="Aij-0Z-EOD" secondAttribute="trailing" constant="24" id="Gxi-6Y-e8r"/>
                             <constraint firstItem="arY-Da-dwb" firstAttribute="leading" secondItem="deW-VO-Mho" secondAttribute="leading" id="KaQ-0j-xbA"/>
                             <constraint firstItem="deW-VO-Mho" firstAttribute="leading" secondItem="Yqu-7a-tqq" secondAttribute="leading" id="L2Y-an-u1l"/>
+                            <constraint firstItem="8zU-kS-bRe" firstAttribute="trailing" secondItem="arY-Da-dwb" secondAttribute="trailing" id="PGX-fj-H31"/>
                             <constraint firstItem="arY-Da-dwb" firstAttribute="top" secondItem="den-9l-FSb" secondAttribute="bottom" constant="12" id="PSA-B1-ZQh"/>
                             <constraint firstItem="Lk5-eY-yT4" firstAttribute="leading" secondItem="9Q2-F3-Dva" secondAttribute="leading" constant="24" id="WMU-fQ-3hU"/>
                             <constraint firstItem="den-9l-FSb" firstAttribute="leading" secondItem="deW-VO-Mho" secondAttribute="leading" id="bu4-NN-xHD"/>
@@ -183,6 +194,7 @@
                             <constraint firstItem="arY-Da-dwb" firstAttribute="trailing" secondItem="JTL-Pa-cDz" secondAttribute="trailing" id="otm-UL-wMG"/>
                             <constraint firstItem="Aij-0Z-EOD" firstAttribute="leading" secondItem="9Q2-F3-Dva" secondAttribute="leading" constant="24" id="rkx-IS-iPF"/>
                             <constraint firstItem="Yqu-7a-tqq" firstAttribute="leading" secondItem="9Q2-F3-Dva" secondAttribute="leading" constant="24" id="tFe-Rz-iVP"/>
+                            <constraint firstItem="8zU-kS-bRe" firstAttribute="top" secondItem="Hbi-cD-2W0" secondAttribute="bottom" constant="12" id="tay-V9-nH5"/>
                             <constraint firstItem="den-9l-FSb" firstAttribute="top" secondItem="JTL-Pa-cDz" secondAttribute="bottom" constant="24" id="ty7-x0-XNh"/>
                             <constraint firstAttribute="trailing" secondItem="wNG-XB-f5e" secondAttribute="trailing" constant="24" id="xFT-MG-AFm"/>
                             <constraint firstItem="Hbi-cD-2W0" firstAttribute="leading" secondItem="rlh-p2-dnf" secondAttribute="leading" id="yCT-uC-2k4"/>
@@ -202,6 +214,7 @@
                 <outlet property="accountField" destination="arY-Da-dwb" id="La1-Lr-vSK"/>
                 <outlet property="line" destination="aXl-X5-dbQ" id="gLh-dQ-2Xg"/>
                 <outlet property="nameField" destination="JTL-Pa-cDz" id="3mu-k1-SuZ"/>
+                <outlet property="passwordField" destination="8zU-kS-bRe" id="10h-To-oQN"/>
                 <outlet property="payAccountLab" destination="den-9l-FSb" id="uac-jA-P3b"/>
                 <outlet property="payTitleLab" destination="Ci1-dU-7ir" id="PWd-0q-yae"/>
                 <outlet property="payTypeBgView" destination="Lk5-eY-yT4" id="VnL-oC-hTj"/>

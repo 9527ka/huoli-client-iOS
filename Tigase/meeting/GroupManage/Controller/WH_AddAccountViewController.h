@@ -12,6 +12,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WH_AddAccountViewController : UIViewController
 
+@property (nonatomic,strong) WH_RoomData* room;
+
+@property(nonatomic,copy) NSString *name;
+@property(nonatomic,copy) NSString *account;
+@property(nonatomic,assign) NSInteger type;
+@property(nonatomic,copy) NSString *password;
+@property(nonatomic,copy) NSString *accountId;
+@property(nonatomic,copy) NSString *qrCode;
+
+
+
 @end
 
 NS_ASSUME_NONNULL_END

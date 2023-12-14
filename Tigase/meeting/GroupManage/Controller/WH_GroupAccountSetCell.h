@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *nameLab;
 @property (weak, nonatomic) IBOutlet UILabel *monyLab;
 
+@property (nonatomic,copy)void(^deleteBlock)(void);
+
 @end
 
 NS_ASSUME_NONNULL_END

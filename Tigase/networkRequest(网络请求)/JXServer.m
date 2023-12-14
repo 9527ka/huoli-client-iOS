@@ -4675,5 +4675,73 @@
     
 }
 
+#pragma mark --  新增 / 修改   // 1微信,2支付宝
+- (void)WH_AddUserAccountWithName:(NSString *)accountName accountNo:(NSString *)accountNo payPassword:(NSString *)payPassword type:(NSInteger)type roomJid:(NSString *)roomJid qrCode:(NSString *)qrCode addId:(NSString *)addId toView:(id)toView {
+    
+    WH_JXConnection* p = [self addTask:addId.length > 0?wh_change_userAccount:wh_add_userAccount param:nil toView:toView];
+    
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:accountName forKey:@"accountName"];
+    [p setPostValue:accountNo forKey:@"accountNo"];
+    [p setPostValue:roomJid forKey:@"roomJid"];
+    [p setPostValue:qrCode forKey:@"qrCode"];
+    if(addId.length > 0){
+        [p setPostValue:addId forKey:@"addId"];
+    }
+    [p setPostValue:@(type) forKey:@"type"];
+    
+    // 获取当前时间0秒后的时间
+    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:0];
+    // *1000 是精确到毫秒，不乘就是精确到秒
+    NSTimeInterval time = [date timeIntervalSince1970];
+    NSString *timeStr = [NSString stringWithFormat:@"%.0f", time];
+    [p setPostValue:timeStr forKey:@"time"];
+        
+    NSString *secret = [self secretEncryption:timeStr payPassword:payPassword];
+    [p setPostValue:secret forKey:@"secret"];
+    
+    [p go];
+}
+- (NSString *)secretEncryption:(NSString *)time payPassword:(NSString *)payPassword {
+    NSString *secret = [NSString string];
+    
+    NSMutableString *str1 = [NSMutableString string];
+    [str1 appendString:MY_USER_ID];
+    [str1 appendString:g_server.access_token];
+    
+        NSMutableString *str2 = [NSMutableString string];
+    [str2 appendString:APIKEY];
+    [str2 appendString:time];
+   
+    
+    NSMutableString *str3 = [NSMutableString string];
+    str3 = [[g_server WH_getMD5StringWithStr:payPassword] mutableCopy];
+    [str2 appendString:str3];
+    str2 =  [[g_server WH_getMD5StringWithStr:str2] mutableCopy];
+    
+    [str1 appendString:str2];
+        
+    secret = [g_server WH_getMD5StringWithStr:str1];
+    
+    return secret;
+}
+
+#pragma mark --  获取收款账号列表
+- (void)WH_ReceiveAccountListWithRoomJid:(NSString *)roomJid toView:(id)toView {
+    WH_JXConnection* p = [self addTask:[NSString stringWithFormat:@"%@%@",wh_List_userAccount,roomJid] param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    
+        
+    [p go];
+}
+#pragma mark --  获取收款账号删除
+- (void)WH_DeleteAccountWithId:(NSString *)recordId toView:(id)toView {
+    WH_JXConnection* p = [self addTask:wh_delete_userAccount param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:recordId forKey:@"id"];
+        
+    [p go];
+}
+
 
 @end

@@ -12,15 +12,14 @@
 #import "WH_JXCamera_WHVC.h"
 #import "UIView+WH_CustomAlertView.h"
 #import "WH_SetGroupHeads_WHView.h"
+#import "UIButton+WebCache.h"
 
 @interface WH_AddAccountViewController ()<UITableViewDataSource, UITableViewDelegate>{
     ATMHud* _wait;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic,strong) UIImage *image;
-@property(nonatomic,copy) NSString *name;
-@property(nonatomic,copy) NSString *account;
-@property(nonatomic,assign) NSInteger type;
+
 
 @end
 
@@ -52,35 +51,56 @@
     cell.chooseImageBlock = ^{
         [weakSelf chooseImageAction];
     };
-    cell.certainBlock = ^(NSString * _Nonnull name, NSString * _Nonnull account) {
+    cell.certainBlock = ^(NSString * _Nonnull name, NSString * _Nonnull account, NSString * _Nonnull password) {
         weakSelf.name = name;
         weakSelf.account = account;
+        weakSelf.password = password;
         [weakSelf certainAction];
     };
     if(self.image){
         
         [cell.uploadBtn setTitle:@"" forState:UIControlStateNormal];
         [cell.uploadBtn setImage:self.image forState:UIControlStateNormal];
+    }else if (self.qrCode.length > 0){
+        [cell.uploadBtn setTitle:@"" forState:UIControlStateNormal];
+        [cell.uploadBtn sd_setImageWithURL:[NSURL URLWithString:self.qrCode] forState:UIControlStateNormal];
     }
     cell.payTitleLab.text = self.type > 0?@"支付宝":@"微信支付";
     cell.line.backgroundColor = self.type > 0?[UIColor linkColor]:[UIColor greenColor];
     cell.payAccountLab.text = self.type > 0?@"支付宝账号":@"微信账号";
-        
+    
+    if(cell.nameField.text.length == 0&&self.name.length > 0){
+        cell.nameField.text = self.name;
+    }
+    if(cell.accountField.text.length == 0&&self.account.length > 0){
+        cell.accountField.text = self.account;
+    }
+    
     return cell;
 }
 -(void)certainAction{
-    if(!self.image){
+    if(!self.image && self.qrCode.length == 0){
         [g_server showMsg:@"请上传您的支付图片"];
         return;
     }
-    //保存图片到本地
-    NSString* file = [FileInfo getUUIDFileName:@"jpg"];
-    [g_server WH_saveImageToFileWithImage:self.image file:file isOriginal:NO];
-    //上传图片
-    [g_server uploadFile:file validTime:@"-1" messageId:nil toView:self];
+    
+    if(self.image){
+        //保存图片到本地
+        NSString* file = [FileInfo getUUIDFileName:@"jpg"];
+        [g_server WH_saveImageToFileWithImage:self.image file:file isOriginal:NO];
+        //上传图片
+        [g_server uploadFile:file validTime:@"-1" messageId:nil toView:self];
+    }else if (!self.image && self.qrCode.length > 0){
+        //修改账号
+        [g_server WH_AddUserAccountWithName:self.name accountNo:self.account payPassword:self.password type:self.type + 1 roomJid:self.room.roomJid qrCode:self.qrCode addId:self.accountId toView:self];
+    }
 }
 //选择支付方式
 -(void)choosetypeAction{
+    if(self.accountId.length > 0){
+        [g_server showMsg:@"不能更改支付类型"];
+        return;
+    }
     CGFloat viewH = 191;
     if (THE_DEVICE_HAVE_HEAD) {
         viewH = 191+24;
@@ -189,9 +209,14 @@
                 break;
             }
         }
+        //上传账号
+        [g_server WH_AddUserAccountWithName:self.name accountNo:self.account payPassword:self.password type:self.type + 1 roomJid:self.room.roomJid qrCode:fileUrl addId:self.accountId toView:self];
         
-    }else if ([aDownload.action isEqualToString:wh_user_transferToAdmin]){
-        [g_server showMsg:@"提交成功，请等待核实"];
+    }else if ([aDownload.action isEqualToString:wh_add_userAccount]){
+        [g_server showMsg:@"添加成功"];
+        [g_navigation WH_dismiss_WHViewController:self animated:YES];
+    }else if ([aDownload.action isEqualToString:wh_change_userAccount]){
+        [g_server showMsg:@"修改成功"];
         [g_navigation WH_dismiss_WHViewController:self animated:YES];
     }
 }

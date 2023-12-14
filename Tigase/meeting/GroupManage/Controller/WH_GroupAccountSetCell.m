@@ -15,6 +15,19 @@
     
     self.unitLab.layer.cornerRadius = 4.0f;
     self.rightPayLab.layer.cornerRadius = 9.0f;
+    
+    //添加长按手势
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressAction:)];
+    [self.contentView addGestureRecognizer:longPress];
+}
+
+-(void)longPressAction:(UILongPressGestureRecognizer *)longPress{
+    if(longPress.state == UIGestureRecognizerStateBegan){
+        
+        if(self.deleteBlock){
+            self.deleteBlock();
+        }
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

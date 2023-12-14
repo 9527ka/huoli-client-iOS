@@ -409,6 +409,11 @@
 #define wh_user_offlineRechargeToAdmin @"user/offlineRechargeToAdmin"    //提交充值
 #define wh_user_transferToAdmin @"user/transferToAdmin"    //提现
 #define wh_rate_current @"rate/current"    //获取汇率
+#define wh_add_userAccount @"user/account/save"    //添加支付账号
+#define wh_List_userAccount @"user/account/"    //用户帐户列表
+#define wh_delete_userAccount @"user/account/delete"    //删除用户账户
+#define wh_change_userAccount @"user/account/update"    //修改支付账号
+
 
 @protocol JXServerResult;
 @class AlixPayResult;
@@ -1216,6 +1221,19 @@
 #pragma mark --  获取汇率
 - (void)WH_receiveRateWithToView:(id)toView;
 
+#pragma mark --  新增 / 修改
+- (void)WH_AddUserAccountWithName:(NSString *)accountName accountNo:(NSString *)accountNo payPassword:(NSString *)payPassword type:(NSInteger)type roomJid:(NSString *)roomJid qrCode:(NSString *)qrCode addId:(NSString *)addId toView:(id)toView;
+
+#pragma mark --  获取收款账号列表
+- (void)WH_ReceiveAccountListWithRoomJid:(NSString *)roomJid toView:(id)toView;
+#pragma mark --  获取收款账号删除
+- (void)WH_DeleteAccountWithId:(NSString *)recordId toView:(id)toView;
+
+
+
+
+
+
 
 @property(nonatomic) long user_id;
 @property(nonatomic) long user_type;
@@ -1261,7 +1279,8 @@
 -(int) WH_didServerConnect_WHError:(WH_JXConnection*)aDownload error:(NSError *)error;//error为空时，代表超时
 #pragma mark - 开始请求服务器回调
 -(void) WH_didServerConnect_WHStart:(WH_JXConnection*)aDownload;
-
+#pragma mark --  获取收款账号删除
+- (void)WH_DeleteAccountWithId:(NSString *)recordId toView:(id)toView;
 
 
 @end

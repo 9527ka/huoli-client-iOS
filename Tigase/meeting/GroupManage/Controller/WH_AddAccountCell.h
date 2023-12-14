@@ -19,11 +19,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *payTitleLab;
 @property (weak, nonatomic) IBOutlet UILabel *line;
 @property (weak, nonatomic) IBOutlet UILabel *payAccountLab;
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
 
 
 @property(nonatomic,copy)void(^chooseTypeBlock)(void);
 @property(nonatomic,copy)void(^chooseImageBlock)(void);
-@property(nonatomic,copy)void(^certainBlock)(NSString *name,NSString *account);
+@property(nonatomic,copy)void(^certainBlock)(NSString *name,NSString *account,NSString *password);
 
 @end
 

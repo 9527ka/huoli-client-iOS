@@ -13,7 +13,6 @@
             <connections>
                 <outlet property="noDataImage" destination="yH8-Xj-YKa" id="Z4G-LP-cck"/>
                 <outlet property="nodataLab" destination="nFg-Lg-Bce" id="OMo-jW-ze6"/>
-                <outlet property="noticeLab" destination="viO-ni-fSJ" id="TQw-Hj-Mol"/>
                 <outlet property="tableView" destination="ozw-ae-ch4" id="7VH-H3-Fiw"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -42,7 +41,7 @@
                     </connections>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="54" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ozw-ae-ch4">
-                    <rect key="frame" x="10" y="103" width="365" height="281"/>
+                    <rect key="frame" x="10" y="103" width="365" height="564"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <inset key="separatorInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                     <connections>
@@ -74,21 +73,11 @@
                         <action selector="addAcountAction:" destination="-1" eventType="touchUpInside" id="XN7-HF-Vzv"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="viO-ni-fSJ">
-                    <rect key="frame" x="16" y="400" width="343" height="117"/>
-                    <string key="text">*请确保您设置的账户为本人实名账户，非本人实名账户付款会导致订单失败且账户冻结。
-
-*向买家仅展示已开启的收款账号。
-
-*买家将直接使用您选择的收款方式付款。交易时，请始终检查您的收款账户已确认您已收到全额付款。</string>
-                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
-                    <color key="textColor" systemColor="systemGrayColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="ozw-ae-ch4" secondAttribute="bottom" id="81f-b2-p2Y"/>
                 <constraint firstItem="ozw-ae-ch4" firstAttribute="top" secondItem="bNn-F2-JfQ" secondAttribute="bottom" constant="7" id="A3V-KC-6bx"/>
                 <constraint firstItem="yH8-Xj-YKa" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="CAg-RA-bUD"/>
                 <constraint firstItem="nFg-Lg-Bce" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Eww-vJ-DrD"/>
@@ -96,13 +85,9 @@
                 <constraint firstItem="ozw-ae-ch4" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="10" id="IMv-G7-Dhd"/>
                 <constraint firstAttribute="trailing" secondItem="ozw-ae-ch4" secondAttribute="trailing" id="K7z-X8-Lfq"/>
                 <constraint firstItem="A5c-xw-kep" firstAttribute="centerY" secondItem="bNn-F2-JfQ" secondAttribute="centerY" id="Pb4-Jt-zEE"/>
-                <constraint firstAttribute="bottom" secondItem="viO-ni-fSJ" secondAttribute="bottom" constant="150" id="Q1l-MC-u0O"/>
                 <constraint firstItem="bNn-F2-JfQ" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="7" id="avN-iG-iIE"/>
-                <constraint firstItem="viO-ni-fSJ" firstAttribute="top" secondItem="ozw-ae-ch4" secondAttribute="bottom" constant="16" id="b40-et-eoE"/>
-                <constraint firstItem="viO-ni-fSJ" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="16" id="fcW-hH-UKq"/>
                 <constraint firstItem="bNn-F2-JfQ" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="7" id="hOA-3m-epP"/>
                 <constraint firstItem="A5c-xw-kep" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="jCB-d1-R6p"/>
-                <constraint firstAttribute="trailing" secondItem="viO-ni-fSJ" secondAttribute="trailing" constant="16" id="nUO-X7-LmB"/>
                 <constraint firstItem="KNl-X4-zhf" firstAttribute="centerY" secondItem="A5c-xw-kep" secondAttribute="centerY" id="rJw-VH-HDm"/>
                 <constraint firstItem="yH8-Xj-YKa" firstAttribute="top" secondItem="A5c-xw-kep" secondAttribute="bottom" constant="160" id="sMf-Qe-RqD"/>
                 <constraint firstItem="nFg-Lg-Bce" firstAttribute="top" secondItem="yH8-Xj-YKa" secondAttribute="bottom" constant="24" id="sUS-2j-myb"/>
@@ -121,9 +106,6 @@
         </systemColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

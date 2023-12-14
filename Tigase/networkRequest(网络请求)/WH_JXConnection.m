@@ -367,14 +367,15 @@ static AFHTTPSessionManager *afManager;
 - (NSString *)getSecret {
     
     // 提现/发红包/转账/扫码支付/网页支付另做处理/第三方登录设置邀请码/银行卡支付
-    if ([self.action isEqualToString:wh_act_TransferWXPay] ||  [self.action isEqualToString:act_sendRedPacket] || [self.action isEqualToString:wh_act_sendRedPacketV1] ||[self.action isEqualToString:wh_act_OpenAuthInterface] || [self.action isEqualToString:wh_act_alipayTransfer] || [self.action isEqualToString:wh_act_sendTransfer] || [self.action isEqualToString:wh_act_codePayment] || [self.action isEqualToString:wh_act_codeReceipt] || [self.action isEqualToString:wh_act_PayPasswordPayment] || [self.action isEqualToString:wh_act_TransferToAdmin] || [self.action isEqualToString:act_otherSetInviteCode] || [self.action isEqualToString:act_getBankInfoByUserId] || [self.action isEqualToString:act_deleteBankInfoById]|| [self.action isEqualToString:act_userBindBandInfo]) {
+    if ([self.action isEqualToString:wh_act_TransferWXPay] ||  [self.action isEqualToString:act_sendRedPacket] || [self.action isEqualToString:wh_act_sendRedPacketV1] ||[self.action isEqualToString:wh_act_OpenAuthInterface] || [self.action isEqualToString:wh_act_alipayTransfer] || [self.action isEqualToString:wh_act_sendTransfer] || [self.action isEqualToString:wh_act_codePayment] || [self.action isEqualToString:wh_act_codeReceipt] || [self.action isEqualToString:wh_act_PayPasswordPayment] || [self.action isEqualToString:wh_act_TransferToAdmin] || [self.action isEqualToString:act_otherSetInviteCode] || [self.action isEqualToString:act_getBankInfoByUserId] || [self.action isEqualToString:act_deleteBankInfoById]|| [self.action isEqualToString:act_userBindBandInfo] || [self.action isEqualToString:wh_add_userAccount]) {
         return nil;
     }
     
     //同步服务器时间,解决授权失败问题
     long time = (long)[[NSDate date] timeIntervalSince1970] + (g_server.timeDifference / 1000);
     [self setPostValue:[NSString stringWithFormat:@"%ld",time] forKey:@"time"];
-    
+
+
     NSString *secret;
     if ( [self.action isEqualToString:act_sendRedPacket]) {
         
