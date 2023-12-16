@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic,strong) WH_RoomData* room;
 @property (nonatomic,strong) NSDictionary *payDic;
+@property (nonatomic,strong)NSString *expiryTime;
 
 @end
 

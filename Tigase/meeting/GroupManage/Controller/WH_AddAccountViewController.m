@@ -13,12 +13,15 @@
 #import "UIView+WH_CustomAlertView.h"
 #import "WH_SetGroupHeads_WHView.h"
 #import "UIButton+WebCache.h"
+#import "WH_JXVerifyPay_WHVC.h"
+#import "BindTelephoneChecker.h"
 
 @interface WH_AddAccountViewController ()<UITableViewDataSource, UITableViewDelegate>{
     ATMHud* _wait;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic,strong) UIImage *image;
+@property (nonatomic, strong) WH_JXVerifyPay_WHVC *verVC;
 
 
 @end
@@ -54,8 +57,7 @@
     cell.certainBlock = ^(NSString * _Nonnull name, NSString * _Nonnull account, NSString * _Nonnull password) {
         weakSelf.name = name;
         weakSelf.account = account;
-        weakSelf.password = password;
-        [weakSelf certainAction];
+        [weakSelf passWordAction];
     };
     if(self.image){
         
@@ -77,6 +79,34 @@
     }
     
     return cell;
+}
+//输入密码
+-(void)passWordAction{
+    
+    if ([g_myself.isPayPassword boolValue]) {
+        self.verVC = [WH_JXVerifyPay_WHVC alloc];
+        self.verVC.type = JXVerifyTypeSkPay;
+        self.verVC.wh_RMB = @"";
+        self.verVC.delegate = self;
+        self.verVC.didDismissVC = @selector(WH_dismiss_WHVerifyPayVC);
+        self.verVC.didVerifyPay = @selector(WH_didVerifyPay:);
+        self.verVC = [self.verVC init];
+        self.verVC.RMBLab.text = @"";
+        
+        [self.view addSubview:self.verVC.view];
+        
+    }else {//没有支付密码
+        [BindTelephoneChecker checkBindPhoneWithViewController:self entertype:JXEnterTypeDefault];
+    }
+}
+- (void)WH_didVerifyPay:(NSString *)sender {
+    self.password = [NSString stringWithString:sender];
+    
+    [self certainAction];
+
+}
+- (void)WH_dismiss_WHVerifyPayVC {
+    [self.verVC.view removeFromSuperview];
 }
 -(void)certainAction{
     if(!self.image && self.qrCode.length == 0){

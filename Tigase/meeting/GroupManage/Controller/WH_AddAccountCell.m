@@ -54,12 +54,12 @@
         [g_server showMsg:@"请输入账号"];
         return;
     }
-    if (self.passwordField.text.length == 0) {
-        [g_server showMsg:@"请输入交易密码"];
-        return;
-    }
+//    if (self.passwordField.text.length == 0) {
+//        [g_server showMsg:@"请输入交易密码"];
+//        return;
+//    }
     if(self.certainBlock){
-        self.certainBlock(self.nameField.text, self.accountField.text,self.passwordField.text);
+        self.certainBlock(self.nameField.text, self.accountField.text,@"");
     }
 }
 

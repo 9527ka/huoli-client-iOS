@@ -67,35 +67,45 @@
     
     //二维码
     [self.codeImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.payDic[@"qrCode"]]]];
+    //获取当前时间时间戳
+    // 获取当前时间0秒后的时间
+    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:0];
+    // *1000 是精确到毫秒，不乘就是精确到秒
+    NSTimeInterval time = [date timeIntervalSince1970];
     
-    //添加倒计时
-    __block NSInteger second = 1199;
-       //(1)
-       dispatch_queue_t quene = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-       //(2)
-       dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, quene);
-       //(3)
-       dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
-       //(4)
-       dispatch_source_set_event_handler(timer, ^{
-           dispatch_async(dispatch_get_main_queue(), ^{
-               if (second == 0) {
-                   self.timeLab.text = @"已超时";
-                   second = 1199;
-                   //(6)
-                   dispatch_cancel(timer);
-               } else {
-                   NSInteger min = second/60.0f;
-                   NSInteger sec = second%60;
-                   self.timeLab.text = [NSString stringWithFormat:@"%02ld:%02lds",(long)min,(long)sec];
-                   
-                   
-                   second--;
-               }
-           });
-       });
-       //(5)
-    dispatch_resume(timer);
+    if(self.expiryTime.longLongValue < time){
+        self.timeLab.text = @"已超时";
+    }else{
+        //计算还有多少秒
+        __block NSInteger second = time - self.expiryTime.longLongValue;
+        //添加倒计时
+        //(1)
+        dispatch_queue_t quene = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        //(2)
+        dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, quene);
+        //(3)
+        dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+        //(4)
+        dispatch_source_set_event_handler(timer, ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (second == 0) {
+                    self.timeLab.text = @"已超时";
+                    second = 1199;
+                    //(6)
+                    dispatch_cancel(timer);
+                } else {
+                    NSInteger min = second/60.0f;
+                    NSInteger sec = second%60;
+                    self.timeLab.text = [NSString stringWithFormat:@"%02ld:%02lds",(long)min,(long)sec];
+                    
+                    
+                    second--;
+                }
+            });
+        });
+        //(5)
+     dispatch_resume(timer);
+    }
 }
 - (IBAction)notificationAction:(id)sender {
     

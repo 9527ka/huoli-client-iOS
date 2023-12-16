@@ -1006,8 +1006,9 @@
         }
         
     }
-
-    //[self WH_doRefresh:msg showNumber:showNumber];
+    //刷新数据之前不知道为啥注释掉了
+    [self WH_doRefresh:msg showNumber:showNumber];
+    
     msg = nil;
 }
 
@@ -1121,13 +1122,38 @@
                 }
             }
         
+        //如果user为空的话创建一下插入数据库
+//        if(!newobj.user){
+            WH_JXUserObject *newUser = [[WH_JXUserObject alloc] init];
+//            newUser.userId = [newobj.message.fromUserId isEqualToString:MY_USER_ID]?newobj.message.toUserId:newobj.message.fromUserId;
+//            newUser.userNickname = [newobj.message.fromUserId isEqualToString:MY_USER_ID]?newobj.message.toUserName:newobj.message.fromUserName;
+//            newUser.remarkName = [newobj.message.fromUserId isEqualToString:MY_USER_ID]?newobj.message.toUserName:newobj.message.fromUserName;
+//            newUser.timeCreate = [newobj.message.fromUserId isEqualToString:MY_USER_ID]?newobj.message.timeSend:newobj.message.timeReceive;
+//            newUser.content = newobj.message.content;
+//            newUser.companyId = @(0);
+//            newUser.timeSend = newobj.message.timeSend;
+//            newUser.roomFlag = @(0);
+//            newUser.status = @(0);
+//            newobj.user = newUser;
+//        }
+        
+        
+        newUser.userId = newobj.message.fromUserId;
+        newUser.userNickname = newobj.message.fromUserName;
+        newUser.remarkName = newobj.message.fromUserName;
+        newUser.timeCreate = newobj.message.timeReceive;
+        newUser.content = newobj.message.content;
+        newUser.companyId = @(0);
+        newUser.timeSend = newobj.message.timeSend;
+        newUser.roomFlag = @(0);
+        newUser.status = @(0);
+        newobj.user = newUser;
+        
         if (newobj.user) {
-            
             //访问数据库是否存在改好友，没有则写入数据库
-//            if (newobj.user.userId.length > 5) {
-//                [newobj.user insertFriend];
-//            }
-            
+            if (newobj.user.userId.length > 5) {
+                [newobj.user insertFriend];
+            }
             [_wh_array insertObject:newobj atIndex:_topNum];
             
             NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
@@ -1161,10 +1187,11 @@
     }
     //访问DB获取好友消息列表
     NSMutableArray* p = [[WH_JXMessageObject sharedInstance] fetchRecentChat];
+    
     _topNum = 0;
     // 查出置顶个数
     for (NSInteger i = 0; i < p.count; i ++) {
-        WH_JXMsgAndUserObject * obj = (WH_JXMsgAndUserObject*) [p objectAtIndex:i];
+        WH_JXMsgAndUserObject *obj = (WH_JXMsgAndUserObject*) [p objectAtIndex:i];
         
         if (self.isTwoWithdrawal && !IsStringNull(self.rJid)) {
             if ([obj.user.userId isEqualToString:self.rJid]) {
@@ -1515,9 +1542,7 @@
         _refreshCount++;
         [_table reloadData];
         [self getTotalNewMsgCount];
-        
-        
-        
+                
     }];
     
     NSString *str;

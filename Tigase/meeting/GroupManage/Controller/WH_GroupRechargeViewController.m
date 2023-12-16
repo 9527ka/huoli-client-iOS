@@ -108,7 +108,11 @@
         self.balance = [NSString stringWithFormat:@"%@",dict[@"balance"]];
         [self.tableView reloadData];
     }else if ([aDownload.action isEqualToString:wh_trade_apply]){
+        //获取过期时间
+        NSString *expiryTime = [NSString stringWithFormat:@"%@",dict[@"expiryTime"]];
+        
         WH_JXBuyPayViewController *vc = [[WH_JXBuyPayViewController alloc] init];
+        vc.expiryTime = expiryTime;
         vc.room = self.room;
         vc.payDic = self.payTypeDic;
         [g_navigation pushViewController:vc animated:YES];

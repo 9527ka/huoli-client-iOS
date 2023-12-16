@@ -41,9 +41,9 @@
     
 }
 -(void)textChanged:(UITextField *)textField{
-    if(textField.text.doubleValue > self.balance.doubleValue){
-        textField.text = self.balance;
-    }
+//    if(textField.text.doubleValue > self.balance.doubleValue){
+//        textField.text = self.balance;
+//    }
     
     self.payCountLab.text = [NSString stringWithFormat:@"应付 ￥%.2f",textField.text.length > 0?textField.text.doubleValue:0.00];
 
@@ -63,6 +63,10 @@
 - (IBAction)certainAction:(id)sender {
     if(self.countField.text.length == 0){
         [g_server showMsg:@"请输入HOTC数量"];
+        return;
+    }
+    if(self.countField.text.doubleValue > self.balance.doubleValue){
+        [g_server showMsg:@"超出群主限额"];
         return;
     }
     if(self.certainBlock){
