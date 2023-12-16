@@ -4748,6 +4748,32 @@
     [p setPostValue:self.access_token forKey:@"access_token"];
     [p go];
 }
+#pragma mark --  购买hotc
+//"targetAmount": 100,   //HOTC金额
+// "payAmount": 100,　　　//支付的CNY金额
+// "payType": 1,        //支付类型 1微信,２支付宝
+// "financialInfoId": "11111111111111111",　　　//收款记录id
+// "payeeUID": 1000010,                 //群主userId
+// "jid": "11111111",                //房产roomJid
+// "payeeName": "",                //群主收款帐户名
+// "payeeAccount": "",                //群主收款帐号
+// "payeeAccountImg": "http://wwww.baidu.com/a.jpg",　//群主收款二维码
+// "remark": "for test"                　　　//给群主留言
+- (void)WH_TradeApplyWithTargetAmount:(NSString *)targetAmount payType:(NSInteger)payType financialInfoId:(NSString *)financialInfoId payeeUID:(NSString *)payeeUID jid:(NSString *)jid payeeName:(NSString *)payeeName payeeAccount:(NSString *)payeeAccount payeeAccountImg:(NSString *)payeeAccountImg toView:(id)toView{
+    WH_JXConnection* p = [self addTask:wh_trade_apply param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:targetAmount forKey:@"targetAmount"];
+    [p setPostValue:targetAmount forKey:@"payAmount"];
+    [p setPostValue:@(payType) forKey:@"payType"];
+    [p setPostValue:financialInfoId forKey:@"financialInfoId"];
+    [p setPostValue:payeeUID forKey:@"payeeUID"];
+    [p setPostValue:jid forKey:@"jid"];
+    [p setPostValue:payeeName forKey:@"payeeName"];
+    [p setPostValue:payeeAccount forKey:@"payeeAccount"];
+    [p setPostValue:payeeAccountImg forKey:@"payeeAccountImg"];
+    
+    [p go];
+}
 
 
 @end

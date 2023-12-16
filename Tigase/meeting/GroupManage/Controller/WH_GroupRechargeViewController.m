@@ -20,6 +20,8 @@
 
 @property(nonatomic,copy)NSString *balance;//限额
 
+@property(nonatomic,strong)NSDictionary *payTypeDic;
+
 @end
 
 @implementation WH_GroupRechargeViewController
@@ -85,11 +87,10 @@
             }
         }
     }
+    self.payTypeDic = dic;
     
-    WH_JXBuyPayViewController *vc = [[WH_JXBuyPayViewController alloc] init];
-    vc.room = self.room;
-    vc.payDic = dic;
-    [g_navigation pushViewController:vc animated:YES];
+    //调接口
+    [g_server WH_TradeApplyWithTargetAmount:self.count payType:self.type == 0?2:1 financialInfoId:[NSString stringWithFormat:@"%@",dic[@"id"]] payeeUID:[NSString stringWithFormat:@"%ld",self.room.userId] jid:self.room.roomJid payeeName:[NSString stringWithFormat:@"%@",dic[@"accountName"]] payeeAccount:[NSString stringWithFormat:@"%@",dic[@"accountNo"]] payeeAccountImg:[NSString stringWithFormat:@"%@",dic[@"qrCode"]] toView:self];
     
 }
 
@@ -106,6 +107,11 @@
     }else if ([aDownload.action isEqualToString:balanceUrl]){
         self.balance = [NSString stringWithFormat:@"%@",dict[@"balance"]];
         [self.tableView reloadData];
+    }else if ([aDownload.action isEqualToString:wh_trade_apply]){
+        WH_JXBuyPayViewController *vc = [[WH_JXBuyPayViewController alloc] init];
+        vc.room = self.room;
+        vc.payDic = self.payTypeDic;
+        [g_navigation pushViewController:vc animated:YES];
     }
    
 }

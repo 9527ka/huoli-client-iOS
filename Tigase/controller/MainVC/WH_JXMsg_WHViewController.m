@@ -1122,6 +1122,12 @@
             }
         
         if (newobj.user) {
+            
+            //访问数据库是否存在改好友，没有则写入数据库
+//            if (newobj.user.userId.length > 5) {
+//                [newobj.user insertFriend];
+//            }
+            
             [_wh_array insertObject:newobj atIndex:_topNum];
             
             NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
@@ -1258,7 +1264,6 @@
     WH_JXMsgAndUserObject *p=[array objectAtIndex:indexPath.row];
     if (![p.user.userId isEqualToString:FRIEND_CENTER_USERID]) {
         _wh_msgTotal -= [cell.bageNumber.wh_lb.text intValue];//  [cell.bage intValue];
-         
     }
     [UIApplication sharedApplication].applicationIconBadgeNumber = [UIApplication sharedApplication].applicationIconBadgeNumber - [p.user.msgsNew intValue];
 //    [g_server WH_userChangeMsgNum:[UIApplication sharedApplication].applicationIconBadgeNumber toView:self];

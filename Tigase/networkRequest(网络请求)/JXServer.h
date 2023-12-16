@@ -413,7 +413,8 @@
 #define wh_List_userAccount @"user/account/"    //用户帐户列表
 #define wh_delete_userAccount @"user/account/delete"    //删除用户账户
 #define wh_change_userAccount @"user/account/update"    //修改支付账号
-#define wh_balance_userAccount @"user/query/balance/"    //
+#define wh_balance_userAccount @"user/query/balance/"    //限额
+#define wh_trade_apply @"trade/apply"    //够买HOtc接口
 
 
 @protocol JXServerResult;
@@ -1231,6 +1232,31 @@
 - (void)WH_DeleteAccountWithId:(NSString *)recordId toView:(id)toView;
 #pragma mark --  获取限额
 - (void)WH_BalanceAccountWithId:(NSString *)roomJid toView:(id)toView;
+#pragma mark --  购买hotc
+//"targetAmount": 100,   //HOTC金额
+// "payAmount": 100,　　　//支付的CNY金额
+// "payType": 1,        //支付类型 1微信,２支付宝
+// "financialInfoId": "11111111111111111",　　　//收款记录id
+// "payeeUID": 1000010,                 //群主userId
+// "jid": "11111111",                //房产roomJid
+// "payeeName": "",                //群主收款帐户名
+// "payeeAccount": "",                //群主收款帐号
+// "payeeAccountImg": "http://wwww.baidu.com/a.jpg",　//群主收款二维码
+// "remark": "for test"                　　　//给群主留言
+- (void)WH_TradeApplyWithTargetAmount:(NSString *)targetAmount payType:(NSInteger)payType financialInfoId:(NSString *)financialInfoId payeeUID:(NSString *)payeeUID jid:(NSString *)jid payeeName:(NSString *)payeeName payeeAccount:(NSString *)payeeAccount payeeAccountImg:(NSString *)payeeAccountImg toView:(id)toView;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
