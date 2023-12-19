@@ -8,7 +8,9 @@
 
 #import "WH_JXBuyPayViewController.h"
 
-@interface WH_JXBuyPayViewController ()
+@interface WH_JXBuyPayViewController (){
+    ATMHud* _wait;
+}
 @property (weak, nonatomic) IBOutlet UILabel *payTitleLab;
 @property (weak, nonatomic) IBOutlet UILabel *timeLab;
 @property (weak, nonatomic) IBOutlet UILabel *oneLab;
@@ -99,6 +101,7 @@
 }
 - (IBAction)notificationAction:(id)sender {
     
+    [g_server WH_paymentNotifyWithId:[NSString stringWithFormat:@"%@",self.payDic[@"id"]] toView:self];
 }
 
 - (IBAction)copyAction:(id)sender {
@@ -128,7 +131,31 @@
     
 }
 
+#pragma mark - 请求成功回调
+-(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{
+    [_wait hide];
+   if ([aDownload.action isEqualToString:wh_payment_notify]){
+        [g_server showMsg:@"通知成功"];
+       [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+}
 
+#pragma mark - 请求失败回调
+-(int) WH_didServerResult_WHFailed:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict{
+    [_wait hide];
+    return WH_show_error;
+}
+
+#pragma mark - 请求出错回调
+-(int) WH_didServerConnect_WHError:(WH_JXConnection*)aDownload error:(NSError *)error{//error为空时，代表超时
+    [_wait hide];
+    return WH_show_error;
+}
+
+#pragma mark - 开始请求服务器回调
+-(void) WH_didServerConnect_WHStart:(WH_JXConnection*)aDownload{
+    [_wait start];
+}
 
 
 @end

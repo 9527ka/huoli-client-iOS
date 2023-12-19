@@ -20,7 +20,7 @@
 
 @property(nonatomic,copy)NSString *balance;//限额
 
-@property(nonatomic,strong)NSDictionary *payTypeDic;
+@property(nonatomic,strong)NSMutableDictionary *payTypeDic;
 
 @end
 
@@ -87,7 +87,7 @@
             }
         }
     }
-    self.payTypeDic = dic;
+    self.payTypeDic = [NSMutableDictionary dictionaryWithDictionary:dic];
     
     //调接口
     [g_server WH_TradeApplyWithTargetAmount:self.count payType:self.type == 0?2:1 financialInfoId:[NSString stringWithFormat:@"%@",dic[@"id"]] payeeUID:[NSString stringWithFormat:@"%ld",self.room.userId] jid:self.room.roomJid payeeName:[NSString stringWithFormat:@"%@",dic[@"accountName"]] payeeAccount:[NSString stringWithFormat:@"%@",dic[@"accountNo"]] payeeAccountImg:[NSString stringWithFormat:@"%@",dic[@"qrCode"]] toView:self];
@@ -110,6 +110,7 @@
     }else if ([aDownload.action isEqualToString:wh_trade_apply]){
         //获取过期时间
         NSString *expiryTime = [NSString stringWithFormat:@"%@",dict[@"expiryTime"]];
+        [self.payTypeDic setObject:[NSString stringWithFormat:@"%@",dict[@"id"]] forKey:@"id"];
         
         WH_JXBuyPayViewController *vc = [[WH_JXBuyPayViewController alloc] init];
         vc.expiryTime = expiryTime;

@@ -846,6 +846,27 @@
         isInput = YES;
     }
     
+    
+    if ([dict.message.type intValue] == 4000){
+        NSDictionary *dic = [self dictionaryWithJsonString:dict.message.content];
+        
+        NSString *money = [NSString stringWithFormat:@"%@",dic[@"money"]];
+        
+        lastContet = ![dict.message.fromUserId isEqualToString:WAHU_TRANSFER]?[NSString stringWithFormat:@"HOTC购买，金额：￥%.2f，状态：付款中",money.doubleValue]:@"[下单通知]";
+    
+    }else if ([dict.message.type intValue] == 4001){
+        lastContet = @"[订单已支付]";
+    }else if ([dict.message.type intValue] == 4002){
+        
+        lastContet = @"[订单确认收款]";
+    }else if ([dict.message.type intValue] == 4003){
+        
+        lastContet = @"[订单取消]";
+        
+    }else if ([dict.message.type intValue] == 4004){
+        lastContet = @"[订单退款]";
+    }
+    
     if ([dict.message.type intValue] == kWCMessageTypeText || flag) {
 //        [dict.message requestTranslatedText:^{
 //            dispatch_async(dispatch_get_main_queue(), ^{
@@ -853,10 +874,9 @@
 //            });
 //        }];
         [cell setSubtitle:lastContet];
-    } else {
+    }else {
         cell.lbSubTitle.text = lastContet;
     }
-    
     [cell.timeLabel setText:cell.bottomTitle];
     cell.bageNumber.wh_delegate = cell.delegate;
     cell.bageNumber.wh_didDragout = cell.didDragout;
@@ -921,8 +941,13 @@
         if([msg.type intValue] == kWCMessageTypeAudioMeetingInvite || [msg.type intValue] == kWCMessageTypeVideoMeetingInvite)
             showNumber = NO;//一律不提醒
     }
-    if(!msg.isVisible && ![msg isAddFriendMsg])
-        return;
+    if([msg.type integerValue] != kRoomRemind_REQUEST_NOTIFICATION && [msg.type integerValue] != kRoomRemind_REQUEST_PAID &&[msg.type integerValue] != kRoomRemind_REQUEST_CONFIRMED &&[msg.type integerValue] != kRoomRemind_REQUEST_CANCELLED &&[msg.type integerValue] != kRoomRemind_REQUEST_REFUND){
+        
+        if(!msg.isVisible && ![msg isAddFriendMsg]){
+            return;
+        }
+    }
+    
     if (!_audioPlayer) {
         _audioPlayer = [[WH_AudioPlayerTool alloc]init];
     }
@@ -1139,8 +1164,8 @@
         
         
         newUser.userId = newobj.message.fromUserId;
-        newUser.userNickname = newobj.message.fromUserName;
-        newUser.remarkName = newobj.message.fromUserName;
+        newUser.userNickname = [newobj.message.fromUserId isEqualToString:WAHU_TRANSFER]?@"支付公众号":newobj.message.fromUserName;
+        newUser.remarkName = newUser.userNickname;
         newUser.timeCreate = newobj.message.timeReceive;
         newUser.content = newobj.message.content;
         newUser.companyId = @(0);
@@ -1151,9 +1176,9 @@
         
         if (newobj.user) {
             //访问数据库是否存在改好友，没有则写入数据库
-            if (newobj.user.userId.length > 5) {
+//            if (newobj.user.userId.length > 5) {
                 [newobj.user insertFriend];
-            }
+//            }
             [_wh_array insertObject:newobj atIndex:_topNum];
             
             NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
@@ -3075,7 +3100,23 @@
     return p;
 }
 
-
+- (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString
+{
+    if (jsonString == nil) {
+        return nil;
+    }
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if(err)
+    {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return dic;
+}
 
 
 - (void)sp_getMediaFailed {

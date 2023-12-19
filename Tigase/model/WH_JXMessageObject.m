@@ -2255,6 +2255,13 @@ static WH_JXMessageObject *shared;
         case kWCMessageTypeVideoChatEnd:
         case kWCMessageTypeWithdraw:
         case kWCMessageTypeWithdrawWithServer:
+            
+        case kRoomRemind_REQUEST_NOTIFICATION:
+        case kRoomRemind_REQUEST_PAID:
+        case kRoomRemind_REQUEST_CONFIRMED:
+        case kRoomRemind_REQUEST_CANCELLED:
+        case kRoomRemind_REQUEST_REFUND:
+            
             return YES;
         default:
             return [self.type intValue]<100;

@@ -11,6 +11,7 @@
 #import "WH_JXTransferNoticeModel.h"
 #import "WH_JXTransferModel.h"
 #import "WH_BankCardTrans_WHModel.h"
+#import "WH_JXRoomRemind.h"
 
 @interface WH_JXTransferNotice_WHVC ()
 @property (nonatomic, strong) NSArray *array;
@@ -78,6 +79,12 @@
         WH_JXTransferModel *model = [[WH_JXTransferModel alloc] init];
         [model getTransferDataWithDict:dict];
         [cell setDataWithMsg:msg model:model];
+    }else if ([msg.type intValue] == kRoomRemind_REQUEST_NOTIFICATION ||[msg.type intValue] == kRoomRemind_REQUEST_PAID ||[msg.type intValue] == kRoomRemind_REQUEST_CONFIRMED ||[msg.type intValue] == kRoomRemind_REQUEST_CANCELLED ||[msg.type intValue] == kRoomRemind_REQUEST_REFUND) {
+        
+        WH_JXTransferModel *model = [[WH_JXTransferModel alloc] init];
+        [model getTransferDataWithDict:dict];
+        [cell setDataWithMsg:msg model:model];
+        
     }else {
         WH_JXTransferNoticeModel *model = [[WH_JXTransferNoticeModel alloc]init];
         [model getTransferNoticeWithDict:dict];

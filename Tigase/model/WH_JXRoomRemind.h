@@ -40,6 +40,13 @@
 #define kRoomRemind_FaceRoomSearch          933 // 面对面建群查询
 
 #define kRoomRemind_ClearRoomChatRecord         935 // 清除群聊天记录 (后台控制)
+#define kRoomRemind_REQUEST_NOTIFICATION         4000 //群员下单
+#define kRoomRemind_REQUEST_PAID         4001 //群员己支付
+#define kRoomRemind_REQUEST_CONFIRMED         4002 //群主确认己收款
+#define kRoomRemind_REQUEST_CANCELLED         4003 //订单取消
+#define kRoomRemind_REQUEST_REFUND         4004 //订单退款
+
+
 
 // 直播协议
 #define kRoomRemind_LiveBarrage     910 // 直播弹幕

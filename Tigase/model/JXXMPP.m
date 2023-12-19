@@ -1902,6 +1902,7 @@ static JXXMPP *sharedManager;
                         msg = nil;
                         return;
                     }
+                    
                     // 点赞 & 评论
                     if ([msg.type intValue] == kWCMessageTypeWeiboPraise || [msg.type intValue] == kWCMessageTypeWeiboComment || [msg.type intValue] == kWCMessageTypeWeiboRemind) {
 
@@ -2026,12 +2027,29 @@ static JXXMPP *sharedManager;
                         return;
                     }
 
-                    if (![msg haveTheMessage]) {
-      
+                    BOOL isSysTom = NO;
+                    
+                    if([msg.type integerValue] == kRoomRemind_REQUEST_NOTIFICATION || [msg.type integerValue] == kRoomRemind_REQUEST_PAID ||[msg.type integerValue] == kRoomRemind_REQUEST_CONFIRMED ||[msg.type integerValue] == kRoomRemind_REQUEST_CANCELLED ||[msg.type integerValue] == kRoomRemind_REQUEST_REFUND){
+                        isSysTom = YES;
+                    }
+
+                    if (![msg haveTheMessage] && !isSysTom) {//消息不存在
 
                         [self baiduTranslation:msg];
 //                        [msg updateLastSend:UpdateLastSendType_Add];
 //                                [msg notifyNewMsg];//在显示时检测MessageId是否已显示
+                    }else{//保存消息
+                        if (![msg haveTheMessage]) {
+                            BOOL isRoomControlMsg = msg.isRoomControlMsg;
+                            BOOL isInsert = [msg insert:nil];//在保存时检测MessageId是否已存在记录
+                            if (isRoomControlMsg && !isInsert) {
+                                return;
+                            }
+
+                            [msg updateLastSend:UpdateLastSendType_Add];
+                            [msg notifyNewMsg];
+                        
+                        }
                     }
                 }else{
 
@@ -2068,6 +2086,7 @@ static JXXMPP *sharedManager;
                     }else {
                         [msg updateLastSend:UpdateLastSendType_Add];
                     }
+                    
 
                     if (msg.type.integerValue == kWCMessageTypeRemind) {
                         //公告类型,判断是否为强提醒公告

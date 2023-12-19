@@ -127,6 +127,7 @@
 #import "WH_JXCommonService.h"
 #import "MISFloatingBall.h"
 #import "WH_webpage_WHVC.h"
+#import "WH_PayOrderCell.h"
 
 #define faceHeight (THE_DEVICE_HAVE_HEAD ? 253 : 218)
 #define PAGECOUNT 100
@@ -353,7 +354,7 @@
     [g_notify addObserver:self selector:@selector(onDidReply:) name:kCellReplyNotifaction object:nil];  // 回复消息点击
     [g_notify addObserver:self selector:@selector(onDidMessageReadDel:) name:kCellMessageReadDelNotifaction object:nil];  // 文本消息阅后即焚点击
     [g_notify addObserver:self selector:@selector(openReadDelNotif:) name:kOpenReadDelNotif object:nil];    // 阅后即焚开关
-    [g_notify addObserver:self selector:@selector(refreshChatLogNotif:) name:kRefreshChatLogNotif object:nil];
+    [g_notify addObserver:self selector:@selector(refreshChatLogNotif:) name:kRefreshChatLogNotif object:nil];//清空双方聊天记录
     
     [g_notify addObserver:self selector:@selector(onLoginChanged:) name:kXmppLogin_WHNotifaction object:nil];
     // 监听系统截屏
@@ -520,6 +521,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [_table registerNib:[UINib nibWithNibName:@"WH_PayOrderCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WH_PayOrderCell"];
+    
     //进入界面刷新一下我的收藏表情
     [[NSNotificationCenter defaultCenter] postNotificationName:kFavoritesRefresh_WHNotification object:nil];
     
@@ -2594,6 +2598,12 @@
         return [self WH_creat_WHReadDelCell:msg indexPath:indexPath];
     }
     
+    if ([msg.type intValue] == kRoomRemind_REQUEST_NOTIFICATION ||[msg.type intValue] == kRoomRemind_REQUEST_PAID ||[msg.type intValue] == kRoomRemind_REQUEST_CONFIRMED ||[msg.type intValue] == kRoomRemind_REQUEST_CANCELLED ||[msg.type intValue] == kRoomRemind_REQUEST_REFUND) {//下单模块
+        
+        return [self WH_creat_PayOrderCell:msg indexPath:indexPath];
+        
+    }
+    
     if ([msg.isReadDel boolValue]) {
         g_myself.isOpenReadDel = msg.isReadDel;
         self.chatPerson.isOpenReadDel = msg.isReadDel;
@@ -2785,6 +2795,14 @@
     
     if (msg) {
         switch ([msg.type intValue]) {
+            case kRoomRemind_REQUEST_NOTIFICATION:
+            case kRoomRemind_REQUEST_PAID:
+            case kRoomRemind_REQUEST_CONFIRMED:
+            case kRoomRemind_REQUEST_CANCELLED:
+            case kRoomRemind_REQUEST_REFUND:
+                return 126;
+                break;
+           
             case kWCMessageTypeText:
                 return [WH_JXMessage_WHCell getChatCellHeight:msg];
                 break;
@@ -3021,7 +3039,16 @@
     }
     return cell;
 }
-
+//购买HOTC订单消息
+- (WH_PayOrderCell *)WH_creat_PayOrderCell:(WH_JXMessageObject *)msg indexPath:(NSIndexPath *)indexPath{
+    WH_PayOrderCell *cell = (WH_PayOrderCell *)[_table dequeueReusableCellWithIdentifier:@"WH_PayOrderCell" forIndexPath:indexPath];
+    __weak typeof (self)weakSelf = self;
+    cell.certainBlock = ^(NSInteger tag) {//1确认 0详情
+        
+    };
+    cell.msg = msg;
+    return cell;
+}
 
 //阅后即焚提示消息
 - (WH_ReadDelTimeCell *)WH_creat_WHReadDelCell:(WH_JXMessageObject *)msg indexPath:(NSIndexPath *)indexPath{

@@ -4781,6 +4781,14 @@
         
     [p go];
 }
+#pragma mark --  群成员转帐通知接口
+-(void)WH_paymentNotifyWithId:(NSString *)orderId toView:(id)toView {
+    WH_JXConnection* p = [self addTask:wh_payment_notify param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:orderId forKey:@"id"];
+        
+    [p go];
+}
 
 
 @end

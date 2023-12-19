@@ -416,6 +416,7 @@
 #define wh_balance_userAccount @"user/query/balance/"    //限额
 #define wh_trade_apply @"trade/apply"    //够买HOtc接口
 #define wh_processing_order @"trade/query/processing_order"    //查询有没有未完成的订单
+#define wh_payment_notify @"trade/payment/notify"    //群成员转帐通知
 
 
 @protocol JXServerResult;
@@ -1248,7 +1249,8 @@
 
 #pragma mark --  查询有没有未完成的订单
 -(void)WH_Processing_order:(id)toView;
-
+#pragma mark --  群成员转帐通知接口
+-(void)WH_paymentNotifyWithId:(NSString *)orderId toView:(id)toView;
 
 
 
@@ -1311,6 +1313,8 @@
 -(void) WH_didServerConnect_WHStart:(WH_JXConnection*)aDownload;
 #pragma mark --  获取收款账号删除
 - (void)WH_DeleteAccountWithId:(NSString *)recordId toView:(id)toView;
+
+
 
 
 @end

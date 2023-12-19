@@ -719,6 +719,8 @@
 		2069541818439E69007F1FED /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2069541618439E69007F1FED /* AVFoundation.framework */; };
 		20745B221EADD42B0058687B /* WH_JXTelArea_WHCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20745B211EADD42B0058687B /* WH_JXTelArea_WHCell.m */; };
 		3306DA782B0F34EA0059793A /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3306DA772B0F34E90059793A /* SafariServices.framework */; };
+		330F3B862B31867200E69B97 /* WH_PayOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 330F3B842B31867200E69B97 /* WH_PayOrderCell.m */; };
+		330F3B872B31867200E69B97 /* WH_PayOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 330F3B852B31867200E69B97 /* WH_PayOrderCell.xib */; };
 		334FB9EC2B14241600230991 /* serverList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 334FB9EB2B14241600230991 /* serverList.plist */; };
 		334FB9EE2B1425C000230991 /* userInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 334FB9ED2B1425C000230991 /* userInfo.plist */; };
 		33946A7B2B21A4C30002A8D6 /* WH_RechargeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33946A792B21A4C30002A8D6 /* WH_RechargeVC.m */; };
@@ -3092,6 +3094,9 @@
 		20745B201EADD42B0058687B /* WH_JXTelArea_WHCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WH_JXTelArea_WHCell.h; sourceTree = "<group>"; };
 		20745B211EADD42B0058687B /* WH_JXTelArea_WHCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WH_JXTelArea_WHCell.m; sourceTree = "<group>"; };
 		3306DA772B0F34E90059793A /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		330F3B832B31867200E69B97 /* WH_PayOrderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_PayOrderCell.h; sourceTree = "<group>"; };
+		330F3B842B31867200E69B97 /* WH_PayOrderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_PayOrderCell.m; sourceTree = "<group>"; };
+		330F3B852B31867200E69B97 /* WH_PayOrderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_PayOrderCell.xib; sourceTree = "<group>"; };
 		334FB9EB2B14241600230991 /* serverList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = serverList.plist; sourceTree = "<group>"; };
 		334FB9ED2B1425C000230991 /* userInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = userInfo.plist; sourceTree = "<group>"; };
 		33946A782B21A4C30002A8D6 /* WH_RechargeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_RechargeVC.h; sourceTree = "<group>"; };
@@ -7043,6 +7048,9 @@
 				0F64EECF20EDF6D600E1B8D2 /* WH_JXMergeRelay_WHCell.m */,
 				0F7A5175218D8DE600B4AB31 /* WH_JXShare_WHCell.h */,
 				0F7A5176218D8DE600B4AB31 /* WH_JXShare_WHCell.m */,
+				330F3B832B31867200E69B97 /* WH_PayOrderCell.h */,
+				330F3B842B31867200E69B97 /* WH_PayOrderCell.m */,
+				330F3B852B31867200E69B97 /* WH_PayOrderCell.xib */,
 			);
 			path = ChatCell;
 			sourceTree = "<group>";
@@ -10981,6 +10989,7 @@
 				CC3016B21951BABF0059BADA /* f010.png in Resources */,
 				18E9EA8E1D8640F3002E334F /* RDUp2.png in Resources */,
 				12A955DB28A136E6008D7F12 /* ChenYu_TermsPrivacyVc.xib in Resources */,
+				330F3B872B31867200E69B97 /* WH_PayOrderCell.xib in Resources */,
 				CC3016C81951BABF0059BADA /* f021.png in Resources */,
 				18ABD6BF1D07FDAE000F43FC /* video_contrl_pause@2x.png in Resources */,
 				639A50821ED97E3B00C21D30 /* unableCheck@3x.png in Resources */,
@@ -11824,6 +11833,7 @@
 				6346691F1EC405F700BE6112 /* RATreeView+Enums.m in Sources */,
 				33E591692B16E6B900E578A3 /* MASCompositeConstraint.m in Sources */,
 				CCC88B5E1E4C526E00180080 /* CustomWindow.m in Sources */,
+				330F3B862B31867200E69B97 /* WH_PayOrderCell.m in Sources */,
 				CCC02C571A80D738004E32B5 /* WH_JXSearchUser_WHVC.m in Sources */,
 				638A6F241FA2E43400D6D17C /* WH_JXCashWithDraw_WHViewController.m in Sources */,
 				626F825C2488EC7900D0D4CF /* WH_ContactCell.m in Sources */,

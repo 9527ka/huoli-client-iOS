@@ -10,6 +10,7 @@
 #import "WH_JXTransferNoticeModel.h"
 #import "WH_JXTransferModel.h"
 #import "WH_BankCardTrans_WHModel.h"
+#import "WH_JXRoomRemind.h"
 
 @interface WH_JXTransferNotice_WHCell ()
 @property (nonatomic, strong) UIView *baseView;
@@ -105,7 +106,33 @@
 
 
 - (void)setDataWithMsg:(WH_JXMessageObject *)msg model:(id)tModel {
-    if ([msg.type intValue] == kWCMessageTypeBankCardTrans || [msg.type intValue] == kWCMessageTypeH5PaymentReturn) {
+    
+    if ([msg.type intValue] == kRoomRemind_REQUEST_NOTIFICATION ||[msg.type intValue] == kRoomRemind_REQUEST_PAID ||[msg.type intValue] == kRoomRemind_REQUEST_CONFIRMED ||[msg.type intValue] == kRoomRemind_REQUEST_CANCELLED ||[msg.type intValue] == kRoomRemind_REQUEST_REFUND){
+        WH_JXTransferModel *model = (WH_JXTransferModel *)tModel;
+        _moneyTit.text = @"付款金额";
+        NSString *lastContet;
+        if ([msg.type intValue] == 4000){
+            lastContet = @"买方已下单";
+        }else if ([msg.type intValue] == 4001){
+            lastContet = @"订单已支付";
+        }else if ([msg.type intValue] == 4002){
+            
+            lastContet = @"订单已确认收款";
+        }else if ([msg.type intValue] == 4003){
+            
+            lastContet = @"订单超时，已取消";
+            
+        }else if ([msg.type intValue] == 4004){
+            lastContet = @"订单已退款";
+        }
+        _noteTit.text = @"交易状态";
+        
+        [self hideTime:YES];
+        _moneyLab.text = [NSString stringWithFormat:@"HOTC%.2f",model.money];
+        _baseView.frame = CGRectMake(10, 10, JX_SCREEN_WIDTH-20, 200);
+        _nameLab.textColor = [UIColor lightGrayColor];
+        
+    }else if ([msg.type intValue] == kWCMessageTypeBankCardTrans || [msg.type intValue] == kWCMessageTypeH5PaymentReturn) {
         WH_BankCardTrans_WHModel *model = (WH_BankCardTrans_WHModel *)tModel;
         _moneyTit.text = @"到账金额";
         _payTit.text = @"当前状态:";
@@ -232,6 +259,9 @@
         string = @"充值通知";
     }else if (type == kWCMessageTypeH5PaymentReturn) {
         string = @"充值通知";
+    }else if (type == kRoomRemind_REQUEST_NOTIFICATION ||type == kRoomRemind_REQUEST_PAID ||type == kRoomRemind_REQUEST_CONFIRMED ||type == kRoomRemind_REQUEST_CANCELLED ||type == kRoomRemind_REQUEST_REFUND){
+        string = @"下单通知";
+        
     }
 
     return string;
@@ -254,6 +284,19 @@
     // 转账退款通知
     else if ([msg.type intValue] == kWCMessageTypeTransferBack) {
         string = [NSString stringWithFormat:@"%@%@",msg.toUserName,Localized(@"JX_NotReceive24Hours")];
+    }else if ([msg.type intValue] == 4000){
+        string = @"买方已下单";
+    }else if ([msg.type intValue] == 4001){
+        string = @"订单已支付";
+    }else if ([msg.type intValue] == 4002){
+        
+        string = @"订单已确认收款";
+    }else if ([msg.type intValue] == 4003){
+        
+        string = @"订单超时，已取消";
+        
+    }else if ([msg.type intValue] == 4004){
+        string = @"订单已退款";
     }
     return string;
 }
