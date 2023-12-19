@@ -21,8 +21,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *detaileLab;
 @property (weak, nonatomic) IBOutlet UIButton *notificationBtn;
 @property (weak, nonatomic) IBOutlet UIButton *jumpBtn;
-@property (weak, nonatomic) IBOutlet UIView *zzView;
-@property (weak, nonatomic) IBOutlet UIView *codeBgView;
 @property (weak, nonatomic) IBOutlet UIImageView *codeImage;
 @property (weak, nonatomic) IBOutlet UILabel *noticeLab;
 
@@ -32,17 +30,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //添加手势
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenCodeView)];
-    [self.zzView addGestureRecognizer:tap];
-    
-    self.codeBgView.layer.cornerRadius = 8.0f;
     self.noticeLab.layer.cornerRadius = 6.0f;
     
     [self initUI];
-}
--(void)hiddenCodeView{
-    self.zzView.hidden = self.codeBgView.hidden = YES;
 }
 - (IBAction)didTapBack {
     [g_navigation WH_dismiss_WHViewController:self animated:YES];
@@ -73,11 +63,11 @@
     // *1000 是精确到毫秒，不乘就是精确到秒
     NSTimeInterval time = [date timeIntervalSince1970];
     
-    if(self.expiryTime.longLongValue < time){
+    if(self.expiryTime.longLongValue/1000 < time){
         self.timeLab.text = @"已超时";
     }else{
         //计算还有多少秒
-        __block NSInteger second = time - self.expiryTime.longLongValue;
+        __block NSInteger second = self.expiryTime.longLongValue/1000 - time;
         //添加倒计时
         //(1)
         dispatch_queue_t quene = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -96,8 +86,8 @@
                 } else {
                     NSInteger min = second/60.0f;
                     NSInteger sec = second%60;
-                    self.timeLab.text = [NSString stringWithFormat:@"%02ld:%02lds",(long)min,(long)sec];
                     
+                    self.timeLab.text = [NSString stringWithFormat:@"%02ld:%02lds",(long)min,(long)sec];
                     
                     second--;
                 }
@@ -127,9 +117,18 @@
     
     return isOpenApp;
 }
-- (IBAction)lookCodeAction:(id)sender {
-    self.zzView.hidden = self.codeBgView.hidden = NO;
+- (IBAction)saveAction:(id)sender {
+    
+    UIImageWriteToSavedPhotosAlbum(self.codeImage.image, self, @selector(image:didFinishSavingWithError:contextInfo:), (__bridge void *)self);
 }
+//必要实现的协议方法, 不然会崩溃
+-(void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
+    
+  [g_server showMsg:@"已保存到相册"];
+    
+}
+
+
 
 
 @end

@@ -4774,6 +4774,13 @@
     
     [p go];
 }
+#pragma mark --  查询有没有未完成的订单
+-(void)WH_Processing_order:(id)toView {
+    WH_JXConnection* p = [self addTask:wh_processing_order param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+        
+    [p go];
+}
 
 
 @end

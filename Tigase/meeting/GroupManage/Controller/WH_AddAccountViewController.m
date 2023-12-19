@@ -184,7 +184,7 @@
             UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
             ipc.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
             ipc.delegate = weakSelf;
-            ipc.allowsEditing = YES;
+//            ipc.allowsEditing = YES;
             //选择图片模式
 //            ipc.modalPresentationStyle = UIModalPresentationCurrentContext;
             //    [g_window addSubview:ipc.view];
@@ -207,7 +207,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    self.image = [ImageResize image:[info objectForKey:@"UIImagePickerControllerEditedImage"] fillSize:CGSizeMake(JX_SCREEN_WIDTH, JX_SCREEN_HEIGHT)];
+    self.image = [ImageResize image:[info objectForKey:@"UIImagePickerControllerOriginalImage"] fillSize:CGSizeMake(JX_SCREEN_WIDTH, JX_SCREEN_HEIGHT)];
     
     [self.tableView reloadData];
     

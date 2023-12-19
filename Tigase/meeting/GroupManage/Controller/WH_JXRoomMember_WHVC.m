@@ -52,6 +52,7 @@
 #import "WH_JXGroupMemberRedPacketUnclaimedVC.h"
 #import "WH_JXGroupEnterAndOutVC.h"
 #import "WH_GroupRechargeViewController.h"
+#import "WH_JXBuyPayViewController.h"
 
 #define HEIGHT 55
 #define IMGSIZE 170
@@ -332,6 +333,43 @@
 #pragma mark - 请求成功回调
 -(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{
     [_wait stop];
+    
+    
+    if( [aDownload.action isEqualToString:wh_processing_order] ){
+        
+        if(dict){//有待支付订单
+            NSString *jid = [NSString stringWithFormat:@"%@",dict[@"jid"]];
+            if([jid isEqualToString:self.wh_room.roomJid]){
+                //payType": 1,                        //支付方式,1微信,2支付宝
+                NSString *payType = [NSString stringWithFormat:@"%@",dict[@"payType"]];
+                self.wh_room.type = payType.intValue == 1?1:0;
+                self.wh_room.count = [NSString stringWithFormat:@"%@",dict[@"payAmount"]];
+                
+                NSString *expiryTime = [NSString stringWithFormat:@"%@",dict[@"expiryTime"]];
+                
+                NSMutableDictionary *payTypeDic = [[NSMutableDictionary alloc] init];
+                [payTypeDic setObject:[NSString stringWithFormat:@"%@",dict[@"payeeAccount"]] forKey:@"accountNo"];
+                 [payTypeDic setObject:[NSString stringWithFormat:@"%@",dict[@"payeeName"]] forKey:@"accountName"];
+                  [payTypeDic setObject:[NSString stringWithFormat:@"%@",dict[@"payeeAccountImg"]] forKey:@"qrCode"];
+                
+                WH_JXBuyPayViewController *vc = [[WH_JXBuyPayViewController alloc] init];
+                vc.expiryTime = expiryTime;
+                vc.room = self.wh_room;
+                vc.payDic = payTypeDic;
+                [g_navigation pushViewController:vc animated:YES];
+                
+            }else{
+                [g_server showMsg:@"您还有未完成的群内充值订单"];
+            }
+            
+        }else{
+            WH_GroupRechargeViewController *vc = [[WH_GroupRechargeViewController alloc] init];
+            vc.room = self.wh_room;
+            [g_navigation pushViewController:vc animated:YES];
+        }
+            
+    }
+    
     if( [aDownload.action isEqualToString:wh_act_UserGet] ){
         WH_JXUserObject* user = [[WH_JXUserObject alloc]init];
         [user WH_getDataFromDict:dict];
@@ -1172,9 +1210,8 @@
 }
 #pragma mark 群内充值
 -(void)groupRechargAction{
-    WH_GroupRechargeViewController *vc = [[WH_GroupRechargeViewController alloc] init];
-    vc.room = self.wh_room;
-    [g_navigation pushViewController:vc animated:YES];
+    //获取当前是否有待支付的订单
+    [g_server WH_Processing_order:self];
 }
 
 - (void)settingRoomIcon {

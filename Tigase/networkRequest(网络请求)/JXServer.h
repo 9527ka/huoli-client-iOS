@@ -415,6 +415,7 @@
 #define wh_change_userAccount @"user/account/update"    //修改支付账号
 #define wh_balance_userAccount @"user/query/balance/"    //限额
 #define wh_trade_apply @"trade/apply"    //够买HOtc接口
+#define wh_processing_order @"trade/query/processing_order"    //查询有没有未完成的订单
 
 
 @protocol JXServerResult;
@@ -1245,7 +1246,8 @@
 // "remark": "for test"                　　　//给群主留言
 - (void)WH_TradeApplyWithTargetAmount:(NSString *)targetAmount payType:(NSInteger)payType financialInfoId:(NSString *)financialInfoId payeeUID:(NSString *)payeeUID jid:(NSString *)jid payeeName:(NSString *)payeeName payeeAccount:(NSString *)payeeAccount payeeAccountImg:(NSString *)payeeAccountImg toView:(id)toView;
 
-
+#pragma mark --  查询有没有未完成的订单
+-(void)WH_Processing_order:(id)toView;
 
 
 
