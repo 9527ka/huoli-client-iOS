@@ -352,6 +352,7 @@
                  [payTypeDic setObject:[NSString stringWithFormat:@"%@",dict[@"payeeName"]] forKey:@"accountName"];
                   [payTypeDic setObject:[NSString stringWithFormat:@"%@",dict[@"payeeAccountImg"]] forKey:@"qrCode"];
                 [payTypeDic setObject:[NSString stringWithFormat:@"%@",dict[@"no"]] forKey:@"id"];
+                [payTypeDic setObject:[NSString stringWithFormat:@"%@",dict[@"status"]] forKey:@"status"];
                 
                 WH_JXBuyPayViewController *vc = [[WH_JXBuyPayViewController alloc] init];
                 vc.expiryTime = expiryTime;

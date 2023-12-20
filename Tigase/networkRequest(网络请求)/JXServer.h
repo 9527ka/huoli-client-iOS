@@ -417,6 +417,9 @@
 #define wh_trade_apply @"trade/apply"    //够买HOtc接口
 #define wh_processing_order @"trade/query/processing_order"    //查询有没有未完成的订单
 #define wh_payment_notify @"trade/payment/notify"    //群成员转帐通知
+#define wh_order_detaile @"trade/query/"    //订单详情
+#define wh_order_confirm @"trade/payment/confirm"    //确认订单
+#define wh_order_cancle @"trade/cancel/"    //取消
 
 
 @protocol JXServerResult;
@@ -1251,8 +1254,12 @@
 -(void)WH_Processing_order:(id)toView;
 #pragma mark --  群成员转帐通知接口
 -(void)WH_paymentNotifyWithId:(NSString *)orderId toView:(id)toView;
-
-
+#pragma mark --  获取订单详情接口
+-(void)WH_orderDetaileWithId:(NSString *)orderId toView:(id)toView;
+#pragma mark --  确认订单接口
+-(void)WH_orderConfirmWithId:(NSString *)orderId payerUID:(NSString *)payerUID toView:(id)toView;
+#pragma mark --  取消订单接口
+-(void)WH_orderCancleWithId:(NSString *)orderId toView:(id)toView;
 
 
 

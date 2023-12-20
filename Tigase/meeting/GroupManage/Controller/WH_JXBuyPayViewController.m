@@ -11,6 +11,7 @@
 @interface WH_JXBuyPayViewController (){
     ATMHud* _wait;
 }
+@property (weak, nonatomic) IBOutlet UILabel *orderTimeTitle;
 @property (weak, nonatomic) IBOutlet UILabel *payTitleLab;
 @property (weak, nonatomic) IBOutlet UILabel *timeLab;
 @property (weak, nonatomic) IBOutlet UILabel *oneLab;
@@ -64,8 +65,20 @@
     NSDate *date = [NSDate dateWithTimeIntervalSinceNow:0];
     // *1000 是精确到毫秒，不乘就是精确到秒
     NSTimeInterval time = [date timeIntervalSince1970];
-    
-    if(self.expiryTime.longLongValue/1000 < time){
+    NSString *status = [NSString stringWithFormat:@"%@",self.payDic[@"status"]];
+    if([self.payDic objectForKey:@"status"] && status.intValue > 0){
+//        0-订单初始化
+//        １-买家己付款
+//        ２-取消订单
+//        ３-订单有争议,处理中
+//        ４-订单支付完成,己确认
+        NSString *status = [NSString stringWithFormat:@"%@",[self.payDic objectForKey:@"status"]];
+        
+        self.timeLab.text = status.intValue == 1?@"订单已支付，等待群主确认":@"已超时";
+        self.orderTimeTitle.text = @"";
+        self.notificationBtn.hidden = YES;
+        
+    }else if(self.expiryTime.longLongValue/1000 < time){
         self.timeLab.text = @"已超时";
     }else{
         //计算还有多少秒
@@ -136,8 +149,13 @@
     [_wait hide];
    if ([aDownload.action isEqualToString:wh_payment_notify]){
         [g_server showMsg:@"通知成功"];
-       [self.navigationController popToRootViewControllerAnimated:YES];
+       [self performSelector:@selector(popVCAction) withObject:nil afterDelay:1.0];
+       
+       
     }
+}
+-(void)popVCAction{
+    [g_navigation popToRootViewController];
 }
 
 #pragma mark - 请求失败回调

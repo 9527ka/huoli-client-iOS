@@ -106,6 +106,8 @@
 
 
 - (void)setDataWithMsg:(WH_JXMessageObject *)msg model:(id)tModel {
+    _payTit.text = @"";
+    _nameLab.text = @"";
     
     if ([msg.type intValue] == kRoomRemind_REQUEST_NOTIFICATION ||[msg.type intValue] == kRoomRemind_REQUEST_PAID ||[msg.type intValue] == kRoomRemind_REQUEST_CONFIRMED ||[msg.type intValue] == kRoomRemind_REQUEST_CANCELLED ||[msg.type intValue] == kRoomRemind_REQUEST_REFUND){
         WH_JXTransferModel *model = (WH_JXTransferModel *)tModel;
@@ -131,6 +133,8 @@
         _moneyLab.text = [NSString stringWithFormat:@"HOTC%.2f",model.money];
         _baseView.frame = CGRectMake(10, 10, JX_SCREEN_WIDTH-20, 200);
         _nameLab.textColor = [UIColor lightGrayColor];
+        _payTit.text = @"下单用户";
+        _nameLab.text = model.userName;
         
     }else if ([msg.type intValue] == kWCMessageTypeBankCardTrans || [msg.type intValue] == kWCMessageTypeH5PaymentReturn) {
         WH_BankCardTrans_WHModel *model = (WH_BankCardTrans_WHModel *)tModel;

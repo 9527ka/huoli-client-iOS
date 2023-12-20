@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *certainBtn;
 @property (weak, nonatomic) IBOutlet UIView *bgView;
 
-@property (nonatomic,copy)void(^certainBlock)(NSInteger tag);
+@property (nonatomic,copy)void(^certainBlock)(NSInteger tag,NSString *orderId);
 
 @property (nonatomic,strong) WH_JXMessageObject * msg;
 

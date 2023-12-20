@@ -4789,6 +4789,31 @@
         
     [p go];
 }
+#pragma mark --  获取订单详情接口
+-(void)WH_orderDetaileWithId:(NSString *)orderId toView:(id)toView {
+    WH_JXConnection* p = [self addTask:[NSString stringWithFormat:@"%@%@",wh_order_detaile,orderId] param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+        
+    [p go];
+}
+#pragma mark --  确认订单接口
+-(void)WH_orderConfirmWithId:(NSString *)orderId payerUID:(NSString *)payerUID toView:(id)toView {
+    WH_JXConnection* p = [self addTask:wh_order_confirm param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:orderId forKey:@"id"];
+    [p setPostValue:payerUID forKey:@"payerUID"];
+    [p go];
+}
+#pragma mark --  取消订单接口
+-(void)WH_orderCancleWithId:(NSString *)orderId toView:(id)toView {
+    WH_JXConnection* p = [self addTask:[NSString stringWithFormat:@"%@%@",wh_order_cancle,orderId] param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+        
+    [p go];
+}
+
+
+
 
 
 @end

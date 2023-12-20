@@ -22,8 +22,11 @@
     // Configure the view for the selected state
 }
 - (IBAction)certainAction:(id)sender {
+    
+    NSDictionary *dict = [self dictionaryWithJsonString:self.msg.content];
+    
     if(self.certainBlock){
-        self.certainBlock([self.msg.type intValue] == 4001?1:0);
+        self.certainBlock([self.msg.type intValue] == 4001?1:0,[NSString stringWithFormat:@"%@",dict[@"tradeNo"]]);
     }
 }
 

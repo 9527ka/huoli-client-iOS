@@ -21,6 +21,7 @@
                 <outlet property="noticeLab" destination="hPo-5m-df4" id="BQB-tJ-Ghy"/>
                 <outlet property="notificationBtn" destination="G9N-5H-DqJ" id="MCl-l8-7u0"/>
                 <outlet property="oneLab" destination="6dg-EW-FgR" id="g0J-au-8Uc"/>
+                <outlet property="orderTimeTitle" destination="Zuw-8N-QzF" id="uwf-95-wBR"/>
                 <outlet property="payTitleLab" destination="Xbc-Vo-n2u" id="r7K-9A-drA"/>
                 <outlet property="threeLab" destination="8tL-bS-6Vf" id="IRY-N6-yai"/>
                 <outlet property="timeLab" destination="7NG-ED-GSI" id="AF8-cx-AEn"/>

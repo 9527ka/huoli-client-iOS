@@ -111,6 +111,8 @@
         //获取过期时间
         NSString *expiryTime = [NSString stringWithFormat:@"%@",dict[@"expiryTime"]];
         [self.payTypeDic setObject:[NSString stringWithFormat:@"%@",dict[@"id"]] forKey:@"id"];
+        [self.payTypeDic setObject:@"0" forKey:@"status"];
+        
         
         WH_JXBuyPayViewController *vc = [[WH_JXBuyPayViewController alloc] init];
         vc.expiryTime = expiryTime;

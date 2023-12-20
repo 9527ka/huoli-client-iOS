@@ -128,6 +128,9 @@
 #import "MISFloatingBall.h"
 #import "WH_webpage_WHVC.h"
 #import "WH_PayOrderCell.h"
+#import "WH_JXCertainOrderVC.h"
+#import "WH_JXOrderDetaileVC.h"
+
 
 #define faceHeight (THE_DEVICE_HAVE_HEAD ? 253 : 218)
 #define PAGECOUNT 100
@@ -267,6 +270,9 @@
 
 @property (nonatomic, strong) memberData *notalkMember;//被禁言的对象
 
+@property(nonatomic,copy)NSString *orderId;
+
+@property(nonatomic,assign)NSInteger tag;
 //@property (nonatomic ,strong) UIView *bottomView;//阅后即焚使用
 //@property (nonatomic ,strong) UIImageView *clockImageV;
 //@property (nonatomic, strong) UILabel *bottomTitleLb;
@@ -3043,11 +3049,19 @@
 - (WH_PayOrderCell *)WH_creat_PayOrderCell:(WH_JXMessageObject *)msg indexPath:(NSIndexPath *)indexPath{
     WH_PayOrderCell *cell = (WH_PayOrderCell *)[_table dequeueReusableCellWithIdentifier:@"WH_PayOrderCell" forIndexPath:indexPath];
     __weak typeof (self)weakSelf = self;
-    cell.certainBlock = ^(NSInteger tag) {//1确认 0详情
-        
+    cell.certainBlock = ^(NSInteger tag, NSString * _Nonnull orderId) {//1确认 0详情
+        [weakSelf lookOrderDetaileWithId:orderId tag:tag];
     };
     cell.msg = msg;
     return cell;
+}
+//查看订单详情
+-(void)lookOrderDetaileWithId:(NSString *)orderId tag:(NSInteger)tag{
+    self.orderId = orderId;
+    self.tag = tag;
+    //查询订单详情
+    [g_server WH_orderDetaileWithId:orderId toView:self];
+    
 }
 
 //阅后即焚提示消息
@@ -5466,7 +5480,31 @@
     if (![aDownload.action isEqualToString:wh_act_getRedPacket]) {
         [_wait stop];
     }
-    if ([aDownload.action isEqualToString:act_delectRoomMsg]) {
+    NSString *orderDetaileUrl = [NSString stringWithFormat:@"%@%@",wh_order_detaile,self.orderId];
+    if( [aDownload.action isEqualToString:orderDetaileUrl] ){
+
+        //判断订单是否超时不能点击
+        // status,
+        //    0-订单初始化
+        //    １-买家己付款
+        //    ２-取消订单
+        //    ３-订单有争议,处理中
+        //    ４-订单支付完成,己确认
+        NSString *status = [NSString stringWithFormat:@"%@",dict[@"status"]];
+        
+        if (status.intValue == 1) {//确认
+            WH_JXCertainOrderVC *orderVC = [[WH_JXCertainOrderVC alloc] init];
+            orderVC.dict = dict;
+            orderVC.orderId = self.orderId;
+            [g_navigation pushViewController:orderVC animated:YES];
+        }else{//详情
+            WH_JXOrderDetaileVC *orderVC = [[WH_JXOrderDetaileVC alloc] init];
+            orderVC.dict = dict;
+            orderVC.orderId = self.orderId;
+            [g_navigation pushViewController:orderVC animated:YES];
+            
+        }
+    }else if ([aDownload.action isEqualToString:act_delectRoomMsg]) {
         
         //双向撤回
         WH_JXMessageObject *msg = [[WH_JXMessageObject alloc] init];
