@@ -519,7 +519,9 @@ static JXXMPP *sharedManager;
                         if ([msg.type intValue] == XMPP_TYPE_CONTACTREGISTER) {
                             [g_notify postNotificationName:kMsgComeContactRegister object:msg];
                         }else {
+                            
                             [self doReceiveFriendRequest:msg];
+                            
                         }
                         return;
                     }
@@ -1987,7 +1989,12 @@ static JXXMPP *sharedManager;
                         if ([msg.type intValue] == XMPP_TYPE_CONTACTREGISTER) {
                             [g_notify postNotificationName:kMsgComeContactRegister object:msg];
                         }else {
-                            [self doReceiveFriendRequest:msg];
+                            if([msg.type intValue] == XMPP_TYPE_DELALL){//彻底删除
+                                
+                            }else{
+                                [self doReceiveFriendRequest:msg];
+                            }
+                            
                         }
                         return;
                     }

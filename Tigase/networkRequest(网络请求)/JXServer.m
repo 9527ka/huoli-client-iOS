@@ -4812,6 +4812,40 @@
     [p go];
 }
 
+// 获取订单列表 status0-订单初始化 １-买家己付款 ２-取消订单 ３-订单有争议,处理中 ４-订单支付完成,己确认
+//type        购买类型:出售-1,购买-2
+
+- (void)WH_OrderListIndex:(NSInteger)index startTime:(NSString *)startTime endTime:(NSString *)endTime status:(NSString *)status type:(NSInteger)type keyword:(NSString *)keyword pageIndex:(NSInteger)pageIndex toView:(id)toView {
+    WH_JXConnection *p = [self addTask:wh_order_List param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:[NSNumber numberWithInteger:pageIndex] forKey:@"pageIndex"];
+    [p setPostValue:[NSNumber numberWithInteger:20] forKey:@"pageSize"];
+    [p setPostValue:[NSNumber numberWithInteger:type] forKey:@"type"];
+    [p setPostValue:status forKey:@"status"];
+    if(startTime.length > 0){
+        [p setPostValue:startTime forKey:@"startTime"];
+    }
+    if(endTime.length > 0){
+        [p setPostValue:endTime forKey:@"endTime"];
+    }
+    if(keyword.length > 0){
+        [p setPostValue:keyword forKey:@"keyword"];
+    }
+
+    [p go];
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

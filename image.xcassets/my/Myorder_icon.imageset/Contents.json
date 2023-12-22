@@ -5,12 +5,11 @@
       "scale" : "1x"
     },
     {
-      "filename" : "special_open_bg@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "special_open_bg@3x.png",
+      "filename" : "Myorder_icon.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

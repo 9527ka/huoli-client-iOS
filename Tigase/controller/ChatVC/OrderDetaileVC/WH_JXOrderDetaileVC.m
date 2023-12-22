@@ -7,6 +7,7 @@
 //
 
 #import "WH_JXOrderDetaileVC.h"
+#import "WH_JXAppealListVC.h"
 
 @interface WH_JXOrderDetaileVC ()
 @property (weak, nonatomic) IBOutlet UILabel *statueTitle;
@@ -19,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLab;
 @property (weak, nonatomic) IBOutlet UILabel *payTypeLab;
 @property (weak, nonatomic) IBOutlet UIButton *blackBtn;
+@property (weak, nonatomic) IBOutlet UIButton *appealBtn;
+@property(nonatomic,strong) WH_JXUserObject *wh_user;
 
 @end
 
@@ -27,6 +30,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.blackBtn.layer.cornerRadius = 4.0f;
+    self.appealBtn.layer.cornerRadius = 4.0f;
+    
+    NSString *userId = [NSString stringWithFormat:@"%@",self.dict[@"payerUID"]];
+    if([userId isEqualToString:MY_USER_ID]){
+        userId = [NSString stringWithFormat:@"%@",self.dict[@"payeeUID"]];
+    }
+    
+    //查看好友状态
+    _wh_user = [[WH_JXUserObject sharedUserInstance] getUserById:userId];
+    //-1:黑名单；0：陌生人；1:单方关注；2:互为好友；8:系统号；9:非显示系统号  10:本账号的其他端
+    [self.blackBtn setTitle:[NSString stringWithFormat:@"%@",self.wh_user.status.intValue == -1?@"取消拉黑":@"拉黑"] forState:UIControlStateNormal];
+    
+    self.blackBtn.hidden = self.wh_user.status.intValue == 2?NO:YES;
+    
     
     NSString *type = [NSString stringWithFormat:@"%@",self.dict[@"payType"]]; //1 微信  2支付宝
     //dict[@"payeeAccount"]
@@ -35,7 +52,7 @@
     self.orderNoLab.text = [NSString stringWithFormat:@"%@",self.dict[@"no"]];
     self.countLab.text = [NSString stringWithFormat:@"%@ HOTC",self.dict[@"payAmount"]];
     //卖家昵称
-    self.sellerNameLab.text = [NSString stringWithFormat:@"%@",self.dict[@"payeeName"]];
+    self.sellerNameLab.text = [NSString stringWithFormat:@"%@",self.dict[@"payeeNickName"]];
     self.buyerNameLab.text = [NSString stringWithFormat:@"%@",self.dict[@"payerName"]];
     
     //转换为日期
@@ -79,9 +96,25 @@
         self.detaileLab.text = reason;
     }
 }
-
+//复制
+- (IBAction)copyAction:(id)sender {
+    UIPasteboard *board = [UIPasteboard generalPasteboard];
+    board.string = self.orderNoLab.text;
+    [g_server showMsg:@"复制成功"];
+}
+//申诉
+- (IBAction)appealAction:(id)sender {
+    WH_JXAppealListVC *vc = [[WH_JXAppealListVC alloc] init];
+    [g_navigation pushViewController:vc animated:YES];
+}
+//拉黑
 - (IBAction)blackAction:(id)sender {
     
+    if(self.wh_user.status.intValue == -1){//取消拉黑
+        [g_server WH_delBlacklistWithToUserId:self.wh_user.userId toView:self];
+    }else{//拉黑
+        [g_server WH_addBlacklistWithToUserId:self.wh_user.userId toView:self];
+    }
 }
 - (IBAction)didTapBack {
     [g_navigation WH_dismiss_WHViewController:self animated:YES];
@@ -93,7 +126,19 @@
     
     NSString *orderCancleUrl = [NSString stringWithFormat:@"%@%@",wh_order_cancle,self.orderId];
     
-    if( [aDownload.action isEqualToString:orderDetaileUrl] ){
+    if([aDownload.action isEqualToString:wh_act_BlacklistDel]){
+        
+        [self.wh_user doSendMsg:XMPP_TYPE_NOBLACK content:nil];
+        self.wh_user.status = @(2);
+        [self.blackBtn setTitle:@"拉黑" forState:UIControlStateNormal];
+        
+    }else if([aDownload.action isEqualToString:wh_act_BlacklistAdd]){//拉黑
+                
+        [self.wh_user doSendMsg:XMPP_TYPE_BLACK content:nil];
+        self.wh_user.status = @(-1);
+        [self.blackBtn setTitle:@"取消拉黑" forState:UIControlStateNormal];
+        
+    }else if( [aDownload.action isEqualToString:orderDetaileUrl] ){
         
         
         //"currentTime": 1703040327880,
@@ -124,7 +169,8 @@
         
     }else if ([aDownload.action isEqualToString:wh_order_confirm] || [aDownload.action isEqualToString:orderCancleUrl]){
         [g_server showMsg:@"操作成功"];
-        [self.navigationController popViewControllerAnimated:YES];
+        
+        [g_navigation WH_dismiss_WHViewController:self animated:YES];
     }
 }
 

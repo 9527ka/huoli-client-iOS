@@ -110,7 +110,7 @@
     }
 }
 -(void)goBackAction{
-    [self.navigationController popViewControllerAnimated:YES];
+    [g_navigation WH_dismiss_WHViewController:self animated:YES];
 }
 
 #pragma mark - 请求失败回调

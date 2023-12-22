@@ -904,7 +904,7 @@
 -(void)newMsgCome:(NSNotification *)notifacation
 {
     WH_JXMessageObject *msg = notifacation.object;
-    if(msg==nil)
+    if(msg==nil || msg.type.intValue == XMPP_TYPE_DELALL)
         return;
     BOOL showNumber=YES;
 

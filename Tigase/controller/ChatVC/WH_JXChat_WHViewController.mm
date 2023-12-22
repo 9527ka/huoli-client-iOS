@@ -3499,7 +3499,7 @@
     
     WH_JXMessageObject *msg = (WH_JXMessageObject *)notifacation.object;
     
-    if(msg==nil)
+    if(msg==nil || msg.type.intValue == XMPP_TYPE_DELALL)
         return;
     
     // 更新title 在线状态

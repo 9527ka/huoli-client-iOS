@@ -22,6 +22,8 @@
 #import "WH_JXUserObject+GetCurrentUser.h"
 #import "WH_JXImageScroll_WHVC.h"
 #import "DMScaleTransition.h"
+#import "WH_JXOrderListVC.h"
+
 @interface WH_MineViewController ()
 {
     DMScaleTransition *_scaleTransition;
@@ -73,12 +75,14 @@
 //        self.wh_imgsArray = @[@[@""] ,@[@"MyCollection" ,@"My_DongTai" ,@"My_JiangKe"] ,@[@"My_AnQuanSheZhi" ,@"My_YinSiSheZhi" ,@"My_QiTaSheZhi"]];
 //    }
     if ([g_App.isShowRedPacket integerValue] == 1||([g_App.isShowRedPacket integerValue] == 0)) {
-        self.wh_dataArray = @[@[@""] ,@[Localized(@"JX_MyBalance") ,Localized(@"JX_MyCollection") , Localized(@"WaHu_LifeStatus_WaHu")] ,@[Localized(@"JX_SecuritySettings") ,Localized(@"JX_PrivacySettings") ,Localized(@"WaHu_OtherSetting_WaHu")]];
-        self.wh_imgsArray = @[@[@""] ,@[@"MyWallet" ,@"MyCollection" ,@"My_DongTai"] ,@[@"My_AnQuanSheZhi" ,@"My_YinSiSheZhi" ,@"My_QiTaSheZhi"]];
+        self.wh_dataArray = @[@[@""] ,@[Localized(@"JX_MyBalance") ,@"我的订单",Localized(@"JX_MyCollection") , Localized(@"WaHu_LifeStatus_WaHu")] ,@[Localized(@"JX_SecuritySettings") ,Localized(@"JX_PrivacySettings") ,Localized(@"WaHu_OtherSetting_WaHu")]];
+        self.wh_imgsArray = @[@[@""] ,@[@"MyWallet" ,@"Myorder_icon",@"MyCollection" ,@"My_DongTai"] ,@[@"My_AnQuanSheZhi" ,@"My_YinSiSheZhi" ,@"My_QiTaSheZhi"]];
+        self.wh_tagArray = @[@[@(0)] ,@[@(ClickButtonType_Wallert) ,@(ClickButtonType_Order),@(ClickButtonType_Collect) ,@(ClickButtonType_LifeStatus)] ,@[@(ClickButtonType_SecuritySettings) ,@(ClickButtonType_PrivacySettings) ,@(ClickButtonType_OtherSetting)]];
     }else {
         //隐藏钱包
-        self.wh_dataArray = @[@[@""] ,@[Localized(@"JX_MyCollection") ,Localized(@"WaHu_LifeStatus_WaHu")] ,@[Localized(@"JX_SecuritySettings") ,Localized(@"JX_PrivacySettings") ,@"其他设置"]];
-        self.wh_imgsArray = @[@[@""] ,@[@"MyCollection" ,@"My_DongTai"] ,@[@"My_AnQuanSheZhi" ,@"My_YinSiSheZhi" ,@"My_QiTaSheZhi"]];
+        self.wh_dataArray = @[@[@""] ,@[@"我的订单",Localized(@"JX_MyCollection") ,Localized(@"WaHu_LifeStatus_WaHu")] ,@[Localized(@"JX_SecuritySettings") ,Localized(@"JX_PrivacySettings") ,@"其他设置"]];
+        self.wh_imgsArray = @[@[@""] ,@[@"Myorder_icon",@"MyCollection" ,@"My_DongTai"] ,@[@"My_AnQuanSheZhi" ,@"My_YinSiSheZhi" ,@"My_QiTaSheZhi"]];
+        self.wh_tagArray = @[@[@(0)] ,@[@(ClickButtonType_Order),@(ClickButtonType_Collect) ,@(ClickButtonType_LifeStatus)] ,@[@(ClickButtonType_SecuritySettings) ,@(ClickButtonType_PrivacySettings) ,@(ClickButtonType_OtherSetting)]];
     }
     
     
@@ -210,6 +214,7 @@
     }else{
         NSArray *imgsArray = [self.wh_imgsArray objectAtIndex:indexPath.section];
         NSArray *nameArray = [self.wh_dataArray objectAtIndex:indexPath.section];
+        NSArray *tagArray = [self.wh_tagArray objectAtIndex:indexPath.section];
         
         for (int i = 0; i < nameArray.count; i++) {
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -217,11 +222,8 @@
             [cell addSubview:btn];
             [self createCellContentWithSupView:btn imageName:[imgsArray objectAtIndex:i] labelText:[nameArray objectAtIndex:i]];
             
-            if (indexPath.section == 1) {
-                btn.tag = indexPath.section + i;
-            }else{
-                btn.tag = indexPath.section + i + (([g_App.isShowRedPacket integerValue] == 1)?3:2);
-            }
+            NSNumber *tag = [tagArray objectAtIndex:i];
+            btn.tag = tag.intValue;
             
             if (i < nameArray.count - 1) {
                 UIView *lView = [[UIView alloc] initWithFrame:CGRectMake(0, (i+1)*55, CGRectGetWidth(self.wh_tableView.frame), 1)];
@@ -323,89 +325,56 @@
         [g_navigation pushViewController:pdVC animated:YES];
         
     }else{
-        if ([g_App.isShowRedPacket integerValue] == 1||[g_App.isShowRedPacket integerValue] == 0) {
-            if (button.tag == 1) {
-                //我的钱包
-                
-                WH_MyWallet_WHViewController *moneyVC = [[WH_MyWallet_WHViewController alloc] init];
-                [g_navigation pushViewController:moneyVC animated:YES];
-                
-                //        WH_JXMyMoney_WHViewController * moneyVC = [[WH_JXMyMoney_WHViewController alloc] init];
-                //        [g_navigation pushViewController:moneyVC animated:YES];
-                
-            }else if (button.tag == 2) {
-                //我的收藏
-                WH_Collect_WHViewController *collectVC = [[WH_Collect_WHViewController alloc] init];
-                [g_navigation pushViewController:collectVC animated:YES];
-                
-                //        WeiboViewControlle * collection = [[WeiboViewControlle alloc] initCollection];
-                //        [g_navigation pushViewController:collection animated:YES];
-                
-            }else if (button.tag == 3) {
-                //生活状态
-                userWeiboVC* vc = [userWeiboVC alloc];
-                vc.user = g_myself;
-                vc.wh_isGotoBack = YES;
-                vc = [vc init];
-                //    [g_window addSubview:vc.view];
-                [g_navigation pushViewController:vc animated:YES];
-                
-            }else if (button.tag == 4) {
-                //我的讲课,11月1日后干掉
-//                WH_JXCourseList_WHVC *vc = [[WH_JXCourseList_WHVC alloc] init];
-//                [g_navigation pushViewController:vc animated:YES];
-                
-            }else if (button.tag == 5) {
-                //安全设置
-                WH_JXSecuritySetting_WHVC *vc = [[WH_JXSecuritySetting_WHVC alloc] init];
-                [g_navigation pushViewController:vc animated:YES];
-                
-            }else if (button.tag == 6) {
-                //隐私设置
-                [g_server WH_getFriendSettingsWithUserId:[NSString stringWithFormat:@"%ld",g_server.user_id] toView:self];
-                
-            }else if (button.tag == 7) {
-                //其他设置
-                WH_JXSetting_WHVC* vc = [[WH_JXSetting_WHVC alloc]init];
-                [g_navigation pushViewController:vc animated:YES];
-            }
-        }else{
-            if (button.tag == 1) {
-                //我的收藏
-                WH_Collect_WHViewController *collectVC = [[WH_Collect_WHViewController alloc] init];
-                [g_navigation pushViewController:collectVC animated:YES];
-                
-                //        WeiboViewControlle * collection = [[WeiboViewControlle alloc] initCollection];
-                //        [g_navigation pushViewController:collection animated:YES];
-                
-            }else if (button.tag == 2) {
-                //生活状态
-                userWeiboVC* vc = [userWeiboVC alloc];
-                vc.user = g_myself;
-                vc.wh_isGotoBack = YES;
-                vc = [vc init];
-                //    [g_window addSubview:vc.view];
-                [g_navigation pushViewController:vc animated:YES];
-                
-            }else if (button.tag == 3) {
-                //我的讲课
-//                WH_JXCourseList_WHVC *vc = [[WH_JXCourseList_WHVC alloc] init];
-//                [g_navigation pushViewController:vc animated:YES];
-                
-            }else if (button.tag == 4) {
-                //安全设置
-                WH_JXSecuritySetting_WHVC *vc = [[WH_JXSecuritySetting_WHVC alloc] init];
-                [g_navigation pushViewController:vc animated:YES];
-                
-            }else if (button.tag == 5) {
-                //隐私设置
-                [g_server WH_getFriendSettingsWithUserId:[NSString stringWithFormat:@"%ld",g_server.user_id] toView:self];
-                
-            }else if (button.tag == 6) {
-                //其他设置
-                WH_JXSetting_WHVC* vc = [[WH_JXSetting_WHVC alloc]init];
-                [g_navigation pushViewController:vc animated:YES];
-            }
+        
+        if (button.tag == ClickButtonType_Wallert) {
+            //我的钱包
+            
+            WH_MyWallet_WHViewController *moneyVC = [[WH_MyWallet_WHViewController alloc] init];
+            [g_navigation pushViewController:moneyVC animated:YES];
+            
+            //        WH_JXMyMoney_WHViewController * moneyVC = [[WH_JXMyMoney_WHViewController alloc] init];
+            //        [g_navigation pushViewController:moneyVC animated:YES];
+            
+        }else if (button.tag == ClickButtonType_Order) {
+            //我的订单
+            WH_JXOrderListVC *orderVC = [[WH_JXOrderListVC alloc] init];
+            [g_navigation pushViewController:orderVC animated:YES];
+            
+        }else if (button.tag == ClickButtonType_Collect) {
+            //我的收藏
+            WH_Collect_WHViewController *collectVC = [[WH_Collect_WHViewController alloc] init];
+            [g_navigation pushViewController:collectVC animated:YES];
+            
+            //        WeiboViewControlle * collection = [[WeiboViewControlle alloc] initCollection];
+            //        [g_navigation pushViewController:collection animated:YES];
+            
+        }else if (button.tag == ClickButtonType_LifeStatus) {
+            //生活状态
+            userWeiboVC* vc = [userWeiboVC alloc];
+            vc.user = g_myself;
+            vc.wh_isGotoBack = YES;
+            vc = [vc init];
+            //    [g_window addSubview:vc.view];
+            [g_navigation pushViewController:vc animated:YES];
+            
+        }else if (button.tag == 4) {
+            //我的讲课,11月1日后干掉
+            //                WH_JXCourseList_WHVC *vc = [[WH_JXCourseList_WHVC alloc] init];
+            //                [g_navigation pushViewController:vc animated:YES];
+            
+        }else if (button.tag == ClickButtonType_SecuritySettings) {
+            //安全设置
+            WH_JXSecuritySetting_WHVC *vc = [[WH_JXSecuritySetting_WHVC alloc] init];
+            [g_navigation pushViewController:vc animated:YES];
+            
+        }else if (button.tag == ClickButtonType_PrivacySettings) {
+            //隐私设置
+            [g_server WH_getFriendSettingsWithUserId:[NSString stringWithFormat:@"%ld",g_server.user_id] toView:self];
+            
+        }else if (button.tag == ClickButtonType_OtherSetting) {
+            //其他设置
+            WH_JXSetting_WHVC* vc = [[WH_JXSetting_WHVC alloc]init];
+            [g_navigation pushViewController:vc animated:YES];
         }
     }
 }

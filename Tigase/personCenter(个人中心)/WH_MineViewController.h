@@ -14,10 +14,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WH_MineViewController : WH_admob_WHViewController<UITableViewDelegate ,UITableViewDataSource>
 
+typedef NS_ENUM(NSInteger, ClickButtonType) {
+    ClickButtonType_Wallert = 100,
+    ClickButtonType_Order,
+    ClickButtonType_Collect,
+    ClickButtonType_LifeStatus,
+    ClickButtonType_SecuritySettings,
+    ClickButtonType_PrivacySettings,
+    ClickButtonType_OtherSetting,
+};
+
 @property (nonatomic ,strong) UITableView *wh_tableView;
 
 @property (nonatomic ,strong) NSArray *wh_dataArray;
 @property (nonatomic ,strong) NSArray *wh_imgsArray;
+@property (nonatomic ,strong) NSArray *wh_tagArray;
 
 @property (nonatomic,assign) BOOL isRefresh;
 
