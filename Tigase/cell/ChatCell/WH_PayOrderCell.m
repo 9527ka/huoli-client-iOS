@@ -62,7 +62,15 @@
         [self.certainBtn setTitle:@"查看详情 >" forState:UIControlStateNormal];
         
     }else if ([msg.type intValue] == 4004){
-        self.titleLab.text = @"申诉中-客服已介入";
+        self.titleLab.text = @"订单已退款";
+        self.certainBtn.hidden = NO;
+        [self.certainBtn setTitle:@"查看详情 >" forState:UIControlStateNormal];
+    }else if ([msg.type intValue] == 4005){
+        self.titleLab.text = @"申诉中-对方提交新的申诉材料";
+        self.certainBtn.hidden = NO;
+        [self.certainBtn setTitle:@"查看详情 >" forState:UIControlStateNormal];
+    }else if ([msg.type intValue] == 4006){
+        self.titleLab.text = @"申诉已完结";
         self.certainBtn.hidden = NO;
         [self.certainBtn setTitle:@"查看详情 >" forState:UIControlStateNormal];
     }

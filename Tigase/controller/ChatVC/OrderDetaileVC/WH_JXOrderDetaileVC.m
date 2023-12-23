@@ -8,6 +8,7 @@
 
 #import "WH_JXOrderDetaileVC.h"
 #import "WH_JXAppealListVC.h"
+#import "WH_JXAppealAddVC.h"
 
 @interface WH_JXOrderDetaileVC ()
 @property (weak, nonatomic) IBOutlet UILabel *statueTitle;
@@ -42,7 +43,7 @@
     //-1:黑名单；0：陌生人；1:单方关注；2:互为好友；8:系统号；9:非显示系统号  10:本账号的其他端
     [self.blackBtn setTitle:[NSString stringWithFormat:@"%@",self.wh_user.status.intValue == -1?@"取消拉黑":@"拉黑"] forState:UIControlStateNormal];
     
-    self.blackBtn.hidden = self.wh_user.status.intValue == 2?NO:YES;
+    self.blackBtn.hidden = !self.wh_user?YES:NO;
     
     
     NSString *type = [NSString stringWithFormat:@"%@",self.dict[@"payType"]]; //1 微信  2支付宝
@@ -104,8 +105,27 @@
 }
 //申诉
 - (IBAction)appealAction:(id)sender {
-    WH_JXAppealListVC *vc = [[WH_JXAppealListVC alloc] init];
-    [g_navigation pushViewController:vc animated:YES];
+    // status,
+//    0-订单初始化
+//    １-买家己付款
+//    ２-取消订单
+//    ３-订单有争议,处理中
+//    ４-订单支付完成,己确认
+    
+    NSString *status = [NSString stringWithFormat:@"%@",self.dict[@"status"]];
+    
+    if(status.intValue != 3){//添加新增
+        WH_JXAppealAddVC *vc = [[WH_JXAppealAddVC alloc] init];
+        vc.orderId = self.orderId;
+        [g_navigation pushViewController:vc animated:YES];
+    }else{
+        WH_JXAppealListVC *vc = [[WH_JXAppealListVC alloc] init];
+        vc.orderId = [NSString stringWithFormat:@"%@",self.dict[@"no"]];
+        vc.otherUserId = self.wh_user.userId;
+        [g_navigation pushViewController:vc animated:YES];
+    }
+    
+    
 }
 //拉黑
 - (IBAction)blackAction:(id)sender {

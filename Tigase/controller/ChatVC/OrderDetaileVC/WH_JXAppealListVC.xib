@@ -36,8 +36,8 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如需进一步帮助，请发起一个新的申诉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fnf-Hn-ch9">
-                    <rect key="frame" x="28" y="156" width="277.66666666666669" height="20"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <rect key="frame" x="28" y="156" width="243" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -48,15 +48,15 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="message_creat_group_black" translatesAutoresizingMaskIntoConstraints="NO" id="ptq-Bb-2qX">
-                    <rect key="frame" x="337" y="120" width="36" height="24"/>
+                    <rect key="frame" x="340" y="120" width="30" height="18"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="36" id="YvH-Lb-daO"/>
-                        <constraint firstAttribute="height" constant="24" id="d5v-8a-MgY"/>
+                        <constraint firstAttribute="width" constant="30" id="YvH-Lb-daO"/>
+                        <constraint firstAttribute="height" constant="18" id="d5v-8a-MgY"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="联系对方" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1w-G1-nk9">
-                    <rect key="frame" x="326.33333333333331" y="148" width="57.333333333333314" height="17"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <rect key="frame" x="330.33333333333331" y="142" width="49.333333333333314" height="14.333333333333343"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -79,7 +79,7 @@
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" title="提交申诉">
+                    <state key="normal" title="提交资料">
                         <color key="titleColor" systemColor="linkColor"/>
                     </state>
                     <connections>
@@ -87,7 +87,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4x-Xc-f2Q">
-                    <rect key="frame" x="28" y="204" width="337" height="0.66666666666665719"/>
+                    <rect key="frame" x="28" y="189" width="337" height="0.66666666666665719"/>
                     <color key="backgroundColor" systemColor="separatorColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="0.59999999999999998" id="Bs7-ig-nF8"/>
@@ -97,25 +97,35 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="申诉原因" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cX1-8U-zXE">
-                    <rect key="frame" x="28" y="232.66666666666666" width="66" height="20"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <rect key="frame" x="28.000000000000004" y="205.66666666666666" width="57.333333333333343" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" systemColor="systemGrayColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="因买家收款账号无效，我无法完成转账" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ElF-c3-lLE">
-                    <rect key="frame" x="28" y="260.66666666666669" width="337" height="19.333333333333314"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <rect key="frame" x="28" y="230.66666666666666" width="337" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Bgu-6n-7UA">
-                    <rect key="frame" x="0.0" y="308" width="393" height="510"/>
-                    <color key="backgroundColor" systemColor="systemGray5Color"/>
+                    <rect key="frame" x="0.0" y="279.66666666666669" width="393" height="538.33333333333326"/>
+                    <color key="backgroundColor" red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="A6q-cb-tNS"/>
                         <outlet property="delegate" destination="-1" id="XoE-lS-FGs"/>
                     </connections>
                 </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t5d-DJ-hDv">
+                    <rect key="frame" x="0.0" y="267.66666666666669" width="393" height="12"/>
+                    <color key="backgroundColor" systemColor="systemGray6Color"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="12" id="rpu-lg-d3e"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -124,7 +134,7 @@
                 <constraint firstItem="L4x-Xc-f2Q" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="28" id="1sr-v4-bdB"/>
                 <constraint firstItem="j1w-G1-nk9" firstAttribute="top" secondItem="ptq-Bb-2qX" secondAttribute="bottom" constant="4" id="ABR-G9-DAa"/>
                 <constraint firstItem="0qi-Il-oac" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="28" id="DQL-wH-w8y"/>
-                <constraint firstItem="Bgu-6n-7UA" firstAttribute="top" secondItem="ElF-c3-lLE" secondAttribute="bottom" constant="28" id="Iq7-v3-pUk"/>
+                <constraint firstItem="Bgu-6n-7UA" firstAttribute="top" secondItem="ElF-c3-lLE" secondAttribute="bottom" constant="32" id="Iq7-v3-pUk"/>
                 <constraint firstItem="0qi-Il-oac" firstAttribute="top" secondItem="Hdz-LQ-YfJ" secondAttribute="bottom" constant="24" id="MVz-qG-0pI"/>
                 <constraint firstItem="cX1-8U-zXE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="28" id="Rwt-ll-l3p"/>
                 <constraint firstItem="F3X-WS-BUt" firstAttribute="top" secondItem="ptq-Bb-2qX" secondAttribute="top" constant="-12" id="Sey-Xu-f2d"/>
@@ -132,19 +142,22 @@
                 <constraint firstItem="Bgu-6n-7UA" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="VUE-G3-eAd"/>
                 <constraint firstItem="kKi-Pt-PtA" firstAttribute="centerY" secondItem="Hdz-LQ-YfJ" secondAttribute="centerY" id="XLd-if-K24"/>
                 <constraint firstItem="ElF-c3-lLE" firstAttribute="leading" secondItem="cX1-8U-zXE" secondAttribute="leading" id="Xho-ua-khB"/>
-                <constraint firstItem="L4x-Xc-f2Q" firstAttribute="top" secondItem="fnf-Hn-ch9" secondAttribute="bottom" constant="28" id="YEI-Zz-aqO"/>
+                <constraint firstItem="L4x-Xc-f2Q" firstAttribute="top" secondItem="fnf-Hn-ch9" secondAttribute="bottom" constant="16" id="YEI-Zz-aqO"/>
                 <constraint firstItem="Hdz-LQ-YfJ" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="7" id="Zm7-b9-kJH"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="kKi-Pt-PtA" secondAttribute="trailing" id="aag-Dg-FGf"/>
                 <constraint firstItem="ptq-Bb-2qX" firstAttribute="centerX" secondItem="j1w-G1-nk9" secondAttribute="centerX" id="foY-bG-4MD"/>
                 <constraint firstItem="F3X-WS-BUt" firstAttribute="centerY" secondItem="0qi-Il-oac" secondAttribute="centerY" constant="4" id="gtK-3G-4pW"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="F3X-WS-BUt" secondAttribute="trailing" constant="8" id="jPO-Ng-6vK"/>
+                <constraint firstItem="Bgu-6n-7UA" firstAttribute="top" secondItem="t5d-DJ-hDv" secondAttribute="bottom" id="jvr-Op-PtD"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="t5d-DJ-hDv" secondAttribute="trailing" id="kSV-vi-vNn"/>
                 <constraint firstItem="F3X-WS-BUt" firstAttribute="centerX" secondItem="ptq-Bb-2qX" secondAttribute="centerX" id="qcS-gX-9jf"/>
                 <constraint firstItem="fnf-Hn-ch9" firstAttribute="top" secondItem="0qi-Il-oac" secondAttribute="bottom" constant="8" id="qdo-NE-mEF"/>
                 <constraint firstItem="fnf-Hn-ch9" firstAttribute="leading" secondItem="0qi-Il-oac" secondAttribute="leading" id="sFi-w2-fyv"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="Bgu-6n-7UA" secondAttribute="bottom" id="sf0-Fi-FXG"/>
+                <constraint firstItem="t5d-DJ-hDv" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="tfR-I6-sDY"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="ElF-c3-lLE" secondAttribute="trailing" constant="28" id="tlw-r6-jCb"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="Bgu-6n-7UA" secondAttribute="trailing" id="toJ-Ha-aPx"/>
-                <constraint firstItem="cX1-8U-zXE" firstAttribute="top" secondItem="L4x-Xc-f2Q" secondAttribute="bottom" constant="28" id="vfH-SC-G5n"/>
+                <constraint firstItem="cX1-8U-zXE" firstAttribute="top" secondItem="L4x-Xc-f2Q" secondAttribute="bottom" constant="16" id="vfH-SC-G5n"/>
                 <constraint firstItem="ElF-c3-lLE" firstAttribute="top" secondItem="cX1-8U-zXE" secondAttribute="bottom" constant="8" id="y1N-3W-ved"/>
             </constraints>
             <point key="canvasLocation" x="-22.137404580152669" y="20.422535211267608"/>
@@ -162,8 +175,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

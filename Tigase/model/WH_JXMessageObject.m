@@ -2261,6 +2261,8 @@ static WH_JXMessageObject *shared;
         case kRoomRemind_REQUEST_CONFIRMED:
         case kRoomRemind_REQUEST_CANCELLED:
         case kRoomRemind_REQUEST_REFUND:
+        case kRoomRemind_REQUEST_COMPLAINING:
+        case kRoomRemind_REQUEST_COMPLAINING_END:
             
             return YES;
         default:

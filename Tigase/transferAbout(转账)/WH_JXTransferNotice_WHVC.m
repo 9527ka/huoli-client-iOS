@@ -79,7 +79,7 @@
         WH_JXTransferModel *model = [[WH_JXTransferModel alloc] init];
         [model getTransferDataWithDict:dict];
         [cell setDataWithMsg:msg model:model];
-    }else if ([msg.type intValue] == kRoomRemind_REQUEST_NOTIFICATION ||[msg.type intValue] == kRoomRemind_REQUEST_PAID ||[msg.type intValue] == kRoomRemind_REQUEST_CONFIRMED ||[msg.type intValue] == kRoomRemind_REQUEST_CANCELLED ||[msg.type intValue] == kRoomRemind_REQUEST_REFUND) {
+    }else if ([msg.type intValue] == kRoomRemind_REQUEST_NOTIFICATION ||[msg.type intValue] == kRoomRemind_REQUEST_PAID ||[msg.type intValue] == kRoomRemind_REQUEST_CONFIRMED ||[msg.type intValue] == kRoomRemind_REQUEST_CANCELLED ||[msg.type intValue] == kRoomRemind_REQUEST_REFUND ||[msg.type intValue] == kRoomRemind_REQUEST_COMPLAINING ||[msg.type intValue] == kRoomRemind_REQUEST_COMPLAINING_END) {
         
         WH_JXTransferModel *model = [[WH_JXTransferModel alloc] init];
         [model getTransferDataWithDict:dict];

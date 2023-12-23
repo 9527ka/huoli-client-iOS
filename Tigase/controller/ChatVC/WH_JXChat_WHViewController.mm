@@ -2604,7 +2604,7 @@
         return [self WH_creat_WHReadDelCell:msg indexPath:indexPath];
     }
     
-    if ([msg.type intValue] == kRoomRemind_REQUEST_NOTIFICATION ||[msg.type intValue] == kRoomRemind_REQUEST_PAID ||[msg.type intValue] == kRoomRemind_REQUEST_CONFIRMED ||[msg.type intValue] == kRoomRemind_REQUEST_CANCELLED ||[msg.type intValue] == kRoomRemind_REQUEST_REFUND) {//下单模块
+    if ([msg.type intValue] == kRoomRemind_REQUEST_NOTIFICATION ||[msg.type intValue] == kRoomRemind_REQUEST_PAID ||[msg.type intValue] == kRoomRemind_REQUEST_CONFIRMED ||[msg.type intValue] == kRoomRemind_REQUEST_CANCELLED ||[msg.type intValue] == kRoomRemind_REQUEST_REFUND ||[msg.type intValue] == kRoomRemind_REQUEST_COMPLAINING ||[msg.type intValue] == kRoomRemind_REQUEST_COMPLAINING_END) {//下单模块
         
         return [self WH_creat_PayOrderCell:msg indexPath:indexPath];
         
@@ -2806,6 +2806,8 @@
             case kRoomRemind_REQUEST_CONFIRMED:
             case kRoomRemind_REQUEST_CANCELLED:
             case kRoomRemind_REQUEST_REFUND:
+            case kRoomRemind_REQUEST_COMPLAINING:
+            case kRoomRemind_REQUEST_COMPLAINING_END:
                 return 126;
                 break;
            

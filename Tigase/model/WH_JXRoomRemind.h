@@ -45,6 +45,8 @@
 #define kRoomRemind_REQUEST_CONFIRMED         4002 //群主确认己收款
 #define kRoomRemind_REQUEST_CANCELLED         4003 //订单取消
 #define kRoomRemind_REQUEST_REFUND         4004 //订单退款
+#define kRoomRemind_REQUEST_COMPLAINING        4005 //买卖一方首次发起申诉时的通知消息  或者有一方提交新的资料时的通知
+#define kRoomRemind_REQUEST_COMPLAINING_END         4006 //申诉结束
 
 
 

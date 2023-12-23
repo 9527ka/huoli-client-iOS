@@ -865,6 +865,10 @@
         
     }else if ([dict.message.type intValue] == 4004){
         lastContet = @"[订单退款]";
+    }else if ([dict.message.type intValue] == 4005){
+        lastContet = @"[申诉提交了新的资料，请查看]";
+    }else if ([dict.message.type intValue] == 4006){
+        lastContet = @"[申诉完成]";
     }
     
     if ([dict.message.type intValue] == kWCMessageTypeText || flag) {
@@ -941,7 +945,7 @@
         if([msg.type intValue] == kWCMessageTypeAudioMeetingInvite || [msg.type intValue] == kWCMessageTypeVideoMeetingInvite)
             showNumber = NO;//一律不提醒
     }
-    if([msg.type integerValue] != kRoomRemind_REQUEST_NOTIFICATION && [msg.type integerValue] != kRoomRemind_REQUEST_PAID &&[msg.type integerValue] != kRoomRemind_REQUEST_CONFIRMED &&[msg.type integerValue] != kRoomRemind_REQUEST_CANCELLED &&[msg.type integerValue] != kRoomRemind_REQUEST_REFUND){
+    if([msg.type integerValue] != kRoomRemind_REQUEST_NOTIFICATION && [msg.type integerValue] != kRoomRemind_REQUEST_PAID &&[msg.type integerValue] != kRoomRemind_REQUEST_CONFIRMED &&[msg.type integerValue] != kRoomRemind_REQUEST_CANCELLED &&[msg.type integerValue] != kRoomRemind_REQUEST_REFUND &&[msg.type integerValue] != kRoomRemind_REQUEST_COMPLAINING &&[msg.type integerValue] != kRoomRemind_REQUEST_COMPLAINING_END){
         
         if(!msg.isVisible && ![msg isAddFriendMsg]){
             return;

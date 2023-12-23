@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WH_JXAppealModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,7 +20,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *nameLab;
 @property (weak, nonatomic) IBOutlet UIView *bgView;
 
+@property (nonatomic,strong)NSMutableArray *items;
 
+@property (nonatomic,copy)NSString *videoUrl;
+
+@property(nonatomic,strong)WH_JXAppealModel *model;
+
+@property(nonatomic,copy)void(^lookImageBlock)(NSInteger tag,NSArray *items);
+@property(nonatomic,copy)void(^lookVideoBlock)(NSString *videoUrl);
 
 @end
 

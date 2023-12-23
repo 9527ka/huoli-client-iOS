@@ -99,12 +99,13 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if(self.dataSource.count > indexPath.row){
         NSDictionary *dic = self.dataSource[indexPath.row];
-        
+
         NSString *status = [NSString stringWithFormat:@"%@",dic[@"status"]];
         NSString *payeeUID = [NSString stringWithFormat:@"%@",dic[@"payeeUID"]];//出售
         NSString *orderId = [NSString stringWithFormat:@"%@",dic[@"no"]];
 
         if (status.intValue == 1 && [payeeUID isEqualToString:MY_USER_ID]) {//确认
+            
             WH_JXCertainOrderVC *orderVC = [[WH_JXCertainOrderVC alloc] init];
             orderVC.dict = dic;
             orderVC.orderId = orderId;

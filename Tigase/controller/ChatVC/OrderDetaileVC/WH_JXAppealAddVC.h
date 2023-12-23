@@ -1,5 +1,5 @@
 //
-//  WH_JXAppealListVC.h
+//  WH_JXAppealAddVC.h
 //  Tigase
 //
 //  Created by 1111 on 2023/12/22.
@@ -10,11 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WH_JXAppealListVC : UIViewController
+@interface WH_JXAppealAddVC : UIViewController
 
 @property(nonatomic,copy)NSString *orderId;
-@property(nonatomic,copy)NSString *otherUserId;
-
 
 @end
 

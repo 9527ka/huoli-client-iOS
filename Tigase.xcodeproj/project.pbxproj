@@ -735,6 +735,11 @@
 		333824EE2B353C4A00AC4B06 /* WH_JXAppealListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 333824EC2B353C4A00AC4B06 /* WH_JXAppealListVC.xib */; };
 		333824F22B35702D00AC4B06 /* WH_JXAppealListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 333824F02B35702D00AC4B06 /* WH_JXAppealListCell.m */; };
 		333824F32B35702D00AC4B06 /* WH_JXAppealListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 333824F12B35702D00AC4B06 /* WH_JXAppealListCell.xib */; };
+		333824F72B35805700AC4B06 /* WH_JXAppealAddVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 333824F52B35805700AC4B06 /* WH_JXAppealAddVC.m */; };
+		333824F82B35805700AC4B06 /* WH_JXAppealAddVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 333824F62B35805700AC4B06 /* WH_JXAppealAddVC.xib */; };
+		333824FC2B367C5900AC4B06 /* WH_JXAppealAddCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 333824FA2B367C5900AC4B06 /* WH_JXAppealAddCell.m */; };
+		333824FD2B367C5900AC4B06 /* WH_JXAppealAddCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 333824FB2B367C5900AC4B06 /* WH_JXAppealAddCell.xib */; };
+		333825002B36E48900AC4B06 /* WH_JXAppealModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 333824FF2B36E48900AC4B06 /* WH_JXAppealModel.m */; };
 		334FB9EC2B14241600230991 /* serverList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 334FB9EB2B14241600230991 /* serverList.plist */; };
 		334FB9EE2B1425C000230991 /* userInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 334FB9ED2B1425C000230991 /* userInfo.plist */; };
 		33946A7B2B21A4C30002A8D6 /* WH_RechargeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33946A792B21A4C30002A8D6 /* WH_RechargeVC.m */; };
@@ -3132,6 +3137,14 @@
 		333824EF2B35702D00AC4B06 /* WH_JXAppealListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXAppealListCell.h; sourceTree = "<group>"; };
 		333824F02B35702D00AC4B06 /* WH_JXAppealListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXAppealListCell.m; sourceTree = "<group>"; };
 		333824F12B35702D00AC4B06 /* WH_JXAppealListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXAppealListCell.xib; sourceTree = "<group>"; };
+		333824F42B35805700AC4B06 /* WH_JXAppealAddVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXAppealAddVC.h; sourceTree = "<group>"; };
+		333824F52B35805700AC4B06 /* WH_JXAppealAddVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXAppealAddVC.m; sourceTree = "<group>"; };
+		333824F62B35805700AC4B06 /* WH_JXAppealAddVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXAppealAddVC.xib; sourceTree = "<group>"; };
+		333824F92B367C5900AC4B06 /* WH_JXAppealAddCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXAppealAddCell.h; sourceTree = "<group>"; };
+		333824FA2B367C5900AC4B06 /* WH_JXAppealAddCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXAppealAddCell.m; sourceTree = "<group>"; };
+		333824FB2B367C5900AC4B06 /* WH_JXAppealAddCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXAppealAddCell.xib; sourceTree = "<group>"; };
+		333824FE2B36E48900AC4B06 /* WH_JXAppealModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXAppealModel.h; sourceTree = "<group>"; };
+		333824FF2B36E48900AC4B06 /* WH_JXAppealModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXAppealModel.m; sourceTree = "<group>"; };
 		334FB9EB2B14241600230991 /* serverList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = serverList.plist; sourceTree = "<group>"; };
 		334FB9ED2B1425C000230991 /* userInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = userInfo.plist; sourceTree = "<group>"; };
 		33946A782B21A4C30002A8D6 /* WH_RechargeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_RechargeVC.h; sourceTree = "<group>"; };
@@ -7132,6 +7145,14 @@
 				333824EF2B35702D00AC4B06 /* WH_JXAppealListCell.h */,
 				333824F02B35702D00AC4B06 /* WH_JXAppealListCell.m */,
 				333824F12B35702D00AC4B06 /* WH_JXAppealListCell.xib */,
+				333824F42B35805700AC4B06 /* WH_JXAppealAddVC.h */,
+				333824F52B35805700AC4B06 /* WH_JXAppealAddVC.m */,
+				333824F62B35805700AC4B06 /* WH_JXAppealAddVC.xib */,
+				333824F92B367C5900AC4B06 /* WH_JXAppealAddCell.h */,
+				333824FA2B367C5900AC4B06 /* WH_JXAppealAddCell.m */,
+				333824FB2B367C5900AC4B06 /* WH_JXAppealAddCell.xib */,
+				333824FE2B36E48900AC4B06 /* WH_JXAppealModel.h */,
+				333824FF2B36E48900AC4B06 /* WH_JXAppealModel.m */,
 			);
 			path = OrderDetaileVC;
 			sourceTree = "<group>";
@@ -10919,6 +10940,7 @@
 				CC3017311951BABF0059BADA /* f073@2x.png in Resources */,
 				CC3016BE1951BABF0059BADA /* f016.png in Resources */,
 				1851A36C2307B09400BA24A1 /* biaoqing_shoucang@2x.png in Resources */,
+				333824F82B35805700AC4B06 /* WH_JXAppealAddVC.xib in Resources */,
 				DEE708B922D5CD2E005FE40C /* newicon_publishImage@2x.png in Resources */,
 				CC3017341951BABF0059BADA /* f075.png in Resources */,
 				CC3016C71951BABF0059BADA /* f020@2x.png in Resources */,
@@ -10968,6 +10990,7 @@
 				1851A37C2307B09400BA24A1 /* biaoqing_add@3x.png in Resources */,
 				18ABD68C1D07FDAE000F43FC /* add_picture@2x.png in Resources */,
 				33946A9C2B26BD420002A8D6 /* WH_GroupAccountSetCell.xib in Resources */,
+				333824FD2B367C5900AC4B06 /* WH_JXAppealAddCell.xib in Resources */,
 				0F28D20A2A5A55D700B9DD92 /* WH_JXGroupRedPacketSetupMemberVC.xib in Resources */,
 				33946AB02B2701B00002A8D6 /* WH_GroupRechargeCell.xib in Resources */,
 				B203A878232394C7001B2575 /* SearchIcon@2x.png in Resources */,
@@ -11562,6 +11585,7 @@
 				6234D5DB24A8729100E7FE94 /* DataSigner.m in Sources */,
 				CC3017701951BABF0059BADA /* LKDBUtils.m in Sources */,
 				20745B221EADD42B0058687B /* WH_JXTelArea_WHCell.m in Sources */,
+				333825002B36E48900AC4B06 /* WH_JXAppealModel.m in Sources */,
 				634668EC1EC405BD00BE6112 /* WH_EmployeObject.m in Sources */,
 				CC30178A1951BABF0059BADA /* UIImage+HBClass.m in Sources */,
 				0F30AA8820B2ADDB001CC39C /* WH_JXSetChatTextFont_WHVC.m in Sources */,
@@ -11965,6 +11989,7 @@
 				DE64B3D222AE8A1700FDDB15 /* WH_JXPromotion_WHCell.m in Sources */,
 				63F4E44121C0AE7800C61204 /* WH_KKTextLable.m in Sources */,
 				63B077071E7AA7C200047B7A /* WH_ImageBrowser_WHViewController.m in Sources */,
+				333824F72B35805700AC4B06 /* WH_JXAppealAddVC.m in Sources */,
 				4CABBC4C293F06F800C17F42 /* WH_GKDYHome_WHViewController.m in Sources */,
 				6317CCB31FB9798500CEF9EF /* LFFrame.m in Sources */,
 				CCEBFFED196EB63800BC2E0E /* ATMHud.m in Sources */,
@@ -12003,6 +12028,7 @@
 				0FA2D5EF1FB05CCC00D51BB9 /* GPUImageHistogramEqualizationFilter.m in Sources */,
 				0FAE417A225C851900F5E5B4 /* WH_JXSearchImageLog_WHVC.m in Sources */,
 				0F199DCE225F20EB003973B1 /* WH_JXSetShikuNum_WHVC.m in Sources */,
+				333824FC2B367C5900AC4B06 /* WH_JXAppealAddCell.m in Sources */,
 				0F618F1E1FE3BB0500333249 /* WH_JXShareManager.m in Sources */,
 				0F304DD92153AD0E001EC77E /* XMPPMessage+XEP0045.m in Sources */,
 				63C624AF1EC0280C00CE3216 /* WH_JXLocation.m in Sources */,

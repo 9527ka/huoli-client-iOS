@@ -420,7 +420,8 @@
 #define wh_order_detaile @"trade/query/"    //订单详情
 #define wh_order_confirm @"trade/payment/confirm"    //确认订单
 #define wh_order_cancle @"trade/cancel/"    //取消
-
+#define wh_order_complain @"trade/complain/"    //申诉
+#define wh_order_Info @"trade/complain/info/"    //申诉列表
 #define wh_order_List @"trade/list"    //订单列表
 
 
@@ -1268,8 +1269,10 @@
 //type        购买类型:出售-1,购买-2
 
 - (void)WH_OrderListIndex:(NSInteger)index startTime:(NSString *)startTime endTime:(NSString *)endTime status:(NSString *)status type:(NSInteger)type keyword:(NSString *)keyword pageIndex:(NSInteger)pageIndex toView:(id)toView;
-
-
+#pragma mark -- 订单申诉
+-(void)WH_orderAppealWithId:(NSString *)orderId content:(NSString *)content items:(NSString *)items toView:(id)toView;
+#pragma mark -- 订单申诉列表
+-(void)WH_orderAppealListWithId:(NSString *)orderId toView:(id)toView;
 
 
 

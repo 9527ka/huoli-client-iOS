@@ -177,10 +177,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eyS-cJ-5pL">
-                    <rect key="frame" x="237" y="645.33333333333337" width="120" height="36"/>
+                    <rect key="frame" x="257" y="645.33333333333337" width="100" height="36"/>
                     <color key="backgroundColor" systemColor="linkColor"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="120" id="bwi-Bu-Y2T"/>
+                        <constraint firstAttribute="width" constant="100" id="bwi-Bu-Y2T"/>
                         <constraint firstAttribute="height" constant="36" id="opD-5M-H3A"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -191,10 +191,10 @@
                     </connections>
                 </button>
                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MS9-84-Vap">
-                    <rect key="frame" x="129" y="645.33333333333337" width="60" height="36"/>
+                    <rect key="frame" x="109" y="645.33333333333337" width="100" height="36"/>
                     <color key="backgroundColor" systemColor="linkColor"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="60" id="G4s-SQ-mpp"/>
+                        <constraint firstAttribute="width" constant="100" id="G4s-SQ-mpp"/>
                         <constraint firstAttribute="height" constant="36" id="HKC-Sj-8Q8"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>

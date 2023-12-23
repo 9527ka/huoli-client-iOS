@@ -2427,7 +2427,6 @@
             jsonFiles = jsonVideos;
         }
     }
-    
     //3
     //    array = [dict objectForKey:@"audios"];
     NSArray *audiosAr = [dict objectForKey:@"audios"];
@@ -4834,8 +4833,26 @@
 
     [p go];
 }
+#pragma mark -- 订单申诉
+-(void)WH_orderAppealWithId:(NSString *)orderId content:(NSString *)content items:(NSString *)items toView:(id)toView {
+    WH_JXConnection* p = [self addTask:[NSString stringWithFormat:@"%@%@",wh_order_complain,orderId] param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:content forKey:@"content"];
+    if(items.length > 0){
+        [p setPostValue:items forKey:@"items"];
+    }
+    
+    [p go];
+}
 
-
+#pragma mark -- 订单申诉列表
+-(void)WH_orderAppealListWithId:(NSString *)orderId toView:(id)toView {
+    WH_JXConnection* p = [self addTask:[NSString stringWithFormat:@"%@%@",wh_order_Info,orderId] param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+   
+    
+    [p go];
+}
 
 
 
