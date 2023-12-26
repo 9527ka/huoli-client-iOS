@@ -15,6 +15,7 @@ typedef NS_OPTIONS(NSInteger, JXVerifyType) {
     JXVerifyTypeTransfer,           // 转账
     JXVerifyTypeQr,                 // 扫码支付
     JXVerifyTypeSkPay,              // Tigase支付
+    JXVerifyTypeAdd,              // 添加收款账号
 };
 
 @interface WH_JXVerifyPay_WHVC : WH_admob_WHViewController

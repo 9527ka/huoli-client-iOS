@@ -1916,7 +1916,7 @@
     [p setPostValue:toUserId forKey:@"toUserId"];
     [p setPostValue:toUserIds forKey:@"toUserIds"];
     [p setPostValue:[NSNumber numberWithDouble:money] forKey:@"moneyStr"];
-    [p setPostValue:[NSNumber numberWithInteger:type] forKey:@"type"];
+    [p setPostValue:[NSNumber numberWithInteger:type==4?1:type] forKey:@"type"];
     [p setPostValue:[NSNumber numberWithInteger:count] forKey:@"count"];
     [p setPostValue:greet forKey:@"greetings"];
     [p setPostValue:[NSString stringWithFormat:@"%ld",time] forKey:@"time"];

@@ -98,7 +98,7 @@
             cell.statueLab.text = @"取消订单";
         }else if (status == 3){
             cell.statueLab.text = @"申诉中";
-        }else if (status == 4){
+        }else if (status == 4 || status == 5){
             cell.statueLab.text = @"交易完成";
         }
     }

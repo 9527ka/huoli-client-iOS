@@ -1166,10 +1166,16 @@
 //            newobj.user = newUser;
 //        }
         
-        
-        newUser.userId = newobj.message.fromUserId;
-        newUser.userNickname = [newobj.message.fromUserId isEqualToString:WAHU_TRANSFER]?@"支付公众号":newobj.message.fromUserName;
-        newUser.remarkName = newUser.userNickname;
+        if([newobj.message.fromUserId isEqualToString:MY_USER_ID] && [newobj.message.toUserId isEqualToString:g_myself.officialCSUid]){//我联系的客服
+            newUser.userId = newobj.message.toUserId;
+            newUser.userNickname = Localized(@"New_online_service");
+            newUser.remarkName = Localized(@"New_online_service");
+        }else{
+            newUser.userId = newobj.message.fromUserId;
+            newUser.userNickname = [newobj.message.fromUserId isEqualToString:WAHU_TRANSFER]?@"支付公众号":newobj.message.fromUserName;
+            newUser.remarkName = newUser.userNickname;
+        }
+       
         newUser.timeCreate = newobj.message.timeReceive;
         newUser.content = newobj.message.content;
         newUser.companyId = @(0);

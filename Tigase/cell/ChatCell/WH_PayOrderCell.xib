@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C1E-v9-HiH">
-                        <rect key="frame" x="38" y="30" width="244" height="86"/>
+                        <rect key="frame" x="8" y="30" width="304" height="86"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您有一笔出售订单，等待对方支付" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJi-jZ-Sep">
                                 <rect key="frame" x="16" y="16" width="245" height="20"/>
@@ -34,14 +34,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HiY-I3-8Xk">
-                                <rect key="frame" x="16" y="51" width="80" height="35"/>
+                                <rect key="frame" x="16" y="51" width="100" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="RKA-zi-Owp"/>
-                                    <constraint firstAttribute="width" constant="80" id="kzY-Ac-9oA"/>
+                                    <constraint firstAttribute="width" constant="100" id="kzY-Ac-9oA"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="确认  &gt;">
+                                <state key="normal" title="确认  &gt;&gt;">
                                     <color key="titleColor" systemColor="linkColor"/>
                                 </state>
                                 <connections>
@@ -68,9 +68,9 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="Jxr-iJ-HX0" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="QB6-oM-ZOe"/>
-                    <constraint firstItem="C1E-v9-HiH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="38" id="bhF-gu-Sqa"/>
+                    <constraint firstItem="C1E-v9-HiH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="bhF-gu-Sqa"/>
                     <constraint firstAttribute="bottom" secondItem="C1E-v9-HiH" secondAttribute="bottom" constant="10" id="h04-6e-QyE"/>
-                    <constraint firstAttribute="trailing" secondItem="C1E-v9-HiH" secondAttribute="trailing" constant="38" id="ie5-YC-zVx"/>
+                    <constraint firstAttribute="trailing" secondItem="C1E-v9-HiH" secondAttribute="trailing" constant="8" id="ie5-YC-zVx"/>
                     <constraint firstItem="Jxr-iJ-HX0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="psH-ma-R4C"/>
                     <constraint firstItem="C1E-v9-HiH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="usQ-wq-KYk"/>
                 </constraints>

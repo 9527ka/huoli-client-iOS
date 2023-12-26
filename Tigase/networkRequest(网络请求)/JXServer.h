@@ -34,6 +34,13 @@
 #define WH_show_error 1
 #define WH_hide_error 0
 
+
+
+//#define BaseUrl @"http://192.168.1.88:8092"   //开发环境
+#define BaseUrl @"http://195.54.171.69:8092"   //测试环境
+
+
+
 #define wh_act_Register @"user/register" //注册
 #define wh_act_UserLogin @"user/login" //登录
 #define wh_act_UserLogout @"user/logout" //登出
@@ -423,6 +430,8 @@
 #define wh_order_complain @"trade/complain/"    //申诉
 #define wh_order_Info @"trade/complain/info/"    //申诉列表
 #define wh_order_List @"trade/list"    //订单列表
+
+
 
 
 
@@ -1265,7 +1274,7 @@
 -(void)WH_orderConfirmWithId:(NSString *)orderId payerUID:(NSString *)payerUID toView:(id)toView;
 #pragma mark --  取消订单接口
 -(void)WH_orderCancleWithId:(NSString *)orderId toView:(id)toView;
-// 获取订单列表 status0-订单初始化 １-买家己付款 ２-取消订单 ３-订单有争议,处理中 ４-订单支付完成,己确认
+// 获取订单列表 status0-订单初始化 １-买家己付款 ２-取消订单 ３-订单有争议,处理中 ４-订单支付完成,己确认  5-订单支付完成,申请己结束
 //type        购买类型:出售-1,购买-2
 
 - (void)WH_OrderListIndex:(NSInteger)index startTime:(NSString *)startTime endTime:(NSString *)endTime status:(NSString *)status type:(NSInteger)type keyword:(NSString *)keyword pageIndex:(NSInteger)pageIndex toView:(id)toView;

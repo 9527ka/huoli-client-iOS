@@ -26,7 +26,7 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXl-X5-dbQ">
                                         <rect key="frame" x="16" y="15" width="3" height="16"/>
-                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                        <color key="backgroundColor" systemColor="linkColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="3" id="5KH-bU-nvB"/>
                                             <constraint firstAttribute="height" constant="16" id="GEt-6q-8W7"/>
@@ -36,7 +36,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="即时付款" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdS-7p-bN9">
-                                        <rect key="frame" x="93" y="14" width="60" height="18"/>
+                                        <rect key="frame" x="106.66666666666666" y="14" width="60" height="18"/>
                                         <color key="backgroundColor" red="0.89019607840000003" green="0.99607843139999996" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="IN6-36-OWE"/>
@@ -46,8 +46,8 @@
                                         <color key="textColor" systemColor="systemGreenColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微信支付" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ci1-dU-7ir">
-                                        <rect key="frame" x="27" y="14.666666666666664" width="58" height="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支付宝支付" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ci1-dU-7ir">
+                                        <rect key="frame" x="27" y="14.666666666666664" width="71.666666666666671" height="17"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -93,14 +93,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名（选填）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deW-VO-Mho">
-                                <rect key="frame" x="24" y="165.33333333333334" width="86" height="17"/>
+                                <rect key="frame" x="24" y="362.33333333333331" width="86" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入真实姓名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JTL-Pa-cDz">
-                                <rect key="frame" x="24" y="194.33333333333334" width="272" height="46"/>
-                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <rect key="frame" x="24" y="391.33333333333331" width="272" height="46"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="thE-mO-LUb"/>
                                 </constraints>
@@ -108,13 +108,13 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微信账号（选填）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="den-9l-FSb">
-                                <rect key="frame" x="23.999999999999993" y="264.33333333333331" width="114.33333333333331" height="17"/>
+                                <rect key="frame" x="23.999999999999993" y="461.33333333333331" width="114.33333333333331" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入账号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="arY-Da-dwb">
-                                <rect key="frame" x="24" y="293.33333333333331" width="272" height="46"/>
+                                <rect key="frame" x="24" y="490.33333333333326" width="272" height="46"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="W4D-aN-fVd"/>
@@ -123,13 +123,13 @@
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="收款码（必填）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rlh-p2-dnf">
-                                <rect key="frame" x="24" y="363.33333333333331" width="100" height="17"/>
+                                <rect key="frame" x="24" y="165.33333333333334" width="100" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hbi-cD-2W0">
-                                <rect key="frame" x="24" y="392.33333333333331" width="120" height="119.99999999999994"/>
+                                <rect key="frame" x="24" y="194.33333333333334" width="120" height="120.00000000000003"/>
                                 <color key="backgroundColor" red="0.97254901960784312" green="0.97647058823529409" blue="0.99607843137254903" alpha="0.69803921568627447" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="bhb-TT-Iac"/>
@@ -145,7 +145,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aij-0Z-EOD">
-                                <rect key="frame" x="24" y="596.33333333333337" width="272" height="44"/>
+                                <rect key="frame" x="24" y="584.33333333333337" width="272" height="44"/>
                                 <color key="backgroundColor" systemColor="linkColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="yn1-Gy-xa5"/>
@@ -158,7 +158,7 @@
                                 </connections>
                             </button>
                             <textField hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入交易密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8zU-kS-bRe">
-                                <rect key="frame" x="24" y="524.33333333333337" width="272" height="46"/>
+                                <rect key="frame" x="24" y="326.33333333333331" width="272" height="46"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="EMf-2w-eU1"/>
@@ -169,12 +169,11 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Aij-0Z-EOD" firstAttribute="top" secondItem="Hbi-cD-2W0" secondAttribute="bottom" constant="84" id="2UL-zO-hJl"/>
                             <constraint firstItem="wNG-XB-f5e" firstAttribute="top" secondItem="Lk5-eY-yT4" secondAttribute="bottom" constant="8" id="2nW-TY-zjw"/>
+                            <constraint firstItem="rlh-p2-dnf" firstAttribute="top" secondItem="wNG-XB-f5e" secondAttribute="bottom" constant="24" id="3lj-gc-PsX"/>
                             <constraint firstAttribute="trailing" secondItem="Lk5-eY-yT4" secondAttribute="trailing" constant="24" id="65L-mR-01e"/>
                             <constraint firstItem="8zU-kS-bRe" firstAttribute="leading" secondItem="arY-Da-dwb" secondAttribute="leading" id="66A-5p-LXV"/>
                             <constraint firstItem="Hbi-cD-2W0" firstAttribute="top" secondItem="rlh-p2-dnf" secondAttribute="bottom" constant="12" id="BMK-Mp-eTi"/>
-                            <constraint firstItem="rlh-p2-dnf" firstAttribute="top" secondItem="arY-Da-dwb" secondAttribute="bottom" constant="24" id="Fyq-QU-ShD"/>
                             <constraint firstItem="Hbi-cD-2W0" firstAttribute="top" secondItem="rlh-p2-dnf" secondAttribute="bottom" constant="12" id="GCA-OD-oIE"/>
                             <constraint firstAttribute="trailing" secondItem="Aij-0Z-EOD" secondAttribute="trailing" constant="24" id="Gxi-6Y-e8r"/>
                             <constraint firstItem="arY-Da-dwb" firstAttribute="leading" secondItem="deW-VO-Mho" secondAttribute="leading" id="KaQ-0j-xbA"/>
@@ -184,7 +183,6 @@
                             <constraint firstItem="Lk5-eY-yT4" firstAttribute="leading" secondItem="9Q2-F3-Dva" secondAttribute="leading" constant="24" id="WMU-fQ-3hU"/>
                             <constraint firstItem="den-9l-FSb" firstAttribute="leading" secondItem="deW-VO-Mho" secondAttribute="leading" id="bu4-NN-xHD"/>
                             <constraint firstItem="rlh-p2-dnf" firstAttribute="leading" secondItem="den-9l-FSb" secondAttribute="leading" id="cZD-lp-Q6r"/>
-                            <constraint firstItem="deW-VO-Mho" firstAttribute="top" secondItem="wNG-XB-f5e" secondAttribute="bottom" constant="24" id="cqe-QY-F7V"/>
                             <constraint firstItem="JTL-Pa-cDz" firstAttribute="leading" secondItem="Lk5-eY-yT4" secondAttribute="leading" id="hkO-my-vDQ"/>
                             <constraint firstAttribute="height" constant="654" id="hqR-53-qeU"/>
                             <constraint firstItem="JTL-Pa-cDz" firstAttribute="trailing" secondItem="Lk5-eY-yT4" secondAttribute="trailing" id="l6n-rr-kre"/>
@@ -192,10 +190,12 @@
                             <constraint firstItem="JTL-Pa-cDz" firstAttribute="top" secondItem="deW-VO-Mho" secondAttribute="bottom" constant="12" id="lec-u3-3g0"/>
                             <constraint firstItem="Yqu-7a-tqq" firstAttribute="top" secondItem="9Q2-F3-Dva" secondAttribute="top" constant="12" id="lw2-Fs-8I0"/>
                             <constraint firstItem="arY-Da-dwb" firstAttribute="trailing" secondItem="JTL-Pa-cDz" secondAttribute="trailing" id="otm-UL-wMG"/>
+                            <constraint firstItem="Aij-0Z-EOD" firstAttribute="top" secondItem="arY-Da-dwb" secondAttribute="bottom" constant="48" id="rYk-jJ-w8Y"/>
                             <constraint firstItem="Aij-0Z-EOD" firstAttribute="leading" secondItem="9Q2-F3-Dva" secondAttribute="leading" constant="24" id="rkx-IS-iPF"/>
                             <constraint firstItem="Yqu-7a-tqq" firstAttribute="leading" secondItem="9Q2-F3-Dva" secondAttribute="leading" constant="24" id="tFe-Rz-iVP"/>
                             <constraint firstItem="8zU-kS-bRe" firstAttribute="top" secondItem="Hbi-cD-2W0" secondAttribute="bottom" constant="12" id="tay-V9-nH5"/>
                             <constraint firstItem="den-9l-FSb" firstAttribute="top" secondItem="JTL-Pa-cDz" secondAttribute="bottom" constant="24" id="ty7-x0-XNh"/>
+                            <constraint firstItem="deW-VO-Mho" firstAttribute="top" secondItem="Hbi-cD-2W0" secondAttribute="bottom" constant="48" id="vLl-lH-PhR"/>
                             <constraint firstAttribute="trailing" secondItem="wNG-XB-f5e" secondAttribute="trailing" constant="24" id="xFT-MG-AFm"/>
                             <constraint firstItem="Hbi-cD-2W0" firstAttribute="leading" secondItem="rlh-p2-dnf" secondAttribute="leading" id="yCT-uC-2k4"/>
                             <constraint firstItem="wNG-XB-f5e" firstAttribute="leading" secondItem="Yqu-7a-tqq" secondAttribute="leading" id="yEU-Zn-9Qi"/>
@@ -234,9 +234,6 @@
         </systemColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

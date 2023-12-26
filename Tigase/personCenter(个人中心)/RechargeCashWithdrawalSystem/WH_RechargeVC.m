@@ -111,7 +111,7 @@
         
         [g_server showMsg:@"充值提交成功，请等待核实"];
         
-        [self performSelector:@selector(goBackAction) withObject:nil afterDelay:2];
+        [self performSelector:@selector(goBackAction) withObject:nil afterDelay:0.6];
         
     }else if ([aDownload.action isEqualToString:wh_rate_current]){
         NSString *rate = [NSString stringWithFormat:@"%@",dict[@"data"]];

@@ -23,11 +23,22 @@
 }
 - (IBAction)certainAction:(id)sender {
     
+    self.certainBtn.userInteractionEnabled = NO;
+    //延迟两秒
+    dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 2*NSEC_PER_SEC);
+     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+     dispatch_after(time, queue, ^{
+         dispatch_async(dispatch_get_main_queue(), ^{
+             self.certainBtn.userInteractionEnabled = YES;
+         });
+     });
+    
     NSDictionary *dict = [self dictionaryWithJsonString:self.msg.content];
     
     if(self.certainBlock){
         self.certainBlock([self.msg.type intValue] == 4001?1:0,[NSString stringWithFormat:@"%@",dict[@"tradeNo"]]);
     }
+    
 }
 
 -(void)setMsg:(WH_JXMessageObject *)msg{
@@ -49,7 +60,7 @@
     }else if ([msg.type intValue] == 4001){//订单已支付
         self.titleLab.text = @"买家已付款，请确认收款";
         self.certainBtn.hidden = NO;
-        [self.certainBtn setTitle:@"确认 >" forState:UIControlStateNormal];
+        [self.certainBtn setTitle:@"确认 >>" forState:UIControlStateNormal];
         
     }else if ([msg.type intValue] == 4002){//订单已确认收款
         self.titleLab.text = @"交易完成";
@@ -59,20 +70,20 @@
         
         self.titleLab.text = @"订单已被买家取消";
         self.certainBtn.hidden = NO;
-        [self.certainBtn setTitle:@"查看详情 >" forState:UIControlStateNormal];
+        [self.certainBtn setTitle:@"查看详情 >>" forState:UIControlStateNormal];
         
     }else if ([msg.type intValue] == 4004){
         self.titleLab.text = @"订单已退款";
         self.certainBtn.hidden = NO;
-        [self.certainBtn setTitle:@"查看详情 >" forState:UIControlStateNormal];
+        [self.certainBtn setTitle:@"查看详情 >>" forState:UIControlStateNormal];
     }else if ([msg.type intValue] == 4005){
         self.titleLab.text = @"申诉中-对方提交新的申诉材料";
         self.certainBtn.hidden = NO;
-        [self.certainBtn setTitle:@"查看详情 >" forState:UIControlStateNormal];
+        [self.certainBtn setTitle:@"查看详情 >>" forState:UIControlStateNormal];
     }else if ([msg.type intValue] == 4006){
         self.titleLab.text = @"申诉已完结";
         self.certainBtn.hidden = NO;
-        [self.certainBtn setTitle:@"查看详情 >" forState:UIControlStateNormal];
+        [self.certainBtn setTitle:@"查看详情 >>" forState:UIControlStateNormal];
     }
 }
 - (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString

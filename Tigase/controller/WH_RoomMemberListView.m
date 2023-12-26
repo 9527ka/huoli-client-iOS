@@ -47,7 +47,7 @@
     [self.contentView addSubview:self.queueManagerImageV];
     [self.contentView addSubview:self.userLeveImgV];
 
-    self.headerImgV.backgroundColor = [UIColor greenColor];
+    self.headerImgV.backgroundColor = HEXCOLOR(0x23B525);
     self.nameLb.font = [UIFont systemFontOfSize:15];
     self.nameLb.textColor = HEXCOLOR(0x969696);
     self.nameLb.text = @"namenamenamnana";

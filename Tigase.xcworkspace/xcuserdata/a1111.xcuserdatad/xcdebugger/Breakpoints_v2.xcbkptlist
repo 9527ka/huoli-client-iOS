@@ -867,22 +867,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "ED85FA17-DFAB-4B68-8B04-6F523DEC5E08"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tigase/cell/ChatCell/WH_JXRedPacket_WHCell.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
-            landmarkName = "-setCellData"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "A6D72BDA-6B7E-4B79-87B4-3386FF89216B"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -1268,14 +1252,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "2CFF37AC-DD67-452F-B07E-2BDA74F65FF0"
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tigase/meeting/GroupManage/Controller/WH_GroupRechargeViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "-certainAction"
             landmarkType = "7">
          </BreakpointContent>
@@ -1306,8 +1290,8 @@
             filePath = "Tigase/controller/MainVC/WH_JXMsg_WHViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1227"
-            endingLineNumber = "1227"
+            startingLineNumber = "1233"
+            endingLineNumber = "1233"
             landmarkName = "-WH_getServerData"
             landmarkType = "7">
          </BreakpointContent>
@@ -1354,8 +1338,8 @@
             filePath = "Tigase/controller/MainVC/WH_JXMsg_WHViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2528"
-            endingLineNumber = "2528"
+            startingLineNumber = "2534"
+            endingLineNumber = "2534"
             landmarkName = "-onReceiveRoomRemind:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1370,8 +1354,8 @@
             filePath = "Tigase/controller/MainVC/WH_JXMsg_WHViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1181"
-            endingLineNumber = "1181"
+            startingLineNumber = "1187"
+            endingLineNumber = "1187"
             landmarkName = "-WH_doRefresh:showNumber:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1418,8 +1402,8 @@
             filePath = "Tigase/controller/MainVC/WH_JXMsg_WHViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2684"
-            endingLineNumber = "2684"
+            startingLineNumber = "2690"
+            endingLineNumber = "2690"
             landmarkName = "-onReceiveRoomRemind:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1450,8 +1434,8 @@
             filePath = "Tigase/meeting/GroupManage/Controller/WH_GroupRechargeViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "-WH_didServerResult_WHSucces:dict:array:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1466,8 +1450,8 @@
             filePath = "Tigase/meeting/GroupManage/Controller/WH_GroupRechargeViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "-WH_didServerResult_WHSucces:dict:array:"
             landmarkType = "7">
             <Locations>
@@ -1530,8 +1514,8 @@
             filePath = "Tigase/meeting/GroupManage/Controller/WH_JXBuyPayViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
             landmarkName = "-initUI"
             landmarkType = "7">
          </BreakpointContent>
@@ -1770,8 +1754,8 @@
             filePath = "Tigase/meeting/GroupManage/Controller/WH_JXBuyPayViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "-initUI"
             landmarkType = "7">
          </BreakpointContent>
@@ -1834,8 +1818,8 @@
             filePath = "Tigase/controller/ChatVC/OrderDetaileVC/WH_JXOrderDetaileVC.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
             landmarkName = "-blackAction:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1978,8 +1962,8 @@
             filePath = "Tigase/controller/ChatVC/OrderDetaileVC/WH_JXOrderDetaileVC.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
             landmarkName = "-WH_didServerResult_WHSucces:dict:array:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2019,16 +2003,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "553261BB-D2FD-49F3-98BE-D07C3B0342AA"
+            uuid = "896B37E5-A795-41AB-963D-58394191E469"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/JXServer.m"
+            filePath = "Tigase/meeting/GroupManage/Controller/WH_GroupRechargeViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "236"
-            endingLineNumber = "236"
-            landmarkName = "-requestSuccess:"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "-certainAction"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "519D0D62-D09E-481E-9454-312D6C4ACCAC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tigase/meeting/GroupManage/Controller/WH_GroupRechargeViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "-certainAction"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

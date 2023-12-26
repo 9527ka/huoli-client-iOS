@@ -119,7 +119,7 @@
     if(sender.selectedSegmentIndex == 0){//未完成
         self.statue = @"0,1,3";
     }else if (sender.selectedSegmentIndex == 1){//已完成
-        self.statue = @"4";
+        self.statue = @"4,5";
     }else if (sender.selectedSegmentIndex == 2){//已取消
         self.statue = @"2";
     }
@@ -231,6 +231,8 @@
             cell.statueLab.text = @"申诉中";
         }else if (status == 4){
             cell.statueLab.text = @"交易完成";
+        }else if (status == 5){
+            cell.statueLab.text = @"申诉结束";
         }
     }
     return cell;

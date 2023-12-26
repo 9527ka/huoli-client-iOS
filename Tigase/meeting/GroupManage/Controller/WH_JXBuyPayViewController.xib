@@ -19,6 +19,7 @@
                 <outlet property="monyLab" destination="af0-Y7-yBf" id="mVm-MO-3zv"/>
                 <outlet property="nameLab" destination="m23-8Q-aEy" id="ZrT-bU-csd"/>
                 <outlet property="noticeLab" destination="hPo-5m-df4" id="BQB-tJ-Ghy"/>
+                <outlet property="noticeTitle" destination="p9f-UF-GdN" id="UAb-79-bA2"/>
                 <outlet property="notificationBtn" destination="G9N-5H-DqJ" id="MCl-l8-7u0"/>
                 <outlet property="oneLab" destination="6dg-EW-FgR" id="g0J-au-8Uc"/>
                 <outlet property="orderTimeTitle" destination="Zuw-8N-QzF" id="uwf-95-wBR"/>

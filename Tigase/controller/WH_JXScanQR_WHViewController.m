@@ -274,7 +274,7 @@
     upOrdown = NO;
     num =0;
     _line = [[UIImageView alloc] initWithFrame:CGRectMake(LEFT, TOP+10, 300, 2)];
-    _line.backgroundColor = [UIColor greenColor];
+    _line.backgroundColor = HEXCOLOR(0x23B525);
     [self.view addSubview:_line];
     
     timer = [NSTimer scheduledTimerWithTimeInterval:.02 target:self selector:@selector(animation1) userInfo:nil repeats:YES];

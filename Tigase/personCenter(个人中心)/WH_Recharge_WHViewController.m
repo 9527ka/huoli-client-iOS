@@ -275,8 +275,8 @@
         
 //        NSString *callbackUrl = @"http://192.168.1.88:8092/pay/callbackUrl"; // @"http://api.域名/pay/callbackUrl";
         //测试环境
-        NSString *callbackUrl = @" http://195.54.171.69:8092/pay/callbackUrl";
-   
+//        NSString *callbackUrl = @" http://195.54.171.69:8092/pay/callbackUrl";
+        NSString* callbackUrl = [NSString stringWithFormat:@"%@/pay/callbackUrl",BaseUrl];
         
         
         NSString *tOrderNumber = [FCUUID uuid];

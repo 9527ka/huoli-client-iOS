@@ -585,8 +585,8 @@
     
 //    NSString* defApiUrl = @"http://192.168.1.88:8092/config";
     //测试环境
-    NSString* defApiUrl = @"http://195.54.171.69:8092/config";
-
+    NSString* defApiUrl = [NSString stringWithFormat:@"%@/config",BaseUrl];
+   
     
 //    NSString* defApiUrl = @"http://43.139.105.230:8092/config";
 
@@ -611,9 +611,11 @@
 //    NSString *defApiUrl = @"http://192.168.1.88:8092/config";
     
     //测试环境
-    NSString* defApiUrl = @"http://195.54.171.69:8092/config";
+//    NSString* defApiUrl = @"http://195.54.171.69:8092/config";
     
 //    NSString* defApiUrl = @"http://43.139.105.230:8092/config";
+    
+    NSString* defApiUrl = [NSString stringWithFormat:@"%@/config",BaseUrl];
     
     
     self.version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];

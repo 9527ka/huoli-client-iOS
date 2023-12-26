@@ -77,6 +77,12 @@
     //获取支付方式数据
     if(self.dataArray.count == 1){
         dic = self.dataArray.firstObject;
+        NSString *type = [NSString stringWithFormat:@"%@",dic[@"type"]];
+        if(type.intValue == 1){//微信
+            self.type = 1;
+        }else{//支付宝
+            self.type = 0;
+        }
     }else{
         for (NSDictionary *dataDic in self.dataArray) {
             NSString *type = [NSString stringWithFormat:@"%@",dataDic[@"type"]];

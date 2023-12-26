@@ -1581,7 +1581,7 @@ static JXXMPP *sharedManager;
     NSString *fromUserId=[self getUserId:[message fromStr]];
     NSString *toUserId=[self getUserId:[message toStr]];
     NSString* type = [[message attributeForName:@"type"] stringValue];
-    if (![toUserId isEqualToString:MY_USER_ID]) {
+    if (![toUserId isEqualToString:MY_USER_ID] || ([fromUserId isEqualToString:MY_USER_ID] &&[toUserId isEqualToString:MY_USER_ID])) {
         return;
     }
 

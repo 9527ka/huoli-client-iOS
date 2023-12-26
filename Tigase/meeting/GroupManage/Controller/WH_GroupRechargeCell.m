@@ -20,6 +20,10 @@
     UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(rulerAction)];
     [self.rulerLab addGestureRecognizer:tap2];
     
+    NSMutableAttributedString *rulerStr = [[NSMutableAttributedString alloc] initWithString:self.rulerLab.text];
+    [rulerStr addAttribute:NSForegroundColorAttributeName value:[UIColor linkColor] range:NSMakeRange(self.rulerLab.text.length - 6, 6)];
+    self.rulerLab.attributedText = rulerStr;
+    
     //添加圆角以及阴影
     self.payBgView.layer.cornerRadius = 8.0f;
     self.zfbBgView.layer.cornerRadius = 8.0f;
@@ -52,7 +56,8 @@
     WH_webpage_WHVC *webVC = [WH_webpage_WHVC alloc];
     webVC.wh_isGotoBack= YES;
     webVC.isSend = YES;
-    webVC.url = @"";
+    webVC.titleString = @"免责声明";
+    webVC.url = [NSString stringWithFormat:@"%@/pages/terms/trade_term.html",BaseUrl];
     webVC = [webVC init];
     [g_navigation.navigationView addSubview:webVC.view];
 }

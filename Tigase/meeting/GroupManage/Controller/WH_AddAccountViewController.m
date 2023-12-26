@@ -31,6 +31,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _wait = [ATMHud sharedInstance];
+    
+    self.type = 1;
+    
     self.tableView.estimatedRowHeight = 584;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
@@ -74,8 +78,8 @@
         [cell.uploadBtn sd_setImageWithURL:[NSURL URLWithString:self.qrCode] forState:UIControlStateNormal];
     }
     cell.payTitleLab.text = self.type > 0?@"支付宝":@"微信支付";
-    cell.line.backgroundColor = self.type > 0?[UIColor linkColor]:[UIColor greenColor];
-    cell.payAccountLab.text = self.type > 0?@"支付宝账号":@"微信账号";
+    cell.line.backgroundColor = self.type > 0?[UIColor linkColor]:HEXCOLOR(0x23B525);
+    cell.payAccountLab.text = self.type > 0?@"支付宝账号（选填）":@"微信账号（选填）";
     
     if(cell.nameField.text.length == 0&&self.name.length > 0){
         cell.nameField.text = self.name;
@@ -91,7 +95,7 @@
     
     if ([g_myself.isPayPassword boolValue]) {
         self.verVC = [WH_JXVerifyPay_WHVC alloc];
-        self.verVC.type = JXVerifyTypeSkPay;
+        self.verVC.type = JXVerifyTypeAdd;
         self.verVC.wh_RMB = @"";
         self.verVC.delegate = self;
         self.verVC.didDismissVC = @selector(WH_dismiss_WHVerifyPayVC);

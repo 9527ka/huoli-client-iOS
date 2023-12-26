@@ -81,10 +81,23 @@
 //    ４-订单支付完成,己确认
     
     NSString *status = [NSString stringWithFormat:@"%@",self.dict[@"status"]];
-    if(status.intValue == 4){
-        self.statueTitle.text = @"交易已完成";
-        self.detaileLab.text = [NSString stringWithFormat:@"您已成功出售%@HOTC",self.dict[@"payAmount"]];
-    }else{
+    
+    if(status.intValue == 0){
+        self.statueTitle.text = @"订单已生成";
+        self.detaileLab.text = [NSString stringWithFormat:@"等待买家付款"];
+    }else if(status.intValue == 1){
+        self.statueTitle.text = @"买家已付款";
+        self.detaileLab.text = [NSString stringWithFormat:@"等待群主确认"];
+    }else if(status.intValue == 3){
+        self.statueTitle.text = @"订单申诉中";
+        self.detaileLab.text = [NSString stringWithFormat:@""];
+    }else if(status.intValue == 4){
+        self.statueTitle.text = @"订单已完成";
+        self.detaileLab.text = [NSString stringWithFormat:@"您已成功交易%@HOTC",self.dict[@"payAmount"]];
+    }else if(status.intValue == 5){
+        self.statueTitle.text = @"申诉已结束";
+        self.detaileLab.text = @"申诉已结束";
+    }else if(status.intValue == 2){
         self.statueTitle.text = @"交易已取消";
 //        subStatus = 1 超时自动取消
 //        　　　subStatus = 2 群成员发起的取消

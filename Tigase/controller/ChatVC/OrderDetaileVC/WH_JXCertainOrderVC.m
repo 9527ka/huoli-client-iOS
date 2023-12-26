@@ -34,7 +34,7 @@
     self.moneyLab.text = [NSString stringWithFormat:@"￥%.2f",[NSString stringWithFormat:@"%@",self.dict[@"payAmount"]].doubleValue];
     self.orderNoLab.text = [NSString stringWithFormat:@"%@",self.dict[@"no"]];
     
-    self.lineLab.backgroundColor = type.intValue == 1?[UIColor greenColor]:[UIColor linkColor];
+    self.lineLab.backgroundColor = type.intValue == 1?HEXCOLOR(0x23B525):[UIColor linkColor];
     
     
     

@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *jumpBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *codeImage;
 @property (weak, nonatomic) IBOutlet UILabel *noticeLab;
+@property (weak, nonatomic) IBOutlet UILabel *noticeTitle;
 
 @end
 
@@ -77,6 +78,7 @@
         self.timeLab.text = status.intValue == 1?@"订单已支付，等待群主确认":@"已超时";
         self.orderTimeTitle.text = @"";
         self.notificationBtn.hidden = YES;
+        self.noticeTitle.text = status.intValue == 1?@"我已转账":@"已超时";
         
     }else if(self.expiryTime.longLongValue/1000 < time){
         self.timeLab.text = @"已超时";

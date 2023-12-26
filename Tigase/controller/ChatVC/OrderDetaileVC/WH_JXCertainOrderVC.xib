@@ -102,7 +102,7 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pu0-ua-zcr">
                     <rect key="frame" x="16" y="356.33333333333331" width="3" height="16"/>
-                    <color key="backgroundColor" systemColor="systemGreenColor"/>
+                    <color key="backgroundColor" red="0.13725490196078433" green="0.70980392156862748" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="3" id="3zh-yy-Wa9"/>
                         <constraint firstAttribute="height" constant="16" id="zvC-iH-IYP"/>
@@ -199,9 +199,6 @@
         </systemColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -17,6 +17,8 @@
 
 @property (nonatomic, strong) UILabel *title;
 
+@property (nonatomic, strong) UILabel *line;
+
 @end
 
 @implementation WH_JXRedPacket_WHCell
@@ -65,6 +67,11 @@
     _title.textColor = HEXCOLOR(0x8C9AB8);
     [_imageBackground addSubview:_title];
     
+    _line = [[UILabel alloc] initWithFrame:CGRectMake(4, self.bounds.size.height - 12, 120, 0.3)];
+    _line.alpha = 0.7;
+    _line.backgroundColor= [UIColor whiteColor];
+    [_imageBackground addSubview:_line];
+    
     //
 //    _redPacketGreet = [[JXEmoji alloc]initWithFrame:CGRectMake(5, 25, 80, 16)];
 //    _redPacketGreet.textAlignment = NSTextAlignmentCenter;
@@ -95,6 +102,9 @@
     self.bubbleBg.frame = CGRectMake(bubbleX, bubbleY, bubbleW, bubbleH);
     _imageBackground.frame = self.bubbleBg.bounds;
     _title.frame = CGRectMake(CGRectGetMinX(_headImageView.frame) + 1.0f, _imageBackground.frame.size.height - (4+17), 200, 17);
+    
+    _line.frame = CGRectMake(8, _imageBackground.frame.size.height - (8+17), 200, 0.3);
+    
     if (self.msg.isShowTime) {
         CGRect frame = self.bubbleBg.frame;
         frame.origin.y = self.bubbleBg.frame.origin.y + 40;
@@ -114,12 +124,14 @@
         _title.text = ([self.msg.type intValue] == kWCMessageTypeRedPacketExclusive)?@"专属红包":Localized(@"JXredPacket");
     }
     //专属红包更改红包颜色
-    if([self.msg.type intValue] == kWCMessageTypeRedPacketExclusive){
+//    if([self.msg.type intValue] == kWCMessageTypeRedPacketExclusive){
         UIImage *image = [[UIImage imageNamed:@"WH_hongbao_background"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
         _imageBackground.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         [_imageBackground setTintColor:[UIColor colorWithRed:245/255.0 green:145/255.0 blue:85/255.0 alpha:1.0]];//HEXCOLOR(0x)
-    }
-    _title.textColor = [self.msg.type intValue] == kWCMessageTypeRedPacketExclusive?[UIColor whiteColor]:HEXCOLOR(0x8C9AB8);
+//    }
+//    _title.textColor = [self.msg.type intValue] == kWCMessageTypeRedPacketExclusive?[UIColor whiteColor]:HEXCOLOR(0x8C9AB8);
+    
+    _title.textColor = [UIColor whiteColor];
     
     if ([self.msg.fileSize intValue] == 2) {
         

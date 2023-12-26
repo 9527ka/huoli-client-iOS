@@ -163,6 +163,10 @@
     else if (self.type == JXVerifyTypeSendDiamond) {
         string = @"钻石";
     }
+    else if (self.type == JXVerifyTypeAdd) {
+        string = @"添加收款账号";
+    }
+    
     return string;
 }
 
