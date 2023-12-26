@@ -132,13 +132,30 @@
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     if (indexPath.section < self.array.count - 1) {
-        [cell setBackgroundColor:HEXCOLOR(0xffffff)];
-        [cell.contentView setBackgroundColor:HEXCOLOR(0xffffff)];
+//        [cell setBackgroundColor:HEXCOLOR(0xffffff)];
+//        [cell.contentView setBackgroundColor:HEXCOLOR(0xffffff)];
         
-        cell.layer.cornerRadius = 10;
-        cell.layer.masksToBounds = YES;
-        cell.layer.borderColor = g_factory.cardBorderColor.CGColor;
-        cell.layer.borderWidth = g_factory.cardBorderWithd;
+//        cell.layer.cornerRadius = 10;
+//        cell.layer.masksToBounds = YES;
+//        cell.layer.borderColor = g_factory.cardBorderColor.CGColor;
+//        cell.layer.borderWidth = g_factory.cardBorderWithd;
+        
+        [cell setBackgroundColor:[UIColor clearColor]];
+        [cell.contentView setBackgroundColor:[UIColor clearColor]];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
+        //创建背景
+        UIView *bgView = [[UIView alloc] init];
+        [bgView setBackgroundColor:HEXCOLOR(0xffffff)];
+        [cell.contentView addSubview:bgView];
+        [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(cell);
+        }];
+        bgView.layer.cornerRadius = 10;
+        bgView.layer.masksToBounds = YES;
+        bgView.layer.borderColor = g_factory.cardBorderColor.CGColor;
+        bgView.layer.borderWidth = g_factory.cardBorderWithd;
+        
     }else{
         [cell setBackgroundColor:self.wh_cTableView.backgroundColor];
         [cell.contentView setBackgroundColor:self.wh_cTableView.backgroundColor];

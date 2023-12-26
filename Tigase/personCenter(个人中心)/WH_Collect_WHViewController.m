@@ -151,14 +151,31 @@
         cell = [[WH_Collect_WHTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     cell.delegate = self;
-    cell.contentView.backgroundColor = HEXCOLOR(0xffffff);
-    cell.backgroundColor = HEXCOLOR(0xffffff);
+//    cell.contentView.backgroundColor = HEXCOLOR(0xffffff);
+//    cell.backgroundColor = HEXCOLOR(0xffffff);
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    cell.layer.masksToBounds = YES;
-    cell.layer.cornerRadius = g_factory.cardCornerRadius;
-    cell.layer.borderColor = g_factory.cardBorderColor.CGColor;
-    cell.layer.borderWidth = g_factory.cardBorderWithd;
+//    cell.layer.masksToBounds = YES;
+//    cell.layer.cornerRadius = g_factory.cardCornerRadius;
+//    cell.layer.borderColor = g_factory.cardBorderColor.CGColor;
+//    cell.layer.borderWidth = g_factory.cardBorderWithd;
+    
+    [cell setBackgroundColor:[UIColor clearColor]];
+    [cell.contentView setBackgroundColor:[UIColor clearColor]];
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
+    //创建背景
+    UIView *bgView = [[UIView alloc] init];
+    [bgView setBackgroundColor:HEXCOLOR(0xffffff)];
+    [cell.contentView addSubview:bgView];
+    [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(cell);
+    }];
+    bgView.layer.cornerRadius = g_factory.cardCornerRadius;
+    bgView.layer.masksToBounds = YES;
+    bgView.layer.borderColor = g_factory.cardBorderColor.CGColor;
+    bgView.layer.borderWidth = g_factory.cardBorderWithd;
+    
     
     if (self.isSend) {
         [cell.wh_delBtn setHidden:YES];

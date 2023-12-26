@@ -149,6 +149,7 @@
 -(WH_JXRedInputView *)luckyView {
     if (!_luckyView) {
         _luckyView = [[WH_JXRedInputView alloc] initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH, self.wh_tableBody.contentSize.height) type:2 isRoom:_isRoom isDiamond:_isDiamond roomMemebers:self.memberCount delegate:self];
+        _luckyView.wh_countTextField.text = @"";
     }
     return _luckyView;
 }
