@@ -28,8 +28,15 @@
 
 @implementation WH_JXOrderDetaileVC
 
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [g_notify addObserver:self selector:@selector(newReceipt:) name:kXMPPReceipt_WHNotifaction object:nil];
+    
     self.blackBtn.layer.cornerRadius = 4.0f;
     self.appealBtn.layer.cornerRadius = 4.0f;
     
@@ -124,8 +131,6 @@
         vc.otherUserId = self.wh_user.userId;
         [g_navigation pushViewController:vc animated:YES];
     }
-    
-    
 }
 //拉黑
 - (IBAction)blackAction:(id)sender {
@@ -206,6 +211,25 @@
     //    [_wait hide];
     
     return WH_hide_error;
+}
+
+-(void)newReceipt:(NSNotification *)notifacation{//新回执
+    //    NSLog(@"newReceipt");
+    WH_JXMessageObject *msg     = (WH_JXMessageObject *)notifacation.object;
+    if(msg == nil)
+        return;
+    if(![msg isAddFriendMsg])
+        return;
+    
+    if([msg.type intValue] == XMPP_TYPE_NOBLACK){
+        
+        if (!self.wh_user) {
+            return;
+        }
+        [[JXXMPP sharedInstance].blackList removeObject:self.wh_user.userId];
+        [WH_JXMessageObject msgWithFriendStatus:self.wh_user.userId status:friend_status_friend];
+    
+    }
 }
 
 

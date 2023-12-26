@@ -30,11 +30,27 @@
         self.orderNoField.text = g_App.usdtUrl;
     }
     
+    self.monyField.placeholder = [NSString stringWithFormat:@"请输入至少%@的HOTC金额",g_config.minTransferAmount];
+    
+    
+    self.detaileLab.text = [NSString stringWithFormat:@"友情提示\n\n1.每次提币金额在%@~%@HOTC之间。\n\n2.提现手续费为%@%@。\n\n3.提现时间为0-24小时。",g_config.minTransferAmount,g_config.maxTransferAmount,g_config.transferRate,@"%"];
+    
 }
 -(void)textFieldChanged:(UITextField *)textField{
     if(textField.text.doubleValue > g_App.myMoney){
         self.monyField.text = [NSString stringWithFormat:@"%.2f",g_App.myMoney];
     }
+    [self changeUsDTCount];
+    
+}
+-(void)changeUsDTCount{
+    //服务费
+    NSString *transferRateStr = [NSString stringWithFormat:@"%.2f",g_config.transferRate.floatValue/100*self.monyField.text.doubleValue];
+    self.transferRateLab.text = [NSString stringWithFormat:@"服务费：%@HOTC",transferRateStr];
+    //实际到账
+    float count = self.monyField.text.doubleValue - transferRateStr.floatValue;
+    NSString *trealStr = [NSString stringWithFormat:@"%.2f",count/g_App.rate.floatValue];
+    self.realMoneyLab.text = [NSString stringWithFormat:@"实际到账：%@USDT",trealStr];
 }
 -(void)endEdtingAction{
     [self endEditing:YES];
@@ -46,17 +62,18 @@
     NSString * moneyStr = [NSString stringWithFormat:@"%.2f",g_App.myMoney];
     self.monyField.text = moneyStr;
     
+    [self changeUsDTCount];
 }
 
 //确认
 - (IBAction)certainAction:(id)sender {
     [self endEditing:YES];
-    if(self.monyField.text.length == 0 || self.monyField.text.floatValue < 100){
-        [g_server showMsg:@"请输入100以上的HOTC金额"];
+    if(self.monyField.text.length == 0 || self.monyField.text.floatValue < g_config.minTransferAmount.floatValue){
+        [g_server showMsg:[NSString stringWithFormat:@"请输入至少%@的HOTC金额",g_config.minTransferAmount]];
         return;
     }
-    if(self.monyField.text.floatValue > 10000){
-        [g_server showMsg:@"请输入10000以内的HOTC金额"];
+    if(self.monyField.text.floatValue > g_config.maxTransferAmount.floatValue){
+        [g_server showMsg:[NSString stringWithFormat:@"请输入%@以内的HOTC金额",g_config.maxTransferAmount]];
         return;
     }
     if(self.orderNoField.text.length == 0){

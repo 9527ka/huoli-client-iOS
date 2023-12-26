@@ -19,6 +19,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITextField *orderNoField;//交易hash
 @property (weak, nonatomic) IBOutlet UIButton *allBtn;
 @property (weak, nonatomic) IBOutlet UIButton *certainBtn;
+@property (weak, nonatomic) IBOutlet UILabel *transferRateLab;//服务费
+@property (weak, nonatomic) IBOutlet UILabel *realMoneyLab;//实际到账
+
+@property (weak, nonatomic) IBOutlet UILabel *detaileLab;
+
+
 @property (nonatomic,copy) void(^certainBlock)(NSString *amountStr,NSString *orderNoStr);
 
 -(void)reSetRate;

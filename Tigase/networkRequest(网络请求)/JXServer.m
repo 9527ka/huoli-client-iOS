@@ -243,6 +243,12 @@
             }else  if ([task.action isEqualToString:wh_act_TransferToAdmin]) {
                 if( [task.toView respondsToSelector:@selector(WH_didServerResult_WHSucces:dict:array:)] )
                     [task.toView WH_didServerResult_WHSucces:task dict:resultObject array:nil];
+            }else  if ([task.action isEqualToString:wh_user_offlineRechargeToAdmin]) {
+                if( [task.toView respondsToSelector:@selector(WH_didServerResult_WHSucces:dict:array:)] )
+                    [task.toView WH_didServerResult_WHSucces:task dict:resultObject array:nil];
+            }else  if ([task.action isEqualToString:wh_user_transferToAdmin]) {
+                if( [task.toView respondsToSelector:@selector(WH_didServerResult_WHSucces:dict:array:)] )
+                    [task.toView WH_didServerResult_WHSucces:task dict:resultObject array:nil];
             }else {
                 if ([task.action isEqualToString:wh_act_getCurrentTime] || [task.action isEqualToString:wh_act_Config]) {
                     // 获取服务器时间，然后对比当前客户端时间
@@ -1591,6 +1597,13 @@
     if (user.msgBackGroundUrl) {
         [p setPostValue:user.msgBackGroundUrl forKey:@"msgBackGroundUrl"];
     }
+    if (user.phone) {
+        [p setPostValue:user.phone forKey:@"telephone"];
+        [p setPostValue:user.phone forKey:@"phone"];
+    }else{
+        [p setPostValue:@"" forKey:@"telephone"];
+        [p setPostValue:@"" forKey:@"phone"];
+    }
     
     [p setPostValue:access_token forKey:@"access_token"];
     //    [p setPostValue:user.isMultipleLogin forKey:@"multipleDevices"];
@@ -2842,7 +2855,9 @@
 -(void)nearbyUser:(WH_SearchData*)search nearOnly:(BOOL)bNearOnly lat:(double)lat lng:(double)lng page:(int)page toView:(id)toView{
     WH_JXConnection* p = [self addTask:wh_act_nearbyUser param:[NSString stringWithFormat:@"?pageSize=%d&pageIndex=%d",12,page] toView:toView];
     if (search) {
+        
         [p setPostValue:search.name forKey:@"nickname"];
+        
 //        [p setPostValue:[NSNumber numberWithInt:search.minAge] forKey:@"minAge"];
 //        [p setPostValue:[NSNumber numberWithInt:search.maxAge] forKey:@"maxAge"];
         if(search.sex != -1)
@@ -4614,23 +4629,26 @@
     [p go];
 }
 #pragma mark --  充值
-- (void)WH_RechargeWithAmount:(NSString *)amount picUrl:(NSString *)picUrl context:(NSString *)context toView:(id)toView {
+- (void)WH_RechargeWithAmount:(NSString *)amount picUrl:(NSString *)picUrl context:(NSString *)context sourceAmount:(NSString *)sourceAmount toView:(id)toView {
     WH_JXConnection* p = [self addTask:wh_user_offlineRechargeToAdmin param:nil toView:toView];
     
     [p setPostValue:self.access_token forKey:@"access_token"];
     [p setPostValue:amount forKey:@"amount"];
     [p setPostValue:picUrl forKey:@"picUrl"];
     [p setPostValue:context forKey:@"context"];
-        
+    [p setPostValue:sourceAmount forKey:@"sourceAmount"];
     [p go];
 }
-#pragma mark --  提现
-- (void)WH_WithdrawWithAmount:(NSString *)amount usdtUrl:(NSString *)usdtUrl payPassword:(NSString *)payPassword toView:(id)toView {
+#pragma mark --  提现  targetAmount　　　　实际到帐金额(单位ＵＳＤＴ)　类型数字字符串
+//serviceCharge　　　　服务费(单位ＨＯＴＣ)　类型数字字符串
+- (void)WH_WithdrawWithAmount:(NSString *)amount usdtUrl:(NSString *)usdtUrl payPassword:(NSString *)payPassword targetAmount:(NSString *)targetAmount serviceCharge:(NSString *)serviceCharge toView:(id)toView {
     WH_JXConnection* p = [self addTask:wh_user_transferToAdmin param:nil toView:toView];
     
     [p setPostValue:self.access_token forKey:@"access_token"];
     [p setPostValue:amount forKey:@"amount"];
     [p setPostValue:usdtUrl forKey:@"usdtUrl"];
+    [p setPostValue:targetAmount forKey:@"targetAmount"];
+    [p setPostValue:serviceCharge forKey:@"serviceCharge"];
     // 获取当前时间0秒后的时间
     NSDate *date = [NSDate dateWithTimeIntervalSinceNow:0];
     // *1000 是精确到毫秒，不乘就是精确到秒

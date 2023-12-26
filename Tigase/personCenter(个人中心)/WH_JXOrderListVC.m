@@ -43,6 +43,13 @@
 
 @implementation WH_JXOrderListVC
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.page = 0;
+    [self WH_getServerData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -81,7 +88,7 @@
     NSString *endTimeStr = [NSString stringWithFormat:@"%@ 23:59:59",[NSDate date].xmppDateString];
     self.endTime = endTimeStr;
     
-    [self WH_getServerData];
+//    [self WH_getServerData];
     
     
     
@@ -196,14 +203,14 @@
         NSDictionary *dic = self.dataSource[indexPath.row];
         cell.orderNoLab.text = [NSString stringWithFormat:@"订单编号：%@",dic[@"no"]];
         NSString *payeeUID = [NSString stringWithFormat:@"%@",dic[@"payeeUID"]];//出售
-        NSString *payerUID = [NSString stringWithFormat:@"%@",dic[@"payerUID"]];//购买
+//        NSString *payerUID = [NSString stringWithFormat:@"%@",dic[@"payerUID"]];//购买
         if([payeeUID isEqualToString:MY_USER_ID]){//出售
             cell.buyTypeLab.text = @"出售";
             cell.buyTypeLab.textColor = [UIColor redColor];
             cell.nameLab.text = [NSString stringWithFormat:@"交易对象：%@",dic[@"payerName"]];
         }else{//购买
             cell.buyTypeLab.text = @"购买";
-            cell.buyTypeLab.textColor = [UIColor greenColor];
+            cell.buyTypeLab.textColor = HEXCOLOR(0x23B525);
             cell.nameLab.text = [NSString stringWithFormat:@"交易对象：%@",dic[@"payeeNickName"]];
         }
         NSString *payAmount = [NSString stringWithFormat:@"%@",dic[@"payAmount"]];

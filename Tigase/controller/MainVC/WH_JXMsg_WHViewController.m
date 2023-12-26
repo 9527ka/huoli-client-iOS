@@ -1422,7 +1422,10 @@
             if (g_xmpp.isPasswordError) {
                 self.title = [NSString stringWithFormat:@"%@(%@)",Localized(@"WaHu_JXMain_WaHuViewController_Message"),Localized(@"JX_PasswordError")];
             }
-            [_activity stopAnimating];
+            //回到主线程
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_activity stopAnimating];
+            });
         }
             break;
         case login_status_yes:{

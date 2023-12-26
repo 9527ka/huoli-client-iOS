@@ -63,19 +63,26 @@
     
     self.wh_dataArray = [[NSMutableArray alloc] init];
     
-    //@[@[生活圈] ,@[短视频 ,视频会议 ,视频直播] ,@[附近的人] ,@[公众号]]
-    if (g_config.isOpenPositionService) {
-        //是否开启位置相关服务 0：开启 1：关闭
-        self.wh_imagesArray = @[@[@"WH_ShengHuoQuan"] ,@[@"WH_DuanShiPin" ,@"WH_ShiPinHuiYi" ,@"WH_ShiPinZhiBo"] ,@[@"WH_GongZhongHao"] ,@[@"WH_QianDaoHongBao"]]; //注释签到红包
-        
+    //新需求只有  @[@[生活圈] ,@[公众号]]
+    self.wh_imagesArray = @[@[@"WH_ShengHuoQuan"],@[@"WH_GongZhongHao"]]; //注释签到红包
+    
 
-        self.wh_nameArray = @[@[Localized(@"WaHu_LifeCircle_WaHu")] ,@[Localized(@"JX_ShorVideo") ,Localized(@"WaHu_JXSetting_WaHuVC_VideoMeeting") ,Localized(@"JX_LiveVideo")] ,@[Localized(@"JX_PublicNumber")],@[Localized(@"WaHu_SignRedPacket_WaHu")]]; //注释签到红包
-    }else{
-        self.wh_imagesArray = @[@[@"WH_ShengHuoQuan"] ,@[@"WH_DuanShiPin" ,@"WH_ShiPinHuiYi" ,@"WH_ShiPinZhiBo"] ,@[@"WH_FuJinDeRen_FaXian"] ,@[@"WH_GongZhongHao"] ,@[@"WH_QianDaoHongBao"]]; //注释签到红包
-        
-        self.wh_nameArray = @[@[Localized(@"WaHu_LifeCircle_WaHu")] ,@[Localized(@"JX_ShorVideo") ,Localized(@"WaHu_JXSetting_WaHuVC_VideoMeeting") ,Localized(@"JX_LiveVideo")] ,@[Localized(@"WaHu_JXNear_WaHuVC_NearPer")] ,@[Localized(@"JX_PublicNumber")],@[Localized(@"WaHu_SignRedPacket_WaHu")]]; //注释签到红包
-
-    }
+    self.wh_nameArray = @[@[Localized(@"WaHu_LifeCircle_WaHu")] ,@[Localized(@"JX_PublicNumber")]]; //注释签到红包
+    
+    
+//    //@[@[生活圈] ,@[短视频 ,视频会议 ,视频直播] ,@[附近的人] ,@[公众号]]
+//    if (g_config.isOpenPositionService) {
+//        //是否开启位置相关服务 0：开启 1：关闭
+//        self.wh_imagesArray = @[@[@"WH_ShengHuoQuan"] ,@[@"WH_DuanShiPin" ,@"WH_ShiPinHuiYi" ,@"WH_ShiPinZhiBo"] ,@[@"WH_GongZhongHao"] ,@[@"WH_QianDaoHongBao"]]; //注释签到红包
+//
+//
+//        self.wh_nameArray = @[@[Localized(@"WaHu_LifeCircle_WaHu")] ,@[Localized(@"JX_ShorVideo") ,Localized(@"WaHu_JXSetting_WaHuVC_VideoMeeting") ,Localized(@"JX_LiveVideo")] ,@[Localized(@"JX_PublicNumber")],@[Localized(@"WaHu_SignRedPacket_WaHu")]]; //注释签到红包
+//    }else{
+//        self.wh_imagesArray = @[@[@"WH_ShengHuoQuan"] ,@[@"WH_DuanShiPin" ,@"WH_ShiPinHuiYi" ,@"WH_ShiPinZhiBo"] ,@[@"WH_FuJinDeRen_FaXian"] ,@[@"WH_GongZhongHao"] ,@[@"WH_QianDaoHongBao"]]; //注释签到红包
+//
+//        self.wh_nameArray = @[@[Localized(@"WaHu_LifeCircle_WaHu")] ,@[Localized(@"JX_ShorVideo") ,Localized(@"WaHu_JXSetting_WaHuVC_VideoMeeting") ,Localized(@"JX_LiveVideo")] ,@[Localized(@"WaHu_JXNear_WaHuVC_NearPer")] ,@[Localized(@"JX_PublicNumber")],@[Localized(@"WaHu_SignRedPacket_WaHu")]]; //注释签到红包
+//
+//    }
     
     for (int i = 0; i < self.wh_nameArray.count; i++) {
         
@@ -83,42 +90,57 @@
         NSArray *ary = [self.wh_nameArray objectAtIndex:i];
         NSArray *mAry = [self.wh_imagesArray objectAtIndex:i];
         
-        if (g_config.isOpenPositionService) {
-            for (int j = 0; j < ary.count; j++) {
-                NSInteger index = 0;
-                if (i == 0) {
-                    index = 1;
-                }else if (i == 2) {
-                    index = 6;
-                }else if (i == 3) {
-                    index = 7;
-                }//注释签到红包
-                else{
-                    index = i+j+1;
-                }
-                NSDictionary *dict = @{@"discoverNum":[NSNumber numberWithInteger:index] ,@"discoverImg":[mAry objectAtIndex:j] ,@"discoverName":[ary objectAtIndex:j]};
-                [sArray addObject:dict];
+        for (int j = 0; j < ary.count; j++) {
+            NSInteger index = 0;
+            if (i == 0) {//生活圈
+                index = 1;
+            }else{//公众号
+                index = 6;
             }
-        }else{
-            for (int j = 0; j < ary.count; j++) {
-                NSInteger index = 0;
-                if (i == 0) {
-                    index = 1;
-                }else if (i == 2) {
-                    index = 5;
-                }else if (i == 3) {
-                    index = 6;
-                }
-                else if (i == 4){
-                    index = 7;
-                } //注释签到红包
-                else{
-                    index = i+j+1;
-                }
-                NSDictionary *dict = @{@"discoverNum":[NSNumber numberWithInteger:index] ,@"discoverImg":[mAry objectAtIndex:j] ,@"discoverName":[ary objectAtIndex:j]};
-                [sArray addObject:dict];
-            }
+            NSDictionary *dict = @{@"discoverNum":[NSNumber numberWithInteger:index] ,@"discoverImg":[mAry objectAtIndex:j] ,@"discoverName":[ary objectAtIndex:j]};
+            [sArray addObject:dict];
         }
+        
+        
+        
+        
+        
+//        if (g_config.isOpenPositionService) {
+//            for (int j = 0; j < ary.count; j++) {
+//                NSInteger index = 0;
+//                if (i == 0) {
+//                    index = 1;
+//                }else if (i == 2) {
+//                    index = 6;
+//                }else if (i == 3) {
+//                    index = 7;
+//                }//注释签到红包
+//                else{
+//                    index = i+j+1;
+//                }
+//                NSDictionary *dict = @{@"discoverNum":[NSNumber numberWithInteger:index] ,@"discoverImg":[mAry objectAtIndex:j] ,@"discoverName":[ary objectAtIndex:j]};
+//                [sArray addObject:dict];
+//            }
+//        }else{
+//            for (int j = 0; j < ary.count; j++) {
+//                NSInteger index = 0;
+//                if (i == 0) {
+//                    index = 1;
+//                }else if (i == 2) {
+//                    index = 5;
+//                }else if (i == 3) {
+//                    index = 6;
+//                }
+//                else if (i == 4){
+//                    index = 7;
+//                } //注释签到红包
+//                else{
+//                    index = i+j+1;
+//                }
+//                NSDictionary *dict = @{@"discoverNum":[NSNumber numberWithInteger:index] ,@"discoverImg":[mAry objectAtIndex:j] ,@"discoverName":[ary objectAtIndex:j]};
+//                [sArray addObject:dict];
+//            }
+//        }
         
         [self.wh_dataArray addObject:sArray];
         

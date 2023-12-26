@@ -265,7 +265,16 @@
             if ([currentTitleString isEqualToString:@"手机号"]) {
                 btn.tag = 101;
                 //手机号
-                [btn addSubview:[self createLabelWithWidth:self.wh_cTableView.frame.size.width - 90 -12 text:g_myself.telephone?:@""]];
+//                [btn addSubview:[self createLabelWithWidth:self.wh_cTableView.frame.size.width - 90 -12 text:g_myself.telephone?:@""]];
+                
+                if (self.wh_phone) {
+                    [self.wh_phone removeFromSuperview];
+                }
+                self.wh_phone = [self WH_createMiXinTextField:btn default:self.user.telephone?:@"" hint:@"请输入手机号"];
+                [self.wh_phone addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+                self.wh_phone.text = g_myself.telephone?:@"";
+//                self.wh_phone.keyboardType = UIKeyboardTypeNumberPad;
+                
             }else if ([currentTitleString isEqualToString:@"邮箱"]) {
                 btn.tag = 104;
                 if (self.wh_email) {
@@ -384,9 +393,12 @@
             self.user.userNickname = _wh_name.text;
             self.user.sex = [NSNumber numberWithInteger:_wh_sex.selectedSegmentIndex];
             self.user.birthday = _wh_date.wh_date;
+            self.user.phone = self.wh_phone.text;
+        
 //            self.user.cityId = [NSNumber numberWithInt:[_city.text intValue]];
             [g_App showAlert:Localized(@"JXAlert_UpdateOK")];
             g_myself.userNickname = self.user.userNickname;
+            g_myself.telephone = self.wh_phone.text;
             [g_myself saveCurrentUser:nil];
 //            [g_default setObject:g_myself.userNickname forKey:kMY_USER_NICKNAME];
             [g_notify postNotificationName:kUpdateUser_WHNotifaction object:self userInfo:nil];
@@ -568,6 +580,7 @@
     self.user.userNickname = self.wh_name.text;
     self.user.birthday = self.wh_date.wh_date;
     self.user.email = self.wh_email.text;
+    self.user.phone = self.wh_phone.text;
     self.user.sex = [NSNumber numberWithBool:_wh_sex.selectedSegmentIndex];
     return  YES;
 }
@@ -575,7 +588,7 @@
 -(void)onUpdate{
     if(![self getInputValue])
         return;
-    
+        
     [g_server WH_updateUser:self.user toView:self];
 }
 

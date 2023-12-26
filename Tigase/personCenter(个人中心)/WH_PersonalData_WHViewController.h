@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,strong) UITextField *wh_name;
 @property (nonatomic ,strong)  UITextField *wh_birthday;
 @property (nonatomic ,strong) UITextField *wh_email;
+@property (nonatomic ,strong) UITextField *wh_phone;
 @property (nonatomic ,strong) WH_JXDatePicker* wh_date;
 
 @property (nonatomic ,strong) UILabel *wh_city;

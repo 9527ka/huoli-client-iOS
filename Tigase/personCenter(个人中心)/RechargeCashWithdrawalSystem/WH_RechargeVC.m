@@ -103,16 +103,25 @@
             }
         }
         
-        [g_server WH_RechargeWithAmount:self.amount picUrl:fileUrl context:self.context toView:self];
+        NSString *sourceAmount = [NSString stringWithFormat:@"%.2f",self.amount.doubleValue/g_App.rate.doubleValue];
+        
+        [g_server WH_RechargeWithAmount:self.amount picUrl:fileUrl context:self.context sourceAmount:sourceAmount toView:self];
+        
     }else if ([aDownload.action isEqualToString:wh_user_offlineRechargeToAdmin]){
+        
         [g_server showMsg:@"充值提交成功，请等待核实"];
-        [g_navigation WH_dismiss_WHViewController:self animated:YES];
+        
+        [self performSelector:@selector(goBackAction) withObject:nil afterDelay:2];
+        
     }else if ([aDownload.action isEqualToString:wh_rate_current]){
         NSString *rate = [NSString stringWithFormat:@"%@",dict[@"data"]];
         g_App.rate = rate;
         [self.tableView reloadData];
         
     }
+}
+-(void)goBackAction{
+    [g_navigation WH_dismiss_WHViewController:self animated:YES];
 }
 
 #pragma mark - 请求失败回调

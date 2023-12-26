@@ -79,7 +79,13 @@
 - (void)WH_didVerifyPay:(NSString *)sender {
     NSString *payPassword = [NSString stringWithString:sender];
     
-    [g_server WH_WithdrawWithAmount:self.amountStr usdtUrl:self.orderNoStr payPassword:payPassword toView:self];
+    //服务费
+    NSString *transferRateStr = [NSString stringWithFormat:@"%.2f",g_config.transferRate.floatValue/100*self.amountStr.doubleValue];
+    //实际到账
+    float count = self.amountStr.doubleValue - transferRateStr.floatValue;
+    NSString *trealStr = [NSString stringWithFormat:@"%.2f",count/g_App.rate.floatValue];
+    
+    [g_server WH_WithdrawWithAmount:self.amountStr usdtUrl:self.orderNoStr payPassword:payPassword targetAmount:trealStr serviceCharge:transferRateStr toView:self];
 
 }
 - (void)WH_dismiss_WHVerifyPayVC {

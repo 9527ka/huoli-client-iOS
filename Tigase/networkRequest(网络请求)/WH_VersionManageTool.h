@@ -93,6 +93,9 @@
 @property (nonatomic, strong) NSNumber *isWithdrawToAdmin; //!< 是否开启提现到台 1 是开启
 @property (nonatomic, strong) NSString *minWithdrawToAdmin; //!<    提现到后台，最小金额 单位 是 元
 @property (nonatomic, strong) NSString *transferRate;   //提现的手续费
+@property (nonatomic, strong) NSString *minTransferAmount;//最小提现金额
+@property (nonatomic, strong) NSString *maxTransferAmount;//最大提现金额
+
 @property (nonatomic, strong) NSNumber *isUserSignRedPacket; //!<   是否开启签到红包
 @property(nonatomic)int uploadMaxSize;//!<  上传文件和视频最大时长 (单位MByte)
 @property(nonatomic)int videoMaxLen;//!<    录像最大时长

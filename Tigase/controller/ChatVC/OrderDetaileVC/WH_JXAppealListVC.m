@@ -12,6 +12,7 @@
 #import "WH_JXChat_WHViewController.h"
 #import "WH_JXAppealModel.h"
 #import "WH_JXVideoPlayer.h"
+#import "WH_ImageBrowser_WHViewController.h"
 
 @interface WH_JXAppealListVC ()<UITableViewDataSource, UITableViewDelegate>{
     WH_JXVideoPlayer* videoPlayer;
@@ -77,6 +78,10 @@
     __weak typeof (self)weakSelf = self;
     cell.lookImageBlock = ^(NSInteger tag, NSArray * _Nonnull items) {
         
+        [WH_ImageBrowser_WHViewController show:weakSelf delegate:weakSelf type:PhotoBroswerVCTypeModal contentArray:[NSMutableArray arrayWithArray:items] index:tag imagesBlock:^NSArray *{
+            
+            return [NSMutableArray arrayWithArray:items];
+        }];
     };
     cell.lookVideoBlock = ^(NSString * _Nonnull videoUrl) {
         videoPlayer= [WH_JXVideoPlayer alloc];
@@ -101,7 +106,7 @@
 //        int STATUS_DONE = 2;
         NSString *status = [NSString stringWithFormat:@"%@",dict[@"status"]];
         self.statueLab.text = status.intValue == 1? @"申诉中":@"申诉已结束";
-        self.detaileLab.text = status.intValue == 1? @"如需补充材料，可以提交心得申诉资料":@"如需进一步帮助，请发起一个新的申诉";
+        self.detaileLab.text = status.intValue == 1? @"如需补充材料，可以提交新的申诉资料":@"如需进一步帮助，请发起一个新的申诉";
         
         NSArray *items = [WH_JXAppealModel mj_objectArrayWithKeyValuesArray:dict[@"items"]];
         for (WH_JXAppealModel *model in items) {

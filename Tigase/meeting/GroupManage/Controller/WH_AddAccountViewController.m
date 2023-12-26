@@ -55,6 +55,12 @@
         [weakSelf chooseImageAction];
     };
     cell.certainBlock = ^(NSString * _Nonnull name, NSString * _Nonnull account, NSString * _Nonnull password) {
+        
+        if(!weakSelf.image && weakSelf.qrCode.length == 0){
+            [g_server showMsg:@"请上传您的支付图片"];
+            return;
+        }
+        
         weakSelf.name = name;
         weakSelf.account = account;
         [weakSelf passWordAction];
@@ -109,10 +115,6 @@
     [self.verVC.view removeFromSuperview];
 }
 -(void)certainAction{
-    if(!self.image && self.qrCode.length == 0){
-        [g_server showMsg:@"请上传您的支付图片"];
-        return;
-    }
     
     if(self.image){
         //保存图片到本地

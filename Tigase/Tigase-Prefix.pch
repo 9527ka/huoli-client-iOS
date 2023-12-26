@@ -30,7 +30,7 @@
 #define IS_WITHDRAWTOPLATFORM 1 //是否提现到平台 1：是 0：否
 #define IS_SHOW_BATCHDELETION_ROOMMEMBERS 1 //是否允许批量删除群成员 1：允许 0：不允许
 
-#define IS_SHOW_TWOWAYWITHDRAWAL 1 //是否显示双向撤回 1：允许 0：不允许
+#define IS_SHOW_TWOWAYWITHDRAWAL 0 //是否显示双向撤回 1：允许 0：不允许
 
 #define ChatViewControllCanAtGroupMember    1 //聊天界面是否可以@群成员 0不可以at群成员 1可以at群成员
 #define GroupMemberShowPlaceholderString    0 //群成员是否显示*号占位符 0显示全昵称 1昵称最后一位使用*替换

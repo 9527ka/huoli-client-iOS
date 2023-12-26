@@ -321,6 +321,48 @@
                 return Localized(@"New_dark_horse_recharge");
             }
             break;
+        case 23:  ///  线下入款记录列表,线下充值记录
+            {
+                return @"线下充值";
+            }
+            break;
+        case 24:  ///   新注册用户奖励
+
+            {
+                return @"新注册用户奖励";
+            }
+            break;
+        case 25:  ///   USDT提现 （已当做复核参数使用）
+
+            {
+                return @"提现";
+            }
+            break;
+        case 27:  ///   充值记录（线下、线上）
+
+            {
+                return @"充值";
+            }
+            break;
+        case 28:  ///   邀请码推广奖励
+
+            {
+                return @"邀请码推广奖励";
+            }
+            break;
+        case 29:  ///   群内兑换
+
+            {
+                return @"群内兑换";
+            }
+            break;
+        case 30:  ///   退款
+
+            {
+                return @"群内购买退款";
+            }
+            break;
+            
         default:
         {
             return @"";

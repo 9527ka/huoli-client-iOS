@@ -27,20 +27,28 @@
 
 @implementation WH_JXOrderSearchVC
 
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.view endEditing:YES];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+        
     self.dataSource = [NSMutableArray array];
     self.tableView.rowHeight = 120.0f;
     [self.tableView registerNib:[UINib nibWithNibName:@"WH_JXOrderListCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WH_JXOrderListCell"];
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(endEditingAction)];
-    [self.view addGestureRecognizer:tap];
+    
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(endEditingAction)];
+//    [self.view addGestureRecognizer:tap];
+    
     
 //    [self WH_getServerData];
     
 }
--(void)endEditingAction{
-    [self.view endEditing:YES];
-}
+//-(void)endEditingAction{
+//    [self.view endEditing:YES];
+//}
 - (void) WH_getServerData {
     
     [self.view endEditing:YES];
@@ -64,14 +72,14 @@
         NSDictionary *dic = self.dataSource[indexPath.row];
         cell.orderNoLab.text = [NSString stringWithFormat:@"订单编号：%@",dic[@"no"]];
         NSString *payeeUID = [NSString stringWithFormat:@"%@",dic[@"payeeUID"]];//出售
-        NSString *payerUID = [NSString stringWithFormat:@"%@",dic[@"payerUID"]];//购买
+//        NSString *payerUID = [NSString stringWithFormat:@"%@",dic[@"payerUID"]];//购买
         if([payeeUID isEqualToString:MY_USER_ID]){//出售
             cell.buyTypeLab.text = @"出售";
             cell.buyTypeLab.textColor = [UIColor redColor];
             cell.nameLab.text = [NSString stringWithFormat:@"交易对象：%@",dic[@"payerName"]];
         }else{//购买
             cell.buyTypeLab.text = @"购买";
-            cell.buyTypeLab.textColor = [UIColor greenColor];
+            cell.buyTypeLab.textColor = HEXCOLOR(0x23B525);
             cell.nameLab.text = [NSString stringWithFormat:@"交易对象：%@",dic[@"payeeNickName"]];
         }
         NSString *payAmount = [NSString stringWithFormat:@"%@",dic[@"payAmount"]];

@@ -152,7 +152,7 @@
 //    iv.frame = CGRectMake(0,h, w, HEIGHT);
 //    h+=iv.frame.size.height + marginHei;
     
-    UIView *syzxView = [self createSubViewWithFrame:CGRectMake(g_factory.globelEdgeInset, ltView.frame.size.height + ltView.frame.origin.y + marginHei, w, HEIGHT * 3)];
+    UIView *syzxView = [self createSubViewWithFrame:CGRectMake(g_factory.globelEdgeInset, ltView.frame.size.height + ltView.frame.origin.y + marginHei, w, HEIGHT * 2)];
     _syzxView = syzxView;
     [self.wh_tableBody addSubview:syzxView];
     //双向撤回
@@ -161,7 +161,11 @@
 //    [syzxView addSubview:iv];
 //    h+=iv.frame.size.height;
     
-    iv = [self MiXin_createMiXinButton:Localized(@"JX_DelMsgTwoSides") superView:syzxView orginY:0 drawTop:NO drawBottom:YES icon:nil click:@selector(cleanTwoSidesMessageLog)];
+    
+    
+//    iv = [self MiXin_createMiXinButton:Localized(@"JX_DelMsgTwoSides") superView:syzxView orginY:0 drawTop:NO drawBottom:YES icon:nil click:@selector(cleanTwoSidesMessageLog)];
+    
+    
 
     //阅后即焚
 //#ifdef IS_SHOW_NEWReadDelete
@@ -186,7 +190,7 @@
 //    iv = [self MiXin_createMiXinButton:Localized(@"JX_ChatAtTheTop") superView:self.wh_tableBody drawTop:NO drawBottom:YES icon:nil click:nil];
 //    iv.frame = CGRectMake(0,h, w, HEIGHT);
 //    h+=iv.frame.size.height;
-    iv = [self MiXin_createMiXinButton:Localized(@"JX_ChatAtTheTop") superView:syzxView orginY:iv.bottom drawTop:NO drawBottom:YES icon:nil click:nil];
+    iv = [self MiXin_createMiXinButton:Localized(@"JX_ChatAtTheTop") superView:syzxView orginY:0 drawTop:NO drawBottom:YES icon:nil click:nil];
     _chatTopView = iv;
     [self MiXin_create_MiXinSwitch:iv defaule:self.user.topTime click:@selector(topChatAction:)];
     

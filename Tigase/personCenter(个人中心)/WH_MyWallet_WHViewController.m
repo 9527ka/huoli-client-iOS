@@ -165,7 +165,6 @@
     }
 }
 - (void)lianxikehu{
-
     
     WH_JXUserObject *userobj = [[WH_JXUserObject alloc]init];
     userobj.userId = [NSString stringWithFormat:@"%@",g_myself.officialCSUid];

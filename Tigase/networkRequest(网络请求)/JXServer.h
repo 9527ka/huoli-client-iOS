@@ -1226,10 +1226,10 @@
 - (void)WH_OutListPageIndex:(NSInteger)pageIndex roomId:(NSString *)roomId selectIndex:(NSInteger)selectIndex toView:(id)toView;
 
 #pragma mark --  充值
-- (void)WH_RechargeWithAmount:(NSString *)amount picUrl:(NSString *)picUrl context:(NSString *)context toView:(id)toView;
+- (void)WH_RechargeWithAmount:(NSString *)amount picUrl:(NSString *)picUrl context:(NSString *)context sourceAmount:(NSString *)sourceAmount toView:(id)toView;
 
 #pragma mark --  提现
-- (void)WH_WithdrawWithAmount:(NSString *)amount usdtUrl:(NSString *)usdtUrl payPassword:(NSString *)payPassword toView:(id)toView;
+- (void)WH_WithdrawWithAmount:(NSString *)amount usdtUrl:(NSString *)usdtUrl payPassword:(NSString *)payPassword targetAmount:(NSString *)targetAmount serviceCharge:(NSString *)serviceCharge toView:(id)toView;
 #pragma mark --  获取汇率
 - (void)WH_receiveRateWithToView:(id)toView;
 
