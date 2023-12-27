@@ -1044,5 +1044,25 @@ static  WH_webpage_WHVC *webVC;
     }
 }
 
+#pragma mark - 请求失败回调
+-(int) WH_didServerResult_WaHuFailed:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict{
+   
+    if ([aDownload.action isEqualToString:wh_act_userChangeMsgNum]) {
+        return WH_hide_error;
+    }
+    
+    return WH_show_error;
+}
+
+#pragma mark - 请求出错回调
+-(int) WH_didServerConnect_WHError:(WH_JXConnection*)aDownload error:(NSError *)error{//error为空时，代表超时
+    if ([aDownload.action isEqualToString:wh_act_userChangeMsgNum]) {
+        return WH_hide_error;
+    }
+    
+    return WH_show_error;
+}
+
+
 
 @end

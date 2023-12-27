@@ -1166,7 +1166,7 @@
 //            newobj.user = newUser;
 //        }
         
-        if([newobj.message.fromUserId isEqualToString:MY_USER_ID] && [newobj.message.toUserId isEqualToString:g_myself.officialCSUid]){//我联系的客服
+        if([newobj.message.fromUserId isEqualToString:MY_USER_ID] && [newobj.message.toUserId isEqualToString:[NSString stringWithFormat:@"%@",g_myself.officialCSUid]]){//我联系的客服
             newUser.userId = newobj.message.toUserId;
             newUser.userNickname = Localized(@"New_online_service");
             newUser.remarkName = Localized(@"New_online_service");

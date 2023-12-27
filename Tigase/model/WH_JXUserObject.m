@@ -467,6 +467,8 @@ static WH_JXUserObject *sharedUser;
     
     self.isAddFirend = [dict objectForKey:@"isAddFirend"];
     self.areaCode = [dict objectForKey:@"areaCode"];
+    
+    self.officialCSUid = [NSString stringWithFormat:@"%@",[dict objectForKey:@"officialCSUid"]];
 }
 
 -(void)WH_getDataFromDictSmall:(NSDictionary*)dict{

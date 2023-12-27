@@ -111,7 +111,8 @@
     [lView setBackgroundColor:HEXCOLOR(0xF8F8F7)];
     [btn addSubview:lView];
    
-    //添加/删除好友
+    //添加/删除好友 不是客服
+    
     if (self.wh_fStatus.length > 0) {
         UIButton *delBtn = [self commonViewWithOrginY:btn.frame.origin.y + btn.frame.size.height + TOP_SPACE buttonHeight:55 title:self.wh_fStatus isNext:NO radius:g_factory.cardCornerRadius isAlignmentCenter:YES subView:self.wh_tableBody];
         [delBtn addTarget:self action:@selector(friendMethod) forControlEvents:UIControlEventTouchUpInside];

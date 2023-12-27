@@ -313,7 +313,7 @@
     
     if( [task.toView respondsToSelector:@selector(WH_didServerConnect_WHError:error:)] ){
         int n = [task.toView WH_didServerConnect_WHError:task error:task.error];
-        if(n != WH_hide_error){
+        if(n != WH_hide_error && ![task.action isEqualToString:wh_act_userChangeMsgNum]){
             //            if(task.showError)
 //            [g_App showAlert:[NSString stringWithFormat:@"%@%@%@",Localized(@"JXServer_ErrorNetwork"),task.error.localizedDescription,task.url]];
             [g_App showAlert:[NSString stringWithFormat:@"%@%@",Localized(@"JXServer_ErrorNetwork"),task.error.localizedDescription]];
@@ -348,7 +348,7 @@
     if ([task.action isEqualToString:wh_act_OutTime]) {
         n = WH_hide_error;
     }
-    if(n != WH_hide_error){
+    if(n != WH_hide_error && ![task.action isEqualToString:wh_act_userChangeMsgNum]){
         //        if(task.showError)
         if (![errorMsg isEqualToString:@"授权认证失败"]) {
             [g_App showAlert:[NSString stringWithFormat:@"%@",errorMsg]];

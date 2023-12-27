@@ -167,8 +167,9 @@
 - (void)lianxikehu{
     
     WH_JXUserObject *userobj = [[WH_JXUserObject alloc]init];
+    
     userobj.userId = [NSString stringWithFormat:@"%@",g_myself.officialCSUid];
-    userobj.userNickname = Localized(@"New_online_service");
+//    userobj.userNickname = Localized(@"New_online_service");
     WH_JXChat_WHViewController *sendView=[WH_JXChat_WHViewController alloc];
     
     sendView.scrollLine = 0;

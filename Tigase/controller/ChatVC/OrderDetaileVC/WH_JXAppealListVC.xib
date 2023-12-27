@@ -35,14 +35,14 @@
                         <action selector="didTapBack" destination="-1" eventType="touchUpInside" id="Oro-xz-W7d"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如需进一步帮助，请发起一个新的申诉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fnf-Hn-ch9">
-                    <rect key="frame" x="28" y="156" width="243" height="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fnf-Hn-ch9">
+                    <rect key="frame" x="28" y="156" width="0.0" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="申诉已结束" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qi-Il-oac">
-                    <rect key="frame" x="28" y="120" width="100" height="28"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单状态" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qi-Il-oac">
+                    <rect key="frame" x="28" y="120" width="80" height="28"/>
                     <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="20"/>
                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -87,7 +87,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4x-Xc-f2Q">
-                    <rect key="frame" x="28" y="189" width="337" height="0.66666666666665719"/>
+                    <rect key="frame" x="28" y="172" width="337" height="0.66666666666665719"/>
                     <color key="backgroundColor" systemColor="separatorColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="0.59999999999999998" id="Bs7-ig-nF8"/>
@@ -97,19 +97,19 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="申诉原因" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cX1-8U-zXE">
-                    <rect key="frame" x="28.000000000000004" y="205.66666666666666" width="57.333333333333343" height="17"/>
+                    <rect key="frame" x="28.000000000000004" y="188.66666666666666" width="57.333333333333343" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" systemColor="systemGrayColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="因买家收款账号无效，我无法完成转账" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ElF-c3-lLE">
-                    <rect key="frame" x="28" y="230.66666666666666" width="337" height="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ElF-c3-lLE">
+                    <rect key="frame" x="28" y="213.66666666666666" width="337" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Bgu-6n-7UA">
-                    <rect key="frame" x="0.0" y="279.66666666666669" width="393" height="538.33333333333326"/>
+                    <rect key="frame" x="0.0" y="245.66666666666669" width="393" height="572.33333333333326"/>
                     <color key="backgroundColor" red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="A6q-cb-tNS"/>
@@ -117,7 +117,7 @@
                     </connections>
                 </tableView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t5d-DJ-hDv">
-                    <rect key="frame" x="0.0" y="267.66666666666669" width="393" height="12"/>
+                    <rect key="frame" x="0.0" y="233.66666666666666" width="393" height="12"/>
                     <color key="backgroundColor" systemColor="systemGray6Color"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="12" id="rpu-lg-d3e"/>

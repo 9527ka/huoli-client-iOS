@@ -25,7 +25,7 @@
 @property (nonatomic, strong) NSString *carrier;
 @property (nonatomic, strong) NSString *idCard;
 @property (nonatomic, strong) NSString *idCardUrl;
-@property (nonatomic, strong) NSString *officialCSUid;
+@property (nonatomic, copy) NSString *officialCSUid;//客服id
 @property (nonatomic, assign) BOOL isAuth;
 @property (nonatomic, strong) NSString *isCreateRoom;
 @property (nonatomic, strong) NSString *isPasuse;

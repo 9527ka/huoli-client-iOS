@@ -15,6 +15,7 @@
                 <outlet property="blackBtn" destination="eyS-cJ-5pL" id="QZj-iH-xue"/>
                 <outlet property="buyerNameLab" destination="EUI-Ll-aZq" id="voE-2E-rwg"/>
                 <outlet property="countLab" destination="ONc-M7-Fey" id="k2d-gR-gpb"/>
+                <outlet property="detaileBtn" destination="G9I-lq-8p1" id="OU5-Ea-4UP"/>
                 <outlet property="detaileLab" destination="gm0-SG-3Ro" id="UZS-8d-ho4"/>
                 <outlet property="moneyLab" destination="qvr-0o-sb1" id="fvv-8s-cLX"/>
                 <outlet property="orderNoLab" destination="dYu-FO-DgZ" id="UwH-Dw-RzY"/>
@@ -216,6 +217,22 @@
                         <action selector="copyAction:" destination="-1" eventType="touchUpInside" id="RAo-qA-aCx"/>
                     </connections>
                 </button>
+                <button hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G9I-lq-8p1">
+                    <rect key="frame" x="277" y="116" width="100" height="36"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="2Zy-Fd-rBF"/>
+                        <constraint firstAttribute="height" constant="36" id="Knr-jG-686"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="查看详情">
+                        <color key="titleColor" systemColor="linkColor"/>
+                    </state>
+                    <connections>
+                        <action selector="appealListAction:" destination="-1" eventType="touchUpInside" id="KeJ-V3-kNj"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -247,6 +264,7 @@
                 <constraint firstItem="p8B-BI-dAS" firstAttribute="centerY" secondItem="mUy-iI-T8x" secondAttribute="centerY" id="PZQ-oj-Xsx"/>
                 <constraint firstItem="gm0-SG-3Ro" firstAttribute="top" secondItem="X7Q-Jp-tp9" secondAttribute="bottom" constant="8" id="Pza-bQ-Gce"/>
                 <constraint firstItem="AZE-5e-266" firstAttribute="leading" secondItem="mUy-iI-T8x" secondAttribute="leading" id="QCu-7C-pKm"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="G9I-lq-8p1" secondAttribute="trailing" constant="16" id="Qst-P6-e7R"/>
                 <constraint firstItem="nkF-pY-409" firstAttribute="top" secondItem="gm0-SG-3Ro" secondAttribute="bottom" constant="36" id="R4z-fB-4W2"/>
                 <constraint firstItem="Qov-zj-Bxn" firstAttribute="trailing" secondItem="cOE-bu-kl2" secondAttribute="trailing" id="X5m-ff-Lyr"/>
                 <constraint firstItem="i4N-Sb-oqn" firstAttribute="trailing" secondItem="EUI-Ll-aZq" secondAttribute="trailing" id="XNo-Ce-xed"/>
@@ -269,6 +287,7 @@
                 <constraint firstItem="sZE-Z3-XJw" firstAttribute="top" secondItem="gXf-C2-jL7" secondAttribute="bottom" constant="12" id="q5Q-bG-Vud"/>
                 <constraint firstItem="Qov-zj-Bxn" firstAttribute="centerY" secondItem="KMt-I5-qST" secondAttribute="centerY" id="qAD-HK-pEg"/>
                 <constraint firstItem="i4N-Sb-oqn" firstAttribute="leading" secondItem="dYu-FO-DgZ" secondAttribute="trailing" id="s0J-H0-elm"/>
+                <constraint firstItem="G9I-lq-8p1" firstAttribute="centerY" secondItem="X7Q-Jp-tp9" secondAttribute="centerY" id="s6S-s4-FIx"/>
                 <constraint firstItem="ccH-3U-Jz3" firstAttribute="leading" secondItem="kyN-cS-Ryy" secondAttribute="leading" id="tLi-uD-y4z"/>
                 <constraint firstItem="EUI-Ll-aZq" firstAttribute="trailing" secondItem="acc-3P-jV9" secondAttribute="trailing" id="txC-iM-wQ2"/>
                 <constraint firstItem="gm0-SG-3Ro" firstAttribute="leading" secondItem="X7Q-Jp-tp9" secondAttribute="leading" id="vfT-Wd-Oyf"/>

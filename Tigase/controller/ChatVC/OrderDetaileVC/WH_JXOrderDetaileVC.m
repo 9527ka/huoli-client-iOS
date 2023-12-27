@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *blackBtn;
 @property (weak, nonatomic) IBOutlet UIButton *appealBtn;
 @property(nonatomic,strong) WH_JXUserObject *wh_user;
+@property (weak, nonatomic) IBOutlet UIButton *detaileBtn;
 
 @end
 
@@ -91,12 +92,14 @@
     }else if(status.intValue == 3){
         self.statueTitle.text = @"订单申诉中";
         self.detaileLab.text = [NSString stringWithFormat:@""];
+        self.detaileBtn.hidden = NO;
     }else if(status.intValue == 4){
         self.statueTitle.text = @"订单已完成";
         self.detaileLab.text = [NSString stringWithFormat:@"您已成功交易%@HOTC",self.dict[@"payAmount"]];
     }else if(status.intValue == 5){
         self.statueTitle.text = @"申诉已结束";
         self.detaileLab.text = @"申诉已结束";
+        self.detaileBtn.hidden = NO;
     }else if(status.intValue == 2){
         self.statueTitle.text = @"交易已取消";
 //        subStatus = 1 超时自动取消
@@ -124,6 +127,14 @@
     [g_server showMsg:@"复制成功"];
 }
 //申诉
+- (IBAction)appealListAction:(id)sender {
+    WH_JXAppealListVC *vc = [[WH_JXAppealListVC alloc] init];
+    vc.orderId = [NSString stringWithFormat:@"%@",self.dict[@"no"]];
+    vc.otherUserId = self.wh_user.userId;
+    [g_navigation pushViewController:vc animated:YES];
+}
+
+//申诉
 - (IBAction)appealAction:(id)sender {
     // status,
 //    0-订单初始化
@@ -132,18 +143,17 @@
 //    ３-订单有争议,处理中
 //    ４-订单支付完成,己确认
     
-    NSString *status = [NSString stringWithFormat:@"%@",self.dict[@"status"]];
+//    NSString *status = [NSString stringWithFormat:@"%@",self.dict[@"status"]];
+    //添加新增
+    WH_JXAppealAddVC *vc = [[WH_JXAppealAddVC alloc] init];
+    vc.orderId = self.orderId;
+    [g_navigation pushViewController:vc animated:YES];
     
-    if(status.intValue != 3){//添加新增
-        WH_JXAppealAddVC *vc = [[WH_JXAppealAddVC alloc] init];
-        vc.orderId = self.orderId;
-        [g_navigation pushViewController:vc animated:YES];
-    }else{
-        WH_JXAppealListVC *vc = [[WH_JXAppealListVC alloc] init];
-        vc.orderId = [NSString stringWithFormat:@"%@",self.dict[@"no"]];
-        vc.otherUserId = self.wh_user.userId;
-        [g_navigation pushViewController:vc animated:YES];
-    }
+//    if(status.intValue != 3){//添加新增
+//
+//    }else{
+//
+//    }
 }
 //拉黑
 - (IBAction)blackAction:(id)sender {

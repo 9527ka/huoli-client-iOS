@@ -400,6 +400,8 @@
         WH_JXUserObject* user = [[WH_JXUserObject alloc]init];
         [user WH_getDataFromDict:dict];
         [g_myself WH_getDataFromDict:dict];
+        g_myself.officialCSUid = [NSString stringWithFormat:@"%@",[dict objectForKey:@"officialCSUid"]];
+        
         g_constant.isAddFriend = user.isAddFirend;
     }
     //更新本地好友

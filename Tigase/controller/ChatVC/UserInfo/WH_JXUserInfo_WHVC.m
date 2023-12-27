@@ -274,7 +274,7 @@
         
         //如果是自己，则不现实按钮
         // 自己/公众号/厂家不删除
-        if (![self.wh_userId isEqualToString:MY_USER_ID] && ![self.wh_userId isEqualToString:CALL_CENTER_USERID] && ![self.wh_userId isEqualToString:@"10004476"]) {
+        if (![self.wh_userId isEqualToString:MY_USER_ID] && ![self.wh_userId isEqualToString:CALL_CENTER_USERID] && ![self.wh_userId isEqualToString:@"10004476"] && ![self.wh_userId isEqualToString:[NSString stringWithFormat:@"%@",g_myself.officialCSUid]]) {
             UIButton *btn = [UIFactory WH_create_WHButtonWithImage:@"im_003_more_button_normal" highlight:nil target:self selector:@selector(onMore)];
             btn.frame = CGRectMake(JX_SCREEN_WIDTH-52, JX_SCREEN_TOP - 47, 40, 40);
             [self.wh_tableHeader addSubview:btn];
@@ -1092,6 +1092,8 @@
 }
 
 - (void)onMore{
+    
+    
     WH_UserSettingViewController *settingVC = [[WH_UserSettingViewController alloc] init];
     settingVC.wh_friendStatus = _friendStatus;
     settingVC.wh_fromAddType = self.wh_fromAddType;
