@@ -8898,10 +8898,10 @@
 				CC28559E1A60DE9E00F21DAC /* WH_JXUserInfo_WHVC.m */,
 				18D62C2A22C4C79500D65E8B /* WH_UserInfoViewController.h */,
 				18D62C2B22C4C79500D65E8B /* WH_UserInfoViewController.m */,
-				18F3919B22CA01050084FAB9 /* WH_UserSettingViewController.h */,
 				18F3919C22CA01050084FAB9 /* WH_UserSettingViewController.m */,
 				B22AA21D2339BF8200906412 /* WH_JXSetNoteAndLabel_WHVC.h */,
 				B22AA21E2339BF8300906412 /* WH_JXSetNoteAndLabel_WHVC.m */,
+				18F3919B22CA01050084FAB9 /* WH_UserSettingViewController.h */,
 			);
 			path = UserInfo;
 			sourceTree = "<group>";

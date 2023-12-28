@@ -83,7 +83,6 @@
         _noteLab.textColor = [UIColor lightGrayColor];
         [_baseView addSubview:_noteLab];
         
-        
         //第三行
         _backLab = [[UILabel alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(_noteTit.frame)+10, 80, 18)];
         _backLab.text = Localized(@"JX_ReturnTheTime");
@@ -187,6 +186,8 @@
         _sendTime.text = model.createTime;
         _baseView.frame = CGRectMake(10, 10, JX_SCREEN_WIDTH-20, 200+56);
         _nameLab.textColor = [UIColor lightGrayColor];
+        _backLab.text = Localized(@"JX_ReturnTheTime");
+        _sendLab.text = Localized(@"JX_TransferTime");
     }else {
         WH_JXTransferNoticeModel *model = (WH_JXTransferNoticeModel *)tModel;
         _noteTit.text = Localized(@"JX_Note");

@@ -55,7 +55,7 @@
     
     //先去掉分享到微信功能
 //    thirdLogin = NO;
-    self.wh_contentView = [[UIView alloc] initWithFrame:CGRectMake(20, (JX_SCREEN_HEIGHT - 451)/2, JX_SCREEN_WIDTH - 40, (self.type == QR_GroupType && thirdLogin)?492:451)];
+    self.wh_contentView = [[UIView alloc] initWithFrame:CGRectMake(20, (JX_SCREEN_HEIGHT - 451)/2, JX_SCREEN_WIDTH - 40, (self.type == QR_GroupType && thirdLogin)?492:471)];
     [self.wh_contentView setBackgroundColor:HEXCOLOR(0xffffff)];
     [self.wh_baseView addSubview:self.wh_contentView];
     self.wh_contentView.layer.masksToBounds = YES;
@@ -112,7 +112,7 @@
         [label setFrame:CGRectMake(0, self.wh_contentView.frame.size.height - 27 - 44 - 40, self.wh_contentView.frame.size.width, 20)];
     }else{
         [label setText:(self.type == QR_GroupType)?Localized(@"New_sacn_qrcode_enter_group"):Localized(@"New_scan_qrcode")];
-        [label setFrame:CGRectMake(0, self.wh_contentView.frame.size.height - 50, self.wh_contentView.frame.size.width, 20)];
+        [label setFrame:CGRectMake(0, self.wh_contentView.frame.size.height - 86, self.wh_contentView.frame.size.width, 20)];
     }
     
     [label setTextColor:HEXCOLOR(0x969696)];
@@ -120,11 +120,17 @@
     [label setTextAlignment:NSTextAlignmentCenter];
     [self.wh_contentView addSubview:label];
     
-    if (self.type == QR_GroupType && thirdLogin) {
-        NSArray *array = @[@"保存到手机" ,@"发送给微信好友"];
+//    if (self.type == QR_GroupType && thirdLogin) {
+//        NSArray *array = @[@"保存到手机" ,@"发送给微信好友"];
+        NSArray *array = @[@"保存到手机"];
         for (int i = 0; i < array.count; i++) {
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-            [button setFrame:CGRectMake(20 + i*((CGRectGetWidth(self.wh_contentView.frame) - 40 - 15)/2 + 15), CGRectGetHeight(self.wh_contentView.frame) - 27 - 44, (CGRectGetWidth(self.wh_contentView.frame) - 40 - 15)/2, 44)];
+//            [button setFrame:CGRectMake(20 + i*((CGRectGetWidth(self.wh_contentView.frame) - 40 - 15)/2 + 15), CGRectGetHeight(self.wh_contentView.frame) - 27 - 44, (CGRectGetWidth(self.wh_contentView.frame) - 40 - 15)/2, 44)];
+            
+            float wide = (CGRectGetWidth(self.wh_contentView.frame) - 40 - 15)/2;
+            
+            [button setFrame:CGRectMake((CGRectGetWidth(self.wh_contentView.frame) - wide)/2, CGRectGetHeight(self.wh_contentView.frame) - 16 - 44, wide, 44)];
+            
             [button setTitle:[array objectAtIndex:i] forState:UIControlStateNormal];
             [button setTitleColor:(i == 0)?HEXCOLOR(0x8C9AB8):HEXCOLOR(0xffffff) forState:UIControlStateNormal];
             [button setBackgroundColor:(i == 0)?HEXCOLOR(0xffffff):HEXCOLOR(0x0093FF)];
@@ -138,7 +144,7 @@
             [self.wh_contentView addSubview:button];
             [button addTarget:self action:@selector(buttonClickMethod:) forControlEvents:UIControlEventTouchUpInside];
         }
-    }
+//    }
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

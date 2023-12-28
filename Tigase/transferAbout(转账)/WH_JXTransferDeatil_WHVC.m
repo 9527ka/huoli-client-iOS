@@ -134,7 +134,8 @@ typedef NS_ENUM(NSInteger, JXTransferDeatilType) {
         image = [UIImage imageNamed:@"ic_ts_status2"];
         hintStr = [NSString stringWithFormat:Localized(@"JX_ReceiptConfirmedBy%@"),self.model.userName];
         oneDayStr = Localized(@"JX_FriendNotConfirm1Day");
-        clickLabStr = Localized(@"JX_ResendTransferMessage");
+//        clickLabStr = Localized(@"JX_ResendTransferMessage");
+        clickLabStr = @"";
     }else if (self.type == JXTransferDeatilTypeWait) {
         image = [UIImage imageNamed:@"ic_ts_status2"];
         hintStr = Localized(@"JX_PaymentConfirmed");
@@ -207,7 +208,7 @@ typedef NS_ENUM(NSInteger, JXTransferDeatilType) {
         [g_navigation pushViewController:moneyVC animated:YES];
         
     }else if (self.type == JXTransferDeatilTypeMySend) {
-        [g_App showAlert:Localized(@"JX_ResendTransferMessage") delegate:self];
+//        [g_App showAlert:Localized(@"JX_ResendTransferMessage") delegate:self];
     }
 }
 

@@ -29,6 +29,7 @@
 @property (nonatomic, strong) UIButton *loginButton; //!< 以后账号去登录按钮
 @property (nonatomic, strong) UIView *smsBackView; //!< 短信验证码背景
 @property (nonatomic, strong) WH_LoginTextField *pwdTextField; //!< 密码输入框
+@property (nonatomic, strong) WH_LoginTextField *pwdCertainTextField; //!< 密码输入框
 @property (nonatomic, strong) WH_LoginTextField *invitedField; //!< 邀请码
 @end
 
@@ -59,6 +60,7 @@
         registSwitch.WH_onClickBtn = ^(NSInteger index) {
             weakSelf.phoneTextField.text = @"";
             weakSelf.pwdTextField.text = @"";
+            weakSelf.pwdCertainTextField.text = @"";
             weakSelf.registType = index == 0 ? 1 : 0;
             [weakSelf reloadViewsWithAnimation];
         };
@@ -96,7 +98,7 @@
 
 - (void)createContentView {
     
-    CGFloat whiteBackHeight = (self.registType == 0) ? cellHeight*3 : cellHeight*2; //!< 白色视图高度
+    CGFloat whiteBackHeight = (self.registType == 0) ? cellHeight*4 : cellHeight*3; //!< 白色视图高度
  
     whiteBackView = [self createViewWithOrginY:12 viewWidth:JX_SCREEN_WIDTH - 2*g_factory.globelEdgeInset viewHeight:whiteBackHeight];
     [self.wh_tableBody addSubview:whiteBackView];
@@ -104,6 +106,8 @@
     [whiteBackView addSubview:self.phoneTextField];
     [whiteBackView addSubview:self.firstLineView];
     [whiteBackView addSubview:self.pwdTextField];
+    [whiteBackView addSubview:self.pwdCertainTextField];
+    
     
     //图片验证码
     if (self.registType == 0 ) {
@@ -174,8 +178,8 @@
     self.secondLineView.hidden = NO;
 }
 - (void)reloadViewsForAccount {
-    whiteBackView.height = cellHeight*2;
-    self.secondLineView.hidden = YES;
+    whiteBackView.height = cellHeight*3;
+    self.secondLineView.hidden = NO;
     [self.getGraphicButton removeFromSuperview];
     if ([g_config.registerInviteCode integerValue] != 0) {
          self.invitedField.top = whiteBackView.bottom+12;
@@ -323,6 +327,20 @@
     }
     return _pwdTextField;
 }
+- (WH_LoginTextField *)pwdCertainTextField {
+    if (!_pwdCertainTextField) {
+        _pwdCertainTextField = [[WH_LoginTextField alloc] initWithFrame:CGRectMake(0, self.secondLineView.bottom, whiteBackView.width, cellHeight)];
+        _pwdCertainTextField.delegate = self;
+        _pwdCertainTextField.fieldType = LoginFieldPassWordType;
+        _pwdCertainTextField.returnKeyType = UIReturnKeyDone;
+        [_pwdCertainTextField setFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 15]];
+        [_pwdCertainTextField setTextColor:HEXCOLOR(0x333333)];
+        _pwdCertainTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"确认密码" attributes:@{NSForegroundColorAttributeName: HEXCOLOR(0xCCCCCC)}];
+        //Localized(@"RegistSetPass")
+    }
+    return _pwdCertainTextField;
+}
+
 - (UIButton *)areaCodeBtn {
     if (!_areaCodeBtn) {
         NSString *areaStr = @"+86";
@@ -509,8 +527,12 @@
         }
     } else {
     }
-    if (_pwdTextField.text.length < 6) {
+    if (_pwdTextField.text.length < 6 || _pwdCertainTextField.text.length < 6) {
         [GKMessageTool showTips:Localized(@"PasswordRegistFomatError")];
+        return;
+    }
+    if(![_pwdTextField.text isEqualToString:_pwdCertainTextField.text]){
+        [GKMessageTool showTips:@"两次密码不一致"];
         return;
     }
     if ([g_config.registerInviteCode integerValue] == 1 && [self.invitedField.text length] == 0) {

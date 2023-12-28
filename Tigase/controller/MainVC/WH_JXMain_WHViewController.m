@@ -402,6 +402,8 @@
         [g_myself WH_getDataFromDict:dict];
         g_myself.officialCSUid = [NSString stringWithFormat:@"%@",[dict objectForKey:@"officialCSUid"]];
         
+        [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@",[dict objectForKey:@"officialCSUid"]] forKey:@"officialCSUid"];
+        
         g_constant.isAddFriend = user.isAddFirend;
     }
     //更新本地好友

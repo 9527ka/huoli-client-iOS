@@ -94,14 +94,14 @@
     cashTitle.font = sysFontWithSize(16);
     [baseView addSubview:cashTitle];
     
-    UILabel * rmbLabel = [UIFactory WH_create_WHLabelWith:CGRectMake(CGRectGetWidth(baseView.frame) - 15 - 17, 0, 17, CGRectGetHeight(baseView.frame)) text:@"HOTC"];
+    UILabel * rmbLabel = [UIFactory WH_create_WHLabelWith:CGRectMake(CGRectGetWidth(baseView.frame) - 15 - 42, 0, 52, CGRectGetHeight(baseView.frame)) text:@"HOTC"];
     rmbLabel.font = sysFontWithSize(16);
     rmbLabel.textColor = HEXCOLOR(0x3A404C);
     rmbLabel.textAlignment = NSTextAlignmentLeft;
    
     [baseView addSubview:rmbLabel];
     
-    _countTextField = [UIFactory WH_create_WHTextFieldWithRect:CGRectMake(CGRectGetMaxX(cashTitle.frame), 0, CGRectGetMinX(rmbLabel.frame) - 8 - 15 - 66, CGRectGetHeight(baseView.frame)) keyboardType:UIKeyboardTypeDecimalPad secure:NO placeholder:@"0.00" font:sysFontWithSize(16) color:HEXCOLOR(0x969696) delegate:self];
+    _countTextField = [UIFactory WH_create_WHTextFieldWithRect:CGRectMake(CGRectGetMaxX(cashTitle.frame), 0, CGRectGetMinX(rmbLabel.frame) - 8 - 15 - 68, CGRectGetHeight(baseView.frame)) keyboardType:UIKeyboardTypeDecimalPad secure:NO placeholder:@"0.00" font:sysFontWithSize(16) color:HEXCOLOR(0x969696) delegate:self];
     _countTextField.borderStyle = UITextBorderStyleNone;
    _countTextField.textAlignment = NSTextAlignmentRight;
     [baseView addSubview:_countTextField];

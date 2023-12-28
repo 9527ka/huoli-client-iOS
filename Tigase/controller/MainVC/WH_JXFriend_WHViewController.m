@@ -523,7 +523,9 @@
 //    }
 //    Localized(@"WaHu_LifeCircle_WaHu")
     //获取官方客服的信息
-    WH_JXUserObject *user = [[WH_JXUserObject sharedUserInstance] getUserById:[NSString stringWithFormat:@"%@",g_myself.officialCSUid]];
+    NSString *officialCSUid = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"officialCSUid"]];
+    
+    WH_JXUserObject *user = [[WH_JXUserObject sharedUserInstance] getUserById:officialCSUid];
     
     NSArray *buttonInfoArray = @[@{@"title":Localized(@"JXNewFriendVC_NewFirend"),@"image":@"WH_addressbook_new_friend"},
                           @{@"title":Localized(@"JX_ManyPerChat"),@"image":@"WH_addressbook_group"},
@@ -1076,7 +1078,6 @@
         user = [[self.letterResultArr objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     }
     
-    
     if([user.userId isEqualToString:FRIEND_CENTER_USERID]){
         WH_JXNewFriend_WHViewController* vc = [[WH_JXNewFriend_WHViewController alloc]init];
 //        [g_App.window addSubview:vc.view];
@@ -1174,7 +1175,15 @@
             //过滤掉客服
             NSMutableArray *userList = [NSMutableArray arrayWithArray:_array];
             for (WH_JXUserObject *user in _array) {
-                if(user.userType.intValue == 4){
+//                if(user.userType.intValue == 4){
+//                    [userList removeObject:user];
+//                }
+                
+                NSString *officialCSUid = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"officialCSUid"]];
+                
+//                NSLog(@"当前的用户id====== %@,客服id======%@",user.userId,officialCSUid);
+                
+                if([user.userId isEqualToString:officialCSUid]){
                     [userList removeObject:user];
                 }
             }
