@@ -58,6 +58,7 @@
     webVC.isSend = YES;
     webVC.titleString = @"免责声明";
     webVC.url = [NSString stringWithFormat:@"%@/pages/terms/trade_term.html",BaseUrl];
+    
     webVC = [webVC init];
     [g_navigation.navigationView addSubview:webVC.view];
 }

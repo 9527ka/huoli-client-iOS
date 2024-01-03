@@ -36,8 +36,8 @@
 
 
 
-//#define BaseUrl @"http://192.168.1.88:8092"   //开发环境
-#define BaseUrl @"http://195.54.171.69:8092"   //测试环境
+#define BaseUrl @"http://192.168.1.88:8092"   //开发环境
+//#define BaseUrl @"http://195.54.171.69:8092"   //测试环境
 
 
 
@@ -430,7 +430,7 @@
 #define wh_order_complain @"trade/complain/"    //申诉
 #define wh_order_Info @"trade/complain/info/"    //申诉列表
 #define wh_order_List @"trade/list"    //订单列表
-
+#define wh_order_merchant_List @"merchant/list"    //代理列表
 
 
 
@@ -1282,7 +1282,8 @@
 -(void)WH_orderAppealWithId:(NSString *)orderId content:(NSString *)content items:(NSString *)items toView:(id)toView;
 #pragma mark -- 订单申诉列表
 -(void)WH_orderAppealListWithId:(NSString *)orderId toView:(id)toView;
-
+#pragma mark -- 代理列表
+-(void)WH_MerchantWithTag:(NSInteger)tag pageIndex:(NSInteger)pageIndex toView:(id)toView;
 
 
 

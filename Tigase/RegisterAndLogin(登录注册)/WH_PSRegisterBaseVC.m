@@ -378,7 +378,8 @@ static NSString *PassCellIdentifier = @"PassCellIdentifier";
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     if (textField.tag == 10) {
 //        nickName = textField.text;
-        _user.userNickname = textField.text;
+        //去掉空格
+        _user.userNickname = [textField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     }else {
         self.inviteCode = textField.text;
     }

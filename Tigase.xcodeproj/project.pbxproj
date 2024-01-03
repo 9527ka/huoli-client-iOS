@@ -764,6 +764,11 @@
 		33946AB02B2701B00002A8D6 /* WH_GroupRechargeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33946AAE2B2701B00002A8D6 /* WH_GroupRechargeCell.xib */; };
 		33946AB42B2833D50002A8D6 /* WH_JXBuyPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33946AB22B2833D50002A8D6 /* WH_JXBuyPayViewController.m */; };
 		33946AB52B2833D50002A8D6 /* WH_JXBuyPayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33946AB32B2833D50002A8D6 /* WH_JXBuyPayViewController.xib */; };
+		33BDEC612B43D4C200C6A697 /* WH_JXBuyAndPayListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BDEC5F2B43D4C200C6A697 /* WH_JXBuyAndPayListVC.m */; };
+		33BDEC622B43D4C200C6A697 /* WH_JXBuyAndPayListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BDEC602B43D4C200C6A697 /* WH_JXBuyAndPayListVC.xib */; };
+		33BDEC662B43FCB300C6A697 /* WH_JXBuyAndPayListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BDEC642B43FCB300C6A697 /* WH_JXBuyAndPayListCell.m */; };
+		33BDEC672B43FCB300C6A697 /* WH_JXBuyAndPayListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BDEC652B43FCB300C6A697 /* WH_JXBuyAndPayListCell.xib */; };
+		33BDEC6A2B450BE700C6A697 /* WH_JXBuyAndPayListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BDEC692B450BE700C6A697 /* WH_JXBuyAndPayListModel.m */; };
 		33E591672B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E5914E2B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		33E591682B16E6B900E578A3 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E591572B16E6B900E578A3 /* ViewController+MASAdditions.m */; };
 		33E591692B16E6B900E578A3 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E5915B2B16E6B900E578A3 /* MASCompositeConstraint.m */; };
@@ -3180,6 +3185,14 @@
 		33946AB12B2833D50002A8D6 /* WH_JXBuyPayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXBuyPayViewController.h; sourceTree = "<group>"; };
 		33946AB22B2833D50002A8D6 /* WH_JXBuyPayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXBuyPayViewController.m; sourceTree = "<group>"; };
 		33946AB32B2833D50002A8D6 /* WH_JXBuyPayViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXBuyPayViewController.xib; sourceTree = "<group>"; };
+		33BDEC5E2B43D4C200C6A697 /* WH_JXBuyAndPayListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXBuyAndPayListVC.h; sourceTree = "<group>"; };
+		33BDEC5F2B43D4C200C6A697 /* WH_JXBuyAndPayListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXBuyAndPayListVC.m; sourceTree = "<group>"; };
+		33BDEC602B43D4C200C6A697 /* WH_JXBuyAndPayListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXBuyAndPayListVC.xib; sourceTree = "<group>"; };
+		33BDEC632B43FCB300C6A697 /* WH_JXBuyAndPayListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXBuyAndPayListCell.h; sourceTree = "<group>"; };
+		33BDEC642B43FCB300C6A697 /* WH_JXBuyAndPayListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXBuyAndPayListCell.m; sourceTree = "<group>"; };
+		33BDEC652B43FCB300C6A697 /* WH_JXBuyAndPayListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXBuyAndPayListCell.xib; sourceTree = "<group>"; };
+		33BDEC682B450BE700C6A697 /* WH_JXBuyAndPayListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXBuyAndPayListModel.h; sourceTree = "<group>"; };
+		33BDEC692B450BE700C6A697 /* WH_JXBuyAndPayListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXBuyAndPayListModel.m; sourceTree = "<group>"; };
 		33E5914D2B16E6B900E578A3 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		33E5914E2B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
 		33E5914F2B16E6B900E578A3 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -7157,6 +7170,21 @@
 			path = OrderDetaileVC;
 			sourceTree = "<group>";
 		};
+		33BDEC5D2B43D47000C6A697 /* C2COrderVC */ = {
+			isa = PBXGroup;
+			children = (
+				33BDEC5E2B43D4C200C6A697 /* WH_JXBuyAndPayListVC.h */,
+				33BDEC5F2B43D4C200C6A697 /* WH_JXBuyAndPayListVC.m */,
+				33BDEC602B43D4C200C6A697 /* WH_JXBuyAndPayListVC.xib */,
+				33BDEC632B43FCB300C6A697 /* WH_JXBuyAndPayListCell.h */,
+				33BDEC642B43FCB300C6A697 /* WH_JXBuyAndPayListCell.m */,
+				33BDEC652B43FCB300C6A697 /* WH_JXBuyAndPayListCell.xib */,
+				33BDEC682B450BE700C6A697 /* WH_JXBuyAndPayListModel.h */,
+				33BDEC692B450BE700C6A697 /* WH_JXBuyAndPayListModel.m */,
+			);
+			path = C2COrderVC;
+			sourceTree = "<group>";
+		};
 		33E5914B2B16E6B900E578A3 /* Masonry */ = {
 			isa = PBXGroup;
 			children = (
@@ -10507,6 +10535,7 @@
 		CCFFAE011A0C644500C5BF97 /* personCenter(个人中心) */ = {
 			isa = PBXGroup;
 			children = (
+				33BDEC5D2B43D47000C6A697 /* C2COrderVC */,
 				18F9D17C24231B0F00878AFF /* WithdrawListModel */,
 				B24FF8CC23409F9300AD89A9 /* AccountUtil */,
 				DE5C692F232666D400321406 /* RechargeCashWithdrawalSystem */,
@@ -10903,6 +10932,7 @@
 				1851A36E2307B09400BA24A1 /* biaoqing_emjio@2x.png in Resources */,
 				CC3017091951BABF0059BADA /* f053@2x.png in Resources */,
 				886923B91F67FAA300824159 /* ic_selected_done_2@2x.png in Resources */,
+				33BDEC622B43D4C200C6A697 /* WH_JXBuyAndPayListVC.xib in Resources */,
 				CC3017451951BABF0059BADA /* f083@2x.png in Resources */,
 				CC3017421951BABF0059BADA /* f082.png in Resources */,
 				0FCC717D1F6941250026859D /* pub_record_button@2x.png in Resources */,
@@ -10998,6 +11028,7 @@
 				CC3016B51951BABF0059BADA /* f011@2x.png in Resources */,
 				334FB9EC2B14241600230991 /* serverList.plist in Resources */,
 				CC30175C1951BABF0059BADA /* f095.png in Resources */,
+				33BDEC672B43FCB300C6A697 /* WH_JXBuyAndPayListCell.xib in Resources */,
 				1850911B1D12ACA200C98E17 /* praise@2x.png in Resources */,
 				0F5C92A01E4DA2A7005C31C2 /* im_input_expression_normal@3x.png in Resources */,
 				E41DD99C22E9ABA2007F156B /* intoGroup@3x.png in Resources */,
@@ -11931,6 +11962,7 @@
 				33E591692B16E6B900E578A3 /* MASCompositeConstraint.m in Sources */,
 				CCC88B5E1E4C526E00180080 /* CustomWindow.m in Sources */,
 				330F3B862B31867200E69B97 /* WH_PayOrderCell.m in Sources */,
+				33BDEC662B43FCB300C6A697 /* WH_JXBuyAndPayListCell.m in Sources */,
 				CCC02C571A80D738004E32B5 /* WH_JXSearchUser_WHVC.m in Sources */,
 				638A6F241FA2E43400D6D17C /* WH_JXCashWithDraw_WHViewController.m in Sources */,
 				626F825C2488EC7900D0D4CF /* WH_ContactCell.m in Sources */,
@@ -11997,6 +12029,7 @@
 				6346691B1EC405F700BE6112 /* RATreeNodeItem+Private.m in Sources */,
 				0F304D972153AD0D001EC77E /* XMPPPresence.m in Sources */,
 				0FCE24E91FF33D7F0098713E /* JSONKit.m in Sources */,
+				33BDEC612B43D4C200C6A697 /* WH_JXBuyAndPayListVC.m in Sources */,
 				6317CCB51FB9798500CEF9EF /* LFLiveStreamInfo.m in Sources */,
 				1851A3312307A32200BA24A1 /* WWEmotManagerCell.m in Sources */,
 				63269F0D1E9CC68D00FB13C2 /* WH_JXNear_WHCell.m in Sources */,
@@ -12532,6 +12565,7 @@
 				0F304E362153AD0E001EC77E /* DDDispatchQueueLogFormatter.m in Sources */,
 				0FA2D6411FB05CCC00D51BB9 /* GPUImageParallelCoordinateLineTransformFilter.m in Sources */,
 				18F3919D22CA01050084FAB9 /* WH_UserSettingViewController.m in Sources */,
+				33BDEC6A2B450BE700C6A697 /* WH_JXBuyAndPayListModel.m in Sources */,
 				0F304E492153AD0E001EC77E /* u8-check.c in Sources */,
 				0F304E102153AD0E001EC77E /* XMPPCapsCoreDataStorageObject.m in Sources */,
 				CC7B36AE1942F9060012DDE4 /* JXTableView.m in Sources */,

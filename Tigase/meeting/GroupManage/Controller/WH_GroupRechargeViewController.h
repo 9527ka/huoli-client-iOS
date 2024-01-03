@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WH_JXBuyAndPayListModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WH_GroupRechargeViewController : UIViewController
 
 @property (nonatomic,strong) WH_RoomData* room;
+@property (nonatomic,strong) WH_JXBuyAndPayListModel *model;
+
+
 
 @end
 

@@ -104,6 +104,7 @@
     _countTextField = [UIFactory WH_create_WHTextFieldWithRect:CGRectMake(CGRectGetMaxX(cashTitle.frame), 0, CGRectGetMinX(rmbLabel.frame) - 8 - 15 - 68, CGRectGetHeight(baseView.frame)) keyboardType:UIKeyboardTypeDecimalPad secure:NO placeholder:@"0.00" font:sysFontWithSize(16) color:HEXCOLOR(0x969696) delegate:self];
     _countTextField.borderStyle = UITextBorderStyleNone;
    _countTextField.textAlignment = NSTextAlignmentRight;
+   [_countTextField becomeFirstResponder];
     [baseView addSubview:_countTextField];
    [_countTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     

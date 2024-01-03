@@ -4872,7 +4872,15 @@
     [p go];
 }
 
-
+#pragma mark -- 代理列表
+-(void)WH_MerchantWithTag:(NSInteger)tag pageIndex:(NSInteger)pageIndex toView:(id)toView {
+    WH_JXConnection* p = [self addTask:wh_order_merchant_List param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:@(pageIndex) forKey:@"pageIndex"];
+    [p setPostValue:@(20) forKey:@"pageSize"];
+    
+    [p go];
+}
 
 
 

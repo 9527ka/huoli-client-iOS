@@ -73,7 +73,7 @@
     if(_isRoom){
         _moneyY = RowMargin;
         _countY = _moneyY + RowMargin + RowHeight;
-        if (IS_SHOW_EXCLUSIVEREDPACKET || self.type == 4) {
+        if (self.type == 4) {
             _canClaimY = _countY + RowMargin + RowHeight + noticeTitleTop + noticeTitleH;
             _greetY = _canClaimY + RowMargin + RowHeight + 30;
         }else{
@@ -95,7 +95,7 @@
         _wh_countUnit.frame = CGRectMake(CGRectGetWidth(_wh_countView.frame)-40, 0, 40, RowHeight);
         _wh_countTextField.frame = CGRectMake(CGRectGetMaxX(_wh_countTitle.frame), 0, CGRectGetMinX(_wh_countUnit.frame)-CGRectGetMaxX(_wh_countTitle.frame), RowHeight);
         
-        if (IS_SHOW_EXCLUSIVEREDPACKET || self.type == 4) {
+        if (self.type == 4) {
             //有专属红包
             _wh_canClaimView.frame = CGRectMake(INSETS, _canClaimY, self.frame.size.width-INSETS*2, RowHeight);
             _wh_canclaimBtn.frame = CGRectMake(CGRectGetMaxX(self.wh_canClaimTitle.frame) + 10, 0, CGRectGetWidth(_wh_canClaimView.frame)- CGRectGetMaxX(self.wh_canClaimTitle.frame) - 10, RowHeight);
@@ -134,7 +134,7 @@
     _wh_countUnit.text = self.isDiamond ? @"个" : Localized(@"JXRed_A");//@"个";//
     _wh_moneyUnit.text = self.isDiamond ? @"钻石" : @"HOTC";//@"元";//
     
-    if (IS_SHOW_EXCLUSIVEREDPACKET || self.type == 4) {
+    if (self.type == 4) {
         _wh_canClaimTitle.text = @"谁可以领";
         _receiveNoticeLabel.text = [NSString stringWithFormat:@"群人数%@人" ,_count];
         _wh_canClaimPeoples.text = (self.type == 4) ? @"请选择" : @"群内所有人";
@@ -179,7 +179,7 @@
 -(void)customSubViews{
     if(_isRoom){
         [self addSubview:self.wh_countView];
-        if (IS_SHOW_EXCLUSIVEREDPACKET || self.type == 4) {
+        if (self.type == 4) {
             [self addSubview:self.wh_canClaimView];
             [self addSubview:self.receiveNoticeLabel];
         }

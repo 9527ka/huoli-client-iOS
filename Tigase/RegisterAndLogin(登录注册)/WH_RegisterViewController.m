@@ -437,7 +437,8 @@
     if (![lange isEqualToString:ZHHANTNAME] && ![lange isEqualToString:NAME]) {
         lange = ENNAME;
     }
-    return [NSString stringWithFormat:@"%@%@.html",protocolStr,lange];
+//    return [NSString stringWithFormat:@"%@%@.html",protocolStr,lange];
+    return  [NSString stringWithFormat:@"%@/pages/terms/register_term.html",BaseUrl];;
 }
 
 //获取图形验证码

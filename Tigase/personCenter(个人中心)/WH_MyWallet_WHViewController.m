@@ -30,8 +30,9 @@
 #import "WH_webpage_WHVC.h"
 #import "WH_RechargeVC.h"
 #import "WH_WithDreawVC.h"
+#import "WH_JXBuyAndPayListVC.h"
 
-#define View_Height (IS_SHOW_BLACK_HOURSE_DEAL)?(384 + 66):(384)
+#define View_Height (IS_SHOW_BLACK_HOURSE_DEAL)?(384 + 66 + 44):(384 + 44)
 
 @interface WH_MyWallet_WHViewController ()
 
@@ -115,6 +116,7 @@
     }
     NSMutableArray *titleArr = [NSMutableArray arrayWithArray:array];
     [titleArr addObject:@"联系客服充值"];
+    [titleArr addObject:@"代理商充值"];
     
     for (int i = 0; i < titleArr.count; i++) {
         NSString *titleStr = [titleArr objectAtIndex:i];
@@ -270,7 +272,11 @@
         [g_navigation pushViewController:tranVC animated:YES];
     }else if ([actionTitle isEqualToString:@"联系客服充值"]){
         [self lianxikehu];
+    }else if ([actionTitle isEqualToString:@"代理商充值"]) {
+        WH_JXBuyAndPayListVC *vc = [[WH_JXBuyAndPayListVC alloc] init];
+        [g_navigation pushViewController:vc animated:YES];
     }
+
 }
 //未设置支付密码，设置支付密码
 - (void)setPaypassForFirstTime {

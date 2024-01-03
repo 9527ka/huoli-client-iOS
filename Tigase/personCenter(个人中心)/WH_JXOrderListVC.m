@@ -53,6 +53,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _wait = [ATMHud sharedInstance];
+    
     self.dataSource = [NSMutableArray array];
     //设置展示样式
     self.datePicker.datePickerMode = UIDatePickerModeDateAndTime;

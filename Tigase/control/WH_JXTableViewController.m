@@ -71,6 +71,7 @@
         _table.wh_touchDelegate = self;
         _table.delegate      = self;
         _table.dataSource    = self;
+        _table.showsVerticalScrollIndicator = NO;
         _table.backgroundColor = [UIColor whiteColor];
         _table.separatorStyle  = UITableViewCellSeparatorStyleNone;
         _table.sectionIndexColor = [UIColor grayColor]; //修改右边索引字体的颜色

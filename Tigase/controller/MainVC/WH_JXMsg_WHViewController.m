@@ -1228,6 +1228,10 @@
     // 查出置顶个数
     for (NSInteger i = 0; i < p.count; i ++) {
         WH_JXMsgAndUserObject *obj = (WH_JXMsgAndUserObject*) [p objectAtIndex:i];
+        //判断，要是是我自己的消息直接移除
+        if ([obj.message.toUserId isEqualToString:MY_USER_ID] && [obj.message.fromUserId isEqualToString:MY_USER_ID]) {
+            [p removeObject:obj];
+        }
         
         if (self.isTwoWithdrawal && !IsStringNull(self.rJid)) {
             if ([obj.user.userId isEqualToString:self.rJid]) {

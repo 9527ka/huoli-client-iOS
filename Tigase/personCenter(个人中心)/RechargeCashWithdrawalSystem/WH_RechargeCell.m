@@ -98,7 +98,7 @@
     WH_webpage_WHVC *webVC = [WH_webpage_WHVC alloc];
     webVC.wh_isGotoBack= YES;
     webVC.isSend = YES;
-    webVC.url = @"";
+    webVC.url = [NSString stringWithFormat:@"%@/pages/terms/recharge_term.html",BaseUrl];;
     webVC = [webVC init];
     [g_navigation.navigationView addSubview:webVC.view];
 }

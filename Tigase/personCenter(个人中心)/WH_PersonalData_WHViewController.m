@@ -734,6 +734,7 @@
 
 - (void)textFieldDidChange:(UITextField *)textField{
     if (textField == self.wh_name) {
+        self.wh_name.text = [textField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
         [g_factory setTextFieldInputLengthLimit:textField maxLength:NAME_INPUT_MAX_LENGTH];
     }
 }
