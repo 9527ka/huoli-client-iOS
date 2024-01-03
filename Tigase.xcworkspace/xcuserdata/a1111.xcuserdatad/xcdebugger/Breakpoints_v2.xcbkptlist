@@ -819,22 +819,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "39A59E90-0B64-4911-9AFA-73C8ED9F3A43"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tigase/redPacketAbout(&#x7ea2;&#x5305;)/WH_JXredPacketDetail_WHVC.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "428"
-            endingLineNumber = "428"
-            landmarkName = "-WH_setViewData"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "F0C04EF9-CB84-46FF-803D-C54F3A27A9F6"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -2000,7 +1984,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "896B37E5-A795-41AB-963D-58394191E469 - c935935a06556e2b"
+                  uuid = "896B37E5-A795-41AB-963D-58394191E469 - c935935a065550f8"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -2010,12 +1994,12 @@
                   urlString = "file:///Users/a1111/Desktop/huoli-client-iOS/Tigase/meeting/GroupManage/Controller/WH_GroupRechargeViewController.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "87"
-                  endingLineNumber = "87"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
                   offsetFromSymbolStart = "512">
                </Location>
                <Location
-                  uuid = "896B37E5-A795-41AB-963D-58394191E469 - c935935a06556e2b"
+                  uuid = "896B37E5-A795-41AB-963D-58394191E469 - c935935a065550f8"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -2025,8 +2009,8 @@
                   urlString = "file:///Users/a1111/Desktop/huoli-client-iOS/Tigase/meeting/GroupManage/Controller/WH_GroupRechargeViewController.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "87"
-                  endingLineNumber = "87"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
                   offsetFromSymbolStart = "520">
                </Location>
             </Locations>
@@ -2285,6 +2269,22 @@
             startingLineNumber = "1771"
             endingLineNumber = "1771"
             landmarkName = "-refresh:loadHistory:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CE33E9A7-246E-4BA3-B389-24337728C38E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tigase/redPacketAbout(&#x7ea2;&#x5305;)/WH_JXredPacketDetail_WHVC.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "391"
+            endingLineNumber = "391"
+            landmarkName = "-WH_setViewData"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -426,7 +426,7 @@
     }
     
     if (IS_SHOW_EXCLUSIVEREDPACKET) {
-        _wh_showNumLabel.text = [NSString stringWithFormat:@"已领取%lu/%ld个，共%.2f/%.2f元，%@" ,(unsigned long)[_wh_OpenMember count] ,_wh_packetObj.count ,(_isGroup)?_wh_packetObj.over:_wh_packetObj.money ,_wh_packetObj.money ,isCanOpen];
+        _wh_showNumLabel.text = [NSString stringWithFormat:@"已领取%lu/%ld个，共%.2f/%.2f元，%@" ,(unsigned long)[_wh_OpenMember count] ,_wh_packetObj.count ,(_isGroup)?_wh_packetObj.money - _wh_packetObj.over:_wh_packetObj.money ,_wh_packetObj.money ,isCanOpen];
     }else{
         if (_wh_packetObj.over < 0.01) {
             _wh_showNumLabel.text = [NSString stringWithFormat:@"%@%ld/%ld,%@",Localized(@"WaHu_JXredPacketDetail_WaHuVC_Drawed"),[_wh_OpenMember count],_wh_packetObj.count,isCanOpen];

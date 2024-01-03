@@ -80,9 +80,9 @@
         self.timeLabel.text = @"邀请时间";
         self.operatorLabel.text = @"邀请人";
     } else {
-        self.memberLabel.text = @"群成员";
+        self.memberLabel.text = @"出群人";
         self.timeLabel.text = @"操作时间";
-        self.operatorLabel.text = @"操作人";
+        self.operatorLabel.text = @"执行人";
     }
     self.page = 0;
     self.selIndex = sender.selectedSegmentIndex;
