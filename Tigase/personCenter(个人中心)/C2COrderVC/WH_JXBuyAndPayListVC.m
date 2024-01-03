@@ -99,6 +99,7 @@
     WH_JXBuyAndPayListCell *cell = (WH_JXBuyAndPayListCell *)[tableView dequeueReusableCellWithIdentifier:@"WH_JXBuyAndPayListCell" forIndexPath:indexPath];
     if(self.dataSource.count > indexPath.row){
         WH_JXBuyAndPayListModel *model = self.dataSource[indexPath.row];
+        model.isBuy = self.tag == 0?YES:NO;
         cell.model = model;
         cell.orderCountLab.text = [NSString stringWithFormat:@"成交量：%@",self.tag == 0?model.buyVolume:model.sellVolume];
     }
@@ -109,19 +110,13 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if(self.dataSource.count > indexPath.row){
-//        WH_JXBuyAndPayListModel *model = self.dataSource[indexPath.row];
-        if(self.tag == 0){//购买
-            
-            WH_GroupRechargeViewController *vc = [[WH_GroupRechargeViewController alloc] init];
-            [g_navigation pushViewController:vc animated:YES];
-            
-        }else{//出售
-            WH_GroupRechargeViewController *vc = [[WH_GroupRechargeViewController alloc] init];
-            [g_navigation pushViewController:vc animated:YES];
-        }
+    if(self.dataSource.count > indexPath.row){
+        WH_JXBuyAndPayListModel *model = self.dataSource[indexPath.row];
         
-//    }
+        WH_GroupRechargeViewController *vc = [[WH_GroupRechargeViewController alloc] init];
+        vc.model = model;
+        [g_navigation pushViewController:vc animated:YES];
+    }
 }
 #pragma mark - 请求成功回调
 -(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{

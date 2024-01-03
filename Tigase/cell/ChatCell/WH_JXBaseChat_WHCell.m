@@ -49,7 +49,7 @@ static double g_timeSend=0;
     
     //添加长按手势
     UILongPressGestureRecognizer * longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(doLongPress:)];
-    longPress.minimumPressDuration = 1;
+//    longPress.minimumPressDuration = 0.5;
     [self.contentView addGestureRecognizer:longPress];
     
     return self;

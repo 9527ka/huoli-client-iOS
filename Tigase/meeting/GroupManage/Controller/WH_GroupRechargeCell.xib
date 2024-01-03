@@ -261,38 +261,10 @@
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n04-tS-jEu">
                                 <rect key="frame" x="28" y="518.33333333333337" width="264" height="33.666666666666629"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="如果您同意使用火力进行">
-                                        <attributes>
-                                            <color key="NSColor" systemColor="systemGrayColor"/>
-                                            <font key="NSFont" size="14" name=".PingFangSC-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="C2C">
+                                    <fragment content="如果您同意使用火力进行C2C交易，即表示您接受火力C2C交易法律《免责声明》">
                                         <attributes>
                                             <color key="NSColor" systemColor="systemGrayColor"/>
                                             <font key="NSFont" metaFont="system" size="14"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="交易，即表示您接受火力">
-                                        <attributes>
-                                            <color key="NSColor" systemColor="systemGrayColor"/>
-                                            <font key="NSFont" size="14" name=".PingFangSC-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="C2C">
-                                        <attributes>
-                                            <color key="NSColor" systemColor="systemGrayColor"/>
-                                            <font key="NSFont" metaFont="system" size="14"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="交易法律《免责声明》">
-                                        <attributes>
-                                            <color key="NSColor" systemColor="systemGrayColor"/>
-                                            <font key="NSFont" size="14" name=".PingFangSC-Regular"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -359,6 +331,8 @@
                 <outlet property="payBgView" destination="uo4-ev-j5Z" id="FRW-3t-doF"/>
                 <outlet property="payCountLab" destination="Ur0-hi-7Xu" id="OhA-s5-Ndv"/>
                 <outlet property="rulerLab" destination="n04-tS-jEu" id="NEo-YV-Ke2"/>
+                <outlet property="userInfoTitle" destination="2rk-lO-Kdh" id="HMx-Nr-Gqe"/>
+                <outlet property="userNameTitle" destination="L1i-9z-K7J" id="xkJ-hM-Dxj"/>
                 <outlet property="vxBgView" destination="ldU-yU-GuM" id="NbH-ky-Ete"/>
                 <outlet property="vxChooseImage" destination="MGV-jb-Bmo" id="lNT-Y6-bYN"/>
                 <outlet property="vxPayLab" destination="64q-4M-iyf" id="2Iz-hP-53i"/>

@@ -17,6 +17,7 @@
 @property(nonatomic,assign)NSInteger type;
 @property(nonatomic,copy)NSString *count;
 @property(nonatomic,strong)NSMutableArray *dataArray;
+@property (weak, nonatomic) IBOutlet UILabel *vcTitle;
 
 @property(nonatomic,copy)NSString *balance;//限额
 
@@ -36,10 +37,17 @@
     self.tableView.rowHeight = 680;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"WH_GroupRechargeCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WH_GroupRechargeCell"];
-    //获取支付方式
-    [g_server WH_ReceiveAccountListWithRoomJid:self.room.roomJid toView:self];
-    //获取限额
-    [g_server WH_BalanceAccountWithId:self.room.roomJid toView:self];
+    if(self.room){//群内购买
+        //获取支付方式
+        [g_server WH_ReceiveAccountListWithRoomJid:self.room.roomJid toView:self];
+        //获取限额
+        [g_server WH_BalanceAccountWithId:self.room.roomJid toView:self];
+    }else{//代理商购买或者出售
+        if(!self.model.isBuy){//出售
+            self.vcTitle.text = @"出售HOTC";
+        }
+    }
+    
 }
 
 - (IBAction)didTapBack {
@@ -59,15 +67,20 @@
         weakSelf.type = type;
         [weakSelf certainAction];
     };
-    cell.groupNameLab.text = self.room.userNickName.length > 0?self.room.userNickName:@"";
-    if(self.balance.length > 0){
-        cell.balance = self.balance;
-    }
-    if(self.dataArray.count > 0){
-        cell.payArray = self.dataArray;
+    if(self.room){
+        cell.groupNameLab.text = self.room.userNickName.length > 0?self.room.userNickName:@"";
+        if(self.balance.length > 0){
+            cell.balance = self.balance;
+        }
+        if(self.dataArray.count > 0){
+            cell.payArray = self.dataArray;
+        }
+    }else{//代理商购买或者出售
+        cell.model = self.model;
+        
     }
     
-        return cell;
+    return cell;
 }
 -(void)certainAction{
     

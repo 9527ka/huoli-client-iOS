@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy)NSString *wechatCode;//微信收款码
 @property(nonatomic,copy)NSString *avatar;//
 @property(nonatomic,assign)BOOL online;//
+@property(nonatomic,assign)BOOL isBuy;//是否是购买
 
 
 @end

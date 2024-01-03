@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WH_JXBuyAndPayListModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -25,6 +26,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *vxPayLab;
 @property (weak, nonatomic) IBOutlet UILabel *rulerLab;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *vxViewTopConstant;// 128 24
+@property (weak, nonatomic) IBOutlet UILabel *userInfoTitle;
+@property (weak, nonatomic) IBOutlet UILabel *userNameTitle;
+
+
 
 @property(nonatomic,copy)NSString *balance;//限额
 
@@ -33,6 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)NSInteger type;
 @property(nonatomic,copy)void(^certainBlock)(NSString *count,NSInteger type);
 
+
+@property (nonatomic,strong) WH_JXBuyAndPayListModel *model;
 
 
 @end

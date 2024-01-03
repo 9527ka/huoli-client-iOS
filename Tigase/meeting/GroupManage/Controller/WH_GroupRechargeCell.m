@@ -49,7 +49,12 @@
 //        textField.text = self.balance;
 //    }
     
-    self.payCountLab.text = [NSString stringWithFormat:@"应付 ￥%.2f",textField.text.length > 0?textField.text.doubleValue:0.00];
+    if(self.model){
+        self.payCountLab.text = [NSString stringWithFormat:@"%@ ￥%.2f",self.model.isBuy?@"应付":@"可得",textField.text.length > 0?textField.text.doubleValue:0.00];
+    }else{
+        self.payCountLab.text = [NSString stringWithFormat:@"应付 ￥%.2f",textField.text.length > 0?textField.text.doubleValue:0.00];
+    }
+    
 
 }
 -(void)rulerAction{
@@ -130,6 +135,41 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
+}
+
+-(void)setModel:(WH_JXBuyAndPayListModel *)model{
+    _model = model;
+    
+    self.userInfoTitle.text = @"商家信息";
+    self.userNameTitle.text = @"商家昵称";
+    self.groupNameLab.text = model.name;
+    
+    [self.certainBtn setTitle:model.isBuy?@"0手续买入HOTC":@"0手续卖出HOTC" forState:UIControlStateNormal];
+    
+    self.vxBgView.hidden = self.zfbBgView.hidden = YES;
+    self.vxViewTopConstant.constant = 24;
+    
+    //只有一个的时候看看是什么类型
+    if(model.alipayCode.length > 0 && model.wechatCode.length == 0){
+        //支付宝
+        self.vxBgView.hidden = YES;
+        self.zfbBgView.hidden = NO;
+        self.vxViewTopConstant.constant = 24;
+        self.zfbChooseImage.hidden = NO;
+        [self.contentView bringSubviewToFront:self.zfbBgView];
+        
+    }else if (model.alipayCode.length == 0 && model.wechatCode.length > 0){
+        //微信
+        self.zfbBgView.hidden = YES;
+        self.vxBgView.hidden = NO;
+        self.vxViewTopConstant.constant = 24;
+        self.vxChooseImage.hidden = NO;
+        [self.contentView bringSubviewToFront:self.vxBgView];
+        
+    }else{
+        self.vxBgView.hidden = self.zfbBgView.hidden = NO;
+        self.vxViewTopConstant.constant = 128;
+    }
 }
 
 @end

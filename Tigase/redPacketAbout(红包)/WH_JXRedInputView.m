@@ -74,7 +74,9 @@
         _moneyY = RowMargin;
         _countY = _moneyY + RowMargin + RowHeight;
         if (self.type == 4) {
-            _canClaimY = _countY + RowMargin + RowHeight + noticeTitleTop + noticeTitleH;
+//            _canClaimY = _countY + RowMargin + RowHeight + noticeTitleTop + noticeTitleH;
+            //去掉了一栏 红包个数
+            _canClaimY = _countY;
             _greetY = _canClaimY + RowMargin + RowHeight + 30;
         }else{
            _greetY = _countY + RowMargin + RowHeight + noticeTitleTop + noticeTitleH;
@@ -91,12 +93,14 @@
     }
     
     if(_isRoom){
-        _wh_countView.frame = CGRectMake(INSETS, _countY, self.frame.size.width-INSETS*2, RowHeight);
+        _wh_countView.frame = CGRectMake(INSETS, _countY, self.frame.size.width-INSETS*2, self.type == 4?0:RowHeight);
+        _wh_countView.hidden = self.type == 4?YES:NO;
+        
         _wh_countUnit.frame = CGRectMake(CGRectGetWidth(_wh_countView.frame)-40, 0, 40, RowHeight);
         _wh_countTextField.frame = CGRectMake(CGRectGetMaxX(_wh_countTitle.frame), 0, CGRectGetMinX(_wh_countUnit.frame)-CGRectGetMaxX(_wh_countTitle.frame), RowHeight);
         
         if (self.type == 4) {
-            //有专属红包
+            //有专属红包  
             _wh_canClaimView.frame = CGRectMake(INSETS, _canClaimY, self.frame.size.width-INSETS*2, RowHeight);
             _wh_canclaimBtn.frame = CGRectMake(CGRectGetMaxX(self.wh_canClaimTitle.frame) + 10, 0, CGRectGetWidth(_wh_canClaimView.frame)- CGRectGetMaxX(self.wh_canClaimTitle.frame) - 10, RowHeight);
             _wh_canclaimBtn.tag = _type;
@@ -106,6 +110,7 @@
             _receiveNoticeLabel.frame = CGRectMake(25, CGRectGetMaxY(_wh_canClaimView.frame) + 8, self.frame.size.width - 50, 20);
             if (self.type == 4) {
                 _wh_countTextField.userInteractionEnabled = NO;
+                _wh_countTextField.text = @"1";
             }
         }
     }
@@ -166,7 +171,8 @@
             break;
         }
         case 4:{
-            _wh_noticeTitle.text = self.isDiamond? @"小伙伴专属钻石":@"小伙伴专属红包";//@"小伙伴需回复口令抢红包";//
+//            _wh_noticeTitle.text = self.isDiamond? @"小伙伴专属钻石":@"小伙伴专属红包";//@"小伙伴需回复口令抢红包";//
+            _wh_noticeTitle.text = @"";
             _wh_greetTextField.placeholder = @"火力全开";//@"如“我真帅”";// eg."I'm so handsome";
             _wh_greetTitle.text = Localized(@"New_hold_message");//@"设置口令";//
             break;
@@ -179,6 +185,7 @@
 -(void)customSubViews{
     if(_isRoom){
         [self addSubview:self.wh_countView];
+        
         if (self.type == 4) {
             [self addSubview:self.wh_canClaimView];
             [self addSubview:self.receiveNoticeLabel];
@@ -373,7 +380,7 @@
 -(UITextField *)wh_countTextField{
     if (!_wh_countTextField) {
         _wh_countTextField = [UIFactory WH_create_WHTextFieldWith:CGRectZero delegate:self returnKeyType:UIReturnKeyNext secureTextEntry:NO placeholder:nil font:sysFontWithSize(14)];
-        _wh_countTextField.text = @"1";    // 红包默认最少为1个
+//        _wh_countTextField.text = @"1";    // 红包默认最少为1个
         _wh_countTextField.clearButtonMode = UITextFieldViewModeNever;
         _wh_countTextField.textAlignment = NSTextAlignmentRight;
         _wh_countTextField.borderStyle = UITextBorderStyleNone;
