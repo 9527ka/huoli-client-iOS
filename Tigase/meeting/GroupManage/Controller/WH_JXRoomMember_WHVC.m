@@ -136,6 +136,8 @@
         self.wh_tableBody.showsHorizontalScrollIndicator = NO;
         
         self.user = [[WH_JXUserObject sharedUserInstance] getUserById:wh_room.roomJid];
+        //为了删除的时候为空
+        [self redrawView222];
 
         self.wh_isGotoBack   = YES;
         self.title = Localized(@"WaHu_JXRoomMember_WaHuVC_RoomInfo");
@@ -518,6 +520,8 @@
     if( [aDownload.action isEqualToString:wh_act_roomMemberDel] ){
         memberData* member=nil;
         if(_delete == -1){
+            //删除聊天记录
+            [self deleteChatContent];
             wh_chatRoom.delegate = self;
             [wh_chatRoom.xmppRoom leaveRoom];
             member = [wh_room getMember:MY_USER_ID];
@@ -1700,24 +1704,27 @@
     share.wh_okActionBlock = ^{
         [weakShare hideView];
         // 清除聊天记
-        WH_JXMessageObject *msg = [[WH_JXMessageObject alloc] init];
-        msg.isGroup = YES;
-        msg.toUserId = weakSelf.user.userId;
-        [msg deleteAll];
-        [g_server showMsg:Localized(@"JXAlert_DeleteOK") delay:.5];
-        [g_notify postNotificationName:kRefreshChatLogNotif object:nil];
-        
-        // 清除本群所有任务
-        [[JXSynTask sharedInstance] deleteTaskWithRoomId:weakSelf.wh_roomId];
-        
-//        [g_server WH_emptyMsgWithTouserId:self.user.userId type:[NSNumber numberWithInt:0] toView:self];
-        [g_server WH_ClearGroupChatHistoryWithRoomId:self.wh_room.roomId toView:self];
+        [weakSelf deleteChatContent];
         
     };
     share.wh_cancelActionBlock = ^{
         [weakShare hideView];
     };
     
+}
+-(void)deleteChatContent{
+    WH_JXMessageObject *msg = [[WH_JXMessageObject alloc] init];
+    msg.isGroup = YES;
+    msg.toUserId = self.user.userId;
+    [msg deleteAll];
+    [g_server showMsg:Localized(@"JXAlert_DeleteOK") delay:.5];
+    [g_notify postNotificationName:kRefreshChatLogNotif object:nil];
+    
+    // 清除本群所有任务
+    [[JXSynTask sharedInstance] deleteTaskWithRoomId:self.wh_roomId];
+    
+//        [g_server WH_emptyMsgWithTouserId:self.user.userId type:[NSNumber numberWithInt:0] toView:self];
+    [g_server WH_ClearGroupChatHistoryWithRoomId:self.wh_room.roomId toView:self];
 }
 
 // MARK: -- 群红包
@@ -1967,6 +1974,7 @@
         _delete = -1;
         [WH_JXUserObject deleteUserAndMsg:wh_room.roomJid];
         [g_server WH_delRoomMemberWithRoomId:wh_room.roomId userId:[g_myself.userId intValue] toView:weakSelf];
+        
         
     };
     share.wh_cancelActionBlock = ^{

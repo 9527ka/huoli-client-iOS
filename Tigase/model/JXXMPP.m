@@ -2046,6 +2046,9 @@ static JXXMPP *sharedManager;
 //                        [msg updateLastSend:UpdateLastSendType_Add];
 //                                [msg notifyNewMsg];//在显示时检测MessageId是否已显示
                     }else{//保存消息
+                        if(msg.isGroup){
+                            return;
+                        }
                         if (![msg haveTheMessage]) {
                             BOOL isRoomControlMsg = msg.isRoomControlMsg;
                             BOOL isInsert = [msg insert:nil];//在保存时检测MessageId是否已存在记录
@@ -2064,6 +2067,12 @@ static JXXMPP *sharedManager;
                     if ([msg.type integerValue] == kRoomRemind_ClearRoomChatRecord) {
                         return;
                     }
+                    //退出的群聊
+//                    WH_JXUserObject *myUser = [[WH_JXUserObject sharedUserInstance] getUserById:MY_USER_ID];
+//                    
+//                    if(){
+//                        return;
+//                    }
 
                     //群文件：
                     if([msg.type intValue] == kWCMessageTypeGroupFileUpload || [msg.type intValue] == kWCMessageTypeGroupFileDelete || [msg.type intValue] == kWCMessageTypeGroupFileDownload){
