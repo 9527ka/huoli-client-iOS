@@ -1990,7 +1990,7 @@ static JXXMPP *sharedManager;
                             [g_notify postNotificationName:kMsgComeContactRegister object:msg];
                         }else {
                             if([msg.type intValue] == XMPP_TYPE_DELALL){//彻底删除
-                                
+                                [g_notify postNotificationName:kMsgComeContactDele object:msg];
                             }else{
                                 [self doReceiveFriendRequest:msg];
                             }

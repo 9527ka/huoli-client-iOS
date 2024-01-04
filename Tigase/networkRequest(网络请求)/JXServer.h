@@ -431,7 +431,7 @@
 #define wh_order_Info @"trade/complain/info/"    //申诉列表
 #define wh_order_List @"trade/list"    //订单列表
 #define wh_order_merchant_List @"merchant/list"    //代理列表
-
+#define wh_order_buy_List @"trade/buy"    //代理商购买
 
 
 
@@ -1284,6 +1284,19 @@
 -(void)WH_orderAppealListWithId:(NSString *)orderId toView:(id)toView;
 #pragma mark -- 代理列表
 -(void)WH_MerchantWithTag:(NSInteger)tag pageIndex:(NSInteger)pageIndex toView:(id)toView;
+//payType        代理的收款方式, 1-微信, 2-支付宝
+//merchant       代理的id
+//paymentCode    代理的对应收款的二维码图片链接
+- (void)WH_TradeApplyBuyWithAmount:(NSString *)amount payAmount:(NSString *)payAmount payType:(NSInteger)payType merchant:(NSString *)merchant paymentCode:(NSString *)paymentCode toView:(id)toView;
+
+
+
+
+
+
+
+
+
 
 
 

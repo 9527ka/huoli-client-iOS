@@ -517,6 +517,8 @@
 #define kRefreshAddressBookNotif @"kRefreshAddressBookNotif"    //手机联系人刷新
 #define kMsgComeContactRegister @"kMsgComeContactRegister"
 
+#define kMsgComeContactDele @"kMsgComeContactDele"//删除好友
+
 #define kMsgRoomFaceNotif @"kMsgRoomFaceNotif"  // 面对面建群刷新通知
 
 #define kClearRoomChatRecord @"kClearRoomChatRecord"

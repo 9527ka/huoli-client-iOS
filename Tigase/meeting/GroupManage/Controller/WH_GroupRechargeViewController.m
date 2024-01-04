@@ -84,38 +84,50 @@
 }
 -(void)certainAction{
     
-    self.room.type = self.type;
-    self.room.count = self.count;
-    NSDictionary *dic;
-    //获取支付方式数据
-    if(self.dataArray.count == 1){
-        dic = self.dataArray.firstObject;
-        NSString *type = [NSString stringWithFormat:@"%@",dic[@"type"]];
-        if(type.intValue == 1){//微信
-            self.type = 1;
-        }else{//支付宝
-            self.type = 0;
-        }
-    }else{
-        for (NSDictionary *dataDic in self.dataArray) {
-            NSString *type = [NSString stringWithFormat:@"%@",dataDic[@"type"]];
-            if(self.type == 1 && type.intValue == 1){//微信
-                dic = dataDic;
-            }else if(self.type == 0 && type.intValue == 2){
-                dic = dataDic;
+    if(self.room){//群内购买
+        self.room.type = self.type;
+        self.room.count = self.count;
+        NSDictionary *dic;
+        //获取支付方式数据
+        if(self.dataArray.count == 1){
+            dic = self.dataArray.firstObject;
+            NSString *type = [NSString stringWithFormat:@"%@",dic[@"type"]];
+            if(type.intValue == 1){//微信
+                self.type = 1;
+            }else{//支付宝
+                self.type = 0;
+            }
+        }else{
+            for (NSDictionary *dataDic in self.dataArray) {
+                NSString *type = [NSString stringWithFormat:@"%@",dataDic[@"type"]];
+                if(self.type == 1 && type.intValue == 1){//微信
+                    dic = dataDic;
+                }else if(self.type == 0 && type.intValue == 2){
+                    dic = dataDic;
+                }
             }
         }
+        self.payTypeDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+        
+        //调接口
+        [g_server WH_TradeApplyWithTargetAmount:self.count payType:self.type == 0?2:1 financialInfoId:[NSString stringWithFormat:@"%@",dic[@"id"]] payeeUID:[NSString stringWithFormat:@"%ld",self.room.userId] jid:self.room.roomJid payeeName:[NSString stringWithFormat:@"%@",dic[@"accountName"]] payeeAccount:[NSString stringWithFormat:@"%@",dic[@"accountNo"]] payeeAccountImg:[NSString stringWithFormat:@"%@",dic[@"qrCode"]] toView:self];
+    }else{//代理商购买
+        NSString *paymentCode = self.type == 0?self.model.alipayCode:self.model.wechatCode;
+        
+        float sellCharge = self.count.floatValue * self.model.sellCharge.floatValue;
+        //应得
+        float grossPay = self.model.isBuy?self.count.floatValue + sellCharge:self.count.floatValue - sellCharge;
+        
+        [g_server WH_TradeApplyBuyWithAmount:self.count payAmount:[NSString stringWithFormat:@"%.2f",grossPay] payType:self.type == 0?2:1 merchant:self.model.userId paymentCode:paymentCode toView:self];
+        
     }
-    self.payTypeDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-    
-    //调接口
-    [g_server WH_TradeApplyWithTargetAmount:self.count payType:self.type == 0?2:1 financialInfoId:[NSString stringWithFormat:@"%@",dic[@"id"]] payeeUID:[NSString stringWithFormat:@"%ld",self.room.userId] jid:self.room.roomJid payeeName:[NSString stringWithFormat:@"%@",dic[@"accountName"]] payeeAccount:[NSString stringWithFormat:@"%@",dic[@"accountNo"]] payeeAccountImg:[NSString stringWithFormat:@"%@",dic[@"qrCode"]] toView:self];
-    
 }
 
 #pragma mark - 请求成功回调
 -(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{
     [_wait hide];
+    
+
     NSString *url = [NSString stringWithFormat:@"%@%@",wh_List_userAccount,self.room.roomJid];
     
     NSString *balanceUrl = [NSString stringWithFormat:@"%@%@",wh_balance_userAccount,self.room.roomJid];
@@ -127,6 +139,18 @@
         self.balance = [NSString stringWithFormat:@"%@",dict[@"balance"]];
         [self.tableView reloadData];
     }else if ([aDownload.action isEqualToString:wh_trade_apply]){
+        //获取过期时间
+        NSString *expiryTime = [NSString stringWithFormat:@"%@",dict[@"expiryTime"]];
+        [self.payTypeDic setObject:[NSString stringWithFormat:@"%@",dict[@"id"]] forKey:@"id"];
+        [self.payTypeDic setObject:@"0" forKey:@"status"];
+        
+        
+        WH_JXBuyPayViewController *vc = [[WH_JXBuyPayViewController alloc] init];
+        vc.expiryTime = expiryTime;
+        vc.room = self.room;
+        vc.payDic = self.payTypeDic;
+        [g_navigation pushViewController:vc animated:YES];
+    }else if ([aDownload.action isEqualToString:wh_order_buy_List]){//代理商购买
         //获取过期时间
         NSString *expiryTime = [NSString stringWithFormat:@"%@",dict[@"expiryTime"]];
         [self.payTypeDic setObject:[NSString stringWithFormat:@"%@",dict[@"id"]] forKey:@"id"];

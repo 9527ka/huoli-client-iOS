@@ -2636,7 +2636,7 @@
 
 
 
-//添加好友请求
+//添加好友请求  fromAddType(1:二维码 2：名片 3：群组 4： 手机号搜索 5： 昵称搜索6:其他方式添加)]
 -(void)WH_addAttentionWithUserId:(NSString*)toUserId fromAddType:(int)fromAddType toView:(id)toView{
     if(toUserId==nil)
         return;
@@ -4881,6 +4881,23 @@
     
     [p go];
 }
+//payType        代理的收款方式, 1-微信, 2-支付宝
+//merchant       代理的id
+//paymentCode    代理的对应收款的二维码图片链接
+- (void)WH_TradeApplyBuyWithAmount:(NSString *)amount payAmount:(NSString *)payAmount payType:(NSInteger)payType merchant:(NSString *)merchant paymentCode:(NSString *)paymentCode toView:(id)toView{
+    WH_JXConnection* p = [self addTask:wh_order_buy_List param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:amount forKey:@"targetAmount"];
+    [p setPostValue:payAmount forKey:@"payAmount"];
+    [p setPostValue:merchant forKey:@"merchant"];
+    [p setPostValue:@(payType) forKey:@"payType"];
+    [p setPostValue:paymentCode forKey:@"paymentCode"];
+    
+    [p go];
+}
+
+
+
 
 
 

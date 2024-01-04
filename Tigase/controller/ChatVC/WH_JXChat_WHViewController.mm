@@ -975,8 +975,15 @@
         self.rightW = _noticeStrW+NOTICE_WIDTH;
     }
 }
-
-- (void)setupNoticeWithContent:(NSString *)noticeStr time:(NSString *)noticeTime {
+//noticeType  //通知类型 0：默认 1：强提醒
+- (void)setupNoticeWithContent:(NSString *)noticeStr time:(NSString *)noticeTime noticeType:(NSString *)noticeType{
+    
+    if (noticeType.intValue == 0) {
+        _noticeView.hidden = YES;
+        _noticeHeight = 0;
+        _jumpNewMsgBtn.frame = CGRectMake(JX_SCREEN_WIDTH - 105, JX_SCREEN_TOP + 20+_noticeHeight, 120, 30);
+        return;
+    }
     
     NSString * newNoticeStr = [self getContentMsg:noticeStr];
     
@@ -1280,6 +1287,36 @@
         [self createSelectMoreView];
     });
     
+    _addFriendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_addFriendBtn addTarget:self action:@selector(showAddAlertAction) forControlEvents:UIControlEventTouchUpInside];
+    _addFriendBtn.frame = CGRectMake(0, 0, JX_SCREEN_WIDTH, 180);
+    _addFriendBtn.hidden = YES;
+    [inputBar addSubview:_addFriendBtn];
+        
+}
+#pragma mark ---添加好友
+-(void)showAddAlertAction{
+    
+    UIAlertController *addFriendAlert = [UIAlertController alertControllerWithTitle:@"添加好友" message:@"对方与你非好友关系，是否添加好友？" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"加好友" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        // 验证XMPP是否在线
+        if(g_xmpp.isLogined != 1){
+            [g_xmpp showXmppOfflineAlert];
+            return;
+        }
+        
+        if([self.chatPerson.isBeenBlack boolValue]){
+            [g_App showAlert:Localized(@"TO_BLACKLIST")];
+            return;
+        }
+        [g_server WH_addAttentionWithUserId:self.chatPerson.userId fromAddType:6 toView:self];
+
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:Localized(@"JX_Cencal") style:UIAlertActionStyleCancel handler:nil];
+    [addFriendAlert addAction:confirmAction];
+    [addFriendAlert addAction:cancelAction];
+    
+    [self presentViewController:addFriendAlert animated:YES completion:nil];
 }
 
 //隐藏系统菜单的方法
@@ -1579,6 +1616,8 @@
     [g_notify addObserver:self selector:@selector(readTypeMsgReceipt:) name:kXMPPMessageReadTypeReceipt_WHNotification object:nil];
     [g_notify addObserver:self selector:@selector(sendText:) name:kSendInput_WHNotifaction object:nil];
     [g_notify addObserver:self selector:@selector(newMsgCome:) name:kXMPPNewMsg_WHNotifaction object:nil];
+    [g_notify addObserver:self selector:@selector(deletaFriendAction) name:kMsgComeContactDele object:nil];
+    
     [g_notify addObserver:self selector:@selector(showMsg:) name:kXMPPShowMsg_WHNotifaction object:nil];
     [g_notify addObserver:self selector:@selector(newReceipt:) name:kXMPPReceipt_WHNotifaction object:nil];
     [g_notify addObserver:self selector:@selector(WH_onReceiveFile:) name:kXMPPReceiveFile_WHNotifaction object:nil];
@@ -1603,6 +1642,9 @@
     [g_notify addObserver:self selector:@selector(roomMembersRefreshNotifi:) name:kRoomMembersRefresh_WHNotification object:nil];
     // 设置聊天背景
     [g_notify addObserver:self selector:@selector(setBackGroundImageViewNotifi:) name:kSetBackGroundImageView_WHNotification object:nil];
+    
+    
+    
     [self.wh_tableFooter addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
 }
 
@@ -3497,12 +3539,21 @@
 }
 
 #pragma mark  接受新消息广播
+-(void)deletaFriendAction{
+    _addFriendBtn.hidden =NO;
+    [self.view endEditing:YES];
+}
 -(void)newMsgCome:(NSNotification *)notifacation{
     
     WH_JXMessageObject *msg = (WH_JXMessageObject *)notifacation.object;
     
-    if(msg==nil || msg.type.intValue == XMPP_TYPE_DELALL)
+    if(msg==nil || msg.type.intValue == XMPP_TYPE_DELALL){
+        if (msg.type.intValue == XMPP_TYPE_DELALL) {
+            [self deletaFriendAction];
+        }
         return;
+    }
+    _addFriendBtn.hidden = YES;
     
     // 更新title 在线状态
     if (!self.roomJid && !self.onlinestate && ![msg.fromUserId isEqualToString:MY_USER_ID]) {
@@ -5552,7 +5603,7 @@
         p = nil;
     }
     if( [aDownload.action isEqualToString:wh_act_UserGet] ){
-        
+    
         if (self.firstGetUser || self.courseId.length > 0) {
             WH_JXUserObject* user = [[WH_JXUserObject alloc]init];
             [user WH_getDataFromDict:dict];
@@ -5569,6 +5620,9 @@
             
             self.isBeenBlack = [[[dict objectForKey:@"friends"] objectForKey:@"isBeenBlack"] intValue];
             self.friendStatus = [[[dict objectForKey:@"friends"] objectForKey:@"status"] intValue];
+            
+            _addFriendBtn.hidden = !self.friendStatus?NO:YES;
+            
             self.firstGetUser = YES;
             self.onlinestate = [dict[@"onlinestate"] boolValue];
             if([chatPerson.userId intValue]<10100 && [chatPerson.userId intValue]>=10000) {
@@ -5935,7 +5989,10 @@
                 }
                 
                 _disableSay = [[[dict objectForKey:@"member"]objectForKey:@"talkTime"] longLongValue];
-                self.chatPerson.talkTime = [NSNumber numberWithInt:[[dict objectForKey:@"talkTime"] intValue]];
+//                self.chatPerson.talkTime = [NSNumber numberWithInt:[[dict objectForKey:@"talkTime"] intValue]];
+                
+                self.chatPerson.talkTime = [NSNumber numberWithLong:[[[dict objectForKey:@"member"]objectForKey:@"talkTime"] longLongValue]];
+                
                 NSString *role = [[dict objectForKey:@"member"] objectForKey:@"role"];
                 if (([self.chatPerson.talkTime longLongValue] > 0 && !_isAdmin) || [role intValue] == 4) {
                     _talkTimeLabel.hidden = NO;
@@ -5961,7 +6018,7 @@
                 if (self.chatRoom.roomJid.length > 0) {
                     NSString *noticeStr = [[dict objectForKey:@"notice"] objectForKey:@"text"];
                     NSString *noticeTime = [[dict objectForKey:@"notice"] objectForKey:@"time"];
-                    [self setupNoticeWithContent:noticeStr time:noticeTime];
+                    [self setupNoticeWithContent:noticeStr time:noticeTime noticeType:[[dict objectForKey:@"notice"] objectForKey:@"noticeType"]];
                 }
                 
                 // 保存自己
@@ -6732,6 +6789,7 @@
             if([p.toUserId isEqualToString:g_myself.userId]){
                 _personalBannedTime = [p.content longLongValue];
                 _disableSay = [p.content longLongValue];
+                self.chatPerson.talkTime = [NSNumber numberWithLong:[p.content longLongValue]];
             
                 [self setChatFieldUserInterEnbale:_disableSay > 0?NO:YES];
             }
@@ -6749,8 +6807,9 @@
             
         }
         if([p.type intValue] == kRoomRemind_NewNotice){
+            NSDictionary *noticDic = [self dictionaryWithJsonString:p.content];
             NSArray *noticeArr = [p.content componentsSeparatedByString:Localized(@"WH_JXMessageObject_AddNewAdv")];
-            [self setupNoticeWithContent:[noticeArr lastObject] time:[NSString stringWithFormat:@"%lf",[[NSDate date] timeIntervalSince1970]]];
+            [self setupNoticeWithContent:[noticeArr lastObject] time:[NSString stringWithFormat:@"%lf",[[NSDate date] timeIntervalSince1970]] noticeType:[NSString stringWithFormat:@"%@",[noticDic objectForKey:@"noticeType"]]];
             //保存最新的群公告,给后一个界面传值会用到self.noticesArry
             NSString * newNoticeStr = [self getContentMsg:[noticeArr lastObject]];
             self.noticesArry = [NSMutableArray arrayWithArray:self.noticesArry];
@@ -7765,12 +7824,19 @@
     if (recording) {
         return;
     }
+    //禁言状态下不允许点击
+    if ([self isNoAllowedOpearitionOnJinYanStatus]) {
+        //禁言情况下
+        [GKMessageTool showText:@"禁言状态下不能进行此操作！"];
+        return;
+    }
     [self hideKeyboard:NO];
     WH_JXMessageObject *msg = notification.object;
     if (([msg.fileName isEqualToString:@"3"] && [msg.fileSize intValue] != 2) && ![msg.fromUserId isEqualToString:MY_USER_ID]) {
         _messageText.text = msg.content;
         return;
     }
+    
     [_wait start];
     [g_server WH_getRedPacketWithMsg:msg.objectId toView:self];
 
@@ -9544,4 +9610,24 @@
     }
     return newContent;
 }
+
+
+- (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString
+{
+    if (jsonString == nil) {
+        return nil;
+    }
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if(err)
+    {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return dic;
+}
+
 @end

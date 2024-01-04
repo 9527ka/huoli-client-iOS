@@ -207,7 +207,7 @@
     UIView *xyqtxView = [self createBGViewWithOrginY:membHeight height:HEIGHT supView:self.cView];
     iv = [self WH_createMiXinButton:Localized(@"JX_NoticeStrongReminderTitle") supView:xyqtxView drawTop:NO drawBottom:NO must:NO click:nil];
     iv.frame = CGRectMake(0, 0, CGRectGetWidth(xyqtxView.frame), CGRectGetHeight(xyqtxView.frame));
-    [self createSwitchWithParent:iv tag:2466 isOn:self.room.isAttritionNotice];
+    [self createSwitchWithParent:iv tag:2466 isOn:self.room.allowForceNotice];
     label =[self createLabelWithParent:self.wh_tableBody frameY:CGRectGetMaxY(xyqtxView.frame) + 2 text:@"启用后，群内发送公告可以进行强提醒"];
     membHeight = CGRectGetMaxY(label.frame) + 10;
     

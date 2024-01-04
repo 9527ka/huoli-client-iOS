@@ -5,12 +5,11 @@
       "scale" : "1x"
     },
     {
-      "filename" : "WH_addressbook_group@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "WH_addressbook_group@3x.png",
+      "filename" : "avatar_normal.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -26,6 +26,7 @@
     UIImageView *inputBar;
     UIButton* _recordBtn;
     UIButton* _recordBtnLeft;
+    UIButton* _addFriendBtn;
     UIImage *_myHeadImage,*_userHeadImage;
     WH_JXSelectImageView *_moreView;
     UIButton* _btnFace;
