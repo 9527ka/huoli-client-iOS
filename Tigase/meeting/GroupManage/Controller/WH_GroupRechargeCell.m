@@ -143,7 +143,7 @@
 
 -(void)setModel:(WH_JXBuyAndPayListModel *)model{
     _model = model;
-    
+    self.timeTitle.text = @"20分钟";
     self.userInfoTitle.text = @"商家信息";
     self.userNameTitle.text = @"商家昵称";
     self.groupNameLab.text = model.name;

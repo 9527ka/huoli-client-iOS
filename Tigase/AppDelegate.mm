@@ -93,44 +93,44 @@ static  WH_webpage_WHVC *webVC;
     [self showLoginUI];
     [self startPush:application didFinishLaunchingWithOptions:launchOptions];
     
-    // 要使用百度地图，请先启动BaiduMapManager
-    _baiduMapManager = [[BMKMapManager alloc]init];
-    // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
-    
-    NSString * identifier = [[NSBundle mainBundle] bundleIdentifier];
-    BOOL ret = false;
-    if ([identifier isEqualToString:@"com.shandianyun.wahu"]) {
-        ret = [_baiduMapManager start:BMK_AK generalDelegate:nil];
-    }
-    if (!ret)
-        NSLog(@"BMKMapManager start faild!");
+//    // 要使用百度地图，请先启动BaiduMapManager
+//    _baiduMapManager = [[BMKMapManager alloc]init];
+//    // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
+//
+//    NSString * identifier = [[NSBundle mainBundle] bundleIdentifier];
+//    BOOL ret = false;
+//    if ([identifier isEqualToString:@"com.shandianyun.wahu"]) {
+//        ret = [_baiduMapManager start:BMK_AK generalDelegate:nil];
+//    }
+//    if (!ret)
+//        NSLog(@"BMKMapManager start faild!");
     
     //谷歌地图
 #ifdef USE_GOOGLEMAP
-    [GMSServices provideAPIKey:@"AIzaSyDk0-ylpwNIPtOZHYSPiGvM--RG02azY7w"];
+//    [GMSServices provideAPIKey:@"AIzaSyDk0-ylpwNIPtOZHYSPiGvM--RG02azY7w"];
 #endif
 //    if (![g_default boolForKey:kUseGoogleMap]) {
 //        [g_default setBool:NO forKey:kUseGoogleMap];
 //    }
     // 设置友盟AppKey
-    [AvoidCrash makeAllEffective];
-    NSArray *noneSelClassStrings = @[
-                                  @"NSNull",
-                                  @"NSNumber",
-                                  @"NSString",
-                                  @"NSDictionary",
-                                  @"NSArray"
-                                  ];
-     [AvoidCrash setupNoneSelClassStringsArr:noneSelClassStrings];
-    
-    [UMConfigure initWithAppkey:@"5ef85141978eea088379ec14" channel:nil];
+//    [AvoidCrash makeAllEffective];
+//    NSArray *noneSelClassStrings = @[
+//                                  @"NSNull",
+//                                  @"NSNumber",
+//                                  @"NSString",
+//                                  @"NSDictionary",
+//                                  @"NSArray"
+//                                  ];
+//     [AvoidCrash setupNoneSelClassStringsArr:noneSelClassStrings];
+//
+//    [UMConfigure initWithAppkey:@"5ef85141978eea088379ec14" channel:nil];
     
     [[UIApplication sharedApplication] registerForRemoteNotifications];
     
     //设置微信三方登录和分享配置
-    [WXApi registerApp:MXWechatAPPID universalLink:@"https://guxin.com/ios"];
-    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:MXWechatAPPID appSecret:MXWechatAPPSecret redirectURL:@"http://mobile.umeng.com/social"];
-    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatTimeLine appKey:MXWechatAPPID appSecret:MXWechatAPPSecret redirectURL:@"http://mobile.umeng.com/social"];
+//    [WXApi registerApp:MXWechatAPPID universalLink:@"https://guxin.com/ios"];
+//    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:MXWechatAPPID appSecret:MXWechatAPPSecret redirectURL:@"http://mobile.umeng.com/social"];
+//    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatTimeLine appKey:MXWechatAPPID appSecret:MXWechatAPPSecret redirectURL:@"http://mobile.umeng.com/social"];
     
         
     [self registerAPN];

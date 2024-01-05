@@ -38,6 +38,7 @@
 
 #define BaseUrl @"http://192.168.1.88:8092"   //开发环境
 //#define BaseUrl @"http://195.54.171.69:8092"   //测试环境
+//#define BaseUrl @"http://47.122.20.170:8092"   //
 
 
 
@@ -432,7 +433,8 @@
 #define wh_order_List @"trade/list"    //订单列表
 #define wh_order_merchant_List @"merchant/list"    //代理列表
 #define wh_order_buy_List @"trade/buy"    //代理商购买
-
+#define wh_order_sell_List @"trade/sell"    //代理商出售
+#define wh_user_account @"user/account/get"    //个人收款账号
 
 
 
@@ -1287,7 +1289,13 @@
 //payType        代理的收款方式, 1-微信, 2-支付宝
 //merchant       代理的id
 //paymentCode    代理的对应收款的二维码图片链接
-- (void)WH_TradeApplyBuyWithAmount:(NSString *)amount payAmount:(NSString *)payAmount payType:(NSInteger)payType merchant:(NSString *)merchant paymentCode:(NSString *)paymentCode toView:(id)toView;
+- (void)WH_TradeApplyBuyWithAmount:(NSString *)amount payAmount:(NSString *)payAmount payType:(NSInteger)payType merchant:(NSString *)merchant paymentCode:(NSString *)paymentCode isBuy:(BOOL)isBuy toView:(id)toView;
+#pragma mark -- 查询个人收款码信息
+-(void)WH_UserAccount:(id)toView;
+
+
+
+
 
 
 
@@ -1359,6 +1367,8 @@
 -(void) WH_didServerConnect_WHStart:(WH_JXConnection*)aDownload;
 #pragma mark --  获取收款账号删除
 - (void)WH_DeleteAccountWithId:(NSString *)recordId toView:(id)toView;
+
+
 
 
 

@@ -975,10 +975,10 @@
         self.rightW = _noticeStrW+NOTICE_WIDTH;
     }
 }
-//noticeType  //通知类型 0：默认 1：强提醒
-- (void)setupNoticeWithContent:(NSString *)noticeStr time:(NSString *)noticeTime noticeType:(NSString *)noticeType{
+//allowForceNotice  //通知类型 0：默认 1：强提醒
+- (void)setupNoticeWithContent:(NSString *)noticeStr time:(NSString *)noticeTime allowForceNotice:(NSString *)allowForceNotice{
     
-    if (noticeType.intValue == 0) {
+    if (allowForceNotice.intValue == 0) {
         _noticeView.hidden = YES;
         _noticeHeight = 0;
         _jumpNewMsgBtn.frame = CGRectMake(JX_SCREEN_WIDTH - 105, JX_SCREEN_TOP + 20+_noticeHeight, 120, 30);
@@ -1003,19 +1003,19 @@
         self.noticeTimer = nil;
     }
     if (newNoticeStr.length > 0) {
-        NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
-        // 公告时间超过一周即不再显示
-        if (time >= 60*60*24*7+[noticeTime intValue]) {
-            _noticeView.hidden = YES;
-            _noticeHeight = 0;
-        }else {
+//        NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
+//        // 公告时间超过一周即不再显示
+//        if (time >= 60*60*24*7+[noticeTime intValue]) {
+//            _noticeView.hidden = YES;
+//            _noticeHeight = 0;
+//        }else {
             _noticeView.hidden = NO;
             _noticeHeight = 36;
             
             _table.frame = CGRectMake(0, JX_SCREEN_TOP+_noticeHeight, JX_SCREEN_WIDTH, JX_SCREEN_HEIGHT - JX_SCREEN_TOP - JX_SCREEN_BOTTOM - _noticeHeight);
              
             [_table WH_gotoLastRow:NO];
-        }
+//        }
     }else {
         _noticeView.hidden = YES;
         _noticeHeight = 0;
@@ -1296,27 +1296,37 @@
 }
 #pragma mark ---添加好友
 -(void)showAddAlertAction{
+    [g_server showMsg:@"对方已与您解除好友关系，请先添加好友"];
     
-    UIAlertController *addFriendAlert = [UIAlertController alertControllerWithTitle:@"添加好友" message:@"对方与你非好友关系，是否添加好友？" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"加好友" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        // 验证XMPP是否在线
-        if(g_xmpp.isLogined != 1){
-            [g_xmpp showXmppOfflineAlert];
-            return;
-        }
-        
-        if([self.chatPerson.isBeenBlack boolValue]){
-            [g_App showAlert:Localized(@"TO_BLACKLIST")];
-            return;
-        }
-        [g_server WH_addAttentionWithUserId:self.chatPerson.userId fromAddType:6 toView:self];
-
-    }];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:Localized(@"JX_Cencal") style:UIAlertActionStyleCancel handler:nil];
-    [addFriendAlert addAction:confirmAction];
-    [addFriendAlert addAction:cancelAction];
+    WH_JXUserInfo_WHVC* vc = [WH_JXUserInfo_WHVC alloc];
+    vc.wh_userId       = self.chatPerson.userId;
+    vc.wh_isJustShow = self.courseId.length > 0;
+    vc = [vc init];
+    [g_navigation pushViewController:vc animated:YES];
     
-    [self presentViewController:addFriendAlert animated:YES completion:nil];
+    
+    
+    
+//    UIAlertController *addFriendAlert = [UIAlertController alertControllerWithTitle:@"添加好友" message:@"对方与你非好友关系，是否添加好友？" preferredStyle:UIAlertControllerStyleAlert];
+//    UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"加好友" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        // 验证XMPP是否在线
+//        if(g_xmpp.isLogined != 1){
+//            [g_xmpp showXmppOfflineAlert];
+//            return;
+//        }
+//
+//        if([self.chatPerson.isBeenBlack boolValue]){
+//            [g_App showAlert:Localized(@"TO_BLACKLIST")];
+//            return;
+//        }
+//        [g_server WH_addAttentionWithUserId:self.chatPerson.userId fromAddType:6 toView:self];
+//
+//    }];
+//    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:Localized(@"JX_Cencal") style:UIAlertActionStyleCancel handler:nil];
+//    [addFriendAlert addAction:confirmAction];
+//    [addFriendAlert addAction:cancelAction];
+//
+//    [self presentViewController:addFriendAlert animated:YES completion:nil];
 }
 
 //隐藏系统菜单的方法
@@ -1616,7 +1626,7 @@
     [g_notify addObserver:self selector:@selector(readTypeMsgReceipt:) name:kXMPPMessageReadTypeReceipt_WHNotification object:nil];
     [g_notify addObserver:self selector:@selector(sendText:) name:kSendInput_WHNotifaction object:nil];
     [g_notify addObserver:self selector:@selector(newMsgCome:) name:kXMPPNewMsg_WHNotifaction object:nil];
-    [g_notify addObserver:self selector:@selector(deletaFriendAction) name:kMsgComeContactDele object:nil];
+    [g_notify addObserver:self selector:@selector(deletaFriendAction) name:kMsgComeContactDele object:nil];//彻底删除好友关系
     
     [g_notify addObserver:self selector:@selector(showMsg:) name:kXMPPShowMsg_WHNotifaction object:nil];
     [g_notify addObserver:self selector:@selector(newReceipt:) name:kXMPPReceipt_WHNotifaction object:nil];
@@ -1840,9 +1850,26 @@
             
         }
         
+    
+        /// 是不是群主 或者 管理员 yes:是 no:不是
+        BOOL isManger = [self isManagrData];
+        NSMutableArray *tempArr = [NSMutableArray arrayWithArray:p];
         for (WH_JXMessageObject *msg in p) {
-            allHeight += [msg.chatMsgHeight floatValue];
+            //不是我的并且我不熟群管理专属红包去掉
+            
+            if([msg.type intValue] == kWCMessageTypeRedPacketExclusive){
+                NSLog(@"指定人 ==== %@ 名字==%@",msg.toUserIds,msg.toUserNames);
+            }
+            
+               if ([msg.type intValue] == kWCMessageTypeRedPacketExclusive && !isManger && ![msg.toUserIds isEqualToString:MY_USER_ID] && ![msg.fromUserId isEqualToString:MY_USER_ID]) {
+                   
+                   [tempArr removeObject:msg];
+               }else{
+                   allHeight += [msg.chatMsgHeight floatValue];
+               }
         }
+        [p removeAllObjects];
+        [p addObjectsFromArray:tempArr];
         
         self.isGetServerMsg = !bPull;
         
@@ -1864,10 +1891,10 @@
         }
         [p removeAllObjects];
 
-    }else
+    }else{
         [_array addObject:msg];
-    
-    
+    }
+            
     WH_JXMessageObject *lastMsg = _array.lastObject;
     if (lastMsg) {
         if (self.roomJid.length > 0) {
@@ -3375,15 +3402,31 @@
 //#else
 //#endif
 //    }
-    [_array addObject:msg];
+    
+    BOOL isManger = [self isManagrData];
+    
+    //不是我的并且我不熟群管理专属红包去掉
+    if ([msg.type intValue] == kWCMessageTypeRedPacketExclusive && ![msg.toUserIds isEqualToString:MY_USER_ID] && !isManger && self.roomJid.length > 0 && ![msg.fromUserId isEqualToString:MY_USER_ID] ) {
+
+    }else{
+        [_array addObject:msg];
+    }
+
+    
+    
 
     if (self.isGroupMessages) {
         return;
     }
     if ([msg.type intValue] == kWCMessageTypeRedPacket || [msg.type intValue] == kWCMessageTypeRedPacketExclusive) {
-        [_orderRedPacketArray addObject:msg];
+        
+        if ([msg.type intValue] == kWCMessageTypeRedPacketExclusive && ![msg.toId isEqualToString:MY_USER_ID] && !isManger && self.roomJid.length > 0) {
+
+        }else{
+            [_orderRedPacketArray addObject:msg];
+        }
+        
     }
-   
 
     [_table WH_insertRow:(int)[_array count]-1 section:0];
     if (flag || msg.isMySend) {
@@ -3394,7 +3437,40 @@
 
 }
 
+-(memberData *)currentMemberData{
+    WH_JXUserObject *roomObj = [[WH_JXUserObject sharedUserInstance] getUserById:self.roomJid];
+    NSArray *members = [memberData fetchAllMembers:roomObj.roomId];
+    
+    /// 拿到当前用户 在群组里扮演的角色
+    memberData *currentMember = nil;
+    WH_JXUserObject *currentUser = g_myself;
+    for (memberData *member in members) {
+        if (member.userId == [currentUser.userId longLongValue]) {
+            currentMember = member;
+        }
+    }
+    return currentMember;
+}
 
+-(BOOL)isManagrData{
+    WH_JXUserObject *roomObj = [[WH_JXUserObject sharedUserInstance] getUserById:self.roomJid];
+    NSArray *members = [memberData fetchAllMembers:roomObj.roomId];
+    
+    /// 拿到当前用户 在群组里扮演的角色
+    memberData *currentMember = nil;
+    WH_JXUserObject *currentUser = g_myself;
+    for (memberData *member in members) {
+        if (member.userId == [currentUser.userId longLongValue]) {
+            currentMember = member;
+        }
+    }
+    
+    /// 是不是群主 或者 管理员 yes:是 no:不是
+    BOOL isManger = [currentMember.role intValue] == 1 || [currentMember.role intValue] == 2;
+    
+    return isManger;
+
+}
 
 
 //上传完成后，发消息
@@ -6018,7 +6094,7 @@
                 if (self.chatRoom.roomJid.length > 0) {
                     NSString *noticeStr = [[dict objectForKey:@"notice"] objectForKey:@"text"];
                     NSString *noticeTime = [[dict objectForKey:@"notice"] objectForKey:@"time"];
-                    [self setupNoticeWithContent:noticeStr time:noticeTime noticeType:[[dict objectForKey:@"notice"] objectForKey:@"noticeType"]];
+                    [self setupNoticeWithContent:noticeStr time:noticeTime allowForceNotice:[dict objectForKey:@"allowForceNotice"]];
                 }
                 
                 // 保存自己
@@ -6809,7 +6885,7 @@
         if([p.type intValue] == kRoomRemind_NewNotice){
             NSDictionary *noticDic = [self dictionaryWithJsonString:p.content];
             NSArray *noticeArr = [p.content componentsSeparatedByString:Localized(@"WH_JXMessageObject_AddNewAdv")];
-            [self setupNoticeWithContent:[noticeArr lastObject] time:[NSString stringWithFormat:@"%lf",[[NSDate date] timeIntervalSince1970]] noticeType:[NSString stringWithFormat:@"%@",[noticDic objectForKey:@"noticeType"]]];
+            [self setupNoticeWithContent:[noticeArr lastObject] time:[NSString stringWithFormat:@"%lf",[[NSDate date] timeIntervalSince1970]] allowForceNotice:[NSString stringWithFormat:@"%@",[noticDic objectForKey:@"noticeType"]]];
             //保存最新的群公告,给后一个界面传值会用到self.noticesArry
             NSString * newNoticeStr = [self getContentMsg:[noticeArr lastObject]];
             self.noticesArry = [NSMutableArray arrayWithArray:self.noticesArry];
@@ -7581,6 +7657,8 @@
             msg.toUserId = self.roomJid;
             msg.isGroup = YES;
             msg.fromUserName = _userNickName;
+            msg.toUserIds = redpacketDict[@"toUserIds"];
+            msg.toUserNames = redpacketDict[@"toUserNames"];
         }
         else{
             msg.toUserId     = chatPerson.userId;

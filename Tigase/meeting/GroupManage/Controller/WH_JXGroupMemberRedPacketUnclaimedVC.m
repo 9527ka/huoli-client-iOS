@@ -132,7 +132,7 @@
         //        self.redPacketDict = dict;
         if (success) {
             //刷新列表
-            self.page = 1;
+            self.page = 0;
             [self receiveRedReceiveListData];
             
             
@@ -160,7 +160,6 @@
                 msg.content = [NSString stringWithFormat:@"%@%@",getRedStr,overStr];
                 [msg insert:self.room.roomJid];
                 
-//                [self WH_show_WHOneMsg:msg];
             }
             [g_server WH_getUserMoenyToView:self];
         }else {//红包被抢完

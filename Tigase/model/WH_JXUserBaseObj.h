@@ -86,7 +86,7 @@
 @property (nonatomic,strong) NSDate*   timeCreate;
 @property (nonatomic,strong) NSNumber* roomFlag;//!< 0：朋友；1:永久房间；2:临时房间
 @property (nonatomic,strong) NSNumber* msgsNew;//!< 未读消息数量
-@property (nonatomic,strong) NSNumber* status;  //!< -1:黑名单；0：陌生人；1:单方关注；2:互为好友；8:系统号；9:非显示系统号  10:本账号的其他端
+@property (nonatomic,strong) NSNumber* status;  //!< -1:黑名单；0：陌生人；1:单方关注；2:互为好友；8:系统号；9:非显示系统号  10:本账号的其他端 17对方删除我
 @property (nonatomic,strong) NSNumber* userType;//!< 1=普通用户；2=公众号 ；3=机器账号，由系统自动生成；4=客服账号
 @property (nonatomic,strong) NSNumber* companyId;
 @property (nonatomic,strong) NSNumber* isMySend;

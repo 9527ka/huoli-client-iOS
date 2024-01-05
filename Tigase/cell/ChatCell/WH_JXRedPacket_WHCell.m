@@ -19,6 +19,8 @@
 
 @property (nonatomic, strong) UILabel *line;
 
+@property (nonatomic, strong) UILabel *toUserLab;
+
 @end
 
 @implementation WH_JXRedPacket_WHCell
@@ -67,6 +69,13 @@
     _title.textColor = HEXCOLOR(0x8C9AB8);
     [_imageBackground addSubview:_title];
     
+    _toUserLab = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.size.width - 172, 10, 160, 30)];
+    _toUserLab.font = sysFontWithSize(12);
+    _toUserLab.textColor = [UIColor whiteColor];
+    _toUserLab.hidden = YES;
+    _toUserLab.textAlignment = NSTextAlignmentRight;
+    [_imageBackground addSubview:_toUserLab];
+    
     _line = [[UILabel alloc] initWithFrame:CGRectMake(4, self.bounds.size.height - 12, 120, 0.3)];
     _line.alpha = 0.7;
     _line.backgroundColor= [UIColor whiteColor];
@@ -103,6 +112,8 @@
     _imageBackground.frame = self.bubbleBg.bounds;
     _title.frame = CGRectMake(CGRectGetMinX(_headImageView.frame) + 1.0f, _imageBackground.frame.size.height - (4+17), 200, 17);
     
+    _toUserLab.frame = CGRectMake(_imageBackground.bounds.size.width - 148, _imageBackground.frame.size.height - (4+17), 140, 17);
+    
     _line.frame = CGRectMake(8, _imageBackground.frame.size.height - (8+17), 200, 0.3);
     
     if (self.msg.isShowTime) {
@@ -112,7 +123,9 @@
     }
     
 //    [self setMaskLayer:_imageBackground];
-    
+    self.toUserLab.hidden = ([self.msg.type intValue] == kWCMessageTypeRedPacketExclusive)?NO:YES;
+    self.toUserLab.text = [NSString stringWithFormat:@"仅 %@ 可领",self.msg.toUserNames];
+        
     //服务端返回的数据类型错乱，强行改
     self.msg.fileName = [NSString stringWithFormat:@"%@",self.msg.fileName];
     if ([self.msg.fileName isEqualToString:@"3"]) {

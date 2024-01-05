@@ -4700,7 +4700,9 @@
     [p setPostValue:self.access_token forKey:@"access_token"];
     [p setPostValue:accountName forKey:@"accountName"];
     [p setPostValue:accountNo forKey:@"accountNo"];
-    [p setPostValue:roomJid forKey:@"roomJid"];
+    if(roomJid.length > 0){
+        [p setPostValue:roomJid forKey:@"roomJid"];
+    }
     [p setPostValue:qrCode forKey:@"qrCode"];
     if(addId.length > 0){
         [p setPostValue:addId forKey:@"id"];
@@ -4884,8 +4886,8 @@
 //payType        代理的收款方式, 1-微信, 2-支付宝
 //merchant       代理的id
 //paymentCode    代理的对应收款的二维码图片链接
-- (void)WH_TradeApplyBuyWithAmount:(NSString *)amount payAmount:(NSString *)payAmount payType:(NSInteger)payType merchant:(NSString *)merchant paymentCode:(NSString *)paymentCode toView:(id)toView{
-    WH_JXConnection* p = [self addTask:wh_order_buy_List param:nil toView:toView];
+- (void)WH_TradeApplyBuyWithAmount:(NSString *)amount payAmount:(NSString *)payAmount payType:(NSInteger)payType merchant:(NSString *)merchant paymentCode:(NSString *)paymentCode isBuy:(BOOL)isBuy toView:(id)toView{
+    WH_JXConnection* p = [self addTask:isBuy?wh_order_buy_List:wh_order_sell_List param:nil toView:toView];
     [p setPostValue:self.access_token forKey:@"access_token"];
     [p setPostValue:amount forKey:@"targetAmount"];
     [p setPostValue:payAmount forKey:@"payAmount"];
@@ -4896,7 +4898,13 @@
     [p go];
 }
 
-
+#pragma mark -- 查询个人收款码信息
+-(void)WH_UserAccount:(id)toView {
+    WH_JXConnection* p = [self addTask:wh_user_account param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    
+    [p go];
+}
 
 
 

@@ -12,6 +12,7 @@
 #import "MJRefreshFooterView.h"
 #import "MJRefreshHeaderView.h"
 #import "WH_JXBuyAndPayListModel.h"
+#import "WH_GroupAccountSetViewController.h"
 
 @interface WH_JXBuyAndPayListVC ()<UITableViewDataSource, UITableViewDelegate> {
     ATMHud* _wait;
@@ -27,6 +28,8 @@
 
 @property (nonatomic, strong) NSMutableArray *dataSource;
 
+@property (nonatomic, strong) NSMutableArray *accountList;
+
 @property(nonatomic,assign)NSInteger tag;
 
 @end
@@ -36,7 +39,9 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-   
+   //查询当前用户是否设置收款方式
+    [self receiveUserCode];
+    
     [self WH_getServerData];
 }
 
@@ -71,6 +76,14 @@
         // 进入刷新状态就会回调这个Block
         [weakSelf WH_getServerData];
     };
+}
+-(void)receiveUserCode{
+    [g_server WH_UserAccount:self];
+}
+- (IBAction)myAccountAction:(id)sender {
+    
+    WH_GroupAccountSetViewController *vc = [[WH_GroupAccountSetViewController alloc] init];
+    [g_navigation pushViewController:vc animated:YES];
 }
 - (void) WH_getServerData {
     
@@ -112,10 +125,31 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if(self.dataSource.count > indexPath.row){
         WH_JXBuyAndPayListModel *model = self.dataSource[indexPath.row];
-        
-        WH_GroupRechargeViewController *vc = [[WH_GroupRechargeViewController alloc] init];
-        vc.model = model;
-        [g_navigation pushViewController:vc animated:YES];
+        if(self.tag == 1 &&  self.accountList.count == 0){
+            
+            [g_server showMsg:@"请设置您的收款账号！"];
+            
+            WH_GroupAccountSetViewController *vc = [[WH_GroupAccountSetViewController alloc] init];
+            [g_navigation pushViewController:vc animated:YES];
+            
+        }else{
+            if(self.tag == 1){//设置收款账号
+                model.wechatCode = @"";
+                model.alipayCode = @"";
+                for (NSDictionary *dic in self.accountList) {
+                    NSString *type = [NSString stringWithFormat:@"%@",dic[@"type"]];
+                    if(type.intValue == 1){//微信
+                        model.wechatCode = [NSString stringWithFormat:@"%@",dic[@"qrCode"]];
+                    }else{
+                        model.alipayCode = [NSString stringWithFormat:@"%@",dic[@"qrCode"]];
+                    }
+                }
+            }
+            
+            WH_GroupRechargeViewController *vc = [[WH_GroupRechargeViewController alloc] init];
+            vc.model = model;
+            [g_navigation pushViewController:vc animated:YES];
+        }
     }
 }
 #pragma mark - 请求成功回调
@@ -133,6 +167,8 @@
         [self.dataSource addObjectsFromArray:list];
         
         [self.tableView reloadData];
+    }else if ([aDownload.action isEqualToString:wh_user_account]){//我的收款账号
+        self.accountList = [NSMutableArray arrayWithArray:array1];
     }
     
 }

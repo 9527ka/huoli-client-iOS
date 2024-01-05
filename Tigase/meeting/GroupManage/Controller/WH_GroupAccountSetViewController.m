@@ -29,7 +29,11 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    [g_server WH_ReceiveAccountListWithRoomJid:self.room.roomJid toView:self];
+    if(!self.room){
+        [g_server WH_UserAccount:self];
+    }else{
+        [g_server WH_ReceiveAccountListWithRoomJid:self.room.roomJid toView:self];
+    }
 }
 
 - (void)viewDidLoad {
@@ -111,14 +115,18 @@
 -(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{
     [_wait hide];
     NSString *url = [NSString stringWithFormat:@"%@%@",wh_List_userAccount,self.room.roomJid];
-    if ([aDownload.action isEqualToString:url]){
+    if ([aDownload.action isEqualToString:url] || [aDownload.action isEqualToString:wh_user_account]){
         self.dataArray = [NSMutableArray arrayWithArray:array1];
         [self.tableView reloadData];
         self.nodataLab.hidden = self.noDataImage.hidden = array1.count > 0?YES:NO;
         self.addBtn.hidden = array1.count > 1?YES:NO;
     }else if ([aDownload.action isEqualToString:wh_delete_userAccount]){//
         [g_server showMsg:@"删除成功"];
-        [g_server WH_ReceiveAccountListWithRoomJid:self.room.roomJid toView:self];
+        if(!self.room){
+            [g_server WH_UserAccount:self];
+        }else{
+            [g_server WH_ReceiveAccountListWithRoomJid:self.room.roomJid toView:self];
+        }
     }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

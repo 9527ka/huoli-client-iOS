@@ -72,10 +72,15 @@
         [g_notify addObserver:self selector:@selector(WH_onSendTimeout:) name:kXMPPSendTimeOut_WHNotifaction object:nil];
         [g_notify addObserver:self selector:@selector(friendPassNotif:) name:kFriendPassNotif object:nil];
         [g_notify addObserver:self selector:@selector(newRequest:) name:kXMPPNewRequest_WHNotifaction object:nil];
+        [g_notify addObserver:self selector:@selector(deletaFriendAction) name:kMsgComeContactDele object:nil];//彻底删除好友关系
         
         [self createViews];
     }
     return self;
+}
+
+-(void)deletaFriendAction{
+    [g_server getUser:self.wh_userId toView:self];
 }
 
 - (void)createViews {
@@ -735,6 +740,9 @@
     if( [aDownload.action isEqualToString:wh_act_UserGet] ){
         WH_JXUserObject* user = [[WH_JXUserObject alloc]init];
         [user WH_getDataFromDict:dict];
+        if(!user.friends){
+            user.status = @(17);//对方删除我
+        }
         [user insertFriend];
         [self setUserInfo:user];
     }
@@ -897,6 +905,7 @@
             break;
         case friend_status_none:
         case friend_status_see:
+        case 17:
             [g_server WH_addAttentionWithUserId:wh_user.userId fromAddType:self.wh_fromAddType toView:self];
             break;
         case friend_status_friend:{//发消息
@@ -1009,6 +1018,7 @@
             break;
         case friend_status_none:
         case friend_status_see:
+        case 17://他删除我
             if([wh_user.isBeenBlack boolValue])
                 [_btn setTitle:Localized(@"TO_BLACKLIST") forState:UIControlStateNormal];
             else

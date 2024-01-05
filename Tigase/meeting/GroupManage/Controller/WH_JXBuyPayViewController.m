@@ -44,7 +44,24 @@
 -(void)initUI{
     self.infoBgView.layer.cornerRadius = self.notificationBtn.layer.cornerRadius = 8.0f;
     self.oneLab.layer.cornerRadius = self.twoLab.layer.cornerRadius = self.threeLab.layer.cornerRadius = 9.0f;
-    self.monyLab.text = [NSString stringWithFormat:@"￥%.2f",self.room.count.doubleValue];
+    
+    if(self.room){
+        self.monyLab.text = [NSString stringWithFormat:@"￥%.2f",self.room.count.doubleValue];
+        self.payTitleLab.text = [NSString stringWithFormat:@"请使用%@转账",self.room.type > 0?@"微信":@"支付宝"];
+        [self.jumpBtn setTitle: [NSString stringWithFormat:@"点击跳转%@",self.room.type > 0?@"微信":@"支付宝"] forState:UIControlStateNormal];
+        
+    }else{//代理商
+        NSString *count = [NSString stringWithFormat:@"%@",[self.payDic objectForKey:@"count"]];
+        self.monyLab.text = [NSString stringWithFormat:@"￥%.2f",count.doubleValue];
+        
+        NSString *type = [NSString stringWithFormat:@"%@",[self.payDic objectForKey:@"type"]];
+        
+        self.payTitleLab.text = [NSString stringWithFormat:@"请使用%@转账",type.intValue > 0?@"微信":@"支付宝"];
+        [self.jumpBtn setTitle: [NSString stringWithFormat:@"点击跳转%@",type.intValue > 0?@"微信":@"支付宝"] forState:UIControlStateNormal];
+        
+    }
+    
+    
     //富文本
     NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
     
@@ -52,8 +69,7 @@
     [att addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:227/255.0 green:66/255.0 blue:68/255.0 alpha:1.0] range:NSMakeRange(1, 13)];
     self.detaileLab.attributedText = att;
     
-    self.payTitleLab.text = [NSString stringWithFormat:@"请使用%@转账",self.room.type > 0?@"微信":@"支付宝"];
-    [self.jumpBtn setTitle: [NSString stringWithFormat:@"点击跳转%@",self.room.type > 0?@"微信":@"支付宝"] forState:UIControlStateNormal];
+    
     
     //姓名账号
     self.nameLab.text = [NSString stringWithFormat:@"%@",self.payDic[@"accountName"]];

@@ -9,6 +9,7 @@
 #import "WH_JXOrderDetaileVC.h"
 #import "WH_JXAppealListVC.h"
 #import "WH_JXAppealAddVC.h"
+#import "UIAlertController+category.h"
 
 @interface WH_JXOrderDetaileVC ()
 @property (weak, nonatomic) IBOutlet UILabel *statueTitle;
@@ -24,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *appealBtn;
 @property(nonatomic,strong) WH_JXUserObject *wh_user;
 @property (weak, nonatomic) IBOutlet UIButton *detaileBtn;
+@property (weak, nonatomic) IBOutlet UIButton *cancleAppealBtn;
+@property (weak, nonatomic) IBOutlet UIButton *certainBtn;
 
 @end
 
@@ -40,6 +43,9 @@
     
     self.blackBtn.layer.cornerRadius = 4.0f;
     self.appealBtn.layer.cornerRadius = 4.0f;
+    self.cancleAppealBtn.layer.cornerRadius = 4.0f;
+    self.certainBtn.layer.cornerRadius = 4.0f;
+    
     
     NSString *userId = [NSString stringWithFormat:@"%@",self.dict[@"payerUID"]];
     if([userId isEqualToString:MY_USER_ID]){
@@ -80,7 +86,6 @@
 //    ２-取消订单
 //    ３-订单有争议,处理中
 //    ４-订单支付完成,己确认
-    
     NSString *status = [NSString stringWithFormat:@"%@",self.dict[@"status"]];
     
     if(status.intValue == 0){
@@ -89,10 +94,37 @@
     }else if(status.intValue == 1){
         self.statueTitle.text = @"买家已付款";
         self.detaileLab.text = [NSString stringWithFormat:@"等待群主确认"];
+        
+        //判断是不是我出售的
+        NSString *payeeUID = [NSString stringWithFormat:@"%@",self.dict[@"payeeUID"]];
+        if([payeeUID isEqualToString:MY_USER_ID]){
+            self.certainBtn.hidden = NO;
+        }
+        
     }else if(status.intValue == 3){
         self.statueTitle.text = @"订单申诉中";
         self.detaileLab.text = [NSString stringWithFormat:@""];
         self.detaileBtn.hidden = NO;
+        
+        //判断是不是我出售的
+        NSString *payeeUID = [NSString stringWithFormat:@"%@",self.dict[@"payeeUID"]];
+        if([payeeUID isEqualToString:MY_USER_ID]){
+            self.certainBtn.hidden = NO;
+        }
+        
+        NSString *payerUID = [NSString stringWithFormat:@"%@",self.dict[@"payerUID"]];
+        
+        //11-买方申诉
+//        12-卖方申诉
+//        payeeUID卖方ID
+//        payerUID买方ID
+        
+        NSString *subStatus = [NSString stringWithFormat:@"%@",self.dict[@"subStatus"]];
+        
+        if(([payeeUID isEqualToString:MY_USER_ID] && subStatus.intValue == 12)||([payerUID isEqualToString:MY_USER_ID] && subStatus.intValue == 11)){
+            self.cancleAppealBtn.hidden = NO;
+        }
+      
     }else if(status.intValue == 4){
         self.statueTitle.text = @"订单已完成";
         self.detaileLab.text = [NSString stringWithFormat:@"您已成功交易%@HOTC",self.dict[@"payAmount"]];
@@ -125,6 +157,23 @@
     UIPasteboard *board = [UIPasteboard generalPasteboard];
     board.string = self.orderNoLab.text;
     [g_server showMsg:@"复制成功"];
+}
+//确认收款
+- (IBAction)certainAction:(id)sender {
+    [UIAlertController showAlertViewWithTitle:@"确认收款吗？" message:nil controller:self block:^(NSInteger buttonIndex) {
+        if (buttonIndex==1) {
+            
+            [g_server WH_orderConfirmWithId:[NSString stringWithFormat:@"%@",self.dict[@"no"]] payerUID:[NSString stringWithFormat:@"%@",self.dict[@"payerUID"]] toView:self];
+        }
+    } cancelButtonTitle:Localized(@"JX_Cencal") otherButtonTitles:Localized(@"JX_Confirm")];
+}
+//撤销申诉
+- (IBAction)cancleAppealAction:(id)sender {
+    [UIAlertController showAlertViewWithTitle:@"确定撤销申诉吗？" message:nil controller:self block:^(NSInteger buttonIndex) {
+        if (buttonIndex==1) {
+            
+        }
+    } cancelButtonTitle:Localized(@"JX_Cencal") otherButtonTitles:Localized(@"JX_Confirm")];
 }
 //申诉
 - (IBAction)appealListAction:(id)sender {
@@ -219,7 +268,13 @@
         [g_server showMsg:@"操作成功"];
         
         [g_navigation WH_dismiss_WHViewController:self animated:YES];
+    }else if ([aDownload.action isEqualToString:wh_order_confirm] || [aDownload.action isEqualToString:orderCancleUrl]){
+        [g_server showMsg:@"操作成功"];
+        [self performSelector:@selector(goBackAction) withObject:nil afterDelay:1.0];
     }
+}
+-(void)goBackAction{
+    [g_navigation WH_dismiss_WHViewController:self animated:YES];
 }
 
 #pragma mark - 请求失败回调

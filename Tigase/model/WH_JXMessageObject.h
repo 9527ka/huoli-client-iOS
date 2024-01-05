@@ -16,6 +16,8 @@ extern NSString* current_meeting_no;
 #define kMESSAGE_FROM @"fromUserId"
 #define kMESSAGE_FROM_NAME @"fromUserName"
 #define kMESSAGE_TO @"toUserId"
+#define kMESSAGE_toUserIds @"toUserIds"
+#define kMESSAGE_TO_NAMES @"toUserNames"
 #define kMESSAGE_TO_NAME @"toUserName"
 #define kMESSAGE_CONTENT @"content"
 #define kMESSAGE_DATE @"timeSend"
@@ -39,6 +41,7 @@ extern NSString* current_meeting_no;
 #define kMESSAGE_readPersons @"readPersons"
 #define kMESSAGE_chatMsgHeight  @"chatMsgHeight"
 #define kMESSAGE_isShowTime @"isShowTime"
+
 
 #define kMESSAGE_imWidth @"imageWidth"
 #define KMESSAGE_imHeight @"imageHeight"
@@ -178,6 +181,8 @@ typedef enum {
 @interface WH_JXMessageObject : NSObject<NSCopying>
 //以下字段用于通讯,message里：
 @property (nonatomic,strong) NSString*  messageId;//消息标识号，字符串,UUID <message>里
+@property (nonatomic,strong) NSString*  toUserIds;//专属红包指定人
+@property (nonatomic,strong) NSString*  toUserNames;//专属红包指定人
 @property (nonatomic,strong) NSString*  fromId;//发送ID <message>里
 @property (nonatomic,strong) NSString*  toId;//目标ID <message>里
 //以下字段用于通讯，Body里：

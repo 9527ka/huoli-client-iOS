@@ -407,6 +407,15 @@
     } else if ([aDownload.action isEqualToString:act_sendRedPacket] || [aDownload.action isEqualToString:wh_act_sendRedPacketV1]) {
         NSMutableDictionary * muDict = [NSMutableDictionary dictionaryWithDictionary:dict];
         [muDict setObject:_greetText forKey:@"greet"];
+        
+        if (_selectIds.count > 0) {
+            NSString *str = [_selectIds componentsJoinedByString:@","];
+            [muDict setObject:str forKey:@"toUserIds"];
+            
+            NSString *name = [_selectNames componentsJoinedByString:@","];
+            [muDict setObject:name forKey:@"toUserNames"];
+        }
+        
         [self WH_dismiss_WHVerifyPayVC];  // 销毁支付密码界面
         //成功创建红包，发送一条含红包Id的消息
         if (self.selectIds.count > 0) {

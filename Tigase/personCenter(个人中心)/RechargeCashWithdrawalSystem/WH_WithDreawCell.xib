@@ -115,7 +115,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="20" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1la-ep-tHf">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入USDT-TRC20地址" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1la-ep-tHf">
                                 <rect key="frame" x="12" y="55" width="248" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="i6o-PE-h01"/>

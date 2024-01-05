@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *vxViewTopConstant;// 128 24
 @property (weak, nonatomic) IBOutlet UILabel *userInfoTitle;
 @property (weak, nonatomic) IBOutlet UILabel *userNameTitle;
+@property (weak, nonatomic) IBOutlet UILabel *timeTitle;
 
 
 

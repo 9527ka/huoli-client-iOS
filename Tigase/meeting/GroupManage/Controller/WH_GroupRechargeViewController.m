@@ -112,13 +112,14 @@
         //调接口
         [g_server WH_TradeApplyWithTargetAmount:self.count payType:self.type == 0?2:1 financialInfoId:[NSString stringWithFormat:@"%@",dic[@"id"]] payeeUID:[NSString stringWithFormat:@"%ld",self.room.userId] jid:self.room.roomJid payeeName:[NSString stringWithFormat:@"%@",dic[@"accountName"]] payeeAccount:[NSString stringWithFormat:@"%@",dic[@"accountNo"]] payeeAccountImg:[NSString stringWithFormat:@"%@",dic[@"qrCode"]] toView:self];
     }else{//代理商购买
+    
         NSString *paymentCode = self.type == 0?self.model.alipayCode:self.model.wechatCode;
         
         float sellCharge = self.count.floatValue * self.model.sellCharge.floatValue;
         //应得
         float grossPay = self.model.isBuy?self.count.floatValue + sellCharge:self.count.floatValue - sellCharge;
         
-        [g_server WH_TradeApplyBuyWithAmount:self.count payAmount:[NSString stringWithFormat:@"%.2f",grossPay] payType:self.type == 0?2:1 merchant:self.model.userId paymentCode:paymentCode toView:self];
+        [g_server WH_TradeApplyBuyWithAmount:self.count payAmount:[NSString stringWithFormat:@"%.2f",grossPay] payType:self.type == 0?2:1 merchant:self.model.userId paymentCode:paymentCode isBuy:self.model.isBuy toView:self];
         
     }
 }
@@ -151,21 +152,38 @@
         vc.payDic = self.payTypeDic;
         [g_navigation pushViewController:vc animated:YES];
     }else if ([aDownload.action isEqualToString:wh_order_buy_List]){//代理商购买
+       
+        self.payTypeDic = [NSMutableDictionary dictionary];
         //获取过期时间
         NSString *expiryTime = [NSString stringWithFormat:@"%@",dict[@"expiryTime"]];
         [self.payTypeDic setObject:[NSString stringWithFormat:@"%@",dict[@"id"]] forKey:@"id"];
         [self.payTypeDic setObject:@"0" forKey:@"status"];
         
+        NSString *paymentCode = self.type == 0?self.model.alipayCode:self.model.wechatCode;
+        
+        [self.payTypeDic setObject:paymentCode forKey:@"qrCode"];
+        [self.payTypeDic setObject:@(self.type) forKey:@"type"];
+        
+        float sellCharge = self.count.floatValue * self.model.sellCharge.floatValue;
+        //应得
+        float grossPay = self.model.isBuy?self.count.floatValue + sellCharge:self.count.floatValue - sellCharge;
+        
+        [self.payTypeDic setObject:@(grossPay) forKey:@"count"];
+        
         
         WH_JXBuyPayViewController *vc = [[WH_JXBuyPayViewController alloc] init];
         vc.expiryTime = expiryTime;
-        vc.room = self.room;
         vc.payDic = self.payTypeDic;
         [g_navigation pushViewController:vc animated:YES];
+    }else if ([aDownload.action isEqualToString:wh_order_sell_List]){
+        //代理商出售
+        [g_server showMsg:@"操作成功,等待支付"];
+        [self performSelector:@selector(goBackAction) withObject:nil afterDelay:1.0];
     }
-   
 }
-
+-(void)goBackAction{
+    [g_navigation WH_dismiss_WHViewController:self animated:YES];
+}
 #pragma mark - 请求失败回调
 -(int) WH_didServerResult_WHFailed:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict{
     [_wait hide];

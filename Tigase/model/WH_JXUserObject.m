@@ -411,6 +411,12 @@ static WH_JXUserObject *sharedUser;
         self.status = [NSNumber numberWithInt:friend_status_black];
 //    if([[[dict objectForKey:@"friends"] objectForKey:@"isBeenBlack"] boolValue])
 //        self.status = [NSNumber numberWithInt:friend_status_hisBlack];
+    
+    
+    if(!self.friends){
+        self.status = @(17);//对方删除我
+    }
+
     self.userId = [[dict objectForKey:@"userId"] stringValue];
     NSString *remarkName = [[dict objectForKey:@"friends"] objectForKey:@"remarkName"];
     if (remarkName.length > 0) {

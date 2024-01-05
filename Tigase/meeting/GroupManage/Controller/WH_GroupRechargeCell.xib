@@ -331,6 +331,7 @@
                 <outlet property="payBgView" destination="uo4-ev-j5Z" id="FRW-3t-doF"/>
                 <outlet property="payCountLab" destination="Ur0-hi-7Xu" id="OhA-s5-Ndv"/>
                 <outlet property="rulerLab" destination="n04-tS-jEu" id="NEo-YV-Ke2"/>
+                <outlet property="timeTitle" destination="sYs-cK-QAC" id="QnA-It-Lh4"/>
                 <outlet property="userInfoTitle" destination="2rk-lO-Kdh" id="HMx-Nr-Gqe"/>
                 <outlet property="userNameTitle" destination="L1i-9z-K7J" id="xkJ-hM-Dxj"/>
                 <outlet property="vxBgView" destination="ldU-yU-GuM" id="NbH-ky-Ete"/>

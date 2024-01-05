@@ -59,7 +59,7 @@
                     </connections>
                 </segmentedControl>
                 <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_not_found" translatesAutoresizingMaskIntoConstraints="NO" id="aXv-pi-BlY">
-                    <rect key="frame" x="135.66666666666666" y="259" width="120" height="120"/>
+                    <rect key="frame" x="135.66666666666666" y="262" width="120" height="120"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="120" id="1WO-3B-HAV"/>
                         <constraint firstAttribute="width" constant="120" id="wHu-6J-Vwk"/>
@@ -72,6 +72,21 @@
                     <color key="textColor" systemColor="systemGray2Color"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PMu-l4-tOZ">
+                    <rect key="frame" x="273" y="63.666666666666657" width="120" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="120" id="FJd-si-p24"/>
+                        <constraint firstAttribute="height" constant="35" id="pFK-Ul-Ile"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="我的收款账号">
+                        <color key="titleColor" systemColor="linkColor"/>
+                    </state>
+                    <connections>
+                        <action selector="myAccountAction:" destination="-1" eventType="touchUpInside" id="vUy-fd-gMh"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -82,12 +97,13 @@
                 <constraint firstAttribute="bottom" secondItem="guo-sU-40c" secondAttribute="bottom" id="Ann-l4-JT2"/>
                 <constraint firstItem="anx-u4-ecn" firstAttribute="top" secondItem="l0O-KV-tbE" secondAttribute="bottom" constant="12" id="D4h-eP-PXY"/>
                 <constraint firstItem="l0O-KV-tbE" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="HoR-dU-AVY"/>
-                <constraint firstItem="aXv-pi-BlY" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="200" id="JFG-1R-MaY"/>
                 <constraint firstItem="68e-lr-gvu" firstAttribute="top" secondItem="aXv-pi-BlY" secondAttribute="bottom" constant="4" id="KyC-BY-ow8"/>
                 <constraint firstItem="anx-u4-ecn" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="151" id="PPH-r0-QsD"/>
                 <constraint firstItem="68e-lr-gvu" firstAttribute="centerX" secondItem="aXv-pi-BlY" secondAttribute="centerX" id="UAy-yx-GT0"/>
                 <constraint firstItem="guo-sU-40c" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="Whi-HD-W9W"/>
                 <constraint firstItem="6mQ-rV-Kc0" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="7" id="YhG-6z-sq7"/>
+                <constraint firstItem="PMu-l4-tOZ" firstAttribute="centerY" secondItem="l0O-KV-tbE" secondAttribute="centerY" id="jP2-Rn-QKG"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="PMu-l4-tOZ" secondAttribute="trailing" id="ldX-Z9-TMr"/>
                 <constraint firstItem="guo-sU-40c" firstAttribute="top" secondItem="6mQ-rV-Kc0" secondAttribute="bottom" constant="47" id="mSU-qp-s5X"/>
                 <constraint firstAttribute="trailing" secondItem="guo-sU-40c" secondAttribute="trailing" id="q5R-qs-QjV"/>
                 <constraint firstItem="6mQ-rV-Kc0" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="7" id="y7g-Tx-yAM"/>
@@ -98,6 +114,9 @@
     <resources>
         <image name="icon_not_found" width="147" height="147"/>
         <image name="title_back" width="28" height="28"/>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

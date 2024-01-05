@@ -257,6 +257,7 @@
 
     QCheckBox* btn = [[QCheckBox alloc] initWithDelegate:self];
     btn.frame = btnF;
+    
     btn.tag = indexPath.section * 1000 + indexPath.row;
     
     if (self.disableSet) {
@@ -264,6 +265,8 @@
     }else{
         btn.enabled = YES;
     }
+    btn.userInteractionEnabled = NO;
+    
     
     [_checkBoxArr addObject:btn];
     
