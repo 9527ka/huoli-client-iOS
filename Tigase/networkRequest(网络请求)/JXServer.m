@@ -4905,7 +4905,13 @@
     
     [p go];
 }
-
+#pragma mark -- 撤销申诉
+-(void)WH_orderAppealCancleWithId:(NSString *)orderId toView:(id)toView {
+    WH_JXConnection* p = [self addTask:[NSString stringWithFormat:@"%@%@",wh_orderApple_cancle_complain,orderId] param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    
+    [p go];
+}
 
 
 

@@ -2275,6 +2275,10 @@ static WH_JXMessageObject *shared;
         case kRoomRemind_REQUEST_REFUND:
         case kRoomRemind_REQUEST_COMPLAINING:
         case kRoomRemind_REQUEST_COMPLAINING_END:
+        case kRoomRemind_TYPE_SELL_TO_MERCHANT:
+        case kRoomRemind_TYPE_SELL_TO_MERCHANT_REFUND:
+        case kRoomRemind_TYPE_SELL_TO_MERCHANT_PAID:
+        case kRoomRemind_TYPE_SELL_TO_MERCHANT_CONFIRMED:
             
             return YES;
         default:

@@ -2036,7 +2036,7 @@ static JXXMPP *sharedManager;
 
                     BOOL isSysTom = NO;
                     
-                    if([msg.type integerValue] == kRoomRemind_REQUEST_NOTIFICATION || [msg.type integerValue] == kRoomRemind_REQUEST_PAID ||[msg.type integerValue] == kRoomRemind_REQUEST_CONFIRMED ||[msg.type integerValue] == kRoomRemind_REQUEST_CANCELLED ||[msg.type integerValue] == kRoomRemind_REQUEST_REFUND||[msg.type integerValue] == kRoomRemind_REQUEST_COMPLAINING||[msg.type integerValue] == kRoomRemind_REQUEST_COMPLAINING_END){
+                    if([msg.type integerValue] == kRoomRemind_REQUEST_NOTIFICATION || [msg.type integerValue] == kRoomRemind_REQUEST_PAID ||[msg.type integerValue] == kRoomRemind_REQUEST_CONFIRMED ||[msg.type integerValue] == kRoomRemind_REQUEST_CANCELLED ||[msg.type integerValue] == kRoomRemind_REQUEST_REFUND||[msg.type integerValue] == kRoomRemind_REQUEST_COMPLAINING||[msg.type integerValue] == kRoomRemind_REQUEST_COMPLAINING_END || [msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_REFUND ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_PAID ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_CONFIRMED){
                         isSysTom = YES;
                     }
 

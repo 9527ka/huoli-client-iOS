@@ -255,7 +255,7 @@
                         <constraint firstAttribute="width" constant="186" id="RGS-pg-Sv0"/>
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" title="我已转账，通知群主"/>
+                    <state key="normal" title="我已转账，通知对方"/>
                     <connections>
                         <action selector="notificationAction:" destination="-1" eventType="touchUpInside" id="hBl-KQ-wLr"/>
                     </connections>

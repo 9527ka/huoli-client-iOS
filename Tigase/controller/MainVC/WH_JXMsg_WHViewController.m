@@ -206,7 +206,7 @@
     [super viewDidLoad];
     self.isTwoWithdrawal = NO;
 
-    [self WH_getServerData];
+//    [self WH_getServerData];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         //版本更新检查
@@ -232,7 +232,10 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [self getTotalNewMsgCount];
+//    [self getTotalNewMsgCount];
+    
+    [self WH_getServerData];
+    
     BOOL updateUser = [g_default boolForKey:@"PasswordHasModifyed"];
     if (updateUser) {
         [self updateUserInfoSentToServer];
@@ -869,6 +872,14 @@
         lastContet = @"[申诉提交了新的资料，请查看]";
     }else if ([dict.message.type intValue] == 4006){
         lastContet = @"[申诉完成]";
+    }else if ([dict.message.type intValue] == 4100){//普通用户卖币给代理的消息类型,支付公众号和用户会发这个消息类型到代理
+        lastContet = @"[下单通知]";
+    }else if ([dict.message.type intValue] == 4104){//refund to seller
+        lastContet = @"[订单退款]";
+    }else if ([dict.message.type intValue] == 4105){//the merchant paid the seller
+        lastContet = @"[订单已支付]";
+    }else if ([dict.message.type intValue] == 4106){//the merchant paid the seller
+        lastContet = @"[订单确认收款]";
     }
     
     if ([dict.message.type intValue] == kWCMessageTypeText || flag) {
@@ -945,7 +956,7 @@
         if([msg.type intValue] == kWCMessageTypeAudioMeetingInvite || [msg.type intValue] == kWCMessageTypeVideoMeetingInvite)
             showNumber = NO;//一律不提醒
     }
-    if([msg.type integerValue] != kRoomRemind_REQUEST_NOTIFICATION && [msg.type integerValue] != kRoomRemind_REQUEST_PAID &&[msg.type integerValue] != kRoomRemind_REQUEST_CONFIRMED &&[msg.type integerValue] != kRoomRemind_REQUEST_CANCELLED &&[msg.type integerValue] != kRoomRemind_REQUEST_REFUND &&[msg.type integerValue] != kRoomRemind_REQUEST_COMPLAINING &&[msg.type integerValue] != kRoomRemind_REQUEST_COMPLAINING_END){
+    if([msg.type integerValue] != kRoomRemind_REQUEST_NOTIFICATION && [msg.type integerValue] != kRoomRemind_REQUEST_PAID &&[msg.type integerValue] != kRoomRemind_REQUEST_CONFIRMED &&[msg.type integerValue] != kRoomRemind_REQUEST_CANCELLED &&[msg.type integerValue] != kRoomRemind_REQUEST_REFUND &&[msg.type integerValue] != kRoomRemind_REQUEST_COMPLAINING &&[msg.type integerValue] != kRoomRemind_REQUEST_COMPLAINING_END &&[msg.type intValue] != kRoomRemind_TYPE_SELL_TO_MERCHANT && [msg.type intValue] != kRoomRemind_TYPE_SELL_TO_MERCHANT_REFUND &&[msg.type intValue] != kRoomRemind_TYPE_SELL_TO_MERCHANT_PAID &&[msg.type intValue] != kRoomRemind_TYPE_SELL_TO_MERCHANT_CONFIRMED){
         
         if(!msg.isVisible && ![msg isAddFriendMsg]){
             return;
@@ -1904,8 +1915,10 @@
         }
     }
     self.wh_msgTotal =  n;
-    [UIApplication sharedApplication].applicationIconBadgeNumber = n;
-    [g_notify postNotificationName:@"msgNumberBtnClickNa" object:[NSString stringWithFormat:@"%d",self.wh_msgTotal]];
+//    [UIApplication sharedApplication].applicationIconBadgeNumber = n;
+//    [g_notify postNotificationName:@"msgNumberBtnClickNa" object:[NSString stringWithFormat:@"%d",self.wh_msgTotal]];
+    
+    [self showNewCount];
     
     if (g_xmpp.isLogined) {
         [g_server WH_userChangeMsgNum:[UIApplication sharedApplication].applicationIconBadgeNumber toView:self];

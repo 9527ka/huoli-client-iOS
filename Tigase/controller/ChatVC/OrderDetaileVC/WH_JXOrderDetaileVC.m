@@ -171,7 +171,7 @@
 - (IBAction)cancleAppealAction:(id)sender {
     [UIAlertController showAlertViewWithTitle:@"确定撤销申诉吗？" message:nil controller:self block:^(NSInteger buttonIndex) {
         if (buttonIndex==1) {
-            
+            [g_server WH_orderAppealCancleWithId:[NSString stringWithFormat:@"%@",self.dict[@"no"]] toView:self];
         }
     } cancelButtonTitle:Localized(@"JX_Cencal") otherButtonTitles:Localized(@"JX_Confirm")];
 }
@@ -223,6 +223,9 @@
     
     NSString *orderCancleUrl = [NSString stringWithFormat:@"%@%@",wh_order_cancle,self.orderId];
     
+    
+    NSString *appealCancleUrl =  [NSString stringWithFormat:@"%@%@",wh_orderApple_cancle_complain,self.orderId];
+    
     if([aDownload.action isEqualToString:wh_act_BlacklistDel]){
         
         [self.wh_user doSendMsg:XMPP_TYPE_NOBLACK content:nil];
@@ -271,7 +274,12 @@
     }else if ([aDownload.action isEqualToString:wh_order_confirm] || [aDownload.action isEqualToString:orderCancleUrl]){
         [g_server showMsg:@"操作成功"];
         [self performSelector:@selector(goBackAction) withObject:nil afterDelay:1.0];
+    }else if ([aDownload.action isEqualToString:appealCancleUrl]){
+        [g_server showMsg:@"操作成功"];
+        [self performSelector:@selector(goBackAction) withObject:nil afterDelay:1.0];
     }
+    
+    
 }
 -(void)goBackAction{
     [g_navigation WH_dismiss_WHViewController:self animated:YES];

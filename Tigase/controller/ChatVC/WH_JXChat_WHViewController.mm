@@ -130,6 +130,7 @@
 #import "WH_PayOrderCell.h"
 #import "WH_JXCertainOrderVC.h"
 #import "WH_JXOrderDetaileVC.h"
+#import "WH_JXBuyPayViewController.h"
 
 
 #define faceHeight (THE_DEVICE_HAVE_HEAD ? 253 : 218)
@@ -2673,7 +2674,7 @@
         return [self WH_creat_WHReadDelCell:msg indexPath:indexPath];
     }
     
-    if ([msg.type intValue] == kRoomRemind_REQUEST_NOTIFICATION ||[msg.type intValue] == kRoomRemind_REQUEST_PAID ||[msg.type intValue] == kRoomRemind_REQUEST_CONFIRMED ||[msg.type intValue] == kRoomRemind_REQUEST_CANCELLED ||[msg.type intValue] == kRoomRemind_REQUEST_REFUND ||[msg.type intValue] == kRoomRemind_REQUEST_COMPLAINING ||[msg.type intValue] == kRoomRemind_REQUEST_COMPLAINING_END) {//下单模块
+    if ([msg.type intValue] == kRoomRemind_REQUEST_NOTIFICATION ||[msg.type intValue] == kRoomRemind_REQUEST_PAID ||[msg.type intValue] == kRoomRemind_REQUEST_CONFIRMED ||[msg.type intValue] == kRoomRemind_REQUEST_CANCELLED ||[msg.type intValue] == kRoomRemind_REQUEST_REFUND ||[msg.type intValue] == kRoomRemind_REQUEST_COMPLAINING ||[msg.type intValue] == kRoomRemind_REQUEST_COMPLAINING_END || [msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_REFUND ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_PAID ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_CONFIRMED) {//下单模块
         
         return [self WH_creat_PayOrderCell:msg indexPath:indexPath];
         
@@ -2877,6 +2878,10 @@
             case kRoomRemind_REQUEST_REFUND:
             case kRoomRemind_REQUEST_COMPLAINING:
             case kRoomRemind_REQUEST_COMPLAINING_END:
+            case kRoomRemind_TYPE_SELL_TO_MERCHANT:
+            case kRoomRemind_TYPE_SELL_TO_MERCHANT_REFUND:
+            case kRoomRemind_TYPE_SELL_TO_MERCHANT_PAID:
+            case kRoomRemind_TYPE_SELL_TO_MERCHANT_CONFIRMED:
                 return 126;
                 break;
            
@@ -3120,7 +3125,7 @@
 - (WH_PayOrderCell *)WH_creat_PayOrderCell:(WH_JXMessageObject *)msg indexPath:(NSIndexPath *)indexPath{
     WH_PayOrderCell *cell = (WH_PayOrderCell *)[_table dequeueReusableCellWithIdentifier:@"WH_PayOrderCell" forIndexPath:indexPath];
     __weak typeof (self)weakSelf = self;
-    cell.certainBlock = ^(NSInteger tag, NSString * _Nonnull orderId) {//1确认 0详情
+    cell.certainBlock = ^(NSInteger tag, NSString * _Nonnull orderId) {//1确认 0详情  2,代理商确认
         [weakSelf lookOrderDetaileWithId:orderId tag:tag];
     };
     cell.msg = msg;
@@ -5621,7 +5626,31 @@
         //    ４-订单支付完成,己确认
         NSString *status = [NSString stringWithFormat:@"%@",dict[@"status"]];
         
-        if (status.intValue == 1) {//确认
+        if (status.intValue == 0 && self.tag == 2){//代理商已经支付，需要确认通知出售方
+            NSMutableDictionary *payTypeDic = [NSMutableDictionary dictionary];
+            //获取过期时间
+            NSString *expiryTime = [NSString stringWithFormat:@"%@",dict[@"expiryTime"]];
+            [payTypeDic setObject:[NSString stringWithFormat:@"%@",dict[@"no"]] forKey:@"id"];
+            [payTypeDic setObject:@"0" forKey:@"status"];
+            
+            NSString *paymentCode = [NSString stringWithFormat:@"%@",dict[@"payeeAccountImg"]];
+            
+            [payTypeDic setObject:paymentCode forKey:@"qrCode"];
+            NSString *payType = [NSString stringWithFormat:@"%@",dict[@"payType"]];//1wx 2alipay
+            NSInteger type = payType.intValue == 1?1:0;
+            
+            [payTypeDic setObject:@(type) forKey:@"type"];
+            
+            NSString *payAmount = [NSString stringWithFormat:@"%@",dict[@"payAmount"]];
+            
+            [payTypeDic setObject:@(payAmount.floatValue) forKey:@"count"];
+            
+            WH_JXBuyPayViewController *vc = [[WH_JXBuyPayViewController alloc] init];
+            vc.expiryTime = expiryTime;
+            vc.payDic = payTypeDic;
+            [g_navigation pushViewController:vc animated:YES];
+            
+        }else if (status.intValue == 1) {//确认
             WH_JXCertainOrderVC *orderVC = [[WH_JXCertainOrderVC alloc] init];
             orderVC.dict = dict;
             orderVC.orderId = self.orderId;
@@ -6064,15 +6093,26 @@
                     return;
                 }
                 
-                _disableSay = [[[dict objectForKey:@"member"]objectForKey:@"talkTime"] longLongValue];
-//                self.chatPerson.talkTime = [NSNumber numberWithInt:[[dict objectForKey:@"talkTime"] intValue]];
+                NSInteger talkTimeGroup = [[dict objectForKey:@"talkTime"] longLongValue];
+                if (talkTimeGroup <= 0) {//0全员禁言
+                    //没有全员禁言的话就看看个人禁言时间
+                    talkTimeGroup = [[[dict objectForKey:@"member"]objectForKey:@"talkTime"] longLongValue];
+                    
+                    _talkTimeLabel.text = @"禁止发言";
+                    
+                }else{
+                    _talkTimeLabel.text = Localized(@"New_no_one_allowed_speak");
+                }
                 
-                self.chatPerson.talkTime = [NSNumber numberWithLong:[[[dict objectForKey:@"member"]objectForKey:@"talkTime"] longLongValue]];
+                self.chatPerson.talkTime = [NSNumber numberWithLong:talkTimeGroup];
+                
+                _disableSay = talkTimeGroup;
+                
                 
                 NSString *role = [[dict objectForKey:@"member"] objectForKey:@"role"];
                 if (([self.chatPerson.talkTime longLongValue] > 0 && !_isAdmin) || [role intValue] == 4) {
                     _talkTimeLabel.hidden = NO;
-                    _talkTimeLabel.text = Localized(@"New_no_one_allowed_speak");
+//                    _talkTimeLabel.text = Localized(@"New_no_one_allowed_speak");
                     if ([role intValue] == 4) {
                         _talkTimeLabel.text = @"禁止发言";
                     }
@@ -7741,6 +7781,9 @@
     }else {
         
         memberData *member = [self.room getMember:msg.fromUserId];
+        if(member.role.intValue == 6){//群助手
+            return;
+        }
         if (_isAdmin || [self.chatPerson.allowSendCard boolValue] || [member.role integerValue] == 1 || [member.role integerValue] == 2) {
             
             NSString *s;

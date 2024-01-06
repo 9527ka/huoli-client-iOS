@@ -36,9 +36,9 @@
 
 
 
-#define BaseUrl @"http://192.168.1.88:8092"   //开发环境
+//#define BaseUrl @"http://192.168.1.88:8092"   //开发环境
 //#define BaseUrl @"http://195.54.171.69:8092"   //测试环境
-//#define BaseUrl @"http://47.122.20.170:8092"   //
+#define BaseUrl @"http://47.122.20.170:8092"   //
 
 
 
@@ -207,8 +207,10 @@
 #define wh_act_redPacketGetRedReceiveList @"redPacket/getRedReceiveList"   // 收到的红包
 
 //群成员的
-#define wh_act_getSendRedPacketList @"redPacket/group/all"// 获取发送的红包
-#define wh_act_getRedReceiveList @"redPacket/group/received"   // 收到的红包
+//#define wh_act_getSendRedPacketList @"redPacket/group/all"// 获取发送的红包
+#define wh_act_getSendRedPacketList @"redPacket/group/all/summary"// 获取发送的红包
+//#define wh_act_getRedReceiveList @"redPacket/group/received"   // 收到的红包
+#define wh_act_getRedReceiveList @"redPacket/group/received/summary"   // 收到的红包
 
 #define wh_act_redPacketReply @"redPacket/reply"   // 红包回复
 #define wh_act_userWithdrawMethodSet @"user/withdrawMethodSet"//增加提现账号
@@ -435,6 +437,7 @@
 #define wh_order_buy_List @"trade/buy"    //代理商购买
 #define wh_order_sell_List @"trade/sell"    //代理商出售
 #define wh_user_account @"user/account/get"    //个人收款账号
+#define wh_orderApple_cancle_complain @"compliant/cancel/"    //撤销申诉
 
 
 
@@ -1292,6 +1295,15 @@
 - (void)WH_TradeApplyBuyWithAmount:(NSString *)amount payAmount:(NSString *)payAmount payType:(NSInteger)payType merchant:(NSString *)merchant paymentCode:(NSString *)paymentCode isBuy:(BOOL)isBuy toView:(id)toView;
 #pragma mark -- 查询个人收款码信息
 -(void)WH_UserAccount:(id)toView;
+#pragma mark -- 撤销申诉
+-(void)WH_orderAppealCancleWithId:(NSString *)orderId toView:(id)toView;
+
+
+
+
+
+
+
 
 
 

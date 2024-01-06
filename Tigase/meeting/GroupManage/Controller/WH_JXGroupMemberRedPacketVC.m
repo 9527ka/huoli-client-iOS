@@ -182,9 +182,9 @@
     WH_JXGroupMemberRedPacketCell *cell = (WH_JXGroupMemberRedPacketCell *)[tableView dequeueReusableCellWithIdentifier:@"WH_JXGroupMemberRedPacketCell" forIndexPath:indexPath];
     if(self.dataSource.count > indexPath.row){
         NSDictionary *dic = self.dataSource[indexPath.row];
-        [g_server WH_getHeadImageSmallWIthUserId:[NSString stringWithFormat:@"%@",self.selIndex == 0? dic[@"userId"]:dic[@"sendId"]] userName:[NSString stringWithFormat:@"%@",self.selIndex == 0?dic[@"userName"]:dic[@"sendName"]] imageView:cell.avatarImage];
+        [g_server WH_getHeadImageSmallWIthUserId:[NSString stringWithFormat:@"%@",dic[@"userId"]] userName:[NSString stringWithFormat:@"%@",dic[@"userName"]] imageView:cell.avatarImage];
         
-        cell.nicknameLabel.text = [NSString stringWithFormat:@"%@", self.selIndex == 0?dic[@"userName"]:dic[@"sendName"]];
+        cell.nicknameLabel.text = [NSString stringWithFormat:@"%@", dic[@"userName"]];
         cell.moneyLabel.text = [NSString stringWithFormat:@"￥%.2f",[NSString stringWithFormat:@"%@",dic[@"money"]].doubleValue];
     }
 

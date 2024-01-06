@@ -103,7 +103,7 @@
 @property (nonatomic, strong) NSString * userName;
 @property (nonatomic, strong) NSString * cardName;
 @property (nonatomic, strong) NSString * lordRemarkName;  // 群主修改的昵称
-@property (nonatomic, strong) NSNumber * role; //角色 1创建者,2管理员,3成员,4隐身人,5监控人
+@property (nonatomic, strong) NSNumber * role; //角色 1创建者,2管理员,3成员,4隐身人,5监控人6,群助手
 @property (nonatomic, strong) NSString * idStr;
 
 @property (nonatomic ,strong) NSNumber *vip; //用户等级

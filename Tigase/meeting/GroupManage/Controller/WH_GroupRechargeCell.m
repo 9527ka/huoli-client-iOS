@@ -148,7 +148,7 @@
     self.userNameTitle.text = @"商家昵称";
     self.groupNameLab.text = model.name;
     
-    [self.certainBtn setTitle:model.isBuy?@"0手续买入HOTC":@"0手续卖出HOTC" forState:UIControlStateNormal];
+    [self.certainBtn setTitle:model.isBuy?@"买入HOTC":@"卖出HOTC" forState:UIControlStateNormal];
     
     self.vxBgView.hidden = self.zfbBgView.hidden = YES;
     self.vxViewTopConstant.constant = 24;

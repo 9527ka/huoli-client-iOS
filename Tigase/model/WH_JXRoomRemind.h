@@ -47,6 +47,12 @@
 #define kRoomRemind_REQUEST_REFUND         4004 //订单退款
 #define kRoomRemind_REQUEST_COMPLAINING        4005 //买卖一方首次发起申诉时的通知消息  或者有一方提交新的资料时的通知
 #define kRoomRemind_REQUEST_COMPLAINING_END         4006 //申诉结束
+#define kRoomRemind_TYPE_SELL_TO_MERCHANT         4100 //出售订单创建成功
+#define kRoomRemind_TYPE_SELL_TO_MERCHANT_REFUND         4104 // 出售订单退款
+#define kRoomRemind_TYPE_SELL_TO_MERCHANT_PAID         4105 ///出售订单-代理己付款
+#define kRoomRemind_TYPE_SELL_TO_MERCHANT_CONFIRMED        4106 //出售订单-卖家确认己收款
+
+
 
 
 

@@ -145,6 +145,7 @@
                     }
                 }
             }
+            model.isBuy = self.tag == 0?YES:NO;
             
             WH_GroupRechargeViewController *vc = [[WH_GroupRechargeViewController alloc] init];
             vc.model = model;

@@ -35,8 +35,12 @@
     
     NSDictionary *dict = [self dictionaryWithJsonString:self.msg.content];
     
+    NSInteger tag = [self.msg.type intValue] == 4001?1:0;
+    if([self.msg.type intValue] ==  4105){
+        tag = 2;
+    }
     if(self.certainBlock){
-        self.certainBlock([self.msg.type intValue] == 4001?1:0,[NSString stringWithFormat:@"%@",dict[@"tradeNo"]]);
+        self.certainBlock(2,[NSString stringWithFormat:@"%@",dict[@"tradeNo"]]);
     }
     
 }
@@ -84,6 +88,21 @@
         self.titleLab.text = @"申诉已完结";
         self.certainBtn.hidden = NO;
         [self.certainBtn setTitle:@"查看详情 >>" forState:UIControlStateNormal];
+    }else if ([msg.type intValue] == 4100){//出售订单创建成功
+        self.titleLab.text = @"买家已下单，请及时处理";
+        self.certainBtn.hidden = NO;
+        [self.certainBtn setTitle:@"查看详情 >>" forState:UIControlStateNormal];
+    }else if ([msg.type intValue] == 4104){//出售订单退款
+        self.titleLab.text = @"订单已退款";
+        self.certainBtn.hidden = NO;
+        [self.certainBtn setTitle:@"查看详情 >>" forState:UIControlStateNormal];
+    }else if ([msg.type intValue] == 4105){//出售订单-代理己付款
+        self.titleLab.text = @"对方已付款，请确认收款";
+        self.certainBtn.hidden = NO;
+        [self.certainBtn setTitle:@"确认 >>" forState:UIControlStateNormal];
+    }else if ([msg.type intValue] == 4106){//出售订单-卖家确认己收款
+        self.titleLab.text = @"交易完成";
+        self.detaileLab.text = [NSString stringWithFormat:@"订单 %@ 已经完成交易",dict[@"tradeNo"]];
     }
 }
 - (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString

@@ -1610,6 +1610,11 @@
         return;
     }
     memberData *user = wh_room.members[imageView.tag];
+    
+    if(user.role.intValue == 6){//群助手不让看
+        return;
+    }
+    
     WH_JXUserInfo_WHVC* vc = [WH_JXUserInfo_WHVC alloc];
     vc.wh_userId       = [NSString stringWithFormat:@"%ld", user.userId];
     vc.wh_fromAddType = 3;
@@ -1903,6 +1908,11 @@
     if(sender.tag >= [wh_room.members count])
         return;
     memberData* member = [wh_room.members objectAtIndex:sender.tag];
+    
+    if(member.role.intValue == 6){//群助手不让看
+        return;
+    }
+    
     [g_server getUser:[NSString stringWithFormat:@"%ld",member.userId] toView:self];
     WH_JXUserInfo_WHVC* vc = [WH_JXUserInfo_WHVC alloc];
     vc.wh_userId       = [NSString stringWithFormat:@"%ld",member.userId];

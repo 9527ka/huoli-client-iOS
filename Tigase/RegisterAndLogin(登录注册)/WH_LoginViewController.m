@@ -335,7 +335,8 @@ static NSString *buttonCellIdentifier = @"buttonCellIdentifier";
         cell.separatorInset = UIEdgeInsetsMake(0, 10, 0, 10);
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.backgroundColor = g_factory.globalBgColor;
+//    cell.backgroundColor = g_factory.globalBgColor;
+    cell.backgroundColor = [UIColor clearColor];
     return cell;
 }
 
@@ -343,6 +344,12 @@ static NSString *buttonCellIdentifier = @"buttonCellIdentifier";
     WH_RoundCornerCell *cell = [loginTable dequeueReusableCellWithIdentifier:phoneCellIdentifier];
     if (!cell) {
         cell = [[WH_RoundCornerCell alloc] initWithReuseIdentifier:phoneCellIdentifier tableView:loginTable indexPath:indexPath];
+        
+//        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH, 50)];
+////        bgView.backgroundColor = g_factory.globalBgColor;
+//        bgView.backgroundColor = UIColor.redColor;
+//        [cell.contentView addSubview:bgView];
+        
         WH_LoginTextField *phoneField = [[WH_LoginTextField alloc] initWithFrame:CGRectMake(g_factory.globelEdgeInset, 0, JX_SCREEN_WIDTH-g_factory.globelEdgeInset*2, 50)];
         phoneField.fieldType = currentLoginType == 0 ? LoginFieldPhoneNoType : LoginFieldUserNameType;
         phoneField.tag = 200;
@@ -369,13 +376,20 @@ static NSString *buttonCellIdentifier = @"buttonCellIdentifier";
     WH_RoundCornerCell *cell = [loginTable dequeueReusableCellWithIdentifier:pwdCellIdentifier];
     if (!cell) {
         cell = [[WH_RoundCornerCell alloc] initWithReuseIdentifier:pwdCellIdentifier tableView:loginTable indexPath:indexPath];
+        
+//        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH, 50)];
+////        bgView.backgroundColor = g_factory.globalBgColor;
+//        bgView.backgroundColor = UIColor.redColor;
+//        [cell.contentView addSubview:bgView];
+        
         WH_LoginTextField *pwdField = [[WH_LoginTextField alloc] initWithFrame:CGRectMake(g_factory.globelEdgeInset, 1, JX_SCREEN_WIDTH-g_factory.globelEdgeInset*2, 50)];
         pwdField.fieldType = LoginFieldPassWordType;
         pwdField.tag = 201;
         pwdField.delegate = self;
-        pwdField.backgroundColor = UIColor.clearColor;
+        pwdField.backgroundColor = UIColor.whiteColor;
         [cell.contentView addSubview:pwdField];
     }
+    cell.backgroundColor = UIColor.clearColor;
     cell.cellIndexPath = indexPath;
     WH_LoginTextField *field = (WH_LoginTextField *)[cell.contentView viewWithTag:201];
     field.text = @"";
@@ -385,6 +399,11 @@ static NSString *buttonCellIdentifier = @"buttonCellIdentifier";
 - (WH_RoundCornerCell *)buttonCellForIndexPath:(NSIndexPath *)indexPath {
     WH_RoundCornerCell *cell = [loginTable dequeueReusableCellWithIdentifier:buttonCellIdentifier];
     if (!cell) {
+//        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH, 50)];
+////        bgView.backgroundColor = g_factory.globalBgColor;
+//        bgView.backgroundColor = UIColor.redColor;
+//        [cell.contentView addSubview:bgView];
+        
         cell = [[WH_RoundCornerCell alloc] initWithReuseIdentifier:buttonCellIdentifier tableView:loginTable indexPath:indexPath];
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, JX_SCREEN_WIDTH-20, 44)];
         [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -413,6 +432,11 @@ static NSString *buttonCellIdentifier = @"buttonCellIdentifier";
     WH_RoundCornerCell *cell = [loginTable dequeueReusableCellWithIdentifier:@"pointIndexPath"];
     if (!cell) {
         cell = [[WH_RoundCornerCell alloc] initWithReuseIdentifier:@"pointIndexPath" tableView:loginTable indexPath:indexPath];
+        
+//        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH, 50)];
+////        bgView.backgroundColor = g_factory.globalBgColor;
+//        bgView.backgroundColor = UIColor.redColor;
+//        [cell.contentView addSubview:bgView];
         
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(16, 0, JX_SCREEN_WIDTH-32, 50)];
         button.tag = 200;

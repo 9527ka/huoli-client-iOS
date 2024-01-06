@@ -206,7 +206,7 @@
     [super viewDidLoad];
     self.isTwoWithdrawal = NO;
 
-    [self WH_getServerData];
+//    [self WH_getServerData];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         //版本更新检查
@@ -231,7 +231,11 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [self getTotalNewMsgCount];
+    
+    _page = 0;
+    [self WH_getServerData];
+    
+//    [self getTotalNewMsgCount];
     BOOL updateUser = [g_default boolForKey:@"PasswordHasModifyed"];
     if (updateUser) {
         [self updateUserInfoSentToServer];
@@ -1826,7 +1830,8 @@
         }
     }
     self.wh_msgTotal =  n;
-    [UIApplication sharedApplication].applicationIconBadgeNumber = n;
+//    [UIApplication sharedApplication].applicationIconBadgeNumber = n;
+    [self showNewCount];
     if (g_xmpp.isLogined) {
         [g_server WH_userChangeMsgNum:[UIApplication sharedApplication].applicationIconBadgeNumber toView:self];
     }
@@ -2968,6 +2973,7 @@
 }
 
 -(void)showNewCount{//显示IM数量
+    [g_notify postNotificationName:@"msgNumberBtnClickNa" object:[NSString stringWithFormat:@"%d",self.wh_msgTotal]];
     [g_mainVC.tb wh_setBadge:0 title:[NSString stringWithFormat:@"%d",self.wh_msgTotal]];
 }
 

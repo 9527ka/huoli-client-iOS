@@ -119,9 +119,13 @@
     _backLab.text = @"";
     _backTime.text = @"";
     
-    if ([msg.type intValue] == kRoomRemind_REQUEST_NOTIFICATION ||[msg.type intValue] == kRoomRemind_REQUEST_PAID ||[msg.type intValue] == kRoomRemind_REQUEST_CONFIRMED ||[msg.type intValue] == kRoomRemind_REQUEST_CANCELLED ||[msg.type intValue] == kRoomRemind_REQUEST_REFUND){
+    if ([msg.type intValue] == kRoomRemind_REQUEST_NOTIFICATION ||[msg.type intValue] == kRoomRemind_REQUEST_PAID ||[msg.type intValue] == kRoomRemind_REQUEST_CONFIRMED ||[msg.type intValue] == kRoomRemind_REQUEST_CANCELLED ||[msg.type intValue] == kRoomRemind_REQUEST_REFUND ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_REFUND ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_PAID ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_CONFIRMED){
         WH_JXTransferModel *model = (WH_JXTransferModel *)tModel;
+        
         _moneyTit.text = @"付款金额";
+        _noteTit.text = @"交易状态";
+        _payTit.text = @"下单用户";
+        
         NSString *lastContet;
         if ([msg.type intValue] == 4000){
             lastContet = @"买方已下单";
@@ -136,13 +140,24 @@
             
         }else if ([msg.type intValue] == 4004){
             lastContet = @"订单已退款";
+        }else if ([msg.type intValue] == 4100){//普通用户卖币给代理的消息类型,支付公众号和用户会发这个消息类型到代理
+            lastContet = @"订单已生成，等待对方付款";
+            _payTit.text = @"交易方";
+        }else if ([msg.type intValue] == 4104){//refund to seller
+            lastContet = @"订单已退款";
+            _payTit.text = @"交易方";
+        }else if ([msg.type intValue] == 4105){//the merchant paid the seller
+            lastContet = @"对方已付款";
+            _payTit.text = @"交易方";
+        }else if ([msg.type intValue] == 4106){//the merchant paid the seller
+            lastContet = @"订单已确认收款";
+            _payTit.text = @"交易方";
         }
-        _noteTit.text = @"交易状态";
+       
         
         _moneyLab.text = [NSString stringWithFormat:@"HOTC%.2f",model.money];
         _baseView.frame = CGRectMake(10, 10, JX_SCREEN_WIDTH-20, 236);
         _nameLab.textColor = [UIColor lightGrayColor];
-        _payTit.text = @"下单用户";
         _nameLab.text = model.userName;
         
         [self hideTime:NO];
@@ -279,7 +294,7 @@
         string = @"充值通知";
     }else if (type == kWCMessageTypeH5PaymentReturn) {
         string = @"充值通知";
-    }else if (type == kRoomRemind_REQUEST_NOTIFICATION ||type == kRoomRemind_REQUEST_PAID ||type == kRoomRemind_REQUEST_CONFIRMED ||type == kRoomRemind_REQUEST_CANCELLED ||type == kRoomRemind_REQUEST_REFUND){
+    }else if (type == kRoomRemind_REQUEST_NOTIFICATION ||type == kRoomRemind_REQUEST_PAID ||type == kRoomRemind_REQUEST_CONFIRMED ||type == kRoomRemind_REQUEST_CANCELLED ||type == kRoomRemind_REQUEST_REFUND ||type == kRoomRemind_TYPE_SELL_TO_MERCHANT ||type == kRoomRemind_TYPE_SELL_TO_MERCHANT_REFUND ||type == kRoomRemind_TYPE_SELL_TO_MERCHANT_PAID ||type == kRoomRemind_TYPE_SELL_TO_MERCHANT_CONFIRMED){
         string = @"下单通知";
         
     }
@@ -317,6 +332,14 @@
         
     }else if ([msg.type intValue] == 4004){
         string = @"订单已退款";
+    }else if ([msg.type intValue] == 4100){//普通用户卖币给代理的消息类型,支付公众号和用户会发这个消息类型到代理
+        string = @"订单已生成，等待对方付款";
+    }else if ([msg.type intValue] == 4104){//refund to seller
+        string = @"订单已退款";
+    }else if ([msg.type intValue] == 4105){//the merchant paid the seller
+        string = @"对方已付款";
+    }else if ([msg.type intValue] == 4106){//the merchant paid the seller
+        string = @"订单已确认收款";
     }
     return string;
 }

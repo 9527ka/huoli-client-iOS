@@ -394,6 +394,8 @@
     NSString * isCanOpen = nil;
     NSString *over = [NSString stringWithFormat:@"%.2f",_wh_packetObj.over];
     //[over doubleValue] < 0.01
+    
+    
     if([_wh_OpenMember count] == _wh_packetObj.count){
         if (IS_SHOW_EXCLUSIVEREDPACKET) {
             isCanOpen = @"已领完！";
