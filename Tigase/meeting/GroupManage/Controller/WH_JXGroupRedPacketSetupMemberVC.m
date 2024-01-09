@@ -10,13 +10,16 @@
 #import "WH_JXGroupRedPacketSetupMemberCell.h"
 #import "BMChineseSort.h"
 
-@interface WH_JXGroupRedPacketSetupMemberVC () <UITableViewDataSource, UITableViewDelegate>
+@interface WH_JXGroupRedPacketSetupMemberVC () <UITableViewDataSource, UITableViewDelegate,UITextFieldDelegate>{
+    ATMHud* _wait;
+}
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) NSArray<memberData *> *allMemberData;
+@property (nonatomic, strong) NSArray<memberData *> *orignMemberData;
 @property (nonatomic, strong) NSMutableArray *indexArray;
 @property (nonatomic, strong) NSMutableArray *dataSource;
 
@@ -26,7 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    _wait = [ATMHud sharedInstance];
     self.titleLabel.text = (self.description == 0) ? @"谁不可以抢" : @"谁不可以发";
     
     self.textField.backgroundColor = g_factory.inputBackgroundColor;
@@ -40,9 +43,10 @@
     [leftView addSubview:imageView];
     self.textField.leftView = leftView;
     self.textField.leftViewMode = UITextFieldViewModeAlways;
+    self.textField.delegate = self;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"WH_JXGroupRedPacketSetupMemberCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WH_JXGroupRedPacketSetupMemberCell"];
-    [self getRoomMembersArray];
+    [self getRoomMembersArrayWithSearStr:@""];
 }
 
 - (IBAction)didTapBack {
@@ -50,19 +54,71 @@
 }
 
 - (IBAction)didTapConfirm {
+    //拼接字符串
+    NSString *redPackageBanList = @"";
+    for (memberData *dataUser in self.orignMemberData) {
+        if(dataUser.isSelect){
+            if(redPackageBanList.length > 0){
+                redPackageBanList = [redPackageBanList stringByAppendingFormat:@",%ld",dataUser.userId];
+            }else{
+                redPackageBanList = [NSString stringWithFormat:@"%ld",dataUser.userId];
+            }
+        }
+    }    
+    self.room.redPackageBanList = redPackageBanList;
     
+    [g_server updateRoom:self.room key:@"redPackageBanList" value:redPackageBanList toView:self];
 }
 
-- (IBAction)textFieldDidChange:(UITextField *)textField {
-    
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self.view endEditing:YES];
+    [self getRoomMembersArrayWithSearStr:textField.text];
+    return YES;
 }
 
-- (void)getRoomMembersArray {
-    if ([[NSString stringWithFormat:@"%ld",self.room.userId] isEqualToString:MY_USER_ID]) {
-        self.allMemberData = [memberData fetchAllMembers:self.room.roomId sortByName:NO];
-    }else {
-        self.allMemberData = [memberData fetchAllMembersAndHideMonitor:self.room.roomId sortByName:NO];
+- (void)getRoomMembersArrayWithSearStr:(NSString *)searStr {
+    
+    if(self.orignMemberData.count == 0){
+        if ([[NSString stringWithFormat:@"%ld",self.room.userId] isEqualToString:MY_USER_ID]) {
+            self.allMemberData = [memberData fetchAllMembers:self.room.roomId sortByName:NO];
+        }else {
+            self.allMemberData = [memberData fetchAllMembersAndHideMonitor:self.room.roomId sortByName:NO];
+        }
+        //标记选中的
+        NSArray *redPackageBanList = [self.room.redPackageBanList componentsSeparatedByString:@","];
+        if(redPackageBanList.count > 0){
+            for (memberData *dataUser in self.allMemberData) {
+                if([redPackageBanList containsObject:[NSString stringWithFormat:@"%ld",dataUser.userId]]){
+                    dataUser.isSelect = YES;
+                }
+            }
+        }
+        self.orignMemberData = self.allMemberData;
     }
+    //如果是搜索，直接筛选出符合条件的用户
+    if(searStr.length > 0){
+        NSMutableArray *array = [NSMutableArray arrayWithArray:@[]];
+        for (memberData *dataUser in self.allMemberData) {
+            NSString *name = @"";
+            
+            memberData *data = [self.room getMember:g_myself.userId];
+            WH_JXUserObject *allUser = [[WH_JXUserObject alloc] init];
+            allUser = [allUser getUserById:[NSString stringWithFormat:@"%ld",dataUser.userId]];
+            if ([data.role intValue] == 1) {
+                name = dataUser.lordRemarkName ? dataUser.lordRemarkName : allUser.remarkName.length > 0  ? allUser.remarkName : dataUser.userNickName;
+            } else {
+                name = allUser.remarkName.length > 0  ? allUser.remarkName : dataUser.userNickName;
+            }
+            
+            if([name containsString:searStr]){
+                [array addObject:dataUser];
+            }
+        }
+        self.allMemberData = array;
+    }else{
+        self.allMemberData = self.orignMemberData;
+    }
+    
     //选择拼音 转换的 方法
     BMChineseSortSetting.share.sortMode = 2; // 1或2
     //排序 Person对象
@@ -116,13 +172,42 @@
             name = [name stringByAppendingString:@"*"];
         }
     }
+    cell.selectImage.image = [UIImage imageNamed:member.isSelect?@"WH_addressbook_selected":@"WH_addressbook_unselected"];
     cell.nameLabel.text = name;
     [g_server WH_getHeadImageSmallWIthUserId:[NSString stringWithFormat:@"%ld",member.userId] userName:name imageView:cell.avatarImage];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    memberData *member = self.dataSource[indexPath.section][indexPath.row];
+    member.isSelect = !member.isSelect;
+    [self.tableView reloadData];
+    
+    
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - 请求成功回调
+-(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{
+    [_wait stop];
+//    self.room.redPackageBanList = @"";
+    [g_server showMsg:@"设置成功"];
+    [g_navigation WH_dismiss_WHViewController:self animated:YES];
+}
+#pragma mark - 请求失败回调
+-(int) WH_didServerResult_WHFailed:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict{
+    [_wait stop];
+    return WH_show_error;
+}
+
+#pragma mark - 请求出错回调
+-(int) WH_didServerConnect_WHError:(WH_JXConnection*)aDownload error:(NSError *)error{//error为空时，代表超时
+    [_wait stop];
+    return WH_show_error;
+}
+#pragma mark - 开始请求服务器回调
+-(void) WH_didServerConnect_WHStart:(WH_JXConnection*)aDownload{
+    [_wait start];
 }
 
 @end

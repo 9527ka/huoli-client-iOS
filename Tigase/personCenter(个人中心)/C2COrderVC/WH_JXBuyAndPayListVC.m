@@ -13,6 +13,7 @@
 #import "MJRefreshHeaderView.h"
 #import "WH_JXBuyAndPayListModel.h"
 #import "WH_GroupAccountSetViewController.h"
+#import "WH_AddAccountViewController.h"
 
 @interface WH_JXBuyAndPayListVC ()<UITableViewDataSource, UITableViewDelegate> {
     ATMHud* _wait;
@@ -129,7 +130,10 @@
             
             [g_server showMsg:@"请设置您的收款账号！"];
             
-            WH_GroupAccountSetViewController *vc = [[WH_GroupAccountSetViewController alloc] init];
+//            WH_GroupAccountSetViewController *vc = [[WH_GroupAccountSetViewController alloc] init];
+//            [g_navigation pushViewController:vc animated:YES];
+            
+            WH_AddAccountViewController *vc = [[WH_AddAccountViewController alloc] init];
             [g_navigation pushViewController:vc animated:YES];
             
         }else{

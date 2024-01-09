@@ -12,8 +12,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WH_JXGroupRedPacketSetupVC">
             <connections>
                 <outlet property="exclusiveLabel" destination="Ida-w2-Qav" id="zLE-Pd-PKQ"/>
+                <outlet property="exclusiveMaxNumLab" destination="dtL-aN-OgP" id="gB0-VX-73m"/>
                 <outlet property="exclusiveNumLabel" destination="wvF-he-xiR" id="cBI-Hy-e5H"/>
                 <outlet property="fortuneLabel" destination="VIf-Nc-OLH" id="LBp-BZ-ZGM"/>
+                <outlet property="fortuneMaxNumLab" destination="Tz6-U0-LmP" id="iIS-Xk-KRA"/>
                 <outlet property="fortuneNumLabel" destination="ktl-BO-EiP" id="b17-vU-moh"/>
                 <outlet property="robLabel" destination="6yM-Mx-x3d" id="ze0-nm-g4e"/>
                 <outlet property="sendLabel" destination="cVo-76-Uv1" id="cxl-MR-K4S"/>
@@ -53,28 +55,10 @@
                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tz6-U0-LmP">
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="（上限1000）" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tz6-U0-LmP">
                             <rect key="frame" x="105" y="11.666666666666671" width="93.333333333333314" height="21"/>
-                            <attributedString key="attributedText">
-                                <fragment content="（上限">
-                                    <attributes>
-                                        <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <font key="NSFont" size="15" name="PingFangSC-Regular"/>
-                                    </attributes>
-                                </fragment>
-                                <fragment content="1000">
-                                    <attributes>
-                                        <color key="NSColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <font key="NSFont" size="15" name="PingFangSC-Regular"/>
-                                    </attributes>
-                                </fragment>
-                                <fragment content="）">
-                                    <attributes>
-                                        <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <font key="NSFont" size="15" name="PingFangSC-Regular"/>
-                                    </attributes>
-                                </fragment>
-                            </attributedString>
+                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="15"/>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ktl-BO-EiP">
@@ -127,28 +111,10 @@
                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtL-aN-OgP">
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="（上限5000）" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtL-aN-OgP">
                             <rect key="frame" x="105" y="11.666666666666657" width="96" height="21"/>
-                            <attributedString key="attributedText">
-                                <fragment content="（上限">
-                                    <attributes>
-                                        <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <font key="NSFont" size="15" name="PingFangSC-Regular"/>
-                                    </attributes>
-                                </fragment>
-                                <fragment content="5000">
-                                    <attributes>
-                                        <color key="NSColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <font key="NSFont" size="15" name="PingFangSC-Regular"/>
-                                    </attributes>
-                                </fragment>
-                                <fragment content="）">
-                                    <attributes>
-                                        <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <font key="NSFont" size="15" name="PingFangSC-Regular"/>
-                                    </attributes>
-                                </fragment>
-                            </attributedString>
+                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="15"/>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wvF-he-xiR">
@@ -243,7 +209,7 @@
                         <outletCollection property="gestureRecognizers" destination="O5l-RI-Afd" appends="YES" id="ozD-3o-VoZ"/>
                     </connections>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jdj-Eb-qhw">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jdj-Eb-qhw">
                     <rect key="frame" x="0.0" y="245" width="393" height="44"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="谁不可以发" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eyN-fS-UgQ">

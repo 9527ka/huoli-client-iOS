@@ -1611,7 +1611,7 @@
     }
     memberData *user = wh_room.members[imageView.tag];
     
-    if(user.role.intValue == 6){//群助手不让看
+    if(user.role.intValue == 6 || !user){//群助手不让看
         return;
     }
     
@@ -1909,7 +1909,7 @@
         return;
     memberData* member = [wh_room.members objectAtIndex:sender.tag];
     
-    if(member.role.intValue == 6){//群助手不让看
+    if(member.role.intValue == 6 || !member){//群助手不让看
         return;
     }
     

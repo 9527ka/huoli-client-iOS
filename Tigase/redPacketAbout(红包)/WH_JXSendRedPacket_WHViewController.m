@@ -340,8 +340,15 @@
 //        return;
 //    }
     
-    NSString *str = [NSString stringWithFormat:@"%@" ,g_config.maxSendRedPagesAmount];
-    NSString *maxSendMoney = IsStringNull(str)?@"500":g_config.maxSendRedPagesAmount;
+//    NSString *str = [NSString stringWithFormat:@"%@" ,g_config.maxSendRedPagesAmount];
+        
+    NSString *str = [NSString stringWithFormat:@"%ld" ,self.room.luckyRecPacketMax];
+    
+    if (_selectIds.count > 0) {
+        str = [NSString stringWithFormat:@"%ld" ,self.room.exclusiveRedPacketMax];
+    }
+    
+    NSString *maxSendMoney = IsStringNull(str)?@"1000":str;
     if ([maxSendMoney doubleValue] >= [_moneyText doubleValue]&&[_moneyText doubleValue] > 0) {
         
         if (button.tag == 3 && [_greetText isEqualToString:@""]) {

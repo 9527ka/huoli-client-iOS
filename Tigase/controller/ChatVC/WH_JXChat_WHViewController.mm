@@ -7781,7 +7781,7 @@
     }else {
         
         memberData *member = [self.room getMember:msg.fromUserId];
-        if(member.role.intValue == 6){//群助手
+        if(member.role.intValue == 6 || !member){//群助手
             return;
         }
         if (_isAdmin || [self.chatPerson.allowSendCard boolValue] || [member.role integerValue] == 1 || [member.role integerValue] == 2) {

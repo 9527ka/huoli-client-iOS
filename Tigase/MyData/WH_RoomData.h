@@ -62,6 +62,9 @@
 @property (nonatomic ,assign) NSInteger isShowSignIn ; //是否开启群签到 1:开启
 @property (nonatomic ,assign) NSInteger financialAccountCount ; //配置 的收款帐号的条数
 
+@property (nonatomic ,assign) NSInteger luckyRecPacketMax ; //手气红包最大在值参数
+@property (nonatomic ,assign) NSInteger exclusiveRedPacketMax ; //专属红包最大值参数
+@property (nonatomic,strong) NSString *redPackageBanList; //谁不可以抢红包100001,100002,100004 表示userId为100001,
 
 @property(nonatomic,assign) double longitude;
 @property(nonatomic,assign) double latitude;
@@ -112,6 +115,8 @@
 @property (nonatomic ,assign) NSInteger offlineTime;//上次离线时间(毫秒时间戳)
 
 @property (nonatomic ,strong) NSNumber *isAddFirend;//是否允许添加好友
+
+@property (nonatomic ,assign) BOOL isSelect;
 
 //@property (nonatomic ,strong) NSDictionary *user;
 

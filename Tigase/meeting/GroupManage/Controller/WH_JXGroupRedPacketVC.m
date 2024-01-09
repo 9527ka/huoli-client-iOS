@@ -186,7 +186,7 @@
         NSDictionary *dic = self.dataSource[indexPath.row];
         
         //红包类型 1.普通红包   2.拼手气   3.口令
-        NSString *type = @"普通红包";
+        NSString *type = @"专属红包";
         NSNumber *redType = [NSNumber numberWithInteger:[NSString stringWithFormat:@"%@",dic[@"type"]].integerValue];
         if(redType.intValue == 2){
             type = @"手气红包";

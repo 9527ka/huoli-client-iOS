@@ -276,7 +276,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "CA66DB70-6CAE-4358-B042-66BCC4B908DC"
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tigase/controller/ChatVC/WH_View/RedPacketView.m"
@@ -292,7 +292,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "1695EE6C-2D88-4523-9A85-87B8C5A302C3"
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tigase/controller/ChatVC/WH_View/RedPacketView.m"
@@ -324,7 +324,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "534991E5-D790-4376-A98A-83863DBD8109"
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tigase/controller/ChatVC/WH_View/RedPacketView.m"
@@ -364,22 +364,6 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "386"
             endingLineNumber = "386"
-            landmarkName = "-WH_didServerResult_WHSucces:dict:array:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C2B21A76-12AF-4134-A0AC-555D3FBBC351"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "5936"
-            endingLineNumber = "5936"
             landmarkName = "-WH_didServerResult_WHSucces:dict:array:"
             landmarkType = "7">
          </BreakpointContent>
@@ -506,8 +490,8 @@
             filePath = "Tigase/controller/WH_JXRoomMemberList_WHVC.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "452"
-            endingLineNumber = "452"
+            startingLineNumber = "471"
+            endingLineNumber = "471"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -602,8 +586,8 @@
             filePath = "Tigase/controller/WH_JXRoomMemberList_WHVC.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "737"
-            endingLineNumber = "737"
+            startingLineNumber = "756"
+            endingLineNumber = "756"
             landmarkName = "-onDisableSay:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1322,8 +1306,8 @@
             filePath = "Tigase/meeting/GroupManage/Controller/WH_GroupRechargeViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
             landmarkName = "-WH_didServerResult_WHSucces:dict:array:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1338,8 +1322,8 @@
             filePath = "Tigase/meeting/GroupManage/Controller/WH_GroupRechargeViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
             landmarkName = "-WH_didServerResult_WHSucces:dict:array:"
             landmarkType = "7">
             <Locations>
@@ -1690,8 +1674,8 @@
             filePath = "Tigase/controller/ChatVC/OrderDetaileVC/WH_JXOrderDetaileVC.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
             landmarkName = "-blackAction:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1834,8 +1818,8 @@
             filePath = "Tigase/controller/ChatVC/OrderDetaileVC/WH_JXOrderDetaileVC.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
             landmarkName = "-WH_didServerResult_WHSucces:dict:array:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2362,8 +2346,8 @@
             filePath = "Tigase/redPacketAbout(&#x7ea2;&#x5305;)/WH_JXSendRedPacket_WHViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "423"
-            endingLineNumber = "423"
+            startingLineNumber = "430"
+            endingLineNumber = "430"
             landmarkName = "-WH_didServerResult_WHSucces:dict:array:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2451,22 +2435,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8521E5DB-3498-47E1-B89A-30E561A42A8D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tigase/model/WH_JXMessageObject.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "995"
-            endingLineNumber = "995"
-            landmarkName = "-fetchMessageListWithUser:byAllNum:pageCount:startTime:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "1049CBA4-CD2E-4904-87A5-67A3E1E3E024"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -2474,8 +2442,8 @@
             filePath = "Tigase/personCenter(&#x4e2a;&#x4eba;&#x4e2d;&#x5fc3;)/C2COrderVC/WH_JXBuyAndPayListVC.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2595,80 +2563,128 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C29EFD2A-82C8-4BBB-90BB-7F4B7CBE5AE9"
+            uuid = "150A9B30-DA51-4D5A-BA06-C1940E1D3CE3"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Tigase/control/JXTabButton.m"
+            filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "7784"
+            endingLineNumber = "7784"
+            landmarkName = "-WH_onDidHeadImage:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "26371830-D640-40ED-B8A8-6359C42EE9E7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tigase/meeting/GroupManage/Controller/WH_JXGroupRedPacketSetupMemberVC.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "-getRoomMembersArrayWithSearStr:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "59AB8500-4ECA-469F-8989-C814513A3C4F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tigase/meeting/GroupManage/Controller/WH_JXGroupRedPacketSetupMemberVC.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "99"
             endingLineNumber = "99"
-            landmarkName = "-setWh_bage:"
+            landmarkName = "-getRoomMembersArrayWithSearStr:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E0698DE4-0F0D-4560-89CE-6F7F9F13A775"
+            uuid = "75120A8B-06C8-43E0-8382-59C8FD473062"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Tigase/control/WH_JXTabMenuView.m"
+            filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "-wh_setBadge:title:"
+            startingLineNumber = "5930"
+            endingLineNumber = "5930"
+            landmarkName = "-WH_didServerResult_WHSucces:dict:array:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B796F33A-7098-4828-B683-4F5C28D8996E"
+            uuid = "C08D50DF-1301-4324-976B-DD35A8E67318"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Tigase/controller/MainVC/WH_JXMsg_WHViewController.m"
+            filePath = "Tigase/controller/ChatVC/WH_View/RedPacketView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3063"
-            endingLineNumber = "3063"
-            landmarkName = "-showNewCount"
+            startingLineNumber = "376"
+            endingLineNumber = "376"
+            landmarkName = "-WH_didServerResult_WHSucces:dict:array:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E6785DDC-453B-464B-BBFE-EDB76648FDDD"
+            uuid = "8DE0D0A5-BFEC-4ECF-888B-F0A40E4685B6"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Tigase/TFJunYou_desiPageVc.m"
+            filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "-msgNumberBtnClick:"
+            startingLineNumber = "7991"
+            endingLineNumber = "7991"
+            landmarkName = "-WH_showRedPacket:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3F126DEA-8ABF-4E32-9267-3A397612DF9F"
+            uuid = "2264E007-8857-4D87-ACBB-A80770808D74"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Tigase/controller/MainVC/WH_JXMsg_WHViewController.m"
+            filePath = "Tigase/controller/ChatVC/WH_View/RedPacketView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1919"
-            endingLineNumber = "1919"
-            landmarkName = "-getTotalNewMsgCount"
+            startingLineNumber = "395"
+            endingLineNumber = "395"
+            landmarkName = "-WH_didServerResult_WHFailed:dict:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BF59E8FC-195F-40DB-8639-7693ABF04B56"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tigase/redPacketAbout(&#x7ea2;&#x5305;)/WH_JXSendRedPacket_WHViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "345"
+            endingLineNumber = "345"
+            landmarkName = "-WH_sendRedPacketWithMoneyNum:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

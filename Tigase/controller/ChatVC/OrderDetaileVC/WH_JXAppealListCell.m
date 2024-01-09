@@ -35,7 +35,7 @@
     NSString *userId = [NSString stringWithFormat:@"%@",model.participantUID];
     WH_JXUserObject *userobj = [[WH_JXUserObject sharedUserInstance] getUserById:userId];
     
-    self.nameLab.text = userobj.userNickname;
+    self.nameLab.text = userobj.userNickname?userobj.userNickname:model.participantNickname;
     //头像
     [g_server WH_getHeadImageSmallWIthUserId:userId userName:userobj.userNickname imageView:self.headImage];
     

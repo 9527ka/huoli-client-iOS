@@ -253,6 +253,11 @@
     
     
     self.financialAccountCount = [[dict objectForKey:@"financialAccountCount"] intValue];
+    
+    self.luckyRecPacketMax = [[dict objectForKey:@"luckyRecPacketMax"] intValue];
+    self.exclusiveRedPacketMax = [[dict objectForKey:@"exclusiveRedPacketMax"] intValue];
+    self.redPackageBanList = [NSString stringWithFormat:@"%@",[dict objectForKey:@"redPackageBanList"]];
+    
     self.countryId = [[dict objectForKey:@"countryId"] intValue];
     self.provinceId = [[dict objectForKey:@"provinceId"] intValue];
     self.cityId = [[dict objectForKey:@"cityId"] intValue];

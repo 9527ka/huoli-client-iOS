@@ -9,6 +9,7 @@
 #import "WH_GroupRechargeViewController.h"
 #import "WH_GroupRechargeCell.h"
 #import "WH_JXBuyPayViewController.h"
+#import "WH_JXOrderDetaileVC.h"
 
 @interface WH_GroupRechargeViewController ()<UITableViewDataSource, UITableViewDelegate>{
     ATMHud* _wait;
@@ -20,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *vcTitle;
 
 @property(nonatomic,copy)NSString *balance;//限额
+@property(nonatomic,copy)NSString *orderId;//订单ID
 
 @property(nonatomic,strong)NSMutableDictionary *payTypeDic;
 
@@ -133,6 +135,8 @@
     
     NSString *balanceUrl = [NSString stringWithFormat:@"%@%@",wh_balance_userAccount,self.room.roomJid];
     
+    NSString *orderDetaileUrl = [NSString stringWithFormat:@"%@%@",wh_order_detaile,self.orderId];
+    
     if ([aDownload.action isEqualToString:url]){
         self.dataArray = [NSMutableArray arrayWithArray:array1];
         [self.tableView reloadData];
@@ -178,7 +182,14 @@
     }else if ([aDownload.action isEqualToString:wh_order_sell_List]){
         //代理商出售
         [g_server showMsg:@"操作成功,等待支付"];
-        [self performSelector:@selector(goBackAction) withObject:nil afterDelay:1.0];
+        self.orderId = [NSString stringWithFormat:@"%@",dict[@"id"]];
+        //查询订单详情
+        [g_server WH_orderDetaileWithId:self.orderId toView:self];
+    }else if( [aDownload.action isEqualToString:orderDetaileUrl] ){//详情
+        WH_JXOrderDetaileVC *orderVC = [[WH_JXOrderDetaileVC alloc] init];
+        orderVC.dict = dict;
+        orderVC.orderId = self.orderId;
+        [g_navigation pushViewController:orderVC animated:YES];
     }
 }
 -(void)goBackAction{

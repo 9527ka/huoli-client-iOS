@@ -113,7 +113,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" clipsSubviews="YES" tag="601" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKR-OB-LfN">
-                        <rect key="frame" x="30" y="651" width="260" height="40"/>
+                        <rect key="frame" x="30" y="635" width="260" height="40"/>
                         <color key="backgroundColor" systemColor="linkColor"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="260" id="fEc-Jx-Br7"/>
@@ -142,7 +142,7 @@
                     <constraint firstItem="25Y-3j-fVr" firstAttribute="leading" secondItem="YMG-Cr-Vmc" secondAttribute="leading" id="VnZ-IP-7wh"/>
                     <constraint firstAttribute="trailing" secondItem="xHi-cr-Pp6" secondAttribute="trailing" constant="16" id="WGU-rP-wxJ"/>
                     <constraint firstItem="O18-X0-vLc" firstAttribute="leading" secondItem="YMG-Cr-Vmc" secondAttribute="leading" id="XTs-ja-7rA"/>
-                    <constraint firstItem="wKR-OB-LfN" firstAttribute="top" secondItem="bsR-lu-WXB" secondAttribute="bottom" constant="24" id="cu1-dk-RTn"/>
+                    <constraint firstItem="wKR-OB-LfN" firstAttribute="top" secondItem="bsR-lu-WXB" secondAttribute="bottom" constant="8" id="cu1-dk-RTn"/>
                     <constraint firstItem="j7L-0O-vUx" firstAttribute="centerY" secondItem="YMG-Cr-Vmc" secondAttribute="centerY" id="dGP-6H-hLy"/>
                     <constraint firstItem="bsR-lu-WXB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="eay-aw-dof"/>
                     <constraint firstAttribute="trailing" secondItem="bsR-lu-WXB" secondAttribute="trailing" constant="16" id="fZR-JV-3da"/>

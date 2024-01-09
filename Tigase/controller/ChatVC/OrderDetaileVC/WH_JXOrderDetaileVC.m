@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *detaileBtn;
 @property (weak, nonatomic) IBOutlet UIButton *cancleAppealBtn;
 @property (weak, nonatomic) IBOutlet UIButton *certainBtn;
+@property (weak, nonatomic) IBOutlet UIButton *cancleBtn;//取消订单按钮
 
 @end
 
@@ -45,6 +46,7 @@
     self.appealBtn.layer.cornerRadius = 4.0f;
     self.cancleAppealBtn.layer.cornerRadius = 4.0f;
     self.certainBtn.layer.cornerRadius = 4.0f;
+    self.cancleBtn.layer.cornerRadius = 4.0f;
     
     
     NSString *userId = [NSString stringWithFormat:@"%@",self.dict[@"payerUID"]];
@@ -91,6 +93,12 @@
     if(status.intValue == 0){
         self.statueTitle.text = @"订单已生成";
         self.detaileLab.text = [NSString stringWithFormat:@"等待买家付款"];
+        
+        NSString *payerUID = [NSString stringWithFormat:@"%@",self.dict[@"payerUID"]];
+        if([payerUID isEqualToString:MY_USER_ID]){
+            self.cancleBtn.hidden = NO;
+        }
+        
     }else if(status.intValue == 1){
         self.statueTitle.text = @"买家已付款";
         self.detaileLab.text = [NSString stringWithFormat:@"等待群主确认"];
@@ -99,17 +107,21 @@
         NSString *payeeUID = [NSString stringWithFormat:@"%@",self.dict[@"payeeUID"]];
         if([payeeUID isEqualToString:MY_USER_ID]){
             self.certainBtn.hidden = NO;
+        }else{
+            self.cancleBtn.hidden = NO;
         }
         
     }else if(status.intValue == 3){
         self.statueTitle.text = @"订单申诉中";
         self.detaileLab.text = [NSString stringWithFormat:@""];
         self.detaileBtn.hidden = NO;
-        
+        self.appealBtn.hidden = YES;
         //判断是不是我出售的
         NSString *payeeUID = [NSString stringWithFormat:@"%@",self.dict[@"payeeUID"]];
         if([payeeUID isEqualToString:MY_USER_ID]){
             self.certainBtn.hidden = NO;
+        }else{
+            self.cancleBtn.hidden = NO;
         }
         
         NSString *payerUID = [NSString stringWithFormat:@"%@",self.dict[@"payerUID"]];
@@ -167,6 +179,16 @@
         }
     } cancelButtonTitle:Localized(@"JX_Cencal") otherButtonTitles:Localized(@"JX_Confirm")];
 }
+//取消订单
+- (IBAction)cancleOrderAction:(id)sender {
+    [UIAlertController showAlertViewWithTitle:@"确认取消订单吗？" message:nil controller:self block:^(NSInteger buttonIndex) {
+        if (buttonIndex==1) {
+            
+            [g_server WH_orderCancleWithId:[NSString stringWithFormat:@"%@",self.dict[@"no"]] toView:self];
+        }
+    } cancelButtonTitle:Localized(@"JX_Cencal") otherButtonTitles:Localized(@"JX_Confirm")];
+}
+
 //撤销申诉
 - (IBAction)cancleAppealAction:(id)sender {
     [UIAlertController showAlertViewWithTitle:@"确定撤销申诉吗？" message:nil controller:self block:^(NSInteger buttonIndex) {
@@ -225,7 +247,7 @@
     
     
     NSString *appealCancleUrl =  [NSString stringWithFormat:@"%@%@",wh_orderApple_cancle_complain,self.orderId];
-    
+        
     if([aDownload.action isEqualToString:wh_act_BlacklistDel]){
         
         [self.wh_user doSendMsg:XMPP_TYPE_NOBLACK content:nil];
@@ -270,9 +292,6 @@
     }else if ([aDownload.action isEqualToString:wh_order_confirm] || [aDownload.action isEqualToString:orderCancleUrl]){
         [g_server showMsg:@"操作成功"];
         
-        [g_navigation WH_dismiss_WHViewController:self animated:YES];
-    }else if ([aDownload.action isEqualToString:wh_order_confirm] || [aDownload.action isEqualToString:orderCancleUrl]){
-        [g_server showMsg:@"操作成功"];
         [self performSelector:@selector(goBackAction) withObject:nil afterDelay:1.0];
     }else if ([aDownload.action isEqualToString:appealCancleUrl]){
         [g_server showMsg:@"操作成功"];
@@ -289,14 +308,14 @@
 - (int) WH_didServerResult_WHFailed:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict{
     //    [_wait hide];
     
-    return WH_hide_error;
+    return WH_show_error;
 }
 
 #pragma mark - 请求出错回调
 -(int) WH_didServerConnect_WHError:(WH_JXConnection*)aDownload error:(NSError *)error{//error为空时，代表超时
     //    [_wait hide];
     
-    return WH_hide_error;
+    return WH_show_error;
 }
 
 -(void)newReceipt:(NSNotification *)notifacation{//新回执

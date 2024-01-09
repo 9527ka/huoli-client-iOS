@@ -22,6 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy)NSString *tradeNo;
 @property(nonatomic,copy)NSString *viewed;
 @property(nonatomic,strong)UIImage *cover;
+@property(nonatomic,copy)NSString *participantNickname;
+
+
 
 
 @end

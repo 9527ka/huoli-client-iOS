@@ -400,6 +400,14 @@
                     [GKMessageTool showText:msg];
                 }
             }
+            //1040312
+            NSString *code = [NSString stringWithFormat:@"%@",[dict objectForKey:@"resultCode"]];
+            if(code.integerValue == 1040312){
+
+                [self closeRedPacket];
+                
+                return WH_show_error;
+            }
         }
         
         packetDic = dict;

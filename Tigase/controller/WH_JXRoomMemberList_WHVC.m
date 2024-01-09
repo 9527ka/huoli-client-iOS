@@ -138,6 +138,15 @@
     self.user = [[WH_JXUserObject sharedUserInstance] getUserById:self.room.roomJid];
     
     _array = (NSMutableArray *)[memberData fetchAllMembers:self.room.roomId sortByName:NO];
+    //过滤掉群助手
+    NSMutableArray *dataArr = [NSMutableArray arrayWithArray:_array];
+    for (memberData *data in _array) {
+        if(data.role.intValue == 6){
+            [dataArr removeObject:data];
+        }
+    }
+    _array = dataArr;
+    
     [self filtrateMember];
     if (self.room.members.count != _array.count) {
         [self WH_getServerData];
@@ -204,6 +213,16 @@
 - (void)refresh {
  
     _array = (NSMutableArray *)[memberData fetchAllMembers:self.room.roomId sortByName:NO];
+    
+    //过滤掉群助手
+    NSMutableArray *dataArr = [NSMutableArray arrayWithArray:_array];
+    for (memberData *data in _array) {
+        if(data.role.intValue == 6){
+            [dataArr removeObject:data];
+        }
+    }
+    _array = dataArr;
+    
     [self filtrateMember];
     //选择拼音 转换的 方法
     BMChineseSortSetting.share.sortMode = 2; // 1或2
