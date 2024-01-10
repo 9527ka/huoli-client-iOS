@@ -770,6 +770,9 @@
 		33BDEC672B43FCB300C6A697 /* WH_JXBuyAndPayListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BDEC652B43FCB300C6A697 /* WH_JXBuyAndPayListCell.xib */; };
 		33BDEC6A2B450BE700C6A697 /* WH_JXBuyAndPayListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BDEC692B450BE700C6A697 /* WH_JXBuyAndPayListModel.m */; };
 		33BEF3082B4D171D0078B540 /* WH_JXNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BEF3072B4D171D0078B540 /* WH_JXNoticeView.m */; };
+		33BEF30B2B4E6DE30078B540 /* WH_JXNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BEF30A2B4E6DE30078B540 /* WH_JXNoticeModel.m */; };
+		33BEF30F2B4E76620078B540 /* WH_JXOrderCertainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BEF30D2B4E76620078B540 /* WH_JXOrderCertainVC.m */; };
+		33BEF3102B4E76620078B540 /* WH_JXOrderCertainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BEF30E2B4E76620078B540 /* WH_JXOrderCertainVC.xib */; };
 		33E591672B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E5914E2B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		33E591682B16E6B900E578A3 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E591572B16E6B900E578A3 /* ViewController+MASAdditions.m */; };
 		33E591692B16E6B900E578A3 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E5915B2B16E6B900E578A3 /* MASCompositeConstraint.m */; };
@@ -3196,6 +3199,11 @@
 		33BDEC692B450BE700C6A697 /* WH_JXBuyAndPayListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXBuyAndPayListModel.m; sourceTree = "<group>"; };
 		33BEF3062B4D171D0078B540 /* WH_JXNoticeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXNoticeView.h; sourceTree = "<group>"; };
 		33BEF3072B4D171D0078B540 /* WH_JXNoticeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXNoticeView.m; sourceTree = "<group>"; };
+		33BEF3092B4E6DE30078B540 /* WH_JXNoticeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXNoticeModel.h; sourceTree = "<group>"; };
+		33BEF30A2B4E6DE30078B540 /* WH_JXNoticeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXNoticeModel.m; sourceTree = "<group>"; };
+		33BEF30C2B4E76620078B540 /* WH_JXOrderCertainVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXOrderCertainVC.h; sourceTree = "<group>"; };
+		33BEF30D2B4E76620078B540 /* WH_JXOrderCertainVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXOrderCertainVC.m; sourceTree = "<group>"; };
+		33BEF30E2B4E76620078B540 /* WH_JXOrderCertainVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXOrderCertainVC.xib; sourceTree = "<group>"; };
 		33E5914D2B16E6B900E578A3 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		33E5914E2B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
 		33E5914F2B16E6B900E578A3 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -9009,6 +9017,9 @@
 				33946AB12B2833D50002A8D6 /* WH_JXBuyPayViewController.h */,
 				33946AB22B2833D50002A8D6 /* WH_JXBuyPayViewController.m */,
 				33946AB32B2833D50002A8D6 /* WH_JXBuyPayViewController.xib */,
+				33BEF30C2B4E76620078B540 /* WH_JXOrderCertainVC.h */,
+				33BEF30D2B4E76620078B540 /* WH_JXOrderCertainVC.m */,
+				33BEF30E2B4E76620078B540 /* WH_JXOrderCertainVC.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -9550,6 +9561,8 @@
 				6330B4691ED30C240021BAA6 /* InfoPlist.strings */,
 				33BEF3062B4D171D0078B540 /* WH_JXNoticeView.h */,
 				33BEF3072B4D171D0078B540 /* WH_JXNoticeView.m */,
+				33BEF3092B4E6DE30078B540 /* WH_JXNoticeModel.h */,
+				33BEF30A2B4E6DE30078B540 /* WH_JXNoticeModel.m */,
 			);
 			name = "systemAbout(系统相关)";
 			sourceTree = "<group>";
@@ -11271,6 +11284,7 @@
 				12A955E228A137C2008D7F12 /* loginreisterplay.mp4 in Resources */,
 				6330B4671ED30C240021BAA6 /* InfoPlist.strings in Resources */,
 				CC3016D51951BABF0059BADA /* f027@2x.png in Resources */,
+				33BEF3102B4E76620078B540 /* WH_JXOrderCertainVC.xib in Resources */,
 				CC3016D01951BABF0059BADA /* f025.png in Resources */,
 				CC3016C11951BABF0059BADA /* f017@2x.png in Resources */,
 				0F304D952153AD0D001EC77E /* copying.txt in Resources */,
@@ -11636,6 +11650,7 @@
 				205D03351EA1AEA000ABC959 /* JXMyTools.m in Sources */,
 				CCC88B951E4C526F00180080 /* QBPlasticPopupMenu.m in Sources */,
 				CC3016901951BABF0059BADA /* JastorRuntimeHelper.m in Sources */,
+				33BEF30F2B4E76620078B540 /* WH_JXOrderCertainVC.m in Sources */,
 				CC1D1919195432CA0029F7FD /* MJRefreshFooterView.m in Sources */,
 				6317CCAD1FB9798500CEF9EF /* LFLiveAudioConfiguration.m in Sources */,
 				0F5A70C21FCD07EA00547904 /* AFImageDownloader.m in Sources */,
@@ -12254,6 +12269,7 @@
 				18D9621C22CF239B00C0519B /* WH_SearchFriendResult_WHController.m in Sources */,
 				333824DE2B34150700AC4B06 /* WH_JXOrderListVC.m in Sources */,
 				0F304E222153AD0E001EC77E /* XMPPTimer.m in Sources */,
+				33BEF30B2B4E6DE30078B540 /* WH_JXNoticeModel.m in Sources */,
 				63DD4F6121314DB800DC45F8 /* RITLPhotosBottomView.m in Sources */,
 				0F304E392153AD0E001EC77E /* DDAbstractDatabaseLogger.m in Sources */,
 				63710B5A1FB97A1400C69611 /* WH_JXLive_WHViewController.m in Sources */,

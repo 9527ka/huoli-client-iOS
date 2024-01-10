@@ -438,6 +438,7 @@
 #define wh_order_sell_List @"trade/sell"    //代理商出售
 #define wh_user_account @"user/account/get"    //个人收款账号
 #define wh_orderApple_cancle_complain @"compliant/cancel/"    //撤销申诉
+#define wh_eventlog_latest @"eventlog/query/latest"    //跑马灯数据接口
 
 
 
@@ -1297,7 +1298,8 @@
 -(void)WH_UserAccount:(id)toView;
 #pragma mark -- 撤销申诉
 -(void)WH_orderAppealCancleWithId:(NSString *)orderId toView:(id)toView;
-
+#pragma mark -- 查询跑马灯数据
+-(void)WH_eventlogLatestWithCount:(NSInteger)count toView:(id)toView;
 
 
 

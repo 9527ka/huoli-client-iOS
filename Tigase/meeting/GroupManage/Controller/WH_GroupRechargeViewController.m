@@ -25,10 +25,17 @@
 @property(nonatomic,copy)NSString *orderId;//订单ID
 
 @property(nonatomic,strong)NSMutableDictionary *payTypeDic;
+@property (strong, nonatomic)WH_JXNoticeView *noticeView;
 
 @end
 
 @implementation WH_GroupRechargeViewController
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self.noticeView receiveData];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,8 +44,8 @@
     
     
     //跑马灯的view
-    WH_JXNoticeView *noticeView = [[WH_JXNoticeView alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP + 12, JX_SCREEN_WIDTH, 40) dataArr:@[@"xxx注册成功，欢迎加入火力大家庭",@"xxx在xx代理商成功购买100HOTC",@"xxx在平台成功提现100HOTC"]];
-    [self.view addSubview:noticeView];
+    _noticeView = [[WH_JXNoticeView alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP + 12, JX_SCREEN_WIDTH, 40)];
+    [self.view addSubview:self.noticeView];
     
     
     self.dataArray = [NSMutableArray array];

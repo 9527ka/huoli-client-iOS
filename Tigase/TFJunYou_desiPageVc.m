@@ -38,6 +38,8 @@
 @property (strong, nonatomic) UIButton *searchBtn;
 
 @property (strong, nonatomic) UILabel *msgNumberBtn ;
+
+@property (strong, nonatomic)WH_JXNoticeView *noticeView;
 @end
 
 @implementation TFJunYou_desiPageVc
@@ -54,6 +56,8 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [g_notify addObserver:self selector:@selector(msgNumberBtnClick:) name:@"msgNumberBtnClickNa" object:nil];
+    
+    [self.noticeView receiveData];
 }
 
 - (void)msgNumberBtnClick:(NSNotification *)note{
@@ -345,8 +349,8 @@
     }
     
     //跑马灯的view
-    WH_JXNoticeView *noticeView = [[WH_JXNoticeView alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP + 40, JX_SCREEN_WIDTH, 40) dataArr:@[@"xxx注册成功，欢迎加入火力大家庭",@"xxx在xx代理商成功购买100HOTC",@"xxx在平台成功提现100HOTC"]];
-    [self.view addSubview:noticeView];
+    _noticeView = [[WH_JXNoticeView alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP + 40, JX_SCREEN_WIDTH, 40)];
+    [self.view addSubview:self.noticeView];
 }
  
 - (void)onFreshRight{

@@ -4916,6 +4916,20 @@
     
     [p go];
 }
+#pragma mark -- 查询跑马灯数据
+-(void)WH_eventlogLatestWithCount:(NSInteger)count toView:(id)toView {
+    WH_JXConnection* p = [self addTask:wh_eventlog_latest param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    if(count > 0){
+        [p setPostValue:@(count) forKey:@"count"];
+    }
+    [p go];
+}
+
+
+
+
+
 
 
 

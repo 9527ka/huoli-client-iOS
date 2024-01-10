@@ -7,22 +7,27 @@
 //
 
 #import "WH_JXNoticeView.h"
+#import "WH_JXNoticeModel.h"
 
-@interface WH_JXNoticeView()
+@interface WH_JXNoticeView(){
+    ATMHud *_wait;
+}
 
-@property(nonatomic,strong)NSArray *dataArray;
+@property(nonatomic,strong)NSMutableArray *dataArray;
 
 @property(nonatomic,strong)UILabel *noticeLab;
 @property(nonatomic,strong)UILabel *secNoticeLab;
 @property(nonatomic,assign)NSInteger currentIndex;
+@property(nonatomic,strong)NSTimer *timer;
 
 @end
 
 @implementation WH_JXNoticeView
 
--(instancetype)initWithFrame:(CGRect)frame dataArr:(NSArray *)dataArr{
+-(instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if(self){
+        _wait = [ATMHud sharedInstance];
         self.layer.masksToBounds = YES;
         self.backgroundColor = [UIColor whiteColor];
         
@@ -37,24 +42,28 @@
         noticeImagw.frame = CGRectMake(10, 10, 20, 20);
         [bgView addSubview:noticeImagw];
         
+        self.dataArray = [NSMutableArray array];
         
-        if(dataArr.count > 0){
-            self.currentIndex =dataArr.count > 1?1:0;
-            self.dataArray = dataArr;
-            [self creatUI];
-        }else{
-            self.hidden = YES;
-            self.frame = CGRectMake(0, 0, 0, 0);
-        }
+        [self creatUI];
         
     }
     return self;
-    
 }
+
+-(void)setLabData{
+    if(self.dataArray.count > 0){
+        self.currentIndex =self.dataArray.count > 1?1:0;
+
+    }else{
+        self.hidden = YES;
+        self.frame = CGRectMake(0, 0, 0, 0);
+    }
+}
+
 -(void)creatUI{
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, JX_SCREEN_WIDTH - 24, self.frame.size.height)];
     label.textColor = HEXCOLOR(0x179cfb);
-    label.text = [NSString stringWithFormat:@"%@",self.dataArray.firstObject];
+    label.text = @"欢迎加入火力大家庭";
     label.font = [UIFont boldSystemFontOfSize:14];
     [self addSubview:label];
     self.noticeLab = label;
@@ -64,12 +73,17 @@
     _secNoticeLab.font = [UIFont boldSystemFontOfSize:14];
     [self addSubview:self.secNoticeLab];
     
-    [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(moveLabel:) userInfo:nil repeats:YES];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(moveLabel:) userInfo:nil repeats:YES];
     
 }
 //移动UILabel的位置
 - (void)moveLabel:(NSTimer *)timer {
-    NSString *currentStr = self.dataArray[self.currentIndex];
+    if(self.dataArray.count == 0){
+        return;
+    }
+    
+    WH_JXNoticeModel *model = self.dataArray[self.currentIndex];
+    NSString *currentStr = model.content;
     
     CGFloat y = self.noticeLab.frame.origin.y;
     
@@ -115,6 +129,38 @@
     }
 
 }
+
+//获取数据
+-(void)receiveData{
+    [g_server WH_eventlogLatestWithCount:0 toView:self];
+}
+#pragma mark - 请求成功回调
+-(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{
+    [_wait stop];
+    if ([aDownload.action isEqualToString:wh_eventlog_latest]) {//
+        self.dataArray = [NSMutableArray arrayWithArray:[WH_JXNoticeModel mj_objectArrayWithKeyValuesArray:array1]];
+        [self setLabData];
+    }
+    
+}
+
+#pragma mark - 请求失败回调
+-(int) WH_didServerResult_WHFailed:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict{
+    [_wait stop];
+    
+    return WH_show_error;
+}
+#pragma mark - 请求出错回调
+-(int) WH_didServerConnect_WHError:(WH_JXConnection*)aDownload error:(NSError *)error{//error为空时，代表超时
+    [_wait stop];
+    
+    return WH_show_error;
+}
+#pragma mark - 开始请求服务器回调
+-(void) WH_didServerConnect_WHStart:(WH_JXConnection*)aDownload{
+    [_wait start];
+}
+
 
 
 @end

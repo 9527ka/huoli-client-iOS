@@ -1,8 +1,8 @@
 //
-//  WH_JXNoticeView.h
+//  WH_JXOrderCertainVC.h
 //  Tigase
 //
-//  Created by 1111 on 2024/1/9.
+//  Created by 1111 on 2024/1/10.
 //  Copyright © 2024 Reese. All rights reserved.
 //
 
@@ -10,10 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WH_JXNoticeView : UIView
-
-//获取数据
--(void)receiveData;
+@interface WH_JXOrderCertainVC : UIViewController
 
 @end
 
