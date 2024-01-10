@@ -35,8 +35,9 @@
     
     self.type = 1;
     
-    self.tableView.estimatedRowHeight = 584;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
+//    self.tableView.estimatedRowHeight = 744;
+//    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.rowHeight = 744;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"WH_AddAccountCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WH_AddAccountCell"];
 }
@@ -58,15 +59,33 @@
     cell.chooseImageBlock = ^{
         [weakSelf chooseImageAction];
     };
-    cell.certainBlock = ^(NSString * _Nonnull name, NSString * _Nonnull account, NSString * _Nonnull password) {
+    cell.certainBlock = ^(NSString * _Nonnull name, NSString * _Nonnull account, NSString * _Nonnull password,NSString * _Nonnull phone) {
         
-        if(!weakSelf.image && weakSelf.qrCode.length == 0){
+        weakSelf.name = name;
+        weakSelf.account = account;
+        weakSelf.phone = phone;
+        
+        if(!weakSelf.image && weakSelf.qrCode.length == 0 && self.type != 2){
             [g_server showMsg:@"请上传您的支付图片"];
             return;
         }
         
-        weakSelf.name = name;
-        weakSelf.account = account;
+        if(!weakSelf.room && weakSelf.name.length == 0 && self.type == 2){
+            [g_server showMsg:@"请输入银行卡帐号名！"];
+            return;
+        }
+        
+        //判断有没有添加账号
+        if(weakSelf.account.length == 0){
+            [g_server showMsg:@"请输入账号！"];
+            return;
+        }
+        if(!weakSelf.room && weakSelf.phone.length == 0){
+            [g_server showMsg:self.type == 2?@"请输入开户银行":@"请输入手机号码！"];
+            return;
+        }
+        
+        
         [weakSelf passWordAction];
     };
     if(self.image){
@@ -77,9 +96,13 @@
         [cell.uploadBtn setTitle:@"" forState:UIControlStateNormal];
         [cell.uploadBtn sd_setImageWithURL:[NSURL URLWithString:self.qrCode] forState:UIControlStateNormal];
     }
-    cell.payTitleLab.text = self.type > 0?@"支付宝":@"微信支付";
-    cell.line.backgroundColor = self.type > 0?[UIColor linkColor]:HEXCOLOR(0x23B525);
-    cell.payAccountLab.text = self.type > 0?@"支付宝账号（选填）":@"微信账号（选填）";
+    cell.payTitleLab.text = [self payTitleLabStr];
+    cell.line.backgroundColor = [self lineColorStr];
+    cell.nameTitle.text = self.type == 2?@"银行卡帐号名（必填）":@"姓名（选填）";
+    cell.nameField.placeholder = self.type == 2?@"请输入银行卡帐号名":@"请输入真实姓名";
+    cell.payAccountLab.text = [self accountStr];
+    cell.phoneTitle.text = [self phoneStr];
+    cell.rightNowTitle.hidden = self.type == 2?YES:NO;
     
     if(cell.nameField.text.length == 0&&self.name.length > 0){
         cell.nameField.text = self.name;
@@ -87,8 +110,60 @@
     if(cell.accountField.text.length == 0&&self.account.length > 0){
         cell.accountField.text = self.account;
     }
+    if(cell.phoneField.text.length == 0&&self.phone.length > 0 &&!IsStringNull(self.phone)){
+        cell.phoneField.text = self.phone;
+    }
+    
+    cell.codeBgView.hidden = self.type == 2?YES:NO;
+    cell.codeBgViewHeight.constant = self.type == 2?0:175;
+    
+    cell.phoneField.placeholder = (self.type == 2 && !self.room)?@"请输入开户银行":@"请输入手机号码";
+    cell.phoneField.keyboardType = (self.type == 2 && !self.room)?UIKeyboardTypeDefault:UIKeyboardTypeNumberPad;
     
     return cell;
+}
+-(NSString *)phoneStr{
+    NSString *phoneStr = @"手机号码（选填：订单有问题时联系用）";
+    if(!self.room){
+        phoneStr = @"手机号码（必填：订单有问题时联系用）";
+        if (self.type == 2){
+            phoneStr = @"开户银行（必填）";
+        }
+    }
+    return phoneStr;
+}
+-(UIColor *)lineColorStr{
+    UIColor *lineColor = HEXCOLOR(0xf7984a);
+    if(self.type == 0){
+        lineColor = HEXCOLOR(0x23B525);
+    }else if (self.type == 1){
+        lineColor = HEXCOLOR(0x4174f2);
+    }else if (self.type == 2){
+        lineColor = HEXCOLOR(0xf7984a);
+    }
+    return lineColor;
+}
+-(NSString *)payTitleLabStr{
+    NSString *payTitleStr = @"微信支付";
+    if(self.type == 0){
+        payTitleStr = @"微信支付";
+    }else if (self.type == 1){
+        payTitleStr = @"支付宝";
+    }else if (self.type == 2){
+        payTitleStr = @"银行支付";
+    }
+    return payTitleStr;
+}
+-(NSString *)accountStr{
+    NSString *accountStr = @"账号";
+    if(self.type == 0){
+        accountStr = @"微信账号（必填）";
+    }else if (self.type == 1){
+        accountStr = @"支付宝账号（必填）";
+    }else if (self.type == 2){
+        accountStr = @"银行账号（必填）";
+    }
+    return accountStr;
 }
 //输入密码
 -(void)passWordAction{
@@ -128,7 +203,9 @@
         [g_server uploadFile:file validTime:@"-1" messageId:nil toView:self];
     }else if (!self.image && self.qrCode.length > 0){
         //修改账号
-        [g_server WH_AddUserAccountWithName:self.name accountNo:self.account payPassword:self.password type:self.type + 1 roomJid:self.room.roomJid qrCode:self.qrCode addId:self.accountId toView:self];
+        [g_server WH_AddUserAccountWithName:self.name accountNo:self.account payPassword:self.password type:self.type + 1 roomJid:self.room.roomJid qrCode:self.type == 2?self.phone:self.qrCode addId:self.accountId telNumber:self.phone toView:self];
+    }else if(self.type == 2){//银行卡
+        [g_server WH_AddUserAccountWithName:self.name accountNo:self.account payPassword:self.password type:self.type + 1 roomJid:self.room.roomJid qrCode:self.phone addId:self.accountId telNumber:@"" toView:self];
     }
 }
 //选择支付方式
@@ -141,22 +218,23 @@
     if (THE_DEVICE_HAVE_HEAD) {
         viewH = 191+24;
     }
-    WH_SetGroupHeads_WHView *setGroupHeadsview = [[WH_SetGroupHeads_WHView alloc] initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH, viewH) titleArray:@[@"微信",@"支付宝",@"取消"]];
+    WH_SetGroupHeads_WHView *setGroupHeadsview = [[WH_SetGroupHeads_WHView alloc] initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH, viewH) titleArray:self.room?@[@"微信支付",@"支付宝"]: @[@"微信支付",@"支付宝",@"银行卡"] istype:YES];
+
     [setGroupHeadsview showInWindowWithMode:CustomAnimationModeShare inView:nil bgAlpha:0.5 needEffectView:NO];
     
     __weak typeof(setGroupHeadsview) weakShare = setGroupHeadsview;
     __weak typeof(self) weakSelf = self;
     [setGroupHeadsview setWh_selectActionBlock:^(NSInteger buttonTag) {
-        if (buttonTag == 2) {
-            //取消
-            [weakShare hideView];
-        }else {
+//        if ((buttonTag == 3 && !self.room) || (buttonTag == 2 && self.room)) {
+//            //取消
+//            [weakShare hideView];
+//        }else {
             
             weakSelf.type = buttonTag;
             
             [weakShare hideView];
             [weakSelf.tableView reloadData];
-        }
+//        }
     }];
 }
 //选择图片
@@ -246,7 +324,7 @@
             }
         }
         //上传账号
-        [g_server WH_AddUserAccountWithName:self.name accountNo:self.account payPassword:self.password type:self.type + 1 roomJid:self.room.roomJid qrCode:fileUrl addId:self.accountId toView:self];
+        [g_server WH_AddUserAccountWithName:self.name accountNo:self.account payPassword:self.password type:self.type + 1 roomJid:self.room.roomJid qrCode:self.type == 2?self.phone:fileUrl addId:self.accountId telNumber:self.phone toView:self];
         
     }else if ([aDownload.action isEqualToString:wh_add_userAccount]){
         [g_server showMsg:@"添加成功"];

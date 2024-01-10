@@ -10,6 +10,7 @@
 #import "WH_GroupRechargeCell.h"
 #import "WH_JXBuyPayViewController.h"
 #import "WH_JXOrderDetaileVC.h"
+#import "WH_JXNoticeView.h"
 
 @interface WH_GroupRechargeViewController ()<UITableViewDataSource, UITableViewDelegate>{
     ATMHud* _wait;
@@ -33,6 +34,12 @@
     [super viewDidLoad];
 //    self.tableView.estimatedRowHeight = 784;
 //    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
+    
+    //跑马灯的view
+    WH_JXNoticeView *noticeView = [[WH_JXNoticeView alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP + 12, JX_SCREEN_WIDTH, 40) dataArr:@[@"xxx注册成功，欢迎加入火力大家庭",@"xxx在xx代理商成功购买100HOTC",@"xxx在平台成功提现100HOTC"]];
+    [self.view addSubview:noticeView];
+    
     
     self.dataArray = [NSMutableArray array];
     

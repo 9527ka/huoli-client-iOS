@@ -17,7 +17,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="购买HOTC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAU-ek-85f">
@@ -39,7 +39,7 @@
                     </connections>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="54" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="haA-g5-FDO">
-                    <rect key="frame" x="0.0" y="108" width="375" height="559"/>
+                    <rect key="frame" x="0.0" y="158" width="393" height="694"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -61,7 +61,7 @@
                 <constraint firstItem="KNi-BO-hyK" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="7" id="3cC-wT-kNB"/>
                 <constraint firstItem="IAU-ek-85f" firstAttribute="leading" secondItem="KNi-BO-hyK" secondAttribute="trailing" constant="22" id="5qV-6t-RbV"/>
                 <constraint firstItem="haA-g5-FDO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="6pz-5A-2c7"/>
-                <constraint firstItem="haA-g5-FDO" firstAttribute="top" secondItem="KNi-BO-hyK" secondAttribute="bottom" constant="12" id="7ai-Lz-Mvz"/>
+                <constraint firstItem="haA-g5-FDO" firstAttribute="top" secondItem="KNi-BO-hyK" secondAttribute="bottom" constant="62" id="7ai-Lz-Mvz"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="haA-g5-FDO" secondAttribute="trailing" id="7fI-fU-JYs"/>
                 <constraint firstItem="JTe-NO-qC2" firstAttribute="top" secondItem="IAU-ek-85f" secondAttribute="bottom" constant="4" id="Cqb-jH-FXr"/>
                 <constraint firstAttribute="bottom" secondItem="haA-g5-FDO" secondAttribute="bottom" id="TJm-is-mED"/>

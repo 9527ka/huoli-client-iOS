@@ -18,6 +18,15 @@
     return self;
 }
 
+- (instancetype)initWithFrame:(CGRect)frame titleArray:(NSArray *)titleArray istype:(BOOL)istype{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.isPayType = istype;
+        [self dataUIWithArray:titleArray frame:frame];
+    }
+    return self;
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -26,6 +35,7 @@
     }
     return self;
 }
+
 -(void)dataUIWithArray:(NSArray *)array frame:(CGRect)frame{
     self.backgroundColor = [UIColor clearColor];
     
@@ -42,9 +52,48 @@
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setFrame:CGRectMake(0, i*buttonHeight, self.frame.size.width, buttonHeight)];
         [btn setTag:i];
-        [btn setTitle:[array objectAtIndex:i] forState:UIControlStateNormal];
-        [btn setTitleColor:HEXCOLOR(0x8C9AB8) forState:UIControlStateNormal];
-        [btn.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 17]];
+        
+        if (self.isPayType) {//添加账号类型
+            NSString *name = [array objectAtIndex:i];
+            UIColor *lineColor;
+            BOOL isNow = NO;
+            if([name containsString:@"支付宝"]){
+                lineColor = HEXCOLOR(0x4174f2);
+                isNow = YES;
+            }else if ([name containsString:@"微信"]){
+                lineColor = HEXCOLOR(0x2ead65);
+                isNow = YES;
+            }else if ([name containsString:@"银行卡"]){
+                lineColor = HEXCOLOR(0xf7984a);
+            }
+            
+            //创建竖线
+            UILabel *line = [[UILabel alloc] initWithFrame:CGRectMake(18, (buttonHeight - 12)/2, 3, 12)];
+            line.backgroundColor = lineColor;
+            [btn addSubview:line];
+            
+            UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, name.length *20, buttonHeight)];
+            titleLab.font = [UIFont boldSystemFontOfSize:14];
+            titleLab.text = name;
+            [btn addSubview:titleLab];
+            
+            if(isNow){
+                UILabel *rightLab = [[UILabel alloc] initWithFrame:CGRectMake(58 + name.length*10, (buttonHeight - 24)/2, 72, 24)];
+                rightLab.backgroundColor = HEXCOLOR(0xe9fcf0);
+                rightLab.layer.masksToBounds = YES;
+                rightLab.layer.cornerRadius = 12.0f;
+                rightLab.text = @"即时付款";
+                rightLab.textAlignment = NSTextAlignmentCenter;
+                rightLab.textColor = HEXCOLOR(0x31bd65);
+                rightLab.font = [UIFont boldSystemFontOfSize:12];
+                [btn addSubview:rightLab];
+            }
+            
+        }else{
+            [btn setTitle:[array objectAtIndex:i] forState:UIControlStateNormal];
+            [btn setTitleColor:HEXCOLOR(0x8C9AB8) forState:UIControlStateNormal];
+            [btn.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 17]];
+        }
         [btn setBackgroundColor:[UIColor whiteColor]];
         [topBgView addSubview:btn];
         [btn addTarget:self action:@selector(buttonClickMethod:) forControlEvents:UIControlEventTouchUpInside];

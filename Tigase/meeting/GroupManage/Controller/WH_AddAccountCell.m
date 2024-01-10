@@ -59,7 +59,7 @@
 //        return;
 //    }
     if(self.certainBlock){
-        self.certainBlock(self.nameField.text.length > 0?self.nameField.text:@"", self.accountField.text.length > 0?self.accountField.text:@"",@"");
+        self.certainBlock(self.nameField.text.length > 0?self.nameField.text:@"", self.accountField.text.length > 0?self.accountField.text:@"",@"", self.phoneField.text.length > 0?self.phoneField.text:@"");
     }
 }
 

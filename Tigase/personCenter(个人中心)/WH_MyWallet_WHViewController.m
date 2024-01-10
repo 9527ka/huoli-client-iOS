@@ -116,7 +116,7 @@
     }
     NSMutableArray *titleArr = [NSMutableArray arrayWithArray:array];
     [titleArr addObject:@"联系客服充值"];
-    [titleArr addObject:@"代理商充值"];
+    [titleArr addObject:@"代理商充值（推荐）"];
     
     for (int i = 0; i < titleArr.count; i++) {
         NSString *titleStr = [titleArr objectAtIndex:i];
@@ -272,7 +272,7 @@
         [g_navigation pushViewController:tranVC animated:YES];
     }else if ([actionTitle isEqualToString:@"联系客服充值"]){
         [self lianxikehu];
-    }else if ([actionTitle isEqualToString:@"代理商充值"]) {
+    }else if ([actionTitle isEqualToString:@"代理商充值（推荐）"]) {
         WH_JXBuyAndPayListVC *vc = [[WH_JXBuyAndPayListVC alloc] init];
         [g_navigation pushViewController:vc animated:YES];
     }

@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, ClickButtonType) {
     ClickButtonType_Wallert = 100,
+    ClickButtonType_Account,
     ClickButtonType_Order,
     ClickButtonType_Collect,
     ClickButtonType_LifeStatus,

@@ -19,6 +19,7 @@
 #import "WH_JXNear_WHVC.h"
 #import "WH_JXCollectMoney_WHVC.h"
 #import "WH_JXScanQR_WHViewController.h"
+#import "WH_JXNoticeView.h"
 
 @interface TFJunYou_desiPageVc ()<UIScrollViewDelegate,JXSelectMenuViewDelegate,WH_JXScanQR_WHViewControllerDelegate>
 
@@ -279,7 +280,7 @@
 - (void)setupContentView {
     UIScrollView *contentView = [[UIScrollView alloc] init];
     contentView.backgroundColor = [UIColor whiteColor];
-    contentView.frame = CGRectMake(0, JX_SCREEN_TOP, self.view.bounds.size.width, self.view.bounds.size.height-JX_SCREEN_TOP);
+    contentView.frame = CGRectMake(0, JX_SCREEN_TOP + 50, self.view.bounds.size.width, self.view.bounds.size.height-JX_SCREEN_TOP - 50);
     contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     contentView.delegate = self;
     contentView.showsHorizontalScrollIndicator = NO;
@@ -342,6 +343,10 @@
         }
         [button addTarget:self action:@selector(titleClick:) forControlEvents:UIControlEventTouchUpInside];
     }
+    
+    //跑马灯的view
+    WH_JXNoticeView *noticeView = [[WH_JXNoticeView alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP + 40, JX_SCREEN_WIDTH, 40) dataArr:@[@"xxx注册成功，欢迎加入火力大家庭",@"xxx在xx代理商成功购买100HOTC",@"xxx在平台成功提现100HOTC"]];
+    [self.view addSubview:noticeView];
 }
  
 - (void)onFreshRight{

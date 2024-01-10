@@ -769,6 +769,7 @@
 		33BDEC662B43FCB300C6A697 /* WH_JXBuyAndPayListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BDEC642B43FCB300C6A697 /* WH_JXBuyAndPayListCell.m */; };
 		33BDEC672B43FCB300C6A697 /* WH_JXBuyAndPayListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BDEC652B43FCB300C6A697 /* WH_JXBuyAndPayListCell.xib */; };
 		33BDEC6A2B450BE700C6A697 /* WH_JXBuyAndPayListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BDEC692B450BE700C6A697 /* WH_JXBuyAndPayListModel.m */; };
+		33BEF3082B4D171D0078B540 /* WH_JXNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BEF3072B4D171D0078B540 /* WH_JXNoticeView.m */; };
 		33E591672B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E5914E2B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		33E591682B16E6B900E578A3 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E591572B16E6B900E578A3 /* ViewController+MASAdditions.m */; };
 		33E591692B16E6B900E578A3 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E5915B2B16E6B900E578A3 /* MASCompositeConstraint.m */; };
@@ -3193,6 +3194,8 @@
 		33BDEC652B43FCB300C6A697 /* WH_JXBuyAndPayListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXBuyAndPayListCell.xib; sourceTree = "<group>"; };
 		33BDEC682B450BE700C6A697 /* WH_JXBuyAndPayListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXBuyAndPayListModel.h; sourceTree = "<group>"; };
 		33BDEC692B450BE700C6A697 /* WH_JXBuyAndPayListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXBuyAndPayListModel.m; sourceTree = "<group>"; };
+		33BEF3062B4D171D0078B540 /* WH_JXNoticeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXNoticeView.h; sourceTree = "<group>"; };
+		33BEF3072B4D171D0078B540 /* WH_JXNoticeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXNoticeView.m; sourceTree = "<group>"; };
 		33E5914D2B16E6B900E578A3 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		33E5914E2B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
 		33E5914F2B16E6B900E578A3 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -9545,6 +9548,8 @@
 				CCE2410018FFB8EB00A3CB5A /* Tigase-Info.plist */,
 				CCE2410118FFB8EB00A3CB5A /* Tigase-Prefix.pch */,
 				6330B4691ED30C240021BAA6 /* InfoPlist.strings */,
+				33BEF3062B4D171D0078B540 /* WH_JXNoticeView.h */,
+				33BEF3072B4D171D0078B540 /* WH_JXNoticeView.m */,
 			);
 			name = "systemAbout(系统相关)";
 			sourceTree = "<group>";
@@ -11432,6 +11437,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesSwift/Promises.framework",
 				"${BUILT_PRODUCTS_DIR}/RecaptchaInterop/RecaptchaInterop.framework",
@@ -11451,6 +11457,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Promises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RecaptchaInterop.framework",
@@ -11741,6 +11748,7 @@
 				CCF53E1619809E45005B5AFA /* WH_VolumeView.m in Sources */,
 				63DD4F3421314DB800DC45F8 /* NSArray+RITLExtension.m in Sources */,
 				CC3016931951BABF0059BADA /* WeiboData.m in Sources */,
+				33BEF3082B4D171D0078B540 /* WH_JXNoticeView.m in Sources */,
 				0FA32A102265883E00926C5E /* WH_HWTFCodeView.m in Sources */,
 				B203A85023238E94001B2575 /* MiXin_inputPhone_MiXinVC.m in Sources */,
 				CC30176E1951BABF0059BADA /* LKDB+Mapping.m in Sources */,
@@ -13009,6 +13017,7 @@
 					"-ObjC",
 					"-force_load",
 					"$(SRCROOT)/Tigase/3rd/OBS.framework/OBS",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cn.hailiao.com;
 				PRODUCT_MODULE_NAME = wahu_2_0;
@@ -13109,6 +13118,7 @@
 					"-ObjC",
 					"-force_load",
 					"$(SRCROOT)/Tigase/3rd/OBS.framework/OBS",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cn.hailiao.com;
 				PRODUCT_MODULE_NAME = wahu_2_0;

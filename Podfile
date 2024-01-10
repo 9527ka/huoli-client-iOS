@@ -13,6 +13,7 @@ pod 'FirebaseAuth'
 pod 'FirebaseCrashlytics'
 
 pod 'YYModel'
+pod 'IQKeyboardManager'
 #pod 'Masonry'
 
 

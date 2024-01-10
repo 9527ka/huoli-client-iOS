@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign) NSInteger type;
 @property(nonatomic,copy) NSString *password;
 @property(nonatomic,copy) NSString *accountId;
+@property(nonatomic,copy) NSString *phone;
 @property(nonatomic,copy) NSString *qrCode;
 
 

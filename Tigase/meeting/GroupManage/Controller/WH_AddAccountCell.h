@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WH_AddAccountCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIView *payTypeBgView;
+@property (weak, nonatomic) IBOutlet UILabel *nameTitle;
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *accountField;
 @property (weak, nonatomic) IBOutlet UIButton *uploadBtn;
@@ -20,11 +21,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *line;
 @property (weak, nonatomic) IBOutlet UILabel *payAccountLab;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UILabel *phoneTitle;
+@property (weak, nonatomic) IBOutlet UITextField *phoneField;
+@property (weak, nonatomic) IBOutlet UIView *codeBgView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *codeBgViewHeight;//175
+@property (weak, nonatomic) IBOutlet UILabel *rightNowTitle;
+
 
 
 @property(nonatomic,copy)void(^chooseTypeBlock)(void);
 @property(nonatomic,copy)void(^chooseImageBlock)(void);
-@property(nonatomic,copy)void(^certainBlock)(NSString *name,NSString *account,NSString *password);
+@property(nonatomic,copy)void(^certainBlock)(NSString *name,NSString *account,NSString *password,NSString *phone);
 
 @end
 

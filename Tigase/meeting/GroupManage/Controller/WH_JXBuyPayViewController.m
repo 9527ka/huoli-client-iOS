@@ -7,6 +7,7 @@
 //
 
 #import "WH_JXBuyPayViewController.h"
+#import "WH_ImageBrowser_WHViewController.h"
 
 @interface WH_JXBuyPayViewController (){
     ATMHud* _wait;
@@ -42,6 +43,10 @@
     [g_navigation WH_dismiss_WHViewController:self animated:YES];
 }
 -(void)initUI{
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(lookImage)];
+    [self.codeImage addGestureRecognizer:tap];
+    
     self.infoBgView.layer.cornerRadius = self.notificationBtn.layer.cornerRadius = 8.0f;
     self.oneLab.layer.cornerRadius = self.twoLab.layer.cornerRadius = self.threeLab.layer.cornerRadius = 9.0f;
     
@@ -129,6 +134,12 @@
         //(5)
      dispatch_resume(timer);
     }
+}
+-(void)lookImage{
+    [WH_ImageBrowser_WHViewController show:self delegate:self type:PhotoBroswerVCTypeModal contentArray:[NSMutableArray arrayWithArray:@[[NSString stringWithFormat:@"%@",self.payDic[@"qrCode"]]]] index:0 imagesBlock:^NSArray *{
+        
+        return [NSMutableArray arrayWithArray:@[[NSString stringWithFormat:@"%@",self.payDic[@"qrCode"]]]];
+    }];
 }
 - (IBAction)notificationAction:(id)sender {
     

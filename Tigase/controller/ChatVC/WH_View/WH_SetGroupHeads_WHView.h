@@ -18,8 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithFrame:(CGRect)frame;
 
 - (instancetype)initWithFrame:(CGRect)frame titleArray:(NSArray *)titleArray;
+- (instancetype)initWithFrame:(CGRect)frame titleArray:(NSArray *)titleArray istype:(BOOL)istype;
 
-
+@property(nonatomic,assign)BOOL isPayType;
 
 NS_ASSUME_NONNULL_END
 - (void)sp_checkNetWorking:(NSString *)isLogin;

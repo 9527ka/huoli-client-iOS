@@ -4693,7 +4693,7 @@
 }
 
 #pragma mark --  新增 / 修改   // 1微信,2支付宝
-- (void)WH_AddUserAccountWithName:(NSString *)accountName accountNo:(NSString *)accountNo payPassword:(NSString *)payPassword type:(NSInteger)type roomJid:(NSString *)roomJid qrCode:(NSString *)qrCode addId:(NSString *)addId toView:(id)toView {
+- (void)WH_AddUserAccountWithName:(NSString *)accountName accountNo:(NSString *)accountNo payPassword:(NSString *)payPassword type:(NSInteger)type roomJid:(NSString *)roomJid qrCode:(NSString *)qrCode addId:(NSString *)addId telNumber:(NSString *)telNumber toView:(id)toView {
     
     WH_JXConnection* p = [self addTask:addId.length > 0?wh_change_userAccount:wh_add_userAccount param:nil toView:toView];
     
@@ -4707,6 +4707,10 @@
     if(addId.length > 0){
         [p setPostValue:addId forKey:@"id"];
     }
+    if(telNumber.length > 0){
+        [p setPostValue:telNumber forKey:@"telNumber"];
+    }
+    
     [p setPostValue:@(type) forKey:@"type"];
     
     // 获取当前时间0秒后的时间
