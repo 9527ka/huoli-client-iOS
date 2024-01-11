@@ -773,6 +773,10 @@
 		33BEF30B2B4E6DE30078B540 /* WH_JXNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BEF30A2B4E6DE30078B540 /* WH_JXNoticeModel.m */; };
 		33BEF30F2B4E76620078B540 /* WH_JXOrderCertainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BEF30D2B4E76620078B540 /* WH_JXOrderCertainVC.m */; };
 		33BEF3102B4E76620078B540 /* WH_JXOrderCertainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BEF30E2B4E76620078B540 /* WH_JXOrderCertainVC.xib */; };
+		33BEF3142B4E8EC70078B540 /* WH_JXChooseAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BEF3122B4E8EC70078B540 /* WH_JXChooseAccountVC.m */; };
+		33BEF3152B4E8EC70078B540 /* WH_JXChooseAccountVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BEF3132B4E8EC70078B540 /* WH_JXChooseAccountVC.xib */; };
+		33BEF3192B4E94270078B540 /* WH_JXChooseAccountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BEF3172B4E94270078B540 /* WH_JXChooseAccountCell.m */; };
+		33BEF31A2B4E94270078B540 /* WH_JXChooseAccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BEF3182B4E94270078B540 /* WH_JXChooseAccountCell.xib */; };
 		33E591672B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E5914E2B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		33E591682B16E6B900E578A3 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E591572B16E6B900E578A3 /* ViewController+MASAdditions.m */; };
 		33E591692B16E6B900E578A3 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E5915B2B16E6B900E578A3 /* MASCompositeConstraint.m */; };
@@ -3204,6 +3208,12 @@
 		33BEF30C2B4E76620078B540 /* WH_JXOrderCertainVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXOrderCertainVC.h; sourceTree = "<group>"; };
 		33BEF30D2B4E76620078B540 /* WH_JXOrderCertainVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXOrderCertainVC.m; sourceTree = "<group>"; };
 		33BEF30E2B4E76620078B540 /* WH_JXOrderCertainVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXOrderCertainVC.xib; sourceTree = "<group>"; };
+		33BEF3112B4E8EC70078B540 /* WH_JXChooseAccountVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXChooseAccountVC.h; sourceTree = "<group>"; };
+		33BEF3122B4E8EC70078B540 /* WH_JXChooseAccountVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXChooseAccountVC.m; sourceTree = "<group>"; };
+		33BEF3132B4E8EC70078B540 /* WH_JXChooseAccountVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXChooseAccountVC.xib; sourceTree = "<group>"; };
+		33BEF3162B4E94270078B540 /* WH_JXChooseAccountCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXChooseAccountCell.h; sourceTree = "<group>"; };
+		33BEF3172B4E94270078B540 /* WH_JXChooseAccountCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXChooseAccountCell.m; sourceTree = "<group>"; };
+		33BEF3182B4E94270078B540 /* WH_JXChooseAccountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXChooseAccountCell.xib; sourceTree = "<group>"; };
 		33E5914D2B16E6B900E578A3 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		33E5914E2B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
 		33E5914F2B16E6B900E578A3 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -9020,6 +9030,12 @@
 				33BEF30C2B4E76620078B540 /* WH_JXOrderCertainVC.h */,
 				33BEF30D2B4E76620078B540 /* WH_JXOrderCertainVC.m */,
 				33BEF30E2B4E76620078B540 /* WH_JXOrderCertainVC.xib */,
+				33BEF3112B4E8EC70078B540 /* WH_JXChooseAccountVC.h */,
+				33BEF3122B4E8EC70078B540 /* WH_JXChooseAccountVC.m */,
+				33BEF3132B4E8EC70078B540 /* WH_JXChooseAccountVC.xib */,
+				33BEF3162B4E94270078B540 /* WH_JXChooseAccountCell.h */,
+				33BEF3172B4E94270078B540 /* WH_JXChooseAccountCell.m */,
+				33BEF3182B4E94270078B540 /* WH_JXChooseAccountCell.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -11064,6 +11080,7 @@
 				CC3016AC1951BABF0059BADA /* f007.png in Resources */,
 				CC30174B1951BABF0059BADA /* f086@2x.png in Resources */,
 				CC3016981951BABF0059BADA /* AlbumTriangleB.png in Resources */,
+				33BEF31A2B4E94270078B540 /* WH_JXChooseAccountCell.xib in Resources */,
 				334FB9EE2B1425C000230991 /* userInfo.plist in Resources */,
 				63E1E9AD1F442927004548C5 /* tranAudio@2x.png in Resources */,
 				0FDCB58A1FF22D9B00C1EA28 /* JXAVCallViewController.xib in Resources */,
@@ -11145,6 +11162,7 @@
 				63E1E9A41F442927004548C5 /* accept@2x.png in Resources */,
 				18ABD6901D07FDAE000F43FC /* avatar_normal@2x.png in Resources */,
 				CC30173E1951BABF0059BADA /* f080.png in Resources */,
+				33BEF3152B4E8EC70078B540 /* WH_JXChooseAccountVC.xib in Resources */,
 				88B96F4F1F43F93900FBB976 /* dial.m4a in Resources */,
 				1851A3782307B09400BA24A1 /* biaoqing_btnbg1@2x.png in Resources */,
 				4CABBC5D293F06F800C17F42 /* GKMessageTool.bundle in Resources */,
@@ -11964,6 +11982,7 @@
 				0F8F58F21F96F595004B1EEA /* SDImageCacheConfig.m in Sources */,
 				0F304E2D2153AD0E001EC77E /* XMPPSCRAMSHA1Authentication.m in Sources */,
 				DE39FF8424371A0E00E90FE5 /* WHL_EventSource.swift in Sources */,
+				33BEF3142B4E8EC70078B540 /* WH_JXChooseAccountVC.m in Sources */,
 				63F638C81F9EE154009DABEB /* UIImage+WH_Tint.m in Sources */,
 				886923B61F67F87200824159 /* WH_JXSelector_WHVC.m in Sources */,
 				DEF4CC262323D44200023057 /* NSString+MJExtension.m in Sources */,
@@ -12121,6 +12140,7 @@
 				4CABBC6C293F06F800C17F42 /* UIViewController+GKCategory.m in Sources */,
 				CC6E168519794906006ADA8A /* WH_JXMsgAndUserObject.m in Sources */,
 				6353D3E12182B57900CFBEA7 /* WH_JXInputValue_WHVC.m in Sources */,
+				33BEF3192B4E94270078B540 /* WH_JXChooseAccountCell.m in Sources */,
 				0FA2D5E11FB05CCC00D51BB9 /* GPUImageGrayscaleFilter.m in Sources */,
 				0FA2D6171FB05CCC00D51BB9 /* GPUImageLuminanceRangeFilter.m in Sources */,
 				CCC88B7D1E4C526F00180080 /* FMDatabasePool.m in Sources */,

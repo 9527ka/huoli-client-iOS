@@ -314,8 +314,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "7955"
-            endingLineNumber = "7955"
+            startingLineNumber = "7960"
+            endingLineNumber = "7960"
             landmarkName = "-WH_onDidRedPacket:"
             landmarkType = "7">
          </BreakpointContent>
@@ -378,8 +378,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "5951"
-            endingLineNumber = "5951"
+            startingLineNumber = "5956"
+            endingLineNumber = "5956"
             landmarkName = "-WH_didServerResult_WHSucces:dict:array:"
             landmarkType = "7">
          </BreakpointContent>
@@ -394,8 +394,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "6203"
-            endingLineNumber = "6203"
+            startingLineNumber = "6208"
+            endingLineNumber = "6208"
             landmarkName = "-WH_didServerResult_WHFailed:dict:"
             landmarkType = "7">
          </BreakpointContent>
@@ -410,8 +410,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "8027"
-            endingLineNumber = "8027"
+            startingLineNumber = "8032"
+            endingLineNumber = "8032"
             landmarkName = "-WH_showRedPacket:"
             landmarkType = "7">
          </BreakpointContent>
@@ -506,8 +506,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "6555"
-            endingLineNumber = "6555"
+            startingLineNumber = "6560"
+            endingLineNumber = "6560"
             landmarkName = "-actionSheet:didButtonWithIndex:"
             landmarkType = "7">
          </BreakpointContent>
@@ -778,8 +778,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "6897"
-            endingLineNumber = "6897"
+            startingLineNumber = "6902"
+            endingLineNumber = "6902"
             landmarkName = "-onReceiveRoomRemind:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1306,8 +1306,8 @@
             filePath = "Tigase/meeting/GroupManage/Controller/WH_GroupRechargeViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
             landmarkName = "-WH_didServerResult_WHSucces:dict:array:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1322,8 +1322,8 @@
             filePath = "Tigase/meeting/GroupManage/Controller/WH_GroupRechargeViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
             landmarkName = "-WH_didServerResult_WHSucces:dict:array:"
             landmarkType = "7">
             <Locations>
@@ -1402,8 +1402,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3631"
-            endingLineNumber = "3631"
+            startingLineNumber = "3636"
+            endingLineNumber = "3636"
             landmarkName = "-newMsgCome:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1754,8 +1754,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "9292"
-            endingLineNumber = "9292"
+            startingLineNumber = "9297"
+            endingLineNumber = "9297"
             landmarkName = "-WH_onDidSystemImage1:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2042,8 +2042,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "634"
-            endingLineNumber = "634"
+            startingLineNumber = "636"
+            endingLineNumber = "636"
             landmarkName = "-messageSync"
             landmarkType = "7">
          </BreakpointContent>
@@ -2074,8 +2074,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "7949"
-            endingLineNumber = "7949"
+            startingLineNumber = "7954"
+            endingLineNumber = "7954"
             landmarkName = "-WH_onDidRedPacket:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2090,8 +2090,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "8747"
-            endingLineNumber = "8747"
+            startingLineNumber = "8752"
+            endingLineNumber = "8752"
             landmarkName = "-isNoAllowedOpearitionOnJinYanStatus"
             landmarkType = "7">
          </BreakpointContent>
@@ -2106,8 +2106,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "5527"
-            endingLineNumber = "5527"
+            startingLineNumber = "5532"
+            endingLineNumber = "5532"
             landmarkName = "-showChatView"
             landmarkType = "7">
          </BreakpointContent>
@@ -2122,8 +2122,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "5587"
-            endingLineNumber = "5587"
+            startingLineNumber = "5592"
+            endingLineNumber = "5592"
             landmarkName = "-xmppRoomDidJoin:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2138,8 +2138,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "7085"
-            endingLineNumber = "7085"
+            startingLineNumber = "7090"
+            endingLineNumber = "7090"
             landmarkName = "-onReceiveRoomRemind:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2154,8 +2154,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "7905"
-            endingLineNumber = "7905"
+            startingLineNumber = "7910"
+            endingLineNumber = "7910"
             landmarkName = "-onDisableSay:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2186,8 +2186,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "5317"
-            endingLineNumber = "5317"
+            startingLineNumber = "5322"
+            endingLineNumber = "5322"
             landmarkName = "-WH_getServerData"
             landmarkType = "7">
          </BreakpointContent>
@@ -2202,8 +2202,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3377"
-            endingLineNumber = "3377"
+            startingLineNumber = "3382"
+            endingLineNumber = "3382"
             landmarkName = "-WH_show_WHOneMsg:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2218,8 +2218,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1865"
-            endingLineNumber = "1865"
+            startingLineNumber = "1870"
+            endingLineNumber = "1870"
             landmarkName = "-refresh:loadHistory:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2250,8 +2250,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1768"
-            endingLineNumber = "1768"
+            startingLineNumber = "1773"
+            endingLineNumber = "1773"
             landmarkName = "-refresh:loadHistory:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2330,8 +2330,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3414"
-            endingLineNumber = "3414"
+            startingLineNumber = "3419"
+            endingLineNumber = "3419"
             landmarkName = "-WH_show_WHOneMsg:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2362,8 +2362,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "7692"
-            endingLineNumber = "7692"
+            startingLineNumber = "7697"
+            endingLineNumber = "7697"
             landmarkName = "-sendReceiveRedPacketDelegate:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2378,8 +2378,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "7718"
-            endingLineNumber = "7718"
+            startingLineNumber = "7723"
+            endingLineNumber = "7723"
             landmarkName = "-sendReceiveRedPacketDelegate:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2458,8 +2458,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "5884"
-            endingLineNumber = "5884"
+            startingLineNumber = "5889"
+            endingLineNumber = "5889"
             landmarkName = "-WH_didServerResult_WHSucces:dict:array:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2474,8 +2474,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "6111"
-            endingLineNumber = "6111"
+            startingLineNumber = "6116"
+            endingLineNumber = "6116"
             landmarkName = "-WH_didServerResult_WHSucces:dict:array:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2490,8 +2490,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "5629"
-            endingLineNumber = "5629"
+            startingLineNumber = "5634"
+            endingLineNumber = "5634"
             landmarkName = "-WH_didServerResult_WHSucces:dict:array:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2570,8 +2570,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "7784"
-            endingLineNumber = "7784"
+            startingLineNumber = "7789"
+            endingLineNumber = "7789"
             landmarkName = "-WH_onDidHeadImage:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2618,8 +2618,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "5930"
-            endingLineNumber = "5930"
+            startingLineNumber = "5935"
+            endingLineNumber = "5935"
             landmarkName = "-WH_didServerResult_WHSucces:dict:array:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2650,8 +2650,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "7991"
-            endingLineNumber = "7991"
+            startingLineNumber = "7996"
+            endingLineNumber = "7996"
             landmarkName = "-WH_showRedPacket:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2698,8 +2698,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "734"
-            endingLineNumber = "734"
+            startingLineNumber = "736"
+            endingLineNumber = "736"
             landmarkName = "-customView"
             landmarkType = "7">
          </BreakpointContent>
@@ -2714,8 +2714,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1726"
-            endingLineNumber = "1726"
+            startingLineNumber = "1731"
+            endingLineNumber = "1731"
             landmarkName = "-roomMembersRefreshNotifi:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2730,8 +2730,8 @@
             filePath = "Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "5924"
-            endingLineNumber = "5924"
+            startingLineNumber = "5929"
+            endingLineNumber = "5929"
             landmarkName = "-WH_didServerResult_WHSucces:dict:array:"
             landmarkType = "7">
          </BreakpointContent>

@@ -132,6 +132,8 @@
 #import "WH_JXOrderDetaileVC.h"
 #import "WH_JXBuyPayViewController.h"
 
+#import "IQKeyboardManager.h"
+
 
 #define faceHeight (THE_DEVICE_HAVE_HEAD ? 253 : 218)
 #define PAGECOUNT 100
@@ -865,8 +867,10 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [IQKeyboardManager sharedManager].enable = NO;
     //进入界面即开启定时器
     [self.noticeTimer setFireDate:[NSDate distantPast]];
+            
     //获取聊天信息
 //    [self receiveChatInfoData];
     
@@ -881,6 +885,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 //    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [IQKeyboardManager sharedManager].enable = YES;
     if (_player) {
         [g_notify postNotificationName:@"CancleVideoPlay_Notification" object:nil];
     }

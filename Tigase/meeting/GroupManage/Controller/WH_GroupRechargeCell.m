@@ -21,7 +21,7 @@
     [self.rulerLab addGestureRecognizer:tap2];
     
     NSMutableAttributedString *rulerStr = [[NSMutableAttributedString alloc] initWithString:self.rulerLab.text];
-    [rulerStr addAttribute:NSForegroundColorAttributeName value:[UIColor linkColor] range:NSMakeRange(self.rulerLab.text.length - 6, 6)];
+    [rulerStr addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(self.rulerLab.text.length - 6, 6)];
     self.rulerLab.attributedText = rulerStr;
     
     //添加圆角以及阴影

@@ -11,6 +11,7 @@
 #import "WH_JXBuyPayViewController.h"
 #import "WH_JXOrderDetaileVC.h"
 #import "WH_JXNoticeView.h"
+#import "WH_JXOrderCertainVC.h"
 
 @interface WH_GroupRechargeViewController ()<UITableViewDataSource, UITableViewDelegate>{
     ATMHud* _wait;
@@ -26,6 +27,7 @@
 
 @property(nonatomic,strong)NSMutableDictionary *payTypeDic;
 @property (strong, nonatomic)WH_JXNoticeView *noticeView;
+@property (nonatomic,strong)WH_JXOrderCertainVC *vc;
 
 @end
 
@@ -46,8 +48,7 @@
     //跑马灯的view
     _noticeView = [[WH_JXNoticeView alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP + 12, JX_SCREEN_WIDTH, 40)];
     [self.view addSubview:self.noticeView];
-    
-    
+        
     self.dataArray = [NSMutableArray array];
     
     self.tableView.rowHeight = 680;
@@ -99,6 +100,13 @@
     return cell;
 }
 -(void)certainAction{
+    
+    
+    self.vc.view.hidden = NO;
+    [UIView animateWithDuration:0.5 animations:^{
+        self.vc.view.frame = CGRectMake(0, 0, JX_SCREEN_WIDTH, JX_SCREEN_HEIGHT);
+    }];
+    return;
     
     if(self.room){//群内购买
         self.room.type = self.type;
@@ -226,6 +234,16 @@
     
     [_wait start];
 
+}
+-(WH_JXOrderCertainVC *)vc{
+    if(!_vc){
+        _vc = [[WH_JXOrderCertainVC alloc] init];
+        _vc.view.frame = CGRectMake(0, JX_SCREEN_HEIGHT, JX_SCREEN_WIDTH, JX_SCREEN_HEIGHT);
+        _vc.view.hidden = YES;
+        [self.view addSubview:self.vc.view];
+    }
+    return _vc;
+    
 }
 
 @end
