@@ -34,7 +34,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,copy)NSString *balance;//限额
 
-@property(nonatomic,strong)NSArray *payArray;
 
 @property(nonatomic,assign)NSInteger type;
 @property(nonatomic,copy)void(^certainBlock)(NSString *count,NSInteger type);

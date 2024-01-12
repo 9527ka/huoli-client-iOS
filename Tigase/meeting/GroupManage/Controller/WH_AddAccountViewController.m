@@ -32,8 +32,8 @@
     [super viewDidLoad];
     
     _wait = [ATMHud sharedInstance];
-    
-    self.type = 1;
+//    //如果不存在才设置
+//    self.type = 1;
     
 //    self.tableView.estimatedRowHeight = 744;
 //    self.tableView.rowHeight = UITableViewAutomaticDimension;

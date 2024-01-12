@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic,strong) WH_RoomData* room;
 
+@property(nonatomic,copy)void(^dataBlock)(NSArray *dataArray);
+
 @end
 
 NS_ASSUME_NONNULL_END

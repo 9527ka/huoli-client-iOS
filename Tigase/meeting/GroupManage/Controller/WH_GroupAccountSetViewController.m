@@ -26,6 +26,13 @@
 
 @implementation WH_GroupAccountSetViewController
 
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    if(self.dataBlock){
+        self.dataBlock(self.dataArray);
+    }
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
@@ -39,7 +46,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.addBtn.hidden = self.room.financialAccountCount > 1?YES:NO;
+//    self.addBtn.hidden = self.room.financialAccountCount > 1?YES:NO;
+    
+    self.addBtn.hidden = NO;
     
     self.dataArray = [NSMutableArray array];
     self.tableView.estimatedRowHeight = 100;
@@ -77,6 +86,7 @@
 - (IBAction)addAcountAction:(UIButton *)sender {
     WH_AddAccountViewController *vc = [[WH_AddAccountViewController alloc] init];
     vc.room = self.room;
+    vc.type = 1;
     [g_navigation pushViewController:vc animated:YES];
     
 }
@@ -98,7 +108,23 @@
     if(self.dataArray.count > indexPath.row){
         NSDictionary *dic = self.dataArray[indexPath.row];
         NSString *type = [NSString stringWithFormat:@"%@",dic[@"type"]];
-        cell.paytypeLab.text = [NSString stringWithFormat:@"%@支付",type.intValue == 1?@"微信":@"支付宝"];
+        
+        NSString *typeStr = @"";
+        UIColor *lineColor = HEXCOLOR(0xf7984a);
+        if(type.intValue == 1){//1.微信  2.支付宝  3银行卡
+            lineColor = HEXCOLOR(0x23B525);
+            typeStr = @"微信支付";
+        }else if (type.intValue == 2){
+            lineColor = HEXCOLOR(0x4174f2);
+            typeStr = @"支付宝";
+        }else if (type.intValue == 3){
+            lineColor = HEXCOLOR(0xf7984a);
+            typeStr = @"银行卡";
+            cell.rightPayLab.hidden = YES;
+        }
+        cell.lineLab.backgroundColor = lineColor;
+        
+        cell.paytypeLab.text = typeStr;
         cell.nameLab.text = [NSString stringWithFormat:@"%@ %@",dic[@"accountName"],dic[@"accountNo"]];
         
     }
@@ -119,7 +145,7 @@
         self.dataArray = [NSMutableArray arrayWithArray:array1];
         [self.tableView reloadData];
         self.nodataLab.hidden = self.noDataImage.hidden = array1.count > 0?YES:NO;
-        self.addBtn.hidden = array1.count > 1?YES:NO;
+//        self.addBtn.hidden = array1.count > 1?YES:NO;
     }else if ([aDownload.action isEqualToString:wh_delete_userAccount]){//
         [g_server showMsg:@"删除成功"];
         if(!self.room){
@@ -140,7 +166,7 @@
         vc.type = [NSString stringWithFormat:@"%@",dic[@"type"]].intValue - 1;
         vc.accountId = [NSString stringWithFormat:@"%@",dic[@"id"]];
         vc.qrCode = [NSString stringWithFormat:@"%@",dic[@"qrCode"]];
-        vc.phone = [NSString stringWithFormat:@"%@",dic[@"telNumber"]];
+        vc.phone = [NSString stringWithFormat:@"%@",vc.type == 2?dic[@"qrCode"]:dic[@"telNumber"]];
         
         [g_navigation pushViewController:vc animated:YES];
     }

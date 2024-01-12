@@ -40,6 +40,7 @@ typedef NS_OPTIONS(NSInteger, JXSelectFriendType) {
 @property (nonatomic,strong) NSSet * disableSet;
 @property (nonatomic,assign) JXSelectFriendType type;
 @property (nonatomic, assign) BOOL isShowMySelf;
+@property (nonatomic, assign) BOOL isDiamound;//是否是钻石群聊
 
 @property (nonatomic, assign) BOOL isForRoom;
 @property (nonatomic, strong) WH_JXUserObject *forRoomUser;

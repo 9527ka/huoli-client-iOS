@@ -127,27 +127,15 @@
     if(self.dataSource.count > indexPath.row){
         WH_JXBuyAndPayListModel *model = self.dataSource[indexPath.row];
         if(self.tag == 1 &&  self.accountList.count == 0){
-            
             [g_server showMsg:@"请设置您的收款账号！"];
             
-//            WH_GroupAccountSetViewController *vc = [[WH_GroupAccountSetViewController alloc] init];
-//            [g_navigation pushViewController:vc animated:YES];
-            
             WH_AddAccountViewController *vc = [[WH_AddAccountViewController alloc] init];
+            vc.type = 1;
             [g_navigation pushViewController:vc animated:YES];
             
         }else{
             if(self.tag == 1){//设置收款账号
-                model.wechatCode = @"";
-                model.alipayCode = @"";
-                for (NSDictionary *dic in self.accountList) {
-                    NSString *type = [NSString stringWithFormat:@"%@",dic[@"type"]];
-                    if(type.intValue == 1){//微信
-                        model.wechatCode = [NSString stringWithFormat:@"%@",dic[@"qrCode"]];
-                    }else{
-                        model.alipayCode = [NSString stringWithFormat:@"%@",dic[@"qrCode"]];
-                    }
-                }
+                model.financialInfos = self.accountList;
             }
             model.isBuy = self.tag == 0?YES:NO;
             
@@ -173,7 +161,7 @@
         
         [self.tableView reloadData];
     }else if ([aDownload.action isEqualToString:wh_user_account]){//我的收款账号
-        self.accountList = [NSMutableArray arrayWithArray:array1];
+        self.accountList = [WH_FinancialInfosModel mj_objectArrayWithKeyValuesArray:array1];
     }
     
 }

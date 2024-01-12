@@ -121,17 +121,17 @@
     NSMutableArray *sels ;
      
     if ([g_config.isOpenPositionService intValue] == 0) {
-        titles = [NSMutableArray arrayWithArray:@[Localized(@"JX_LaunchGroupChat"), Localized(@"JX_AddFriends"), Localized(@"JX_Scan"), Localized(@"WaHu_JXNear_WaHuVC_NearPer"),Localized(@"JX_Receiving"),Localized(@"JX_SearchPublicNumber")]];
-        images = [NSMutableArray arrayWithArray:@[@"icon_group_chat_entry", @"icon_add_friend", @"icon_scan",@"message_near_person_black", @"icon_payment_received",@"message_near_receiving",@"message_search_publicNumber"]];
-        sels = [NSMutableArray arrayWithArray:@[@"onNewRoom", @"onSearch", @"showScanViewController", @"onNear",@"onReceiving",@"searchPublicNumber"]];
+        titles = [NSMutableArray arrayWithArray:@[@"发起钻石群聊",Localized(@"JX_LaunchGroupChat"), Localized(@"JX_AddFriends"), Localized(@"JX_Scan"), Localized(@"WaHu_JXNear_WaHuVC_NearPer"),Localized(@"JX_Receiving"),Localized(@"JX_SearchPublicNumber")]];
+        images = [NSMutableArray arrayWithArray:@[@"icon_group_chat_entry",@"icon_group_chat_entry", @"icon_add_friend", @"icon_scan",@"message_near_person_black", @"icon_payment_received",@"message_near_receiving",@"message_search_publicNumber"]];
+        sels = [NSMutableArray arrayWithArray:@[@"onNewdiamoundRoom",@"onNewRoom", @"onSearch", @"showScanViewController", @"onNear",@"onReceiving",@"searchPublicNumber"]];
     }else {
-        titles = [NSMutableArray arrayWithArray:@[Localized(@"JX_LaunchGroupChat"), Localized(@"JX_AddFriends"), Localized(@"JX_Scan"), Localized(@"JX_Receiving")
+        titles = [NSMutableArray arrayWithArray:@[@"发起钻石群聊",Localized(@"JX_LaunchGroupChat"), Localized(@"JX_AddFriends"), Localized(@"JX_Scan"), Localized(@"JX_Receiving")
 //                                                  ,Localized(@"JX_SearchPublicNumber")
                                                 ]];
-        images = [NSMutableArray arrayWithArray:@[@"icon_group_chat_entry",  @"icon_add_friend", @"icon_scan", @"icon_payment_received",@"message_near_receiving"
+        images = [NSMutableArray arrayWithArray:@[@"icon_group_chat_entry",@"icon_group_chat_entry",  @"icon_add_friend", @"icon_scan", @"icon_payment_received",@"message_near_receiving"
 //                                                  ,@"message_search_publicNumber"
                                                 ]];
-        sels = [NSMutableArray arrayWithArray:@[@"onNewRoom", @"onSearch", @"showScanViewController",@"onReceiving"
+        sels = [NSMutableArray arrayWithArray:@[@"onNewdiamoundRoom",@"onNewRoom", @"onSearch", @"showScanViewController",@"onReceiving"
 //                                                ,@"searchPublicNumber"
                                               ]];
     }
@@ -146,6 +146,11 @@
         [titles removeObject:Localized(@"JX_LaunchGroupChat")];
         [images removeObject:@"message_creat_group_black"];
         [sels removeObject:@"onNewRoom"];
+        
+        
+        [titles removeObject:@"发起钻石群聊"];
+        [sels removeObject:@"onNewdiamoundRoom"];
+        
     }
     if ([g_config.isOpenPositionService intValue] == 1) {
         [titles removeObject:Localized(@"WaHu_JXNear_WaHuVC_NearPer")];
@@ -176,6 +181,7 @@
 - (void)needVerify:(WH_JXMessageObject *)msg {
     
 }
+
 - (void) moreListActionWithIndex:(NSInteger)index {
     
     switch (index) {
@@ -228,6 +234,39 @@
     [g_navigation pushViewController:nearVC animated:YES];
     [nearVC doSearch:p];
 }
+//创建钻石群组
+-(void)onNewdiamoundRoom{
+    if ([g_config.isCommonCreateGroup intValue] == 1) {
+        [g_App showAlert:Localized(@"JX_NotCreateNewRoom")];
+        return;
+    }
+    
+    
+    WH_JXSelectFriends_WHVC* vc = [WH_JXSelectFriends_WHVC alloc];
+    vc.room = [self receiveRoomData];
+    vc.isNewRoom = YES;
+    vc.forRoomUser = [self receiveUserData];
+    vc.isDiamound = YES;
+    vc = [vc init];
+    [g_navigation pushViewController:vc animated:YES];
+}
+-(WH_JXUserObject *)receiveUserData{
+    WH_JXUserObject *user = [[WH_JXUserObject alloc] init];
+    user.userId = g_myself.userId;
+    user.userNickname = g_myself.userNickname;
+    return user;
+}
+-(WH_RoomData *)receiveRoomData{
+    WH_RoomData *createRoom = [[WH_RoomData alloc] init];
+    
+    memberData *member = [[memberData alloc] init];
+    member.userId = (long)[g_myself.userId longLongValue];
+    member.userNickName = MY_USER_NAME;
+    member.role = @1;
+    [createRoom.members addObject:member];
+    
+    return createRoom;
+}
 // 创建群组
 -(void)onNewRoom{
 //    WH_JXNewRoom_WHVC* vc = [[WH_JXNewRoom_WHVC alloc]init];
@@ -238,24 +277,10 @@
         return;
     }
     
-    
-    WH_RoomData *createRoom = [[WH_RoomData alloc] init];
-    
-    memberData *member = [[memberData alloc] init];
-    member.userId = (long)[g_myself.userId longLongValue];
-    member.userNickName = MY_USER_NAME;
-    member.role = @1;
-    [createRoom.members addObject:member];
-    
-    WH_JXUserObject *user = [[WH_JXUserObject alloc] init];
-    user.userId = g_myself.userId;
-     user.userNickname = g_myself.userNickname;
-    
     WH_JXSelectFriends_WHVC* vc = [WH_JXSelectFriends_WHVC alloc];
-    vc.room = createRoom;
+    vc.room = [self receiveRoomData];
     vc.isNewRoom = YES;
-//    vc.isForRoom = YES;
-    vc.forRoomUser = user;
+    vc.forRoomUser = [self receiveUserData];
     vc = [vc init];
     [g_navigation pushViewController:vc animated:YES];
 }

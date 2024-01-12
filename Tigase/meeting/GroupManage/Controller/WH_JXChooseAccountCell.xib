@@ -38,7 +38,7 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WH_addressbook_unselected" translatesAutoresizingMaskIntoConstraints="NO" id="J9z-NR-l9a">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WH_addressbook_unselected" translatesAutoresizingMaskIntoConstraints="NO" id="J9z-NR-l9a">
                                 <rect key="frame" x="46" y="39.666666666666664" width="20" height="20"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z6Z-9u-u8l">
@@ -86,6 +86,7 @@
                 <outlet property="accountLab" destination="RDF-w2-eOL" id="Bs3-e4-3SS"/>
                 <outlet property="bgView" destination="a4h-rS-zik" id="ceh-ga-M8B"/>
                 <outlet property="chooseImage" destination="J9z-NR-l9a" id="P2j-eF-X6c"/>
+                <outlet property="lineLab" destination="z6Z-9u-u8l" id="bSY-mr-xdF"/>
                 <outlet property="payTypeLab" destination="Eg1-VV-KM1" id="n3k-IA-hfO"/>
                 <outlet property="tipTitle" destination="8Jx-wk-LiL" id="niV-y5-wVY"/>
             </connections>

@@ -128,6 +128,7 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="deleteBtn" destination="hEf-cJ-Da2" id="lL0-ZX-0js"/>
+                <outlet property="lineLab" destination="OH1-vh-Jdo" id="1hm-WE-Yj1"/>
                 <outlet property="nameLab" destination="o8n-G4-XcZ" id="KO9-55-j85"/>
                 <outlet property="paytypeLab" destination="CvM-9m-ctn" id="Mwf-YQ-jQh"/>
                 <outlet property="rightPayLab" destination="ojn-un-FVT" id="8gS-46-b5S"/>

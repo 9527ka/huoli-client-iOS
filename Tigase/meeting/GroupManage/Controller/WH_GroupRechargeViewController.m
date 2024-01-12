@@ -12,6 +12,7 @@
 #import "WH_JXOrderDetaileVC.h"
 #import "WH_JXNoticeView.h"
 #import "WH_JXOrderCertainVC.h"
+#import "WH_JXBuyAndPayListModel.h"
 
 @interface WH_GroupRechargeViewController ()<UITableViewDataSource, UITableViewDelegate>{
     ATMHud* _wait;
@@ -29,6 +30,8 @@
 @property (strong, nonatomic)WH_JXNoticeView *noticeView;
 @property (nonatomic,strong)WH_JXOrderCertainVC *vc;
 
+@property (nonatomic,strong)WH_FinancialInfosModel *payModel;
+
 @end
 
 @implementation WH_GroupRechargeViewController
@@ -41,10 +44,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.tableView.estimatedRowHeight = 784;
-//    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    
-    
+
     //跑马灯的view
     _noticeView = [[WH_JXNoticeView alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP + 12, JX_SCREEN_WIDTH, 40)];
     [self.view addSubview:self.noticeView];
@@ -64,7 +64,6 @@
             self.vcTitle.text = @"出售HOTC";
         }
     }
-    
 }
 
 - (IBAction)didTapBack {
@@ -82,62 +81,59 @@
     cell.certainBlock = ^(NSString * _Nonnull count, NSInteger type) {
         weakSelf.count = count;
         weakSelf.type = type;
-        [weakSelf certainAction];
+        [weakSelf showCertainView];
     };
     if(self.room){
         cell.groupNameLab.text = self.room.userNickName.length > 0?self.room.userNickName:@"";
         if(self.balance.length > 0){
             cell.balance = self.balance;
         }
-        if(self.dataArray.count > 0){
-            cell.payArray = self.dataArray;
-        }
     }else{//代理商购买或者出售
         cell.model = self.model;
-        
     }
     
     return cell;
 }
--(void)certainAction{
-    
-    
-    self.vc.view.hidden = NO;
-    [UIView animateWithDuration:0.5 animations:^{
-        self.vc.view.frame = CGRectMake(0, 0, JX_SCREEN_WIDTH, JX_SCREEN_HEIGHT);
-    }];
-    return;
-    
+-(void)showCertainView{
     if(self.room){//群内购买
         self.room.type = self.type;
         self.room.count = self.count;
-        NSDictionary *dic;
-        //获取支付方式数据
-        if(self.dataArray.count == 1){
-            dic = self.dataArray.firstObject;
-            NSString *type = [NSString stringWithFormat:@"%@",dic[@"type"]];
-            if(type.intValue == 1){//微信
-                self.type = 1;
-            }else{//支付宝
-                self.type = 0;
-            }
-        }else{
-            for (NSDictionary *dataDic in self.dataArray) {
-                NSString *type = [NSString stringWithFormat:@"%@",dataDic[@"type"]];
-                if(self.type == 1 && type.intValue == 1){//微信
-                    dic = dataDic;
-                }else if(self.type == 0 && type.intValue == 2){
-                    dic = dataDic;
-                }
-            }
-        }
-        self.payTypeDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+        self.vc.room = self.room;
+    }else{
+        self.model.count = self.count;
+        
+        float sellCharge = self.count.floatValue * self.model.sellCharge.floatValue;
+        //应得
+        float grossPay = self.model.isBuy?self.count.floatValue + sellCharge:self.count.floatValue - sellCharge;
+                
+        self.model.sellCount = [NSString stringWithFormat:@"%.2f",grossPay];
+        
+        self.vc.model = self.model;
+    }
+        
+    self.vc.view.hidden = NO;
+    self.vc.dataArray = self.room?self.dataArray:self.model.financialInfos;
+    
+//       [UIView animateWithDuration:0.5 animations:^{
+           self.vc.view.frame = CGRectMake(0, 0, JX_SCREEN_WIDTH, JX_SCREEN_HEIGHT);
+//       }];
+}
+-(void)certainAction{
+    
+    if(!self.payModel){//没选的话就是默认第一个
+        NSArray *dataArray = self.room?self.dataArray:self.model.financialInfos;
+        self.payModel = dataArray.firstObject;
+    }
+    
+    if(self.room){//群内购买
+        
+        self.payTypeDic = [self.payModel mj_keyValues];
         
         //调接口
-        [g_server WH_TradeApplyWithTargetAmount:self.count payType:self.type == 0?2:1 financialInfoId:[NSString stringWithFormat:@"%@",dic[@"id"]] payeeUID:[NSString stringWithFormat:@"%ld",self.room.userId] jid:self.room.roomJid payeeName:[NSString stringWithFormat:@"%@",dic[@"accountName"]] payeeAccount:[NSString stringWithFormat:@"%@",dic[@"accountNo"]] payeeAccountImg:[NSString stringWithFormat:@"%@",dic[@"qrCode"]] toView:self];
+        [g_server WH_TradeApplyWithTargetAmount:self.count payType:self.type == 0?2:1 financialInfoId:[NSString stringWithFormat:@"%@",self.payModel.payId] payeeUID:[NSString stringWithFormat:@"%ld",self.room.userId] jid:self.room.roomJid payeeName:[NSString stringWithFormat:@"%@",self.payModel.accountName] payeeAccount:[NSString stringWithFormat:@"%@",self.payModel.accountNo] payeeAccountImg:[NSString stringWithFormat:@"%@",self.payModel.qrCode] toView:self];
     }else{//代理商购买
     
-        NSString *paymentCode = self.type == 0?self.model.alipayCode:self.model.wechatCode;
+        NSString *paymentCode = self.payModel.qrCode;
         
         float sellCharge = self.count.floatValue * self.model.sellCharge.floatValue;
         //应得
@@ -160,8 +156,7 @@
     NSString *orderDetaileUrl = [NSString stringWithFormat:@"%@%@",wh_order_detaile,self.orderId];
     
     if ([aDownload.action isEqualToString:url]){
-        self.dataArray = [NSMutableArray arrayWithArray:array1];
-        [self.tableView reloadData];
+        self.dataArray = [WH_FinancialInfosModel mj_objectArrayWithKeyValuesArray:array1];
     }else if ([aDownload.action isEqualToString:balanceUrl]){
         self.balance = [NSString stringWithFormat:@"%@",dict[@"balance"]];
         [self.tableView reloadData];
@@ -170,7 +165,6 @@
         NSString *expiryTime = [NSString stringWithFormat:@"%@",dict[@"expiryTime"]];
         [self.payTypeDic setObject:[NSString stringWithFormat:@"%@",dict[@"id"]] forKey:@"id"];
         [self.payTypeDic setObject:@"0" forKey:@"status"];
-        
         
         WH_JXBuyPayViewController *vc = [[WH_JXBuyPayViewController alloc] init];
         vc.expiryTime = expiryTime;
@@ -185,7 +179,7 @@
         [self.payTypeDic setObject:[NSString stringWithFormat:@"%@",dict[@"id"]] forKey:@"id"];
         [self.payTypeDic setObject:@"0" forKey:@"status"];
         
-        NSString *paymentCode = self.type == 0?self.model.alipayCode:self.model.wechatCode;
+        NSString *paymentCode = self.payModel.qrCode;
         
         [self.payTypeDic setObject:paymentCode forKey:@"qrCode"];
         [self.payTypeDic setObject:@(self.type) forKey:@"type"];
@@ -241,6 +235,11 @@
         _vc.view.frame = CGRectMake(0, JX_SCREEN_HEIGHT, JX_SCREEN_WIDTH, JX_SCREEN_HEIGHT);
         _vc.view.hidden = YES;
         [self.view addSubview:self.vc.view];
+        __weak typeof (&*self)weakSelf = self;
+        _vc.certainBlock = ^(WH_FinancialInfosModel * _Nonnull payModel) {
+            weakSelf.payModel = payModel;
+            [weakSelf certainAction];
+        };
     }
     return _vc;
     

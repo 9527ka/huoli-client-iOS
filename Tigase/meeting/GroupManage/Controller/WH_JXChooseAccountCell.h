@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *accountLab;
 @property (weak, nonatomic) IBOutlet UIImageView *chooseImage;
 @property (weak, nonatomic) IBOutlet UILabel *payTypeLab;
+@property (weak, nonatomic) IBOutlet UILabel *lineLab;
 
 @end
 

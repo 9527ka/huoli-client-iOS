@@ -17,9 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *nameLab;
 @property (weak, nonatomic) IBOutlet UILabel *orderCountLab;
 @property (weak, nonatomic) IBOutlet UIView *zfbBgView;
-@property (weak, nonatomic) IBOutlet UIView *wxBgView;
 @property (weak, nonatomic) IBOutlet UIButton *buyBtn;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *wxLeftConstant;
 
 @property(nonatomic,copy)void(^buyBlock)(void);
 
