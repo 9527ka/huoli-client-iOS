@@ -117,14 +117,14 @@
 - (int) WH_didServerResult_WHFailed:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict{
     //    [_wait hide];
     
-    return WH_hide_error;
+    return WH_show_error;
 }
 
 #pragma mark - 请求出错回调
 -(int) WH_didServerConnect_WHError:(WH_JXConnection*)aDownload error:(NSError *)error{//error为空时，代表超时
     //    [_wait hide];
     
-    return WH_hide_error;
+    return WH_show_error;
 }
 
 @end

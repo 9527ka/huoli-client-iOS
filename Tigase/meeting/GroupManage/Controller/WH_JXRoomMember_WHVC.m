@@ -53,6 +53,7 @@
 #import "WH_JXGroupEnterAndOutVC.h"
 #import "WH_GroupRechargeViewController.h"
 #import "WH_JXBuyPayViewController.h"
+#import "WH_JXRoomDiamoundRechargeVC.h"
 
 #define HEIGHT 55
 #define IMGSIZE 170
@@ -873,14 +874,32 @@
 }
 #pragma mark -- 创建群组信息控件
 -(int)createRoomMember:(int)height {
-    [self.timeLabel removeFromSuperview];
-    self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, height - 5, JX_SCREEN_WIDTH, 20)];
-//    self.timeLabel.backgroundColor = RGB(222, 222, 222);
-    self.timeLabel.textColor = [UIColor redColor];
-    self.timeLabel.font = sysFontWithSize(13);
-    self.timeLabel.textAlignment = NSTextAlignmentCenter;
-//    self.timeLabel.text = @"剩余时间：12:00:00";
-//    [self.wh_tableBody addSubview:self.timeLabel];
+    if(self.wh_room.category == 1){
+        [self.timeLabel removeFromSuperview];
+        self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, height - 5, JX_SCREEN_WIDTH - 32, 20)];
+//        self.timeLabel.backgroundColor = RGB(222, 222, 222);
+        self.timeLabel.textColor = [UIColor redColor];
+        self.timeLabel.font = sysFontWithSize(13);
+        self.timeLabel.textAlignment = NSTextAlignmentLeft;
+        
+        NSTimeInterval getTime = self.wh_room.expiryTime.longLongValue;
+        NSDate * date = [NSDate dateWithTimeIntervalSince1970:getTime/1000];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        
+        self.timeLabel.text = [NSString stringWithFormat:@"过期时间：%@",[dateFormatter stringFromDate:date]];
+        [self.wh_tableBody addSubview:self.timeLabel];
+        
+        //续费按钮
+        UIButton *rechargeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [rechargeBtn setTitle:@"续费" forState:UIControlStateNormal];
+        [rechargeBtn setTitleColor:[UIColor tintColor] forState:UIControlStateNormal];
+        rechargeBtn.titleLabel.font = [UIFont boldSystemFontOfSize:12];
+        rechargeBtn.frame = CGRectMake(JX_SCREEN_WIDTH - 56, height - 5, 56, 20);
+        [rechargeBtn addTarget:self action:@selector(rechargeAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.wh_tableBody addSubview:rechargeBtn];
+        
+    }
     
     [self.topOneView removeFromSuperview];
     UIImageView *topOneView = [[UIImageView alloc] initWithFrame:CGRectMake(leftRightMargin, height + 20, JX_SCREEN_WIDTH-leftRightMargin*2, HEIGHT * 4)];
@@ -1026,22 +1045,22 @@
     
     
     //先去掉钻石相关的
-    
-    
-//    self.wh_iv = [self WH_createMiXinButton:@"我的钻石" drawTop:NO drawBottom:NO must:NO click:nil ParentView:self.topDiamondView];
-//    self.wh_iv.frame = CGRectMake(0, 0, self.topDiamondView.frame.size.width, HEIGHT);
-//    _diamondNum = [self WH_createLabel:self.wh_iv default:@"100" isClick:NO];
-//    membHeight+=self.wh_iv.frame.size.height;
-//    membHeight+=topBottomMargin;
+    if(self.wh_room.category == 1){//钻石
+        self.wh_iv = [self WH_createMiXinButton:@"我的钻石" drawTop:NO drawBottom:NO must:NO click:nil ParentView:self.topDiamondView];
+        self.wh_iv.frame = CGRectMake(0, 0, self.topDiamondView.frame.size.width, HEIGHT);
+        _diamondNum = [self WH_createLabel:self.wh_iv default:@"100" isClick:NO];
+        membHeight+=self.wh_iv.frame.size.height;
+        membHeight+=topBottomMargin;
+    }
     
     if ([data.role intValue] == 1 || [data.role intValue] == 2) {
-//        self.topDiamondView.height = HEIGHT * 2;
-        //暂时先去掉钻石相关的
         self.topDiamondView.height = HEIGHT * 0;
-        
-//        self.wh_iv = [self WH_createMiXinButton:@"成员钻石列表" drawTop:NO drawBottom:NO must:NO click:@selector(groupDiamoundListAction) ParentView:self.topDiamondView];
-//        self.wh_iv.frame = CGRectMake(0, HEIGHT, self.topDiamondView.frame.size.width, HEIGHT);
-//        membHeight+=self.wh_iv.frame.size.height;
+        if(self.wh_room.category == 1){//钻石
+            self.topDiamondView.height = HEIGHT * 2;
+            self.wh_iv = [self WH_createMiXinButton:@"成员钻石列表" drawTop:NO drawBottom:NO must:NO click:@selector(groupDiamoundListAction) ParentView:self.topDiamondView];
+            self.wh_iv.frame = CGRectMake(0, HEIGHT, self.topDiamondView.frame.size.width, HEIGHT);
+            membHeight+=self.wh_iv.frame.size.height;
+        }
         
         ///禁言
         [self.topFiveView removeFromSuperview];
@@ -1207,7 +1226,12 @@
     self.exitBtn = _btn;
     return membHeight;
 }
-
+//充值
+-(void)rechargeAction:(UIButton *)sender{
+    WH_JXRoomDiamoundRechargeVC *vc = [[WH_JXRoomDiamoundRechargeVC alloc] init];
+    vc.wh_room = self.wh_room;
+    [g_navigation pushViewController:vc animated:YES];
+}
 #pragma mark 群签到
 - (void)groupSignInMethod {
     WH_GroupSignIn_WHViewController *gsiVC = [[WH_GroupSignIn_WHViewController alloc] init];

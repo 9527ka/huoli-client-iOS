@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy) NSString *phone;
 @property(nonatomic,copy) NSString *qrCode;
 
-
+@property(nonatomic,copy) NSString *bankName;
 
 @end
 

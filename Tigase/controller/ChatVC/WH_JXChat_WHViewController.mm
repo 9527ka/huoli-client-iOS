@@ -689,6 +689,8 @@
         _moreView.wh_isGroupMessages = self.isGroupMessages;
         _moreView.wh_isGroup = _roomJid.length > 0;
         _moreView.wh_onImage  = @selector(pickPhoto);
+    //是否是钻石群
+        _moreView.wh_isGroupDiamound = self.room.category == 1?YES:NO;
         
         if (self.roomJid) {//如果是群聊
             _moreView.onDiamond = @selector(sendDiamond);

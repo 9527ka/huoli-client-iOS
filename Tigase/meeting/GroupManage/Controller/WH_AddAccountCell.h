@@ -27,11 +27,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *codeBgViewHeight;//175
 @property (weak, nonatomic) IBOutlet UILabel *rightNowTitle;
 
+@property (weak, nonatomic) IBOutlet UIView *bankBgView;
+@property (weak, nonatomic) IBOutlet UITextField *bankField;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bankBgViewHeight;
+
+
+
 
 
 @property(nonatomic,copy)void(^chooseTypeBlock)(void);
 @property(nonatomic,copy)void(^chooseImageBlock)(void);
-@property(nonatomic,copy)void(^certainBlock)(NSString *name,NSString *account,NSString *password,NSString *phone);
+@property(nonatomic,copy)void(^certainBlock)(NSString *name,NSString *account,NSString *password,NSString *phone,NSString *bankName);
 
 @end
 

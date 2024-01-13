@@ -964,7 +964,7 @@
 }
 
 -(void)xmppRoomDidCreate:(XMPPRoom *)sender{
-    [g_server addRoom:room userArray:_userIdsArray isPublic:YES isNeedVerify:NO category:0 toView:self];
+    [g_server addRoom:room userArray:_userIdsArray isPublic:YES isNeedVerify:NO category:self.isDiamound?1:0 toView:self];
     chatRoom.delegate = nil;
 }
 

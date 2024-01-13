@@ -779,6 +779,8 @@
 		33BEF31A2B4E94270078B540 /* WH_JXChooseAccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BEF3182B4E94270078B540 /* WH_JXChooseAccountCell.xib */; };
 		33BEF31E2B4FEBD20078B540 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 33BEF31C2B4FEBD20078B540 /* AlipaySDK.bundle */; };
 		33BEF31F2B4FEBD20078B540 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BEF31D2B4FEBD20078B540 /* AlipaySDK.framework */; };
+		33BEF3232B5121CB0078B540 /* WH_JXRoomDiamoundRechargeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BEF3212B5121CB0078B540 /* WH_JXRoomDiamoundRechargeVC.m */; };
+		33BEF3242B5121CB0078B540 /* WH_JXRoomDiamoundRechargeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BEF3222B5121CB0078B540 /* WH_JXRoomDiamoundRechargeVC.xib */; };
 		33E591672B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E5914E2B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		33E591682B16E6B900E578A3 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E591572B16E6B900E578A3 /* ViewController+MASAdditions.m */; };
 		33E591692B16E6B900E578A3 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E5915B2B16E6B900E578A3 /* MASCompositeConstraint.m */; };
@@ -3216,6 +3218,9 @@
 		33BEF3182B4E94270078B540 /* WH_JXChooseAccountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXChooseAccountCell.xib; sourceTree = "<group>"; };
 		33BEF31C2B4FEBD20078B540 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		33BEF31D2B4FEBD20078B540 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		33BEF3202B5121CB0078B540 /* WH_JXRoomDiamoundRechargeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXRoomDiamoundRechargeVC.h; sourceTree = "<group>"; };
+		33BEF3212B5121CB0078B540 /* WH_JXRoomDiamoundRechargeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXRoomDiamoundRechargeVC.m; sourceTree = "<group>"; };
+		33BEF3222B5121CB0078B540 /* WH_JXRoomDiamoundRechargeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXRoomDiamoundRechargeVC.xib; sourceTree = "<group>"; };
 		33E5914D2B16E6B900E578A3 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		33E5914E2B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
 		33E5914F2B16E6B900E578A3 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -9036,6 +9041,9 @@
 				33BEF3162B4E94270078B540 /* WH_JXChooseAccountCell.h */,
 				33BEF3172B4E94270078B540 /* WH_JXChooseAccountCell.m */,
 				33BEF3182B4E94270078B540 /* WH_JXChooseAccountCell.xib */,
+				33BEF3202B5121CB0078B540 /* WH_JXRoomDiamoundRechargeVC.h */,
+				33BEF3212B5121CB0078B540 /* WH_JXRoomDiamoundRechargeVC.m */,
+				33BEF3222B5121CB0078B540 /* WH_JXRoomDiamoundRechargeVC.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -10016,10 +10024,10 @@
 				633871131EBC0ED300D2D6C9 /* WH_JXLocPerImage_WHVC.m */,
 				CC7B36A91942F9060012DDE4 /* WH_JXSelectImageView.h */,
 				CC7B36AA1942F9060012DDE4 /* WH_JXSelectImageView.m */,
-				CC8758B019361891007D2DA1 /* JXTabButton.h */,
 				CC8758B119361891007D2DA1 /* JXTabButton.m */,
 				CC7B36AB1942F9060012DDE4 /* JXTableView.h */,
 				CC7B36AC1942F9060012DDE4 /* JXTableView.m */,
+				CC8758B019361891007D2DA1 /* JXTabButton.h */,
 				CC5AD3981942B5F20083B236 /* WH_JXTableViewController.h */,
 				CC5AD3991942B5F20083B236 /* WH_JXTableViewController.m */,
 				CC8758B219361891007D2DA1 /* WH_JXTabMenuView.h */,
@@ -11176,6 +11184,7 @@
 				63E1E9911F44291B004548C5 /* closeCamera@3x.png in Resources */,
 				CC3016F01951BABF0059BADA /* f041.png in Resources */,
 				CC30175D1951BABF0059BADA /* f095@2x.png in Resources */,
+				33BEF3242B5121CB0078B540 /* WH_JXRoomDiamoundRechargeVC.xib in Resources */,
 				33946AA62B26E2FC0002A8D6 /* WH_AddAccountViewController.xib in Resources */,
 				1851A3682307B09400BA24A1 /* biaoqing_btnbg2@3x.png in Resources */,
 				CCC7B03B197FA18900A828A8 /* new_tips.png in Resources */,
@@ -12564,6 +12573,7 @@
 				6353D3DE2182B51200CFBEA7 /* WH_JXRoomMemberList_WHCell.m in Sources */,
 				0FA2D5A51FB05CCC00D51BB9 /* GPUImageColorInvertFilter.m in Sources */,
 				DEF4CC272323D44200023057 /* MJPropertyKey.m in Sources */,
+				33BEF3232B5121CB0078B540 /* WH_JXRoomDiamoundRechargeVC.m in Sources */,
 				12A955DA28A136E6008D7F12 /* TFJunYou_desiPageVc.m in Sources */,
 				0F8921EE20E1CCCF0030E744 /* WH_JXSetLabel_WHVC.m in Sources */,
 				58CD794A22DDA69D00D09E10 /* OBSHanderTool.m in Sources */,

@@ -21,7 +21,7 @@
 @property(nonatomic,assign) int cityId;//城市
 @property(nonatomic,assign) int areaId;//区域
 
-@property(nonatomic,assign) int category;//类别
+@property(nonatomic,assign) int category;//类别 0普通 1钻石
 @property(nonatomic,assign) int maxCount;//最大成员数
 @property(nonatomic,assign,getter = getCurCount) NSInteger curCount;//当前成员数
 
@@ -69,6 +69,14 @@
 @property(nonatomic,assign) double longitude;
 @property(nonatomic,assign) double latitude;
 @property(nonatomic,strong) NSMutableArray* members;    //房间成员列表
+
+@property (nonatomic,strong) NSString *expiryTime; //过期时间,单位毫秒
+@property (nonatomic,strong) NSString *quotaUnit; //钻石群单位
+@property (nonatomic,strong) NSString *quota; //群钻石额度
+
+
+
+
 
 -(void)WH_getDataFromDict:(NSDictionary*)dict;
 -(BOOL)isMember:(NSString*)theUserId;

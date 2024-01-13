@@ -12,14 +12,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="WH_AddAccountCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="744"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="844"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="744"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="844"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Q2-F3-Dva">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="744"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="844"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lk5-eY-yT4">
                                 <rect key="frame" x="24" y="37" width="272" height="46"/>
@@ -123,7 +123,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                             </textField>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aij-0Z-EOD">
-                                <rect key="frame" x="24" y="635.33333333333337" width="272" height="44"/>
+                                <rect key="frame" x="24" y="735.33333333333337" width="272" height="44"/>
                                 <color key="backgroundColor" systemColor="linkColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="yn1-Gy-xa5"/>
@@ -185,6 +185,35 @@
                                     <constraint firstItem="Hbi-cD-2W0" firstAttribute="top" secondItem="rlh-p2-dnf" secondAttribute="bottom" constant="12" id="m5m-Xp-ZbR"/>
                                 </constraints>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jrF-TA-xRF">
+                                <rect key="frame" x="0.0" y="611.33333333333337" width="320" height="100"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开户银行（必填）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yoh-UR-ngq">
+                                        <rect key="frame" x="23.999999999999993" y="24" width="114.33333333333331" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入开户银行" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5an-6w-L88">
+                                        <rect key="frame" x="24" y="53" width="272" height="46"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="46" id="JHT-6j-Xi6"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="5an-6w-L88" firstAttribute="top" secondItem="yoh-UR-ngq" secondAttribute="bottom" constant="12" id="1L0-fD-1ho"/>
+                                    <constraint firstAttribute="trailing" secondItem="5an-6w-L88" secondAttribute="trailing" constant="24" id="C2q-oI-YGR"/>
+                                    <constraint firstItem="5an-6w-L88" firstAttribute="leading" secondItem="jrF-TA-xRF" secondAttribute="leading" constant="24" id="Epw-ek-au4"/>
+                                    <constraint firstAttribute="height" constant="100" id="p9B-GO-jAZ"/>
+                                    <constraint firstItem="yoh-UR-ngq" firstAttribute="leading" secondItem="jrF-TA-xRF" secondAttribute="leading" constant="24" id="qbN-vK-3og"/>
+                                    <constraint firstItem="yoh-UR-ngq" firstAttribute="top" secondItem="jrF-TA-xRF" secondAttribute="top" constant="24" id="qyB-9W-jc4"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -198,16 +227,19 @@
                             <constraint firstItem="deW-VO-Mho" firstAttribute="leading" secondItem="Yqu-7a-tqq" secondAttribute="leading" id="L2Y-an-u1l"/>
                             <constraint firstItem="VmZ-M1-nDK" firstAttribute="top" secondItem="arY-Da-dwb" secondAttribute="bottom" constant="24" id="N4x-Ch-zuZ"/>
                             <constraint firstItem="arY-Da-dwb" firstAttribute="top" secondItem="den-9l-FSb" secondAttribute="bottom" constant="12" id="PSA-B1-ZQh"/>
-                            <constraint firstItem="Aij-0Z-EOD" firstAttribute="top" secondItem="eQU-HG-ihv" secondAttribute="bottom" constant="24" id="UuY-sU-w4B"/>
                             <constraint firstItem="Lk5-eY-yT4" firstAttribute="leading" secondItem="9Q2-F3-Dva" secondAttribute="leading" constant="24" id="WMU-fQ-3hU"/>
                             <constraint firstItem="den-9l-FSb" firstAttribute="leading" secondItem="deW-VO-Mho" secondAttribute="leading" id="bu4-NN-xHD"/>
                             <constraint firstItem="eQU-HG-ihv" firstAttribute="trailing" secondItem="arY-Da-dwb" secondAttribute="trailing" id="bxy-4H-pek"/>
+                            <constraint firstItem="jrF-TA-xRF" firstAttribute="leading" secondItem="9Q2-F3-Dva" secondAttribute="leading" id="c9T-JB-xdX"/>
                             <constraint firstItem="eQU-HG-ihv" firstAttribute="top" secondItem="VmZ-M1-nDK" secondAttribute="bottom" constant="12" id="deu-KT-XNL"/>
+                            <constraint firstItem="jrF-TA-xRF" firstAttribute="top" secondItem="eQU-HG-ihv" secondAttribute="bottom" id="fg1-gR-0hd"/>
                             <constraint firstItem="JTL-Pa-cDz" firstAttribute="leading" secondItem="Lk5-eY-yT4" secondAttribute="leading" id="hkO-my-vDQ"/>
+                            <constraint firstAttribute="trailing" secondItem="jrF-TA-xRF" secondAttribute="trailing" id="k5z-Wg-pyi"/>
                             <constraint firstItem="JTL-Pa-cDz" firstAttribute="trailing" secondItem="Lk5-eY-yT4" secondAttribute="trailing" id="l6n-rr-kre"/>
                             <constraint firstItem="Lk5-eY-yT4" firstAttribute="top" secondItem="Yqu-7a-tqq" secondAttribute="bottom" constant="8" id="lRd-GS-2nI"/>
                             <constraint firstItem="JTL-Pa-cDz" firstAttribute="top" secondItem="deW-VO-Mho" secondAttribute="bottom" constant="12" id="lec-u3-3g0"/>
                             <constraint firstItem="Yqu-7a-tqq" firstAttribute="top" secondItem="9Q2-F3-Dva" secondAttribute="top" constant="12" id="lw2-Fs-8I0"/>
+                            <constraint firstItem="Aij-0Z-EOD" firstAttribute="top" secondItem="jrF-TA-xRF" secondAttribute="bottom" constant="24" id="oBm-A8-BoA"/>
                             <constraint firstItem="arY-Da-dwb" firstAttribute="trailing" secondItem="JTL-Pa-cDz" secondAttribute="trailing" id="otm-UL-wMG"/>
                             <constraint firstItem="Aij-0Z-EOD" firstAttribute="leading" secondItem="9Q2-F3-Dva" secondAttribute="leading" constant="24" id="rkx-IS-iPF"/>
                             <constraint firstItem="deW-VO-Mho" firstAttribute="top" secondItem="YGr-W3-euC" secondAttribute="bottom" constant="22" id="sw2-Ku-rH4"/>
@@ -230,6 +262,9 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="accountField" destination="arY-Da-dwb" id="La1-Lr-vSK"/>
+                <outlet property="bankBgView" destination="jrF-TA-xRF" id="EWP-sW-vbc"/>
+                <outlet property="bankBgViewHeight" destination="p9B-GO-jAZ" id="K1O-Hf-WKS"/>
+                <outlet property="bankField" destination="5an-6w-L88" id="UAI-xb-5IG"/>
                 <outlet property="codeBgView" destination="YGr-W3-euC" id="weh-l7-aV7"/>
                 <outlet property="codeBgViewHeight" destination="7ZI-ov-aFD" id="9RU-kM-lVj"/>
                 <outlet property="line" destination="aXl-X5-dbQ" id="gLh-dQ-2Xg"/>

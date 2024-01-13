@@ -258,6 +258,10 @@
     self.exclusiveRedPacketMax = [[dict objectForKey:@"exclusiveRedPacketMax"] intValue];
     self.redPackageBanList = [NSString stringWithFormat:@"%@",[dict objectForKey:@"redPackageBanList"]];
     
+    self.expiryTime = [dict objectForKey:@"expiryTime"];
+    self.quotaUnit = [dict objectForKey:@"quotaUnit"];
+    self.quota = [dict objectForKey:@"quota"];
+    
     self.countryId = [[dict objectForKey:@"countryId"] intValue];
     self.provinceId = [[dict objectForKey:@"provinceId"] intValue];
     self.cityId = [[dict objectForKey:@"cityId"] intValue];

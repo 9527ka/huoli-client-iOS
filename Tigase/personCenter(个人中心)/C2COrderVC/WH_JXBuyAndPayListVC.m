@@ -51,7 +51,7 @@
     _wait = [ATMHud sharedInstance];
     self.dataSource = [NSMutableArray array];
     self.page = 0;
-    self.tableView.rowHeight = 110.0f;
+    self.tableView.rowHeight = 100.0f;
     self.tag = 0;
     [self.tableView registerNib:[UINib nibWithNibName:@"WH_JXBuyAndPayListCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WH_JXBuyAndPayListCell"];
     //设置刷新的头部以及加载

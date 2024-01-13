@@ -342,7 +342,7 @@
         return;
     }
     
-    NSString *minMoney = g_config.minWithdrawToAdmin?:@"0"; //最低提现额度
+    NSString *minMoney = g_config.minWithdrawToAdmin?:@"100"; //最低提现额度
     if ([countStr floatValue] < [minMoney floatValue]) {
         [GKMessageTool showText:[NSString stringWithFormat:@"请输入至少%.2f以上金额" ,[minMoney floatValue]]];
         return;

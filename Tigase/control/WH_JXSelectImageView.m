@@ -88,14 +88,25 @@
             button = [self WH_create_WHButtonWithImage:@"WH_map_button_normal" highlight:@"WH_map_button_normal" target:delegate selector:self.onLocation title:Localized(@"JX_Location")];
             button.frame = CGRectMake(X, Y, SELECTIMAGE_WIDTH, h);
         }
-            
-        if ([g_App.isShowRedPacket intValue] == 1 && !self.wh_isGroupMessages && !self.wh_isDevice) {
+        
+        if(self.wh_isGroup && self.wh_isGroupDiamound){
+            // 钻石
+            n = (n + 1) >= 4 ? 0 : n + 1;
+            m += 1;
+            X = m > 8 ? SELECTIMAGE_WIDTH *n + (n+1)*inset+JX_SCREEN_WIDTH : SELECTIMAGE_WIDTH *n + (n+1)*inset;
+            Y = m > 4 && m <=8 ? h+margeY*2 : margeY;
+            button = [self WH_create_WHButtonWithImage:@"diamond_btn" highlight:@"diamond_btn" target:delegate selector:self.onDiamond title:@"发钻石"];
+            button.frame = CGRectMake(X, Y, SELECTIMAGE_WIDTH, h);
+        }else if ([g_App.isShowRedPacket intValue] == 1 && !self.wh_isGroupMessages && !self.wh_isDevice) {
             // 发红包
             n = (n + 1) >= 4 ? 0 : n + 1;
             m += 1;
             X = m >8 ? SELECTIMAGE_WIDTH *n + (n+1)*inset+JX_SCREEN_WIDTH : SELECTIMAGE_WIDTH *n + (n+1)*inset;
             Y = m > 4 && m <=8 ? h+margeY*2 : margeY;
+            
             button = [self WH_create_WHButtonWithImage:@"WH_awarda_a_bonus_normal" highlight:@"WH_awarda_a_bonus_normal" target:delegate selector:self.wh_onGift title:Localized(@"JX_SendGift")];
+//            self.wh_isGroupDiamound?[self WH_create_WHButtonWithImage:@"WH_awarda_a_diamound_normal" highlight:@"WH_awarda_a_diamound_normal" target:delegate selector:self.wh_onGift title:@"发钻石"]:
+            
             button.frame = CGRectMake(X, Y, SELECTIMAGE_WIDTH, h);
             
             if (!self.wh_isGroup) {
@@ -108,17 +119,7 @@
                 button.frame = CGRectMake(X, Y, SELECTIMAGE_WIDTH, h);
             }
         }
-        //暂时去掉钻石相关
-        
-//        if (self.wh_isGroup) {
-//            // 钻石
-//            n = (n + 1) >= 4 ? 0 : n + 1;
-//            m += 1;
-//            X = m > 8 ? SELECTIMAGE_WIDTH *n + (n+1)*inset+JX_SCREEN_WIDTH : SELECTIMAGE_WIDTH *n + (n+1)*inset;
-//            Y = m > 4 && m <=8 ? h+margeY*2 : margeY;
-//            button = [self WH_create_WHButtonWithImage:@"diamond_btn" highlight:@"diamond_btn" target:delegate selector:self.onDiamond title:@"发钻石"];
-//            button.frame = CGRectMake(X, Y, SELECTIMAGE_WIDTH, h);
-//        }
+       
             
         if (!self.wh_isGroup) {
             // 戳一戳

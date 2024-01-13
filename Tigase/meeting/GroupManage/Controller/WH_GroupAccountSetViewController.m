@@ -166,7 +166,8 @@
         vc.type = [NSString stringWithFormat:@"%@",dic[@"type"]].intValue - 1;
         vc.accountId = [NSString stringWithFormat:@"%@",dic[@"id"]];
         vc.qrCode = [NSString stringWithFormat:@"%@",dic[@"qrCode"]];
-        vc.phone = [NSString stringWithFormat:@"%@",vc.type == 2?dic[@"qrCode"]:dic[@"telNumber"]];
+        vc.phone = [NSString stringWithFormat:@"%@",dic[@"telNumber"]];
+        vc.bankName = [NSString stringWithFormat:@"%@",vc.type == 2?dic[@"qrCode"]:@""];
         
         [g_navigation pushViewController:vc animated:YES];
     }

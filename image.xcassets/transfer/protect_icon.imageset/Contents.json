@@ -5,12 +5,11 @@
       "scale" : "1x"
     },
     {
-      "filename" : "编组@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "编组@3x.png",
+      "filename" : "protect_icon.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

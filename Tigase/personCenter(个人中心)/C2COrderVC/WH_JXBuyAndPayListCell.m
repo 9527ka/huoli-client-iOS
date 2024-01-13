@@ -16,6 +16,9 @@
     self.headImage.layer.cornerRadius = 4.0f;
     self.onlineLab.layer.cornerRadius = 6.0f;
     self.buyBtn.layer.cornerRadius = 14.0f;
+    self.headTitleLab.layer.cornerRadius = 14.0f;
+    self.protectLab.layer.cornerRadius = 9.0f;
+    
     
 }
 - (IBAction)buyAction:(id)sender {
@@ -31,6 +34,7 @@
 -(void)setModel:(WH_JXBuyAndPayListModel *)model{
     _model = model;
     self.nameLab.text = model.name;
+    self.headTitleLab.text = [self.nameLab.text substringToIndex:1];
 
     [self.headImage sd_setImageWithURL:[NSURL URLWithString:model.avatar] placeholderImage:[UIImage imageNamed:@"avatar_normal"]];
     self.onlineLab.hidden = !model.online;
@@ -41,7 +45,7 @@
         
         WH_FinancialInfosModel *payModel = model.financialInfos[i];
         
-        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(92*i, 0, 80, 28)];
+        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(90*i, 0, 78, 28)];
         bgView.backgroundColor = [UIColor systemGray6Color];
         bgView.layer.masksToBounds = YES;
         bgView.layer.cornerRadius = 4.0f;
@@ -61,11 +65,11 @@
             typeStr = @"银行卡";
         }
         
-        UILabel *lineLab = [[UILabel alloc] initWithFrame:CGRectMake(4, 6, 3, 16)];
+        UILabel *lineLab = [[UILabel alloc] initWithFrame:CGRectMake(typeStr.length > 3?6:12, 6, 3, 16)];
         lineLab.backgroundColor = lineColor;
         [bgView addSubview:lineLab];
         
-        UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(12, 0, 74, 28)];
+        UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(typeStr.length > 3?14:20, 0, 74, 28)];
         titleLab.text = typeStr;
         titleLab.font = [UIFont systemFontOfSize:14];
         [bgView addSubview:titleLab];

@@ -59,11 +59,12 @@
     cell.chooseImageBlock = ^{
         [weakSelf chooseImageAction];
     };
-    cell.certainBlock = ^(NSString * _Nonnull name, NSString * _Nonnull account, NSString * _Nonnull password,NSString * _Nonnull phone) {
+    cell.certainBlock = ^(NSString * _Nonnull name, NSString * _Nonnull account, NSString * _Nonnull password,NSString * _Nonnull phone,NSString * _Nonnull bankName) {
         
         weakSelf.name = name;
         weakSelf.account = account;
         weakSelf.phone = phone;
+        weakSelf.bankName = bankName;
         
         if(!weakSelf.image && weakSelf.qrCode.length == 0 && self.type != 2){
             [g_server showMsg:@"请上传您的支付图片"];
@@ -80,12 +81,14 @@
             [g_server showMsg:@"请输入账号！"];
             return;
         }
-        if(!weakSelf.room && weakSelf.phone.length == 0){
-            [g_server showMsg:self.type == 2?@"请输入开户银行":@"请输入手机号码！"];
+        if(!weakSelf.room && weakSelf.phone.length != 11){
+            [g_server showMsg:@"请输入正确的手机号码！"];
             return;
         }
-        
-        
+        if(!weakSelf.room && weakSelf.bankName.length == 0 && self.type == 2){
+            [g_server showMsg:@"请输入开户银行"];
+            return;
+        }
         [weakSelf passWordAction];
     };
     if(self.image){
@@ -98,8 +101,8 @@
     }
     cell.payTitleLab.text = [self payTitleLabStr];
     cell.line.backgroundColor = [self lineColorStr];
-    cell.nameTitle.text = self.type == 2?@"银行卡帐号名（必填）":@"姓名（选填）";
-    cell.nameField.placeholder = self.type == 2?@"请输入银行卡帐号名":@"请输入真实姓名";
+    cell.nameTitle.text = self.type == 2?@"银行卡姓名（必填）":@"姓名（选填）";
+    cell.nameField.placeholder = self.type == 2?@"请输入银行卡姓名":@"请输入真实姓名";
     cell.payAccountLab.text = [self accountStr];
     cell.phoneTitle.text = [self phoneStr];
     cell.rightNowTitle.hidden = self.type == 2?YES:NO;
@@ -113,22 +116,25 @@
     if(cell.phoneField.text.length == 0&&self.phone.length > 0 &&!IsStringNull(self.phone)){
         cell.phoneField.text = self.phone;
     }
+    if(cell.bankField.text.length == 0&&self.bankName.length > 0 &&!IsStringNull(self.bankName)){
+        cell.bankField.text = self.bankName;
+    }
     
     cell.codeBgView.hidden = self.type == 2?YES:NO;
     cell.codeBgViewHeight.constant = self.type == 2?0:175;
     
-    cell.phoneField.placeholder = (self.type == 2 && !self.room)?@"请输入开户银行":@"请输入手机号码";
-    cell.phoneField.keyboardType = (self.type == 2 && !self.room)?UIKeyboardTypeDefault:UIKeyboardTypeNumberPad;
+    cell.bankBgView.hidden = self.type == 2?NO:YES;
+    cell.bankBgViewHeight.constant = self.type == 2?100:0;
     
     return cell;
 }
 -(NSString *)phoneStr{
-    NSString *phoneStr = @"手机号码（选填：订单有问题时联系用）";
+    NSString *phoneStr = @"手机号码（选填）";
     if(!self.room){
-        phoneStr = @"手机号码（必填：订单有问题时联系用）";
-        if (self.type == 2){
-            phoneStr = @"开户银行（必填）";
-        }
+        phoneStr = @"手机号码（必填）";
+//        if (self.type == 2){
+//            phoneStr = @"开户银行（必填）";
+//        }
     }
     return phoneStr;
 }
@@ -161,7 +167,7 @@
     }else if (self.type == 1){
         accountStr = @"支付宝账号（必填）";
     }else if (self.type == 2){
-        accountStr = @"银行账号（必填）";
+        accountStr = @"银行卡号（必填）";
     }
     return accountStr;
 }
@@ -205,7 +211,7 @@
         //修改账号
         [g_server WH_AddUserAccountWithName:self.name accountNo:self.account payPassword:self.password type:self.type + 1 roomJid:self.room.roomJid qrCode:self.type == 2?self.phone:self.qrCode addId:self.accountId telNumber:self.phone toView:self];
     }else if(self.type == 2){//银行卡
-        [g_server WH_AddUserAccountWithName:self.name accountNo:self.account payPassword:self.password type:self.type + 1 roomJid:self.room.roomJid qrCode:self.phone addId:self.accountId telNumber:@"" toView:self];
+        [g_server WH_AddUserAccountWithName:self.name accountNo:self.account payPassword:self.password type:self.type + 1 roomJid:self.room.roomJid qrCode:self.bankName addId:self.accountId telNumber:self.phone toView:self];
     }
 }
 //选择支付方式

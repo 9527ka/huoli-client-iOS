@@ -37,6 +37,7 @@
 @property (nonatomic, assign) BOOL wh_isGroup;
 @property (nonatomic, assign) BOOL wh_isGroupMessages;
 @property (nonatomic, assign) BOOL wh_isDevice;
+@property (nonatomic, assign) BOOL wh_isGroupDiamound;//是否是钻石群
 @property (nonatomic, strong) UIPageControl *wh_pageControl;
 
 @end
