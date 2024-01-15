@@ -9,7 +9,6 @@
 #import "WH_JXRecharge_WHViewController.h"
 #import "WH_JXRecharge_WHCell.h"
 #import "UIImage+WH_Color.h"
-#import <AlipaySDK/AlipaySDK.h>
 
 @interface WH_JXRecharge_WHViewController ()<UIAlertViewDelegate>
 @property (nonatomic, assign) NSInteger checkIndex;
@@ -210,19 +209,10 @@ static NSString * WH_JXRecharge_WHCellID = @"WH_JXRecharge_WHCellID";
 
 - (void)tuningAlipayWithOrder:(NSString *)signedString {
     // NOTE: 如果加签成功，则继续执行支付
-    if (signedString != nil) {
-        //应用注册scheme,在AliSDKDemo-Info.plist定义URL types
-        NSString *appScheme = @"wahu";
-        // NOTE: 调用支付结果开始支付
-        [[AlipaySDK defaultService] payOrder:signedString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
-            NSLog(@"reslut = %@",resultDic);
-            //未安装支付宝客户端回调
-            [g_notify postNotificationName:@"kAlipayPaymentCallbackNotification" object:resultDic];
-        }];
-    }
+ 
 }
 
-//微信支付回调处理
+//微信回调处理
 -(void)WH_receiveWXPayFinishNotification:(NSNotification *)notifi{
     PayResp *resp = notifi.object;
     switch (resp.errCode) {

@@ -10,9 +10,6 @@
 
 #import "WH_Recharge_TableViewCell.h"
 
-#import <AlipaySDK/AlipaySDK.h>
-
-
 #import "WH_BankRecharge_WHVC.h"
 
 #import "WH_webpage_WHVC.h"
@@ -199,19 +196,9 @@
     [WXApi sendReq:req completion:nil];
 }
 
-#pragma mark 支付宝
+#pragma mark
 - (void)tuningAlipayWithOrder:(NSString *)signedString {
-    // NOTE: 如果加签成功，则继续执行支付
-    if (signedString != nil) {
-        //应用注册scheme,在AliSDKDemo-Info.plist定义URL types
-        NSString *appScheme = @"wahu";
-        // NOTE: 调用支付结果开始支付
-        [[AlipaySDK defaultService] payOrder:signedString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
-            NSLog(@"阿里回调reslut = %@",resultDic);
-            //未安装支付宝客户端回调
-            [g_notify postNotificationName:@"kAlipayPaymentCallbackNotification" object:resultDic];
-        }];
-    }
+    
 }
 
 //微信支付回调处理

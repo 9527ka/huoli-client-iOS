@@ -12,7 +12,6 @@
 #import "WXApiManager.h"
 #import "WH_JXVerifyPay_WHVC.h"
 #import "WH_JXPayPassword_WHVC.h"
-#import <AlipaySDK/AlipaySDK.h>
 
 #import "WH_Recharge_TableViewCell.h"
 #import "BindTelephoneChecker.h"
@@ -555,24 +554,7 @@
         NSString *aliId = [dict objectForKey:@"aliUserId"];
         NSString *authInfo = [dict objectForKey:@"authInfo"];
         if (IsStringNull(aliId)) {
-            NSString *appScheme = @"wahu";
-            [[AlipaySDK defaultService] auth_V2WithInfo:authInfo
-                                             fromScheme:appScheme
-                                               callback:^(NSDictionary *resultDic) {
-                                                   NSLog(@"result = %@",resultDic);
-                                                   // 解析 auth code
-                                                   NSString *result = resultDic[@"result"];
-                                                   if (result.length>0) {
-                                                       NSArray *resultArr = [result componentsSeparatedByString:@"&"];
-                                                       for (NSString *subResult in resultArr) {
-                                                           if (subResult.length > 10 && [subResult hasPrefix:@"user_id="]) {
-                                                               self.aliUserId = [subResult substringFromIndex:8];
-                                                               [g_server WH_safeAliPayUserIdWithUserId:self.aliUserId toView:self];
-                                                               break;
-                                                           }
-                                                       }
-                                                   }
-                                               }];
+           
 
         }else {
             long time = (long)[[NSDate date] timeIntervalSince1970] + (g_server.timeDifference / 1000);

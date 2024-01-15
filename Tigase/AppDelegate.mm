@@ -21,7 +21,6 @@
 #ifdef USE_GOOGLEMAP
 #import <GoogleMaps/GoogleMaps.h>
 #endif
-#import <AlipaySDK/AlipaySDK.h>
 #import "WH_NumLock_WHViewController.h"
 #import <Bugly/Bugly.h>
 #import "WH_LoginViewController.h"

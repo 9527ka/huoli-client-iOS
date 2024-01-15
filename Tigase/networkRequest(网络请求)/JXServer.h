@@ -36,10 +36,10 @@
 
 
 
-#define BaseUrl @"http://192.168.1.88:8092"   //开发环境
+//#define BaseUrl @"http://192.168.1.88:8092"   //开发环境
 //#define BaseUrl @"http://195.54.171.69:8092"   //测试环境
 //#define BaseUrl @"http://47.122.20.170:8092"   //
-//#define BaseUrl @"http://8.217.169.145:8092"   //
+#define BaseUrl @"http://8.217.169.145:8092"   //
 
 
 
