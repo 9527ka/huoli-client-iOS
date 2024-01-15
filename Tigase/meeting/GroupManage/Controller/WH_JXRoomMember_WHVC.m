@@ -1025,7 +1025,7 @@
         membHeight+=self.wh_iv.frame.size.height;
     }
     //只有不是群主才能购买
-    if([data.role intValue] != 1 && self.wh_room.financialAccountCount > 0){
+    if([data.role intValue] != 1 && self.wh_room.financialAccountCount > 0 && self.wh_room.category != 1){
         self.wh_iv = [self WH_createMiXinButton:@"群内充值" drawTop:YES drawBottom:NO must:NO click:@selector(groupRechargAction) ParentView:self.redPacketView];
         self.wh_iv.frame = CGRectMake(0, self.redPacketView.height, self.redPacketView.frame.size.width, HEIGHT);
         self.redPacketView.height += HEIGHT;

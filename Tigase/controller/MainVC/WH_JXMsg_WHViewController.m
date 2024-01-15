@@ -591,7 +591,7 @@
         [images removeObject:@"message_near_person_black"];
         [sels removeObject:@"onNear"];
     }
-    if ([g_App.isShowRedPacket intValue] == 0) {
+    if ([g_App.isShowRedPacket intValue] == 0 || g_myself.isTestAccount) {
         [titles removeObject:Localized(@"JX_Receiving")];
         [images removeObject:@"message_near_receiving"];
         [sels removeObject:@"onReceiving"];

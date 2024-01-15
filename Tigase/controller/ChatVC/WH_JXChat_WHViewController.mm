@@ -2926,10 +2926,10 @@
                 return [WH_JXRemind_WHCell getChatCellHeight:msg];
                 break;
             case kWCMessageTypeRedPacket:
-                return [WH_JXRedPacket_WHCell getChatCellHeight:msg] - 12;
+                return [WH_JXRedPacket_WHCell getChatCellHeight:msg];
                 break;
             case kWCMessageTypeRedPacketExclusive:
-                return [WH_JXRedPacket_WHCell getChatCellHeight:msg] - 12;
+                return [WH_JXRedPacket_WHCell getChatCellHeight:msg];
                 break;
             case kWCMessageTypeTransfer:
                 return [WH_JXTransfer_WHCell getChatCellHeight:msg];

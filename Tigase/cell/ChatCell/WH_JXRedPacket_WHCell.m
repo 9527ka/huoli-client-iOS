@@ -32,7 +32,7 @@
 
 -(void)creatUI{
     self.bubbleBg.custom_acceptEventInterval = 1.0;
-    
+    self.layer.masksToBounds = YES;
     self.bubbleBg.layer.masksToBounds = NO;
     
     _imageBackground =[[WH_JXImageView alloc]initWithFrame:CGRectZero];
@@ -92,7 +92,15 @@
 
 -(void)setCellData{
     [super setCellData];
+    //判断是否是全部隐藏
+    if([g_App.isShowRedPacket intValue] == 0 || g_myself.isTestAccount){
+        self.timeLabel.hidden = self.readNum.hidden = YES;
+        for (UIView *view in self.contentView.subviews) {
+            view.hidden = YES;
+        }
+    }
     
+
     CGFloat bubbleX = .0f;
     CGFloat bubbleY = .0f;
     CGFloat bubbleW = .0f;
@@ -178,7 +186,7 @@
 }
 
 + (float)getChatCellHeight:(WH_JXMessageObject *)msg {
-    if ([g_App.isShowRedPacket intValue] == 1){
+    if ([g_App.isShowRedPacket intValue] == 1 && !g_myself.isTestAccount){
         if ([msg.chatMsgHeight floatValue] > 1) {
             return [msg.chatMsgHeight floatValue];
         }
@@ -202,7 +210,7 @@
         if (!msg.isNotUpdateHeight) {
             [msg updateChatMsgHeight];
         }
-        return n;
+        return n - 12;
         
     }else{
         

@@ -57,7 +57,10 @@
     [super viewWillAppear:animated];
     [g_notify addObserver:self selector:@selector(msgNumberBtnClick:) name:@"msgNumberBtnClickNa" object:nil];
     
-    [self.noticeView receiveData];
+    if(g_App.isShowRedPacket.intValue == 1 && !g_myself.isTestAccount){
+        [self.noticeView receiveData];
+    }
+    
 }
 
 - (void)msgNumberBtnClick:(NSNotification *)note{
@@ -136,6 +139,12 @@
                                               ]];
     }
     
+    if ([g_App.isShowRedPacket intValue] == 0 || g_myself.isTestAccount) {//关闭
+        [titles removeObject:@"发起钻石群聊"];
+        [images removeObject:@"diamound_icon_group_chat_entry"];
+        [sels removeObject:@"onNewdiamoundRoom"];
+    }
+    
     if ([g_config.hideSearchByFriends intValue] == 1 && ([g_config.isCommonFindFriends intValue] == 0 || g_myself.role.count > 0)) {
     }else {
         [titles removeObject:Localized(@"JX_AddFriends")];
@@ -157,7 +166,7 @@
         [images removeObject:@"message_near_person_black"];
         [sels removeObject:@"onNear"];
     }
-    if ([g_App.isShowRedPacket intValue] == 0) {
+    if ([g_App.isShowRedPacket intValue] == 0 || g_myself.isTestAccount) {
         [titles removeObject:Localized(@"JX_Receiving")];
         [images removeObject:@"message_near_receiving"];
         [sels removeObject:@"onReceiving"];
@@ -307,9 +316,12 @@
 }
 
 - (void)setupContentView {
+    
+    float topHeight = (g_App.isShowRedPacket.intValue == 1 && !g_myself.isTestAccount)?50:10;
+    
     UIScrollView *contentView = [[UIScrollView alloc] init];
     contentView.backgroundColor = [UIColor whiteColor];
-    contentView.frame = CGRectMake(0, JX_SCREEN_TOP + 50, self.view.bounds.size.width, self.view.bounds.size.height-JX_SCREEN_TOP - 50);
+    contentView.frame = CGRectMake(0, JX_SCREEN_TOP + topHeight, self.view.bounds.size.width, self.view.bounds.size.height-JX_SCREEN_TOP - topHeight);
     contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     contentView.delegate = self;
     contentView.showsHorizontalScrollIndicator = NO;
@@ -373,9 +385,11 @@
         [button addTarget:self action:@selector(titleClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     
-    //跑马灯的view
-    _noticeView = [[WH_JXNoticeView alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP + 40, JX_SCREEN_WIDTH, 40)];
-    [self.view addSubview:self.noticeView];
+    if(g_App.isShowRedPacket.intValue == 1 && !g_myself.isTestAccount){
+        //跑马灯的view
+        _noticeView = [[WH_JXNoticeView alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP + 40, JX_SCREEN_WIDTH, 40)];
+        [self.view addSubview:self.noticeView];
+    }
 }
  
 - (void)onFreshRight{

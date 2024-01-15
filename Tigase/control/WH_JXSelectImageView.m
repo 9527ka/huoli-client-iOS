@@ -89,7 +89,7 @@
             button.frame = CGRectMake(X, Y, SELECTIMAGE_WIDTH, h);
         }
         
-        if(self.wh_isGroup && self.wh_isGroupDiamound){
+        if(self.wh_isGroup && self.wh_isGroupDiamound && [g_App.isShowRedPacket intValue] == 1 && !g_myself.isTestAccount){
             // 钻石
             n = (n + 1) >= 4 ? 0 : n + 1;
             m += 1;
@@ -97,7 +97,7 @@
             Y = m > 4 && m <=8 ? h+margeY*2 : margeY;
             button = [self WH_create_WHButtonWithImage:@"diamond_btn" highlight:@"diamond_btn" target:delegate selector:self.onDiamond title:@"发钻石"];
             button.frame = CGRectMake(X, Y, SELECTIMAGE_WIDTH, h);
-        }else if ([g_App.isShowRedPacket intValue] == 1 && !self.wh_isGroupMessages && !self.wh_isDevice) {
+        }else if ([g_App.isShowRedPacket intValue] == 1 && !self.wh_isGroupMessages && !self.wh_isDevice && !g_myself.isTestAccount) {
             // 发红包
             n = (n + 1) >= 4 ? 0 : n + 1;
             m += 1;

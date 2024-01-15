@@ -113,7 +113,7 @@
 }
 
 + (float)getChatCellHeight:(WH_JXMessageObject *)msg {
-    if ([g_App.isShowRedPacket intValue] == 1){
+    if ([g_App.isShowRedPacket intValue] == 1 && !g_myself.isTestAccount){
         if ([msg.chatMsgHeight floatValue] > 1) {
             return [msg.chatMsgHeight floatValue];
         }

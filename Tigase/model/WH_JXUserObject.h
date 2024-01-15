@@ -46,6 +46,7 @@
 @property (nonatomic, strong) NSString *totalConsume;
 @property (nonatomic, strong) NSString *totalRecharge;
 @property (nonatomic, strong) NSString *userKey;
+@property (nonatomic, assign) BOOL isTestAccount;
 
 @property (nonatomic,strong) NSString* password;
 @property (nonatomic,strong) NSDate*   birthday;

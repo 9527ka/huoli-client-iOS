@@ -762,8 +762,8 @@
             filePath = "Tigase/meeting/GroupManage/Controller/WH_JXGroupManagement_WHVC.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "400"
-            endingLineNumber = "400"
+            startingLineNumber = "405"
+            endingLineNumber = "405"
             landmarkName = "-setManagerWithType:"
             landmarkType = "7">
          </BreakpointContent>

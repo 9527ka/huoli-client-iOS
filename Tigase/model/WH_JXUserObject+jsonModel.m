@@ -95,6 +95,7 @@
     self.multipleDevices = userInfo[@"settings"][@"multipleDevices"] ?: @"";
     self.nameSearch = userInfo[@"settings"][@"nameSearch"] ?: @"";
     self.openService = userInfo[@"settings"][@"openService"] ? [userInfo[@"settings"][@"openService"] boolValue] : NO;
+    self.isTestAccount = userInfo[@"isTestAccount"] ? [userInfo[@"isTestAccount"] boolValue] : NO;
     self.phoneSearch = userInfo[@"settings"][@"phoneSearch"] ?: @"";
     self.showLastLoginTime = userInfo[@"settings"][@"showLastLoginTime"] ? [userInfo[@"settings"][@"showLastLoginTime"] boolValue]: NO;
     self.showTelephone = userInfo[@"settings"][@"showTelephone"] ? [userInfo[@"settings"][@"showTelephone"] boolValue] : NO;
@@ -178,6 +179,7 @@
     
     [mutDic setObject:self.sex ?: @(0) forKey:@"sex"];
     [mutDic setObject:[NSNumber numberWithBool:self.showLastLoginTime ?: NO] forKey:@"showLastLoginTime"];
+    [mutDic setObject:[NSNumber numberWithBool:self.isTestAccount ?: NO] forKey:@"isTestAccount"];
     [mutDic setObject:self.status ?: @(0) forKey:@"status"];
     [mutDic setObject:self.telephone ?: @"" forKey:@"telephone"];
     [mutDic setObject:self.totalConsume ?: @"" forKey:@"totalConsume"];

@@ -56,7 +56,10 @@
     [self.wh_tableBody addSubview:self.cView];
     
     int membHeight = 0;
-    UIView *tView = [self createBGViewWithOrginY:12 height:HEIGHT*4 supView:self.cView];
+    
+    NSInteger count = self.room.category == 1?3:4;
+    
+    UIView *tView = [self createBGViewWithOrginY:12 height:HEIGHT*count supView:self.cView];
     
     WH_JXImageView *iv;
     UILabel *label;
@@ -75,9 +78,11 @@
     membHeight = CGRectGetMaxY(iv.frame);
     
     // 收款账号管理
-    iv = [self WH_createMiXinButton:@"收款账号管理" supView:tView drawTop:NO drawBottom:YES must:NO click:@selector(grounpAccountAction:)];
-    iv.frame = CGRectMake(0, membHeight, tView.frame.size.width, HEIGHT);
-    membHeight = CGRectGetMaxY(iv.frame);
+    if(self.room.category != 1){
+        iv = [self WH_createMiXinButton:@"收款账号管理" supView:tView drawTop:NO drawBottom:YES must:NO click:@selector(grounpAccountAction:)];
+        iv.frame = CGRectMake(0, membHeight, tView.frame.size.width, HEIGHT);
+        membHeight = CGRectGetMaxY(iv.frame);
+    }
     
     // 群钻石设置
 //    iv = [self WH_createMiXinButton:@"群钻石设置" supView:tView drawTop:NO drawBottom:NO must:NO click:@selector(redPacketSetup:)];

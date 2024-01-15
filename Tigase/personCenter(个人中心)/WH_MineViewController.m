@@ -75,15 +75,16 @@
 //        self.wh_dataArray = @[@[@""] ,@[Localized(@"JX_MyCollection") ,Localized(@"WaHu_LifeStatus_WaHu") ,Localized(@"JX_MyLecture")] ,@[Localized(@"JX_SecuritySettings") ,Localized(@"JX_PrivacySettings") ,@"其他设置"]];
 //        self.wh_imgsArray = @[@[@""] ,@[@"MyCollection" ,@"My_DongTai" ,@"My_JiangKe"] ,@[@"My_AnQuanSheZhi" ,@"My_YinSiSheZhi" ,@"My_QiTaSheZhi"]];
 //    }
-    if ([g_App.isShowRedPacket integerValue] == 1||([g_App.isShowRedPacket integerValue] == 0)) {
+    
+    if ([g_App.isShowRedPacket integerValue] == 1 && !g_myself.isTestAccount) {
         self.wh_dataArray = @[@[@""] ,@[Localized(@"JX_MyBalance"),@"我的收款账号" ,@"我的订单",Localized(@"JX_MyCollection") , Localized(@"WaHu_LifeStatus_WaHu")] ,@[Localized(@"JX_SecuritySettings") ,Localized(@"JX_PrivacySettings") ,Localized(@"WaHu_OtherSetting_WaHu")]];
         self.wh_imgsArray = @[@[@""] ,@[@"MyWallet",@"my_account" ,@"Myorder_icon",@"MyCollection" ,@"My_DongTai"] ,@[@"My_AnQuanSheZhi" ,@"My_YinSiSheZhi" ,@"My_QiTaSheZhi"]];
         self.wh_tagArray = @[@[@(0)] ,@[@(ClickButtonType_Wallert),@(ClickButtonType_Account) ,@(ClickButtonType_Order),@(ClickButtonType_Collect) ,@(ClickButtonType_LifeStatus)] ,@[@(ClickButtonType_SecuritySettings) ,@(ClickButtonType_PrivacySettings) ,@(ClickButtonType_OtherSetting)]];
     }else {
         //隐藏钱包
-        self.wh_dataArray = @[@[@""] ,@[@"我的收款账号" ,@"我的订单",Localized(@"JX_MyCollection") ,Localized(@"WaHu_LifeStatus_WaHu")] ,@[Localized(@"JX_SecuritySettings") ,Localized(@"JX_PrivacySettings") ,@"其他设置"]];
-        self.wh_imgsArray = @[@[@""] ,@[@"my_account" ,@"Myorder_icon",@"MyCollection" ,@"My_DongTai"] ,@[@"My_AnQuanSheZhi" ,@"My_YinSiSheZhi" ,@"My_QiTaSheZhi"]];
-        self.wh_tagArray = @[@[@(0)] ,@[@(ClickButtonType_Account) ,@(ClickButtonType_Order),@(ClickButtonType_Collect) ,@(ClickButtonType_LifeStatus)] ,@[@(ClickButtonType_SecuritySettings) ,@(ClickButtonType_PrivacySettings) ,@(ClickButtonType_OtherSetting)]];
+        self.wh_dataArray = @[@[@""] ,@[ @"我的订单",Localized(@"JX_MyCollection") ,Localized(@"WaHu_LifeStatus_WaHu")] ,@[Localized(@"JX_SecuritySettings") ,Localized(@"JX_PrivacySettings") ,@"其他设置"]];
+        self.wh_imgsArray = @[@[@""] ,@[@"Myorder_icon",@"MyCollection" ,@"My_DongTai"] ,@[@"My_AnQuanSheZhi" ,@"My_YinSiSheZhi" ,@"My_QiTaSheZhi"]];
+        self.wh_tagArray = @[@[@(0)] ,@[@(ClickButtonType_Order),@(ClickButtonType_Collect) ,@(ClickButtonType_LifeStatus)] ,@[@(ClickButtonType_SecuritySettings) ,@(ClickButtonType_PrivacySettings) ,@(ClickButtonType_OtherSetting)]];
     }
     
     
