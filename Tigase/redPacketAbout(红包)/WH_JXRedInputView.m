@@ -154,13 +154,13 @@
     switch (_type) {
         case 1:{
             _wh_noticeTitle.text = Localized(@"JXRed_sameAmount");//@"小伙伴领取的金额相同";//
-            _wh_greetTextField.placeholder = self.isDiamond ? @"火力全开" : @"大吉大利，恭喜发财";
+            _wh_greetTextField.placeholder = self.isDiamond ? @"猎火全开" : @"大吉大利，恭喜发财";
             _wh_greetTitle.text = Localized(@"New_hold_message");
             break;
         }
         case 2:{
             _wh_noticeTitle.text = self.isDiamond ? @"小伙伴领取的数量随机" : Localized(@"JXRed_ARandomAmount");//@"小伙伴领取的金额随机";//
-            _wh_greetTextField.placeholder = self.isDiamond ? @"火力全开" : @"大吉大利，恭喜发财";
+            _wh_greetTextField.placeholder = self.isDiamond ? @"猎火全开" : @"大吉大利，恭喜发财";
             _wh_greetTitle.text = Localized(@"New_hold_message");
             break;
         }
@@ -173,7 +173,7 @@
         case 4:{
 //            _wh_noticeTitle.text = self.isDiamond? @"小伙伴专属钻石":@"小伙伴专属红包";//@"小伙伴需回复口令抢红包";//
             _wh_noticeTitle.text = @"";
-            _wh_greetTextField.placeholder = @"火力全开";//@"如“我真帅”";// eg."I'm so handsome";
+            _wh_greetTextField.placeholder = @"猎火全开";//@"如“我真帅”";// eg."I'm so handsome";
             _wh_greetTitle.text = Localized(@"New_hold_message");//@"设置口令";//
             break;
         }

@@ -1,6 +1,6 @@
 /* Localized versions of Info.plist keys */
 
-CFBundleDisplayName = "火力"; // APP名字
+CFBundleDisplayName = "猎火"; // APP名字
 
 
 NSCalendarsUsageDescription = "Des informations sur le calendrier sont requises pour l'enregistrement, êtes-vous autorisé à accéder au calendrier ?";

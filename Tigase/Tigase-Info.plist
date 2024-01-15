@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>火力</string>
+	<string>猎火</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIcons</key>
@@ -149,6 +149,8 @@
 	<string>MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCYMaBXqMSxEfaKrMmdi3jj6Gek7fhWWg4veuoyHexzcNtE44pFBHOfJzam9sMrK5fXUil2awyZV7+xkJ/KLG30GmM8IPTn6sbwAKTMxnsCgs/S//FMzZr8mrcIfa117ykyv5Thqfr9qatXmmUVSUYXb3YhrTG5DDMijR80aXVj6wIDAQAB</string>
 	<key>Seller</key>
 	<string>2088001053772698</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

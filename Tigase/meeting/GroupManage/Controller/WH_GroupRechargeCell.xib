@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -261,7 +259,7 @@
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n04-tS-jEu">
                                 <rect key="frame" x="28" y="486.33333333333331" width="264" height="33.666666666666686"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="如果您同意使用火力进行C2C交易，即表示您接受火力C2C交易法律《免责声明》">
+                                    <fragment content="如果您同意使用猎火进行C2C交易，即表示您接受猎火C2C交易法律《免责声明》">
                                         <attributes>
                                             <color key="NSColor" systemColor="systemGrayColor"/>
                                             <font key="NSFont" metaFont="system" size="14"/>
