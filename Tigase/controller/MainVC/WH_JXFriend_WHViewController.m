@@ -1183,9 +1183,10 @@
                 
 //                NSLog(@"当前的用户id====== %@,客服id======%@",user.userId,officialCSUid);
                 
-                if([user.userId isEqualToString:officialCSUid]){
+                if([user.userId isEqualToString:officialCSUid] || [user.userId isEqualToString:MY_USER_ID]){
                     [userList removeObject:user];
                 }
+                
             }
             _array = userList;
             
@@ -1314,6 +1315,7 @@
     [_array removeAllObjects];
 //    [_array release];
     [self getArrayData];
+    
     _friendArray = [g_myself WH_fetchAllFriendsOrNotFromLocal];
     [_table reloadData];
 }

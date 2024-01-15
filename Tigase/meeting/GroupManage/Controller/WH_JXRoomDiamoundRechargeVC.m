@@ -21,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.titleArray = @[@"2000",@"2500",@"3000",@"3500"];
+    self.titleArray = @[@"1200",@"1600",@"2000",@"2400"];
     //创建UI
     [self creatUI];
     

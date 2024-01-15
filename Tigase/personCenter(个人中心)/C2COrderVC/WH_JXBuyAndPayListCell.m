@@ -19,7 +19,6 @@
     self.headTitleLab.layer.cornerRadius = 14.0f;
     self.protectLab.layer.cornerRadius = 9.0f;
     
-    
 }
 - (IBAction)buyAction:(id)sender {
     if(self.buyBlock){
