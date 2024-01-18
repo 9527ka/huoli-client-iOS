@@ -769,7 +769,7 @@
     return p;
 }
 
--(JXLabel*)WH_createLabel:(UIView*)parent default:(NSString*)s isClick:(BOOL) boo{
+-(JXLabel*)WH_createLabel:(UIView*)parent defaultNum:(NSString*)s isClick:(BOOL) boo{
     JXLabel * p;
     if (boo) {
         CGFloat w = (parent.frame.size.width - INSETS)/2 ;
@@ -827,7 +827,7 @@
     
     WH_JXImageView *p = [self WH_createMiXinButton:Localized(@"JX_GroupChatMembers") drawTop:YES drawBottom:NO must:NO click:@selector(onShowMembers) ParentView:q];
     p.frame = CGRectMake(0, 0, JX_SCREEN_WIDTH, HEIGHT);
-    _note = [self WH_createLabel:p default:[NSString stringWithFormat:Localized(@"JX_Have%dPeople"),self.userSize] isClick:YES];
+    _note = [self WH_createLabel:p defaultNum:[NSString stringWithFormat:Localized(@"JX_Have%dPeople"),self.userSize] isClick:YES];
     [_images addObject:p];
     [_images addObject:_note];
     
@@ -919,13 +919,13 @@
     //群组名称
     self.wh_iv = [self WH_createMiXinButton:Localized(@"JX_RoomName") drawTop:YES drawBottom:YES must:NO click:@selector(onRoomName) ParentView:topOneView];
     self.wh_iv.frame = CGRectMake(0, membHeight, topOneView.frame.size.width, HEIGHT);
-    _roomName = [self WH_createLabel:self.wh_iv default:wh_room.name isClick:YES];
+    _roomName = [self WH_createLabel:self.wh_iv defaultNum:wh_room.name isClick:YES];
     membHeight+=self.wh_iv.frame.size.height;
     
     //群公告
     self.wh_iv = [self WH_createMiXinButton:Localized(@"WaHu_JXRoomMember_WaHuVC_RoomAdv") drawTop:NO drawBottom:YES must:NO click:@selector(onNewNote) ParentView:topOneView];
     self.wh_iv.frame = CGRectMake(0, membHeight, topOneView.frame.size.width, HEIGHT);
-    _note = [self WH_createLabel:self.wh_iv default:wh_room.note ? wh_room.note : Localized(@"JX_NotAch") isClick:YES];
+    _note = [self WH_createLabel:self.wh_iv defaultNum:wh_room.note ? wh_room.note : Localized(@"JX_NotAch") isClick:YES];
     membHeight+=self.wh_iv.frame.size.height;
     
     NSDictionary *notiDict = self.noticeArr.firstObject; // 这四行代码为避免当公告为空时，进入群设置列表群公告显示存在公告
@@ -946,7 +946,7 @@
     self.wh_iv = [self WH_createMiXinButton:btnTitle drawTop:NO drawBottom:YES must:NO click:@selector(onNickName) ParentView:topOneView];
     self.wh_iv.frame = CGRectMake(0, membHeight, topOneView.frame.size.width, HEIGHT);
     if (!_isAdmin) {
-        _userName = [self WH_createLabel:self.wh_iv default:[wh_room getNickNameInRoom] isClick:YES];
+        _userName = [self WH_createLabel:self.wh_iv defaultNum:[wh_room getNickNameInRoom] isClick:YES];
     }
     membHeight+=self.wh_iv.frame.size.height;
     membHeight+=topBottomMargin;
@@ -1009,17 +1009,17 @@
     self.redPacketView.layer.borderColor = g_factory.cardBorderColor.CGColor;
     self.redPacketView.layer.borderWidth = g_factory.cardBorderWithd;
     [self.wh_tableBody addSubview:self.redPacketView];
-    self.wh_iv = [self WH_createMiXinButton:@"群红包" drawTop:NO drawBottom:NO must:NO click:@selector(groupRedPacketAction) ParentView:self.redPacketView];
+    self.wh_iv = [self WH_createMiXinButton:self.wh_room.category == 1?@"群钻石":@"群红包" drawTop:NO drawBottom:NO must:NO click:@selector(groupRedPacketAction) ParentView:self.redPacketView];
     self.wh_iv.frame = CGRectMake(0, 0, self.redPacketView.frame.size.width, HEIGHT);
     membHeight+=self.wh_iv.frame.size.height;
     if ([data.role intValue] == 1 || [data.role intValue] == 2) {
         self.redPacketView.height = HEIGHT * 2;
-        self.wh_iv = [self WH_createMiXinButton:@"群成员红包列表" drawTop:YES drawBottom:NO must:NO click:@selector(groupMemberRedPacketListAction) ParentView:self.redPacketView];
+        self.wh_iv = [self WH_createMiXinButton:self.wh_room.category == 1?@"群成员钻石红包列表":@"群成员红包列表" drawTop:YES drawBottom:NO must:NO click:@selector(groupMemberRedPacketListAction) ParentView:self.redPacketView];
         self.wh_iv.frame = CGRectMake(0, HEIGHT, self.redPacketView.frame.size.width, HEIGHT);
         membHeight+=self.wh_iv.frame.size.height;
     }
     if ([data.role intValue] == 1 || [data.role intValue] == 2 || self.wh_room.showAllValidRedPacket) {//群主开启了也可以使用
-        self.wh_iv = [self WH_createMiXinButton:@"长时间未领取红包" drawTop:YES drawBottom:NO must:NO click:@selector(groupMemberRedPacketUnclaimedAction) ParentView:self.redPacketView];
+        self.wh_iv = [self WH_createMiXinButton:self.wh_room.category == 1?@"长时间未领取钻石红包":@"长时间未领取红包" drawTop:YES drawBottom:NO must:NO click:@selector(groupMemberRedPacketUnclaimedAction) ParentView:self.redPacketView];
         self.wh_iv.frame = CGRectMake(0, self.redPacketView.height, self.redPacketView.frame.size.width, HEIGHT);
         self.redPacketView.height += HEIGHT;
         membHeight+=self.wh_iv.frame.size.height;
@@ -1048,7 +1048,7 @@
     if(self.wh_room.category == 1){//钻石
         self.wh_iv = [self WH_createMiXinButton:@"我的钻石" drawTop:NO drawBottom:NO must:NO click:nil ParentView:self.topDiamondView];
         self.wh_iv.frame = CGRectMake(0, 0, self.topDiamondView.frame.size.width, HEIGHT);
-        _diamondNum = [self WH_createLabel:self.wh_iv default:@"100" isClick:NO];
+        _diamondNum = [self WH_createLabel:self.wh_iv defaultNum:[NSString stringWithFormat:@"%@",self.wh_room.amount] isClick:NO];
         membHeight+=self.wh_iv.frame.size.height;
         membHeight+=topBottomMargin;
     }
@@ -1099,7 +1099,7 @@
         //设置群头像
         self.wh_iv = [self WH_createMiXinButton:Localized(@"JX_SetGroupAvatar") drawTop:NO drawBottom:YES must:NO click:@selector(settingRoomIcon) ParentView:self.topTwoView];
         self.wh_iv.frame = CGRectMake(0, topTwoHei, topTwoView.frame.size.width, HEIGHT);
-        //    _userName = [self WH_createLabel:self.iv default:[room getNickNameInRoom] isClick:YES];
+        //    _userName = [self WH_createLabel:self.iv defaultNum:[room getNickNameInRoom] isClick:YES];
         membHeight+=self.wh_iv.frame.size.height;
         topTwoHei +=self.wh_iv.frame.size.height;
     }
@@ -1366,7 +1366,7 @@
 }
 
 -(int)createImagesWithHeight:(int)height{
-    
+
     if (wh_room == nil) {
         NSDictionary * groupDict = [self.pData.user toDictionary];
         WH_RoomData * roomdata = [[WH_RoomData alloc] init];

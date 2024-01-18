@@ -148,7 +148,7 @@
 //    if([self.msg.type intValue] == kWCMessageTypeRedPacketExclusive){
         UIImage *image = [[UIImage imageNamed:@"WH_hongbao_background"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
         _imageBackground.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        [_imageBackground setTintColor:[UIColor colorWithRed:245/255.0 green:145/255.0 blue:85/255.0 alpha:1.0]];//HEXCOLOR(0x)
+    [_imageBackground setTintColor:self.msg.isDiamound.boolValue?[UIColor colorWithRed:15/255.0 green:128/255.0 blue:47/255.0 alpha:1.0]:[UIColor colorWithRed:245/255.0 green:145/255.0 blue:85/255.0 alpha:1.0]];//HEXCOLOR(0x)
 //    }
 //    _title.textColor = [self.msg.type intValue] == kWCMessageTypeRedPacketExclusive?[UIColor whiteColor]:HEXCOLOR(0x8C9AB8);
     

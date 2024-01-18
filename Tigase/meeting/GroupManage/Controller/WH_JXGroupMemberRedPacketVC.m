@@ -17,6 +17,7 @@
     MJRefreshHeaderView *_header;
     ATMHud* _wait;
 }
+@property (weak, nonatomic) IBOutlet UILabel *titleLab;
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (weak, nonatomic) IBOutlet UIButton *typeBtn;
@@ -46,6 +47,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.titleLab.text = self.room.category == 1?@"群成员钻石红包列表":@"群成员红包列表";
+    [self.segmentedControl setTitle:self.room.category == 1?@"发出的钻石":@"发出的红包" forSegmentAtIndex:0];
+    [self.segmentedControl setTitle:self.room.category == 1?@"抢到的钻石":@"抢到的红包" forSegmentAtIndex:1];
     self.dataSource = [NSMutableArray array];
     //设置展示样式
     self.datePicker.datePickerMode = UIDatePickerModeDateAndTime;
@@ -111,7 +115,7 @@
 
 - (IBAction)didTapType {
     UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    NSArray *typeArray = @[@"全部", @"手气红包", @"口令红包", @"专属红包"];
+    NSArray *typeArray = @[@"全部", self.room.category == 1?@"手气钻石":@"手气红包", self.room.category == 1?@"口令钻石":@"口令红包", self.room.category == 1?@"专属钻石":@"专属红包"];
     ////红包类型：0:全部 1：普通红包 2：拼手气红包 3:口令红包
     NSArray *tagArray = @[@(0),@(2),@(3),@(1)];
     

@@ -261,6 +261,8 @@
     self.expiryTime = [dict objectForKey:@"expiryTime"];
     self.quotaUnit = [dict objectForKey:@"quotaUnit"];
     self.quota = [dict objectForKey:@"quota"];
+    self.amount = [[dict objectForKey:@"member"] objectForKey:@"amount"];
+    
     
     self.countryId = [[dict objectForKey:@"countryId"] intValue];
     self.provinceId = [[dict objectForKey:@"provinceId"] intValue];

@@ -35,12 +35,12 @@
 #define WH_hide_error 0
 
 
-
 //#define BaseUrl @"http://192.168.1.88:8092"   //开发环境
 //#define BaseUrl @"http://195.54.171.69:8092"   //测试环境
-//#define BaseUrl @"http://47.122.20.170:8092"   //
+//#define BaseUrl @"http://47.122.20.170:8092"   //测试环境
 //#define BaseUrl @"http://8.217.169.145:8092"   //
-#define BaseUrl @"http://www.huoli68.com/im/"   //
+//#define BaseUrl @"http://www.huoli68.com/im/"   //
+#define BaseUrl @"http://im.huoli68.com/im/"   //
 
 
 
@@ -415,7 +415,7 @@
 
 //钻石相关
 #define act_diamond_allocation @"CustomerService/diamondRedPacket/assignDiamond"//修改成员钻石数量
-#define act_diamond_send @"CustomerService/diamondRedPacket/sendDiamondRedPacket/v1"//发送钻石
+#define act_diamond_send @"v/redPacket/sendRedPacket/v1"//发送钻石
 #define wh_receiv_RedList @"room/query_group_valid_red_packet"    //长时间未领取的红包列表
 #define wh_rememBer_inList @"room/query_group_in_log"    //群成员进群列表
 #define wh_rememBer_outList @"room/query_group_out_log"    //群成员出群列表

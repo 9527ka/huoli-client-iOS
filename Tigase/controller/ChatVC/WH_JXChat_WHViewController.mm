@@ -7668,6 +7668,7 @@
             msg.toUserId = self.roomJid;
             msg.isGroup = YES;
             msg.fromUserName = _userNickName;
+            msg.isDiamound = self.room.category == 1?@(1):@(0);
         }
         else{
             msg.toUserId     = chatPerson.userId;
@@ -7706,6 +7707,7 @@
             msg.fromUserName = _userNickName;
             msg.toUserIds = redpacketDict[@"toUserIds"];
             msg.toUserNames = redpacketDict[@"toUserNames"];
+            msg.isDiamound = redpacketDict[@"isDiamound"];
         }
         else{
             msg.toUserId     = chatPerson.userId;

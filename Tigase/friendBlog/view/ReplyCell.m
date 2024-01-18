@@ -37,11 +37,11 @@
 }
 - (UILabel *)label {
     if (!_label) {
-        _label = [[UILabel alloc]initWithFrame:CGRectMake(60, 18, JX_SCREEN_WIDTH - 80, 27)];
+        _label = [[UILabel alloc]initWithFrame:CGRectMake(4, 4, JX_SCREEN_WIDTH - 80, 27)];
         _label.font = [UIFont systemFontOfSize:13];
         _label.numberOfLines = 0;
-//        _label.textColor = HEXCOLOR(0x576B94);
-        _label.textColor = [UIColor whiteColor];
+        _label.textColor = HEXCOLOR(0x576B94);
+//        _label.textColor = [UIColor whiteColor];
         _label.backgroundColor = [UIColor clearColor];
         [self.contentView addSubview:_label];
     }

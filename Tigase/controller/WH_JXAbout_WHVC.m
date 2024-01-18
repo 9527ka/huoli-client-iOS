@@ -179,22 +179,26 @@
 
 #pragma mark 获取协议
 -(NSString *)protocolUrl1{
-    NSString * protocolStr = [NSString stringWithFormat:@"http://%@/agreement/accountUseNorm.html",PrivacyAgreementBaseApiUrl];
+//    NSString * protocolStr = [NSString stringWithFormat:@"http://%@/agreement/accountUseNorm.html",PrivacyAgreementBaseApiUrl];
     //    NSString * lange = g_constant.sysLanguage;
     //    if (![lange isEqualToString:ZHHANTNAME] && ![lange isEqualToString:NAME]) {
     //        lange = ENNAME;
     //    }
     //    return [NSString stringWithFormat:@"%@%@.html",protocolStr,lange];
+    
+    NSString * protocolStr = @"https://www.huoli68.com/?gbook/";
+    
     return protocolStr;
 }
 
 -(NSString *)protocolUrl2{
-    NSString * protocolStr = [NSString stringWithFormat:@"http://%@/agreement/SoFUseNorm.html",PrivacyAgreementBaseApiUrl];
+//    NSString * protocolStr = [NSString stringWithFormat:@"http://%@/agreement/SoFUseNorm.html",PrivacyAgreementBaseApiUrl];
     //    NSString * lange = g_constant.sysLanguage;
     //    if (![lange isEqualToString:ZHHANTNAME] && ![lange isEqualToString:NAME]) {
     //        lange = ENNAME;
     //    }
     //    return [NSString stringWithFormat:@"%@%@.html",protocolStr,lange];
+    NSString * protocolStr = @"https://www.huoli68.com/?contact/";
     return protocolStr;
 }
 

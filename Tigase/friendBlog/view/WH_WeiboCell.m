@@ -900,7 +900,7 @@
     CGFloat height = [JXXMPP getLabelHeightWithContent:[self getLabelText:data] andLabelWidth:JX_SCREEN_WIDTH - 80 andLabelFontSize:13];
     CGRect frame=cell.label.frame;
     cell.backgroundColor=[UIColor clearColor];
-    frame.size.height = height + 3;
+    frame.size.height = height + 10;
     cell.label.frame=frame;
     //设置回复被点击后颜色不变
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -922,6 +922,8 @@
            WH_JXUserObject *userA = [[WH_JXUserObject sharedUserInstance] getFriendWithUserId:data.userId];
            if (userA.remarkName.length) {
                data.title = [[NSAttributedString alloc] initWithString:userA.remarkName];
+           }else{
+               data.title = [[NSAttributedString alloc] initWithString:userA.userNickname];
            }
            }
        }

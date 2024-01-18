@@ -28,6 +28,7 @@
 @property(nonatomic,assign)BOOL isDidRedPacketRemind;
 @property (weak, nonatomic) IBOutlet UIImageView *nodataImage;
 @property (weak, nonatomic) IBOutlet UILabel *nodataLab;
+@property (weak, nonatomic) IBOutlet UILabel *titleLab;
 
 
 @end
@@ -36,6 +37,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.titleLab.text = self.room.category == 1?@"长时间未领取钻石红包":@"长时间未领取红包";
     self.page = 0;
     _wait = [ATMHud sharedInstance];
     _isLoading = YES;
@@ -230,12 +232,12 @@
         //时间
         cell.timeLabel.text = [self getTimeFrom:time.doubleValue];
         //红包类型 1.普通红包   2.拼手气   3.口令
-        NSString *type = @"专属红包";
+        NSString *type = self.room.category == 1?@"专属钻石":@"专属红包";
         NSNumber *redType = [NSNumber numberWithInteger:[NSString stringWithFormat:@"%@",dic[@"type"]].integerValue];
         if(redType.intValue == 2){
-            type = @"手气红包";
+            type = self.room.category == 1?@"手气钻石":@"手气红包";
         }else if (redType.intValue == 3){
-            type = @"口令红包";
+            type = self.room.category == 1?@"口令钻石":@"口令红包";
         }
         cell.typeLabel.text = type;
         NSString *receiveCount = [NSString stringWithFormat:@"%@",dic[@"receiveCount"]];

@@ -30,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _wait = [ATMHud sharedInstance];
-    self.titleLabel.text = (self.description == 0) ? @"谁不可以抢" : @"谁不可以发";
+    self.titleLabel.text = (self.direction == 0) ? @"谁不可以抢" : @"谁不可以发";
     
     self.textField.backgroundColor = g_factory.inputBackgroundColor;
     self.textField.layer.cornerRadius = 17;

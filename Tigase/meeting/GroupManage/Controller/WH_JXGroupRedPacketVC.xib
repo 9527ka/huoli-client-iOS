@@ -22,6 +22,7 @@
                 <outlet property="segmentedControl" destination="2uz-U6-aS6" id="XOS-tg-HEk"/>
                 <outlet property="startDateBtn" destination="qOo-zt-yFg" id="o4K-DE-g27"/>
                 <outlet property="tableView" destination="8eu-sz-OYV" id="6dw-sl-aID"/>
+                <outlet property="titleLab" destination="Zlb-Z1-BdE" id="2uP-UM-pUG"/>
                 <outlet property="typeBtn" destination="bW7-E9-QNO" id="U6e-a8-ijw"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

@@ -67,6 +67,8 @@ static WH_JXUserObject *sharedUser;
 -(void)dealloc{
     self.telephone = nil;
     self.password = nil;
+    self.amount = nil;
+    self.quota = nil;
     self.userType = nil;
     self.birthday = nil;
     self.companyName = nil;
@@ -426,6 +428,15 @@ static WH_JXUserObject *sharedUser;
     if (describe.length > 0) {
         self.describe = describe;
     }
+    
+    NSString *amount = [[[dict objectForKey:@"member"] objectForKey:@"amount"] stringValue];
+    if (amount.length > 0) {
+        self.amount = amount;
+    }else{
+        self.amount = @"0";
+    }
+    self.quota = [[dict objectForKey:@"quota"] stringValue];
+    
 //    if ([dict objectForKey:@"toFriendsRole"]) {
 //        NSArray *roleDict = [dict objectForKey:@"toFriendsRole"];
 //        self.role = @([[[roleDict firstObject] objectForKey:@"role"] intValue]);

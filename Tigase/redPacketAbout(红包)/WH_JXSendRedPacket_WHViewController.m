@@ -128,13 +128,13 @@
 //    NSArray *titles = _isDiamond ? @[@"手气钻石", @"专属钻石", @"口令钻石", @"普通钻石"] : (_isRoom ? @[Localized(@"JX_LuckGift"),Localized(@"JX_MesGift"),Localized(@"JX_UsualGift")] : @[Localized(@"JX_MesGift"),Localized(@"JX_UsualGift")]);
     
     
-    NSArray *titles = _isDiamond ? @[@"手气钻石", @"专属钻石", @"口令钻石", @"普通钻石"] : (_isRoom ? @[Localized(@"JX_LuckGift"),Localized(@"JX_MesGift"),@"专属红包"] : @[Localized(@"JX_MesGift"),Localized(@"JX_UsualGift")]);
+    NSArray *titles = _isDiamond ? @[@"手气钻石", @"专属钻石", @"口令钻石"] : (_isRoom ? @[Localized(@"JX_LuckGift"),Localized(@"JX_MesGift"),@"专属红包"] : @[Localized(@"JX_MesGift"),Localized(@"JX_UsualGift")]);
     
-    _vcList = _isDiamond ? @[self.luckyView, self.exclusiveDiamondView, self.orderView, self.nomalView] : (_isRoom ? @[self.luckyView,self.orderView,self.exclusiveView] : @[self.orderView,self.nomalView]);
+    _vcList = _isDiamond ? @[self.luckyView, self.exclusiveDiamondView, self.orderView] : (_isRoom ? @[self.luckyView,self.orderView,self.exclusiveView] : @[self.orderView,self.nomalView]);
     
     if (self.isDiamond) {
 //        _redPacketSwitch = [[WH_SegmentSwitch alloc] initWithFrame:CGRectMake(60, JX_SCREEN_TOP - 8 - 28, 256, 28) titles:titles slideColor:HEXCOLOR(0xED6350)];
-        _redPacketSwitch = [[WH_SegmentSwitch alloc] initWithFrame:CGRectMake((JX_SCREEN_WIDTH - 256)/2, JX_SCREEN_TOP - 8 - 28, 256, 28) titles:titles slideColor:HEXCOLOR(0xED6350)];
+        _redPacketSwitch = [[WH_SegmentSwitch alloc] initWithFrame:CGRectMake((JX_SCREEN_WIDTH - 192)/2, JX_SCREEN_TOP - 8 - 28, 192, 28) titles:titles slideColor:HEXCOLOR(0xED6350)];
         
         
     } else {
@@ -400,6 +400,7 @@
 
 - (void)WH_dismiss_WHVerifyPayVC {
     [self.verVC.view removeFromSuperview];
+    
 }
 
 //服务端返回数据
@@ -411,7 +412,7 @@
         if (g_App.myMoney <= 0) {
             [g_App showAlert:Localized(@"JX_NotEnough") delegate:self tag:2000 onlyConfirm:NO];
         }
-    } else if ([aDownload.action isEqualToString:act_sendRedPacket] || [aDownload.action isEqualToString:wh_act_sendRedPacketV1]) {
+    } else if ([aDownload.action isEqualToString:act_sendRedPacket] || [aDownload.action isEqualToString:wh_act_sendRedPacketV1] || [aDownload.action isEqualToString:act_diamond_send]) {
         NSMutableDictionary * muDict = [NSMutableDictionary dictionaryWithDictionary:dict];
         [muDict setObject:_greetText forKey:@"greet"];
         
@@ -421,6 +422,12 @@
             
             NSString *name = [_selectNames componentsJoinedByString:@","];
             [muDict setObject:name forKey:@"toUserNames"];
+        }
+        
+        if([aDownload.action isEqualToString:act_diamond_send]){
+            [muDict setObject:@(1) forKey:@"isDiamound"];
+        }else{
+            [muDict setObject:@(0) forKey:@"isDiamound"];
         }
         
         [self WH_dismiss_WHVerifyPayVC];  // 销毁支付密码界面
@@ -435,10 +442,11 @@
             }
         }
         [self actionQuit];
-    } else if ([aDownload.action isEqualToString:act_diamond_send]) {
-        NSLog(@"发送钻石成功");
-        [self WH_dismiss_WHVerifyPayVC];
     }
+//    else if ([aDownload.action isEqualToString:act_diamond_send]) {
+//
+//
+//    }
 }
 #pragma mark - 请求失败回调
 -(int) WH_didServerResult_WHFailed:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict{

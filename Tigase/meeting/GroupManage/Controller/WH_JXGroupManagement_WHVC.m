@@ -72,7 +72,7 @@
     iv.frame = CGRectMake(0, membHeight, tView.frame.size.width, HEIGHT);
     membHeight = CGRectGetMaxY(iv.frame);
     // 群红包设置
-    iv = [self WH_createMiXinButton:@"群红包设置" supView:tView drawTop:NO drawBottom:YES must:NO click:@selector(redPacketSetup:)];
+    iv = [self WH_createMiXinButton:self.room.category == 1?@"群钻石设置":@"群红包设置" supView:tView drawTop:NO drawBottom:YES must:NO click:@selector(redPacketSetup:)];
     iv.tag = 100;
     iv.frame = CGRectMake(0, membHeight, tView.frame.size.width, HEIGHT);
     membHeight = CGRectGetMaxY(iv.frame);
@@ -142,7 +142,7 @@
     
     // 长时间未领取红包
     UIView *unclaimedView = [self createBGViewWithOrginY:membHeight height:HEIGHT supView:self.cView];
-    iv = [self WH_createMiXinButton:@"允许群成员使用长时间未领取红包" supView:unclaimedView drawTop:NO drawBottom:NO must:NO click:nil];
+    iv = [self WH_createMiXinButton:self.room.category == 1?@"允许群成员使用长时间未领取钻石红包":@"允许群成员使用长时间未领取红包" supView:unclaimedView drawTop:NO drawBottom:NO must:NO click:nil];
     iv.frame = CGRectMake(0, 0, CGRectGetWidth(unclaimedView.frame), CGRectGetHeight(unclaimedView.frame));
     [self createSwitchWithParent:iv tag:2501 isOn:self.room.showAllValidRedPacket];
     label =[self createLabelWithParent:self.wh_tableBody frameY:CGRectGetMaxY(unclaimedView.frame) + 2 text:@"关闭后，仅群主和管理员可以使用"];
@@ -364,7 +364,7 @@
 - (void)redPacketSetup:(WH_JXImageView *)view {
     WH_JXGroupRedPacketSetupVC *vc = [[WH_JXGroupRedPacketSetupVC alloc] init];
     vc.room = self.room;
-    vc.type = (view.tag == 100) ? 0 : 1;
+    vc.type = self.room.category;
     [g_navigation pushViewController:vc animated:YES];
 }
 #pragma mark 收款账号管理

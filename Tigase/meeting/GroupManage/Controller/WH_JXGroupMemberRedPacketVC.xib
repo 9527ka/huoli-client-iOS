@@ -19,6 +19,7 @@
                 <outlet property="segmentedControl" destination="urd-Jj-VMM" id="NXl-3H-eo7"/>
                 <outlet property="startDateBtn" destination="z0M-30-OAj" id="545-Sh-V56"/>
                 <outlet property="tableView" destination="adP-sg-bGy" id="jln-FF-fFz"/>
+                <outlet property="titleLab" destination="UUq-Qd-GAw" id="SPK-Ak-LJs"/>
                 <outlet property="typeBtn" destination="H7w-DP-mnV" id="3IE-Hj-8tN"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

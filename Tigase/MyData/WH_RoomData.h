@@ -73,7 +73,7 @@
 @property (nonatomic,strong) NSString *expiryTime; //过期时间,单位毫秒
 @property (nonatomic,strong) NSString *quotaUnit; //钻石群单位
 @property (nonatomic,strong) NSString *quota; //群钻石额度
-
+@property (nonatomic,copy) NSString* amount;//群成员的钻石额度
 
 
 

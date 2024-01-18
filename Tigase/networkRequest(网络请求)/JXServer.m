@@ -4593,15 +4593,21 @@
 - (void)sendDiamond:(NSString *)roomJid diamondNumber:(NSString *)diamondNumber count:(NSString *)count type:(NSInteger)type greetings:(NSString *)greetings toUserId:(NSString *)toUserId time:(NSString *)time secret:(NSString *)secret toDelegate:(id)toDelegate {
     WH_JXConnection *p = [self addTask:act_diamond_send param:nil toView:toDelegate];
     [p setPostValue:self.access_token forKey:@"access_token"];
-    [p setPostValue:time forKey:@"time"];
+    
     [p setPostValue:secret forKey:@"secret"];
-    NSDictionary *dic = @{@"count": count, @"greetings": greetings, @"money": diamondNumber, @"roomJid": roomJid, @"toUserIds": toUserId ? toUserId: @""};
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&error];
-    if (!error) {
-        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        [p setPostValue:jsonString forKey:@"packet"];
-    }
+    
+    [p setPostValue:roomJid forKey:@"roomJid"];
+    [p setPostValue:toUserId forKey:@"toUserId"];
+    [p setPostValue:diamondNumber forKey:@"moneyStr"];
+    [p setPostValue:[NSNumber numberWithInteger:type==4?1:type] forKey:@"type"];
+    [p setPostValue:count forKey:@"count"];
+    [p setPostValue:greetings forKey:@"greetings"];
+    [p setPostValue:time forKey:@"time"];
+    
+    
+    
+    
+    
     [p go];
 }
 

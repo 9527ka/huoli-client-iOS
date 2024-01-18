@@ -17,7 +17,8 @@
 }
 @property (nonatomic,strong) NSString* telephone; //!< 加区号
 @property (nonatomic,strong) NSString* phone; //!< 未加区号,暂未存数据库
-
+@property (nonatomic,copy) NSString* amount;//群成员的钻石额度
+@property (nonatomic,copy) NSString* quota;//群的钻石总配额
 @property (nonatomic, strong) NSString *name; //!< 
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, strong) NSString *active; //!<

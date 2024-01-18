@@ -14,6 +14,7 @@
                 <outlet property="nodataImage" destination="H5h-mP-oBM" id="o5J-Ao-M8R"/>
                 <outlet property="nodataLab" destination="tzK-Cf-u7U" id="hDW-TJ-SV3"/>
                 <outlet property="tableView" destination="dy3-7p-BvN" id="GPb-mx-cPq"/>
+                <outlet property="titleLab" destination="4Aq-lh-riM" id="0hM-ML-Xbo"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
