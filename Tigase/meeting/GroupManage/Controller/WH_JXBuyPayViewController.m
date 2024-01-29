@@ -8,6 +8,7 @@
 
 #import "WH_JXBuyPayViewController.h"
 #import "WH_ImageBrowser_WHViewController.h"
+#import "WH_JXOrderDetaileVC.h"
 
 @interface WH_JXBuyPayViewController (){
     ATMHud* _wait;
@@ -178,7 +179,13 @@
     [_wait hide];
    if ([aDownload.action isEqualToString:wh_payment_notify]){
         [g_server showMsg:@"通知成功"];
-       [self performSelector:@selector(popVCAction) withObject:nil afterDelay:1.0];
+       
+       WH_JXOrderDetaileVC *orderVC = [[WH_JXOrderDetaileVC alloc] init];
+       orderVC.dict = dict;
+       orderVC.orderId = [NSString stringWithFormat:@"%@",dict[@"no"]];
+       [g_navigation pushViewController:orderVC animated:YES];
+       
+//       [self performSelector:@selector(popVCAction) withObject:nil afterDelay:1.0];
        
        
     }

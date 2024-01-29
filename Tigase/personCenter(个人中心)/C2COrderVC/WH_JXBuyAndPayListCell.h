@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIView *zfbBgView;
 @property (weak, nonatomic) IBOutlet UIButton *buyBtn;
 @property (weak, nonatomic) IBOutlet UILabel *headTitleLab;
+@property (weak, nonatomic) IBOutlet UILabel *timeLab;
 
 @property (weak, nonatomic) IBOutlet UILabel *protectLab;
 @property(nonatomic,copy)void(^buyBlock)(void);

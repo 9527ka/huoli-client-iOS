@@ -1334,13 +1334,13 @@ static JXXMPP *sharedManager;
     }
 //    BOOL isMultipleLogin = [[g_default objectForKey:kISMultipleLogin] boolValue];
 //    BOOL isMultipleLogin = [g_myself.multipleDevices intValue] > 0 ? YES : NO;
-//    BOOL isMultipleLogin = YES;
+    BOOL isMultipleLogin = YES;
     
     NSString *sameResource = @"/youjob";
     
-//    if (isMultipleLogin) {
-//        sameResource = @"/ios";
-//    }
+    if (isMultipleLogin) {
+        sameResource = @"/ios";
+    }
     NSLog(@"xmpp连接的域名（XMPPHost）和端口号（Port）%@:%ld",g_config.XMPPHost,(long)g_config.XMPPHostPort);
     xmppStream.hostName = g_config.XMPPHost;
     xmppStream.hostPort = g_config.XMPPHostPort;
@@ -2036,7 +2036,7 @@ static JXXMPP *sharedManager;
 
                     BOOL isSysTom = NO;
                     
-                    if([msg.type integerValue] == kRoomRemind_REQUEST_NOTIFICATION || [msg.type integerValue] == kRoomRemind_REQUEST_PAID ||[msg.type integerValue] == kRoomRemind_REQUEST_CONFIRMED ||[msg.type integerValue] == kRoomRemind_REQUEST_CANCELLED ||[msg.type integerValue] == kRoomRemind_REQUEST_REFUND||[msg.type integerValue] == kRoomRemind_REQUEST_COMPLAINING||[msg.type integerValue] == kRoomRemind_REQUEST_COMPLAINING_END || [msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_REFUND ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_PAID ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_CONFIRMED){
+                    if([msg.type integerValue] == kRoomRemind_REQUEST_NOTIFICATION || [msg.type integerValue] == kRoomRemind_REQUEST_PAID ||[msg.type integerValue] == kRoomRemind_REQUEST_CONFIRMED ||[msg.type integerValue] == kRoomRemind_REQUEST_CANCELLED ||[msg.type integerValue] == kRoomRemind_REQUEST_REFUND||[msg.type integerValue] == kRoomRemind_REQUEST_COMPLAINING||[msg.type integerValue] == kRoomRemind_REQUEST_COMPLAINING_END || [msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_REFUND ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_PAID ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_CONFIRMED||[msg.type intValue] == kWCMessageTypeActivePay||[msg.type intValue] == kWCMessageTypeRenewal||[msg.type intValue] == kWCMessageTypeUpgrade){
                         isSysTom = YES;
                     }
 

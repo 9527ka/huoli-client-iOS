@@ -98,7 +98,8 @@
     WH_webpage_WHVC *webVC = [WH_webpage_WHVC alloc];
     webVC.wh_isGotoBack= YES;
     webVC.isSend = YES;
-    webVC.url = [NSString stringWithFormat:@"%@/pages/terms/recharge_term.html",BaseUrl];;
+//    webVC.url = [NSString stringWithFormat:@"%@/pages/terms/recharge_term.html",BaseUrl];
+    webVC.url = @"https://www.huoli68.com/?company/8.html";
     webVC = [webVC init];
     [g_navigation.navigationView addSubview:webVC.view];
 }

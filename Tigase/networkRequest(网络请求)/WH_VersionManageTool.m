@@ -410,7 +410,6 @@
         
         QCloudServiceConfiguration* configuration = [QCloudServiceConfiguration new];
         configuration.appID = g_config.osAppId;
-//        configuration.appID = @"1259280364";
         configuration.signatureProvider = self;
         QCloudCOSXMLEndPoint* endpoint = [[QCloudCOSXMLEndPoint alloc] init];
         endpoint.regionName = g_config.location;//服务地域名称，可用的地域请参考注释
@@ -523,7 +522,7 @@
                   urlRequest:(NSMutableURLRequest*)urlRequst
                    compelete:(QCloudHTTPAuthentationContinueBlock)continueBlock
 {
-    NSString *pubkey = @"-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDg/CxgoI8m6EXa6QJsleT1k+X6Cg2cGC2aS9il05kW7zfIgoIUwqGO6EXlcIWsRFgJQWvxS94vtbbCWqC9Os4SvfazikT8TmyQtCNnfGSqM7eZKql/jR6XAGBEN4OIQOrtb8GdO4PSpi5NhBziaGEGeSC4LmmolFic9Fm6FHYD4wIDAQAB\n-----END PUBLIC KEY-----";
+    NSString *pubkey = @"-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoS/ZPntKeBi4G+l83GnP3+dMlIGR8Iyn/uxwrH7YL2nqBwxTZ1bAPXOHe42rNPmxc42SPsmE6t/tqU5955vrUWwi4Og6bsVMBIQDeo7fZfttUgzzLbl3FR9c7+IjdqM7oH9lTOsGxA07QW+aJPUaEMdBEqIM1v0/5SVnczdBjBU3ht3lUwZc2RHs80qUAvK9qqb9pH5Nqfc3rFJniIQCxFujBkt4xNhw7s1cA/DKUIskEGO0eKiEYUY0B5uOXPRF+iS7e/RTfAx86Lj3rei9HRkxVCMhfQ6MjT5Lxjjs0l0WKVQ4AJZC/N75N9LqOXvRTspq4D2xJj9CaUPbq3lWAwIDAQAB\n-----END PUBLIC KEY-----";
     if (IsStringNull(g_config.accessKeyId)) {
         return;
     }
@@ -562,6 +561,9 @@
         
         // 保存这一次成功的IP
         [g_default setObject:self.apiUrl forKey:kLastApiUrl];
+        
+        [JXServer setConfigonWithDic:dict];
+        
         [g_default synchronize];
     }
     @catch (NSException *exception){

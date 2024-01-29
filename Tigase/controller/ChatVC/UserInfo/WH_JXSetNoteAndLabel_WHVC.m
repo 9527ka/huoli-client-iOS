@@ -55,6 +55,8 @@
 //    _allArray = [NSMutableArray array];
 
     [self customView];
+    
+    self.name.text = self.user.remarkName.length > 0?self.user.remarkName:self.user.userNickname;
 
 }
 

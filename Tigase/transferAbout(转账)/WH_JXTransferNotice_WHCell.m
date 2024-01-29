@@ -119,7 +119,7 @@
     _backLab.text = @"";
     _backTime.text = @"";
     
-    if ([msg.type intValue] == kRoomRemind_REQUEST_NOTIFICATION ||[msg.type intValue] == kRoomRemind_REQUEST_PAID ||[msg.type intValue] == kRoomRemind_REQUEST_CONFIRMED ||[msg.type intValue] == kRoomRemind_REQUEST_CANCELLED ||[msg.type intValue] == kRoomRemind_REQUEST_REFUND ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_REFUND ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_PAID ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_CONFIRMED){
+    if ([msg.type intValue] == kRoomRemind_REQUEST_NOTIFICATION ||[msg.type intValue] == kRoomRemind_REQUEST_PAID ||[msg.type intValue] == kRoomRemind_REQUEST_CONFIRMED ||[msg.type intValue] == kRoomRemind_REQUEST_CANCELLED ||[msg.type intValue] == kRoomRemind_REQUEST_REFUND ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_REFUND ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_PAID ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_CONFIRMED|[msg.type intValue] == kWCMessageTypeActivePay|[msg.type intValue] == kWCMessageTypeRenewal|[msg.type intValue] == kWCMessageTypeUpgrade){
         WH_JXTransferModel *model = (WH_JXTransferModel *)tModel;
         
         _moneyTit.text = @"付款金额";
@@ -152,6 +152,18 @@
         }else if ([msg.type intValue] == 4106){//the merchant paid the seller
             lastContet = @"订单已确认收款";
             _payTit.text = @"交易方";
+        }else if ([msg.type intValue] == kWCMessageTypeActivePay){
+            lastContet = @"钻石群激活";
+            _payTit.text = @"交易方";
+            _noteTit.text = @"交易类型";
+        }else if ([msg.type intValue] == kWCMessageTypeRenewal){
+            lastContet = @"钻石群续费";
+            _payTit.text = @"交易方";
+            _noteTit.text = @"交易类型";
+        }else if ([msg.type intValue] == kWCMessageTypeUpgrade){
+            lastContet = @"钻石群升级";
+            _payTit.text = @"交易方";
+            _noteTit.text = @"交易类型";
         }
        
         
@@ -340,6 +352,12 @@
         string = @"对方已付款";
     }else if ([msg.type intValue] == 4106){//the merchant paid the seller
         string = @"订单已确认收款";
+    }else if ([msg.type intValue] == kWCMessageTypeActivePay){
+        string = @"钻石群激活";
+    }else if ([msg.type intValue] == kWCMessageTypeRenewal){
+        string = @"钻石群续费";
+    }else if ([msg.type intValue] == kWCMessageTypeUpgrade){
+        string = @"钻石群升级";
     }
     return string;
 }

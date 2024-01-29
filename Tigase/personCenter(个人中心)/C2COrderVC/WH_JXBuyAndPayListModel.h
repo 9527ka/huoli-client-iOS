@@ -31,6 +31,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy)NSString *sellCount;//代理商出售或者购买应得金额
 
 @property(nonatomic,strong)NSArray *financialInfos;//代理商收款方式
+@property(nonatomic,copy)NSString *minimalForBuy;//商家向用户购买时的最小值HOTC
+@property(nonatomic,copy)NSString *minimalForSell;//商家向用户出售时的最小值HOTC
+@property(nonatomic,copy)NSString *endHour;//
+@property(nonatomic,copy)NSString *startHour;//
+@property(nonatomic,copy)NSString *maxForBuy;//
+@property(nonatomic,copy)NSString *maxForSell;//
+@property(nonatomic,strong)NSNumber *open;//能不能购买
+@property(nonatomic,strong)NSNumber *flag;//是否营业
+
+
+
 
 
 @end

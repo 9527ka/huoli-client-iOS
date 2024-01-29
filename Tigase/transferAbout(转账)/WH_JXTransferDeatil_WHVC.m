@@ -231,7 +231,7 @@ typedef NS_ENUM(NSInteger, JXTransferDeatilType) {
 //    WH_JXMessageObject *msg = noti.object;
     // 收到收钱消息，获取当前时间并刷新界面
     NSDate* date = [NSDate dateWithTimeIntervalSinceNow:0];
-    NSTimeInterval time=[date timeIntervalSince1970];
+    NSTimeInterval time=[date timeIntervalSince1970] *1000;
     NSString*timeString = [NSString stringWithFormat:@"%0.f", time];
     self.model.receiptTime = [self getTime:timeString];
     self.type = JXTransferDeatilTypeComplete;
@@ -275,7 +275,13 @@ typedef NS_ENUM(NSInteger, JXTransferDeatilType) {
         [self updateViews];
     }
     if([aDownload.action isEqualToString:wh_act_receiveTransfer]){
-        self.model.receiptTime = [self getTime:dict[@"time"]];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+
+        NSString *dateTime = [formatter stringFromDate:[NSDate date]];
+        
+        self.model.receiptTime = dateTime;
+//        [self getTime:dict[@"time"]];
         
         self.wh_msg.fileSize = [NSNumber numberWithInt:2];
         [self.wh_msg updateReceivedYourTransferState:self.wh_msg.messageId];

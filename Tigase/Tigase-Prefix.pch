@@ -16,7 +16,7 @@
 #define APP_Startup_ShowAdvertisingView 1 //是否显示启动图广告页 0:不显示 1:显示  打企业包改为0
 #define PrivacySetting_ShowOnlyTwoCell 1 //隐私设置是否只显示两行 0:显示多行 1:仅显示两行 上线包默认为显示两行
 #define IS_OPEN_LOGREPORT 1 //0:关闭异常上报,  1是开启异常上报(正常出包关闭,有需要的开启)
-#define BUGLY_APPID @"4b6b3cfb81"//腾讯bugly相关(登录bugly创建项目获取相关id)
+#define BUGLY_APPID @"82b58a4c86"//腾讯bugly相关(登录bugly创建项目获取相关id)
 #define BMK_AK @"kM3fZeP14oRXX3mc8h0XiWkHlIvYeFay"//bundleId对应百度地图key (如果提供了百度地图账号则需要配置,否则不需)
 #define MXWechatAPPSecret   @"36ec63c1b30cd0a7318e3ced01eb573b"
 #define MXWechatAPPID   @"wx07b4bda756db1f4f"

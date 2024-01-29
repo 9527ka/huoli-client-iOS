@@ -70,6 +70,7 @@
 @property (nonatomic,strong) NSString * friendCount;
 @property (nonatomic,strong) NSString* areaCode;
 @property (nonatomic,strong) NSNumber* isBeenBlack;//!< 是否被拉黑
+@property (nonatomic,strong) NSNumber* merchant;//是否是代理商
 @property (nonatomic,strong) NSString* myInviteCode;  //!<  多人邀请码
 @property (nonatomic, copy) NSString *account;  //!< 即时通讯号
 @property (nonatomic, copy) NSString *setAccountCount;  //!< 即时通讯号已修改次数

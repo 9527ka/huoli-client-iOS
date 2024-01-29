@@ -51,12 +51,12 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="金额" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XYI-el-sxn">
-                        <rect key="frame" x="204" y="11" width="106" height="21"/>
+                        <rect key="frame" x="178" y="11" width="106" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="Bse-JV-TdU"/>
                             <constraint firstAttribute="width" constant="106" id="wYT-ko-3am"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <color key="textColor" red="0.22745098039215686" green="0.25098039215686274" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -81,26 +81,31 @@
                             <constraint firstAttribute="width" constant="20" id="qOE-gc-8Nw"/>
                         </constraints>
                     </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unit_icon" translatesAutoresizingMaskIntoConstraints="NO" id="aFy-oo-0dg">
+                        <rect key="frame" x="286.5" y="12" width="23.5" height="8"/>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="8se-2A-MjZ" firstAttribute="trailing" secondItem="XYI-el-sxn" secondAttribute="trailing" id="3Jr-mu-esI"/>
                     <constraint firstItem="Lj6-o8-Rem" firstAttribute="top" secondItem="XYI-el-sxn" secondAttribute="bottom" constant="4" id="9hg-xt-qEh"/>
                     <constraint firstItem="jXu-6Y-egq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="Dk4-4N-OLB"/>
                     <constraint firstAttribute="trailing" secondItem="2wf-6g-0wK" secondAttribute="trailing" id="Ijq-6I-43w"/>
                     <constraint firstItem="RDj-7T-IYG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="KhI-fz-Lt3"/>
                     <constraint firstAttribute="bottomMargin" secondItem="2wf-6g-0wK" secondAttribute="bottom" constant="-8" id="OQR-Ze-fRx"/>
+                    <constraint firstItem="aFy-oo-0dg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="PXz-bo-vsr"/>
                     <constraint firstItem="n67-GN-BDt" firstAttribute="top" secondItem="RDj-7T-IYG" secondAttribute="bottom" constant="4" id="UWI-N6-oLG"/>
                     <constraint firstItem="dj9-01-Elc" firstAttribute="centerY" secondItem="Lj6-o8-Rem" secondAttribute="centerY" id="WCY-Yk-QQP"/>
                     <constraint firstItem="jXu-6Y-egq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="ZIu-zA-5gr"/>
+                    <constraint firstAttribute="trailing" secondItem="8se-2A-MjZ" secondAttribute="trailing" constant="10" id="alI-rK-RIS"/>
                     <constraint firstItem="2wf-6g-0wK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="dDk-Ci-SXC"/>
                     <constraint firstItem="2wf-6g-0wK" firstAttribute="top" secondItem="jXu-6Y-egq" secondAttribute="bottom" constant="12" id="e5t-Oz-8Ya"/>
                     <constraint firstItem="2wf-6g-0wK" firstAttribute="top" secondItem="8se-2A-MjZ" secondAttribute="bottom" id="lEx-oa-Fys"/>
                     <constraint firstItem="n67-GN-BDt" firstAttribute="leading" secondItem="jXu-6Y-egq" secondAttribute="trailing" constant="12" id="oVL-MI-xXC"/>
                     <constraint firstItem="Lj6-o8-Rem" firstAttribute="leading" secondItem="dj9-01-Elc" secondAttribute="trailing" constant="4" id="qKN-Rl-2IB"/>
+                    <constraint firstItem="8se-2A-MjZ" firstAttribute="trailing" secondItem="Lj6-o8-Rem" secondAttribute="trailing" id="sv3-fh-TlS"/>
                     <constraint firstItem="RDj-7T-IYG" firstAttribute="leading" secondItem="jXu-6Y-egq" secondAttribute="trailing" constant="12" id="tRz-yF-Cho"/>
-                    <constraint firstAttribute="trailing" secondItem="XYI-el-sxn" secondAttribute="trailing" constant="10" id="uxB-OV-wwu"/>
+                    <constraint firstAttribute="trailing" secondItem="XYI-el-sxn" secondAttribute="trailing" constant="36" id="uxB-OV-wwu"/>
                     <constraint firstItem="XYI-el-sxn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="vMc-wp-bze"/>
-                    <constraint firstItem="Lj6-o8-Rem" firstAttribute="trailing" secondItem="XYI-el-sxn" secondAttribute="trailing" id="zUK-Em-qa7"/>
+                    <constraint firstAttribute="trailing" secondItem="aFy-oo-0dg" secondAttribute="trailing" constant="10" id="xUl-EC-yza"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
@@ -114,8 +119,10 @@
                 <outlet property="contentLab" destination="8se-2A-MjZ" id="bAM-IZ-Qxz"/>
                 <outlet property="headImageWidthCon" destination="R9Z-DC-X2I" id="xAD-CT-QS4"/>
                 <outlet property="headerImage" destination="jXu-6Y-egq" id="NEg-Fl-IpE"/>
+                <outlet property="hotImage" destination="aFy-oo-0dg" id="g9s-tB-8dW"/>
                 <outlet property="kingImgV" destination="dj9-01-Elc" id="n01-5M-Kq1"/>
                 <outlet property="moneyLabel" destination="XYI-el-sxn" id="aTN-oT-rGN"/>
+                <outlet property="moneyRightConstaint" destination="uxB-OV-wwu" id="Sur-Mw-QcZ"/>
                 <outlet property="nameLabel" destination="RDj-7T-IYG" id="A5O-K6-QT0"/>
                 <outlet property="timeLabel" destination="n67-GN-BDt" id="3CG-In-aZb"/>
             </connections>
@@ -124,5 +131,6 @@
     </objects>
     <resources>
         <image name="WH_redPacket_no1" width="16" height="16"/>
+        <image name="unit_icon" width="23.666666030883789" height="8"/>
     </resources>
 </document>

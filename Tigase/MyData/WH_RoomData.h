@@ -68,11 +68,15 @@
 
 @property(nonatomic,assign) double longitude;
 @property(nonatomic,assign) double latitude;
+@property (nonatomic ,assign) NSInteger level ;//群等级
+
 @property(nonatomic,strong) NSMutableArray* members;    //房间成员列表
 
-@property (nonatomic,strong) NSString *expiryTime; //过期时间,单位毫秒
-@property (nonatomic,strong) NSString *quotaUnit; //钻石群单位
-@property (nonatomic,strong) NSString *quota; //群钻石额度
+@property (nonatomic,copy) NSString *expiryTime; //过期时间,单位毫秒
+@property (nonatomic,copy) NSString *currentTime;
+
+@property (nonatomic,copy) NSString *quotaUnit; //钻石群单位
+@property (nonatomic,copy) NSString *quota; //群钻石额度
 @property (nonatomic,copy) NSString* amount;//群成员的钻石额度
 
 
@@ -108,7 +112,7 @@
 
 @property(nonatomic,assign) long userId;//成员id
 @property(nonatomic,strong) NSString* userNickName;//成员昵称
-
+@property(nonatomic,strong) NSString* nickname;
 @property (nonatomic, strong) NSString * roomId;
 //@property (nonatomic, strong) NSString * userId;
 @property (nonatomic, strong) NSString * userName;
@@ -125,6 +129,11 @@
 @property (nonatomic ,strong) NSNumber *isAddFirend;//是否允许添加好友
 
 @property (nonatomic ,assign) BOOL isSelect;
+
+@property (nonatomic,copy) NSString *amount;//群成员的钻石额度
+
+@property (nonatomic,copy) NSString *delays;// 延迟抢红包的时间,
+
 
 //@property (nonatomic ,strong) NSDictionary *user;
 

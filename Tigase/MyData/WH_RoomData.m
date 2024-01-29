@@ -27,6 +27,7 @@
 
 @synthesize longitude;
 @synthesize latitude;
+@synthesize level;
 
 @synthesize category;
 @synthesize maxCount;
@@ -259,6 +260,8 @@
     self.redPackageBanList = [NSString stringWithFormat:@"%@",[dict objectForKey:@"redPackageBanList"]];
     
     self.expiryTime = [dict objectForKey:@"expiryTime"];
+    self.currentTime = [dict objectForKey:@"currentTime"];
+    
     self.quotaUnit = [dict objectForKey:@"quotaUnit"];
     self.quota = [dict objectForKey:@"quota"];
     self.amount = [[dict objectForKey:@"member"] objectForKey:@"amount"];
@@ -272,6 +275,8 @@
     
     self.longitude = [[dict objectForKey:@"longitude"] longValue];
     self.latitude = [[dict objectForKey:@"latitude"] longValue];
+    
+    self.level = [[dict objectForKey:@"level"] longValue];
 
     self.name = [dict objectForKey:@"name"];
     self.desc = [dict objectForKey:@"desc"];
@@ -463,6 +468,7 @@
     self.offlineTime = [[dict objectForKey:@"offlineTime"] integerValue];
 
     self.isAddFirend = [NSNumber numberWithInteger:[[dict objectForKey:@"isAddFirend"] integerValue]];
+    self.amount = [dict objectForKey:@"amount"];
     
 //    self.roomId;
 //    self.userId;
@@ -648,7 +654,7 @@
         mem.active = [[rs objectForColumnName:@"active"] longLongValue];
         mem.offlineTime = [[rs objectForColumnName:@"offlineTime"] integerValue];
         mem.onLineState = [rs objectForColumnName:@"onLineState"];
-
+        mem.amount = [rs objectForColumnName:@"amount"];
         mem.offlineTime = [[rs objectForKeyedSubscript:@"offlineTime"] integerValue];
 
         mem.isAddFirend = [rs objectForColumnName:@"isAddFirend"];

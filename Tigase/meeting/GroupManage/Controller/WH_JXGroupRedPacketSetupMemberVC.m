@@ -9,6 +9,7 @@
 #import "WH_JXGroupRedPacketSetupMemberVC.h"
 #import "WH_JXGroupRedPacketSetupMemberCell.h"
 #import "BMChineseSort.h"
+#import "WH_UserRedData.h"
 
 @interface WH_JXGroupRedPacketSetupMemberVC () <UITableViewDataSource, UITableViewDelegate,UITextFieldDelegate>{
     ATMHud* _wait;
@@ -30,7 +31,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _wait = [ATMHud sharedInstance];
-    self.titleLabel.text = (self.direction == 0) ? @"谁不可以抢" : @"谁不可以发";
+    self.titleLabel.text = (self.direction == 0) ? @"禁抢列表" : @"谁不可以发";
+    if(self.direction == 2){
+        self.titleLabel.text = @"设置快抢成员";
+    }
     
     self.textField.backgroundColor = g_factory.inputBackgroundColor;
     self.textField.layer.cornerRadius = 17;
@@ -54,20 +58,32 @@
 }
 
 - (IBAction)didTapConfirm {
-    //拼接字符串
-    NSString *redPackageBanList = @"";
-    for (memberData *dataUser in self.orignMemberData) {
-        if(dataUser.isSelect){
-            if(redPackageBanList.length > 0){
-                redPackageBanList = [redPackageBanList stringByAppendingFormat:@",%ld",dataUser.userId];
-            }else{
-                redPackageBanList = [NSString stringWithFormat:@"%ld",dataUser.userId];
+    if(self.direction == 2){//秒抢红包
+        [self.selectArray removeAllObjects];
+        NSString *memberIds = @"";
+        for (memberData *dataUser in self.allMemberData) {//总人数
+            if(dataUser.isSelect){
+                [self.selectArray addObject:dataUser];
+                memberIds = [NSString stringWithFormat:@"%@%@%ld",memberIds,memberIds.length > 0?@",":@"",dataUser.userId];
             }
         }
-    }    
-    self.room.redPackageBanList = redPackageBanList;
-    
-    [g_server updateRoom:self.room key:@"redPackageBanList" value:redPackageBanList toView:self];
+        [g_server WH_shortcutAddWithRoomJId:self.room.roomJid memberIds:memberIds toView:self];
+    }else{
+        //拼接字符串
+        NSString *redPackageBanList = @"";
+        for (memberData *dataUser in self.orignMemberData) {
+            if(dataUser.isSelect){
+                if(redPackageBanList.length > 0){
+                    redPackageBanList = [redPackageBanList stringByAppendingFormat:@",%ld",dataUser.userId];
+                }else{
+                    redPackageBanList = [NSString stringWithFormat:@"%ld",dataUser.userId];
+                }
+            }
+        }
+        self.room.redPackageBanList = redPackageBanList;
+        
+        [g_server updateRoom:self.room key:@"redPackageBanList" value:redPackageBanList toView:self];
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -118,6 +134,8 @@
     }else{
         self.allMemberData = self.orignMemberData;
     }
+    //判断有没有选中的
+    [self selectArrayAction];
     
     //选择拼音 转换的 方法
     BMChineseSortSetting.share.sortMode = 2; // 1或2
@@ -129,6 +147,24 @@
             [self.tableView reloadData];
         }
     }];
+    
+    
+}
+-(void)selectArrayAction{
+    
+    if(self.direction == 2){
+        NSMutableArray *list = [NSMutableArray arrayWithArray:self.allMemberData];
+        for (memberData *dataUser in self.allMemberData) {//总人数
+            dataUser.isSelect = NO;
+            for (WH_UserRedData *user in self.selectArray) {
+                if(user.userId.intValue == dataUser.userId){
+//                    dataUser.isSelect = YES;
+                    [list removeObject:dataUser];
+                }
+            }
+        }
+        self.allMemberData = list;
+    }
 }
 
 #pragma mark -- UITableViewDataSource, UITableViewDelegate

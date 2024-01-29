@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *headImageWidthCon;
 @property (strong, nonatomic) IBOutlet UIImageView *kingImgV;
 @property (strong, nonatomic) IBOutlet UILabel *bestLab;
+@property (weak, nonatomic) IBOutlet UIImageView *hotImage;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *moneyRightConstaint;
 
 
 - (void)sp_checkNetWorking;

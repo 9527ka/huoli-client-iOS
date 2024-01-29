@@ -11,6 +11,7 @@
 #import "ImageResize.h"
 #import "WH_JXCamera_WHVC.h"
 #import "WH_SetGroupHeads_WHView.h"
+#import "OBSHanderTool.h"
 
 #import "UIView+WH_CustomAlertView.h"
 
@@ -77,8 +78,24 @@
     //保存图片到本地
     NSString* file = [FileInfo getUUIDFileName:@"jpg"];
     [g_server WH_saveImageToFileWithImage:self.image file:file isOriginal:NO];
+    
+    [OBSHanderTool handleUploadFile:file validTime:@"-1" messageId:@"" toView:self success:^(int code, NSString * _Nonnull fileUrl, NSString * _Nonnull fileName) {
+        if (code == 1) {
+            //回到主线程
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // 需要在主线程执行的代码
+                NSString *sourceAmount = [NSString stringWithFormat:@"%.2f",self.amount.doubleValue/g_App.rate.doubleValue];
+                
+                [g_server WH_RechargeWithAmount:self.amount picUrl:fileUrl context:self.context sourceAmount:sourceAmount toView:self];
+            });
+            
+        }
+    } failed:^(NSError * _Nonnull error) {
+
+    }];
+    
     //上传图片
-    [g_server uploadFile:file validTime:@"-1" messageId:nil toView:self];
+//    [g_server uploadFile:file validTime:@"-1" messageId:nil toView:self];
     
 }
 #pragma mark - 请求成功回调

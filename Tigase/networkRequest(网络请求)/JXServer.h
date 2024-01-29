@@ -35,12 +35,12 @@
 #define WH_hide_error 0
 
 
-//#define BaseUrl @"http://192.168.1.88:8092"   //开发环境
+#define BaseUrl @"http://192.168.1.88:8092"   //开发环境
 //#define BaseUrl @"http://195.54.171.69:8092"   //测试环境
 //#define BaseUrl @"http://47.122.20.170:8092"   //测试环境
 //#define BaseUrl @"http://8.217.169.145:8092"   //
 //#define BaseUrl @"http://www.huoli68.com/im/"   //
-#define BaseUrl @"http://im.huoli68.com/im/"   //
+//#define BaseUrl @"http://im.huoli68.com/im/"   //
 
 
 
@@ -111,6 +111,7 @@
 #define wh_act_SendSMS @"basic/randcode/sendSms"
 //获取配置信息
 #define wh_act_Config @"config"
+
 //删除朋友
 #define wh_act_FriendDel @"friends/delete"
 //加关注
@@ -414,7 +415,8 @@
 
 
 //钻石相关
-#define act_diamond_allocation @"CustomerService/diamondRedPacket/assignDiamond"//修改成员钻石数量
+#define act_diamond_decrease @"v/balance/decrease"//减少成员钻石数量
+#define act_diamond_increase @"v/balance/increase"//增加成员钻石数量
 #define act_diamond_send @"v/redPacket/sendRedPacket/v1"//发送钻石
 #define wh_receiv_RedList @"room/query_group_valid_red_packet"    //长时间未领取的红包列表
 #define wh_rememBer_inList @"room/query_group_in_log"    //群成员进群列表
@@ -442,6 +444,20 @@
 #define wh_user_account @"user/account/get"    //个人收款账号
 #define wh_orderApple_cancle_complain @"compliant/cancel/"    //撤销申诉
 #define wh_eventlog_latest @"eventlog/query/latest"    //跑马灯数据接口
+#define wh_merchant_apply @"merchant/apply"    //申请成为代理商接口
+#define wh_member_special @"room/member/list/special"    //群钻石成员列表,按钻石数量排序
+#define wh_room_active @"v/room/active"    //激活钻石群接口
+#define wh_room_renewal @"v/room/renewal"    //钻石群升级或续费接口
+#define wh_room_leveList @"v/room/level_list"    //查询群组可选的级别
+#define wh_merchant_get @"merchant/get"    //商户信息
+#define wh_merchant_update @"merchant/update"    //商户信息更改
+#define wh_shortcut_grab @"room/shortcut/grab/list"    //查询秒抢红包成员列表
+#define wh_shortcut_add @"room/shortcut/add"    //群员秒抢红包设置接口
+#define wh_shortcut_update @"room/shortcut/update"    //更新秒抢配置
+#define wh_shortcut_delete @"room/shortcut/delete"    //删除秒抢红包成员
+
+
+
 
 
 
@@ -465,7 +481,13 @@
     ATMHud* _hud;
 }
 @property (nonatomic, strong) WH_VersionManageTool *config;
+
 + (instancetype)sharedServer;
+
+/// *缓存配置项
+/// @param dic 数据字典
++(void)setConfigonWithDic:(NSDictionary *)dic;
++(NSDictionary *)receiveConfigon;
 
 //签到详情
 - (void)requestSignInDetailsWithRoomId:(NSString *)roomId toView:(id)toView;
@@ -799,7 +821,7 @@
 //发红包(新版)
 - (void)WH_sendRedPacketV1WithMoneyNum:(double)money type:(int)type count:(int)count greetings:(NSString *)greet roomJid:(NSString*)roomJid toUserId:(NSString *)toUserId time:(long)time secret:(NSString *)secret toView:(id)toView;
 //指定联系人发红包
-- (void)WH_sendRedPacketV1WithMoneyNum:(double)money type:(int)type count:(int)count greetings:(NSString *)greet roomJid:(NSString*)roomJid toUserId:(NSString *)toUserId toUserIds:(NSString *)toUserIds time:(long)time secret:(NSString *)secret toView:(id)toView;
+- (void)WH_sendRedPacketV1WithMoneyNum:(double)money type:(int)type count:(int)count greetings:(NSString *)greet roomJid:(NSString*)roomJid toUserId:(NSString *)toUserId toUserIds:(NSString *)toUserIds time:(long)time secret:(NSString *)secret isDiamound:(BOOL)isDiamound toView:(id)toView;
 
 //获取红包信息
 - (void)WH_getRedPacketWithMsg:(NSString *)redPacketId toView:(id)toView;
@@ -1234,7 +1256,7 @@
 - (void)roomSignInGroupWithUserId:(NSString *)uId fraction:(NSString *)fraction roomId:(NSString *)roomId type:(NSString *)type toView:(id)toView;
 
 #pragma mark -- 分配群成员钻石数量
-- (void)allocationGroupMemberDiamondNumber:(NSString *)roomId memberId:(long)memberId diamondNumber:(NSString *)diamondNumber time:(NSString *)time toDelegate:(id)toDelegate;
+- (void)allocationGroupMemberDiamondNumber:(NSString *)roomId memberId:(long)memberId diamondNumber:(NSString *)diamondNumber time:(NSString *)time type:(NSInteger)type secret:(NSString *)secret toDelegate:(id)toDelegate;
 #pragma mark -- 发送钻石
 - (void)sendDiamond:(NSString *)roomJid diamondNumber:(NSString *)diamondNumber count:(NSString *)count type:(NSInteger)type greetings:(NSString *)greetings toUserId:(NSString *)toUserId time:(NSString *)time secret:(NSString *)secret toDelegate:(id)toDelegate;
 
@@ -1303,16 +1325,25 @@
 -(void)WH_orderAppealCancleWithId:(NSString *)orderId toView:(id)toView;
 #pragma mark -- 查询跑马灯数据
 -(void)WH_eventlogLatestWithCount:(NSInteger)count toView:(id)toView;
+#pragma mark --代理商入住
+-(void)WH_AgentAddWithName:(NSString *)name telNumber:(NSString *)telNumber carId:(NSString *)carId foreside:(NSString *)foreside backside:(NSString *)backside withHuman:(NSString *)withHuman toView:(id)toView;
 
-
-
-
-
-
-
-
-
-
+#pragma mark --群钻石成员列表,按钻石数量排序
+-(void)WH_MemberSpecial:(NSString *)nickname roomId:(NSString *)roomId toView:(id)toView;
+#pragma mark --钻石群升级或续费接口
+-(void)WH_RoomRenewalWithRoomJid:(NSString *)roomJid amount:(NSString *)amount secret:(NSString *)secret level:(NSString *)level time:(NSString *)time isActive:(BOOL)isActive toView:(id)toView;
+#pragma mark --查询群组可选的级别
+-(void)WH_Roomlevel_listWithRoomJid:(NSString *)roomJid toView:(id)toView;
+#pragma mark -- 查询个人收款码信息
+-(void)WH_MerchantGet:(id)toView;
+#pragma mark -- 商户配置信息更改
+-(void)WH_MerchantUpdateWithStartHour:(NSString *)startHour endHour:(NSString *)endHour amount:(NSString *)amount flag:(BOOL)flag name:(NSString *)name toView:(id)toView;
+#pragma mark -- 查询秒抢红包成员列表
+-(void)WH_HortcutGrabListWithRoomJId:(NSString *)roomJId toView:(id)toView;
+#pragma mark -- 群员秒抢红包成员接口
+-(void)WH_shortcutAddWithRoomJId:(NSString *)roomJId memberIds:(NSString *)memberIds toView:(id)toView;
+#pragma mark -- 群员秒抢红包成员更新接口
+-(void)WH_shortcutUpdatWithRoomJId:(NSString *)roomJId memberId:(NSString *)memberId delay:(NSString *)delay isDelete:(BOOL)isDelete toView:(id)toView;
 
 
 

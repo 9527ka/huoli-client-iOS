@@ -390,7 +390,10 @@
 }
 
 -(void)hasLoginOther:(NSNotification *)notifcation{
+    
     [g_App showAlert:Localized(@"JXXMPP_Other") delegate:self tag:10002 onlyConfirm:YES];
+    //多端登录
+    
 }
 
 

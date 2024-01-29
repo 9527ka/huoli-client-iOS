@@ -8,37 +8,54 @@
 
 #import "WH_JXGroupDiamondVC.h"
 #import "WH_JXGroupDiamondCell.h"
+#import "WH_JXVerifyPay_WHVC.h"
+#import "BindTelephoneChecker.h"
 
 @interface WH_JXGroupDiamondVC () <UITextFieldDelegate, WH_JXGroupDiamondCell_Delegate>
 
 @property (nonatomic, strong) NSMutableArray *dataSource;
-@property (nonatomic, strong) NSMutableArray *searchArray;
+//@property (nonatomic, strong) NSMutableArray *searchArray;
 @property (nonatomic, strong) UILabel *totalNumberLabel;
 @property (nonatomic, strong) UITextField *seekTextField;
+@property (nonatomic, strong) WH_JXVerifyPay_WHVC * verVC;
 
+@property (nonatomic, strong)memberData *currentMember;
+@property (nonatomic, copy)NSString *diamoundCount;
+@property (nonatomic, assign)NSInteger type;
+
+@property (nonatomic, strong)UIImageView *noDataImage;//icon_not_found
+@property (nonatomic, strong)UILabel *noDataLab;
 @end
 
 @implementation WH_JXGroupDiamondVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.wh_heightHeader = JX_SCREEN_TOP;
     self.wh_heightFooter = 0;
     self.wh_isGotoBack   = YES;
     [self WH_createHeadAndFoot];
     
-    self.dataSource = (NSMutableArray *)[memberData fetchAllMembers:self.room.roomId sortByName:NO];
-    self.searchArray = [NSMutableArray array];
+//    self.dataSource = (NSMutableArray *)[memberData fetchAllMembers:self.room.roomId sortByName:NO];
+    
+//    self.searchArray = [NSMutableArray array];
     
     [self.tableView setBackgroundColor:g_factory.globalBgColor];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
     [self.tableView registerNib:[UINib nibWithNibName:@"WH_JXGroupDiamondCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WH_JXGroupDiamondCell"];
     
     [self customSearchTextField];
+    
+    [self WH_getServerData];
+}
+//数据请求
+-(void)WH_getServerData{
+    [self.view endEditing:YES];
+    [g_server WH_MemberSpecial:self.seekTextField.text roomId:self.room.roomId toView:self];
 }
 
 - (void)customSearchTextField {
+    
     //搜索输入框
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP, JX_SCREEN_WIDTH, 81)];
     backView.backgroundColor = HEXCOLOR(0xffffff);
@@ -47,7 +64,7 @@
     self.totalNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 8, JX_SCREEN_WIDTH - 30, 25)];
     self.totalNumberLabel.font = [UIFont systemFontOfSize:16];
     self.totalNumberLabel.textColor = [UIColor blackColor];
-    self.totalNumberLabel.text = @"群内总钻石:3000";
+    self.totalNumberLabel.text = [NSString stringWithFormat:@"群内总钻石:%@",self.room.quota];
     [backView addSubview:self.totalNumberLabel];
     
     _seekTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 41, backView.frame.size.width - 20, 30)];
@@ -77,13 +94,75 @@
     _seekTextField.delegate = self;
     _seekTextField.returnKeyType = UIReturnKeyGoogle;
     [backView addSubview:_seekTextField];
-    [_seekTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+//    [_seekTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     self.tableView.tableHeaderView = backView;
+    
+    
+    
+    _noDataImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_not_found"]];
+    _noDataImage.frame = CGRectMake((JX_SCREEN_WIDTH - 120)/2, (JX_SCREEN_HEIGHT - 120)/2 - 80, 120, 120);
+    self.noDataImage.hidden = YES;
+    [self.tableView addSubview:self.noDataImage];
+    
+    _noDataLab = [[UILabel alloc] initWithFrame:CGRectMake((JX_SCREEN_WIDTH - 120)/2, (JX_SCREEN_HEIGHT - 120)/2 + 48, 120, 20)];
+    _noDataLab.text = @"暂无数据";
+    _noDataLab.textAlignment = NSTextAlignmentCenter;
+    _noDataLab.textColor = [UIColor systemGray2Color];
+    _noDataLab.hidden = YES;
+    [self.tableView addSubview:self.noDataLab];
 }
 
-- (void)allocationDiamond:(memberData *)data number:(NSString *)number {
+- (void)allocationDiamond:(memberData *)data number:(NSString *)number type:(NSInteger)type{
+    
+    self.currentMember = data;
+    self.type = type;
+    self.diamoundCount = number;
+    
+    //输入密码
+    g_myself.isPayPassword = [g_default objectForKey:PayPasswordKey];
+    if ([g_myself.isPayPassword boolValue]) {
+        self.verVC = [WH_JXVerifyPay_WHVC alloc];
+        self.verVC.type = JXVerifyTypeSendDiamond;
+        self.verVC.wh_RMB = number;
+        self.verVC.delegate = self;
+        self.verVC.didDismissVC = @selector(WH_dismiss_WHVerifyPayVC);
+        self.verVC.didVerifyPay = @selector(WH_didVerifyPay:);
+        self.verVC = [self.verVC init];
+        
+        [self.view addSubview:self.verVC.view];
+    } else {
+        [BindTelephoneChecker checkBindPhoneWithViewController:self entertype:JXEnterTypeSendRedPacket];
+    }
+    
+}
+- (void)WH_didVerifyPay:(NSString *)sender{
+    
     long time = (long)[[NSDate date] timeIntervalSince1970] + (g_server.timeDifference / 1000);
-    [g_server allocationGroupMemberDiamondNumber:self.room.roomId memberId:data.userId diamondNumber:number time:[NSString stringWithFormat:@"%ld", time] toDelegate:self];
+    
+    NSString *secret = [self getSecretWithText:sender time:time];
+    
+    [g_server allocationGroupMemberDiamondNumber:self.room.roomJid memberId:self.currentMember.userId diamondNumber:self.diamoundCount time:[NSString stringWithFormat:@"%ld", time] type:self.type secret:secret toDelegate:self];
+}
+- (NSString *)getSecretWithText:(NSString *)text time:(long)time {
+    NSMutableString *str1 = [NSMutableString string];
+    [str1 appendString:APIKEY];
+    [str1 appendString:[NSString stringWithFormat:@"%ld",time]];
+    [str1 appendString:[NSString stringWithFormat:@"%@",[NSNumber numberWithDouble:[self.diamoundCount doubleValue]]]];
+    str1 = [[g_server WH_getMD5StringWithStr:str1] mutableCopy];
+    
+    [str1 appendString:g_myself.userId];
+    [str1 appendString:g_server.access_token];
+    NSMutableString *str2 = [NSMutableString string];
+    str2 = [[g_server WH_getMD5StringWithStr:text] mutableCopy];
+    [str1 appendString:str2];
+    str1 = [[g_server WH_getMD5StringWithStr:str1] mutableCopy];
+    
+    return [str1 copy];
+
+}
+
+- (void)WH_dismiss_WHVerifyPayVC {
+    [self.verVC.view removeFromSuperview];
 }
 
 // MARK: -- UITableViewDataSource, UITableViewDelegate
@@ -101,11 +180,18 @@
     cell.tag = indexPath.row;
     
     memberData *data = (memberData *)(self.dataSource[indexPath.row]);
-    [g_server WH_getHeadImageSmallWIthUserId:[NSString stringWithFormat:@"%ld", data.userId] userName:data.userNickName imageView:cell.avatarImage];
+    [g_server WH_getHeadImageSmallWIthUserId:[NSString stringWithFormat:@"%ld", data.userId] userName:data.nickname imageView:cell.avatarImage];
+    
+    cell.diamondLabel.text = [NSString stringWithFormat:@"%ld",(long)data.amount.integerValue];
+    
+    if(data.userId == MY_USER_ID.integerValue){
+        self.room.amount = data.amount;
+    }
     
     WH_JXUserObject *user = [[WH_JXUserObject alloc] init];
     user = [user getUserById:[NSString stringWithFormat:@"%ld",data.userId]];
-    cell.nicknameLabel.text = data.lordRemarkName.length > 0 ? data.lordRemarkName : user.remarkName.length > 0  ? user.remarkName : data.userNickName;
+//    cell.nicknameLabel.text = data.lordRemarkName.length > 0 ? data.lordRemarkName : user.remarkName.length > 0  ? user.remarkName : data.userNickName;
+    cell.nicknameLabel.text = data.nickname;
     if (indexPath.row < 3) {
         cell.medalIcon.hidden = NO;
         cell.medalIcon.image = [UIImage imageNamed:@[@"gold_medal", @"silver_medal", @"bronze_medal"][indexPath.row]];
@@ -122,57 +208,99 @@
     memberData *data = (memberData *)(self.dataSource[row]);
     WH_JXUserObject *user = [[WH_JXUserObject alloc] init];
     user = [user getUserById:[NSString stringWithFormat:@"%ld",data.userId]];
-    NSString *nickname = data.lordRemarkName.length > 0 ? data.lordRemarkName : user.remarkName.length > 0  ? user.remarkName : data.userNickName;
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"%@钻石数量", (type == 1) ? @"增加" : @"减少"] message:[NSString stringWithFormat:@"成员:%@,当前数量:1000", nickname] preferredStyle:UIAlertControllerStyleAlert];
+//    NSString *nickname = data.lordRemarkName.length > 0 ? data.lordRemarkName : user.remarkName.length > 0  ? user.remarkName : data.userNickName;
+    
+    NSString *nickname = data.nickname;
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"%@钻石数量", (type == 1) ? @"增加" : @"减少"] message:[NSString stringWithFormat:@"成员:%@,当前数量:%ld", nickname,data.amount.integerValue] preferredStyle:UIAlertControllerStyleAlert];
     [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         [textField setPlaceholder:@"请输入修改数量"];
-        [textField setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
+        [textField setKeyboardType:UIKeyboardTypeDecimalPad];
     }];
     [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         
     }]];
     [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        if (alert.textFields.firstObject.text.doubleValue == 0) {
+        if (alert.textFields.firstObject.text.doubleValue <= 0) {
             [g_server showMsg:@"请输入正确的数量"];
         } else {
-            [self allocationDiamond:data number:[NSString stringWithFormat:@"%s%@", ((type == 1) ? "" : "-"), alert.textFields.firstObject.text]];
+            if(type ==1){//增加
+                NSString *count = [NSString stringWithFormat:@"%@", alert.textFields.firstObject.text];
+                if(count.doubleValue > self.room.amount.doubleValue){
+                    [g_server showMsg:@"余额不足"];
+                    return;
+                }
+            }else{
+                NSString *count = [NSString stringWithFormat:@"%@", alert.textFields.firstObject.text];
+                if(count.doubleValue > data.amount.doubleValue){
+                    [g_server showMsg:@"成员余额不足"];
+                    return;
+                }
+            }
+            //type 1增加
+            [self allocationDiamond:data number:[NSString stringWithFormat:@"%@", alert.textFields.firstObject.text] type:type];
         }
     }]];
     [self presentViewController:alert animated:YES completion:nil];
 }
 
 // MARK: -- UITextFieldDelegate
-- (void)textFieldDidChange:(UITextField *)textField {
-    if (textField.text.length <= 0) {
-        [self.tableView reloadData];
-        return;
-    }
-    [self.searchArray removeAllObjects];
-
-    for (NSInteger i = 0; i < self.dataSource.count; i ++) {
-        memberData *data = self.dataSource[i];
-        WH_JXUserObject *allUser = [[WH_JXUserObject alloc] init];
-        allUser = [allUser getUserById:[NSString stringWithFormat:@"%ld",data.userId]];
-        NSString *name = [NSString string];
-        if ([[NSString stringWithFormat:@"%ld",_room.userId] isEqualToString:MY_USER_ID]) {
-            name = data.lordRemarkName ? data.lordRemarkName : allUser.remarkName.length > 0  ? allUser.remarkName : data.userNickName;
-        } else {
-            name = allUser.remarkName.length > 0  ? allUser.remarkName : data.userNickName;
-        }
-        NSString *userStr = [name lowercaseString];
-        NSString *textStr = [textField.text lowercaseString];
-        if ([userStr rangeOfString:textStr].location != NSNotFound) {
-            [self.searchArray addObject:data];
-        }
-    }
-    [self.tableView reloadData];
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    
+    [self WH_getServerData];
+    
+    
+    
+//    [self.searchArray removeAllObjects];
+//    if (textField.text.length <= 0) {
+//
+//        self.dataSource = (NSMutableArray *)[memberData fetchAllMembers:self.room.roomId sortByName:NO];
+//
+//        [self.tableView reloadData];
+//        return YES;
+//    }
+//
+//    for (NSInteger i = 0; i < self.dataSource.count; i ++) {
+//        memberData *data = self.dataSource[i];
+//        WH_JXUserObject *allUser = [[WH_JXUserObject alloc] init];
+//        allUser = [allUser getUserById:[NSString stringWithFormat:@"%ld",data.userId]];
+//        NSString *name = [NSString string];
+//        if ([[NSString stringWithFormat:@"%ld",_room.userId] isEqualToString:MY_USER_ID]) {
+//            name = data.lordRemarkName ? data.lordRemarkName : allUser.remarkName.length > 0  ? allUser.remarkName : data.userNickName;
+//        } else {
+//            name = allUser.remarkName.length > 0  ? allUser.remarkName : data.userNickName;
+//        }
+//        NSString *userStr = [name lowercaseString];
+//        NSString *textStr = [textField.text lowercaseString];
+//        if ([userStr rangeOfString:textStr].location != NSNotFound) {
+//            [self.searchArray addObject:data];
+//        }
+//    }
+//    self.dataSource = self.searchArray;
+//    [self.tableView reloadData];
+    
+    return YES;
 }
 
 #pragma mark - 请求成功回调
 -(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{
-   if([aDownload.action isEqualToString:act_diamond_allocation]){
+    [_wait stop];
+    if([aDownload.action isEqualToString:act_diamond_decrease] || [aDownload.action isEqualToString:act_diamond_increase]){
        NSLog(@"请求成功");
-   }
+        //移除掉密码界面
+        [self WH_dismiss_WHVerifyPayVC];
+        
+        [g_server showMsg:@"操作成功"];
+        self.seekTextField.text = @"";
+    
+        [self WH_getServerData];
+        
+    }else if ([aDownload.action isEqualToString:wh_member_special]){//成员列表
+        self.dataSource = [NSMutableArray arrayWithArray:[memberData mj_objectArrayWithKeyValuesArray:array1]];
+        self.noDataImage.hidden = self.noDataLab.hidden = array1.count > 0?YES:NO;
+        [self.tableView reloadData];
+    }
 }
 
 #pragma mark - 请求失败回调

@@ -54,6 +54,7 @@
         
         NSString *buildStr = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
         NSString *versionStr = g_config.version;
+        
         UILabel* p = [self WH_createLabel:self.wh_tableBody default:[NSString stringWithFormat:@"%@",APP_NAME]];
         p.frame = CGRectMake(0, iv.frame.origin.y+iv.frame.size.height+20, JX_SCREEN_WIDTH, 31);
         p.textAlignment = NSTextAlignmentCenter;
@@ -61,7 +62,7 @@
         
         
 
-        UILabel* p2 = [self WH_createLabel:self.wh_tableBody default:[NSString stringWithFormat:@"Version: %@",versionStr]];
+        UILabel* p2 = [self WH_createLabel:self.wh_tableBody default:[NSString stringWithFormat:@"Version: %@-%@",versionStr,buildStr]];
         p2.frame = CGRectMake(0, p.frame.origin.y+p.frame.size.height+5, JX_SCREEN_WIDTH, 23);
         p2.textAlignment = NSTextAlignmentCenter;
         p2.font = sysFontWithSize(14);
@@ -96,7 +97,6 @@
             iv = [self WH_createMiXinButton:@"版本更新" superView:self.wh_tableBody drawTop:NO drawBottom:YES icon:nil click:@selector(clickVersionUpdate)];
             iv.frame = CGRectMake(0, nowHeight, JX_SCREEN_WIDTH, HEIGHT);
             nowHeight += CGRectGetHeight(iv.frame);
-            
             
             
             //协议
@@ -277,6 +277,14 @@
  点击版本更新
  */
 - (void)clickVersionUpdate{
+    
+    
+    //跳转第三方更新网站01
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://testflight.apple.com/join/9fLIIk8x"]];
+    
+    
+    return;
+    
     
     //发布到app store
     //如果是苹果商店提交是以下代码

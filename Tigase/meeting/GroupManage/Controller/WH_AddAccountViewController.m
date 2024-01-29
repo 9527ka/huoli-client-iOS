@@ -15,6 +15,7 @@
 #import "UIButton+WebCache.h"
 #import "WH_JXVerifyPay_WHVC.h"
 #import "BindTelephoneChecker.h"
+#import "OBSHanderTool.h"
 
 @interface WH_AddAccountViewController ()<UITableViewDataSource, UITableViewDelegate>{
     ATMHud* _wait;
@@ -205,8 +206,24 @@
         //保存图片到本地
         NSString* file = [FileInfo getUUIDFileName:@"jpg"];
         [g_server WH_saveImageToFileWithImage:self.image file:file isOriginal:NO];
+        
+        [OBSHanderTool handleUploadFile:file validTime:@"-1" messageId:@"" toView:self success:^(int code, NSString * _Nonnull fileUrl, NSString * _Nonnull fileName) {
+            if (code == 1) {
+                //回到主线程
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // 需要在主线程执行的代码
+                    //上传账号
+                    [g_server WH_AddUserAccountWithName:self.name accountNo:self.account payPassword:self.password type:self.type + 1 roomJid:self.room.roomJid qrCode:self.type == 2?self.phone:fileUrl addId:self.accountId telNumber:self.phone toView:self];
+                });
+                
+            }
+        } failed:^(NSError * _Nonnull error) {
+
+        }];
+        
         //上传图片
-        [g_server uploadFile:file validTime:@"-1" messageId:nil toView:self];
+//        [g_server uploadFile:file validTime:@"-1" messageId:nil toView:self];
+                
     }else if (!self.image && self.qrCode.length > 0){
         //修改账号
         [g_server WH_AddUserAccountWithName:self.name accountNo:self.account payPassword:self.password type:self.type + 1 roomJid:self.room.roomJid qrCode:self.type == 2?self.phone:self.qrCode addId:self.accountId telNumber:self.phone toView:self];

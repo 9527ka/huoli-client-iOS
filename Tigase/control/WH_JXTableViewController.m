@@ -248,7 +248,7 @@
     p.textAlignment   = NSTextAlignmentCenter;
     p.textColor       = g_factory.navigatorTitleColor;
     p.font = g_factory.navigatorTitleFont;
-    p.text = self.title;
+    p.text =  self.title;
     
     p.userInteractionEnabled = YES;
     p.didTouch = @selector(WH_actionTitle:);

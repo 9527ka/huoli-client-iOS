@@ -50,7 +50,10 @@
 //    }
     
     if(self.model){
-        float sellCharge = textField.text.floatValue * self.model.sellCharge.floatValue;
+        
+        float charge = self.model.isBuy?self.model.sellCharge.floatValue:self.model.buyCharge.floatValue;
+        
+        float sellCharge = textField.text.floatValue * charge;
         //应得
         float grossPay = self.model.isBuy?textField.text.floatValue + sellCharge:textField.text.floatValue - sellCharge;
         
@@ -84,6 +87,21 @@
         [g_server showMsg:@"超出群主限额"];
         return;
     }
+    if(self.model){
+        if(self.model.isBuy){
+            if(self.countField.text.doubleValue < self.model.minimalForSell.doubleValue){
+                [g_server showMsg:[NSString stringWithFormat:@"请输入至少%@HOTC",self.model.minimalForSell]];
+                return;
+            }
+        }else{
+            if(self.countField.text.doubleValue < self.model.minimalForBuy.doubleValue){
+                [g_server showMsg:[NSString stringWithFormat:@"请输入至少%@HOTC",self.model.minimalForBuy]];
+                return;
+            }
+        }
+        
+    }
+    
     if(self.certainBlock){
         self.certainBlock(self.countField.text,self.type);
     }

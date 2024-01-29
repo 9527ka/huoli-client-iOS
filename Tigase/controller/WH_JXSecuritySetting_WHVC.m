@@ -104,9 +104,12 @@
                              ]];
     }
     
+    g_myself.isPayPassword = [g_default objectForKey:PayPasswordKey];//因为通过获取用户信息的接口,获取不到用户的支付密码是否已经设置信息,所以目前采用保存在g_default中,防止发生修改支付密码出现无法识别返回值问题
+
+    
     [mainArr addObject:@[@{
         
-                             @"title":Localized(@"New_Modify_payment_password"),
+        @"title":![g_myself.isPayPassword boolValue]?@"设置支付密码":@"修改支付密码",
                              @"content":@"",
                              @"type":@(WHSettingCellTypeTitleWithContent),
                              },

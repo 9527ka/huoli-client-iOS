@@ -106,7 +106,18 @@
 @implementation WH_JXRoomMember_WHVC
 @synthesize wh_room,wh_chatRoom;
 
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    if(_diamondNum){
+        _diamondNum.text = [NSString stringWithFormat:@"%.2f",self.wh_room.amount.doubleValue];
+    }
+    
+    if(self.wh_room.category == 1 && self.timeLabel){
+        [self setTimeCount];
+    }
+    
+}
 - (id)init
 {
     self = [super init];
@@ -873,6 +884,15 @@
     [g_navigation pushViewController:vc animated:YES];
 }
 #pragma mark -- 创建群组信息控件
+
+-(void)setTimeCount{
+    NSTimeInterval getTime = self.wh_room.expiryTime.longLongValue;
+    NSDate * date = [NSDate dateWithTimeIntervalSince1970:getTime/1000];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
+    self.timeLabel.text = [NSString stringWithFormat:@"过期时间：%@",[dateFormatter stringFromDate:date]];
+}
 -(int)createRoomMember:(int)height {
     if(self.wh_room.category == 1){
         [self.timeLabel removeFromSuperview];
@@ -881,24 +901,20 @@
         self.timeLabel.textColor = [UIColor redColor];
         self.timeLabel.font = sysFontWithSize(13);
         self.timeLabel.textAlignment = NSTextAlignmentLeft;
-        
-        NSTimeInterval getTime = self.wh_room.expiryTime.longLongValue;
-        NSDate * date = [NSDate dateWithTimeIntervalSince1970:getTime/1000];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        
-        self.timeLabel.text = [NSString stringWithFormat:@"过期时间：%@",[dateFormatter stringFromDate:date]];
+        [self setTimeCount];
         [self.wh_tableBody addSubview:self.timeLabel];
         
-        //续费按钮
-        UIButton *rechargeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [rechargeBtn setTitle:@"续费" forState:UIControlStateNormal];
-        [rechargeBtn setTitleColor:[UIColor tintColor] forState:UIControlStateNormal];
-        rechargeBtn.titleLabel.font = [UIFont boldSystemFontOfSize:12];
-        rechargeBtn.frame = CGRectMake(JX_SCREEN_WIDTH - 56, height - 5, 56, 20);
-        [rechargeBtn addTarget:self action:@selector(rechargeAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self.wh_tableBody addSubview:rechargeBtn];
-        
+        memberData *data = [self.wh_room getMember:g_myself.userId];
+        if(data.role.intValue == 1){//群主
+            //续费按钮
+            UIButton *rechargeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            [rechargeBtn setTitle:@"续费" forState:UIControlStateNormal];
+            [rechargeBtn setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
+            rechargeBtn.titleLabel.font = [UIFont boldSystemFontOfSize:12];
+            rechargeBtn.frame = CGRectMake(JX_SCREEN_WIDTH - 56, height - 5, 56, 20);
+            [rechargeBtn addTarget:self action:@selector(rechargeAction:) forControlEvents:UIControlEventTouchUpInside];
+            [self.wh_tableBody addSubview:rechargeBtn];
+        }        
     }
     
     [self.topOneView removeFromSuperview];
@@ -1048,7 +1064,7 @@
     if(self.wh_room.category == 1){//钻石
         self.wh_iv = [self WH_createMiXinButton:@"我的钻石" drawTop:NO drawBottom:NO must:NO click:nil ParentView:self.topDiamondView];
         self.wh_iv.frame = CGRectMake(0, 0, self.topDiamondView.frame.size.width, HEIGHT);
-        _diamondNum = [self WH_createLabel:self.wh_iv defaultNum:[NSString stringWithFormat:@"%@",self.wh_room.amount] isClick:NO];
+        _diamondNum = [self WH_createLabel:self.wh_iv defaultNum:[NSString stringWithFormat:@"%.2f",self.wh_room.amount.doubleValue] isClick:NO];
         membHeight+=self.wh_iv.frame.size.height;
         membHeight+=topBottomMargin;
     }

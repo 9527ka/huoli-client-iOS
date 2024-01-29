@@ -45,13 +45,13 @@
     
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP - 32, JX_SCREEN_WIDTH, 20)];
     title.textAlignment = NSTextAlignmentCenter;
-    title.text = Localized(@"JX_RedPacketRecord");
+    title.text = self.isDiamound?@"钻石记录":Localized(@"JX_RedPacketRecord");
     title.textColor = HEXCOLOR(0xFBD49E);
     title.font = [UIFont systemFontOfSize:17.0];
     [headView addSubview:title];
     
     _getBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, headView.frame.size.height - 30, headView.frame.size.width / 2, 30)];
-    [_getBtn setTitle:Localized(@"PACKETS_RECEIVED") forState:UIControlStateNormal];
+    [_getBtn setTitle:self.isDiamound?@"收到的钻石":Localized(@"PACKETS_RECEIVED") forState:UIControlStateNormal];
     [_getBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_getBtn setTitleColor:HEXCOLOR(0xFBD49E) forState:UIControlStateSelected];
     _getBtn.selected = YES;
@@ -61,7 +61,7 @@
     [headView addSubview:_getBtn];
     
     _sendBtn = [[UIButton alloc] initWithFrame:CGRectMake(headView.frame.size.width / 2, headView.frame.size.height - 30, headView.frame.size.width / 2, 30)];
-    [_sendBtn setTitle:Localized(@"ENVELOPES_ISSUED") forState:UIControlStateNormal];
+    [_sendBtn setTitle:self.isDiamound?@"发出的钻石":Localized(@"ENVELOPES_ISSUED") forState:UIControlStateNormal];
     [_sendBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_sendBtn setTitleColor:HEXCOLOR(0xFBD49E) forState:UIControlStateSelected];
     _sendBtn.selected = NO;
@@ -131,24 +131,14 @@
     cell.nameLabel.text = dict[@"sendName"];
     if(_selIndex == 0) {
         //红包类型 1.普通红包   2.拼手气   3.口令
-        NSString *type = @"普通红包";
+        NSString *type = self.isDiamound?@"专属钻石":@"专属红包";
         NSNumber *redType = [NSNumber numberWithInteger:[NSString stringWithFormat:@"%@",dict[@"type"]].integerValue];
         if(redType.intValue == 2){
-            type = @"手气红包";
+            type = self.isDiamound?@"手气钻石":@"手气红包";
         }else if (redType.intValue == 3){
-            type = @"口令红包";
+            type = self.isDiamound?@"口令钻石":@"口令红包";
         }
-//        NSString *str;
-//        int type = [dict[@"type"] intValue];
-//        if (type == 1) {
-//            str = Localized(@"JX_UsualGift");
-//        }
-//        if (type == 2) {
-//            str = Localized(@"JX_LuckGift");
-//        }
-//        if (type == 3) {
-//            str = Localized(@"JX_MesGift");
-//        }
+
         cell.nameLabel.text = type;
     }
     //日期
@@ -162,7 +152,7 @@
 //    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8*60*60]];//中国专用
     cell.timeLabel.text = [dateFormatter stringFromDate:date];
     //金额
-    cell.moneyLabel.text = [NSString stringWithFormat:@"%.2f %@",[dict[@"money"] doubleValue],@"HOTC"];
+    cell.moneyLabel.text = [NSString stringWithFormat:@"%.2f %@",[dict[@"money"] doubleValue],self.isDiamound?@"钻石":@"HOTC"];
     //隐藏 hahaha
     cell.contentLab.hidden = YES;
     return cell;

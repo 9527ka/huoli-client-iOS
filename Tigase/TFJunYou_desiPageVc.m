@@ -40,6 +40,9 @@
 @property (strong, nonatomic) UILabel *msgNumberBtn ;
 
 @property (strong, nonatomic)WH_JXNoticeView *noticeView;
+
+@property(nonatomic,strong)UILabel *loginNameLab;
+
 @end
 
 @implementation TFJunYou_desiPageVc
@@ -319,6 +322,9 @@
     
     float topHeight = (g_App.isShowRedPacket.intValue == 1 && !g_myself.isTestAccount)?50:10;
     
+    //模拟多端登录
+//    topHeight += 50;
+    
     UIScrollView *contentView = [[UIScrollView alloc] init];
     contentView.backgroundColor = [UIColor whiteColor];
     contentView.frame = CGRectMake(0, JX_SCREEN_TOP + topHeight, self.view.bounds.size.width, self.view.bounds.size.height-JX_SCREEN_TOP - topHeight);
@@ -385,11 +391,23 @@
         [button addTarget:self action:@selector(titleClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     
+    float loginTop = JX_SCREEN_TOP + 40;
+    
     if(g_App.isShowRedPacket.intValue == 1 && !g_myself.isTestAccount){
         //跑马灯的view
         _noticeView = [[WH_JXNoticeView alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP + 40, JX_SCREEN_WIDTH, 40)];
         [self.view addSubview:self.noticeView];
+        
+        loginTop = JX_SCREEN_TOP + 90;
     }
+    //多端登录
+    _loginNameLab = [[UILabel alloc] initWithFrame:CGRectMake(0, loginTop, JX_SCREEN_WIDTH, 40)];
+    _loginNameLab.text = [NSString stringWithFormat:@"  %@ %@已登录",@"  Mac",APP_NAME];
+    _loginNameLab.textColor = HEXCOLOR(0x666666);
+    _loginNameLab.font = [UIFont systemFontOfSize:14];
+    _loginNameLab.backgroundColor = g_factory.globalBgColor;
+    _loginNameLab.hidden = YES;
+    [self.view addSubview:self.loginNameLab];
 }
  
 - (void)onFreshRight{

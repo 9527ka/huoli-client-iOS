@@ -237,12 +237,12 @@ static WH_JXHttpRequet *_httpRequet = nil;
 - (void)WH_requestSuccess:(WH_JXNetwork *)task {
     
     @autoreleasepool {
-        NSString* string = task.wh_responseData;
+        NSString* string = [NSString stringWithFormat:@"%@",task.wh_responseData];
         //    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
         NSString* error=nil;
         
         id resultObject = [string mj_JSONObject];
-        //    id resultObject = [resultParser objectWithData:task.responseData];
+//            id resultObject = [resultParser objectWithData:task.responseData];
         //    [resultParser release];
         
         if( [resultObject isKindOfClass:[NSDictionary class]] ){
@@ -255,7 +255,9 @@ static WH_JXHttpRequet *_httpRequet = nil;
 //                    error
             }
         }else{
-            error = @"不能识别返回值";
+//            NSString *data = [NSString stringWithFormat:@"%@",resultObject];
+            NSLog(@"错误信息=====%@",resultObject);
+            error = [NSString stringWithFormat:@"不能识别返回值 %@",resultObject];
             if([string length]>=6){
                 if([[string substringToIndex:6] isEqualToString:@"<html>"])
                     error = @"服务器好像有点问题";

@@ -24,7 +24,7 @@
     self.bgTopView.layer.shadowOpacity = self.bgBottomView.layer.shadowOpacity = 0.5;
     self.certainBtn.layer.cornerRadius = 8.0f;
     self.allBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-    self.monyCountLab.text = [NSString stringWithFormat:@"余额HOTC%.2f = USDT%.2f",g_App.myMoney,g_App.myMoney];
+//    self.monyCountLab.text = [NSString stringWithFormat:@"余额HOTC%.2f = USDT%.2f",g_App.myMoney,g_App.myMoney];
     [self.monyField addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
     if(g_App.usdtUrl.length > 0){
         self.orderNoField.text = g_App.usdtUrl;
@@ -34,6 +34,8 @@
     
     
     self.detaileLab.text = [NSString stringWithFormat:@"友情提示\n\n1.每次提币金额在%@~%@HOTC之间。\n\n2.提现手续费为%@%@。\n\n3.提现时间为0-24小时。",g_config.minTransferAmount,g_config.maxTransferAmount,g_config.transferRate,@"%"];
+    
+    self.monyCountLab.text = [NSString stringWithFormat:@"USDT 1 = HOTC %@",g_App.rate];
     
 }
 -(void)textFieldChanged:(UITextField *)textField{
@@ -93,9 +95,11 @@
 }
 
 -(void)reSetRate{
-    if(g_App.myMoney > 0.0){
-        self.monyCountLab.text = [NSString stringWithFormat:@"余额HOTC%.2f = USDT%.2f",g_App.myMoney,g_App.myMoney/g_App.rate.doubleValue];
-    }
+//    if(g_App.myMoney > 0.0){
+//        self.monyCountLab.text = [NSString stringWithFormat:@"余额HOTC%.2f = USDT%.2f",g_App.myMoney,g_App.myMoney/g_App.rate.doubleValue];
+//    }
+    
+    self.monyCountLab.text = [NSString stringWithFormat:@"USDT 1 = HOTC %@",g_App.rate];
     
 }
 

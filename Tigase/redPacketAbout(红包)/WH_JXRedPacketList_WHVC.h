@@ -12,5 +12,7 @@
 
 @property (nonatomic,copy) NSString *roomJid;
 
+@property(nonatomic,assign)BOOL isDiamound;
+
 - (void)sp_checkUserInfo:(NSString *)mediaInfo;
 @end

@@ -8,6 +8,7 @@
 
 #import "WH_JXGroupRedPacketSetupVC.h"
 #import "WH_JXGroupRedPacketSetupMemberVC.h"
+#import "WH_JXRedPacketSecVC.h"
 
 @interface WH_JXGroupRedPacketSetupVC (){
     ATMHud* _wait;
@@ -27,6 +28,7 @@
 
 @property (nonatomic,strong)UITextField *countField;
 @property (nonatomic,assign)NSInteger editType;
+@property (weak, nonatomic) IBOutlet UIView *greenBgView;
 
 
 @end
@@ -40,6 +42,7 @@
         self.titleLabel.text = @"群红包设置";
         self.fortuneLabel.text = @"手气红包金额";
         self.exclusiveLabel.text = @"专属红包金额";
+        self.greenBgView.hidden = NO;
     } else {
         self.titleLabel.text = @"群钻石设置";
         self.fortuneLabel.text = @"手气钻石金额";
@@ -101,6 +104,13 @@
     vc.direction = 1;
     [g_navigation pushViewController:vc animated:YES];
 }
+- (IBAction)greenRoadAction:(id)sender {
+    WH_JXRedPacketSecVC *vc = [[WH_JXRedPacketSecVC alloc] init];
+    vc.room = self.room;
+    vc.type = self.type;
+    vc.direction = 2;
+    [g_navigation pushViewController:vc animated:YES];
+}
 
 - (void)editType:(NSInteger)editType {
     self.editType = editType;
@@ -131,7 +141,7 @@
         self.room.exclusiveRedPacketMax = self.countField.text.length > 0?self.countField.text.integerValue:1000;
     }
     [g_server showMsg:@"设置成功"];
-//    [g_navigation WH_dismiss_WHViewController:self animated:YES];
+    [g_navigation WH_dismiss_WHViewController:self animated:YES];
 }
 #pragma mark - 请求失败回调
 -(int) WH_didServerResult_WHFailed:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict{

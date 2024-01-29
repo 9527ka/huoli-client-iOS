@@ -45,7 +45,7 @@
 
 
 @implementation WH_JXMessageObject
-@synthesize content,timeSend,fromUserId,toUserId,toUserIds,toUserNames,isDiamound,type,messageNo, messageId,timeReceive,fileName,fileData,fileSize,location_x,location_y,timeLen,isSend,isRead,progress,dictionary,index,fromUserName,objectId,toUserName,isReceive,fromId,toId,isEncrypt;
+@synthesize content,timeSend,fromUserId,toUserId,amount,toUserIds,toUserNames,isDiamound,type,messageNo, messageId,timeReceive,fileName,fileData,fileSize,location_x,location_y,timeLen,isSend,isRead,progress,dictionary,index,fromUserName,objectId,toUserName,isReceive,fromId,toId,isEncrypt;
 @synthesize isUpload;
 
 NSString* current_chat_userId = nil;
@@ -85,6 +85,7 @@ static WH_JXMessageObject *shared;
         self.isReadDel  = nil;
         self.readTime   = nil;
         self.readPersons= nil;
+        self.amount = nil;
         self.chatMsgHeight = nil;
         self.isShowTime = NO;
         self.sendCount  = 0;
@@ -104,6 +105,7 @@ static WH_JXMessageObject *shared;
     self.fromUserId = nil;
     self.toUserId = nil;
     self.toUserIds =nil;
+    self.amount = nil;
     self.toUserNames = nil;
     self.isDiamound = nil;
     self.content = nil;
@@ -142,6 +144,7 @@ static WH_JXMessageObject *shared;
     self.toUserId = [NSString stringWithFormat:@"%@",[p objectForKey:kMESSAGE_TO]];
     self.toUserIds = [NSString stringWithFormat:@"%@",[p objectForKey:kMESSAGE_toUserIds]];
     self.toUserNames = [NSString stringWithFormat:@"%@",[p objectForKey:kMESSAGE_TO_NAMES]];
+    self.amount = [NSString stringWithFormat:@"%@",[p objectForKey:kMESSAGE_amount]].intValue > 0?[NSString stringWithFormat:@"%@",[p objectForKey:kMESSAGE_amount]]:@"0";
     
     if ([p objectForKey:@"isDiamound"]) {
         self.isDiamound = [p objectForKey:@"isDiamound"];
@@ -290,6 +293,8 @@ static WH_JXMessageObject *shared;
     if(isDiamound){
         [dictionary setValue:isDiamound forKey:@"isDiamound"];
     }
+    NSString *amountStr = [NSString stringWithFormat:@"%@",amount];
+    [dictionary setValue:amountStr.intValue > 0?amount:@"0" forKey:kMESSAGE_amount];
     
     if(self.fileData)
         [dictionary setValue:[fileData xmpp_base64Encoded] forKey:kMESSAGE_FILEDATA];
@@ -374,7 +379,7 @@ static WH_JXMessageObject *shared;
     self.toId = [rs stringForColumn:@"toId"];
     self.toUserIds = [rs stringForColumn:@"toUserIds"];
     self.toUserNames = [rs stringForColumn:@"toUserNames"];
-    
+    self.amount = [rs stringForColumn:@"amount"];
     self.isDiamound = [rs objectForColumnName:@"isDiamound"];;
     
     self.readPersons = [rs objectForColumnName:kMESSAGE_readPersons];
@@ -578,7 +583,7 @@ static WH_JXMessageObject *shared;
         return NO;
     FMDatabase* db = [[JXXMPP sharedInstance] openUserDb:dbName];
     //添加了image宽高2参数
-    NSString *createStr=[NSString stringWithFormat:@"CREATE  TABLE IF NOT EXISTS 'msg_%@' ('messageNo' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL  UNIQUE , 'fromUserId' VARCHAR, 'toUserId' VARCHAR, 'content' VARCHAR, 'timeSend' DATETIME,'timeReceive' DATETIME,'type' INTEGER, 'messageId' VARCHAR, 'fileData' VARCHAR, 'fileName' VARCHAR,'fileSize' INTEGER,'location_x' INTEGER,'location_y' INTEGER,'timeLen' INTEGER,'isRead' INTEGER,'isSend' INTEGER,'objectId' INTEGER,'isReceive' INTEGER,'isUpload' INTEGER,'fromUserName' VARCHAR,'toUserName' VARCHAR,'isReadDel' INTEGER,'fromId' VARCHAR,'toId' VARCHAR,'readPersons' INTEGER,'readTime' DATETIME, 'deleteTime' DATETIME,'chatMsgHeight' VARCHAR,'isShowTime' INTEGER,'toUserNames' VARCHAR, 'toUserIds' VARCHAR,'isDiamound' INTEGER)",tableName];
+    NSString *createStr=[NSString stringWithFormat:@"CREATE  TABLE IF NOT EXISTS 'msg_%@' ('messageNo' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL  UNIQUE , 'fromUserId' VARCHAR, 'toUserId' VARCHAR, 'content' VARCHAR, 'timeSend' DATETIME,'timeReceive' DATETIME,'type' INTEGER, 'messageId' VARCHAR, 'fileData' VARCHAR, 'fileName' VARCHAR,'fileSize' INTEGER,'location_x' INTEGER,'location_y' INTEGER,'timeLen' INTEGER,'isRead' INTEGER,'isSend' INTEGER,'objectId' INTEGER,'isReceive' INTEGER,'isUpload' INTEGER,'fromUserName' VARCHAR,'toUserName' VARCHAR,'isReadDel' INTEGER,'fromId' VARCHAR,'toId' VARCHAR,'readPersons' INTEGER,'readTime' DATETIME, 'deleteTime' DATETIME,'chatMsgHeight' VARCHAR,'isShowTime' INTEGER,'toUserNames' VARCHAR, 'toUserIds' VARCHAR,'isDiamound' INTEGER, 'amount' VARCHAR)",tableName];
     
     BOOL worked = [db executeUpdate:createStr];
     //    FMDBQuickCheck(worked);
@@ -598,8 +603,8 @@ static WH_JXMessageObject *shared;
             return NO;
     }
     
-    NSString *insertStr=[NSString stringWithFormat:@"INSERT INTO msg_%@ (fromUserId,toUserId,content,type,messageId,timeSend,timeReceive,fileData,fileName,fileSize,location_x,location_y,timeLen,isRead,isSend,objectId,isReceive,isUpload,fromUserName,toUserName,isReadDel,fromId,toId,readPersons,readTime,deleteTime,chatMsgHeight,isShowTime,toUserNames,toUserIds,isDiamound) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",tableName];
-    worked = [db executeUpdate:insertStr,self.fromUserId,self.toUserId,self.content,self.type,self.messageId,self.timeSend,self.timeReceive,[self.fileData xmpp_base64Encoded],self.fileName,self.fileSize,self.location_x,self.location_y,self.timeLen,self.isRead,self.isSend,self.objectId,self.isReceive,self.isUpload,self.fromUserName,self.toUserName,self.isReadDel,self.fromId,self.toId,self.readPersons, self.readTime,self.deleteTime,self.chatMsgHeight,[NSNumber numberWithBool:self.isShowTime],self.toUserNames,self.toUserIds,self.isDiamound];
+    NSString *insertStr=[NSString stringWithFormat:@"INSERT INTO msg_%@ (fromUserId,toUserId,content,type,messageId,timeSend,timeReceive,fileData,fileName,fileSize,location_x,location_y,timeLen,isRead,isSend,objectId,isReceive,isUpload,fromUserName,toUserName,isReadDel,fromId,toId,readPersons,readTime,deleteTime,chatMsgHeight,isShowTime,toUserNames,toUserIds,isDiamound,amount) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",tableName];
+    worked = [db executeUpdate:insertStr,self.fromUserId,self.toUserId,self.content,self.type,self.messageId,self.timeSend,self.timeReceive,[self.fileData xmpp_base64Encoded],self.fileName,self.fileSize,self.location_x,self.location_y,self.timeLen,self.isRead,self.isSend,self.objectId,self.isReceive,self.isUpload,self.fromUserName,self.toUserName,self.isReadDel,self.fromId,self.toId,self.readPersons, self.readTime,self.deleteTime,self.chatMsgHeight,[NSNumber numberWithBool:self.isShowTime],self.toUserNames,self.toUserIds,self.isDiamound,self.amount];
     //        FMDBQuickCheck(worked);
     
     
@@ -718,6 +723,15 @@ static WH_JXMessageObject *shared;
             break;
         case kWCMessageTypeTransfer:
             s = [NSString stringWithFormat:@"[%@]",Localized(@"JX_Transfer")];
+            break;
+        case kWCMessageTypeActivePay: //激活群
+            s = @"[钻石群激活]";
+            break;
+        case kWCMessageTypeRenewal://群续费
+            s = @"[钻石群续费]";
+            break;
+        case kWCMessageTypeUpgrade://群升级
+            s = @"[钻石群升级]";
             break;
         default:
             s = self.content;
@@ -2292,6 +2306,9 @@ static WH_JXMessageObject *shared;
         case kRoomRemind_TYPE_SELL_TO_MERCHANT_REFUND:
         case kRoomRemind_TYPE_SELL_TO_MERCHANT_PAID:
         case kRoomRemind_TYPE_SELL_TO_MERCHANT_CONFIRMED:
+        case kWCMessageTypeActivePay:
+        case kWCMessageTypeRenewal:
+        case kWCMessageTypeUpgrade:
             
             return YES;
         default:

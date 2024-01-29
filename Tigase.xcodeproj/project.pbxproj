@@ -764,6 +764,9 @@
 		33946AB02B2701B00002A8D6 /* WH_GroupRechargeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33946AAE2B2701B00002A8D6 /* WH_GroupRechargeCell.xib */; };
 		33946AB42B2833D50002A8D6 /* WH_JXBuyPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33946AB22B2833D50002A8D6 /* WH_JXBuyPayViewController.m */; };
 		33946AB52B2833D50002A8D6 /* WH_JXBuyPayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33946AB32B2833D50002A8D6 /* WH_JXBuyPayViewController.xib */; };
+		33A6EC712B5F8A37002321DB /* WH_JXRoomDiamoundRechargeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A6EC702B5F8A37002321DB /* WH_JXRoomDiamoundRechargeModel.m */; };
+		33BA05BA2B622CC100DA6D11 /* WH_JXAgentManagerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BA05B82B622CC100DA6D11 /* WH_JXAgentManagerVC.m */; };
+		33BA05BB2B622CC200DA6D11 /* WH_JXAgentManagerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BA05B92B622CC100DA6D11 /* WH_JXAgentManagerVC.xib */; };
 		33BDEC612B43D4C200C6A697 /* WH_JXBuyAndPayListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BDEC5F2B43D4C200C6A697 /* WH_JXBuyAndPayListVC.m */; };
 		33BDEC622B43D4C200C6A697 /* WH_JXBuyAndPayListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BDEC602B43D4C200C6A697 /* WH_JXBuyAndPayListVC.xib */; };
 		33BDEC662B43FCB300C6A697 /* WH_JXBuyAndPayListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BDEC642B43FCB300C6A697 /* WH_JXBuyAndPayListCell.m */; };
@@ -792,6 +795,15 @@
 		33BEF41E2B54D9250078B540 /* RSADataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BEF3C32B54D9240078B540 /* RSADataSigner.m */; };
 		33BEF4242B54DF6E0078B540 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 33BEF4222B54DF6D0078B540 /* AlipaySDK.bundle */; };
 		33BEF4252B54DF6E0078B540 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BEF4232B54DF6D0078B540 /* AlipaySDK.framework */; };
+		33BEF4292B5A11400078B540 /* WH_JXAgentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BEF4272B5A11400078B540 /* WH_JXAgentVC.m */; };
+		33BEF42A2B5A11400078B540 /* WH_JXAgentVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BEF4282B5A11400078B540 /* WH_JXAgentVC.xib */; };
+		33BEF42E2B5A1AA10078B540 /* WH_JXAgentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BEF42C2B5A1AA10078B540 /* WH_JXAgentCell.m */; };
+		33BEF42F2B5A1AA10078B540 /* WH_JXAgentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BEF42D2B5A1AA10078B540 /* WH_JXAgentCell.xib */; };
+		33CD3C682B64F682001BFBFF /* WH_JXRedPacketSecVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CD3C662B64F682001BFBFF /* WH_JXRedPacketSecVC.m */; };
+		33CD3C692B64F682001BFBFF /* WH_JXRedPacketSecVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CD3C672B64F682001BFBFF /* WH_JXRedPacketSecVC.xib */; };
+		33CD3C6D2B64F999001BFBFF /* WH_JXRedPacketSecCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CD3C6B2B64F999001BFBFF /* WH_JXRedPacketSecCell.m */; };
+		33CD3C6E2B64F999001BFBFF /* WH_JXRedPacketSecCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CD3C6C2B64F999001BFBFF /* WH_JXRedPacketSecCell.xib */; };
+		33CD3C712B650ED7001BFBFF /* WH_UserRedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CD3C702B650ED7001BFBFF /* WH_UserRedData.m */; };
 		33E591672B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E5914E2B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		33E591682B16E6B900E578A3 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E591572B16E6B900E578A3 /* ViewController+MASAdditions.m */; };
 		33E591692B16E6B900E578A3 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E5915B2B16E6B900E578A3 /* MASCompositeConstraint.m */; };
@@ -3195,6 +3207,11 @@
 		33946AB12B2833D50002A8D6 /* WH_JXBuyPayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXBuyPayViewController.h; sourceTree = "<group>"; };
 		33946AB22B2833D50002A8D6 /* WH_JXBuyPayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXBuyPayViewController.m; sourceTree = "<group>"; };
 		33946AB32B2833D50002A8D6 /* WH_JXBuyPayViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXBuyPayViewController.xib; sourceTree = "<group>"; };
+		33A6EC6F2B5F8A37002321DB /* WH_JXRoomDiamoundRechargeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXRoomDiamoundRechargeModel.h; sourceTree = "<group>"; };
+		33A6EC702B5F8A37002321DB /* WH_JXRoomDiamoundRechargeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXRoomDiamoundRechargeModel.m; sourceTree = "<group>"; };
+		33BA05B72B622CC100DA6D11 /* WH_JXAgentManagerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXAgentManagerVC.h; sourceTree = "<group>"; };
+		33BA05B82B622CC100DA6D11 /* WH_JXAgentManagerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXAgentManagerVC.m; sourceTree = "<group>"; };
+		33BA05B92B622CC100DA6D11 /* WH_JXAgentManagerVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXAgentManagerVC.xib; sourceTree = "<group>"; };
 		33BDEC5E2B43D4C200C6A697 /* WH_JXBuyAndPayListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXBuyAndPayListVC.h; sourceTree = "<group>"; };
 		33BDEC5F2B43D4C200C6A697 /* WH_JXBuyAndPayListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXBuyAndPayListVC.m; sourceTree = "<group>"; };
 		33BDEC602B43D4C200C6A697 /* WH_JXBuyAndPayListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXBuyAndPayListVC.xib; sourceTree = "<group>"; };
@@ -3317,6 +3334,20 @@
 		33BEF4102B54D9240078B540 /* lhash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lhash.h; sourceTree = "<group>"; };
 		33BEF4222B54DF6D0078B540 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		33BEF4232B54DF6D0078B540 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		33BEF4262B5A11400078B540 /* WH_JXAgentVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXAgentVC.h; sourceTree = "<group>"; };
+		33BEF4272B5A11400078B540 /* WH_JXAgentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXAgentVC.m; sourceTree = "<group>"; };
+		33BEF4282B5A11400078B540 /* WH_JXAgentVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXAgentVC.xib; sourceTree = "<group>"; };
+		33BEF42B2B5A1AA10078B540 /* WH_JXAgentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXAgentCell.h; sourceTree = "<group>"; };
+		33BEF42C2B5A1AA10078B540 /* WH_JXAgentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXAgentCell.m; sourceTree = "<group>"; };
+		33BEF42D2B5A1AA10078B540 /* WH_JXAgentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXAgentCell.xib; sourceTree = "<group>"; };
+		33CD3C652B64F682001BFBFF /* WH_JXRedPacketSecVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXRedPacketSecVC.h; sourceTree = "<group>"; };
+		33CD3C662B64F682001BFBFF /* WH_JXRedPacketSecVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXRedPacketSecVC.m; sourceTree = "<group>"; };
+		33CD3C672B64F682001BFBFF /* WH_JXRedPacketSecVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXRedPacketSecVC.xib; sourceTree = "<group>"; };
+		33CD3C6A2B64F999001BFBFF /* WH_JXRedPacketSecCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXRedPacketSecCell.h; sourceTree = "<group>"; };
+		33CD3C6B2B64F999001BFBFF /* WH_JXRedPacketSecCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXRedPacketSecCell.m; sourceTree = "<group>"; };
+		33CD3C6C2B64F999001BFBFF /* WH_JXRedPacketSecCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXRedPacketSecCell.xib; sourceTree = "<group>"; };
+		33CD3C6F2B650ED7001BFBFF /* WH_UserRedData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_UserRedData.h; sourceTree = "<group>"; };
+		33CD3C702B650ED7001BFBFF /* WH_UserRedData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_UserRedData.m; sourceTree = "<group>"; };
 		33E5914D2B16E6B900E578A3 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		33E5914E2B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
 		33E5914F2B16E6B900E578A3 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -7196,6 +7227,15 @@
 			path = OrderDetaileVC;
 			sourceTree = "<group>";
 		};
+		33A6EC6E2B5F8A10002321DB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				33A6EC6F2B5F8A37002321DB /* WH_JXRoomDiamoundRechargeModel.h */,
+				33A6EC702B5F8A37002321DB /* WH_JXRoomDiamoundRechargeModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		33BDEC5D2B43D47000C6A697 /* C2COrderVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -7207,6 +7247,15 @@
 				33BDEC652B43FCB300C6A697 /* WH_JXBuyAndPayListCell.xib */,
 				33BDEC682B450BE700C6A697 /* WH_JXBuyAndPayListModel.h */,
 				33BDEC692B450BE700C6A697 /* WH_JXBuyAndPayListModel.m */,
+				33BEF4262B5A11400078B540 /* WH_JXAgentVC.h */,
+				33BEF4272B5A11400078B540 /* WH_JXAgentVC.m */,
+				33BEF4282B5A11400078B540 /* WH_JXAgentVC.xib */,
+				33BEF42B2B5A1AA10078B540 /* WH_JXAgentCell.h */,
+				33BEF42C2B5A1AA10078B540 /* WH_JXAgentCell.m */,
+				33BEF42D2B5A1AA10078B540 /* WH_JXAgentCell.xib */,
+				33BA05B72B622CC100DA6D11 /* WH_JXAgentManagerVC.h */,
+				33BA05B82B622CC100DA6D11 /* WH_JXAgentManagerVC.m */,
+				33BA05B92B622CC100DA6D11 /* WH_JXAgentManagerVC.xib */,
 			);
 			path = C2COrderVC;
 			sourceTree = "<group>";
@@ -8940,6 +8989,7 @@
 		B22AA2042339B4C300906412 /* GroupManage */ = {
 			isa = PBXGroup;
 			children = (
+				33A6EC6E2B5F8A10002321DB /* Model */,
 				B22AA2152339B6DC00906412 /* Controller */,
 			);
 			path = GroupManage;
@@ -8948,14 +8998,14 @@
 		B22AA2142339B67900906412 /* UserInfo */ = {
 			isa = PBXGroup;
 			children = (
+				B22AA21D2339BF8200906412 /* WH_JXSetNoteAndLabel_WHVC.h */,
+				B22AA21E2339BF8300906412 /* WH_JXSetNoteAndLabel_WHVC.m */,
 				CC28559D1A60DE9E00F21DAC /* WH_JXUserInfo_WHVC.h */,
 				CC28559E1A60DE9E00F21DAC /* WH_JXUserInfo_WHVC.m */,
 				18D62C2A22C4C79500D65E8B /* WH_UserInfoViewController.h */,
 				18D62C2B22C4C79500D65E8B /* WH_UserInfoViewController.m */,
-				18F3919C22CA01050084FAB9 /* WH_UserSettingViewController.m */,
-				B22AA21D2339BF8200906412 /* WH_JXSetNoteAndLabel_WHVC.h */,
-				B22AA21E2339BF8300906412 /* WH_JXSetNoteAndLabel_WHVC.m */,
 				18F3919B22CA01050084FAB9 /* WH_UserSettingViewController.h */,
+				18F3919C22CA01050084FAB9 /* WH_UserSettingViewController.m */,
 			);
 			path = UserInfo;
 			sourceTree = "<group>";
@@ -9044,6 +9094,12 @@
 				33BEF3202B5121CB0078B540 /* WH_JXRoomDiamoundRechargeVC.h */,
 				33BEF3212B5121CB0078B540 /* WH_JXRoomDiamoundRechargeVC.m */,
 				33BEF3222B5121CB0078B540 /* WH_JXRoomDiamoundRechargeVC.xib */,
+				33CD3C652B64F682001BFBFF /* WH_JXRedPacketSecVC.h */,
+				33CD3C662B64F682001BFBFF /* WH_JXRedPacketSecVC.m */,
+				33CD3C672B64F682001BFBFF /* WH_JXRedPacketSecVC.xib */,
+				33CD3C6A2B64F999001BFBFF /* WH_JXRedPacketSecCell.h */,
+				33CD3C6B2B64F999001BFBFF /* WH_JXRedPacketSecCell.m */,
+				33CD3C6C2B64F999001BFBFF /* WH_JXRedPacketSecCell.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -9143,6 +9199,8 @@
 				CC75F8461E514E620072BD54 /* WH_ResumeData.m */,
 				6353D3F02182B70400CFBEA7 /* WH_RoomData.h */,
 				6353D3F12182B70400CFBEA7 /* WH_RoomData.m */,
+				33CD3C6F2B650ED7001BFBFF /* WH_UserRedData.h */,
+				33CD3C702B650ED7001BFBFF /* WH_UserRedData.m */,
 			);
 			path = MyData;
 			sourceTree = "<group>";
@@ -11076,6 +11134,7 @@
 				6350CC251F9D7FCE00D21B6F /* feeds_play_btn_u@2x.png in Resources */,
 				CC30172B1951BABF0059BADA /* f070@2x.png in Resources */,
 				1830593622C5A59400A7A1B2 /* WH_new_keyboard@3x.png in Resources */,
+				33CD3C692B64F682001BFBFF /* WH_JXRedPacketSecVC.xib in Resources */,
 				CC3016AA1951BABF0059BADA /* f006.png in Resources */,
 				CC30173B1951BABF0059BADA /* f078@2x.png in Resources */,
 				18552F351D892CE00040B8CB /* setting_white.png in Resources */,
@@ -11092,6 +11151,7 @@
 				63E1E9AD1F442927004548C5 /* tranAudio@2x.png in Resources */,
 				0FDCB58A1FF22D9B00C1EA28 /* JXAVCallViewController.xib in Resources */,
 				CC3017391951BABF0059BADA /* f077@2x.png in Resources */,
+				33CD3C6E2B64F999001BFBFF /* WH_JXRedPacketSecCell.xib in Resources */,
 				CC3017201951BABF0059BADA /* f065.png in Resources */,
 				CC3016CF1951BABF0059BADA /* f024@2x.png in Resources */,
 				0FAB27272A357C5900EDFE8D /* WH_JXGroupMemberRedPacketUnclaimedVC.xib in Resources */,
@@ -11138,6 +11198,7 @@
 				184AE6AF22B4C4A6008EF485 /* im_003_more_button_normal@3x.png in Resources */,
 				CC30172F1951BABF0059BADA /* f072@2x.png in Resources */,
 				330F3B8D2B32853200E69B97 /* WH_JXCertainOrderVC.xib in Resources */,
+				33BEF42A2B5A11400078B540 /* WH_JXAgentVC.xib in Resources */,
 				CC3016C51951BABF0059BADA /* f019@2x.png in Resources */,
 				CC30172A1951BABF0059BADA /* f070.png in Resources */,
 				18747E7B1D7E69BB00593B1D /* WH_JXRecordTB_WHCell.xib in Resources */,
@@ -11253,6 +11314,7 @@
 				CC3017211951BABF0059BADA /* f065@2x.png in Resources */,
 				1830593722C5A59400A7A1B2 /* WH_new_keyboard@2x.png in Resources */,
 				CC3017581951BABF0059BADA /* f093.png in Resources */,
+				33BA05BB2B622CC200DA6D11 /* WH_JXAgentManagerVC.xib in Resources */,
 				CC3016DC1951BABF0059BADA /* f031.png in Resources */,
 				CC3017021951BABF0059BADA /* f050.png in Resources */,
 				1851A3712307B09400BA24A1 /* icon_emot_jian@3x.png in Resources */,
@@ -11408,6 +11470,7 @@
 				1877598F1D9BC1F70000D015 /* ic_greeting_checked.png in Resources */,
 				CC3017431951BABF0059BADA /* f082@2x.png in Resources */,
 				CC3017491951BABF0059BADA /* f085@2x.png in Resources */,
+				33BEF42F2B5A1AA10078B540 /* WH_JXAgentCell.xib in Resources */,
 				0FBF97F12112A8BE0027BAAE /* newmsg.mp3 in Resources */,
 				CC30169F1951BABF0059BADA /* f000@2x.png in Resources */,
 				63E1E9A51F442927004548C5 /* closeCamera@2x.png in Resources */,
@@ -11683,6 +11746,7 @@
 				0F304DCC2153AD0E001EC77E /* XMPPvCardCoreDataStorageObject.m in Sources */,
 				0F5A70BE1FCD07EA00547904 /* AFURLSessionManager.m in Sources */,
 				B22AA20E2339B60C00906412 /* WH_JXGroupManagement_WHVC.m in Sources */,
+				33CD3C6D2B64F999001BFBFF /* WH_JXRedPacketSecCell.m in Sources */,
 				0F90B4D820BE88E700641160 /* WH_JXShake_WHCell.m in Sources */,
 				CC6E168419794906006ADA8A /* WH_JXMessageObject.m in Sources */,
 				0FA2D5931FB05CCC00D51BB9 /* GPUImageBulgeDistortionFilter.m in Sources */,
@@ -11716,6 +11780,7 @@
 				0F304E1B2153AD0E001EC77E /* XMPPResultSet.m in Sources */,
 				63F4E43821C0AE7800C61204 /* WH_KKCutGridLayer.m in Sources */,
 				6320479D1EE017950040FACE /* WH_JXSelDepart_WHViewController.m in Sources */,
+				33CD3C682B64F682001BFBFF /* WH_JXRedPacketSecVC.m in Sources */,
 				CC8A0AD91A0E0BC80051396C /* WH_selectValue_WHVC.m in Sources */,
 				0F304E0C2153AD0E001EC77E /* XMPPMessage+XEP_0184.m in Sources */,
 				CCC88CAD1E4C5AB300180080 /* DMScaleTransition.m in Sources */,
@@ -12458,6 +12523,7 @@
 				CC8FD3331E4B399E0058686C /* WH_JXEmoji.m in Sources */,
 				0FA2D5991FB05CCC00D51BB9 /* GPUImageChromaKeyBlendFilter.m in Sources */,
 				4CABBC62293F06F800C17F42 /* WMMenuView.m in Sources */,
+				33BA05BA2B622CC100DA6D11 /* WH_JXAgentManagerVC.m in Sources */,
 				CCC88B8F1E4C526F00180080 /* BasicMapAnnotation.m in Sources */,
 				CC61D52E1B145297007439AC /* WH_JXMyFile.m in Sources */,
 				DEE07A6D22A916CE00418A2F /* WH_JXMyPromotion_WHVC.m in Sources */,
@@ -12472,6 +12538,7 @@
 				CC6E168819794906006ADA8A /* WH_JXUserBaseObj.m in Sources */,
 				634669131EC405F700BE6112 /* WH_RATableView.m in Sources */,
 				0FA2D6211FB05CCC00D51BB9 /* GPUImageMedianFilter.m in Sources */,
+				33CD3C712B650ED7001BFBFF /* WH_UserRedData.m in Sources */,
 				0F618F1B1FE3B3A000333249 /* WH_JXShareModel.m in Sources */,
 				0F304DEC2153AD0E001EC77E /* XMPPMessageArchiving.m in Sources */,
 				CC3017711951BABF0059BADA /* NSObject+LKDBHelper.m in Sources */,
@@ -12505,6 +12572,7 @@
 				DED864DA22E5604600E9F9EB /* WH_AudioSessionControl.m in Sources */,
 				63B077061E7AA7C200047B7A /* WH_PhotoView.m in Sources */,
 				63DD4F5A21314DB800DC45F8 /* RITLRuntimeTool.m in Sources */,
+				33BEF42E2B5A1AA10078B540 /* WH_JXAgentCell.m in Sources */,
 				6346691D1EC405F700BE6112 /* WH_RATreeNodeItem.m in Sources */,
 				4CABBC5F293F06F800C17F42 /* UIViewController+WMPageController.m in Sources */,
 				0FA2D6751FB05CCD00D51BB9 /* GPUImageSobelEdgeDetectionFilter.m in Sources */,
@@ -12579,7 +12647,9 @@
 				58CD794A22DDA69D00D09E10 /* OBSHanderTool.m in Sources */,
 				0F304D9A2153AD0D001EC77E /* XMPPIQ.m in Sources */,
 				0F304DA92153AD0D001EC77E /* XMPPMessage+XEP_0085.m in Sources */,
+				33BEF4292B5A11400078B540 /* WH_JXAgentVC.m in Sources */,
 				CCFD208819592D1D00B98494 /* api.c in Sources */,
+				33A6EC712B5F8A37002321DB /* WH_JXRoomDiamoundRechargeModel.m in Sources */,
 				DEF4CC232323D44200023057 /* MJExtensionConst.m in Sources */,
 				B2A8A1C023265820003A3254 /* WH_JXAudio_WHCell.m in Sources */,
 				CC1D1915195432CA0029F7FD /* LXActionSheet.m in Sources */,
@@ -12986,7 +13056,7 @@
 				CODE_SIGN_ENTITLEMENTS = Tigase/Tigase.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 8;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 6QM4SXGT4R;
 				DOUBANGO_HOME = "";
@@ -13094,7 +13164,7 @@
 				CODE_SIGN_ENTITLEMENTS = Tigase/Tigase.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 8;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 6QM4SXGT4R;
 				DOUBANGO_HOME = "";

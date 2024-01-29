@@ -1301,17 +1301,18 @@
         if ([p.user.groupStatus intValue] == 0) {
             
             sendView.chatRoom  = [[JXXMPP sharedInstance].roomPool joinRoom:p.user.userId title:p.user.userNickname isNew:NO];
-        } else if ([p.user.groupStatus intValue] == 1) {
-            [GKMessageTool showError:@"你已被踢出群组"];
-            return;
-        } else if ([p.user.groupStatus intValue] == 2) {
-            [GKMessageTool showError:@"该群已被群主解散"];
-            return;
-        } else {
-            [GKMessageTool showError:@"该群组已被后台锁定"];
-            return;
         }
-        
+//        else if ([p.user.groupStatus intValue] == 1) {
+//            [GKMessageTool showError:@"你已被踢出群组"];
+//            return;
+//        } else if ([p.user.groupStatus intValue] == 2) {
+//            [GKMessageTool showError:@"该群已被群主解散"];
+//            return;
+//        } else {
+//            [GKMessageTool showError:@"该群组已被后台锁定"];
+//            return;
+//        }
+//        
         if (p.user.roomFlag || p.user.roomId.length > 0) {
             NSDictionary * groupDict = [p.user toDictionary];
             WH_RoomData * roomdata = [[WH_RoomData alloc] init];

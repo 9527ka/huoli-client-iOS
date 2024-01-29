@@ -71,7 +71,10 @@
     self.detaileLab.attributedText =  att;
     //数量
     self.countLab.text = self.room.count.intValue > 0?self.room.count:self.model.count;
-    self.moneyLab.text = [NSString stringWithFormat:@"￥%.2f",self.room.count.intValue > 0?self.room.count.floatValue:self.model.sellCharge.floatValue];
+    
+    float charge = self.model.isBuy?self.model.sellCharge.floatValue:self.model.buyCharge.floatValue;
+    
+    self.moneyLab.text = [NSString stringWithFormat:@"￥%.2f",self.room.count.intValue > 0?self.room.count.floatValue:charge];
 
     //收款账号 默认第一个
     WH_FinancialInfosModel *payModel = self.dataArray.firstObject;

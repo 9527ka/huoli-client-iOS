@@ -25,6 +25,8 @@
 
 @property (nonatomic, strong) UIColor *watermarkColor;
 
+@property (nonatomic, strong) NSNumber *category;
+
 @end
 
 @implementation WH_JXredPacketDetail_WHVC
@@ -46,7 +48,6 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.view.backgroundColor = HEXCOLOR(0xf0eff4);
-    [self WH_createHeadAndFoot];
     
     self.watermarkColor = [UIColor lightGrayColor];
     
@@ -68,13 +69,22 @@
         default:
             break;
     }
+   self.category = _wh_dataDict[@"data"][@"packet"][@"category"];
+    if(!self.category){
+        self.category = _wh_dataDict[@"packet"][@"category"];
+    }
+    if(self.category.intValue == 1){
+        self.title = @"钻石";
+    }
+    
+    [self WH_createHeadAndFoot];
     
     self.replyContent = [NSString string];
     for (WH_JXGetPacketList * memberObj in _wh_OpenMember) {
         if ([memberObj.userId intValue] == [MY_USER_ID intValue]) {
             self.replyContent = memberObj.reply;
-//            self.money = [NSString stringWithFormat:@"%.2f %@",memberObj.money,@"HOTC"];
-            self.money = [NSString stringWithFormat:@"HOTC%.2f ",memberObj.money];
+//            self.money = [NSString stringWithFormat:@"%@%.2f ",self.category.intValue == 1?@"钻石":@"HOTC",memberObj.money];
+            self.money = [NSString stringWithFormat:@"%@%.2f ",self.category.intValue == 1?@"钻石":@"",memberObj.money];
         }
     }
 
@@ -100,7 +110,8 @@
 
 
 -(void)WH_createCustomView{
-    _wh_headImgV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH, 150)];
+    
+    _wh_headImgV = [[UIImageView alloc] initWithFrame:CGRectMake(0, -20, JX_SCREEN_WIDTH, 150)];
     _wh_headImgV.image = [UIImage imageNamed:@"WH_redPacket_top_bg"];
     _wh_headImgV.userInteractionEnabled = YES;
     _wh_headImgV.backgroundColor = [UIColor whiteColor];
@@ -112,7 +123,7 @@
     [_wh_headImgV addSubview:closeBtn];
     
     UIButton *listBtn = [[UIButton alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH - 10 - 70, JX_SCREEN_TOP - 32, 70, 28)];
-    [listBtn setTitle:Localized(@"JX_RedPacketRecord") forState:UIControlStateNormal];
+    [listBtn setTitle:self.category.intValue == 1?@"钻石记录":Localized(@"JX_RedPacketRecord") forState:UIControlStateNormal];
     [listBtn setTitleColor:HEXCOLOR(0xFFE2B1) forState:UIControlStateNormal];
     listBtn.titleLabel.font = sysFontWithSize(14);
     [listBtn addTarget:self action:@selector(listBtnAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -130,7 +141,8 @@
     
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP - 32, JX_SCREEN_WIDTH, 20)];
     title.textAlignment = NSTextAlignmentCenter;
-    title.text = Localized(@"JX_ShikuRedPacket");
+    
+    title.text = self.category.intValue == 1?@"钻石":Localized(@"JX_ShikuRedPacket");
     title.textColor = HEXCOLOR(0xFFE2B1);
     title.font = sysFontWithSize(18);
     [_wh_headImgV addSubview:title];
@@ -166,10 +178,31 @@
     if (self.money.length > 0) {
         NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:self.money attributes:@{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Medium" size: 40],NSForegroundColorAttributeName:HEXCOLOR(0x3A404C)}];
 //        [attStr addAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Medium" size: 40],NSForegroundColorAttributeName:HEXCOLOR(0x3A404C)} range:NSMakeRange(0, self.money.length-1)];
-        UILabel *moneyLab = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_wh_greetLabel.frame) + 10, JX_SCREEN_WIDTH, 60)];
+        UILabel *moneyLab = [[UILabel alloc] init];
         moneyLab.attributedText = attStr;
         moneyLab.textAlignment = NSTextAlignmentCenter;
         [_wh_contentView addSubview:moneyLab];
+        
+        [moneyLab mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_wh_contentView).offset(CGRectGetMaxY(_wh_greetLabel.frame) + 10);
+            make.centerX.equalTo(self.view);
+            make.height.mas_equalTo(60);
+        }];
+        
+        //创建图片
+        if(self.category.intValue != 1){
+
+            UIImageView *unitImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"unit_icon"]];
+            [_wh_contentView addSubview:unitImage];
+
+            [unitImage mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(moneyLab.mas_top).offset(-12);
+                make.left.equalTo(moneyLab.mas_right);
+                make.height.mas_equalTo(27);
+                make.width.mas_equalTo(36);
+            }];
+        }
+        
                 
         _replyLab = [UIFactory WH_create_WHLabelWith:CGRectMake((JX_SCREEN_WIDTH-200)/2, CGRectGetMaxY(moneyLab.frame) + 10, 200, 20) text:self.replyContent.length > 0 ? self.replyContent : Localized(@"New_reply_with_word_thanks")];
         _replyLab.textColor = HEXCOLOR(0x8C9AB8);
@@ -346,7 +379,7 @@
 
 - (void)listBtnAction:(UIButton *)btn {
     WH_JXRedPacketList_WHVC *vc = [[WH_JXRedPacketList_WHVC alloc] init];
-    
+    vc.isDiamound = self.category.intValue == 1?YES:NO;
     NSString *roomJId = [NSString stringWithFormat:@"%@",_wh_dataDict[@"data"][@"packet"][@"roomJid"]];
     vc.roomJid = roomJId;
     [g_navigation pushViewController:vc animated:YES];
@@ -380,7 +413,7 @@
     _wh_returnMoneyLabel = [[UILabel alloc]initWithFrame:headerView.frame];
     
     _wh_returnMoneyLabel.font = pingFangRegularFontWithSize(12);
-    _wh_returnMoneyLabel.text = [NSString stringWithFormat:@"%@(%.2f%@)%@",Localized(@"WaHu_JXredPacketDetail_WaHuVC_ReturnMoney1"),_wh_packetObj.over,@"HOTC",Localized(@"WaHu_JXredPacketDetail_WaHuVC_ReturnMoney2")];
+    _wh_returnMoneyLabel.text = [NSString stringWithFormat:@"%@(%.2f%@)%@",Localized(@"WaHu_JXredPacketDetail_WaHuVC_ReturnMoney1"),_wh_packetObj.over,self.category.intValue==1?@"钻石":@"HOTC",Localized(@"WaHu_JXredPacketDetail_WaHuVC_ReturnMoney2")];
     _wh_returnMoneyLabel.textAlignment = NSTextAlignmentCenter;
     _wh_returnMoneyLabel.center = headerView.center;
     [headerView addSubview:_wh_returnMoneyLabel];
@@ -388,8 +421,8 @@
 //填写界面上的数据
 - (void)WH_setViewData{
     [g_server WH_getHeadImageSmallWIthUserId:_wh_packetObj.userId userName:_wh_packetObj.userName imageView:_wh_headerImageView];
-    _wh_totalMoneyLabel.text = [NSString stringWithFormat:@"%@%.2f%@",Localized(@"WaHu_JXredPacketDetail_WaHuVC_All"),_wh_packetObj.money,@"HOTC"];
-    _wh_fromUserLabel.text = [NSString stringWithFormat:@"%@%@", _wh_packetObj.userName,Localized(@"JX_WhoIsRedEnvelopes")];
+    _wh_totalMoneyLabel.text = [NSString stringWithFormat:@"%@%.2f%@",Localized(@"WaHu_JXredPacketDetail_WaHuVC_All"),_wh_packetObj.money,self.category.intValue == 1?@"钻石":@"HOTC"];
+    _wh_fromUserLabel.text = [NSString stringWithFormat:@"%@%@", _wh_packetObj.userName,self.category.intValue == 1?@"的钻石":Localized(@"JX_WhoIsRedEnvelopes")];
     _wh_greetLabel.text = _wh_packetObj.greetings;
     NSString * isCanOpen = nil;
     NSString *over = [NSString stringWithFormat:@"%.2f",_wh_packetObj.over];
@@ -428,12 +461,12 @@
     }
     
     if (IS_SHOW_EXCLUSIVEREDPACKET) {
-        _wh_showNumLabel.text = [NSString stringWithFormat:@"已领取%lu/%ld个，共%.2f/%.2fHOTC，%@" ,(unsigned long)[_wh_OpenMember count] ,_wh_packetObj.count ,(_isGroup)?_wh_packetObj.money - _wh_packetObj.over:_wh_packetObj.money ,_wh_packetObj.money ,isCanOpen];
+        _wh_showNumLabel.text = [NSString stringWithFormat:@"已领取%lu/%ld个，共%.2f/%.2f%@，%@" ,(unsigned long)[_wh_OpenMember count] ,_wh_packetObj.count ,(_isGroup)?_wh_packetObj.money - _wh_packetObj.over:_wh_packetObj.money ,_wh_packetObj.money,self.category.intValue == 1?@"钻石":@"HOTC",isCanOpen];
     }else{
         if (_wh_packetObj.over < 0.01) {
             _wh_showNumLabel.text = [NSString stringWithFormat:@"%@%ld/%ld,%@",Localized(@"WaHu_JXredPacketDetail_WaHuVC_Drawed"),[_wh_OpenMember count],_wh_packetObj.count,isCanOpen];
         }else{
-            _wh_showNumLabel.text = [NSString stringWithFormat:@"%@%ld/%ld, %@%.2f%@,%@",Localized(@"WaHu_JXredPacketDetail_WaHuVC_Drawed"),[_wh_OpenMember count],_wh_packetObj.count,Localized(@"WaHu_JXredPacketDetail_WaHuVC_Rest"),_wh_packetObj.over,@"HOTC",isCanOpen];
+            _wh_showNumLabel.text = [NSString stringWithFormat:@"%@%ld/%ld, %@%.2f%@,%@",Localized(@"WaHu_JXredPacketDetail_WaHuVC_Drawed"),[_wh_OpenMember count],_wh_packetObj.count,Localized(@"WaHu_JXredPacketDetail_WaHuVC_Rest"),_wh_packetObj.over,self.category.intValue == 1?@"钻石":@"HOTC",isCanOpen];
         }
     }
 }
@@ -479,8 +512,23 @@
 //    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8*60*60]];//中国专用
     cell.timeLabel.text = [dateFormatter stringFromDate:date];
     //金额
-    cell.moneyLabel.text = [NSString stringWithFormat:@"%.2f %@",memberObj.money,@"HOTC"];
+    NSString *moneyStr = [NSString stringWithFormat:@"%.2f %@",memberObj.money,self.category.intValue == 1?@"钻石":@"HOTC"];
     
+    cell.moneyLabel.text = [NSString stringWithFormat:@"%.2f %@",memberObj.money,self.category.intValue == 1?@"钻石":@""];
+    cell.hotImage.hidden = self.category.intValue == 1?YES:NO;
+    cell.moneyRightConstaint.constant = self.category.intValue == 1?10:36;
+    
+    //富文本
+//    NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+//
+//    NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithString:moneyStr attributes:attributes];
+//
+//    NSInteger lenthStr = self.category.intValue == 1?2:4;
+//
+//    [att addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(moneyStr.length - lenthStr, lenthStr)];
+//    [att addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(moneyStr.length - lenthStr, lenthStr)];
+//
+//    cell.moneyLabel.attributedText = att;
     
     
     NSString *over = [NSString stringWithFormat:@"%.2f",_wh_packetObj.over];

@@ -109,19 +109,30 @@
 }
 //专属红包赋值
 -(void)exclusiveData{
-    self.redPacketSwitch.wh_currentIndex = 2;
+    
+    self.redPacketSwitch.wh_currentIndex = self.isDiamond?1:2;
     self.indexInt = 4;
-    self.wh_tableBody.contentOffset = CGPointMake(JX_SCREEN_WIDTH * 2, 0);
+    self.wh_tableBody.contentOffset = CGPointMake(self.isDiamond?JX_SCREEN_WIDTH:JX_SCREEN_WIDTH * 2, 0);
     [self performSelector:@selector(setExclusiveData) withObject:nil afterDelay:0.2];
     
 }
 -(void)setExclusiveData{
-    [_exclusiveView.wh_canClaimPeoples setTextColor:HEXCOLOR(0x333333)];
-    NSString *name = [NSString stringWithFormat:@"%@",self.selectNames.firstObject];
-    [_exclusiveView.wh_canClaimPeoples setText:name];
-    _exclusiveView.wh_canClaimPeoples.alpha = 1;
-    [_exclusiveView.receiveNoticeLabel setText:[NSString stringWithFormat:@"群人数%@人，已选定%lu人可领" ,self.memberCount ,(unsigned long)self.selectIds.count]];
-    [_exclusiveView.wh_moneyTextField becomeFirstResponder];
+    if(self.isDiamond){
+        [_exclusiveDiamondView.wh_canClaimPeoples setTextColor:HEXCOLOR(0x333333)];
+        NSString *name = [NSString stringWithFormat:@"%@",self.selectNames.firstObject];
+        [_exclusiveDiamondView.wh_canClaimPeoples setText:name];
+        _exclusiveDiamondView.wh_canClaimPeoples.alpha = 1;
+        [_exclusiveDiamondView.receiveNoticeLabel setText:[NSString stringWithFormat:@"群人数%@人，已选定%lu人可领" ,self.memberCount ,(unsigned long)self.selectIds.count]];
+        [_exclusiveDiamondView.wh_moneyTextField becomeFirstResponder];
+    }else{
+        [_exclusiveView.wh_canClaimPeoples setTextColor:HEXCOLOR(0x333333)];
+        NSString *name = [NSString stringWithFormat:@"%@",self.selectNames.firstObject];
+        [_exclusiveView.wh_canClaimPeoples setText:name];
+        _exclusiveView.wh_canClaimPeoples.alpha = 1;
+        [_exclusiveView.receiveNoticeLabel setText:[NSString stringWithFormat:@"群人数%@人，已选定%lu人可领" ,self.memberCount ,(unsigned long)self.selectIds.count]];
+        [_exclusiveView.wh_moneyTextField becomeFirstResponder];
+    }
+   
 }
 
 - (void)buildTopView{
@@ -349,6 +360,11 @@
     }
     
     NSString *maxSendMoney = IsStringNull(str)?@"1000":str;
+    
+    if(maxSendMoney.floatValue <= 0.00){
+        maxSendMoney = @"10000";
+    }
+    
     if ([maxSendMoney doubleValue] >= [_moneyText doubleValue]&&[_moneyText doubleValue] > 0) {
         
         if (button.tag == 3 && [_greetText isEqualToString:@""]) {
@@ -386,7 +402,7 @@
     NSString *secret = [self getSecretWithText:sender time:time];
     if (_selectIds.count > 0) {
         NSString *str = [_selectIds componentsJoinedByString:@","];
-        [g_server WH_sendRedPacketV1WithMoneyNum:[_moneyText doubleValue] type:(int)self.indexInt count:[_countText intValue] greetings:_greetText roomJid:self.wh_roomJid toUserId:self.wh_toUserId toUserIds:str time:time secret:secret toView:self];
+        [g_server WH_sendRedPacketV1WithMoneyNum:[_moneyText doubleValue] type:(int)self.indexInt count:[_countText intValue] greetings:_greetText roomJid:self.wh_roomJid toUserId:self.wh_toUserId toUserIds:str time:time secret:secret isDiamound:self.isDiamond toView:self];
     }else{
         if (self.isDiamond) {
             [g_server sendDiamond:self.wh_roomJid diamondNumber:self.moneyText count:self.countText type:self.indexInt greetings:self.greetText toUserId:self.wh_toUserId time:[NSString stringWithFormat:@"%ld", time] secret:secret toDelegate:self];

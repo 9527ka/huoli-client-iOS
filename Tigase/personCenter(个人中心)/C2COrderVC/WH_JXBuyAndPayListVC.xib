@@ -11,6 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WH_JXBuyAndPayListVC">
             <connections>
+                <outlet property="addBtn" destination="fsQ-MU-mPb" id="Fkp-G1-ddq"/>
+                <outlet property="managerBtn" destination="fsQ-MU-mPb" id="lrk-eh-nuB"/>
                 <outlet property="nodataImage" destination="aXv-pi-BlY" id="boN-1U-Dbj"/>
                 <outlet property="nodataLab" destination="68e-lr-gvu" id="NgM-aI-oho"/>
                 <outlet property="tableView" destination="guo-sU-40c" id="cly-u6-HhC"/>
@@ -41,7 +43,7 @@
                     </connections>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="guo-sU-40c">
-                    <rect key="frame" x="0.0" y="143" width="393" height="709"/>
+                    <rect key="frame" x="0.0" y="143" width="393" height="641"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="ge9-7s-2FO"/>
@@ -87,21 +89,36 @@
                         <action selector="myAccountAction:" destination="-1" eventType="touchUpInside" id="vUy-fd-gMh"/>
                     </connections>
                 </button>
+                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsQ-MU-mPb">
+                    <rect key="frame" x="116.66666666666669" y="796" width="160" height="22"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="KBe-jZ-HZ1"/>
+                        <constraint firstAttribute="width" constant="160" id="cnX-vs-RUc"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" backgroundImage="agent_add"/>
+                    <connections>
+                        <action selector="addAction:" destination="-1" eventType="touchUpInside" id="sdT-gT-7x8"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="aXv-pi-BlY" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3CF-74-Ycl"/>
                 <constraint firstItem="l0O-KV-tbE" firstAttribute="centerY" secondItem="6mQ-rV-Kc0" secondAttribute="centerY" id="4tb-PC-bZM"/>
                 <constraint firstItem="anx-u4-ecn" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="5lj-9G-DY6"/>
-                <constraint firstAttribute="bottom" secondItem="guo-sU-40c" secondAttribute="bottom" id="Ann-l4-JT2"/>
                 <constraint firstItem="anx-u4-ecn" firstAttribute="top" secondItem="l0O-KV-tbE" secondAttribute="bottom" constant="12" id="D4h-eP-PXY"/>
                 <constraint firstItem="l0O-KV-tbE" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="HoR-dU-AVY"/>
                 <constraint firstItem="68e-lr-gvu" firstAttribute="top" secondItem="aXv-pi-BlY" secondAttribute="bottom" constant="4" id="KyC-BY-ow8"/>
+                <constraint firstItem="fsQ-MU-mPb" firstAttribute="bottom" secondItem="Q5M-cg-NOt" secondAttribute="bottom" id="LEu-yc-kxF"/>
                 <constraint firstItem="anx-u4-ecn" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="151" id="PPH-r0-QsD"/>
+                <constraint firstItem="fsQ-MU-mPb" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Skl-Zw-YdV"/>
                 <constraint firstItem="68e-lr-gvu" firstAttribute="centerX" secondItem="aXv-pi-BlY" secondAttribute="centerX" id="UAy-yx-GT0"/>
                 <constraint firstItem="guo-sU-40c" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="Whi-HD-W9W"/>
                 <constraint firstItem="6mQ-rV-Kc0" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="7" id="YhG-6z-sq7"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="guo-sU-40c" secondAttribute="bottom" constant="34" id="jBU-e0-Z2e"/>
                 <constraint firstItem="PMu-l4-tOZ" firstAttribute="centerY" secondItem="l0O-KV-tbE" secondAttribute="centerY" id="jP2-Rn-QKG"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="PMu-l4-tOZ" secondAttribute="trailing" id="ldX-Z9-TMr"/>
                 <constraint firstItem="guo-sU-40c" firstAttribute="top" secondItem="6mQ-rV-Kc0" secondAttribute="bottom" constant="47" id="mSU-qp-s5X"/>
@@ -112,6 +129,7 @@
         </view>
     </objects>
     <resources>
+        <image name="agent_add" width="140.33332824707031" height="18"/>
         <image name="icon_not_found" width="147" height="147"/>
         <image name="title_back" width="28" height="28"/>
         <systemColor name="linkColor">

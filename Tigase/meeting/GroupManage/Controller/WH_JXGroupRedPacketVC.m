@@ -207,7 +207,7 @@
         //抢到的红包金额
         NSString *monyStr = [NSString stringWithFormat:@"%@",self.selIndex > 0?dic[@"money"]:dic[@"money"]];
         
-        cell.moneyLabel.text = [NSString stringWithFormat:@"￥%.2fHOTC",monyStr.doubleValue];
+        cell.moneyLabel.text = [NSString stringWithFormat:@"￥%.2f%@",monyStr.doubleValue,self.room.category == 1?@"钻石":@"HOTC"];
         
         NSString *receiveCount = [NSString stringWithFormat:@"%@",dic[@"receiveCount"]];//已领个数
         NSString *count = [NSString stringWithFormat:@"%@",dic[@"count"]];//红包个数
@@ -243,7 +243,7 @@
         //红包个数
         self.numberLabel.text = [NSString stringWithFormat:@"共%@个%@红包",dict[@"total"],self.room.category == 1?@"钻石":@""];
         //金额
-        self.moneyLabel.text = [NSString stringWithFormat:@"%.2fHOTC",[NSString stringWithFormat:@"%@",dict[@"extraData"][@"totalMoney"]].doubleValue];
+        self.moneyLabel.text = [NSString stringWithFormat:@"%.2f%@",[NSString stringWithFormat:@"%@",dict[@"extraData"][@"totalMoney"]].doubleValue,self.room.category == 1?@"钻石":@"HOTC"];
         
 //        self.nodataImage.hidden = self.nodataLab.hidden = array1.count > 0?YES:NO;
     }else {

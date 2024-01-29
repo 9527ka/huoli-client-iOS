@@ -61,7 +61,7 @@
 }
 
 -(void)creatUI{
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, JX_SCREEN_WIDTH - 24, self.frame.size.height)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, JX_SCREEN_WIDTH - 64, self.frame.size.height)];
 //    label.textColor = HEXCOLOR(0x179cfb);
     label.textColor = HEXCOLOR(0x666666);
     label.text = @"欢迎加入猎火大家庭";
@@ -69,7 +69,7 @@
     [self addSubview:label];
     self.noticeLab = label;
     
-    _secNoticeLab = [[UILabel alloc] initWithFrame:CGRectMake(12, 40, JX_SCREEN_WIDTH - 24, self.frame.size.height)];
+    _secNoticeLab = [[UILabel alloc] initWithFrame:CGRectMake(50, 40, JX_SCREEN_WIDTH - 64, self.frame.size.height)];
     _secNoticeLab.textColor = HEXCOLOR(0x666666);
     _secNoticeLab.font = [UIFont boldSystemFontOfSize:14];
     [self addSubview:self.secNoticeLab];

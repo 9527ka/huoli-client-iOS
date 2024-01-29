@@ -409,6 +409,9 @@ static WH_JXUserObject *sharedUser;
     if ([self.isBeenBlack intValue] == 1) {
         self.status = [NSNumber numberWithInt:friend_status_hisBlack];
     }
+    
+    self.merchant = [NSNumber numberWithBool:[[dict objectForKey:@"merchant"] boolValue]];
+    
     if([[[dict objectForKey:@"friends"] objectForKey:@"blacklist"] boolValue])
         self.status = [NSNumber numberWithInt:friend_status_black];
 //    if([[[dict objectForKey:@"friends"] objectForKey:@"isBeenBlack"] boolValue])

@@ -366,7 +366,7 @@
 	switch (mode) {
 		case ATMHudApplyModeShow: {
 			if (CGPointEqualToPoint(p.center, CGPointZero)) {
-				self.frame = CGRectMake((self.superview.bounds.size.width-targetBounds.size.width)*0.5, (self.superview.bounds.size.height-targetBounds.size.height)*0.5, targetBounds.size.width, targetBounds.size.height);
+				self.frame = CGRectMake((self.superview.bounds.size.width-targetBounds.size.width)*0.5 - 12, (self.superview.bounds.size.height-targetBounds.size.height)*0.5, targetBounds.size.width, targetBounds.size.height);
 			} else {
 				self.bounds = CGRectMake(0, 0, targetBounds.size.width, targetBounds.size.height);
 				self.center = p.center;

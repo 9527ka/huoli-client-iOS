@@ -103,9 +103,9 @@
         //被操作人
         WH_JXUserObject *userMember = [[WH_JXUserObject sharedUserInstance] getUserById:[dic objectForKey:@"userId"]];
         //操作人
-        WH_JXUserObject *member = [[WH_JXUserObject sharedUserInstance] getUserById:[dic objectForKey:@"referenceUserId"]];;
+        WH_JXUserObject *member = [[WH_JXUserObject sharedUserInstance] getUserById:[dic objectForKey:@"referenceUserId"]];
         
-        cell.memberLabel.text = [NSString stringWithFormat:@"%@",userMember.userNickname];//@"张三张三张\n123"
+        cell.memberLabel.text = [NSString stringWithFormat:@"%@",userMember.userNickname.length > 0?userMember.userNickname:[dic objectForKey:@"userNickname"]];//@"张三张三张\n123"
         NSString *time = [NSString stringWithFormat:@"%@",dic[@"eventTime"]];
         
         NSDate * date = [NSDate dateWithTimeIntervalSince1970:time.doubleValue/1000];

@@ -47,19 +47,31 @@
 //    [_wait stop];
     if([aDownload.action isEqualToString:wh_act_NewVersion]){
         NSString *versionNum = dict[@"versionNum"];
+        NSString *buildStr = dict[@"versionName"];
+        NSString *buildNow = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+        
         if (versionNum) {
             NSInteger lastVersion = [versionNum integerValue];
             NSInteger currentVersionNum = [self currentVersionNum];
-            if (lastVersion > currentVersionNum) {
+            if (lastVersion > currentVersionNum || (lastVersion == currentVersionNum && buildStr.intValue > buildNow.intValue)) {
                 //有新版本
                 UIAlertController *updateAlert = [UIAlertController alertControllerWithTitle:dict[@"projectName"]?:@"" message:dict[@"updateContent"]?:@"" preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"去更新" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 
+                    
+                    //跳转第三方更新网站01
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://testflight.apple.com/join/9fLIIk8x"]];
+                    
+                    return;
+                    
                     if (IS_APP_STORE_VERSION) {
                         //跳转appStore更新
                         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:AppStoreString]];
                     }else{
                         NSString *downLoadUrl = [NSString stringWithFormat:@"%@",dict[@"downloadUrl"]?:@""];
+                        
+//                        downLoadUrl = @"https://testflight.apple.com/join/9fLIIk8x";
+                        
                         if (downLoadUrl) {
                             if (downLoadUrl.length) {
                                 //跳转第三方更新网站01

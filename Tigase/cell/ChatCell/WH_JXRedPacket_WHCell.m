@@ -44,12 +44,12 @@
     
     _headImageView = [[UIImageView alloc]init];
     _headImageView.frame = CGRectMake(12,11, 35, 41);
-    _headImageView.image = [UIImage imageNamed:@"WH_hongbao_top"];
+    _headImageView.image = [UIImage imageNamed:@"WH_hongbao_top"];//图片
     _headImageView.userInteractionEnabled = NO;
     [_imageBackground addSubview:_headImageView];
     
     _nameLabel = [[UILabel alloc]init];
-    _nameLabel.frame = CGRectMake(CGRectGetMaxX(_headImageView.frame) + 10,8, 160, 23);
+    _nameLabel.frame = CGRectMake(CGRectGetMaxX(_headImageView.frame) + 10,22, 160, 23);
     _nameLabel.font = sysFontWithSize(16);
     _nameLabel.textColor = [UIColor whiteColor];
     _nameLabel.numberOfLines = 0;
@@ -72,7 +72,7 @@
     _toUserLab = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.size.width - 172, 10, 160, 30)];
     _toUserLab.font = sysFontWithSize(12);
     _toUserLab.textColor = [UIColor whiteColor];
-    _toUserLab.hidden = YES;
+//    _toUserLab.hidden = YES;
     _toUserLab.textAlignment = NSTextAlignmentRight;
     [_imageBackground addSubview:_toUserLab];
     
@@ -131,25 +131,45 @@
     }
     
 //    [self setMaskLayer:_imageBackground];
-    self.toUserLab.hidden = ([self.msg.type intValue] == kWCMessageTypeRedPacketExclusive)?NO:YES;
-    self.toUserLab.text = [NSString stringWithFormat:@"仅 %@ 可领",self.msg.toUserNames];
+//    self.toUserLab.hidden = ([self.msg.type intValue] == kWCMessageTypeRedPacketExclusive)?NO:YES;
+//    self.toUserLab.text = [NSString stringWithFormat:@"仅 %@ 可领",self.msg.toUserNames];
+    self.toUserLab.text = [NSString stringWithFormat:@"金额：%.2f",self.msg.amount.doubleValue];
         
     //服务端返回的数据类型错乱，强行改
     self.msg.fileName = [NSString stringWithFormat:@"%@",self.msg.fileName];
     if ([self.msg.fileName isEqualToString:@"3"]) {
         _nameLabel.text = [NSString stringWithFormat:@"%@%@",Localized(@"JX_Message"),self.msg.content];
-        _title.text = ([self.msg.type intValue] == kWCMessageTypeRedPacketExclusive)?@"专属红包":Localized(@"JX_MesGift");
+        
+        NSString *title = Localized(@"JX_MesGift");//口令红包
+        if([self.msg.type intValue] == kWCMessageTypeRedPacketExclusive){
+            title = self.room.category == 1?@"专属钻石":@"专属红包";
+        }else{
+            title = self.room.category == 1?@"口令钻石":@"口令红包";
+        }
+        
+        _title.text = title;
     }else{
 //        NSArray *gree
         _nameLabel.text = self.msg.content;
-        _title.text = ([self.msg.type intValue] == kWCMessageTypeRedPacketExclusive)?@"专属红包":Localized(@"JXredPacket");
+        NSString *title = Localized(@"JXredPacket");//红包
+        if([self.msg.type intValue] == kWCMessageTypeRedPacketExclusive){
+            title = self.room.category == 1?@"专属钻石":@"专属红包";
+            title = [NSString stringWithFormat:@"仅 %@ 可领",self.msg.toUserNames];
+        }else{
+            title = self.room.category == 1?@"手气钻石":@"手气红包";
+        }
+        _title.text = title;
     }
+    _checkLabel.text = self.room.category == 1?@"查看钻石":Localized(@"WH_Check_RedPacket");
+    _checkLabel.hidden = YES;
+    _headImageView.image = [UIImage imageNamed: self.room.category == 1?@"red_diamound_icon":@"WH_hongbao_top"];
+    
     //专属红包更改红包颜色
-//    if([self.msg.type intValue] == kWCMessageTypeRedPacketExclusive){
-        UIImage *image = [[UIImage imageNamed:@"WH_hongbao_background"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
-        _imageBackground.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    [_imageBackground setTintColor:self.msg.isDiamound.boolValue?[UIColor colorWithRed:15/255.0 green:128/255.0 blue:47/255.0 alpha:1.0]:[UIColor colorWithRed:245/255.0 green:145/255.0 blue:85/255.0 alpha:1.0]];//HEXCOLOR(0x)
-//    }
+    //    if([self.msg.type intValue] == kWCMessageTypeRedPacketExclusive){
+    UIImage *image = [[UIImage imageNamed:@"WH_hongbao_background"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+    _imageBackground.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [_imageBackground setTintColor:self.room.category==1?HEXCOLOR(0x179cfb):[UIColor colorWithRed:245/255.0 green:145/255.0 blue:85/255.0 alpha:1.0]];//HEXCOLOR(0x)
+    //    }
 //    _title.textColor = [self.msg.type intValue] == kWCMessageTypeRedPacketExclusive?[UIColor whiteColor]:HEXCOLOR(0x8C9AB8);
     
     _title.textColor = [UIColor whiteColor];

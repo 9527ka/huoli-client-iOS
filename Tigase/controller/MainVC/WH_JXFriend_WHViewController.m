@@ -59,6 +59,8 @@
 
 @property (nonatomic, assign) CGFloat btnHeight;  // 按钮的真实高度
 
+@property (nonatomic, strong) UILabel *totalLab;
+
 @end
 
 @implementation WH_JXFriend_WHViewController
@@ -104,6 +106,7 @@
         
         _table.backgroundColor = g_factory.globalBgColor;
         _table.sectionIndexColor = HEXCOLOR(0xAEAFB3);
+        
     }
     return self;
 }
@@ -918,6 +921,13 @@
 {
     [super viewDidLoad];
     _array=[[NSMutableArray alloc] init];
+    
+    _totalLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH, 44)];
+    _totalLab.textColor = [UIColor grayColor];
+    _totalLab.font = [UIFont boldSystemFontOfSize:14];
+    _totalLab.textAlignment = NSTextAlignmentCenter;
+    _table.tableFooterView = self.totalLab;
+    
     [self refresh];
     
 }
@@ -1200,6 +1210,7 @@
                     [_table reloadData];
                 }
             }];
+            self.totalLab.text = [NSString stringWithFormat:@"%ld个朋友",_array.count];
 
 //            //根据Person对象的 name 属性 按中文 对 Person数组 排序
 //            self.indexArray = [BMChineseSort IndexWithArray:_array Key:@"userNickname"];
@@ -1223,6 +1234,7 @@
                     [_table reloadData];
                 }
             }];
+            self.totalLab.text = [NSString stringWithFormat:@"%ld个朋友",_array.count];
             //根据Person对象的 name 属性 按中文 对 Person数组 排序
 //            self.indexArray = [BMChineseSort IndexWithArray:_array Key:@"userNickname"];
 //            self.letterResultArr = [BMChineseSort sortObjectArray:_array Key:@"userNickname"];
@@ -1240,6 +1252,7 @@
                     [_table reloadData];
                 }
             }];
+            self.totalLab.text = [NSString stringWithFormat:@"%ld个朋友",_array.count];
         }
 //            //根据Person对象的 name 属性 按中文 对 Person数组 排序
 //            self.indexArray = [BMChineseSort IndexWithArray:_array Key:@"userNickname"];

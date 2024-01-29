@@ -14,6 +14,8 @@
 #import "WH_JXBuyAndPayListModel.h"
 #import "WH_GroupAccountSetViewController.h"
 #import "WH_AddAccountViewController.h"
+#import "WH_JXAgentVC.h"
+#import "WH_JXAgentManagerVC.h"
 
 @interface WH_JXBuyAndPayListVC ()<UITableViewDataSource, UITableViewDelegate> {
     ATMHud* _wait;
@@ -26,12 +28,14 @@
 @property (weak, nonatomic) IBOutlet UIImageView *nodataImage;
 @property (weak, nonatomic) IBOutlet UILabel *nodataLab;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIButton *addBtn;
 
 @property (nonatomic, strong) NSMutableArray *dataSource;
 
 @property (nonatomic, strong) NSMutableArray *accountList;
 
 @property(nonatomic,assign)NSInteger tag;
+@property (weak, nonatomic) IBOutlet UIButton *managerBtn;
 
 @end
 
@@ -44,6 +48,8 @@
     [self receiveUserCode];
     
     [self WH_getServerData];
+    
+    [self.managerBtn setBackgroundImage:[UIImage imageNamed:g_myself.merchant.boolValue?@"agent_add":@"agent_add_icon"] forState:UIControlStateNormal];
 }
 
 - (void)viewDidLoad {
@@ -51,7 +57,8 @@
     _wait = [ATMHud sharedInstance];
     self.dataSource = [NSMutableArray array];
     self.page = 0;
-    self.tableView.rowHeight = 100.0f;
+//    self.addBtn.layer.cornerRadius = 37.5f;
+    self.tableView.rowHeight = 120.0f;
     self.tag = 0;
     [self.tableView registerNib:[UINib nibWithNibName:@"WH_JXBuyAndPayListCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WH_JXBuyAndPayListCell"];
     //设置刷新的头部以及加载
@@ -77,6 +84,19 @@
         // 进入刷新状态就会回调这个Block
         [weakSelf WH_getServerData];
     };
+}
+//成为代理商
+- (IBAction)addAction:(id)sender {
+    
+    if(g_myself.merchant.boolValue){
+        
+        WH_JXAgentManagerVC *vc = [[WH_JXAgentManagerVC alloc] init];
+        [g_navigation pushViewController:vc animated:YES];
+    }else{
+        WH_JXAgentVC *vc = [[WH_JXAgentVC alloc] init];
+        [g_navigation pushViewController:vc animated:YES];
+    }
+    
 }
 -(void)receiveUserCode{
     [g_server WH_UserAccount:self];
@@ -111,21 +131,34 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     WH_JXBuyAndPayListCell *cell = (WH_JXBuyAndPayListCell *)[tableView dequeueReusableCellWithIdentifier:@"WH_JXBuyAndPayListCell" forIndexPath:indexPath];
+    
+    cell.buyBtn.backgroundColor = self.tag == 0?HEXCOLOR(0x23B525):HEXCOLOR(0xFF0000);
+    [cell.buyBtn setTitle:self.tag == 0?@"购买":@"出售" forState:UIControlStateNormal];
+    
     if(self.dataSource.count > indexPath.row){
         WH_JXBuyAndPayListModel *model = self.dataSource[indexPath.row];
         model.isBuy = self.tag == 0?YES:NO;
         cell.model = model;
         cell.orderCountLab.text = [NSString stringWithFormat:@"成交量：%@",self.tag == 0?model.buyVolume:model.sellVolume];
+        //营业时间
+        cell.timeLab.text = model.flag.boolValue?[NSString stringWithFormat:@"营业时间：%@-%@",model.startHour,model.endHour]:@"营业时间：休息中";
+        if(!model.flag.boolValue){
+            cell.buyBtn.backgroundColor = [UIColor grayColor];
+        }
+        
     }
-    cell.buyBtn.backgroundColor = self.tag == 0?HEXCOLOR(0x23B525):HEXCOLOR(0xFF0000);
-    [cell.buyBtn setTitle:self.tag == 0?@"购买":@"出售" forState:UIControlStateNormal];
-    
+   
     
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if(self.dataSource.count > indexPath.row){
         WH_JXBuyAndPayListModel *model = self.dataSource[indexPath.row];
+        if(!model.flag.boolValue){
+            [g_server showMsg:@"商家休息中"];
+            return;
+        }
+        
         if(self.tag == 1 &&  self.accountList.count == 0){
             [g_server showMsg:@"请设置您的收款账号！"];
             

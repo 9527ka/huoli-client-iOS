@@ -165,7 +165,10 @@
     }
     else if (self.type == JXVerifyTypeAdd) {
         string = @"添加收款账号";
+    }else if (self.type == JXVerifyTypeGroupManager) {
+        string = @"群等级管理";
     }
+    
     
     return string;
 }

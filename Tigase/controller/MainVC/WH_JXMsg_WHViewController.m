@@ -880,6 +880,12 @@
         lastContet = @"[订单已支付]";
     }else if ([dict.message.type intValue] == 4106){//the merchant paid the seller
         lastContet = @"[订单确认收款]";
+    }else if ([dict.message.type intValue] == kWCMessageTypeActivePay){//the merchant paid the seller
+        lastContet = @"[钻石群激活]";
+    }else if ([dict.message.type intValue] == kWCMessageTypeRenewal){//the merchant paid the seller
+        lastContet = @"[钻石群续费]";
+    }else if ([dict.message.type intValue] == kWCMessageTypeUpgrade){//the merchant paid the seller
+        lastContet = @"[钻石群升级]";
     }
     
     if ([dict.message.type intValue] == kWCMessageTypeText || flag) {
@@ -956,7 +962,7 @@
         if([msg.type intValue] == kWCMessageTypeAudioMeetingInvite || [msg.type intValue] == kWCMessageTypeVideoMeetingInvite)
             showNumber = NO;//一律不提醒
     }
-    if([msg.type integerValue] != kRoomRemind_REQUEST_NOTIFICATION && [msg.type integerValue] != kRoomRemind_REQUEST_PAID &&[msg.type integerValue] != kRoomRemind_REQUEST_CONFIRMED &&[msg.type integerValue] != kRoomRemind_REQUEST_CANCELLED &&[msg.type integerValue] != kRoomRemind_REQUEST_REFUND &&[msg.type integerValue] != kRoomRemind_REQUEST_COMPLAINING &&[msg.type integerValue] != kRoomRemind_REQUEST_COMPLAINING_END &&[msg.type intValue] != kRoomRemind_TYPE_SELL_TO_MERCHANT && [msg.type intValue] != kRoomRemind_TYPE_SELL_TO_MERCHANT_REFUND &&[msg.type intValue] != kRoomRemind_TYPE_SELL_TO_MERCHANT_PAID &&[msg.type intValue] != kRoomRemind_TYPE_SELL_TO_MERCHANT_CONFIRMED){
+    if([msg.type integerValue] != kRoomRemind_REQUEST_NOTIFICATION && [msg.type integerValue] != kRoomRemind_REQUEST_PAID &&[msg.type integerValue] != kRoomRemind_REQUEST_CONFIRMED &&[msg.type integerValue] != kRoomRemind_REQUEST_CANCELLED &&[msg.type integerValue] != kRoomRemind_REQUEST_REFUND &&[msg.type integerValue] != kRoomRemind_REQUEST_COMPLAINING &&[msg.type integerValue] != kRoomRemind_REQUEST_COMPLAINING_END &&[msg.type intValue] != kRoomRemind_TYPE_SELL_TO_MERCHANT && [msg.type intValue] != kRoomRemind_TYPE_SELL_TO_MERCHANT_REFUND &&[msg.type intValue] != kRoomRemind_TYPE_SELL_TO_MERCHANT_PAID &&[msg.type intValue] != kRoomRemind_TYPE_SELL_TO_MERCHANT_CONFIRMED&& [msg.type integerValue] != kWCMessageTypeActivePay&& [msg.type integerValue] != kWCMessageTypeRenewal&& [msg.type integerValue] != kWCMessageTypeUpgrade){
         
         if(!msg.isVisible && ![msg isAddFriendMsg]){
             return;
@@ -1339,7 +1345,7 @@
     }else {
         array = _wh_array;
     }
-    WH_JXMsgAndUserObject *p=[array objectAtIndex:indexPath.row];
+    WH_JXMsgAndUserObject *p = [array objectAtIndex:indexPath.row];
     if (![p.user.userId isEqualToString:FRIEND_CENTER_USERID]) {
         _wh_msgTotal -= [cell.bageNumber.wh_lb.text intValue];//  [cell.bage intValue];
     }
@@ -1383,16 +1389,17 @@
         if ([p.user.groupStatus intValue] == 0) {
             
             sendView.chatRoom  = [[JXXMPP sharedInstance].roomPool joinRoom:p.user.userId title:p.user.userNickname isNew:NO];
-        } else if ([p.user.groupStatus intValue] == 1) {
-            [GKMessageTool showError:@"你已被踢出群组"];
-            return;
-        } else if ([p.user.groupStatus intValue] == 2) {
-            [GKMessageTool showError:@"该群已被群主解散"];
-            return;
-        } else {
-            [GKMessageTool showError:@"该群组已被后台锁定"];
-            return;
         }
+//        else if ([p.user.groupStatus intValue] == 1) {
+//            [GKMessageTool showError:@"你已被踢出群组"];
+//            return;
+//        } else if ([p.user.groupStatus intValue] == 2) {
+//            [GKMessageTool showError:@"该群已被群主解散"];
+//            return;
+//        } else {
+//            [GKMessageTool showError:@"该群组已被后台锁定"];
+//            return;
+//        }
         
         if (p.user.roomFlag || p.user.roomId.length > 0) {
             NSDictionary * groupDict = [p.user toDictionary];

@@ -68,6 +68,10 @@ static  WH_webpage_WHVC *webVC;
         
     _navigation = [[JXNavigation alloc] init];
     
+    //以防拿不到配置，先写死配置项
+    [self setConfiguration];
+    
+    
     // 网络监听
 //    [self networkStatusChange];
     // 监听截屏
@@ -150,6 +154,20 @@ static  WH_webpage_WHVC *webVC;
     
     return YES;
 }
+//设置配置线
+-(void)setConfiguration{
+    if(![BaseUrl containsString:@"huoli"]){
+        return;
+    }
+    
+    NSDictionary *dict = @{@"PCXMPPDomain":@"huoli68.com",@"PCXMPPHost":@"47.242.247.185",@"XMPPDomain":@"huoli68.com",@"XMPPHost":@"47.242.247.185",@"XMPPPort":@(5222),@"XMPPTimeout":@(180),@"address":@"CN",@"aliLoginStatus":@(2),@"aliPayStatus":@(1),@"aliWithdrawStatus":@(1),@"androidAppUrl":@"",@"androidDisable":@"",@"androidExplain":@"",@"androidVersion":@(0),@"apiUrl":@"http://im.huoli68.com/im/",@"appleId":@"",@"audioLen":@"20",@"bucketName":@"liehuo",@"chatRecordTimeOut":@(-1),@"copyrightInfo":@"",@"cusServerUrl":@"",@"displayRedPacket":@(1),@"distance":@(20),@"downloadAvatarUrl":@"http://img.huoli68.com/resources/",@"downloadUrl":@"",@"endPoint":@"obs.cn-south-1.myhuaweicloud.com",@"fileValidTime":@(-1),@"guideWebsite":@"",@"headBackgroundImg":@"",@"helpUrl":@"",@"hideSearchByFriends":@(1),@"hmPayStatus":@(2),@"hmWithdrawStatus":@(2),@"invisibleList":@[],@"iosAppUrl":@"",@"iosDisable":@"",@"iosExplain":@"",@"iosVersion":@(0),@"ipAddress":@"222.244.98.170",@"isAudioStatus":@(0),@"isCommonCreateGroup":@(0),@"isCommonFindFriends":@(0),@"isDelAfterReading":@(1),@"isDiscoverStatus":@(1),@"isEnableCusServer":@(1),@"isNodesStatus":@(0),@"isOpenCluster":@(0),@"isOpenDHRecharge":@(0),@"isOpenGoogleFCM":@(0),@"isOpenOSStatus":@(0),@"isOpenPositionService":@(1),@"isOpenReadReceipt":@(1),@"isOpenReceipt":@(1),@"isOpenRegister":@(1),@"isOpenSMSCode":@(1),@"isOpenTelnum":@(1),@"isOpenTwoBarCode":@(1),@"isQestionOpen":@(1),@"isTabBarStatus":@(1),@"isUserSignRedPacket":@(0),@"isWeiBaoStatus":@(0),@"isWithdrawToAdmin":@(0),@"jiGuangStatus":@(2),@"jitsiServer":@"",@"liveUrl":@"",@"location":@"cn-south-1",@"macAppUrl":@"",@"macDisable":@"",@"macExplain":@"",@"macVersion":@(0),@"maxSendRedPagesAmount":@(500.0),@"maxTransferAmount":@(20000.0),@"minTransferAmount":@(50.0),@"minWithdrawToAdmin":@(50.0),@"nicknameSearchUser":@(0),@"osName":@"huawei",@"osType":@(1),@"pcVersion":@(0),@"popularAPP":@"{\"lifeCircle\":1,\"videoMeeting\":1,\"liveVideo\":1,\"shortVideo\":1,\"peopleNearby\":1,\"scan\":1}",@"qqLoginStatus":@(2),@"regeditPhoneOrName":@(1),@"registerInviteCode":@(0),@"shareUrl":@"",@"showContactsUser":@(0),@"softUrl":@"",@"sysRechargeTip":@"充值到平台",@"sysUsdtUrl":@"TTRBNLLNq1CoJSPPwRXEg71cELX9CCSWwE",@"tabBarConfigList":@{@"tabBarNum":@(0),@"tabBarStatus":@(0)},@"telegram":@"",@"tlPayStatus":@(2),@"tlWithdrawStatus":@(2),@"transferRate":@(1.0),@"uploadMaxSize":@(20),@"uploadUrl":@"http://upload.huoli68.com/",@"videoLen":@"20",@"webDownloadUrl":@"",@"webNewUrl":@"",@"website":@"",@"wechatAppId":@"qrq",@"wechatH5LoginStatus":@(2),@"wechatLoginStatus":@(2),@"wechatPayStatus":@(1),@"wechatWithdrawStatus":@(1),@"weiBaoMaxRedPacketAmount":@(0.0),@"weiBaoMaxTransferAmount":@(0.0),@"weiBaoMinTransferAmount":@(0.0),@"weiBaoTransferRate":@(0.0),@"weiPayStatus":@(2),@"weiWithdrawStatus":@(2),@"whatsApp":@"",@"xmppPingTime":@(72),@"yunPayStatus":@(2),@"yunWithdrawStatus":@(2)};
+    //查看本地是否有配置项
+    if([JXServer receiveConfigon]){
+        dict = [JXServer receiveConfigon];
+    }
+    [g_config didReceive:dict];
+}
+
 //注册键盘
 -(void)regiestBord{
     

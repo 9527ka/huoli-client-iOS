@@ -43,6 +43,7 @@
     NSMutableDictionary *pingValues; //!< 节点ping值
     BOOL isRegistSuccess; //!< 是否注册成功
     NSString *areaCodeString; //!< 手机号区号
+    NSInteger tryCount;//重试次数
     
 }
 @end
@@ -55,7 +56,8 @@ static NSString *buttonCellIdentifier = @"buttonCellIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     //开启网络监听
-    [self networkChange];
+//    [self networkChange];
+    [g_server getSetting:self];
     [self initLoginData];
     [self customHeader];
     [self loadTableView];
@@ -64,7 +66,7 @@ static NSString *buttonCellIdentifier = @"buttonCellIdentifier";
     tap.numberOfTapsRequired = 1;
     tap.cancelsTouchesInView = NO;
     [loginTable addGestureRecognizer:tap];
-    
+
     if (!self.isPushEntering) {
         lunchImageView = [[UIImageView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         lunchImageView.image = [UIImage imageNamed:[self getLaunchImageName]];
@@ -81,9 +83,6 @@ static NSString *buttonCellIdentifier = @"buttonCellIdentifier";
     
     [g_notify addObserver:self selector:@selector(onRegistered:) name:kRegistSuccessNotifaction object:nil];
     [g_notify addObserver:self selector:@selector(authRespNotification:) name:kWxSendAuthResp_WHNotification object:nil];
-   
-    
-   
 }
 - (void)networkChange {
     // 1.获得网络监控的管理者
@@ -141,6 +140,8 @@ static NSString *buttonCellIdentifier = @"buttonCellIdentifier";
     }
     //如果不是首次登录，会保存登录类型，获取登录类型作为当前的类型
     currentLoginType = (g_config.lastLoginType != nil) ? [g_config.lastLoginType integerValue] : 0;//默认用户名登录
+    
+    
     NSArray *tempArray;
     
     if ([g_config.isOpenRegister integerValue] == 1) {
@@ -196,6 +197,7 @@ static NSString *buttonCellIdentifier = @"buttonCellIdentifier";
     if (g_config.regeditPhoneOrName && [g_config.regeditPhoneOrName integerValue] != 2) {
         currentLoginType = [g_config.regeditPhoneOrName integerValue];
     }
+    
     NSString *loginName = [g_default objectForKey:kMY_USER_LoginName];
     NSString *userId = [g_default objectForKey:kMY_USER_ID];
     if (IsStringNull(loginName) || IsStringNull(userId)) {
@@ -232,10 +234,11 @@ static NSString *buttonCellIdentifier = @"buttonCellIdentifier";
                     [g_default setInteger:g_config.XMPPHostPort forKey:kLastXmppHostPort];
                     [g_default synchronize];
                 }
-                NSString *str = dict[@"nodeName"];
-                [accountArray addObject:str];
+//                NSString *str = dict[@"nodeName"];
+//                [accountArray addObject:str];
             }
         }
+        
         [accountArray addObject:currentLoginType == 0 ? Localized(@"JX_InputPhone") : Localized(@"JX_InputUserAccount")];
     }
     [accountArray addObject:Localized(@"JX_InputPassWord")];
@@ -698,7 +701,9 @@ static NSString *buttonCellIdentifier = @"buttonCellIdentifier";
         [self setUpThirdLoginWithDict:dict];
         return;
     }else if( [aDownload.action isEqualToString:wh_act_Config]){
+        
         [g_config didReceive:dict];
+        
         [self setUpDefaultValues];
     
         AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
@@ -813,6 +818,20 @@ static NSString *buttonCellIdentifier = @"buttonCellIdentifier";
         NSString *url = [g_default stringForKey:kLastApiUrl];
         if (url && [url isKindOfClass:[NSString class]] && url.length) {
             g_config.apiUrl = url;
+        }else{
+            g_config.apiUrl = BaseUrl;
+        }
+        
+        if(tryCount > 10){
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                tryCount ++;
+                //重新请求
+                [g_server getSetting:self];
+    //            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
+    //
+    //
+    //            });
+            });
         }
         
         [self reSetConfigFile];
@@ -850,9 +869,24 @@ static NSString *buttonCellIdentifier = @"buttonCellIdentifier";
         NSString *url = [g_default stringForKey:kLastApiUrl];
         if (url && [url isKindOfClass:[NSString class]] && url.length) {
             g_config.apiUrl = url;
+        }else{
+            g_config.apiUrl = BaseUrl;
+        }
+        
+        if(tryCount > 10){
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                tryCount ++;
+                //重新请求
+                [g_server getSetting:self];
+    //            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
+    //
+    //
+    //            });
+            });
         }
         
         [self reSetConfigFile];
+        
         return WH_hide_error;
     }
     if([aDownload.action isEqualToString:wh_act_UserLoginAuto]){

@@ -34,6 +34,7 @@
 #import "WH_JXUserObject+GetCurrentUser.h"
 #import "RSA.h"
 #import <CommonCrypto/CommonDigest.h>
+#import "JXDevice.h"
 
 @interface JXServer ()<JXLocationDelegate,WH_JXConnectionDelegate>
 
@@ -58,6 +59,24 @@
     });
     return server;
 }
+/// *缓存配置项
+/// @param dic 数据字典
++(void)setConfigonWithDic:(NSDictionary *)dic{
+    if (dic && [dic isKindOfClass:[NSDictionary class]]) {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:dic forKey:wh_act_Config];
+        [userDefaults synchronize];
+    }
+}
++(NSDictionary *)receiveConfigon{
+    NSDictionary *result = [[NSUserDefaults standardUserDefaults] objectForKey:wh_act_Config];
+    
+    if (result && [result isKindOfClass:[NSDictionary class]]) {
+        
+    }
+    return result;
+}
+
 -(id)init{
     self = [super init];
     _arrayConnections= [[NSMutableArray alloc] init];
@@ -927,7 +946,7 @@
     [p setPostValue:user.password?:@"" forKey:@"password"];
     [p setPostValue:user.verificationCode?:@"" forKey:@"verificationCode"];
     [p setPostValue:@"client_credentials" forKey:@"grant_type"];
-    [p setPostValue:user.model?:@"" forKey:@"model"];
+    [p setPostValue:user.model?user.model:[JXDevice getDeviceModelName] forKey:@"model"];
     [p setPostValue:user.osVersion?:@"" forKey:@"osVersion"];
     [p setPostValue:g_macAddress forKey:@"serial"];
     [p setPostValue:[NSNumber numberWithDouble:self.latitude] forKey:@"latitude"];
@@ -948,6 +967,7 @@
         NSString *area = [g_default objectForKey:kLocationArea];
         [p setPostValue:area?:@"" forKey:@"area"];
     }
+    
     [p go];
 }
 
@@ -962,7 +982,7 @@
     [p setPostValue:user.password forKey:@"password"];
     [p setPostValue:user.verificationCode forKey:@"verificationCode"];
     [p setPostValue:@"client_credentials" forKey:@"grant_type"];
-    [p setPostValue:user.model forKey:@"model"];
+    [p setPostValue:user.model?user.model:[JXDevice getDeviceModelName] forKey:@"model"];
     [p setPostValue:user.osVersion forKey:@"osVersion"];
     [p setPostValue:g_macAddress forKey:@"serial"];
     [p setPostValue:[NSNumber numberWithDouble:self.latitude] forKey:@"latitude"];
@@ -1198,6 +1218,7 @@
     myself.userDescription   = [dict objectForKey:@"description"];
     myself.isupdate = [dict objectForKey:@"isupdate"];
 //    myself.isMultipleLogin = [dict objectForKey:@"multipleDevices"];
+    myself.multipleDevices = [dict objectForKey:@"multipleDevices"];
     myself.isPayPassword = [dict objectForKey:@"payPassword"];
     myself.questions = dict[@"questions"];
     myself.birthday = [NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:@"birthday"] longLongValue]];
@@ -1606,7 +1627,7 @@
     }
     
     [p setPostValue:access_token forKey:@"access_token"];
-    //    [p setPostValue:user.isMultipleLogin forKey:@"multipleDevices"];
+//    [p setPostValue:user.multipleDevices forKey:@"multipleDevices"];
     [p go];
 }
 
@@ -1687,6 +1708,7 @@
     [p setData:[NSData dataWithContentsOfFile:file] forKey:[file lastPathComponent] messageId:nil];
     [p go];
 }
+
 //上传文件到服务器（传路径）
 -(void)uploadFile:(NSString*)file validTime:(NSString *)validTime messageId:(NSString *)messageId toView:(id)toView{
     if(!file)
@@ -1909,8 +1931,8 @@
 }
 
 //指定联系人发红包
-- (void)WH_sendRedPacketV1WithMoneyNum:(double)money type:(int)type count:(int)count greetings:(NSString *)greet roomJid:(NSString*)roomJid toUserId:(NSString *)toUserId toUserIds:(NSString *)toUserIds time:(long)time secret:(NSString *)secret toView:(id)toView {
-    WH_JXConnection *p = [self addTask:wh_act_sendRedPacketV1 param:nil toView:toView];
+- (void)WH_sendRedPacketV1WithMoneyNum:(double)money type:(int)type count:(int)count greetings:(NSString *)greet roomJid:(NSString*)roomJid toUserId:(NSString *)toUserId toUserIds:(NSString *)toUserIds time:(long)time secret:(NSString *)secret isDiamound:(BOOL)isDiamound toView:(id)toView {
+    WH_JXConnection *p = [self addTask:isDiamound?act_diamond_send:wh_act_sendRedPacketV1 param:nil toView:toView];
     [p setPostValue:self.access_token forKey:@"access_token"];
     [p setPostValue:roomJid forKey:@"roomJid"];
     [p setPostValue:toUserId forKey:@"toUserId"];
@@ -4579,13 +4601,15 @@
 }
 
 #pragma mark -- 分配群成员钻石数量
-- (void)allocationGroupMemberDiamondNumber:(NSString *)roomId memberId:(long)memberId diamondNumber:(NSString *)diamondNumber time:(NSString *)time toDelegate:(id)toDelegate {
-    WH_JXConnection *p = [self addTask:act_diamond_allocation param:nil toView:toDelegate];
+- (void)allocationGroupMemberDiamondNumber:(NSString *)roomId memberId:(long)memberId diamondNumber:(NSString *)diamondNumber time:(NSString *)time type:(NSInteger)type secret:(NSString *)secret toDelegate:(id)toDelegate {
+    WH_JXConnection *p = [self addTask:type == 1?act_diamond_increase:act_diamond_decrease param:nil toView:toDelegate];
     [p setPostValue:self.access_token forKey:@"access_token"];
-    [p setPostValue:roomId forKey:@"roomId"];
-    [p setPostValue:@(memberId) forKey:@"userId"];
-    [p setPostValue:diamondNumber forKey:@"moneyStr"];
+    [p setPostValue:roomId forKey:@"roomJid"];
+    [p setPostValue:@(memberId) forKey:@"memberId"];
+    [p setPostValue:diamondNumber forKey:@"amount"];
     [p setPostValue:time forKey:@"time"];
+    
+    [p setPostValue:secret forKey:@"secret"];
     [p go];
 }
 
@@ -4603,10 +4627,6 @@
     [p setPostValue:count forKey:@"count"];
     [p setPostValue:greetings forKey:@"greetings"];
     [p setPostValue:time forKey:@"time"];
-    
-    
-    
-    
     
     [p go];
 }
@@ -4662,7 +4682,8 @@
     NSString *timeStr = [NSString stringWithFormat:@"%.0f", time];
     [p setPostValue:timeStr forKey:@"time"];
         
-    NSString *secret = [self secretEncryption:myself.userId amount:amount time:time payPassword:payPassword];
+    NSString *secret = [self secretEncryption:myself.userId amount:amount time:timeStr.longLongValue payPassword:payPassword];
+    
     [p setPostValue:secret forKey:@"secret"];
     
     [p go];
@@ -4681,12 +4702,12 @@
     [str2 appendString:g_server.access_token];
     
     [str1 appendString:str2];
+
     NSMutableString *str3 = [NSMutableString string];
     str3 = [[g_server WH_getMD5StringWithStr:payPassword] mutableCopy];
     [str1 appendString:str3];
-    
+        
     secret = [g_server WH_getMD5StringWithStr:str1];
-    
     return secret;
 }
 
@@ -4931,6 +4952,109 @@
     }
     [p go];
 }
+
+#pragma mark --代理商入住
+-(void)WH_AgentAddWithName:(NSString *)name telNumber:(NSString *)telNumber carId:(NSString *)carId foreside:(NSString *)foreside backside:(NSString *)backside withHuman:(NSString *)withHuman toView:(id)toView {
+    WH_JXConnection* p = [self addTask:wh_merchant_apply param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:name forKey:@"name"];
+    [p setPostValue:telNumber forKey:@"telNumber"];
+    [p setPostValue:carId forKey:@"id"];
+    [p setPostValue:foreside forKey:@"foreside"];
+    [p setPostValue:backside forKey:@"backside"];
+    [p setPostValue:withHuman forKey:@"withHuman"];
+    [p go];
+}
+
+#pragma mark --群钻石成员列表,按钻石数量排序
+-(void)WH_MemberSpecial:(NSString *)nickname roomId:(NSString *)roomId toView:(id)toView {
+    WH_JXConnection* p = [self addTask:wh_member_special param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    if (nickname.length > 0) {
+        [p setPostValue:nickname forKey:@"nickname"];
+    }
+    [p setPostValue:roomId forKey:@"roomId"];
+    
+    [p go];
+}
+#pragma mark --钻石群升级或续费接口
+-(void)WH_RoomRenewalWithRoomJid:(NSString *)roomJid amount:(NSString *)amount secret:(NSString *)secret level:(NSString *)level time:(NSString *)time isActive:(BOOL)isActive toView:(id)toView {
+    WH_JXConnection* p = [self addTask:isActive?wh_room_active:wh_room_renewal param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:roomJid forKey:@"roomJid"];
+    [p setPostValue:amount forKey:@"amount"];
+    [p setPostValue:secret forKey:@"secret"];
+    [p setPostValue:level forKey:@"level"];
+    [p setPostValue:time forKey:@"time"];
+    
+    [p go];
+}
+#pragma mark --查询群组可选的级别
+-(void)WH_Roomlevel_listWithRoomJid:(NSString *)roomJid toView:(id)toView {
+    WH_JXConnection* p = [self addTask:wh_room_leveList param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:roomJid forKey:@"roomJid"];
+    
+    [p go];
+}
+#pragma mark -- 查询个人收款码信息
+-(void)WH_MerchantGet:(id)toView {
+    WH_JXConnection* p = [self addTask:wh_merchant_get param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    
+    [p go];
+}
+#pragma mark -- 商户配置信息更改
+-(void)WH_MerchantUpdateWithStartHour:(NSString *)startHour endHour:(NSString *)endHour amount:(NSString *)amount flag:(BOOL)flag name:(NSString *)name toView:(id)toView {
+    WH_JXConnection* p = [self addTask:wh_merchant_update param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:startHour forKey:@"startHour"];
+    [p setPostValue:endHour forKey:@"endHour"];
+    [p setPostValue:amount forKey:@"amount"];
+    [p setPostValue:name forKey:@"name"];
+    
+    NSString *flagStr = flag?@"true":@"false";
+    [p setPostValue:flagStr forKey:@"flag"];
+    
+    [p go];
+}
+#pragma mark -- 查询秒抢红包成员列表
+-(void)WH_HortcutGrabListWithRoomJId:(NSString *)roomJId toView:(id)toView {
+    WH_JXConnection* p = [self addTask:wh_shortcut_grab param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:roomJId forKey:@"roomJId"];
+    
+    [p go];
+}
+
+#pragma mark -- 群员秒抢红包成员接口
+-(void)WH_shortcutAddWithRoomJId:(NSString *)roomJId memberIds:(NSString *)memberIds toView:(id)toView {
+    WH_JXConnection* p = [self addTask:wh_shortcut_add param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:roomJId forKey:@"roomJId"];
+    [p setPostValue:memberIds forKey:@"memberIds"];
+    
+    [p go];
+}
+
+#pragma mark -- 群员秒抢红包成员更新接口
+-(void)WH_shortcutUpdatWithRoomJId:(NSString *)roomJId memberId:(NSString *)memberId delay:(NSString *)delay isDelete:(BOOL)isDelete toView:(id)toView {
+    WH_JXConnection* p = [self addTask:isDelete?wh_shortcut_delete:wh_shortcut_update param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:roomJId forKey:@"roomJId"];
+    [p setPostValue:memberId forKey:@"memberId"];
+    if(!isDelete){
+        [p setPostValue:delay forKey:@"delay"];
+    }
+    
+    [p go];
+}
+
+
+
+
+
+
 
 
 

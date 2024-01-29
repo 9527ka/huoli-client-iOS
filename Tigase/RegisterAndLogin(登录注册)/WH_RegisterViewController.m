@@ -25,6 +25,7 @@
 }
 @property (nonatomic, strong) UIView *firstLineView; //!< 用户名和密码之间的线
 @property (nonatomic, strong) UIView *secondLineView; //!< 密码和图片验证码之间的线
+@property (nonatomic, strong) UIView *thirdLineView; //!< 密码和确认密码之间的线
 @property (nonatomic, strong) UIButton *registButton; //!< 注册按钮
 @property (nonatomic, strong) UIButton *loginButton; //!< 以后账号去登录按钮
 @property (nonatomic, strong) UIView *smsBackView; //!< 短信验证码背景
@@ -106,6 +107,7 @@
     [whiteBackView addSubview:self.phoneTextField];
     [whiteBackView addSubview:self.firstLineView];
     [whiteBackView addSubview:self.pwdTextField];
+    [whiteBackView addSubview:self.thirdLineView];
     [whiteBackView addSubview:self.pwdCertainTextField];
     
     
@@ -199,7 +201,7 @@
 }
 - (void)reloadPhoneTextFieldStyleForAccout {
     self.phoneTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:Localized(@"SetAccountName") attributes:@{NSForegroundColorAttributeName: HEXCOLOR(0xCCCCCC)}];
-    self.phoneTextField.keyboardType = UIKeyboardTypeDefault;
+    self.phoneTextField.keyboardType = UIKeyboardTypeASCIICapable;
     UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 16, self.pwdTextField.height)];
     leftView.backgroundColor = self.pwdTextField.backgroundColor;
     self.phoneTextField.leftView = leftView;
@@ -273,6 +275,13 @@
     }
     return _firstLineView;
 }
+- (UIView *)thirdLineView {
+    if (!_thirdLineView) {
+        _thirdLineView = [self createLineViewWithOrginY:self.pwdTextField.bottom lineWidth:whiteBackView.width];
+    }
+    return _thirdLineView;
+}
+
 - (UIView *)secondLineView {
     if (!_secondLineView) {
         _secondLineView = [self createLineViewWithOrginY:self.pwdTextField.bottom lineWidth:whiteBackView.width];
@@ -810,6 +819,8 @@
 - (UIView *)createLineViewWithOrginY:(CGFloat)orginY lineWidth:(CGFloat)width {
     UIView *lView = [[UIView alloc] initWithFrame:CGRectMake(0, orginY, width, g_factory.cardBorderWithd)];
     [lView setBackgroundColor:g_factory.globalBgColor];
+    [lView setBackgroundColor:[UIColor grayColor]];
+    lView.alpha = 0.8;
     return lView;
 }
 

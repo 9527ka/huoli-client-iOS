@@ -102,7 +102,10 @@
     }else{
         self.model.count = self.count;
         
-        float sellCharge = self.count.floatValue * self.model.sellCharge.floatValue;
+        float charge = self.model.isBuy?self.model.sellCharge.floatValue:self.model.buyCharge.floatValue;
+        
+        float sellCharge = self.count.floatValue * charge;
+        
         //应得
         float grossPay = self.model.isBuy?self.count.floatValue + sellCharge:self.count.floatValue - sellCharge;
                 
@@ -126,16 +129,19 @@
     }
     
     if(self.room){//群内购买
-        
+        self.type = self.payModel.type.intValue;
         self.payTypeDic = [self.payModel mj_keyValues];
         
         //调接口
-        [g_server WH_TradeApplyWithTargetAmount:self.count payType:self.type == 0?2:1 financialInfoId:[NSString stringWithFormat:@"%@",self.payModel.payId] payeeUID:[NSString stringWithFormat:@"%ld",self.room.userId] jid:self.room.roomJid payeeName:[NSString stringWithFormat:@"%@",self.payModel.accountName] payeeAccount:[NSString stringWithFormat:@"%@",self.payModel.accountNo] payeeAccountImg:[NSString stringWithFormat:@"%@",self.payModel.qrCode] toView:self];
+        [g_server WH_TradeApplyWithTargetAmount:self.count payType:self.payModel.type.intValue financialInfoId:[NSString stringWithFormat:@"%@",self.payModel.payId] payeeUID:[NSString stringWithFormat:@"%ld",self.room.userId] jid:self.room.roomJid payeeName:[NSString stringWithFormat:@"%@",self.payModel.accountName] payeeAccount:[NSString stringWithFormat:@"%@",self.payModel.accountNo] payeeAccountImg:[NSString stringWithFormat:@"%@",self.payModel.qrCode] toView:self];
     }else{//代理商购买
     
         NSString *paymentCode = self.payModel.qrCode;
         
-        float sellCharge = self.count.floatValue * self.model.sellCharge.floatValue;
+        float charge = self.model.isBuy?self.model.sellCharge.floatValue:self.model.buyCharge.floatValue;
+        
+        float sellCharge = self.count.floatValue * charge;
+        
         //应得
         float grossPay = self.model.isBuy?self.count.floatValue + sellCharge:self.count.floatValue - sellCharge;
         
@@ -184,7 +190,11 @@
         [self.payTypeDic setObject:paymentCode forKey:@"qrCode"];
         [self.payTypeDic setObject:@(self.type) forKey:@"type"];
         
-        float sellCharge = self.count.floatValue * self.model.sellCharge.floatValue;
+        
+        float charge = self.model.isBuy?self.model.sellCharge.floatValue:self.model.buyCharge.floatValue;
+        
+        float sellCharge = self.count.floatValue * charge;
+        
         //应得
         float grossPay = self.model.isBuy?self.count.floatValue + sellCharge:self.count.floatValue - sellCharge;
         

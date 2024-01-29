@@ -124,12 +124,12 @@
         [btn setFrame:CGRectMake(15, (CGRectGetMaxY(self.wh_moneyLabel.frame) + 20) + i*(12 + 44), cView.frame.size.width - 30, 44)];
         [btn setTag:i];
         [btn setTitle:[titleArr objectAtIndex:i] forState:UIControlStateNormal];
-        [btn setTitleColor:([titleStr isEqualToString:Localized(@"JXLiveVC_Recharge")] || [titleStr isEqualToString:@"H5充值"])?HEXCOLOR(0xffffff):HEXCOLOR(0x8C9AB8) forState:UIControlStateNormal];
-        [btn setTitleColor:([titleStr isEqualToString:Localized(@"JXLiveVC_Recharge")] || [titleStr isEqualToString:@"H5充值"])?HEXCOLOR(0xffffff):HEXCOLOR(0x8C9AB8) forState:UIControlStateHighlighted];
-        [btn setBackgroundColor:([titleStr isEqualToString:Localized(@"JXLiveVC_Recharge")] || [titleStr isEqualToString:@"H5充值"])?HEXCOLOR(0x0093FF):HEXCOLOR(0xffffff)];
+        [btn setTitleColor:i == titleArr.count - 1?HEXCOLOR(0xffffff):HEXCOLOR(0x8C9AB8) forState:UIControlStateNormal];
+        [btn setTitleColor:i == titleArr.count - 1?HEXCOLOR(0xffffff):HEXCOLOR(0x8C9AB8) forState:UIControlStateHighlighted];
+        [btn setBackgroundColor:([titleStr isEqualToString:@"C2C交易（推荐）"])?HEXCOLOR(0x0093FF):HEXCOLOR(0xffffff)];
         btn.layer.masksToBounds = YES;
         btn.layer.cornerRadius = g_factory.cardCornerRadius;
-        if (![titleStr isEqualToString:Localized(@"JXLiveVC_Recharge")] && ![titleStr isEqualToString:@"H5充值"]) {
+        if (![titleStr isEqualToString:@"C2C交易（推荐）"]) {
             btn.layer.borderColor = g_factory.cardBorderColor.CGColor;
             btn.layer.borderWidth = g_factory.cardBorderWithd;
         }

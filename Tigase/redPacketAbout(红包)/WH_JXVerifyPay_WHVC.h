@@ -16,6 +16,7 @@ typedef NS_OPTIONS(NSInteger, JXVerifyType) {
     JXVerifyTypeQr,                 // 扫码支付
     JXVerifyTypeSkPay,              // Tigase支付
     JXVerifyTypeAdd,              // 添加收款账号
+    JXVerifyTypeGroupManager,              // 群等级管理
 };
 
 @interface WH_JXVerifyPay_WHVC : WH_admob_WHViewController

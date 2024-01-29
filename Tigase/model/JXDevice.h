@@ -23,4 +23,7 @@
 // 查找我的设备
 -(NSMutableArray*)fetchAllDeviceFromLocal;
 
+/// 获取设备型号，该型号就是 设置->通用->关于手机->型号名称
++ (NSString *)getDeviceModelName;
+
 @end

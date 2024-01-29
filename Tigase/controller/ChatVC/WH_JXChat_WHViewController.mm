@@ -133,6 +133,8 @@
 #import "WH_JXBuyPayViewController.h"
 
 #import "IQKeyboardManager.h"
+#import "WH_JXRoomDiamoundRechargeVC.h"
+#import "UIAlertController+category.h"
 
 
 #define faceHeight (THE_DEVICE_HAVE_HEAD ? 253 : 218)
@@ -876,8 +878,33 @@
     //获取聊天信息
 //    [self receiveChatInfoData];
     
+    //查询是否过期
+    [self showDiamoundAlert];
+    
 }
+-(void)showDiamoundAlert{
+    //判断当前是不是钻石群 是不是已经过期
+    if (self.room.category == 1) {//钻石群
+        NSTimeInterval expiryTime = self.room.expiryTime.longLongValue;
+        NSTimeInterval createTime = self.room.currentTime.longLongValue;
 
+        NSLog(@"当前时间=== %ld,过期时间=====%ld",createTime,expiryTime);
+        
+        if(createTime > expiryTime && expiryTime > 0){//已经过期
+            /// 获取当前登录用户
+            memberData *loginMember = [self getCurrentLoginMerber];
+            /// 当前登录用户是不是管理者
+            /// BOOL isManger = [self isManger:loginMember];
+            if (loginMember.role.intValue == 1) {
+                UIAlertView * alert = [g_App showAlert:@"该群已到期是否立即续费？" delegate:self];
+                alert.tag = 1001;
+            }else{
+               [g_App showAlert:@"该群已到期等待群主续费，暂无法使用" delegate:self tag:1002 onlyConfirm:YES];
+            }
+        }
+    }
+    
+}
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     //退出界面即关闭定时器
@@ -5783,6 +5810,18 @@
         if (member) {
             NSInteger role = [member[@"role"] integerValue];
             _isAdmin = role == 1 || role == 2;
+            self.groupStatus = self.groupStatus.intValue > 0?@(0):self.groupStatus;
+        }else{
+//            [JXMyTools showTipView:@"你已被踢出群组"];
+            
+            [UIAlertController showAlertViewWithTitle:@"你已被踢出群组" message:nil controller:self block:^(NSInteger buttonIndex) {
+                if (buttonIndex==1) {
+                    
+                    [g_navigation WH_dismiss_WHViewController:self animated:YES];
+                }
+            } cancelButtonTitle:nil otherButtonTitles:@"知道了"];
+            
+            
         }
         
         WH_RoomData *room = [[WH_RoomData alloc] init];
@@ -5806,6 +5845,9 @@
         }else {
             self.isDisable = YES;
         }
+        
+        [self showDiamoundAlert];
+        
         
         if(g_xmpp.isLogined == login_status_no){
             //        [self hideKeyboard:NO];
@@ -6089,7 +6131,7 @@
         if ([dict objectForKey:@"jid"]) {
             
             if (![dict objectForKey:@"member"]) {
-                [JXMyTools showTipView:@"你已被踢出群组"];
+//                [JXMyTools showTipView:@"你已被踢出群组"];
                 chatPerson.groupStatus = [NSNumber numberWithInt:1];
                 [chatPerson WH_updateGroupInvalid];
             }else {
@@ -7579,6 +7621,7 @@
     sendGiftVC.delegate = self;
     sendGiftVC.wh_roomJid = self.roomJid;
     sendGiftVC.wh_roomId = self.roomId;
+    sendGiftVC.isDiamond = self.room.category == 1?YES:NO;
     sendGiftVC.room = self.room;
     NSArray * memberArray = [memberData fetchAllMembers:_room.roomId];
     sendGiftVC.memberCount = [NSString stringWithFormat:@"%lu" ,(unsigned long)memberArray.count];
@@ -7674,7 +7717,7 @@
             msg.toUserId     = chatPerson.userId;
             msg.isGroup = NO;
         }
-        
+        msg.amount = redpacketDict[@"money"];
         msg.content      = redpacketDict[@"greet"];
         msg.type         = [NSNumber numberWithInt:kWCMessageTypeRedPacket];
         msg.isSend       = [NSNumber numberWithInt:transfer_status_ing];
@@ -7713,7 +7756,7 @@
             msg.toUserId     = chatPerson.userId;
             msg.isGroup = NO;
         }
-        
+        msg.amount = redpacketDict[@"money"];
         msg.content      = redpacketDict[@"greet"];
         msg.type         = [NSNumber numberWithInt:kWCMessageTypeRedPacketExclusive];
         msg.isSend       = [NSNumber numberWithInt:transfer_status_ing];
@@ -7856,11 +7899,13 @@
             
             memberData * myMem = [self.room getMember:MY_USER_ID];
             memberData * member = [self.room getMember:msg.fromUserId];
-            
-            NSArray *typeArray = (_isAdmin || [myMem.role integerValue] == 1 || [myMem.role integerValue] == 2)? @[@"专属红包", @"@Ta发言", member.talkTime > 0?@"不禁言":@"对Ta禁言"]:@[@"专属红包", @"@Ta发言"];
+        
+        NSString *redStr = self.room.category == 1?@"专属钻石":@"专属红包";
+        
+            NSArray *typeArray = (_isAdmin || [myMem.role integerValue] == 1 || [myMem.role integerValue] == 2)? @[redStr, @"@Ta发言", member.talkTime > 0?@"不禁言":@"对Ta禁言"]:@[redStr, @"@Ta发言"];
             for (NSString *type in typeArray) {
                 [actionSheet addAction:[UIAlertAction actionWithTitle:type style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                    if([action.title isEqualToString:@"专属红包"]){
+                    if([action.title isEqualToString:redStr]){
                         
                         [self sendExclusiveGiftToRoom:member];
                         
@@ -9202,6 +9247,17 @@
             [self actionQuit];
         }
         
+    }else if (alertView.tag == 1001){
+        if (buttonIndex == 1) {//充值
+            WH_JXRoomDiamoundRechargeVC *vc = [[WH_JXRoomDiamoundRechargeVC alloc] init];
+            vc.wh_room = self.room;
+            [g_navigation pushViewController:vc animated:YES];
+        }else{
+            [g_navigation WH_dismiss_WHViewController:self animated:YES];
+        }
+        
+    }else if (alertView.tag == 1002){
+        [g_navigation WH_dismiss_WHViewController:self animated:YES];
     }else {
         if (buttonIndex == 1) {
             UITextField *tf = [alertView textFieldAtIndex:0];
@@ -9616,7 +9672,9 @@
             if (!chatRoom.isConnected) {
                 [g_xmpp.roomPool.pool removeObjectForKey:chatPerson.userId];
                 [g_xmpp.roomPool joinRoom:chatPerson.userId title:chatPerson.userNickname isNew:NO];
-                s = Localized(@"JX_GroupConnectionFailed");
+                
+//                s = Localized(@"JX_GroupConnectionFailed");
+                
                 chatRoom = [[JXXMPP sharedInstance].roomPool joinRoom:chatPerson.userId title:chatPerson.userNickname isNew:NO];
             }
         }

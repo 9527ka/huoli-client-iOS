@@ -44,34 +44,41 @@
         
         WH_FinancialInfosModel *payModel = model.financialInfos[i];
         
-        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(90*i, 0, 78, 28)];
-        bgView.backgroundColor = [UIColor systemGray6Color];
-        bgView.layer.masksToBounds = YES;
-        bgView.layer.cornerRadius = 4.0f;
-        [self.zfbBgView addSubview:bgView];
+        UIImageView *payImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"pay_type_%d",payModel.type.intValue]]];
+        payImage.frame = CGRectMake(32*i, 4, 24, 24);
+        payImage.layer.masksToBounds = YES;
+        payImage.contentMode = UIViewContentModeScaleToFill;
         
-        NSString *typeStr = @"";
-        UIColor *lineColor = HEXCOLOR(0xf7984a);
+        [self.zfbBgView addSubview:payImage];
         
-        if(payModel.type.intValue == 1){//1.微信  2.支付宝  3银行卡
-            lineColor = HEXCOLOR(0x23B525);
-            typeStr = @"微信支付";
-        }else if (payModel.type.intValue == 2){
-            lineColor = HEXCOLOR(0x4174f2);
-            typeStr = @"支付宝";
-        }else if (payModel.type.intValue == 3){
-            lineColor = HEXCOLOR(0xf7984a);
-            typeStr = @"银行卡";
-        }
-        
-        UILabel *lineLab = [[UILabel alloc] initWithFrame:CGRectMake(typeStr.length > 3?6:12, 6, 3, 16)];
-        lineLab.backgroundColor = lineColor;
-        [bgView addSubview:lineLab];
-        
-        UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(typeStr.length > 3?14:20, 0, 74, 28)];
-        titleLab.text = typeStr;
-        titleLab.font = [UIFont systemFontOfSize:14];
-        [bgView addSubview:titleLab];
+//        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(90*i, 0, 78, 28)];
+//        bgView.backgroundColor = [UIColor systemGray6Color];
+//        bgView.layer.masksToBounds = YES;
+//        bgView.layer.cornerRadius = 4.0f;
+//        [self.zfbBgView addSubview:bgView];
+//
+//        NSString *typeStr = @"";
+//        UIColor *lineColor = HEXCOLOR(0xf7984a);
+//
+//        if(payModel.type.intValue == 1){//1.微信  2.支付宝  3银行卡
+//            lineColor = HEXCOLOR(0x23B525);
+//            typeStr = @"微信支付";
+//        }else if (payModel.type.intValue == 2){
+//            lineColor = HEXCOLOR(0x4174f2);
+//            typeStr = @"支付宝";
+//        }else if (payModel.type.intValue == 3){
+//            lineColor = HEXCOLOR(0xf7984a);
+//            typeStr = @"银行卡";
+//        }
+//
+//        UILabel *lineLab = [[UILabel alloc] initWithFrame:CGRectMake(typeStr.length > 3?6:12, 6, 3, 16)];
+//        lineLab.backgroundColor = lineColor;
+//        [bgView addSubview:lineLab];
+//
+//        UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(typeStr.length > 3?14:20, 0, 74, 28)];
+//        titleLab.text = typeStr;
+//        titleLab.font = [UIFont systemFontOfSize:14];
+//        [bgView addSubview:titleLab];
     }
 }
 

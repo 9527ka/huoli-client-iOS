@@ -41,6 +41,7 @@ extern NSString* current_meeting_no;
 #define kMESSAGE_readPersons @"readPersons"
 #define kMESSAGE_chatMsgHeight  @"chatMsgHeight"
 #define kMESSAGE_isShowTime @"isShowTime"
+#define kMESSAGE_amount @"amount"
 
 
 #define kMESSAGE_imWidth @"imageWidth"
@@ -166,7 +167,11 @@ enum kWCMessageType {
     
     kWCMessageTypeTwoWayWithdrawal = 932 , //双向撤回
     
-    kWCMessageTypeDisable = 516 , //设备/ip禁用标识 
+    kWCMessageTypeDisable = 516 , //设备/ip禁用标识
+    
+    kWCMessageTypeActivePay  = 4200 , //激活群
+    kWCMessageTypeRenewal = 4201 , //群续费
+    kWCMessageTypeUpgrade = 4203 , //群升级
 };
 
 @class FMResultSet;
@@ -189,13 +194,14 @@ typedef enum {
 @property (nonatomic,strong) NSString*  toId;//目标ID <message>里
 //以下字段用于通讯，Body里：
 @property (nonatomic,strong) NSNumber*  type;//消息类型 <body>里
-@property (nonatomic,strong) NSString*  fromUserId;//源
-@property (nonatomic,strong) NSString*  fromUserName;//源
-@property (nonatomic,strong) NSString*  toUserId;//目标
-@property (nonatomic,strong) NSString*  toUserName;//目标
-@property (nonatomic,strong) NSString*  content;//内容,或URL,或祝福语
-@property (nonatomic,strong) NSString*  fileName;//文件名，发送方的本地文件名
-@property (nonatomic,strong) NSString*  objectId;//对象ID，一般用来存roomJid
+@property (nonatomic,copy) NSString*  fromUserId;//源
+@property (nonatomic,copy) NSString*  fromUserName;//源
+@property (nonatomic,copy) NSString*  toUserId;//目标
+@property (nonatomic,copy) NSString*  toUserName;//目标
+@property (nonatomic,copy) NSString*  content;//内容,或URL,或祝福语
+@property (nonatomic,copy) NSString*  amount;//红包金额
+@property (nonatomic,copy) NSString*  fileName;//文件名，发送方的本地文件名
+@property (nonatomic,copy) NSString*  objectId;//对象ID，一般用来存roomJid
 @property (nonatomic,strong) NSNumber*  fileSize;//文件尺寸,或红包领取状态
 @property (nonatomic,strong) NSNumber*  timeLen;//录音时长，秒
 @property (nonatomic,strong) NSNumber*  location_x;//位置经度，或图片宽，或视频宽
