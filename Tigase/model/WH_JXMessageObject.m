@@ -733,6 +733,9 @@ static WH_JXMessageObject *shared;
         case kWCMessageTypeUpgrade://群升级
             s = @"[钻石群升级]";
             break;
+        case kWCMessageTypeWirawRefuse://取款拒绝
+            s = @"[取款拒绝]";
+            break;
         default:
             s = self.content;
             break;
@@ -2309,6 +2312,7 @@ static WH_JXMessageObject *shared;
         case kWCMessageTypeActivePay:
         case kWCMessageTypeRenewal:
         case kWCMessageTypeUpgrade:
+        case kWCMessageTypeWirawRefuse:
             
             return YES;
         default:

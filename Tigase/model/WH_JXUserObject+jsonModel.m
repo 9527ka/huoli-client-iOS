@@ -50,7 +50,7 @@
     
 //   self.remarkName = userInfo[@""] ?: @"";
     self.userNickname = userInfo[@"nickname"] ?userInfo[@"nickname"]: Localized(@"JX_NickName");
-    self.userDescription = userInfo[@"desc"] ?: Localized(@"JX_GiftText");
+    self.userDescription = userInfo[@"desc"] ?: @"大吉大利 恭喜发财";
     self.num = userInfo[@"num"] ?: @(0);
     self.offlineNoPushMsg = userInfo[@"offlineNoPushMsg"] ?: @"";
     self.onlinestate = userInfo[@"onlinestate"] ?: @(0);

@@ -53,11 +53,11 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CSX-75-UJI">
-                        <rect key="frame" x="271" y="31.5" width="27" height="27"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CSX-75-UJI">
+                        <rect key="frame" x="266" y="31.5" width="32" height="32"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="27" id="6nR-V8-3PC"/>
-                            <constraint firstAttribute="width" constant="27" id="FBt-WP-Q9W"/>
+                            <constraint firstAttribute="height" constant="32" id="6nR-V8-3PC"/>
+                            <constraint firstAttribute="width" constant="32" id="FBt-WP-Q9W"/>
                             <constraint firstAttribute="width" secondItem="CSX-75-UJI" secondAttribute="height" multiplier="1:1" id="ocn-oN-P53"/>
                         </constraints>
                     </imageView>

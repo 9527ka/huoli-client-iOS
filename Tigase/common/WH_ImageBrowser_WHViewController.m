@@ -277,16 +277,26 @@ static WH_ImageBrowser_WHViewController *shared;
 }
 
 - (void)longPressWH_PhotoView:(UIImage *)image {
-    [self setupActionSheet];
+    
+    [self saveImageToPhotos:self.WH_PhotoView.imageView.image];
+    
+//    [self setupActionSheet];
 }
 
 - (void)setupActionSheet {
     WH_JXActionSheet_WHVC *actionVC = [[WH_JXActionSheet_WHVC alloc] initWithImages:@[] names:@[Localized(@"JX_IdentifyTheQrCode"),Localized(@"JX_ImageEditTitle"),Localized(@"ImageBrowser_save")]];
     actionVC.delegate = self;
+    actionVC.view.tag = 101010;
+    
+//    [g_navigation.subViews.lastObject presentViewController:actionVC animated:NO completion:nil];
     [self presentViewController:actionVC animated:NO completion:nil];
 }
 
 - (void)actionSheet:(WH_JXActionSheet_WHVC *)actionSheet didButtonWithIndex:(NSInteger)index {
+    
+//    UIView *tagView = (UIView *)[self.view viewWithTag:101010];
+//    [tagView removeFromSuperview];
+    
     if (index == 0) {
         
         [self distinguishQRCode];

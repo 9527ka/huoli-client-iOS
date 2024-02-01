@@ -63,13 +63,13 @@
     _checkLabel.textColor = [UIColor whiteColor];
     _checkLabel.font = sysFontWithSize(14);
     
-    _title = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(_headImageView.frame)+1.0f, 10, 200, 30)];
+    _title = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(_headImageView.frame)+1.0f, 10, 120, 30)];
     _title.text = Localized(@"JX_BusinessCard");
     _title.font = sysFontWithSize(12);
     _title.textColor = HEXCOLOR(0x8C9AB8);
     [_imageBackground addSubview:_title];
     
-    _toUserLab = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.size.width - 172, 10, 160, 30)];
+    _toUserLab = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.size.width - 172, 10, 100, 30)];
     _toUserLab.font = sysFontWithSize(12);
     _toUserLab.textColor = [UIColor whiteColor];
 //    _toUserLab.hidden = YES;
@@ -118,9 +118,9 @@
     }
     self.bubbleBg.frame = CGRectMake(bubbleX, bubbleY, bubbleW, bubbleH);
     _imageBackground.frame = self.bubbleBg.bounds;
-    _title.frame = CGRectMake(CGRectGetMinX(_headImageView.frame) + 1.0f, _imageBackground.frame.size.height - (4+17), 200, 17);
+    _title.frame = CGRectMake(CGRectGetMinX(_headImageView.frame) + 1.0f, _imageBackground.frame.size.height - (4+17), 120, 17);
     
-    _toUserLab.frame = CGRectMake(_imageBackground.bounds.size.width - 148, _imageBackground.frame.size.height - (4+17), 140, 17);
+    _toUserLab.frame = CGRectMake(_imageBackground.bounds.size.width - 108, _imageBackground.frame.size.height - (4+17), 100, 17);
     
     _line.frame = CGRectMake(8, _imageBackground.frame.size.height - (8+17), 200, 0.3);
     
@@ -154,7 +154,14 @@
         NSString *title = Localized(@"JXredPacket");//红包
         if([self.msg.type intValue] == kWCMessageTypeRedPacketExclusive){
             title = self.room.category == 1?@"专属钻石":@"专属红包";
-            title = [NSString stringWithFormat:@"仅 %@ 可领",self.msg.toUserNames];
+            
+            NSString *name = self.msg.toUserNames;
+            if(self.msg.toUserNames.length > 4){
+                name = [name substringToIndex:4];
+                name = [NSString stringWithFormat:@"%@...",name];
+            }
+            
+            title = [NSString stringWithFormat:@"仅 %@ 可领",name];
         }else{
             title = self.room.category == 1?@"手气钻石":@"手气红包";
         }

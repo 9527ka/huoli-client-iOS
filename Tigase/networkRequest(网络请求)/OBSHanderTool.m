@@ -439,6 +439,143 @@ static OBSClient *client;
     }
 }
 
+//上传群头像
++(void)WH_handleUploadGroupOBSHeadImage:(NSString*)userId image:(UIImage*)image toView:(id)toView success:(void(^)(int code)) success failed:(void(^) (NSError *error)) failed{
+    if ([g_config.isOpenOSStatus integerValue]) {//使用obs上传
+        if ([g_config.osType integerValue] == 1) {//华为云
+            
+            NSString *pubkey = @"-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDg/CxgoI8m6EXa6QJsleT1k+X6Cg2cGC2aS9il05kW7zfIgoIUwqGO6EXlcIWsRFgJQWvxS94vtbbCWqC9Os4SvfazikT8TmyQtCNnfGSqM7eZKql/jR6XAGBEN4OIQOrtb8GdO4PSpi5NhBziaGEGeSC4LmmolFic9Fm6FHYD4wIDAQAB\n-----END PUBLIC KEY-----";
+            
+            NSString *access_key_id = [RSA decryptString:g_config.accessKeyId publicKey:pubkey];
+            NSString *access_secret_key = [RSA decryptString:g_config.accessSecretKey publicKey:pubkey];
+            NSString *end_point = g_config.endPoint;
+            NSString *bucket_name = g_config.bucketName;
+            
+            // 初始化身份验证
+            OBSStaticCredentialProvider *credentailProvider = [[OBSStaticCredentialProvider alloc] initWithAccessKey:access_key_id secretKey:access_secret_key];
+            NSString *endPointUrl = [NSString stringWithFormat:@"https://%@",end_point];
+            
+            // 初始化服务配置
+            OBSServiceConfiguration *conf = [[OBSServiceConfiguration alloc] initWithURLString:endPointUrl credentialProvider:credentailProvider];
+            
+            if (conf) {
+                // 初始化client
+                client = [[OBSClient alloc] initWithConfiguration:conf];
+                
+                NSString* dir  = [NSString stringWithFormat:@"%d",[userId intValue] % 10000];
+                NSString* dirs  = [NSString stringWithFormat:@"%d",[userId intValue] % 20000];
+                
+                
+                __block NSString* fileUrlStr1  = [NSString stringWithFormat:@"avatar/t/%@/%@%@.jpg",dir,dirs,userId];
+                __block NSString* fileUrlStr2  = [NSString stringWithFormat:@"avatar/o/%@/%@%@.jpg",dir,dirs,userId];
+                
+                OBSPutObjectWithDataRequest *request1 = [[OBSPutObjectWithDataRequest alloc]initWithBucketName:bucket_name objectKey:fileUrlStr1 uploadData:UIImageJPEGRepresentation(image, 0.5)];
+                OBSPutObjectWithDataRequest *request2 = [[OBSPutObjectWithDataRequest alloc]initWithBucketName:bucket_name objectKey:fileUrlStr2 uploadData:UIImageJPEGRepresentation(image, 0.5)];
+                request1.objectACLPolicy = OBSACLPolicyPublicRead;
+                request2.objectACLPolicy = OBSACLPolicyPublicRead;
+                
+                // 上传对象
+                [client putObject:request1 completionHandler:^(OBSPutObjectResponse *response, NSError *error) {
+                    
+                    if (!error) {
+                        // 上传大图
+                        [client putObject:request2 completionHandler:^(OBSPutObjectResponse *response, NSError *error) {
+                            client = nil;
+                            if (!error) {
+                                
+                                success(1);
+                                
+                            }
+                        }];
+                        
+                    }else{
+                        // 处理错误,上传自己服务器
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [g_server WH_uploadHeadImageWithUserId:userId image:image toView:toView];
+                        });
+                        failed(error);
+                    }
+                }];
+
+            }
+                        
+        } else if ([g_config.osType integerValue] == 2) {
+            
+            
+            int hashCode = [self gethashCode:userId];
+            int a = abs(hashCode % 10000);
+            int b = abs(hashCode % 20000);
+        
+            
+            NSString* dir  = [NSString stringWithFormat:@"%d",a];
+            NSString* dirs  = [NSString stringWithFormat:@"%d",b];
+            
+            
+            __block NSString* fileUrlStr1  = [NSString stringWithFormat:@"avatar/t/%@/%@/%@.jpg",dir,dirs,userId];
+            __block NSString* fileUrlStr2  = [NSString stringWithFormat:@"avatar/o/%@/%@/%@.jpg",dir,dirs,userId];
+            
+            //腾讯云os需要用bucketName拼接上osAppId作为bucket传递给sdk
+            __block NSString *bucket_name = [NSString stringWithFormat:@"%@-%@",g_config.bucketName,g_config.osAppId];
+//            NSString *fileName = file.lastPathComponent;
+            
+            QCloudCOSXMLUploadObjectRequest *request = [QCloudCOSXMLUploadObjectRequest new];
+            request.object = fileUrlStr1;
+            request.bucket = bucket_name;
+            request.body = UIImageJPEGRepresentation(image, 0.5);
+            
+            [request setFinishBlock:^(QCloudUploadObjectResult *result, NSError *error) {
+                if (error) {
+                    //obs上传失败,就走服务器
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [g_server WH_uploadHeadImageWithUserId:userId image:image toView:toView];
+                    });
+                }else{
+
+                    QCloudCOSXMLUploadObjectRequest *request = [QCloudCOSXMLUploadObjectRequest new];
+                    request.object = fileUrlStr2;
+                    request.bucket = bucket_name;
+                    request.body = UIImageJPEGRepresentation(image, 0.5);
+                    [request setFinishBlock:^(QCloudUploadObjectResult *result, NSError *error) {
+                        if (error) {
+                            
+                        }else{
+                            success(1);
+                        }
+                    }];
+                    [[QCloudCOSTransferMangerService defaultCOSTransferManager] UploadObject:request];
+                }
+                
+            }];
+            [[QCloudCOSTransferMangerService defaultCOSTransferManager] UploadObject:request];
+        }else{
+            // obs配置获取失败,走服务器上传
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [g_server WH_uploadHeadImageWithUserId:userId image:image toView:toView];
+            });
+        }
+        
+    }else{
+        // 后台未开启obs配置
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [g_server WH_uploadHeadImageWithUserId:userId image:image toView:toView];
+        });
+    }
+}
++(int)gethashCode:(NSString *)str {
+    // 字符串转hash
+    int hash = 0;
+    for (int i = 0; i<[str length]; i++) {
+        NSString *s = [str substringWithRange:NSMakeRange(i, 1)];
+        char *unicode = (char *)[s cStringUsingEncoding:NSUnicodeStringEncoding];
+        int charactorUnicode = 0;
+        size_t length = strlen(unicode);
+        for (int n = 0; n < length; n ++) {
+            charactorUnicode += (int)((unicode[n] & 0xff) << (n * sizeof(char) * 8));
+        }
+        hash = hash * 31 + charactorUnicode;
+    }
+    return hash;
+}
 + (void)fileUrl:(NSString *)fileMd5 competion:(void(^)(NSString *fileUrl))completion{
     dispatch_async(dispatch_get_main_queue(), ^{
         completion([NSString stringWithFormat:@"https://%@.%@/%@",g_config.bucketName,g_config.endPoint,fileMd5]);

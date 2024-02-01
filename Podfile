@@ -14,7 +14,7 @@ pod 'FirebaseCrashlytics'
 
 pod 'YYModel'
 pod 'IQKeyboardManager'
-#pod 'Masonry'
+pod 'MJExtension'
 
 
 end

@@ -135,6 +135,8 @@
 #import "IQKeyboardManager.h"
 #import "WH_JXRoomDiamoundRechargeVC.h"
 #import "UIAlertController+category.h"
+#import "WH_JXFastRedSetVC.h"
+#import "WH_JXFastRedView.h"
 
 
 #define faceHeight (THE_DEVICE_HAVE_HEAD ? 253 : 218)
@@ -698,6 +700,7 @@
             _moreView.onDiamond = @selector(sendDiamond);
             _moreView.wh_onGift = @selector(sendGiftToRoom);
             _moreView.onTwoWayWithdrawal = @selector(twoWayWithdrawalMethod);
+            _moreView.onFastRedPacket = @selector(sendFastRedPacket);
         }else{
             _moreView.wh_onGift = @selector(sendGift);
             _moreView.wh_onTransfer = @selector(onTransfer);
@@ -861,7 +864,7 @@
     imageView.image = [UIImage imageNamed:@"doubleArrow_up"];
     [_jumpNewMsgBtn addSubview:imageView];
     
-    if (self.newMsgCount > 20) {
+    if (self.newMsgCount > PAGE_SHOW_COUNT) {
         _jumpNewMsgBtn.hidden = NO;
     }else {
         _jumpNewMsgBtn.hidden = YES;
@@ -1523,10 +1526,15 @@
                 }
                 
                 //删除本地聊天记录
-                [_array removeObjectAtIndex:indexNum];
-                [msg delete];
+                if(_array.count > indexNum){
+                    [_array removeObjectAtIndex:indexNum];
+                    [msg delete];
+                    
+                    [_table WH_deleteRow:(int)indexNum section:0];
+                }else{
+                    
+                }
                 
-                [_table WH_deleteRow:(int)indexNum section:0];
             }
             
             if (msgIds.length > 0) {
@@ -1798,7 +1806,6 @@
  */
 -(void)refresh:(WH_JXMessageObject*)msg loadHistory:(BOOL)loadHistory
 {
-    
     if (self.courseId.length > 0) {
         NSMutableArray *arr = [NSMutableArray array];
         for (NSDictionary *dict in self.courseArray) {
@@ -1861,8 +1868,8 @@
         }else {
             //获取本地聊天记录
             if (self.scrollLine == 0) {
-                int pageCount = 20;
-                if (self.newMsgCount > 20) {
+                int pageCount = PAGE_SHOW_COUNT;
+                if (self.newMsgCount > PAGE_SHOW_COUNT) {
                     pageCount = self.newMsgCount;
                 }
                 if (loadHistory) {
@@ -1875,7 +1882,7 @@
                         p = [[WH_JXMessageObject sharedInstance] fetchMessageListWithUser:s byAllNum:_array.count pageCount:pageCount startTime:[NSDate dateWithTimeIntervalSince1970:0]];
                     }
                     //修复历史消息最多加载一页问题
-                    bPull = p.count>0;
+                    bPull = p.count>0?YES:NO;
                 }
             }else {
                 p = [[WH_JXMessageObject sharedInstance] fetchAllMessageListWithUser:s];
@@ -1895,7 +1902,6 @@
             if([msg.type intValue] == kWCMessageTypeRedPacketExclusive){
                 NSLog(@"指定人 ==== %@ 名字==%@",msg.toUserIds,msg.toUserNames);
             }
-            
                if ([msg.type intValue] == kWCMessageTypeRedPacketExclusive && !isManger && ![msg.toUserIds isEqualToString:MY_USER_ID] && ![msg.fromUserId isEqualToString:MY_USER_ID]) {
                    
                    [tempArr removeObject:msg];
@@ -1911,8 +1917,11 @@
         //获取口令红包记录
         [_orderRedPacketArray addObjectsFromArray:[self fetchRedPacketListWithType:3]];
         
-        b = p.count>0;
-        bPull = p.count>=PAGE_SHOW_COUNT;
+        b = p.count>0?YES:NO;
+        bPull = p.count>=PAGE_SHOW_COUNT?YES:NO;
+        //隐藏刷新头部
+//        self.wh_isShowHeaderPull = bPull;
+        
 //        if(_page == 0 || self.scrollLine>0)//如果
 //            [_array removeAllObjects];
         if(b){
@@ -1964,14 +1973,13 @@
                     self.scrollLine = 0;
                     [_array removeObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, _array.count-15)]];
                     [_table reloadData];
-                    [_table WH_gotoLastRow:NO];
+//                    [_table WH_gotoLastRow:NO];
 
                 }else{
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                                        
                         [_table reloadData];
     //                    [self scrollToCurrentLine];
-                        [_table WH_gotoLastRow:NO];
+//                        [_table WH_gotoLastRow:NO];
                     });
                 }
                 
@@ -1990,7 +1998,7 @@
 //                        [_table gotoRow: (int)(_array.count - firstNum + 2)];
 //                        [_table scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:(int)(_array.count - firstNum) inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
                         
-                        [_table WH_gotoLastRow:NO];
+//                        [_table WH_gotoLastRow:NO];
                         _table.contentOffset = CGPointMake(0, allHeight);
                         
                     }
@@ -2003,7 +2011,10 @@
 }
 
 - (void) scrollToCurrentLine {
-    [_table WH_gotoRow:self.scrollLine];
+    if(_array.count > self.scrollLine){
+        [_table WH_gotoRow:self.scrollLine];
+    }
+    
 //    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.scrollLine - 1 inSection:0];
 //    [_table scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
@@ -3466,8 +3477,8 @@
         }
         
     }
-
-    [_table WH_insertRow:(int)[_array count]-1 section:0];
+    [self.tableView reloadData];
+//    [_table WH_insertRow:(int)[_array count]-1 section:0];
     if (flag || msg.isMySend) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [_table WH_gotoLastRow:NO];
@@ -3865,7 +3876,10 @@
         [msg1 update];
         [msg1 notifyNewMsg];
         [_wait stop];
-        [_table WH_reloadRow:(int)self.withdrawIndex section:0];
+        if(_array.count > self.withdrawIndex){
+            [_table WH_reloadRow:(int)self.withdrawIndex section:0];
+        }
+       
         return;
     }
 
@@ -5978,9 +5992,17 @@
     if ([aDownload.action isEqualToString:wh_act_getRedPacket]) {
 //        if ([dict[@"packet"][@"type"] intValue] != 3) {
         NSString *userId = [NSString stringWithFormat:@"%@",[[dict objectForKey:@"packet"] objectForKey:@"userId"]];
+        
         if (self.roomJid.length > 0) {
-            if (self.isDidRedPacketRemind) {
-                self.isDidRedPacketRemind = NO;
+            NSString *canReceive = [NSString stringWithFormat:@"%@",[dict objectForKey:@"canOpen"]];
+            
+            if (!canReceive.boolValue) {
+//            if (self.isDidRedPacketRemind) {
+//                self.isDidRedPacketRemind = NO;
+                
+                [self changeMessageRedPacketStatus:dict[@"packet"][@"id"]];
+                [self changeMessageArrFileSize:dict[@"packet"][@"id"]];
+
                 WH_JXredPacketDetail_WHVC * redPacketDetailVC = [[WH_JXredPacketDetail_WHVC alloc]init];
                 redPacketDetailVC.wh_dataDict = [[NSDictionary alloc]initWithDictionary:dict];
                 redPacketDetailVC.isGroup = self.room.roomId.length > 0;
@@ -6023,7 +6045,7 @@
             if (self.roomJid && _taskList.count > 0) {
                 JXSynTask *task = _taskList.firstObject;
                 if (array1.count < PAGECOUNT) {
-                    [task delete];
+                    [task deleteAction];
                     [_taskList removeObjectAtIndex: 0];
                 }else {
                     NSDictionary *dict = array1.lastObject;
@@ -6036,8 +6058,8 @@
 
                 
             }else {
-                
-                self.wh_isShowHeaderPull = array1.count >= 20;
+                                
+//                self.wh_isShowHeaderPull = array1.count >= PAGE_SHOW_COUNT?YES:NO;
                 [_array removeAllObjects];
                 _page = 0;
                 
@@ -6050,7 +6072,7 @@
             
             if (self.roomJid && _taskList.count > 0) {
                 JXSynTask *task = _taskList.firstObject;
-                [task delete];
+                [task deleteAction];
                 [_taskList removeObjectAtIndex: 0];
                 
                 self.isGetServerMsg = NO;
@@ -6245,8 +6267,8 @@
     //自己查看红包或者红包已领完，resultCode ＝0
     if ([aDownload.action isEqualToString:wh_act_getRedPacket]) {
         
-//        [self changeMessageRedPacketStatus:dict[@"data"][@"packet"][@"id"]];
-//        [self changeMessageArrFileSize:dict[@"data"][@"packet"][@"id"]];
+        [self changeMessageRedPacketStatus:dict[@"data"][@"packet"][@"id"]];
+        [self changeMessageArrFileSize:dict[@"data"][@"packet"][@"id"]];
         
         WH_JXredPacketDetail_WHVC * redPacketDetailVC = [[WH_JXredPacketDetail_WHVC alloc]init];
         redPacketDetailVC.wh_dataDict = [[NSDictionary alloc]initWithDictionary:dict];
@@ -7670,7 +7692,22 @@
     sendDiamondVC.memberCount = [NSString stringWithFormat:@"%lu" ,(unsigned long)memberArray.count];
     [g_navigation pushViewController:sendDiamondVC animated:YES];
 }
+#pragma mark - 群里发急速红包
+- (void)sendFastRedPacket {
+    WH_FastRedModel *model = [JXServer receiveFastRed];
+    if(!model || !model.isOn.boolValue){
+        //判断是否设置过急速红包
+        WH_JXFastRedSetVC *vc = [[WH_JXFastRedSetVC alloc] init];
+        [g_navigation pushViewController:vc animated:YES];
+    }else{
+        WH_JXFastRedView *view = [[WH_JXFastRedView alloc] init];
+        view.room = self.room;
+        view.delegate = self;
+        [self.view addSubview:view];
+    }
 
+    
+}
 #pragma mark - 转账delegate
 - (void)transferToUser:(NSDictionary *)dict {
     [self hideKeyboard:NO];
@@ -7700,7 +7737,7 @@
 
 }
 
-#pragma mark 发红包代理
+#pragma mark 发红包代理 极速红包
 -(void)sendRedPacketDelegate:(NSDictionary *)redpacketDict{
     [self hideKeyboard:NO];
     if ([redpacketDict[@"id"] length]>0) {
@@ -8043,7 +8080,7 @@
     [_wait stop];
     RedPacketView *redPacketView = [[RedPacketView alloc] initWithRedPacketInfo:dict];
     redPacketView.isGroup = self.room.roomId.length > 0;
-    [redPacketView showRedPacket];
+    [redPacketView showRedPacket:self.view];
     redPacketView.redPocketBlock = ^(NSDictionary * _Nonnull dict, BOOL success) {
         self.redPacketDict = dict;
         if (success) {
@@ -8077,6 +8114,10 @@
             }
             [g_server WH_getUserMoenyToView:self];
         }else {//红包被抢完
+            
+            [self changeMessageRedPacketStatus:dict[@"packet"][@"id"]];
+            [self changeMessageArrFileSize:dict[@"packet"][@"id"]];
+            
             WH_JXredPacketDetail_WHVC * redPacketDetailVC = [[WH_JXredPacketDetail_WHVC alloc]init];
             redPacketDetailVC.wh_dataDict = [[NSDictionary alloc]initWithDictionary:dict];
             redPacketDetailVC.isGroup = self.room.roomId.length > 0;
@@ -8150,7 +8191,7 @@
         WH_JXMessageObject * msgObj = [msgArray objectAtIndex:i];
         if ([msg.messageId isEqualToString:msgObj.messageId]) {
             
-            [WH_ImageBrowser_WHViewController show:self delegate:self type:PhotoBroswerVCTypeModal contentArray:msgArray index:i imagesBlock:^NSArray *{
+            [WH_ImageBrowser_WHViewController show:self delegate:self type:PhotoBroswerVCTypeZoom contentArray:msgArray index:i imagesBlock:^NSArray *{
                 return imagePathArr;
             }];
             
@@ -9572,6 +9613,11 @@
         [g_navigation pushViewController:vc animated:YES];
     }
     
+//    if ([msg.fileSize intValue] == 2) {//已经领取
+//        self.isDidRedPacketRemind = YES;
+//        [g_server WH_getRedPacketWithMsg:msg.objectId toView:self];
+//    }
+    
     if ([msg.remindType intValue] == kWCMessageTypeRedPacketReceive) {
         self.isDidRedPacketRemind = YES;
         [g_server WH_getRedPacketWithMsg:msg.objectId toView:self];
@@ -9598,8 +9644,9 @@
 // 文本消息阅后即焚
 - (void)onDidMessageReadDel:(NSNotification *)notif {
     int indexNum = [notif.object intValue];
-    [_table WH_reloadRow:indexNum section:0];
-    
+    if(_array.count > indexNum){
+        [_table WH_reloadRow:indexNum section:0];
+    }
 }
 
 // 消息撤回

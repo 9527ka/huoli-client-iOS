@@ -886,6 +886,8 @@
         lastContet = @"[钻石群续费]";
     }else if ([dict.message.type intValue] == kWCMessageTypeUpgrade){//the merchant paid the seller
         lastContet = @"[钻石群升级]";
+    }else if ([dict.message.type intValue] == kWCMessageTypeWirawRefuse){//the merchant paid the seller
+        lastContet = @"[取款拒绝]";
     }
     
     if ([dict.message.type intValue] == kWCMessageTypeText || flag) {
@@ -962,7 +964,7 @@
         if([msg.type intValue] == kWCMessageTypeAudioMeetingInvite || [msg.type intValue] == kWCMessageTypeVideoMeetingInvite)
             showNumber = NO;//一律不提醒
     }
-    if([msg.type integerValue] != kRoomRemind_REQUEST_NOTIFICATION && [msg.type integerValue] != kRoomRemind_REQUEST_PAID &&[msg.type integerValue] != kRoomRemind_REQUEST_CONFIRMED &&[msg.type integerValue] != kRoomRemind_REQUEST_CANCELLED &&[msg.type integerValue] != kRoomRemind_REQUEST_REFUND &&[msg.type integerValue] != kRoomRemind_REQUEST_COMPLAINING &&[msg.type integerValue] != kRoomRemind_REQUEST_COMPLAINING_END &&[msg.type intValue] != kRoomRemind_TYPE_SELL_TO_MERCHANT && [msg.type intValue] != kRoomRemind_TYPE_SELL_TO_MERCHANT_REFUND &&[msg.type intValue] != kRoomRemind_TYPE_SELL_TO_MERCHANT_PAID &&[msg.type intValue] != kRoomRemind_TYPE_SELL_TO_MERCHANT_CONFIRMED&& [msg.type integerValue] != kWCMessageTypeActivePay&& [msg.type integerValue] != kWCMessageTypeRenewal&& [msg.type integerValue] != kWCMessageTypeUpgrade){
+    if([msg.type integerValue] != kRoomRemind_REQUEST_NOTIFICATION && [msg.type integerValue] != kRoomRemind_REQUEST_PAID &&[msg.type integerValue] != kRoomRemind_REQUEST_CONFIRMED &&[msg.type integerValue] != kRoomRemind_REQUEST_CANCELLED &&[msg.type integerValue] != kRoomRemind_REQUEST_REFUND &&[msg.type integerValue] != kRoomRemind_REQUEST_COMPLAINING &&[msg.type integerValue] != kRoomRemind_REQUEST_COMPLAINING_END &&[msg.type intValue] != kRoomRemind_TYPE_SELL_TO_MERCHANT && [msg.type intValue] != kRoomRemind_TYPE_SELL_TO_MERCHANT_REFUND &&[msg.type intValue] != kRoomRemind_TYPE_SELL_TO_MERCHANT_PAID &&[msg.type intValue] != kRoomRemind_TYPE_SELL_TO_MERCHANT_CONFIRMED&& [msg.type integerValue] != kWCMessageTypeActivePay&& [msg.type integerValue] != kWCMessageTypeRenewal&& [msg.type integerValue] != kWCMessageTypeUpgrade&& [msg.type integerValue] != kWCMessageTypeWirawRefuse){
         
         if(!msg.isVisible && ![msg isAddFriendMsg]){
             return;

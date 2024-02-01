@@ -13,6 +13,7 @@
 @property (nonatomic, assign) long userId;     // 发送者id
 @property (nonatomic, assign) long toUserId;   // 接收者id
 @property (nonatomic, strong) NSString *userName;   // 发送者昵称
+@property (nonatomic, strong) NSString *toUserName;   // 接收者昵称
 @property (nonatomic, strong) NSString *reamrk;     // 转账说明
 @property (nonatomic, strong) NSString *createTime; // 转账时间
 @property (nonatomic, assign) double money;         // 金额

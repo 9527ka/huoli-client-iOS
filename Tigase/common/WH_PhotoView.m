@@ -209,6 +209,7 @@
         
         _scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView.showsVerticalScrollIndicator = NO;
+        _scrollView.userInteractionEnabled = YES;
         
         [_scrollView setZoomScale:1];
         

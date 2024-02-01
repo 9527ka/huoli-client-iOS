@@ -448,7 +448,7 @@ static NSString *PassCellIdentifier = @"PassCellIdentifier";
         [[WH_JXUserObject sharedUserInstance] getCurrentUser];
         
         //注册完成头像没有BUG
-        __block NSString *userId = [[dict objectForKey:@"userId"] stringValue];
+        __block NSString *userId = [NSString stringWithFormat:@"%@",[[dict objectForKey:@"userId"] stringValue]];
         _user.userId = userId;
         
         [WH_JXUserObject sharedUserInstance].complete = ^(HttpRequestStatus status, NSDictionary * _Nullable userInfo, NSError * _Nullable error) {

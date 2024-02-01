@@ -106,6 +106,7 @@
         WH_JXUserObject *member = [[WH_JXUserObject sharedUserInstance] getUserById:[dic objectForKey:@"referenceUserId"]];
         
         cell.memberLabel.text = [NSString stringWithFormat:@"%@",userMember.userNickname.length > 0?userMember.userNickname:[dic objectForKey:@"userNickname"]];//@"张三张三张\n123"
+        
         NSString *time = [NSString stringWithFormat:@"%@",dic[@"eventTime"]];
         
         NSDate * date = [NSDate dateWithTimeIntervalSince1970:time.doubleValue/1000];
@@ -114,8 +115,16 @@
     //    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8*60*60]];//中国专用
         cell.timeLabel.text = [dateFormatter stringFromDate:date];
         
-        cell.operatorLabel.text = [NSString stringWithFormat:@"%@",member.userNickname];;
+//        cell.operatorLabel.text = [NSString stringWithFormat:@"%@",member.userNickname];
+        cell.operatorLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"referenceData"]];
+        
+        UIImage *placeholderImage = [UIImage imageNamed:@"avatar_normal"];
+        
+        cell.operatorImage.image = placeholderImage;
+        cell.memberImage.image = placeholderImage;
+        
         [g_server WH_getHeadImageSmallWIthUserId:member.userId userName:member.userNickname imageView:cell.operatorImage];
+        
         [g_server WH_getHeadImageSmallWIthUserId:userMember.userId userName:userMember.userNickname imageView:cell.memberImage];
     }
     

@@ -223,6 +223,10 @@
     }
     _array = dataArr;
     
+    memberData *data = [self.room getMember:g_myself.userId];
+    
+    self.isMeCreatGroup = [self isManger:data];
+    
     [self filtrateMember];
     //选择拼音 转换的 方法
     BMChineseSortSetting.share.sortMode = 2; // 1或2
@@ -230,9 +234,7 @@
     ////群主群管理 不参与排序
     NSMutableArray * allMemberDataArr = [[NSMutableArray alloc] init];
     
-    memberData *data = [self.room getMember:g_myself.userId];
     
-    self.isMeCreatGroup = [self isManger:data];
     
     if (self.type == Type_DelMember) {
         [_wait start];
@@ -639,7 +641,7 @@
 }
 - (void)filtrateMember {
     NSMutableArray *tempArr = [NSMutableArray array];
-    if (!self.room.showMember) {
+    if (!self.room.showMember && !self.isMeCreatGroup) {
         for (memberData *member in _array) {
             if ([member.role intValue] <= 2 || [[NSString stringWithFormat:@"%ld", member.userId] isEqualToString:MY_USER_ID]) {
                 [tempArr addObject:member];

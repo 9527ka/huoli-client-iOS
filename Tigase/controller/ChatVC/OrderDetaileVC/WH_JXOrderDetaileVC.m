@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *cancleAppealBtn;
 @property (weak, nonatomic) IBOutlet UIButton *certainBtn;
 @property (weak, nonatomic) IBOutlet UIButton *cancleBtn;//取消订单按钮
+@property (weak, nonatomic) IBOutlet UILabel *originMoneyLab;
 
 @end
 
@@ -66,6 +67,9 @@
     //dict[@"payeeAccount"]
     self.payTypeLab.text = [NSString stringWithFormat:@"%@",type.intValue == 1?@"微信":@"支付宝"];
     self.moneyLab.text = [NSString stringWithFormat:@"￥%.2f",[NSString stringWithFormat:@"%@",self.dict[@"payAmount"]].doubleValue];
+    
+    self.originMoneyLab.text = [NSString stringWithFormat:@"￥%.2f",[NSString stringWithFormat:@"%@",self.dict[@"targetAmount"]].doubleValue];
+    
     self.orderNoLab.text = [NSString stringWithFormat:@"%@",self.dict[@"no"]];
     self.countLab.text = [NSString stringWithFormat:@"%@ HOTC",self.dict[@"payAmount"]];
     //卖家昵称

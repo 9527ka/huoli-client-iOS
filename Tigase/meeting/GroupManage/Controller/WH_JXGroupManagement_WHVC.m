@@ -57,20 +57,34 @@
     
     int membHeight = 0;
     
-    NSInteger count = self.room.category == 1?3:4;
+    memberData *data = [self.room getMember:g_myself.userId];
+    
+    BOOL isGrounpManager = YES;
+    NSInteger grounCount = self.room.category == 1?3:4;
+    if ([data.role intValue] != 1) {//不是群主
+        isGrounpManager = NO;
+        grounCount = 1;
+    }
+    
+    NSInteger count = grounCount;
     
     UIView *tView = [self createBGViewWithOrginY:12 height:HEIGHT*count supView:self.cView];
     
     WH_JXImageView *iv;
     UILabel *label;
-    iv = [self WH_createMiXinButton:Localized(@"JX_ManagerAreTransferred") supView:tView drawTop:NO drawBottom:YES must:NO click:@selector(roomTransferAction)];
-    iv.frame = CGRectMake(0, 0, tView.frame.size.width, HEIGHT);
-    membHeight = CGRectGetMaxY(iv.frame);
+    if([data.role intValue] == 1){
+        iv = [self WH_createMiXinButton:Localized(@"JX_ManagerAreTransferred") supView:tView drawTop:NO drawBottom:YES must:NO click:@selector(roomTransferAction)];
+        iv.frame = CGRectMake(0, 0, tView.frame.size.width, HEIGHT);
+        membHeight = CGRectGetMaxY(iv.frame);
+        
+        // 设置管理员
+        iv = [self WH_createMiXinButton:Localized(@"WaHu_JXRoomMember_WaHuVC_SetAdministrator") supView:tView drawTop:NO drawBottom:YES must:NO click:@selector(specifyAdministrator)];
+        iv.frame = CGRectMake(0, membHeight, tView.frame.size.width, HEIGHT);
+        membHeight = CGRectGetMaxY(iv.frame);
+    }
     
-    // 设置管理员
-    iv = [self WH_createMiXinButton:Localized(@"WaHu_JXRoomMember_WaHuVC_SetAdministrator") supView:tView drawTop:NO drawBottom:YES must:NO click:@selector(specifyAdministrator)];
-    iv.frame = CGRectMake(0, membHeight, tView.frame.size.width, HEIGHT);
-    membHeight = CGRectGetMaxY(iv.frame);
+    
+    
     // 群红包设置
     iv = [self WH_createMiXinButton:self.room.category == 1?@"群钻石设置":@"群红包设置" supView:tView drawTop:NO drawBottom:YES must:NO click:@selector(redPacketSetup:)];
     iv.tag = 100;
@@ -78,7 +92,7 @@
     membHeight = CGRectGetMaxY(iv.frame);
     
     // 收款账号管理
-    if(self.room.category != 1){
+    if(self.room.category != 1 && [data.role intValue] == 1){
         iv = [self WH_createMiXinButton:@"收款账号管理" supView:tView drawTop:NO drawBottom:YES must:NO click:@selector(grounpAccountAction:)];
         iv.frame = CGRectMake(0, membHeight, tView.frame.size.width, HEIGHT);
         membHeight = CGRectGetMaxY(iv.frame);
@@ -184,20 +198,20 @@
     
     
     // 允许普通群成员召开会议
-    UIView *xyMettingView = [self createBGViewWithOrginY:membHeight height:HEIGHT supView:self.cView];
-    iv = [self WH_createMiXinButton:Localized(@"JX_InitiateMeeting") supView:xyMettingView drawTop:NO drawBottom:NO must:NO click:nil];
-    iv.frame = CGRectMake(0, 0, CGRectGetWidth(xyMettingView.frame), CGRectGetHeight(xyMettingView.frame));
-    [self createSwitchWithParent:iv tag:2463 isOn:self.room.allowConference];
-    label =[self createLabelWithParent:self.wh_tableBody frameY:CGRectGetMaxY(xyMettingView.frame) + 2 text:Localized(@"JX_NotInitiateMeeting")];
-    membHeight = CGRectGetMaxY(label.frame) + 12;
+//    UIView *xyMettingView = [self createBGViewWithOrginY:membHeight height:HEIGHT supView:self.cView];
+//    iv = [self WH_createMiXinButton:Localized(@"JX_InitiateMeeting") supView:xyMettingView drawTop:NO drawBottom:NO must:NO click:nil];
+//    iv.frame = CGRectMake(0, 0, CGRectGetWidth(xyMettingView.frame), CGRectGetHeight(xyMettingView.frame));
+//    [self createSwitchWithParent:iv tag:2463 isOn:self.room.allowConference];
+//    label =[self createLabelWithParent:self.wh_tableBody frameY:CGRectGetMaxY(xyMettingView.frame) + 2 text:Localized(@"JX_NotInitiateMeeting")];
+//    membHeight = CGRectGetMaxY(label.frame) + 12;
     
     // 允许普通群成员发起讲课
-    UIView *xyjkView = [self createBGViewWithOrginY:membHeight height:HEIGHT supView:self.cView];
-    iv = [self WH_createMiXinButton:Localized(@"JX_InitiateLectures") supView:xyjkView drawTop:NO drawBottom:NO must:NO click:nil];
-    iv.frame = CGRectMake(0, 0, CGRectGetWidth(xyjkView.frame), CGRectGetHeight(xyjkView.frame));
-    [self createSwitchWithParent:iv tag:2464 isOn:self.room.allowSpeakCourse];
-    label =[self createLabelWithParent:self.wh_tableBody frameY:CGRectGetMaxY(xyjkView.frame) + 2 text:Localized(@"JX_NotInitiateLectures")];
-    membHeight = CGRectGetMaxY(label.frame) + 12;
+//    UIView *xyjkView = [self createBGViewWithOrginY:membHeight height:HEIGHT supView:self.cView];
+//    iv = [self WH_createMiXinButton:Localized(@"JX_InitiateLectures") supView:xyjkView drawTop:NO drawBottom:NO must:NO click:nil];
+//    iv.frame = CGRectMake(0, 0, CGRectGetWidth(xyjkView.frame), CGRectGetHeight(xyjkView.frame));
+//    [self createSwitchWithParent:iv tag:2464 isOn:self.room.allowSpeakCourse];
+//    label =[self createLabelWithParent:self.wh_tableBody frameY:CGRectGetMaxY(xyjkView.frame) + 2 text:Localized(@"JX_NotInitiateLectures")];
+//    membHeight = CGRectGetMaxY(label.frame) + 12;
     
     /** 群组减员发送通知功能隐藏 19.09.24 hanf
     UIView *xytzView = [self createBGViewWithOrginY:membHeight height:HEIGHT supView:self.cView];

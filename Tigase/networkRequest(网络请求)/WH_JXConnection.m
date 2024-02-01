@@ -16,7 +16,7 @@
 //#define MULTIPART @"application/x-www-form-urlencoded"
 
 #define UploadDefultTimeout     60
-#define NormalDefultTimeout     25
+#define NormalDefultTimeout     60//25
 
 @interface WH_JXConnection ()
 
@@ -40,7 +40,8 @@ static AFHTTPSessionManager *afManager;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         afManager = [AFHTTPSessionManager manager];
-        afManager.requestSerializer.timeoutInterval = 30.0;
+        afManager.requestSerializer.timeoutInterval = 60.0;
+        
     });
     
     return afManager;

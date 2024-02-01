@@ -10,6 +10,7 @@
 #import "ATMHud.h"
 #import <AddressBook/AddressBook.h>
 #import "JXAddressBook.h"
+#import "WH_FastRedModel.h"
 
 @class AppDelegate;
 @class WH_JXConnection;
@@ -35,12 +36,16 @@
 #define WH_hide_error 0
 
 
-#define BaseUrl @"http://192.168.1.88:8092"   //开发环境
+//#define BaseUrl @"http://192.168.1.88:8092/"   //开发环境
 //#define BaseUrl @"http://195.54.171.69:8092"   //测试环境
-//#define BaseUrl @"http://47.122.20.170:8092"   //测试环境
+//#define BaseUrl @"http://47.122.20.170:8092/"   //南京环境
 //#define BaseUrl @"http://8.217.169.145:8092"   //
-//#define BaseUrl @"http://www.huoli68.com/im/"   //
+//#define BaseUrl @"http://www.huoli68.com/im/"   //‘
+//#define BaseUrl @"http://8.217.169.145:8092/"   // IP地址
+
 //#define BaseUrl @"http://im.huoli68.com/im/"   //
+
+#define BaseUrl @"http://47.98.39.253/im/"   //杭州环境
 
 
 
@@ -455,7 +460,7 @@
 #define wh_shortcut_add @"room/shortcut/add"    //群员秒抢红包设置接口
 #define wh_shortcut_update @"room/shortcut/update"    //更新秒抢配置
 #define wh_shortcut_delete @"room/shortcut/delete"    //删除秒抢红包成员
-
+#define wh_login_send @"log/send"    //调用接口不是预期的,或报错时,上传错误接口
 
 
 
@@ -488,6 +493,11 @@
 /// @param dic 数据字典
 +(void)setConfigonWithDic:(NSDictionary *)dic;
 +(NSDictionary *)receiveConfigon;
+
+/// *缓存极速红包配置项
+/// @param dic 数据字典
++(void)setFastRedWithDic:(NSDictionary *)dic;
++(WH_FastRedModel *)receiveFastRed;
 
 //签到详情
 - (void)requestSignInDetailsWithRoomId:(NSString *)roomId toView:(id)toView;
@@ -1345,7 +1355,8 @@
 #pragma mark -- 群员秒抢红包成员更新接口
 -(void)WH_shortcutUpdatWithRoomJId:(NSString *)roomJId memberId:(NSString *)memberId delay:(NSString *)delay isDelete:(BOOL)isDelete toView:(id)toView;
 
-
+#pragma mark -- 错误上传接口
+-(void)WH_erroUpdatWithContent:(NSString *)content toView:(id)toView;
 
 
 

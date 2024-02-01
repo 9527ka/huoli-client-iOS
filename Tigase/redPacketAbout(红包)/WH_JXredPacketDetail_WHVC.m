@@ -51,6 +51,15 @@
     
     self.watermarkColor = [UIColor lightGrayColor];
     
+    //添加轻扫手势
+    UISwipeGestureRecognizer *swipe2 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
+   // 轻扫手势默认是向右边称轻扫
+    //可以设置轻扫的方向.
+    //一个轻扫手势只能设置一个方向的轻扫.想要让它有多个方向的手势,必须得要设置的多个轻扫手势
+      swipe2.direction =  UISwipeGestureRecognizerDirectionRight;
+    [self.view addGestureRecognizer:swipe2];
+    
+    
     //获取数据
     _wh_packetObj = [WH_JXPacketObject getPacketObject:_wh_dataDict];
     _wh_OpenMember = [self arraySortDESC:[WH_JXGetPacketList getPackList:_wh_dataDict]];
@@ -107,7 +116,9 @@
     [self WH_setViewSize];
     [self WH_setViewData];
 }
-
+- (void)swipe:(UISwipeGestureRecognizer *)swipe{
+    [g_navigation WH_dismiss_WHViewController:self animated:YES];
+}
 
 -(void)WH_createCustomView{
     
@@ -117,12 +128,12 @@
     _wh_headImgV.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_wh_headImgV];
     
-    UIButton *closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, JX_SCREEN_TOP - 32, 28, 28)];
+    UIButton *closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP - 22, 44, 44)];
     [closeBtn setImage:[UIImage imageNamed:@"WH_redPacket_back"] forState:UIControlStateNormal];
     [closeBtn addTarget:self action:@selector(WH_closeBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [_wh_headImgV addSubview:closeBtn];
     
-    UIButton *listBtn = [[UIButton alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH - 10 - 70, JX_SCREEN_TOP - 32, 70, 28)];
+    UIButton *listBtn = [[UIButton alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH - 10 - 70, JX_SCREEN_TOP - 12, 70, 28)];
     [listBtn setTitle:self.category.intValue == 1?@"钻石记录":Localized(@"JX_RedPacketRecord") forState:UIControlStateNormal];
     [listBtn setTitleColor:HEXCOLOR(0xFFE2B1) forState:UIControlStateNormal];
     listBtn.titleLabel.font = sysFontWithSize(14);
@@ -139,7 +150,7 @@
     listBtn.hidden = roomJId.length > 0?NO:YES;
     [_wh_headImgV addSubview:listBtn];
     
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP - 32, JX_SCREEN_WIDTH, 20)];
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP - 12, JX_SCREEN_WIDTH, 20)];
     title.textAlignment = NSTextAlignmentCenter;
     
     title.text = self.category.intValue == 1?@"钻石":Localized(@"JX_ShikuRedPacket");
@@ -183,28 +194,38 @@
         moneyLab.textAlignment = NSTextAlignmentCenter;
         [_wh_contentView addSubview:moneyLab];
         
-        [moneyLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(_wh_contentView).offset(CGRectGetMaxY(_wh_greetLabel.frame) + 10);
-            make.centerX.equalTo(self.view);
-            make.height.mas_equalTo(60);
-        }];
+        
         
         //创建图片
         if(self.category.intValue != 1){
-
-            UIImageView *unitImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"unit_icon"]];
+            [moneyLab mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(_wh_contentView).offset(CGRectGetMaxY(_wh_greetLabel.frame) + 10);
+                make.centerX.equalTo(self.view).offset(-23);
+                make.height.mas_equalTo(60);
+            }];
+            
+            UIImage *image = [UIImage imageNamed:@"unit_icon"];
+            image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            UIImageView *unitImage = [[UIImageView alloc] initWithImage:image];
+            unitImage.tintColor = [UIColor blackColor];
             [_wh_contentView addSubview:unitImage];
 
             [unitImage mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(moneyLab.mas_top).offset(-12);
+                make.centerY.equalTo(moneyLab.mas_centerY).offset(4);
                 make.left.equalTo(moneyLab.mas_right);
-                make.height.mas_equalTo(27);
-                make.width.mas_equalTo(36);
+                make.height.mas_equalTo(20);//8
+                make.width.mas_equalTo(58);//23
+            }];
+        }else{
+            [moneyLab mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(_wh_contentView).offset(CGRectGetMaxY(_wh_greetLabel.frame) + 10);
+                make.centerX.equalTo(self.view);
+                make.height.mas_equalTo(60);
             }];
         }
         
                 
-        _replyLab = [UIFactory WH_create_WHLabelWith:CGRectMake((JX_SCREEN_WIDTH-200)/2, CGRectGetMaxY(moneyLab.frame) + 10, 200, 20) text:self.replyContent.length > 0 ? self.replyContent : Localized(@"New_reply_with_word_thanks")];
+        _replyLab = [UIFactory WH_create_WHLabelWith:CGRectMake((JX_SCREEN_WIDTH-200)/2, CGRectGetMaxY(_wh_greetLabel.frame) + 80, 200, 20) text:self.replyContent.length > 0 ? self.replyContent : Localized(@"New_reply_with_word_thanks")];
         _replyLab.textColor = HEXCOLOR(0x8C9AB8);
         _replyLab.textAlignment = NSTextAlignmentCenter;
         _replyLab.userInteractionEnabled = YES;

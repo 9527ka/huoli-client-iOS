@@ -172,6 +172,8 @@ enum kWCMessageType {
     kWCMessageTypeActivePay  = 4200 , //激活群
     kWCMessageTypeRenewal = 4201 , //群续费
     kWCMessageTypeUpgrade = 4203 , //群升级
+    
+    kWCMessageTypeWirawRefuse = 4301 , //取款拒绝的通知
 };
 
 @class FMResultSet;

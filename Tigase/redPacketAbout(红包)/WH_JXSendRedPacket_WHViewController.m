@@ -373,7 +373,7 @@
         }
         //祝福语
         if ([_greetText isEqualToString:@""]) {
-            _greetText = Localized(@"JX_GiftText");
+            _greetText = @"大吉大利 恭喜发财";
         }
         self.indexInt = button.tag;
         g_myself.isPayPassword = [g_default objectForKey:PayPasswordKey];

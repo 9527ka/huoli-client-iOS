@@ -54,6 +54,7 @@
 #import "WH_GroupRechargeViewController.h"
 #import "WH_JXBuyPayViewController.h"
 #import "WH_JXRoomDiamoundRechargeVC.h"
+#import "OBSHanderTool.h"
 
 #define HEIGHT 55
 #define IMGSIZE 170
@@ -132,7 +133,7 @@
         _allowEdit = YES;
         _delete = -1;
         memberData *data = [self.wh_room getMember:g_myself.userId];
-        _isAdmin = [data.role intValue] == 1 ? YES : NO;
+        _isAdmin = (data.role.intValue == 1 || data.role.intValue == 2)? YES : NO;
         _unfoldMode = YES;//默认收起
         _user = [[WH_JXUserObject sharedUserInstance] getUserById:wh_chatRoom.roomJid];
         if ([g_myself.userId longLongValue] == wh_room.userId) {
@@ -621,7 +622,7 @@
         
         
         memberData *data = [self.wh_room getMember:g_myself.userId];
-        _isAdmin = [data.role intValue] == 1 ? YES : NO;
+        _isAdmin = (data.role.intValue == 1 || data.role.intValue == 2)? YES : NO;
         _user = [[WH_JXUserObject sharedUserInstance] getUserById:wh_chatRoom.roomJid];
         if ([g_myself.userId longLongValue] == wh_room.userId) {
             _isMyRoom = YES;
@@ -918,7 +919,7 @@
     }
     
     [self.topOneView removeFromSuperview];
-    UIImageView *topOneView = [[UIImageView alloc] initWithFrame:CGRectMake(leftRightMargin, height + 20, JX_SCREEN_WIDTH-leftRightMargin*2, HEIGHT * 4)];
+    UIImageView *topOneView = [[UIImageView alloc] initWithFrame:CGRectMake(leftRightMargin, height + 20, JX_SCREEN_WIDTH-leftRightMargin*2, HEIGHT * 3)];
     topOneView.userInteractionEnabled = YES;
     topOneView.backgroundColor = [UIColor whiteColor];
     [self.wh_tableBody addSubview:topOneView];
@@ -957,14 +958,15 @@
     [self.wh_iv addSubview:qrView];
 
     membHeight+=self.wh_iv.frame.size.height;
+//
+//    NSString *btnTitle = _isAdmin ? Localized(@"JX_ModifyFullNickname") : Localized(@"WaHu_JXRoomMember_WaHuVC_NickName");
+//    self.wh_iv = [self WH_createMiXinButton:btnTitle drawTop:NO drawBottom:YES must:NO click:@selector(onNickName) ParentView:topOneView];
+//    self.wh_iv.frame = CGRectMake(0, membHeight, topOneView.frame.size.width, HEIGHT);
+//    if (!_isAdmin) {
+//        _userName = [self WH_createLabel:self.wh_iv defaultNum:[wh_room getNickNameInRoom] isClick:YES];
+//    }
+//    membHeight+=self.wh_iv.frame.size.height;
     
-    NSString *btnTitle = _isAdmin ? Localized(@"JX_ModifyFullNickname") : Localized(@"WaHu_JXRoomMember_WaHuVC_NickName");
-    self.wh_iv = [self WH_createMiXinButton:btnTitle drawTop:NO drawBottom:YES must:NO click:@selector(onNickName) ParentView:topOneView];
-    self.wh_iv.frame = CGRectMake(0, membHeight, topOneView.frame.size.width, HEIGHT);
-    if (!_isAdmin) {
-        _userName = [self WH_createLabel:self.wh_iv defaultNum:[wh_room getNickNameInRoom] isClick:YES];
-    }
-    membHeight+=self.wh_iv.frame.size.height;
     membHeight+=topBottomMargin;
     membHeight+=20;
     
@@ -1339,26 +1341,78 @@
 
 - (void)cameraVC:(WH_JXCamera_WHVC *)vc didFinishWithImage:(UIImage *)image {
     self.roomHead = [ImageResize image:image fillSize:CGSizeMake(640, 640)];
-    if (!IsStringNull(self.wh_chatRoom.roomId)) {
-        [g_server setGroupAvatarServlet:self.wh_chatRoom.roomJid image:self.roomHead toView:self];
-    } else {
-        [g_server setGroupAvatarServlet:self.wh_room.roomJid image:self.roomHead toView:self];
-    }
+//    if (!IsStringNull(self.wh_chatRoom.roomId)) {
+//        [g_server setGroupAvatarServlet:self.wh_chatRoom.roomJid image:self.roomHead toView:self];
+//    } else {
+//        [g_server setGroupAvatarServlet:self.wh_room.roomJid image:self.roomHead toView:self];
+//    }
+    
+    [self uploadGroupHeadImage];
     
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     self.roomHead = [ImageResize image:[info objectForKey:@"UIImagePickerControllerEditedImage"] fillSize:CGSizeMake(640, 640)];
-    if (!IsStringNull(self.wh_chatRoom.roomId)) {
-        [g_server setGroupAvatarServlet:self.wh_chatRoom.roomJid image:self.roomHead toView:self];
-    } else {
-        [g_server setGroupAvatarServlet:self.wh_room.roomJid image:self.roomHead toView:self];
-    }
+//    if (!IsStringNull(self.wh_chatRoom.roomId)) {
+//        [g_server setGroupAvatarServlet:self.wh_chatRoom.roomJid image:self.roomHead toView:self];
+//    } else {
+//        [g_server setGroupAvatarServlet:self.wh_room.roomJid image:self.roomHead toView:self];
+//    }
+    
+    [self uploadGroupHeadImage];
 
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
+-(void)uploadGroupHeadImage{
+    [OBSHanderTool WH_handleUploadGroupOBSHeadImage:!IsStringNull(self.wh_chatRoom.roomId)?self.wh_chatRoom.roomId:self.wh_room.roomId image:self.roomHead toView:self success:^(int code) {
+        if (code == 1) {
+            //回到主线程
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // 需要在主线程执行的代码
+                int hashCode = [self gethashCode:!IsStringNull(self.wh_chatRoom.roomId)?self.wh_chatRoom.roomId:self.wh_room.roomId];
+                int a = abs(hashCode % 10000);
+                int b = abs(hashCode % 20000);
+                // 删除sdwebimage 缓存
+                NSString *urlStr = [NSString stringWithFormat:@"%@avatar/o/%d/%d/%@.jpg",g_config.downloadAvatarUrl,a,b,!IsStringNull(self.wh_chatRoom.roomId)?self.wh_chatRoom.roomId:self.wh_room.roomId];
+                [[SDImageCache sharedImageCache] removeImageForKey:urlStr withCompletion:^{
+                    [g_server showMsg:Localized(@"JX_GroupAvatarUpdatedSuccessfully") delay:0.5];
+                }];
+            });
+        }
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+    
+    
+    
+    
+//
+//    //保存图片到本地
+//    NSString* file = [FileInfo getUUIDFileName:@"jpg"];
+//    [g_server WH_saveImageToFileWithImage:self.roomHead file:file isOriginal:NO];
+//
+//    [OBSHanderTool handleUploadFile:file validTime:@"-1" messageId:!IsStringNull(self.wh_chatRoom.roomId)?self.wh_chatRoom.roomJid:self.wh_room.roomJid toView:self success:^(int code, NSString * _Nonnull fileUrl, NSString * _Nonnull fileName) {
+//        if (code == 1) {
+//            //回到主线程
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                // 需要在主线程执行的代码
+//                int hashCode = [self gethashCode:self.wh_room.roomJid];
+//                int a = abs(hashCode % 10000);
+//                int b = abs(hashCode % 20000);
+//                // 删除sdwebimage 缓存
+//                NSString *urlStr = [NSString stringWithFormat:@"%@avatar/o/%d/%d/%@.jpg",g_config.downloadAvatarUrl,a,b,self.wh_room.roomJid];
+//                [[SDImageCache sharedImageCache] removeImageForKey:urlStr withCompletion:^{
+//                    [g_server showMsg:Localized(@"JX_GroupAvatarUpdatedSuccessfully") delay:0.5];
+//                }];
+//            });
+//
+//        }
+//    } failed:^(NSError * _Nonnull error) {
+//
+//    }];
+}
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
 
@@ -1457,7 +1511,7 @@
             user = [wh_room.members objectAtIndex:i];
             n = user.userId;
         }
-        if (i < maxShow && !wh_room.showMember) {
+        if (i < maxShow && !wh_room.showMember && !isManger) {
             if (![[NSString stringWithFormat:@"%ld",user.userId] isEqualToString:MY_USER_ID] && ![[NSString stringWithFormat:@"%ld",user.userId] isEqualToString:[NSString stringWithFormat:@"%ld",self.wh_room.userId]] && ([user.role integerValue] != 1)  && ([user.role integerValue] != 2)) {
                 continue;
             }
@@ -2286,44 +2340,44 @@
 }
 
 -(void)onNickName{
-    if (self.isMyRoom) {
-        WH_JXRoomMemberList_WHVC *listVC = [[WH_JXRoomMemberList_WHVC alloc] init];
-        listVC.type = Type_AddNotes;
-        listVC.room = self.wh_room;
-        listVC.title = Localized(@"JX_ModifyFullNickname");
-        listVC.delegate = self;
-        [g_navigation pushViewController:listVC animated:YES];
-    } else {
-        WH_ContentModification_WHView *cmView = [[WH_ContentModification_WHView alloc] initWithFrame:CGRectMake(20, (JX_SCREEN_HEIGHT - 228)/2, JX_SCREEN_WIDTH - 40, 228) title:Localized(@"WaHu_JXRoomMember_WaHuVC_UpdateNickName") content:[wh_room getNickNameInRoom] isEdit:YES isLimit:YES];
-        [cmView showInWindowWithMode:CustomAnimationModeDrop inView:nil bgAlpha:0.5 needEffectView:NO];
-        
-        __weak typeof(cmView) weakShare = cmView;
-        __weak typeof(self) weakSelf = self;
-        [cmView setCloseBlock:^{
-            [weakShare hideView];
-        }];
-        [cmView setSelectActionBlock:^(NSInteger buttonTag, NSString * _Nonnull content) {
-            if (buttonTag == 0) {
-                [weakShare hideView];
-            }else{
-                [weakShare hideView];
-                
-                _modifyType = kRoomRemind_NickName;
-                _content = content;
-                
-                _userName.text = content;
-                memberData* p = [wh_room getMember:g_myself.userId];
-                p.userNickName = content;
-                
-                if ([weakSelf.delegate respondsToSelector:@selector(setWh_nickName:)]) {
-                    [weakSelf.delegate setNickName:content];
-                }
-                
-                [g_server WH_setRoomMemberWithRoomId:wh_room.roomId member:p toView:weakSelf];
-                p = nil;
-            }
-        }];
-    }
+//    if (self.isMyRoom) {
+//        WH_JXRoomMemberList_WHVC *listVC = [[WH_JXRoomMemberList_WHVC alloc] init];
+//        listVC.type = Type_AddNotes;
+//        listVC.room = self.wh_room;
+//        listVC.title = Localized(@"JX_ModifyFullNickname");
+//        listVC.delegate = self;
+//        [g_navigation pushViewController:listVC animated:YES];
+//    } else {
+//        WH_ContentModification_WHView *cmView = [[WH_ContentModification_WHView alloc] initWithFrame:CGRectMake(20, (JX_SCREEN_HEIGHT - 228)/2, JX_SCREEN_WIDTH - 40, 228) title:Localized(@"WaHu_JXRoomMember_WaHuVC_UpdateNickName") content:[wh_room getNickNameInRoom] isEdit:YES isLimit:YES];
+//        [cmView showInWindowWithMode:CustomAnimationModeDrop inView:nil bgAlpha:0.5 needEffectView:NO];
+//
+//        __weak typeof(cmView) weakShare = cmView;
+//        __weak typeof(self) weakSelf = self;
+//        [cmView setCloseBlock:^{
+//            [weakShare hideView];
+//        }];
+//        [cmView setSelectActionBlock:^(NSInteger buttonTag, NSString * _Nonnull content) {
+//            if (buttonTag == 0) {
+//                [weakShare hideView];
+//            }else{
+//                [weakShare hideView];
+//
+//                _modifyType = kRoomRemind_NickName;
+//                _content = content;
+//
+//                _userName.text = content;
+//                memberData* p = [wh_room getMember:g_myself.userId];
+//                p.userNickName = content;
+//
+//                if ([weakSelf.delegate respondsToSelector:@selector(setWh_nickName:)]) {
+//                    [weakSelf.delegate setNickName:content];
+//                }
+//
+//                [g_server WH_setRoomMemberWithRoomId:wh_room.roomId member:p toView:weakSelf];
+//                p = nil;
+//            }
+//        }];
+//    }
 
 }
 
@@ -2663,8 +2717,9 @@
 - (void)groupManagement {
     memberData *data = [self.wh_room getMember:g_myself.userId];
     
-    if ([data.role intValue] != 1) {
-        [g_App showAlert:Localized(@"WaHu_JXRoomMember_WaHuVC_NotGroupMarsterCannotDoThis")];
+    if (!_isAdmin) {
+//        [g_App showAlert:Localized(@"WaHu_JXRoomMember_WaHuVC_NotGroupMarsterCannotDoThis")];
+        [g_App showAlert:@"暂无权限"];
         return;
     }
     

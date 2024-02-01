@@ -21,6 +21,10 @@ NS_ASSUME_NONNULL_BEGIN
  * 上传头像
  */
 +(void)WH_handleUploadOBSHeadImage:(NSString*)userId image:(UIImage*)image toView:(id)toView success:(void(^)(int code)) success failed:(void(^) (NSError *error)) failed;
+//上传群头像
++(void)WH_handleUploadGroupOBSHeadImage:(NSString*)userId image:(UIImage*)image toView:(id)toView success:(void(^)(int code)) success failed:(void(^) (NSError *error)) failed;
+
++(int)gethashCode:(NSString *)str;
 
 
 

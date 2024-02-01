@@ -72,7 +72,7 @@ static JXSynTask *sharedUser;
     return worked;
 }
 
--(BOOL)delete {
+-(BOOL)deleteAction {
     
     NSString* myUserId = MY_USER_ID;
     FMDatabase* db = [[JXXMPP sharedInstance] openUserDb:myUserId];

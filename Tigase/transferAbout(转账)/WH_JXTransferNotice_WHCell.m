@@ -119,7 +119,7 @@
     _backLab.text = @"";
     _backTime.text = @"";
     
-    if ([msg.type intValue] == kRoomRemind_REQUEST_NOTIFICATION ||[msg.type intValue] == kRoomRemind_REQUEST_PAID ||[msg.type intValue] == kRoomRemind_REQUEST_CONFIRMED ||[msg.type intValue] == kRoomRemind_REQUEST_CANCELLED ||[msg.type intValue] == kRoomRemind_REQUEST_REFUND ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_REFUND ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_PAID ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_CONFIRMED|[msg.type intValue] == kWCMessageTypeActivePay|[msg.type intValue] == kWCMessageTypeRenewal|[msg.type intValue] == kWCMessageTypeUpgrade){
+    if ([msg.type intValue] == kRoomRemind_REQUEST_NOTIFICATION ||[msg.type intValue] == kRoomRemind_REQUEST_PAID ||[msg.type intValue] == kRoomRemind_REQUEST_CONFIRMED ||[msg.type intValue] == kRoomRemind_REQUEST_CANCELLED ||[msg.type intValue] == kRoomRemind_REQUEST_REFUND ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_REFUND ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_PAID ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_CONFIRMED|[msg.type intValue] == kWCMessageTypeActivePay||[msg.type intValue] == kWCMessageTypeRenewal||[msg.type intValue] == kWCMessageTypeUpgrade||[msg.type intValue] == kWCMessageTypeWirawRefuse){
         WH_JXTransferModel *model = (WH_JXTransferModel *)tModel;
         
         _moneyTit.text = @"付款金额";
@@ -128,7 +128,7 @@
         
         NSString *lastContet;
         if ([msg.type intValue] == 4000){
-            lastContet = @"买方已下单";
+            lastContet = [NSString stringWithFormat: @"%@已下单",model.toUserName];
         }else if ([msg.type intValue] == 4001){
             lastContet = @"订单已支付";
         }else if ([msg.type intValue] == 4002){
@@ -163,6 +163,10 @@
         }else if ([msg.type intValue] == kWCMessageTypeUpgrade){
             lastContet = @"钻石群升级";
             _payTit.text = @"交易方";
+            _noteTit.text = @"交易类型";
+        }else if ([msg.type intValue] == kWCMessageTypeWirawRefuse){
+            lastContet = @"取款拒绝";
+            _payTit.text = @"发起者";
             _noteTit.text = @"交易类型";
         }
        
@@ -332,7 +336,12 @@
     else if ([msg.type intValue] == kWCMessageTypeTransferBack) {
         string = [NSString stringWithFormat:@"%@%@",msg.toUserName,Localized(@"JX_NotReceive24Hours")];
     }else if ([msg.type intValue] == 4000){
-        string = @"买方已下单";
+        
+        NSDictionary *dict = [WH_JXTransferNotice_WHCell dictionaryWithJsonString:msg.content];
+        WH_JXTransferModel *model = [[WH_JXTransferModel alloc] init];
+        [model getTransferDataWithDict:dict];
+        
+        string = [NSString stringWithFormat: @"%@已下单",model.toUserName];
     }else if ([msg.type intValue] == 4001){
         string = @"订单已支付";
     }else if ([msg.type intValue] == 4002){
@@ -358,6 +367,8 @@
         string = @"钻石群续费";
     }else if ([msg.type intValue] == kWCMessageTypeUpgrade){
         string = @"钻石群升级";
+    }else if ([msg.type intValue] == kWCMessageTypeWirawRefuse){
+        string = @"取款拒绝";
     }
     return string;
 }

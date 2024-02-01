@@ -21,6 +21,8 @@
 #import "WH_ForgetPayPsw_WHVC.h"
 
 #import "WH_MyWallet_WHViewController.h"
+#import "WH_AddAccountViewController.h"
+#import "WH_JXFastRedSetVC.h"
 
 #define kDotSize CGSizeMake (10, 10) //密码点的大小
 #define kDotCount 6  //密码个数
@@ -333,7 +335,11 @@
         [g_navigation popToViewController:[WH_JXSecuritySetting_WHVC class] animated:YES];
     } else if (self.enterType == JXEnterTypeSendRedPacket) {
         [g_navigation popToViewController:[WH_JXSendRedPacket_WHViewController class] animated:YES];
-    } else{
+    }else if (self.enterType == JXEnterTypeSetAccount) {
+        [g_navigation popToViewController:[WH_AddAccountViewController class] animated:YES];
+    }else if (self.enterType == JXEnterTypeSetChatFast) {
+        [g_navigation popToViewController:[WH_JXFastRedSetVC class] animated:YES];
+    }else{
         [self actionQuit];
     }
 

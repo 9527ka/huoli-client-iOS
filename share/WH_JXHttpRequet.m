@@ -256,12 +256,15 @@ static WH_JXHttpRequet *_httpRequet = nil;
             }
         }else{
 //            NSString *data = [NSString stringWithFormat:@"%@",resultObject];
-            NSLog(@"错误信息=====%@",resultObject);
-            error = [NSString stringWithFormat:@"不能识别返回值 %@",resultObject];
+            NSLog(@"错误信息=====%@",string);
+            error = [NSString stringWithFormat:@"不能识别返回值 %@",string];
+            
             if([string length]>=6){
                 if([[string substringToIndex:6] isEqualToString:@"<html>"])
                     error = @"服务器好像有点问题";
             }
+            
+            [g_server WH_erroUpdatWithContent:string toView:self];
         }
         
         if(error){

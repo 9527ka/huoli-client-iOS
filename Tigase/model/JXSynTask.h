@@ -27,7 +27,7 @@
 
 //数据库增删改查
 -(BOOL)insert;
--(BOOL)delete;
+-(BOOL)deleteAction;
 // 删除一个群的所有任务
 - (BOOL)deleteTaskWithRoomId:(NSString *)roomId;
 -(BOOL)update;

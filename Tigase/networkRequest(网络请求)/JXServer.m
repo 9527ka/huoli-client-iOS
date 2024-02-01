@@ -36,6 +36,7 @@
 #import <CommonCrypto/CommonDigest.h>
 #import "JXDevice.h"
 
+
 @interface JXServer ()<JXLocationDelegate,WH_JXConnectionDelegate>
 
 @property (nonatomic, assign) BOOL isGetSetting;
@@ -76,6 +77,25 @@
     }
     return result;
 }
+/// *缓存极速红包配置项
+/// @param dic 数据字典
++(void)setFastRedWithDic:(NSDictionary *)dic{
+    if (dic && [dic isKindOfClass:[NSDictionary class]]) {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:dic forKey:@"FastRed"];
+        [userDefaults synchronize];
+    }
+}
++(WH_FastRedModel *)receiveFastRed{
+    WH_FastRedModel *model;
+    NSDictionary *result = [[NSUserDefaults standardUserDefaults] objectForKey:@"FastRed"];
+    
+    if (result && [result isKindOfClass:[NSDictionary class]]) {
+        model = [WH_FastRedModel mj_objectWithKeyValues:result];
+    }
+    return model;
+}
+
 
 -(id)init{
     self = [super init];
@@ -156,7 +176,16 @@
         }
     }
     
+    if(s.length == 0 || ![s containsString:@"http"]){
+        s = BaseUrl;
+    }
+    
     url = [NSString stringWithFormat:@"%@%@%@",s,action,param];
+    
+//    if([url containsString:wh_act_UserLogin]){//登录失败模拟
+//        url = @"h:///logiiiiiiiii";
+//    }
+    
     
     if([action isEqualToString:wh_act_BaiduTranslation]){
         url = wh_act_BaiduTranslation;
@@ -336,6 +365,8 @@
             //            if(task.showError)
 //            [g_App showAlert:[NSString stringWithFormat:@"%@%@%@",Localized(@"JXServer_ErrorNetwork"),task.error.localizedDescription,task.url]];
             [g_App showAlert:[NSString stringWithFormat:@"%@%@",Localized(@"JXServer_ErrorNetwork"),task.error.localizedDescription]];
+            
+            [g_server WH_erroUpdatWithContent:[NSString stringWithFormat:@"%@==%@==%@ == %@",task.action,task.url,task.error.localizedDescription,task.param?task.param:@""] toView:self];
         }
     }
 }
@@ -5049,7 +5080,23 @@
     
     [p go];
 }
-
+-(void)WH_erroUpdatWithContent:(NSString *)content toView:(id)toView{
+    
+    WH_JXConnection* p = [self addTask:wh_login_send param:nil toView:toView];
+    [p setPostValue:content forKey:@"content"];
+    
+    NSString *buildStr = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+    
+    NSString *currentVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    
+    [p setPostValue:currentVersion forKey:@"version"];
+    [p setPostValue:[JXDevice getDeviceModelName] forKey:@"model"];
+    [p setPostValue:buildStr forKey:@"osVersion"];
+//    [p setPostValue:appId forKey:@"network"];
+    
+    
+    [p go];
+}
 
 
 

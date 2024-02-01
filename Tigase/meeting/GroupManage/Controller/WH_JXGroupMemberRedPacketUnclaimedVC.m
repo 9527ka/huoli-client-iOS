@@ -129,7 +129,7 @@
     [_wait stop];
     RedPacketView *redPacketView = [[RedPacketView alloc] initWithRedPacketInfo:dict];
     redPacketView.isGroup = self.room.roomId.length > 0;
-    [redPacketView showRedPacket];
+    [redPacketView showRedPacket:self.view];
     redPacketView.redPocketBlock = ^(NSDictionary * _Nonnull dict, BOOL success) {
         //        self.redPacketDict = dict;
         if (success) {

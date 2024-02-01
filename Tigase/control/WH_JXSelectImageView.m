@@ -47,22 +47,12 @@
         UIView *button;
         if(self.wh_isGroup && self.wh_isGroupDiamound && [g_App.isShowRedPacket intValue] == 1 && !g_myself.isTestAccount){
             // 钻石
-//            n = (n + 1) >= 4 ? 0 : n + 1;
-//            m += 1;
-//            X = m > 8 ? SELECTIMAGE_WIDTH *n + (n+1)*inset+JX_SCREEN_WIDTH : SELECTIMAGE_WIDTH *n + (n+1)*inset;
-//            Y = m > 4 && m <=8 ? h+margeY*2 : margeY;
             button = [self WH_create_WHButtonWithImage:@"diamond_btn" highlight:@"diamond_btn" target:delegate selector:self.onDiamond title:@"发钻石"];
             button.frame = CGRectMake(X, Y, SELECTIMAGE_WIDTH, h);
         }else if ([g_App.isShowRedPacket intValue] == 1 && !self.wh_isGroupMessages && !self.wh_isDevice && !g_myself.isTestAccount) {
             // 发红包
-//            n = (n + 1) >= 4 ? 0 : n + 1;
-//            m += 1;
-//            X = m >8 ? SELECTIMAGE_WIDTH *n + (n+1)*inset+JX_SCREEN_WIDTH : SELECTIMAGE_WIDTH *n + (n+1)*inset;
-//            Y = m > 4 && m <=8 ? h+margeY*2 : margeY;
             
             button = [self WH_create_WHButtonWithImage:@"WH_awarda_a_bonus_normal" highlight:@"WH_awarda_a_bonus_normal" target:delegate selector:self.wh_onGift title:Localized(@"JX_SendGift")];
-//            self.wh_isGroupDiamound?[self WH_create_WHButtonWithImage:@"WH_awarda_a_diamound_normal" highlight:@"WH_awarda_a_diamound_normal" target:delegate selector:self.wh_onGift title:@"发钻石"]:
-            
             button.frame = CGRectMake(X, Y, SELECTIMAGE_WIDTH, h);
             
             if (!self.wh_isGroup) {
@@ -178,6 +168,16 @@
         Y = m > 4 && m <=8 ? h+margeY*2 : margeY;
         button = [self WH_create_WHButtonWithImage:@"WH_ab_button_normal" highlight:@"WH_ab_button_normal" target:delegate selector:self.onAddressBook title:Localized(@"JX_SelectImageContact")];
         button.frame = CGRectMake(X, Y, SELECTIMAGE_WIDTH, h);
+        
+        if(self.wh_isGroup && [g_App.isShowRedPacket intValue] == 1 && !g_myself.isTestAccount && !self.wh_isGroupDiamound){
+            // 急速红包
+            n = (n + 1) >= 4 ? 0 : n + 1;
+            m += 1;
+            X = m >8 ? SELECTIMAGE_WIDTH *n + (n+1)*inset+JX_SCREEN_WIDTH : SELECTIMAGE_WIDTH *n + (n+1)*inset;
+            Y = m > 4 && m <=8 ? h+margeY*2 : margeY;
+            button = [self WH_create_WHButtonWithImage:@"WH_awarda_a_bonus_normal" highlight:@"WH_awarda_a_bonus_normal" target:delegate selector:self.onFastRedPacket title:@"极速红包"];
+            button.frame = CGRectMake(X, Y, SELECTIMAGE_WIDTH, h);
+        }
 
         if (m > 8) {
             self.wh_scrollView.contentSize = CGSizeMake(JX_SCREEN_WIDTH * 2, 0);
@@ -191,6 +191,8 @@
             [_wh_pageControl addTarget:self action:@selector(actionPage) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:_wh_pageControl];
         }
+        
+        
     }
     return self;
 }

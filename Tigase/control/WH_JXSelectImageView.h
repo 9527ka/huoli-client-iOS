@@ -30,6 +30,7 @@
 @property(assign) SEL wh_onTransfer;
 @property(assign) SEL onAddressBook;
 @property(assign) SEL onDiamond;
+@property(assign) SEL onFastRedPacket;
 
 @property (assign) SEL onTwoWayWithdrawal;
 

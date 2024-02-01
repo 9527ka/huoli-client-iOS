@@ -90,11 +90,18 @@ static double g_timeSend=0;
     memberData *userData = [_room getMember:[NSString stringWithFormat:@"%ld",data.userId]];
     memberData *data1 = [_room getMember:MY_USER_ID];
     if ([data1.role intValue] == 1) {
-    //        self.nicknameLabel.text = data.lordRemarkName.length > 0  ? data.lordRemarkName : allUser.remarkName.length                > 0  ? allUser.remarkName : data.userNickName.length > 0  ? data.userNickName : self.msg.fromUserName;
-            self.nicknameLabel.text = data.lordRemarkName.length > 0  ? data.lordRemarkName : allUser.remarkName.length > 0  ? allUser.remarkName : userData.userNickName;
+        
+//            self.nicknameLabel.text = data.lordRemarkName.length > 0  ? data.lordRemarkName : allUser.remarkName.length > 0  ? allUser.remarkName : userData.userNickName;
+        
+        self.nicknameLabel.text = allUser.remarkName.length > 0  ? allUser.remarkName : userData.userNickName;
+        
             if (!allUser && !userData) {
             self.nicknameLabel.text =  data.userNickName.length > 0  ? data.userNickName : self.msg.fromUserName;;
             }
+        
+        if(self.nicknameLabel.text.length == 0){
+            self.nicknameLabel.text =  data.lordRemarkName;
+        }
         }else {
     //        self.nicknameLabel.text = allUser.remarkName.length > 0  ? allUser.remarkName : data.userNickName.length > 0  ? data.userNickName : self.msg.fromUserName;
             self.nicknameLabel.text = allUser.remarkName.length > 0  ? allUser.remarkName : userData.userNickName;

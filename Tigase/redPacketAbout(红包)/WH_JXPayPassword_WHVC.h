@@ -27,6 +27,8 @@ typedef NS_OPTIONS(NSInteger, JXEnterType) {
     JXEnterTypeSkPay,              //!< Tigase支付进入
     JXEnterTypeSecureSetting,      //!< 安全设置进入
     JXEnterTypeForgetPayPsw,       //!< 忘记支付密码进入
+    JXEnterTypeSetAccount,       //!< 设置收款账号进入
+    JXEnterTypeSetChatFast,       //!< 设置急速红包进入
 };
 
 @interface WH_JXPayPassword_WHVC : WH_admob_WHViewController

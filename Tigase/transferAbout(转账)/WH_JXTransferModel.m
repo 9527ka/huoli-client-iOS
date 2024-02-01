@@ -20,6 +20,7 @@
     self.createTime  = [self getTime:dict[@"createTime"]];
     self.outTime  = [self getTime:dict[@"outTime"]];
     self.receiptTime  = [self getTime:dict[@"receiptTime"]];
+    self.toUserName = dict[@"toUserName"];
 }
 
 - (NSString *)getTime:(NSString *)time {

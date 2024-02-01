@@ -159,7 +159,7 @@
 
 - (IBAction)didTapConfirmDate:(id)sender {
     if (isSelectStartDate) {
-        if ([self.datePicker.date timeIntervalSinceDate:[NSDate dateWithXmppDateString:self.endDateBtn.currentTitle]] > 0) {
+        if ([self.datePicker.date timeIntervalSinceDate:[NSDate dateWithXmppDateHHMMString:self.endDateBtn.currentTitle]] > 0) {
             [GKMessageTool showError:@"开始时间不能比结束时间大"];
             return;
         }
@@ -167,7 +167,7 @@
         self.startTime = [NSString stringWithFormat:@"%@:00",self.datePicker.date.xmppDateSSString];
         
     } else {
-        if ([self.datePicker.date timeIntervalSinceDate:[NSDate dateWithXmppDateString:self.startDateBtn.currentTitle]] < 0) {
+        if ([self.datePicker.date timeIntervalSinceDate:[NSDate dateWithXmppDateHHMMString:self.startDateBtn.currentTitle]] < 0) {
             [GKMessageTool showError:@"结束时间不能比开始时间小"];
             return;
         }

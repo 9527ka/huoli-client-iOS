@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) void (^redPocketBlock)(NSDictionary *dict, BOOL success);
 
 - (instancetype)initWithRedPacketInfo:(NSDictionary *)infoDic;
-- (void)showRedPacket;
+- (void)showRedPacket:(UIView *)view;
 - (void)closeRedPacket ;
 
 @end
