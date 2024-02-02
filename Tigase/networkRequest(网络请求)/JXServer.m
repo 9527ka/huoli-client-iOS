@@ -3324,6 +3324,7 @@
     [p setPostValue:[NSNumber numberWithInt:pageIndex] forKey:@"pageIndex"];
     [p setPostValue:[NSNumber numberWithInt:10000] forKey:@"pageSize"];
     [p setPostValue:[NSNumber numberWithLong:startTime] forKey:@"startTime"];
+    [p setPostValue:@"83,902,905,907" forKey:@"exclusive"];
     [p setPostValue:[NSNumber numberWithLong:endTime] forKey:@"endTime"];
     [p setPostValue:receiver forKey:@"receiver"];
     [p setPostValue:access_token forKey:@"access_token"];

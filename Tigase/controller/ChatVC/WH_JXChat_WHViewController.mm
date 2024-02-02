@@ -1845,7 +1845,6 @@
         NSMutableArray* p;
         if (self.isGetServerMsg) {
             // 获取漫游聊天记录
-            
             [_wait start];
             
             long starTime;
@@ -1891,25 +1890,19 @@
                 [_array removeAllObjects];
                 bPull = NO;
             }
-            
         }
-        
     
         /// 是不是群主 或者 管理员 yes:是 no:不是
         BOOL isManger = [self isManagrData];
         NSMutableArray *tempArr = [NSMutableArray arrayWithArray:p];
         for (WH_JXMessageObject *msg in p) {
             //不是我的并且我不熟群管理专属红包去掉
-            
-            if([msg.type intValue] == kWCMessageTypeRedPacketExclusive){
-                NSLog(@"指定人 ==== %@ 名字==%@",msg.toUserIds,msg.toUserNames);
+            if ([msg.type intValue] == kWCMessageTypeRedPacketExclusive && !isManger && ![msg.toUserIds isEqualToString:MY_USER_ID] && ![msg.fromUserId isEqualToString:MY_USER_ID]) {
+                
+                [tempArr removeObject:msg];
+            }else{
+                allHeight += [msg.chatMsgHeight floatValue];
             }
-               if ([msg.type intValue] == kWCMessageTypeRedPacketExclusive && !isManger && ![msg.toUserIds isEqualToString:MY_USER_ID] && ![msg.fromUserId isEqualToString:MY_USER_ID]) {
-                   
-                   [tempArr removeObject:msg];
-               }else{
-                   allHeight += [msg.chatMsgHeight floatValue];
-               }
         }
         [p removeAllObjects];
         [p addObjectsFromArray:tempArr];
@@ -1921,11 +1914,7 @@
         
         b = p.count>0?YES:NO;
         bPull = p.count>=PAGE_SHOW_COUNT?YES:NO;
-        //隐藏刷新头部
-//        self.wh_isShowHeaderPull = bPull;
-        
-//        if(_page == 0 || self.scrollLine>0)//如果
-//            [_array removeAllObjects];
+   
         if(b){
             NSMutableArray* temp = [[NSMutableArray alloc]init];
             [temp addObjectsFromArray:p];
@@ -1963,10 +1952,7 @@
     if (b) {
         [_pool removeAllObjects];
         _refreshCount++;
-//        [_table reloadData];
-//        [_table layoutIfNeeded];
-       
-//        self.isShowHeaderPull = bPull;
+
         dispatch_async(dispatch_get_main_queue(), ^{
             //刷新完成
             if (self.scrollLine > 0) {
@@ -1997,9 +1983,6 @@
                     if([_array count]>0){
                         
                         [_table reloadData];
-//                        [_table gotoRow: (int)(_array.count - firstNum + 2)];
-//                        [_table scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:(int)(_array.count - firstNum) inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
-                        
 //                        [_table WH_gotoLastRow:NO];
                         _table.contentOffset = CGPointMake(0, allHeight);
                         
