@@ -168,8 +168,14 @@
             lastContet = @"取款拒绝";
             _payTit.text = @"发起者";
             _noteTit.text = @"交易类型";
+            _moneyTit.text = @"提现金额";
+            model.userName = g_myself.userNickname;
+        }else if ([msg.type intValue] == kWCMessageTypeRedPacketReturn){
+            lastContet = @"红包退回";
+            _payTit.text = @"发送者";
+            _noteTit.text = @"交易类型";
         }
-       
+        
         
         _moneyLab.text = [NSString stringWithFormat:@"HOTC%.2f",model.money];
         _baseView.frame = CGRectMake(10, 10, JX_SCREEN_WIDTH-20, 236);
@@ -369,6 +375,8 @@
         string = @"钻石群升级";
     }else if ([msg.type intValue] == kWCMessageTypeWirawRefuse){
         string = @"取款拒绝";
+    }else if ([msg.type intValue] == kWCMessageTypeRedPacketReturn){
+        string = @"红包退回";
     }
     return string;
 }

@@ -736,6 +736,9 @@ static WH_JXMessageObject *shared;
         case kWCMessageTypeWirawRefuse://取款拒绝
             s = @"[取款拒绝]";
             break;
+//        case kWCMessageTypeRedPacketReturn://红包退回
+//            s = @"[红包退回]";
+//            break;
         default:
             s = self.content;
             break;
@@ -2313,6 +2316,8 @@ static WH_JXMessageObject *shared;
         case kWCMessageTypeRenewal:
         case kWCMessageTypeUpgrade:
         case kWCMessageTypeWirawRefuse:
+        case kWCMessageTypeRedPacketReturn:
+            
             
             return YES;
         default:
