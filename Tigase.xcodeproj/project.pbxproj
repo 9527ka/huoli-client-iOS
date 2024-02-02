@@ -742,6 +742,7 @@
 		333825002B36E48900AC4B06 /* WH_JXAppealModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 333824FF2B36E48900AC4B06 /* WH_JXAppealModel.m */; };
 		334FB9EC2B14241600230991 /* serverList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 334FB9EB2B14241600230991 /* serverList.plist */; };
 		334FB9EE2B1425C000230991 /* userInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 334FB9ED2B1425C000230991 /* userInfo.plist */; };
+		337455322B6CC5BC0080154C /* WH_JXChatTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 337455312B6CC5BC0080154C /* WH_JXChatTool.m */; };
 		33946A7B2B21A4C30002A8D6 /* WH_RechargeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33946A792B21A4C30002A8D6 /* WH_RechargeVC.m */; };
 		33946A7C2B21A4C30002A8D6 /* WH_RechargeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33946A7A2B21A4C30002A8D6 /* WH_RechargeVC.xib */; };
 		33946A832B21A79A0002A8D6 /* WH_RechargeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33946A812B21A79A0002A8D6 /* WH_RechargeCell.m */; };
@@ -3168,6 +3169,8 @@
 		333824FF2B36E48900AC4B06 /* WH_JXAppealModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXAppealModel.m; sourceTree = "<group>"; };
 		334FB9EB2B14241600230991 /* serverList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = serverList.plist; sourceTree = "<group>"; };
 		334FB9ED2B1425C000230991 /* userInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = userInfo.plist; sourceTree = "<group>"; };
+		337455302B6CC5BC0080154C /* WH_JXChatTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXChatTool.h; sourceTree = "<group>"; };
+		337455312B6CC5BC0080154C /* WH_JXChatTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXChatTool.m; sourceTree = "<group>"; };
 		33946A782B21A4C30002A8D6 /* WH_RechargeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_RechargeVC.h; sourceTree = "<group>"; };
 		33946A792B21A4C30002A8D6 /* WH_RechargeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_RechargeVC.m; sourceTree = "<group>"; };
 		33946A7A2B21A4C30002A8D6 /* WH_RechargeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_RechargeVC.xib; sourceTree = "<group>"; };
@@ -7172,6 +7175,8 @@
 				B2CE7ACE23288DEE003BD5F9 /* ChatMoreButton.m */,
 				33FA335A2B6B3BB00079B335 /* WH_JXFastRedView.h */,
 				33FA335B2B6B3BB00079B335 /* WH_JXFastRedView.m */,
+				337455302B6CC5BC0080154C /* WH_JXChatTool.h */,
+				337455312B6CC5BC0080154C /* WH_JXChatTool.m */,
 			);
 			path = WH_View;
 			sourceTree = "<group>";
@@ -11937,6 +11942,7 @@
 				CC8FCA791E4B07040058686C /* WH_AudioPlayerTool.m in Sources */,
 				0FA2D58B1FB05CCC00D51BB9 /* GPUImageBilateralFilter.m in Sources */,
 				B203A86523239498001B2575 /* UIView+CustomAlertView.m in Sources */,
+				337455322B6CC5BC0080154C /* WH_JXChatTool.m in Sources */,
 				4CABBC51293F06F800C17F42 /* WH_JXSelectMusicModel.m in Sources */,
 				0F5802291EFA6232002CFF5D /* WH_JXTipBlackView.m in Sources */,
 				0FA9873222544F3700D98CCC /* WH_JXSecuritySetting_WHVC.m in Sources */,

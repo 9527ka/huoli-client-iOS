@@ -583,16 +583,7 @@
     if([aDownload.action isEqualToString:wh_act_SetGroupAvatarServlet]){
         [_wait stop];
         
-        int hashCode = [self gethashCode:self.wh_room.roomJid];
-        int a = abs(hashCode % 10000);
-        int b = abs(hashCode % 20000);
-        // 删除sdwebimage 缓存
-        NSString *urlStr = [NSString stringWithFormat:@"%@avatar/o/%d/%d/%@.jpg",g_config.downloadAvatarUrl,a,b,self.wh_room.roomJid];
-        [[SDImageCache sharedImageCache] removeImageForKey:urlStr withCompletion:^{
-            [g_server showMsg:Localized(@"JX_GroupAvatarUpdatedSuccessfully") delay:0.5];
-        }];
-//        NSDictionary * groupDict = @{@"groupHeadImage":self.roomHead,@"roomJid":self.room.roomJid,@"setUpdate":@1};
-//        [g_notify postNotificationName:kGroupHeadImageModifyNotifaction object:groupDict];
+        [self deleCacheImage];
     }
     
     if ([aDownload.action isEqualToString:wh_act_EmptyMsg]) {
@@ -1366,52 +1357,53 @@
 }
 
 -(void)uploadGroupHeadImage{
-    [OBSHanderTool WH_handleUploadGroupOBSHeadImage:!IsStringNull(self.wh_chatRoom.roomId)?self.wh_chatRoom.roomId:self.wh_room.roomId image:self.roomHead toView:self success:^(int code) {
-        if (code == 1) {
-            //回到主线程
-            dispatch_async(dispatch_get_main_queue(), ^{
-                // 需要在主线程执行的代码
-                int hashCode = [self gethashCode:!IsStringNull(self.wh_chatRoom.roomId)?self.wh_chatRoom.roomId:self.wh_room.roomId];
-                int a = abs(hashCode % 10000);
-                int b = abs(hashCode % 20000);
-                // 删除sdwebimage 缓存
-                NSString *urlStr = [NSString stringWithFormat:@"%@avatar/o/%d/%d/%@.jpg",g_config.downloadAvatarUrl,a,b,!IsStringNull(self.wh_chatRoom.roomId)?self.wh_chatRoom.roomId:self.wh_room.roomId];
-                [[SDImageCache sharedImageCache] removeImageForKey:urlStr withCompletion:^{
-                    [g_server showMsg:Localized(@"JX_GroupAvatarUpdatedSuccessfully") delay:0.5];
-                }];
-            });
-        }
-    } failed:^(NSError * _Nonnull error) {
+    
+    if ([g_config.isOpenOSStatus integerValue]) {//使用obs上传
         
+        NSString *roomId = !IsStringNull(self.wh_chatRoom.roomJid)?self.wh_chatRoom.roomJid:self.wh_room.roomJid;
+        
+        [OBSHanderTool WH_handleUploadGroupOBSHeadImage:roomId roomJid:roomId image:self.roomHead toView:self success:^(int code) {
+            if (code == 1) {
+                //回到主线程
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // 需要在主线程执行的代码
+                    [self deleCacheImage];
+                });
+            }
+        } failed:^(NSError * _Nonnull error) {
+            
+        }];
+    }else{
+        [g_server setGroupAvatarServlet:self.wh_room.roomJid image:self.roomHead toView:self];
+    }
+    
+    
+}
+
+-(void)deleCacheImage{
+   
+    NSString *roomId = !IsStringNull(self.wh_chatRoom.roomJid)?self.wh_chatRoom.roomJid:self.wh_room.roomJid;
+    
+    if ([g_config.isOpenOSStatus integerValue]) {//使用obs上传
+        //使用的是roomid
+//        roomId = !IsStringNull(self.wh_chatRoom.roomId)?self.wh_chatRoom.roomId:self.wh_room.roomId;
+    }else{
+        //使用的是roomJid
+    }
+    
+    int hashCode = [self gethashCode:roomId];
+    
+    
+    int a = abs(hashCode % 10000);
+    int b = abs(hashCode % 20000);
+    // 删除sdwebimage 缓存
+    NSString *urlStr = [NSString stringWithFormat:@"%@avatar/o/%d/%d/%@.jpg",g_config.downloadAvatarUrl,a,b,roomId];
+    
+//    NSLog(@"当前上传之后的头像链接 == %@ userid===%@ userJid ==%@",urlStr,!IsStringNull(self.wh_chatRoom.roomId)?self.wh_chatRoom.roomId:self.wh_room.roomId,!IsStringNull(self.wh_chatRoom.roomJid)?self.wh_chatRoom.roomJid:self.wh_room.roomJid);
+    
+    [[SDImageCache sharedImageCache] removeImageForKey:urlStr withCompletion:^{
+        [g_server showMsg:Localized(@"JX_GroupAvatarUpdatedSuccessfully") delay:0.5];
     }];
-    
-    
-    
-    
-//
-//    //保存图片到本地
-//    NSString* file = [FileInfo getUUIDFileName:@"jpg"];
-//    [g_server WH_saveImageToFileWithImage:self.roomHead file:file isOriginal:NO];
-//
-//    [OBSHanderTool handleUploadFile:file validTime:@"-1" messageId:!IsStringNull(self.wh_chatRoom.roomId)?self.wh_chatRoom.roomJid:self.wh_room.roomJid toView:self success:^(int code, NSString * _Nonnull fileUrl, NSString * _Nonnull fileName) {
-//        if (code == 1) {
-//            //回到主线程
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                // 需要在主线程执行的代码
-//                int hashCode = [self gethashCode:self.wh_room.roomJid];
-//                int a = abs(hashCode % 10000);
-//                int b = abs(hashCode % 20000);
-//                // 删除sdwebimage 缓存
-//                NSString *urlStr = [NSString stringWithFormat:@"%@avatar/o/%d/%d/%@.jpg",g_config.downloadAvatarUrl,a,b,self.wh_room.roomJid];
-//                [[SDImageCache sharedImageCache] removeImageForKey:urlStr withCompletion:^{
-//                    [g_server showMsg:Localized(@"JX_GroupAvatarUpdatedSuccessfully") delay:0.5];
-//                }];
-//            });
-//
-//        }
-//    } failed:^(NSError * _Nonnull error) {
-//
-//    }];
 }
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {

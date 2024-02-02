@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 +(void)WH_handleUploadOBSHeadImage:(NSString*)userId image:(UIImage*)image toView:(id)toView success:(void(^)(int code)) success failed:(void(^) (NSError *error)) failed;
 //上传群头像
-+(void)WH_handleUploadGroupOBSHeadImage:(NSString*)userId image:(UIImage*)image toView:(id)toView success:(void(^)(int code)) success failed:(void(^) (NSError *error)) failed;
++(void)WH_handleUploadGroupOBSHeadImage:(NSString*)userId roomJid:(NSString *)roomJid image:(UIImage*)image toView:(id)toView success:(void(^)(int code)) success failed:(void(^) (NSError *error)) failed;
 
 +(int)gethashCode:(NSString *)str;
 

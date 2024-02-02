@@ -305,10 +305,15 @@ static ATMHud *shared;
 }
 
 - (void)hide {
+    //回到主线程
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // 需要在主线程执行的代码
     isShowing = NO;
-	[__view hide];
-//    [[UIApplication sharedApplication].keyWindow sendSubviewToBack:self.view];
-    [self.view removeFromSuperview];
+        [__view hide];
+        //    [[UIApplication sharedApplication].keyWindow sendSubviewToBack:self.view];
+        [self.view removeFromSuperview];
+    });
+    
 }
 
 - (void)stop {

@@ -440,7 +440,7 @@ static OBSClient *client;
 }
 
 //上传群头像
-+(void)WH_handleUploadGroupOBSHeadImage:(NSString*)userId image:(UIImage*)image toView:(id)toView success:(void(^)(int code)) success failed:(void(^) (NSError *error)) failed{
++(void)WH_handleUploadGroupOBSHeadImage:(NSString*)userId roomJid:(NSString *)roomJid image:(UIImage*)image toView:(id)toView success:(void(^)(int code)) success failed:(void(^) (NSError *error)) failed{
     if ([g_config.isOpenOSStatus integerValue]) {//使用obs上传
         if ([g_config.osType integerValue] == 1) {//华为云
             
@@ -491,7 +491,7 @@ static OBSClient *client;
                     }else{
                         // 处理错误,上传自己服务器
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            [g_server WH_uploadHeadImageWithUserId:userId image:image toView:toView];
+                            [g_server setGroupAvatarServlet:roomJid image:image toView:self];
                         });
                         failed(error);
                     }
@@ -527,7 +527,7 @@ static OBSClient *client;
                 if (error) {
                     //obs上传失败,就走服务器
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [g_server WH_uploadHeadImageWithUserId:userId image:image toView:toView];
+                        [g_server setGroupAvatarServlet:roomJid image:image toView:self];
                     });
                 }else{
 
@@ -550,14 +550,14 @@ static OBSClient *client;
         }else{
             // obs配置获取失败,走服务器上传
             dispatch_async(dispatch_get_main_queue(), ^{
-                [g_server WH_uploadHeadImageWithUserId:userId image:image toView:toView];
+                [g_server setGroupAvatarServlet:roomJid image:image toView:self];
             });
         }
         
     }else{
         // 后台未开启obs配置
         dispatch_async(dispatch_get_main_queue(), ^{
-            [g_server WH_uploadHeadImageWithUserId:userId image:image toView:toView];
+            [g_server setGroupAvatarServlet:roomJid image:image toView:self];
         });
     }
 }

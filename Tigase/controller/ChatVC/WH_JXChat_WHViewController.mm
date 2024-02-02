@@ -137,6 +137,7 @@
 #import "UIAlertController+category.h"
 #import "WH_JXFastRedSetVC.h"
 #import "WH_JXFastRedView.h"
+#import "WH_JXChatTool.h"
 
 
 #define faceHeight (THE_DEVICE_HAVE_HEAD ? 253 : 218)
@@ -897,7 +898,7 @@
         
         if(createTime > expiryTime && expiryTime > 0){//已经过期
             /// 获取当前登录用户
-            memberData *loginMember = [self getCurrentLoginMerber];
+            memberData *loginMember = [WH_JXChatTool getCurrentLoginMerber:self.room];
             /// 当前登录用户是不是管理者
             /// BOOL isManger = [self isManger:loginMember];
             if (loginMember.role.intValue == 1) {
@@ -1802,8 +1803,6 @@
  刷新列表
  之前业务逻辑没有改动,添加 loadHistory 这个阈值为了解决群聊天提醒类型消息tableview白屏问题
  19.09.25 hanf
-
- @param msg <#msg description#>
  @param loadHistory yes:加载历史数据 no:不加载历史数据
  */
 -(void)refresh:(WH_JXMessageObject*)msg loadHistory:(BOOL)loadHistory
@@ -1893,7 +1892,7 @@
         }
     
         /// 是不是群主 或者 管理员 yes:是 no:不是
-        BOOL isManger = [self isManagrData];
+        BOOL isManger = [WH_JXChatTool isManagrData:self.roomJid];
         NSMutableArray *tempArr = [NSMutableArray arrayWithArray:p];
         for (WH_JXMessageObject *msg in p) {
             //不是我的并且我不熟群管理专属红包去掉
@@ -3438,7 +3437,7 @@
 //#endif
 //    }
     
-    BOOL isManger = [self isManagrData];
+    BOOL isManger = [WH_JXChatTool isManagrData:self.roomJid];
     
     //不是我的并且我不熟群管理专属红包去掉
     if ([msg.type intValue] == kWCMessageTypeRedPacketExclusive && ![msg.toUserIds isEqualToString:MY_USER_ID] && !isManger && self.roomJid.length > 0 && ![msg.fromUserId isEqualToString:MY_USER_ID] ) {
@@ -3486,27 +3485,6 @@
     }
     return currentMember;
 }
-
--(BOOL)isManagrData{
-    WH_JXUserObject *roomObj = [[WH_JXUserObject sharedUserInstance] getUserById:self.roomJid];
-    NSArray *members = [memberData fetchAllMembers:roomObj.roomId];
-    
-    /// 拿到当前用户 在群组里扮演的角色
-    memberData *currentMember = nil;
-    WH_JXUserObject *currentUser = g_myself;
-    for (memberData *member in members) {
-        if (member.userId == [currentUser.userId longLongValue]) {
-            currentMember = member;
-        }
-    }
-    
-    /// 是不是群主 或者 管理员 yes:是 no:不是
-    BOOL isManger = [currentMember.role intValue] == 1 || [currentMember.role intValue] == 2;
-    
-    return isManger;
-
-}
-
 
 //上传完成后，发消息
 -(void)WH_doSendAfterUpload:(NSDictionary*)dict{
@@ -5039,9 +5017,9 @@
         
         if ((_messageText.selectedRange.location + 1) >= _messageText.text.length) {
             /// 获取当前登录用户
-            memberData *loginMember = [self getCurrentLoginMerber];
+            memberData *loginMember = [WH_JXChatTool getCurrentLoginMerber:self.room];
             /// 当前登录用户是不是管理者
-            BOOL isManger = [self isManger:loginMember];
+            BOOL isManger = [WH_JXChatTool isManger:loginMember];
             /// 当前登录用户不是管理者 并且开启了不允许群成员私聊 进入判断
             if (!isManger && !self.room.allowSendCard) {
                 if (!ChatViewControllCanAtGroupMember) {
@@ -5073,34 +5051,6 @@
     NSArray *matches = [regex matchesInString:string options:NSMatchingReportProgress range:NSMakeRange(0, [string length])];
     return matches;
 }
-
-/**
- 获取当前登录用户
- 
- @return <#return value description#>
- */
-- (memberData *)getCurrentLoginMerber {
-    memberData *currentMember = nil;
-    WH_JXUserObject *currentUser = g_myself;
-    for (memberData *member in self.room.members) {
-        if (member.userId == [currentUser.userId longLongValue]) {
-            currentMember = member;
-            break;
-        }
-    }
-    return currentMember;
-}
-
-/**
- 是否是管理员 群组(role : 1)/管理员(role : 2)均 视为 管理员
- 
- @param user <#user description#>
- @return <#return value description#>
- */
-- (BOOL)isManger:(memberData *)user {
-    return [user.role intValue] == 1 || [user.role intValue] == 2;
-}
-
 #pragma mark - 有表情的txt 转换成 含图片的txt
 - (BOOL)changeEmjoyText:(NSString *)text textColor:(UIColor *)textColor {
     NSMutableArray *arr = [NSMutableArray array];
@@ -5250,9 +5200,7 @@
     {
         textView.scrollEnabled = NO;    // 不允许滚动
     }
-//    if (textView.hidden) {
-//        size.height = 32 + 5.5;
-//    }
+
     self.wh_heightFooter = size.height + 16;
     if (self.isHiddenFooter) {
         self.wh_heightFooter =0;
@@ -5288,9 +5236,6 @@
     return YES;
 }
 
-
-
-
 -(void)recordSwitch:(UIButton*)sender{
     if([self showDisableSay])
         return;
@@ -5313,9 +5258,7 @@
     vc.latitude = [msg.location_x doubleValue];
     vc.locationType = JXLocationTypeShowStaticLocation;
     vc = [vc init];
-//    [g_window addSubview:vc.view];
     [g_navigation pushViewController:vc animated:YES];
-//    [vc release];
 }
 
 //cell里的图片，被点击后的处理事件
@@ -5782,10 +5725,7 @@
                         self.title = [NSString stringWithFormat:@"%@(%@)",dict[@"nickname"],str];
                     }
                 }
-                
             }
-            
-            
             if ([dict[@"userType"] intValue] == 2) {    // 获取公众号菜单
                 // 获取公众号菜单
                 [g_server WH_getPublicMenuListWithUserId:chatPerson.userId toView:self];
@@ -5794,16 +5734,9 @@
 //                // 获取公众号菜单
 //                [g_server getPublicMenuListWithUserId:chatPerson.userId toView:self];
 //            }
-            
-            
-            
         }
-        
-        
     }
     if( [aDownload.action isEqualToString:wh_act_roomGet] ){
-        
-        
         self.noticesArry = [[dict objectForKey:@"notices"] mutableCopy];
         
         
@@ -7905,9 +7838,9 @@
     if (self.roomJid) {
         
         /// 获取当前登录用户
-        memberData *loginMember = [self getCurrentLoginMerber];
+        memberData *loginMember = [WH_JXChatTool getCurrentLoginMerber:self.room];
         /// 当前登录用户是不是管理者
-        BOOL isManger = [self isManger:loginMember];
+        BOOL isManger = [WH_JXChatTool isManger:loginMember];
         /// 当前登录用户不是管理者 并且开启了不允许群成员私聊 进入判断
         if (!isManger && !self.room.allowSendCard) {
             if (!ChatViewControllCanAtGroupMember) {//如果不可以@群成员,就不响应长按群头像
