@@ -299,10 +299,10 @@
      if ([aDownload.action isEqualToString:act_sendRedPacket] || [aDownload.action isEqualToString:wh_act_sendRedPacketV1] || [aDownload.action isEqualToString:act_diamond_send]) {
         NSMutableDictionary * muDict = [NSMutableDictionary dictionaryWithDictionary:dict];
          WH_FastRedModel *model = [JXServer receiveFastRed];
-         model.greet = self.greetsField.text.length > 0?self.greetsField.text:@"恭喜发财 大吉大利";
+         model.greet = self.greetsField.text.length > 0?self.greetsField.text:self.greetsField.placeholder;
          [JXServer setFastRedWithDic:model.mj_keyValues];
          
-        [muDict setObject:self.greetsField.text.length > 0?self.greetsField.text:@"恭喜发财 大吉大利" forKey:@"greet"];
+        [muDict setObject:self.greetsField.text.length > 0?self.greetsField.text:self.greetsField.placeholder forKey:@"greet"];
          [muDict setObject:@(0) forKey:@"isDiamound"];
          
          [self WH_dismiss_WHVerifyPayVC];
