@@ -27,6 +27,8 @@
 
 @property (nonatomic, strong) NSNumber *category;
 
+@property (nonatomic, assign) BOOL isGoBack;
+
 @end
 
 @implementation WH_JXredPacketDetail_WHVC
@@ -47,17 +49,12 @@
 // 控制器生命周期方法(view加载完成)
 - (void)viewDidLoad{
     [super viewDidLoad];
-    self.view.backgroundColor = HEXCOLOR(0xf0eff4);
+    self.view.
+    backgroundColor = HEXCOLOR(0xf0eff4);
+    
+    [self screenEdgePanGestureRecognizer];
     
     self.watermarkColor = [UIColor lightGrayColor];
-    
-    //添加轻扫手势
-    UISwipeGestureRecognizer *swipe2 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
-   // 轻扫手势默认是向右边称轻扫
-    //可以设置轻扫的方向.
-    //一个轻扫手势只能设置一个方向的轻扫.想要让它有多个方向的手势,必须得要设置的多个轻扫手势
-      swipe2.direction =  UISwipeGestureRecognizerDirectionRight;
-    [self.view addGestureRecognizer:swipe2];
     
     
     //获取数据
@@ -115,9 +112,6 @@
     
     [self WH_setViewSize];
     [self WH_setViewData];
-}
-- (void)swipe:(UISwipeGestureRecognizer *)swipe{
-    [g_navigation WH_dismiss_WHViewController:self animated:YES];
 }
 
 -(void)WH_createCustomView{

@@ -203,6 +203,8 @@
 @property (nonatomic, copy) NSString *meetingNo;
 @property (nonatomic, assign) BOOL isAudioMeeting;
 
+@property (nonatomic, assign) BOOL noClick;//能不能点击
+
 @property (nonatomic, assign) int groupMessagesIndex;
 
 @property (nonatomic, strong) WH_JXMessageObject *shakeMsg;
@@ -5661,6 +5663,8 @@
 -(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{
     if (![aDownload.action isEqualToString:wh_act_getRedPacket]) {
         [_wait stop];
+    }else{
+        self.noClick = NO;
     }
     NSString *orderDetaileUrl = [NSString stringWithFormat:@"%@%@",wh_order_detaile,self.orderId];
     if( [aDownload.action isEqualToString:orderDetaileUrl] ){
@@ -5990,6 +5994,7 @@
     }
     //获取红包信息
     if ([aDownload.action isEqualToString:wh_act_getRedPacket]) {
+        self.noClick = NO;
 //        if ([dict[@"packet"][@"type"] intValue] != 3) {
         NSString *userId = [NSString stringWithFormat:@"%@",[[dict objectForKey:@"packet"] objectForKey:@"userId"]];
         
@@ -6266,7 +6271,7 @@
     
     //自己查看红包或者红包已领完，resultCode ＝0
     if ([aDownload.action isEqualToString:wh_act_getRedPacket]) {
-        
+        self.noClick = NO;
         [self changeMessageRedPacketStatus:dict[@"data"][@"packet"][@"id"]];
         [self changeMessageArrFileSize:dict[@"data"][@"packet"][@"id"]];
         
@@ -7695,7 +7700,7 @@
 #pragma mark - 群里发急速红包
 - (void)sendFastRedPacket {
     WH_FastRedModel *model = [JXServer receiveFastRed];
-    if(!model || !model.isOn.boolValue){
+    if(!model){
         //判断是否设置过急速红包
         WH_JXFastRedSetVC *vc = [[WH_JXFastRedSetVC alloc] init];
         [g_navigation pushViewController:vc animated:YES];
@@ -8036,6 +8041,12 @@
     if (recording) {
         return;
     }
+    //判断能不能点
+    if(self.noClick){
+        return;
+    }
+    self.noClick = YES;
+    
     //禁言状态下不允许点击
     if ([self isNoAllowedOpearitionOnJinYanStatus]) {
         //禁言情况下
@@ -8084,6 +8095,7 @@
     redPacketView.redPocketBlock = ^(NSDictionary * _Nonnull dict, BOOL success) {
         self.redPacketDict = dict;
         if (success) {
+            
             NSString *userId = [NSString stringWithFormat:@"%@",[[dict objectForKey:@"packet"] objectForKey:@"userId"]];
             [self changeMessageRedPacketStatus:dict[@"packet"][@"id"]];
             [self changeMessageArrFileSize:dict[@"packet"][@"id"]];
@@ -8113,18 +8125,25 @@
                 [self WH_show_WHOneMsg:msg];
             }
             [g_server WH_getUserMoenyToView:self];
+            
+            [self goToRedDetaile:dict];
+            
         }else {//红包被抢完
             
             [self changeMessageRedPacketStatus:dict[@"packet"][@"id"]];
             [self changeMessageArrFileSize:dict[@"packet"][@"id"]];
             
-            WH_JXredPacketDetail_WHVC * redPacketDetailVC = [[WH_JXredPacketDetail_WHVC alloc]init];
-            redPacketDetailVC.wh_dataDict = [[NSDictionary alloc]initWithDictionary:dict];
-            redPacketDetailVC.isGroup = self.room.roomId.length > 0;
-            [g_navigation pushViewController:redPacketDetailVC animated:YES];
+            [self goToRedDetaile:dict];
         }
     };
 }
+-(void)goToRedDetaile:(NSDictionary *)dict{
+    WH_JXredPacketDetail_WHVC * redPacketDetailVC = [[WH_JXredPacketDetail_WHVC alloc]init];
+    redPacketDetailVC.wh_dataDict = [[NSDictionary alloc]initWithDictionary:dict];
+    redPacketDetailVC.isGroup = self.room.roomId.length > 0;
+    [g_navigation pushViewController:redPacketDetailVC animated:YES];
+}
+
 #pragma mark-------照片查看
 - (void)WH_onDidImage:(NSNotification*)notification{
     if (recording) {

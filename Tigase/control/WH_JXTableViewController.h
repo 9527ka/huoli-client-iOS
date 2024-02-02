@@ -76,7 +76,8 @@
 @property (nonatomic, assign) int myTableViewStyle;
 @property(nonatomic, assign) int isFrom;//1:只加footer（上拉加载）2.只加hearer（下拉刷新）。isFrom不存在时，footer和header都加。
 
-
+//创建边缘手势
+-(void)screenEdgePanGestureRecognizer;
 
 -(void)WH_setupStrings;
 -(void)WH_stopLoading;

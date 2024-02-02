@@ -265,13 +265,13 @@
     
     [g_server WH_openRedPacketWithRedPacketId:packetDic[@"packet"][@"id"] money:nil toView:self];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.9f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [redPocketView stopAnimating];
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.9f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [redPocketView stopAnimating];
 //        [g_server WH_openRedPacketWithRedPacketId:packetDic[@"packet"][@"id"] money:nil toView:self];
-    });
+//    });
 }
 - (void)checkDetailsAction {
-     [self endEditing:YES];
+    [self endEditing:YES];
     [self removeFromSuperview];
     
     WH_JXredPacketDetail_WHVC * redPacketDetailVC = [[WH_JXredPacketDetail_WHVC alloc]init];
@@ -379,16 +379,19 @@
         if (self.redPocketBlock) {
             self.redPocketBlock(dict, YES);
         }
+        self.hidden = YES;
+        [self removeFromSuperview];
+        
         packetDic = dict;
-        [UIView animateWithDuration:.3f animations:^{
+        [UIView animateWithDuration:.1f animations:^{
             packetScrollView.top = -packetScrollView.height/2;
         } completion:^(BOOL finished) {
-            [self removeFromSuperview];
 //            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                WH_JXredPacketDetail_WHVC * redPacketDetailVC = [[WH_JXredPacketDetail_WHVC alloc]init];
-                redPacketDetailVC.wh_dataDict = [[NSDictionary alloc]initWithDictionary:dict];
-                redPacketDetailVC.isGroup = self.isGroup;
-                [g_navigation pushViewController:redPacketDetailVC animated:NO];
+//                WH_JXredPacketDetail_WHVC * redPacketDetailVC = [[WH_JXredPacketDetail_WHVC alloc]init];
+//                redPacketDetailVC.wh_dataDict = [[NSDictionary alloc]initWithDictionary:dict];
+//                redPacketDetailVC.isGroup = self.isGroup;
+//                [g_navigation pushViewController:redPacketDetailVC animated:NO];
+            
 //            });
         }];
     }

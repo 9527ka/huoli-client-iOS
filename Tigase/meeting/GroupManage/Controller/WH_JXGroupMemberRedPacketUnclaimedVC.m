@@ -164,13 +164,20 @@
                 
             }
             [g_server WH_getUserMoenyToView:self];
+            
+            [self goToRedDetaile:dict];
+            
         }else {//红包被抢完
-            WH_JXredPacketDetail_WHVC * redPacketDetailVC = [[WH_JXredPacketDetail_WHVC alloc]init];
-            redPacketDetailVC.wh_dataDict = [[NSDictionary alloc]initWithDictionary:dict];
-            redPacketDetailVC.isGroup = self.room.roomId.length > 0;
-            [g_navigation pushViewController:redPacketDetailVC animated:YES];
+            [self goToRedDetaile:dict];
         }
     };
+}
+
+-(void)goToRedDetaile:(NSDictionary *)dict{
+    WH_JXredPacketDetail_WHVC * redPacketDetailVC = [[WH_JXredPacketDetail_WHVC alloc]init];
+    redPacketDetailVC.wh_dataDict = [[NSDictionary alloc]initWithDictionary:dict];
+    redPacketDetailVC.isGroup = self.room.roomId.length > 0;
+    [g_navigation pushViewController:redPacketDetailVC animated:YES];
 }
 
 #pragma mark - 请求失败回调

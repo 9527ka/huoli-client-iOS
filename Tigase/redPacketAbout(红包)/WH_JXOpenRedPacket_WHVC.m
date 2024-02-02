@@ -138,11 +138,12 @@
     [self WH_quitOutAnimate];
 }
 - (IBAction)toRedPacketDetail:(id)sender {
+    [self WH_quitOutAnimate];
     WH_JXredPacketDetail_WHVC * redPacketDetailVC = [[WH_JXredPacketDetail_WHVC alloc]init];
     redPacketDetailVC.wh_dataDict = [[NSDictionary alloc]initWithDictionary:self.wh_dataDict];
 //    [g_window addSubview:redPacketDetailVC.view];
     [g_navigation pushViewController:redPacketDetailVC animated:YES];
-    [self WH_quitOutAnimate];
+    
 }
 
 /*

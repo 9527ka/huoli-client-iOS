@@ -16,10 +16,22 @@
 @property (weak, nonatomic) IBOutlet UITextField *amountField;
 @property (weak, nonatomic) IBOutlet UITextField *countField;
 @property (weak, nonatomic) IBOutlet UITextField *timeField;
-@property (weak, nonatomic) IBOutlet UISwitch *switchBtn;
+@property (weak, nonatomic) IBOutlet UITextField *intervalField;//红包发送金额
+
 @property (weak, nonatomic) IBOutlet UIButton *commitBtn;
 @property (nonatomic, strong) WH_JXVerifyPay_WHVC * verVC;
 @property (nonatomic,copy) NSString *passWord;
+@property (weak, nonatomic) IBOutlet UISwitch *passSwitch;
+
+@property (weak, nonatomic) IBOutlet UISwitch *randowSwitch;
+@property (weak, nonatomic) IBOutlet UITextField *randowCountField;
+
+@property (weak, nonatomic) IBOutlet UISwitch *remarkSwitchBtn;
+@property (weak, nonatomic) IBOutlet UITextField *remarkField;
+
+@property (weak, nonatomic) IBOutlet UISwitch *circulationSwitchBtn;
+@property (weak, nonatomic) IBOutlet UITextField *circulationField;
+
 
 @end
 
@@ -34,11 +46,33 @@
     if(model){
         self.amountField.text = model.amount;
         self.countField.text = model.count;
+        self.intervalField.text = model.timeInter;
+        self.randowCountField.text = model.randowCount;
+        self.randowSwitch.on = model.isRandow.boolValue;
+        self.remarkField.text = model.remark;
+        self.remarkSwitchBtn.on = model.isRmarkOn.boolValue;
+        self.circulationField.text = model.circle;
+        self.circulationSwitchBtn.on = model.isCirclekOn.boolValue;
+        self.passSwitch.on = model.isNoPas.boolValue;
     }
     
 }
 - (IBAction)backAction:(id)sender {
     [g_navigation WH_dismiss_WHViewController:self animated:YES];
+}
+//随机 固定 循环 500+
+- (IBAction)switchAction:(UISwitch *)sender {
+    if(sender.tag == 500 && sender.on){//随机
+        self.remarkSwitchBtn.on = NO;
+        self.circulationSwitchBtn.on = NO;
+    }else if (sender.tag == 501 && sender.on){//固定
+        self.randowSwitch.on = NO;
+        self.circulationSwitchBtn.on = NO;
+    }else if (sender.tag == 502 && sender.on){//循环
+        self.randowSwitch.on = NO;
+        self.remarkSwitchBtn.on = NO;
+    }
+    
 }
 
 - (IBAction)commitAction:(id)sender {
@@ -52,10 +86,42 @@
         [g_server showMsg:@"请输入红包数量"];
         return;
     }
-//    if(self.timeField.text.length == 0){
-//        [g_server showMsg:@"请输入支付密码有效时间"];
-//        return;
+    if(self.intervalField.text.length == 0 || self.intervalField.text.floatValue <= 0){
+        [g_server showMsg:@"请输入红包发送间隔"];
+        return;
+    }
+    if(self.randowSwitch.on){//开启了随机位数
+        if(self.randowCountField.text.length == 0){
+            [g_server showMsg:@"请输入随机位数"];
+            return;
+        }
+        if(self.randowCountField.text.intValue > 5 || self.randowCountField.text.intValue < 1){//随机位数：1、2、3、4、5（位）
+            [g_server showMsg:@"请输入1~5随机位数"];
+            
+            self.randowCountField.text = @"5";
+            
+            return;
+        }
+        
+    }
+//    if(self.remarkSwitchBtn.on){//开启了固定留言
+//        if(self.remarkField.text.length == 0){
+//            [g_server showMsg:@"请输入固定留言内容"];
+//            return;
+//        }
 //    }
+    
+    if(self.circulationSwitchBtn.on){//开启了固定留言
+        if(self.circulationField.text.length == 0){
+            [g_server showMsg:@"请输入循环留言内容"];
+            return;
+        }
+    }
+    //判断是否有开启留言模式
+    if(!self.circulationSwitchBtn.on && !self.remarkSwitchBtn.on && !self.randowSwitch.on){
+        [g_server showMsg:@"请开启至少一种留言模式"];
+        return;
+    }
     
     g_myself.isPayPassword = [g_default objectForKey:PayPasswordKey];
     if ([g_myself.isPayPassword boolValue]) {
@@ -103,13 +169,24 @@
          
          NSString *passTime = [NSString stringWithFormat:@"%0.f",self.timeField.text.doubleValue * 60 + timeString.doubleValue];
          
-         
          WH_FastRedModel *model = [[WH_FastRedModel alloc] init];
          model.amount = self.amountField.text;
          model.count = self.countField.text;
+         model.timeInter = self.intervalField.text;
          model.passWord = self.passWord;
          model.time = passTime;
-         model.isOn = @(self.switchBtn.on);
+         model.isRandow = @(self.randowSwitch.on);
+         model.randowCount = self.randowCountField.text;
+         model.isNoPas = @(self.passSwitch.on);
+         model.isRmarkOn = @(self.remarkSwitchBtn.on);
+         if(self.remarkSwitchBtn.on && self.remarkField.text.length == 0){//开启了固定留言
+             model.remark = @"恭喜发财 大吉大利";
+         }else{
+             model.remark = self.remarkField.text;
+         }
+         
+         model.isCirclekOn = @(self.circulationSwitchBtn.on);
+         model.circle = self.circulationField.text;
          //保存
          [JXServer setFastRedWithDic:model.mj_keyValues];
          
