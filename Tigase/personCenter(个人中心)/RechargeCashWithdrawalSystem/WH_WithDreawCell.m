@@ -7,6 +7,8 @@
 //
 
 #import "WH_WithDreawCell.h"
+#import "WH_webpage_WHVC.h"
+#import "WH_JXBuyAndPayListVC.h"
 
 @implementation WH_WithDreawCell
 
@@ -100,6 +102,24 @@
 //    }
     
     self.monyCountLab.text = [NSString stringWithFormat:@"USDT 1 = HOTC %@",g_App.rate];
+    
+}
+//400+
+- (IBAction)lookUrlDetaileAction:(UIButton *)sender {
+    if(sender.tag == 400){//跳转C2C交易的出售列表
+        WH_JXBuyAndPayListVC *vc = [[WH_JXBuyAndPayListVC alloc] init];
+        [g_navigation pushViewController:vc animated:YES];
+    }else{//什么是加密货币提现？
+    
+        WH_webpage_WHVC *webVC = [WH_webpage_WHVC alloc];
+        webVC.wh_isGotoBack= YES;
+        webVC.isSend = YES;
+        webVC.titleString = @"加密货币提现";
+        webVC.url = [NSString stringWithFormat:@"%@",@"https://www.huoli68.com/?industry/6.html"];
+        
+        webVC = [webVC init];
+        [g_navigation.navigationView addSubview:webVC.view];
+    }
     
 }
 

@@ -104,15 +104,15 @@
     [cView addSubview:self.wh_moneyLabel];
     [self.wh_moneyLabel setTextAlignment:NSTextAlignmentCenter];
     
-    NSArray *array = @[Localized(@"JXLiveVC_Recharge") ,Localized(@"JXMoney_withdrawals")];;
+    NSArray *array = @[@"USDT充值" ,@"USDT提现"];;
     if ([g_config.hmPayStatus integerValue] == 1 && [g_config.hmWithdrawStatus integerValue] != 1) {
-        array = @[Localized(@"JXLiveVC_Recharge") ,@"H5充值",Localized(@"JXMoney_withdrawals")];
+        array = @[@"USDT充值" ,@"H5充值",@"USDT提现"];
     }
     if ([g_config.hmPayStatus integerValue] != 2 && [g_config.hmWithdrawStatus integerValue] == 1) {
-        array = @[Localized(@"JXLiveVC_Recharge") ,Localized(@"JXMoney_withdrawals") ,@"H5提现"];
+        array = @[@"USDT充值" ,@"USDT提现" ,@"H5提现"];
     }
     if ([g_config.hmPayStatus integerValue] == 1 && [g_config.hmWithdrawStatus integerValue] == 1) {
-        array = @[Localized(@"JXLiveVC_Recharge") ,@"H5充值",Localized(@"JXMoney_withdrawals"),@"H5提现"];
+        array = @[@"USDT充值" ,@"H5充值",@"USDT提现",@"H5提现"];
     }
     NSMutableArray *titleArr = [NSMutableArray arrayWithArray:array];
     [titleArr addObject:@"联系客服充值"];
@@ -186,9 +186,9 @@
 }
 - (void)buttonClickMethod:(UIButton *)button {
     
-    /*@[Localized(@"JXLiveVC_Recharge") ,@"H5充值",Localized(@"JXMoney_withdrawals")] */
+    /*@[@"USDT充值" ,@"H5充值",@"USDT提现"] */
     NSString *actionTitle = [button titleForState:UIControlStateNormal];
-    if ([actionTitle isEqualToString:Localized(@"JXLiveVC_Recharge")]) {
+    if ([actionTitle isEqualToString:@"USDT充值"]) {
         
         if ([g_config.aliPayStatus integerValue] != 1 && [g_config.wechatPayStatus integerValue] != 1 && [g_config.yunPayStatus integerValue] != 1) {
             //aliPayStatus;  //支付宝充值状态 1:开启 2：关闭 wechatWithdrawStatus; //微信提现状态1：开启 2：关闭
@@ -225,7 +225,7 @@
         tranVC.transactionType = 1;
         [g_navigation pushViewController:tranVC animated:YES];
         
-    } else if ([actionTitle isEqualToString:Localized(@"JXMoney_withdrawals")]) {
+    } else if ([actionTitle isEqualToString:@"USDT提现"]) {
         //        MiXin_WithdrawCoin_MiXinVC *vc = [[MiXin_WithdrawCoin_MiXinVC alloc] init];
         //        [g_navigation pushViewController:vc animated:YES];
         //        return;

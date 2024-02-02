@@ -315,6 +315,12 @@
         _countText = _orderView.wh_countTextField.text;
         _greetText = _orderView.wh_greetTextField.text;//口令
     } else if(button.tag == 4){//专属红包
+        //判断是否有指定人
+        if(_selectIds.count == 0){
+            [g_server showMsg:@"请选择指定领取人"];
+            return;
+        }
+        
         if(self.isDiamond){
             _moneyText = _exclusiveDiamondView.wh_moneyTextField.text;
             _countText = _exclusiveDiamondView.wh_countTextField.text;
