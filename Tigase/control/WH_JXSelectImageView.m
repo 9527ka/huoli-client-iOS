@@ -174,8 +174,8 @@
             n = (n + 1) >= 4 ? 0 : n + 1;
             m += 1;
             X = m >8 ? SELECTIMAGE_WIDTH *n + (n+1)*inset+JX_SCREEN_WIDTH : SELECTIMAGE_WIDTH *n + (n+1)*inset;
-            Y = m > 4 && m <=8 ? h+margeY*2 : margeY;
-            button = [self WH_create_WHButtonWithImage:@"WH_awarda_a_bonus_normal" highlight:@"WH_awarda_a_bonus_normal" target:delegate selector:self.onFastRedPacket title:@"极速红包"];
+            Y = m > 4 && m <=8 ? h+margeY*2 : margeY;//WH_awarda_a_bonus_normal
+            button = [self WH_create_WHButtonWithImage:@"WH_fast_a_bonus_normal" highlight:@"WH_fast_a_bonus_normal" target:delegate selector:self.onFastRedPacket title:@"极速红包"];
             button.frame = CGRectMake(X, Y, SELECTIMAGE_WIDTH, h);
         }
 
