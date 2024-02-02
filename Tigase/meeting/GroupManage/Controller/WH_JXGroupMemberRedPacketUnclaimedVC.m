@@ -96,8 +96,11 @@
         //        if ([dict[@"packet"][@"type"] intValue] != 3) {
         NSString *userId = [NSString stringWithFormat:@"%@",[[dict objectForKey:@"packet"] objectForKey:@"userId"]];
         if (self.room.roomJid.length > 0) {
-            if (self.isDidRedPacketRemind) {
-                self.isDidRedPacketRemind = NO;
+            NSString *canReceive = [NSString stringWithFormat:@"%@",[dict objectForKey:@"canOpen"]];
+            
+            if (!canReceive.boolValue) {
+//            if (self.isDidRedPacketRemind) {
+//                self.isDidRedPacketRemind = NO;
                 WH_JXredPacketDetail_WHVC * redPacketDetailVC = [[WH_JXredPacketDetail_WHVC alloc]init];
                 redPacketDetailVC.wh_dataDict = [[NSDictionary alloc]initWithDictionary:dict];
                 redPacketDetailVC.isGroup = self.room.roomId.length > 0;
