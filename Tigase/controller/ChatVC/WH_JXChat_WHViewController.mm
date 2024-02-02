@@ -141,7 +141,7 @@
 
 
 #define faceHeight (THE_DEVICE_HAVE_HEAD ? 253 : 218)
-#define PAGECOUNT 100
+#define PAGECOUNT 200
 #define NOTICE_WIDTH  120  // 调整两条公告间的距离
 
 //@人功能
@@ -1830,9 +1830,9 @@
     BOOL b=YES;
     BOOL bPull=NO;
     NSInteger firstNum = 1;
-    if([_array count]>0)
+    if([_array count]>0){
         firstNum = _array.count;
-    
+    }
     
     CGFloat allHeight = 0;
     if(msg == nil){
@@ -1846,23 +1846,23 @@
             // 获取漫游聊天记录
             [_wait start];
             
-            long starTime;
+            long starTime = 1262275200000;
             long endTime;
             JXSynTask *task = _taskList.firstObject;
-            if (task && self.roomJid.length > 0) {
-                 starTime = [task.startTime timeIntervalSince1970] * 1000;
-                 endTime = [task.endTime timeIntervalSince1970] * 1000;
-            }else {
-                WH_JXMessageObject *msg = _array.firstObject;
+            task = nil;
+            WH_JXMessageObject *msg = _array.firstObject;
+            if (msg) {
                 // 7天前的时间戳
                 endTime = [msg.timeSend timeIntervalSince1970] * 1000;
                 if (endTime == 0) {
                     endTime = [[NSDate date] timeIntervalSince1970] * 1000;
                 }
-                starTime = 1262275200000;
-            }
+            }else if (task && self.roomJid.length > 0) {
+                endTime = [task.endTime timeIntervalSince1970] * 1000;
+           }
+            
             if([self.roomJid length]>0)
-               [g_server WH_tigaseMucMsgsWithRoomId:s StartTime:starTime EndTime:endTime PageIndex:0 PageSize:PAGECOUNT toView:self];
+               [g_server WH_tigaseMucMsgsWithRoomId:s StartTime:starTime EndTime:endTime PageIndex:0 PageSize:PAGECOUNT toView:self];//PAGECOUNT
             else
                 [g_server WH_tigaseMsgsWithReceiver:s StartTime:starTime EndTime:endTime  PageIndex:0 toView:self];
         }else {
@@ -1876,13 +1876,15 @@
                     if (self.roomJid.length > 0 && _taskList.count > 0) {
                         
                         JXSynTask *task = _taskList.firstObject;
+                        
                         p = [[WH_JXMessageObject sharedInstance] fetchMessageListWithUser:s byAllNum:_array.count pageCount:pageCount startTime:task.endTime];
                         
                     }else {
                         p = [[WH_JXMessageObject sharedInstance] fetchMessageListWithUser:s byAllNum:_array.count pageCount:pageCount startTime:[NSDate dateWithTimeIntervalSince1970:0]];
                     }
                     //修复历史消息最多加载一页问题
-                    bPull = p.count>0?YES:NO;
+//                    bPull = p.count>0?YES:NO;
+                    bPull = p.count>=pageCount?YES:NO;
                 }
             }else {
                 p = [[WH_JXMessageObject sharedInstance] fetchAllMessageListWithUser:s];
@@ -1895,7 +1897,7 @@
         BOOL isManger = [WH_JXChatTool isManagrData:self.roomJid];
         NSMutableArray *tempArr = [NSMutableArray arrayWithArray:p];
         for (WH_JXMessageObject *msg in p) {
-            //不是我的并且我不熟群管理专属红包去掉
+            //不是我的并且我不是群管理专属红包去掉
             if ([msg.type intValue] == kWCMessageTypeRedPacketExclusive && !isManger && ![msg.toUserIds isEqualToString:MY_USER_ID] && ![msg.fromUserId isEqualToString:MY_USER_ID]) {
                 
                 [tempArr removeObject:msg];
@@ -1912,7 +1914,7 @@
         [_orderRedPacketArray addObjectsFromArray:[self fetchRedPacketListWithType:3]];
         
         b = p.count>0?YES:NO;
-        bPull = p.count>=PAGE_SHOW_COUNT?YES:NO;
+//        bPull = p.count>=PAGE_SHOW_COUNT?YES:NO;
    
         if(b){
             NSMutableArray* temp = [[NSMutableArray alloc]init];
@@ -1958,7 +1960,7 @@
                 if (_array.count > 50) {
                     self.isGetServerMsg = NO;
                     self.scrollLine = 0;
-                    [_array removeObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, _array.count-15)]];
+//                    [_array removeObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, _array.count-15)]];
                     [_table reloadData];
 //                    [_table WH_gotoLastRow:NO];
 
@@ -1966,7 +1968,7 @@
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                         [_table reloadData];
     //                    [self scrollToCurrentLine];
-//                        [_table WH_gotoLastRow:NO];
+                        [_table WH_gotoLastRow:NO];
                     });
                 }
                 
@@ -1982,7 +1984,7 @@
                     if([_array count]>0){
                         
                         [_table reloadData];
-//                        [_table WH_gotoLastRow:NO];
+                        [_table WH_gotoLastRow:NO];
                         _table.contentOffset = CGPointMake(0, allHeight);
                         
                     }
@@ -5980,7 +5982,7 @@
                 
             }else {
                                 
-//                self.wh_isShowHeaderPull = array1.count >= PAGE_SHOW_COUNT?YES:NO;
+                self.wh_isShowHeaderPull = array1.count >= PAGE_SHOW_COUNT?YES:NO;
                 [_array removeAllObjects];
                 _page = 0;
                 
@@ -7615,6 +7617,9 @@
 }
 #pragma mark - 群里发急速红包
 - (void)sendFastRedPacket {
+    [g_server showMsg:@"开发中~"];
+    return;
+    
     WH_FastRedModel *model = [JXServer receiveFastRed];
     if(!model){
         //判断是否设置过急速红包
