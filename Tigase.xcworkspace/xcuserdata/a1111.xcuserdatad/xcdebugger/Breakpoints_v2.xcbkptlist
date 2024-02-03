@@ -762,8 +762,8 @@
             filePath = "Tigase/personCenter(&#x4e2a;&#x4eba;&#x4e2d;&#x5fc3;)/RechargeCashWithdrawalSystem/WH_RechargeCell.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "-awakeFromNib"
             landmarkType = "7">
          </BreakpointContent>
@@ -1770,8 +1770,8 @@
             filePath = "Tigase/redPacketAbout(&#x7ea2;&#x5305;)/WH_JXRecordCode_WHVC.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2618,8 +2618,8 @@
             filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/OBSHanderTool.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "334"
-            endingLineNumber = "334"
+            startingLineNumber = "337"
+            endingLineNumber = "337"
             landmarkName = "+WH_handleUploadOBSHeadImage:image:toView:success:failed:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2650,8 +2650,8 @@
             filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/OBSHanderTool.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "394"
-            endingLineNumber = "394"
+            startingLineNumber = "397"
+            endingLineNumber = "397"
             landmarkName = "+WH_handleUploadOBSHeadImage:image:toView:success:failed:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2666,8 +2666,8 @@
             filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/OBSHanderTool.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "832"
-            endingLineNumber = "832"
+            startingLineNumber = "835"
+            endingLineNumber = "835"
             landmarkName = "+handleUploadFile:obsType:validTime:messageId:toView:success:failed:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2986,8 +2986,8 @@
             filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/OBSHanderTool.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "419"
-            endingLineNumber = "419"
+            startingLineNumber = "422"
+            endingLineNumber = "422"
             landmarkName = "+WH_handleUploadOBSHeadImage:image:toView:success:failed:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3002,8 +3002,8 @@
             filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/OBSHanderTool.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "514"
-            endingLineNumber = "514"
+            startingLineNumber = "517"
+            endingLineNumber = "517"
             landmarkName = "+WH_handleUploadGroupOBSHeadImage:roomJid:image:toView:success:failed:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3018,8 +3018,8 @@
             filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/OBSHanderTool.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "542"
-            endingLineNumber = "542"
+            startingLineNumber = "545"
+            endingLineNumber = "545"
             landmarkName = "+WH_handleUploadGroupOBSHeadImage:roomJid:image:toView:success:failed:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3390,38 +3390,6 @@
             endingLineNumber = "1971"
             landmarkName = "-refresh:loadHistory:"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "8285558E-598D-4D78-8579-8AE6130D2492 - d5d8e7875bb6ff5c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[WH_JXChat_WHViewController refresh:loadHistory:]"
-                  moduleName = "H-chat"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/a1111/Desktop/huoli-client-iOS/Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1972"
-                  endingLineNumber = "1972"
-                  offsetFromSymbolStart = "7148">
-               </Location>
-               <Location
-                  uuid = "8285558E-598D-4D78-8579-8AE6130D2492 - 98da15b574491729"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__50-[WH_JXChat_WHViewController refresh:loadHistory:]_block_invoke"
-                  moduleName = "H-chat"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/a1111/Desktop/huoli-client-iOS/Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1974"
-                  endingLineNumber = "1974"
-                  offsetFromSymbolStart = "44">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3502,38 +3470,6 @@
             endingLineNumber = "1883"
             landmarkName = "-refresh:loadHistory:"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "C71D2700-EC6D-4461-B07C-C07E61A011F6 - d5d8e7875bb6f4c7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[WH_JXChat_WHViewController refresh:loadHistory:]"
-                  moduleName = "H-chat"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/a1111/Desktop/huoli-client-iOS/Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1883"
-                  endingLineNumber = "1883"
-                  offsetFromSymbolStart = "2732">
-               </Location>
-               <Location
-                  uuid = "C71D2700-EC6D-4461-B07C-C07E61A011F6 - d5d8e7875bb6f4c7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[WH_JXChat_WHViewController refresh:loadHistory:]"
-                  moduleName = "H-chat"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/a1111/Desktop/huoli-client-iOS/Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1883"
-                  endingLineNumber = "1883"
-                  offsetFromSymbolStart = "2748">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3742,38 +3678,6 @@
             endingLineNumber = "5968"
             landmarkName = "-WH_didServerResult_WHSucces:dict:array:"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "8487FC0B-BC19-4224-B3EF-55855E2EE2FA - 4d871741c41c9576"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[WH_JXChat_WHViewController WH_didServerResult_WHSucces:dict:array:]"
-                  moduleName = "H-chat"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/a1111/Desktop/huoli-client-iOS/Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "5970"
-                  endingLineNumber = "5970"
-                  offsetFromSymbolStart = "24008">
-               </Location>
-               <Location
-                  uuid = "8487FC0B-BC19-4224-B3EF-55855E2EE2FA - 4d871741c41c9576"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[WH_JXChat_WHViewController WH_didServerResult_WHSucces:dict:array:]"
-                  moduleName = "H-chat"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/a1111/Desktop/huoli-client-iOS/Tigase/controller/ChatVC/WH_JXChat_WHViewController.mm"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "5970"
-                  endingLineNumber = "5970"
-                  offsetFromSymbolStart = "24012">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3837,6 +3741,198 @@
             startingLineNumber = "1857"
             endingLineNumber = "1857"
             landmarkName = "-refresh:loadHistory:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B8698FA1-2AE7-4763-8C4F-80100F51F4BC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/OBSHanderTool.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
+            landmarkName = "+handleUploadFile:audio:video:file:type:validTime:timeLen:toView:success:failed:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F6233150-1CFB-4BC8-AC32-D8F58DE4AC96"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/JXServer.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2468"
+            endingLineNumber = "2468"
+            landmarkName = "-WH_addMessage:type:data:flag:visible:lookArray:coor:location:remindArray:lable:isAllowComment:toView:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "83EC52E6-1DC8-4786-971E-0474C20E36C0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tigase/friendBlog/view/addMsgVC.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1369"
+            endingLineNumber = "1369"
+            landmarkName = "-actionSave"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "83EC52E6-1DC8-4786-971E-0474C20E36C0 - cee35f3953db47e7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__22-[addMsgVC actionSave]_block_invoke"
+                  moduleName = "H-chat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a1111/Desktop/huoli-client-iOS/Tigase/friendBlog/view/addMsgVC.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1369"
+                  endingLineNumber = "1369"
+                  offsetFromSymbolStart = "988">
+               </Location>
+               <Location
+                  uuid = "83EC52E6-1DC8-4786-971E-0474C20E36C0 - 7ad5659ba7555690"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__22-[addMsgVC actionSave]_block_invoke_2"
+                  moduleName = "H-chat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a1111/Desktop/huoli-client-iOS/Tigase/friendBlog/view/addMsgVC.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1371"
+                  endingLineNumber = "1371"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6D7C14DE-65E9-4DC7-B974-A6B7801AE546"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tigase/friendBlog/view/addMsgVC.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1350"
+            endingLineNumber = "1350"
+            landmarkName = "-actionSave"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "757E3813-7228-4028-AC1B-419F10640CD5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/OBSHanderTool.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "266"
+            endingLineNumber = "266"
+            landmarkName = "+handleUploadFile:audio:video:file:type:validTime:timeLen:toView:success:failed:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "86383664-8696-4BB5-91A7-CCEC12016618"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/OBSHanderTool.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "242"
+            endingLineNumber = "242"
+            landmarkName = "+handleUploadFile:audio:video:file:type:validTime:timeLen:toView:success:failed:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "86383664-8696-4BB5-91A7-CCEC12016618 - b275f32854c9f9eb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "+[OBSHanderTool handleUploadFile:audio:video:file:type:validTime:timeLen:toView:success:failed:]"
+                  moduleName = "H-chat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a1111/Desktop/huoli-client-iOS/Tigase/networkRequest(%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82)/OBSHanderTool.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "242"
+                  endingLineNumber = "242"
+                  offsetFromSymbolStart = "456">
+               </Location>
+               <Location
+                  uuid = "86383664-8696-4BB5-91A7-CCEC12016618 - 495083a702cd4695"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__96+[OBSHanderTool handleUploadFile:audio:video:file:type:validTime:timeLen:toView:success:failed:]_block_invoke"
+                  moduleName = "H-chat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a1111/Desktop/huoli-client-iOS/Tigase/networkRequest(%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82)/OBSHanderTool.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "243"
+                  endingLineNumber = "243"
+                  offsetFromSymbolStart = "92">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "538B287D-2AED-4210-99A6-50064CCAC752"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/OBSHanderTool.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "247"
+            endingLineNumber = "247"
+            landmarkName = "+handleUploadFile:audio:video:file:type:validTime:timeLen:toView:success:failed:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FA5D7EC2-EA81-4222-B428-F743E910FE3D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/OBSHanderTool.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "246"
+            endingLineNumber = "246"
+            landmarkName = "+handleUploadFile:audio:video:file:type:validTime:timeLen:toView:success:failed:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

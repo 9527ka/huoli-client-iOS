@@ -1365,8 +1365,11 @@ typedef enum {
                         if (self.wh_isShortVideo) {
                             label = [NSString stringWithFormat:@"%d",self.currentLableIndex + 1];
                         }
-
-                        [g_server WH_addMessage:_remark.text type:dataType data:dataD flag:3 visible:_visible lookArray:_userIdArray coor:_coor location:_locStr remindArray:_remindArray lable:label isAllowComment:self.checkbox.checked toView:self];
+                        //回到主线程
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            // 需要在主线程执行的代码
+                            [g_server WH_addMessage:_remark.text type:dataType data:dataD flag:3 visible:_visible lookArray:_userIdArray coor:_coor location:_locStr remindArray:_remindArray lable:label isAllowComment:self.checkbox.checked toView:self];
+                        });
                     }
                 } failed:^(NSError * _Nonnull error) {
                     [_wait stop];
@@ -1399,7 +1402,7 @@ typedef enum {
         if ([g_config.isOpenOSStatus intValue] && self.dataType != weibo_dataType_file) {
             [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             [OBSHanderTool handleUploadFile:_imageStrings audio:wh_audioFile video:wh_videoFile file:wh_fileFile type:self.dataType validTime:@"-1" timeLen:_timeLen toView:self success:^(int code, NSDictionary * _Nonnull dict) {
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                
                 if (code == 1) {
 
                     NSDictionary *dataD;
@@ -1421,8 +1424,15 @@ typedef enum {
                     if (self.wh_isShortVideo) {
                         label = [NSString stringWithFormat:@"%ld",self.currentLableIndex + 1];
                     }
+                    //回到主线程
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        // 需要在主线程执行的代码
+                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                        
+                        [g_server WH_addMessage:_remark.text type:dataType data:dataD flag:3 visible:_visible lookArray:_userIdArray coor:_coor location:_locStr remindArray:_remindArray lable:label isAllowComment:self.checkbox.checked toView:self];
+                    });
 
-                    [g_server WH_addMessage:_remark.text type:dataType data:dataD flag:3 visible:_visible lookArray:_userIdArray coor:_coor location:_locStr remindArray:_remindArray lable:label isAllowComment:self.checkbox.checked toView:self];
+                   
                 }
             } failed:^(NSError * _Nonnull error) {
 

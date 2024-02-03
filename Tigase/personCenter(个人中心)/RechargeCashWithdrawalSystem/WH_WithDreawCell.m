@@ -10,6 +10,10 @@
 #import "WH_webpage_WHVC.h"
 #import "WH_JXBuyAndPayListVC.h"
 
+@interface WH_WithDreawCell()<UITextFieldDelegate>
+
+@end
+
 @implementation WH_WithDreawCell
 
 - (void)awakeFromNib {
@@ -18,6 +22,10 @@
     
     UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(endEdtingAction)];
     [self.contentView addGestureRecognizer:tap1];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showKeyBord:) name:UIKeyboardWillShowNotification object:nil];
+    
+    self.orderNoField.delegate = self;
     
     //添加圆角以及阴影
     self.bgTopView.layer.cornerRadius = self.bgBottomView.layer.cornerRadius = 8.0f;
@@ -40,6 +48,20 @@
     self.monyCountLab.text = [NSString stringWithFormat:@"USDT 1 = HOTC %@",g_App.rate];
     
 }
+-(void)showKeyBord:(NSNotification *)notifi{
+    NSDictionary *info = [notifi userInfo];
+    NSValue *value = [info objectForKey:UIKeyboardFrameBeginUserInfoKey];
+    CGSize keyboradSize = [value CGRectValue].size;
+    if(keyboradSize.height > 0&& self.orderNoField.secureTextEntry){
+        self.orderNoField.secureTextEntry = NO;
+    }
+}
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    if (textField == self.orderNoField) {
+        textField.secureTextEntry = YES;
+    }
+}
+
 -(void)textFieldChanged:(UITextField *)textField{
     if(textField.text.doubleValue > g_App.myMoney){
         self.monyField.text = [NSString stringWithFormat:@"%.2f",g_App.myMoney];

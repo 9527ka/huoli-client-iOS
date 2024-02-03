@@ -243,9 +243,9 @@ static OBSClient *client;
                             if (code == 1) {
                                 [arr1 addObject:@{@"oFileName":fileUrl.lastPathComponent,@"oUrl":fileUrl,@"tUrl":fileUrl,@"status":@"1"}];
                                 //将Object与md5加密前的fileName对应上，fileName为key，Object为value
-                                if (![fileName isEqualToString:fileUrl.lastPathComponent]) {
+//                                if (![fileName isEqualToString:fileUrl.lastPathComponent]) {
                                     [tempDic setObject:@{@"oFileName":fileUrl.lastPathComponent,@"oUrl":fileUrl,@"tUrl":fileUrl,@"status":@"1"} forKey:fileName];
-                                }
+//                                }
             //                    [tempDic setObject:arr1 forKey:@"images"];
                                 int fileCount = (int)files.count;
                                 if (video) {
@@ -262,7 +262,10 @@ static OBSClient *client;
                                     NSMutableArray *temp = [NSMutableArray array];
                                     for (NSInteger i = 0; i < files.count; i++) {
                                         NSString *FILE = [files[i] lastPathComponent];
-                                        [temp addObject:[tempDic objectForKey:FILE]];
+                                        if([tempDic objectForKey:FILE]){
+                                            [temp addObject:[tempDic objectForKey:FILE]];
+                                        }
+                                        
                                     }
                                     [dic setObject:temp forKey:@"images"];
                                     success(1,dic);

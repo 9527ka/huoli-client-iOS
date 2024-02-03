@@ -9,6 +9,10 @@
 #import "WH_RechargeCell.h"
 #import "WH_webpage_WHVC.h"
 
+@interface WH_RechargeCell()<UITextFieldDelegate>
+
+@end
+
 @implementation WH_RechargeCell
 
 - (void)awakeFromNib {
@@ -17,6 +21,8 @@
     UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(endEdtingAction)];
     [self.contentView addGestureRecognizer:tap1];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showKeyBord:) name:UIKeyboardWillShowNotification object:nil];
+    self.orderNoField.delegate = self;
     //添加圆角以及阴影
     self.bgTopView.layer.cornerRadius = self.bgBottomView.layer.cornerRadius = 8.0f;
     self.bgTopView.layer.shadowColor = self.bgBottomView.layer.shadowColor = [UIColor grayColor].CGColor;
@@ -45,6 +51,20 @@
     self.addressLab.text = [NSString stringWithFormat:@"%@",g_config.sysUsdtUrl];
     
 }
+-(void)showKeyBord:(NSNotification *)notifi{
+    NSDictionary *info = [notifi userInfo];
+    NSValue *value = [info objectForKey:UIKeyboardFrameBeginUserInfoKey];
+    CGSize keyboradSize = [value CGRectValue].size;
+    if(keyboradSize.height > 0&& self.orderNoField.secureTextEntry){
+        self.orderNoField.secureTextEntry = NO;
+    }
+}
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    if (textField == self.orderNoField) {
+        textField.secureTextEntry = YES;
+    }
+}
+
 -(void)textFieldChanged:(UITextField *)textField{
     if(self.monyField.text.length > 0 && g_App.rate.doubleValue > 0.0){
         

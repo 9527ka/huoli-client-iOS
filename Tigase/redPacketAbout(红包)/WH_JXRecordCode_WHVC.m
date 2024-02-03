@@ -145,7 +145,9 @@
     NSInteger type = [cellModel[@"type"] integerValue];
 
     //描述
-    cell.titleLabel.text = [self getTogetherType:type];
+//    cell.titleLabel.text = [self getTogetherType:type];
+    NSString *desc = [NSString stringWithFormat:@"%@",[cellModel objectForKey:@"desc"]];
+    cell.titleLabel.text = desc;
     [cell.titleLabel setTextColor:HEXCOLOR(0x3A404C)];
     [cell.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 16]];
     

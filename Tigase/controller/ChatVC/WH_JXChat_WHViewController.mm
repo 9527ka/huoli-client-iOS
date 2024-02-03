@@ -1962,7 +1962,7 @@
                     self.scrollLine = 0;
 //                    [_array removeObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, _array.count-15)]];
                     [_table reloadData];
-//                    [_table WH_gotoLastRow:NO];
+                    [_table WH_gotoLastRow:NO];
 
                 }else{
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

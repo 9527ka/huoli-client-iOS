@@ -142,7 +142,7 @@
         cell.orderCountLab.text = [NSString stringWithFormat:@"成交量：%@",self.tag == 0?model.buyVolume:model.sellVolume];
         //营业时间
         cell.timeLab.text = model.flag.boolValue?[NSString stringWithFormat:@"营业时间：%@-%@",model.startHour,model.endHour]:@"营业时间：休息中";
-        if(!model.flag.boolValue){
+        if(!model.open.boolValue){
             cell.buyBtn.backgroundColor = [UIColor grayColor];
         }
         
@@ -154,7 +154,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if(self.dataSource.count > indexPath.row){
         WH_JXBuyAndPayListModel *model = self.dataSource[indexPath.row];
-        if(!model.flag.boolValue){
+        if(!model.open.boolValue){
             [g_server showMsg:@"商家休息中"];
             return;
         }
