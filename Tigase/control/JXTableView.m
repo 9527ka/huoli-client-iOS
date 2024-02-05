@@ -63,21 +63,24 @@
 
 - (void) WH_gotoLastRow:(BOOL)animated{
     NSInteger n = [self numberOfRowsInSection:0]-1;
-    if(n>=1)
+    if(n>=1){
         [self scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:n inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:animated];
+    }
 }
 
 - (void) WH_gotoFirstRow:(BOOL)animated{
     NSInteger n = [self numberOfRowsInSection:0]-1;
-    if(n>=1)
+    if(n>=1){
         [self scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:animated];
+    }
 }
 
 -(void)WH_gotoRow:(int)n{
     if(n<0)
         return;
-    if([self numberOfRowsInSection:0] > n)
+    if([self numberOfRowsInSection:0] > n){
         [self scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:n inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+    }
 }
 
 - (void)WH_showEmptyImage:(EmptyType)emptyType{
@@ -171,6 +174,10 @@
 }
 
 - (void)insertRowsAtIndexPaths:(NSArray *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation{
+    NSInteger n = [self numberOfRowsInSection:0];
+    if(n<=0){
+        return;
+    }
     @try {
         [self WH_hideEmptyImage];
         [super insertRowsAtIndexPaths:indexPaths withRowAnimation:animation];
@@ -180,38 +187,57 @@
 }
 
 -(void)WH_reloadRow:(int)n section:(int)section{
+    NSInteger m = [self numberOfRowsInSection:section];
+    if(m<=0 || n>=m){
+        return;
+    }
+    
     @try {
         NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:n inSection:section];
         [indexPaths addObject:indexPath];
         
-        [self beginUpdates];
+//        [self beginUpdates];
         [self reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
-        [self endUpdates];
+//        [self endUpdates];
+        [self reloadData];
     } @catch (NSException *exception) {
         [self reloadData];
     }
 }
 
 -(void)WH_insertRow:(int)n section:(int)section{
+    
+    NSInteger m = [self numberOfRowsInSection:section];
+    if(m<=0 || n>=m){
+        return;
+    }
+    
     @try {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:n inSection:section];
         
-        [self beginUpdates];
+//        [self beginUpdates];
         [self insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-        [self endUpdates];
+//        [self endUpdates];
+        [self reloadData];
     } @catch (NSException *exception) {
         [self reloadData];
     }
 }
 
 -(void)WH_deleteRow:(int)n section:(int)section{
+    NSInteger m = [self numberOfRowsInSection:section];
+    if(m<=0 || n>=m){
+        return;
+    }
+    
     @try {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:n inSection:section];
         
-        [self beginUpdates];
+//        [self beginUpdates];
         [self deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-        [self endUpdates];
+//        [self endUpdates];
+        [self reloadData];
     } @catch (NSException *exception) {
         [self reloadData];
     }

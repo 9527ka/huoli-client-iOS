@@ -2078,6 +2078,7 @@
         self.title = Localized(@"JX_Entering");
         self.noEnteringTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(noEnteringTimerAction:) userInfo:nil repeats:NO];
     }
+    
 }
 
 - (void) noEnteringTimerAction:(NSNotification *)notif {
@@ -2865,9 +2866,9 @@
         if(_array.count > indexPath.row){
             [msg requestTranslatedText:^{
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [tableView beginUpdates];
+//                    [tableView beginUpdates];
                     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-                    [tableView endUpdates];
+//                    [tableView endUpdates];
                 });
             }];
         }
