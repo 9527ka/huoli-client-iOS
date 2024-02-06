@@ -5,12 +5,12 @@
       "scale" : "1x"
     },
     {
-      "filename" : "80x80@2x.png",
+      "filename" : "AppIcon-iPhone-60@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "120x120.png",
+      "filename" : "AppIcon-iPhone-60@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

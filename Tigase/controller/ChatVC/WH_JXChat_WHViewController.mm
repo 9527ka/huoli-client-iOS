@@ -7590,7 +7590,7 @@
     WH_JXSendRedPacket_WHViewController * sendGiftVC = [[WH_JXSendRedPacket_WHViewController alloc] init];
     sendGiftVC.isRoom = YES;
     sendGiftVC.delegate = self;
-    sendGiftVC.wh_roomJid = self.roomJid;
+    sendGiftVC.wh_roomJid = self.room.roomJid;
     sendGiftVC.wh_roomId = self.roomId;
     sendGiftVC.isDiamond = self.room.category == 1?YES:NO;
     sendGiftVC.room = self.room;
@@ -7614,7 +7614,7 @@
     WH_JXSendRedPacket_WHViewController * sendGiftVC = [[WH_JXSendRedPacket_WHViewController alloc] init];
     sendGiftVC.isRoom = YES;
     sendGiftVC.delegate = self;
-    sendGiftVC.wh_roomJid = self.roomJid;
+    sendGiftVC.wh_roomJid = self.room.roomJid;
     sendGiftVC.wh_roomId = self.roomId;
     sendGiftVC.room = self.room;
     NSArray * memberArray = [memberData fetchAllMembers:_room.roomId];
@@ -7634,7 +7634,7 @@
     sendDiamondVC.isRoom = YES;
     sendDiamondVC.isDiamond = YES;
     sendDiamondVC.delegate = self;
-    sendDiamondVC.wh_roomJid = self.roomJid;
+    sendDiamondVC.wh_roomJid = self.room.roomJid;
     sendDiamondVC.wh_roomId = self.roomId;
     sendDiamondVC.room = self.room;
     NSArray * memberArray = [memberData fetchAllMembers:_room.roomId];

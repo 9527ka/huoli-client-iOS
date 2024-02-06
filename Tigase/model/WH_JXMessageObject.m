@@ -584,13 +584,24 @@ static WH_JXMessageObject *shared;
     FMDatabase* db = [[JXXMPP sharedInstance] openUserDb:dbName];
     //添加了image宽高2参数
     NSString *createStr=[NSString stringWithFormat:@"CREATE  TABLE IF NOT EXISTS 'msg_%@' ('messageNo' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL  UNIQUE , 'fromUserId' VARCHAR, 'toUserId' VARCHAR, 'content' VARCHAR, 'timeSend' DATETIME,'timeReceive' DATETIME,'type' INTEGER, 'messageId' VARCHAR, 'fileData' VARCHAR, 'fileName' VARCHAR,'fileSize' INTEGER,'location_x' INTEGER,'location_y' INTEGER,'timeLen' INTEGER,'isRead' INTEGER,'isSend' INTEGER,'objectId' INTEGER,'isReceive' INTEGER,'isUpload' INTEGER,'fromUserName' VARCHAR,'toUserName' VARCHAR,'isReadDel' INTEGER,'fromId' VARCHAR,'toId' VARCHAR,'readPersons' INTEGER,'readTime' DATETIME, 'deleteTime' DATETIME,'chatMsgHeight' VARCHAR,'isShowTime' INTEGER,'toUserNames' VARCHAR, 'toUserIds' VARCHAR,'isDiamound' INTEGER, 'amount' VARCHAR)",tableName];
-    
+        
     BOOL worked = [db executeUpdate:createStr];
     //    FMDBQuickCheck(worked);
     
+    
+    
     //插入如果不存在amount插入进去
-//    NSString *amountStr=[NSString stringWithFormat:@"ALTER TABLE   msg_%@   ADD COLUMN IF NOT EXISTS  amount varchar",tableName];
+    NSString *amountStr=[NSString stringWithFormat:@"SELECT * FROM pragma_table_info('msg_%@') WHERE name='amount'",tableName];
 //    [db executeUpdate:amountStr];//李哥教我的
+    
+    FMResultSet *amountRs=[db executeQuery:amountStr];
+    if (![amountRs next]) {//插入进来
+        NSString *amountIndesrt=[NSString stringWithFormat:@"ALTER TABLE   msg_%@  ADD COLUMN 'amount' varchar",tableName];
+        [db executeUpdate:amountIndesrt];
+    }
+    [amountRs close];
+        
+    
     
     
     NSString* sql= [NSString stringWithFormat:@"select messageId from msg_%@ where messageId=?",tableName];

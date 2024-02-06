@@ -509,9 +509,9 @@
         self.role = [NSNumber numberWithInteger:3];
     }
 
-    NSString *insertStr=[NSString stringWithFormat:@"INSERT INTO member_%@ (roomId,userId,userName,cardName,role,createTime,remarkName,vip,active,offlineTime,onLineState,isAddFirend) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",self.roomId];
+//    NSString *insertStr=[NSString stringWithFormat:@"INSERT INTO member_%@ (roomId,userId,userName,cardName,role,createTime,remarkName,vip,active,offlineTime,onLineState,isAddFirend) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",self.roomId];
     
-//    NSString *insertStr=[NSString stringWithFormat:@"REPLACE INTO member_%@ (roomId,userId,userName,cardName,role,createTime,remarkName,vip,active,offlineTime,onLineState,isAddFirend) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",self.roomId]; 李哥教我的
+    NSString *insertStr=[NSString stringWithFormat:@"REPLACE INTO member_%@ (roomId,userId,userName,cardName,role,createTime,remarkName,vip,active,offlineTime,onLineState,isAddFirend) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",self.roomId]; //李哥教我的
     
     
     
