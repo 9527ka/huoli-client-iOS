@@ -64,6 +64,7 @@
 - (void) WH_gotoLastRow:(BOOL)animated{
     NSInteger n = [self numberOfRowsInSection:0]-1;
     if(n>=1){
+        NSLog(@"=====走了数据=======%ld",(long)n);
         [self scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:n inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:animated];
     }
 }
@@ -71,6 +72,7 @@
 - (void) WH_gotoFirstRow:(BOOL)animated{
     NSInteger n = [self numberOfRowsInSection:0]-1;
     if(n>=1){
+        NSLog(@"=====走了数据=======回到第一行%ld",(long)n);
         [self scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:animated];
     }
 }
@@ -78,7 +80,7 @@
 -(void)WH_gotoRow:(int)n{
     if(n<0)
         return;
-    if([self numberOfRowsInSection:0] > n){
+    if([self numberOfRowsInSection:0] > n && [self numberOfRowsInSection:0] > 0){
         [self scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:n inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
     }
 }

@@ -69,12 +69,20 @@
     [att addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(1, 13)];
     
     self.detaileLab.attributedText =  att;
+    
+    NSString *count = self.room.count.intValue > 0?self.room.count:self.model.count;
     //数量
-    self.countLab.text = self.room.count.intValue > 0?self.room.count:self.model.count;
+    self.countLab.text = count;
     
     float charge = self.model.isBuy?self.model.sellCharge.floatValue:self.model.buyCharge.floatValue;
     
-    self.moneyLab.text = [NSString stringWithFormat:@"￥%.2f",self.room.count.intValue > 0?self.room.count.floatValue:charge];
+        
+    float sellCharge = count.floatValue * charge;
+    
+    //应得
+    float grossPay = self.model.isBuy?count.floatValue + sellCharge:count.floatValue - sellCharge;
+        
+    self.moneyLab.text = [NSString stringWithFormat:@"￥%.2f",grossPay];
 
     //收款账号 默认第一个
     WH_FinancialInfosModel *payModel = self.dataArray.firstObject;

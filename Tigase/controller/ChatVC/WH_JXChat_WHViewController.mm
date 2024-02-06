@@ -283,6 +283,9 @@
 @property(nonatomic,copy)NSString *orderId;
 
 @property(nonatomic,assign)NSInteger tag;
+
+@property(nonatomic,assign)NSInteger requestCount;//服务器返回数量
+
 //@property (nonatomic ,strong) UIView *bottomView;//阅后即焚使用
 //@property (nonatomic ,strong) UIImageView *clockImageV;
 //@property (nonatomic, strong) UILabel *bottomTitleLb;
@@ -1899,7 +1902,7 @@
         for (WH_JXMessageObject *msg in p) {
             //不是我的并且我不是群管理专属红包去掉
             if ([msg.type intValue] == kWCMessageTypeRedPacketExclusive && !isManger && ![msg.toUserIds isEqualToString:MY_USER_ID] && ![msg.fromUserId isEqualToString:MY_USER_ID]) {
-                
+                self.requestCount--;
                 [tempArr removeObject:msg];
             }else{
                 allHeight += [msg.chatMsgHeight floatValue];
@@ -1957,20 +1960,35 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             //刷新完成
             if (self.scrollLine > 0) {
-                if (_array.count > 50) {
+                if (_array.count > 50) {//请求服务器之后获取到的数据
                     self.isGetServerMsg = NO;
                     self.scrollLine = 0;
-//                    [_array removeObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, _array.count-15)]];
                     [_table reloadData];
-                    [_table WH_gotoLastRow:NO];
+                    
+                    if(self.requestCount == _array.count){//第一次请求
+                        [_table WH_gotoLastRow:NO];
+                        NSLog(@"=====走了数据=======11111111111111");
+                    }else{
+                        if (_array.count > self.requestCount) {
+                            [_table WH_gotoRow:self.requestCount];
+                            NSLog(@"=====走了数据=======666666666");
+                        }
+                    }
+                    
+//                    NSInteger row = firstNum;
+//                    [_table WH_gotoRow:row];
+                    
+                    
 
                 }else{
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                         [_table reloadData];
     //                    [self scrollToCurrentLine];
                         [_table WH_gotoLastRow:NO];
+                        NSLog(@"=====走了数据=======2222222222");
                     });
                 }
+                
                 
             }else {
                 if(msg || _page == 0){
@@ -1978,6 +1996,7 @@
                     [_table reloadData];
                     if (self.isSyncMsg || self.isGotoLast) {
                         [_table WH_gotoLastRow:NO];
+                        NSLog(@"=====走了数据=======3333333");
                     }
                 }
                 else{
@@ -1986,6 +2005,7 @@
                         [_table reloadData];
                         [_table WH_gotoLastRow:NO];
                         _table.contentOffset = CGPointMake(0, allHeight);
+                        NSLog(@"=====走了数据=======444444444");
                         
                     }
                 }
@@ -1999,6 +2019,7 @@
 - (void) scrollToCurrentLine {
     if(_array.count > self.scrollLine){
         [_table WH_gotoRow:self.scrollLine];
+        NSLog(@"=====走了数据=======55555");
     }
     
 //    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.scrollLine - 1 inSection:0];
@@ -2873,8 +2894,6 @@
             }];
         }
     }
-    
-    
     //阅后即焚按钮 存在阅后即焚
 //    __weak typeof(self)weakSelf = self;
 //    cell.clickSettingBtnClick = ^{
@@ -3001,17 +3020,21 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
+    
     [self hideKeyboard:NO];
-    if (self.isSelectMore) {
-        //获取第几个Cell被点击
-        
-        _selCell = (WH_JXBaseChat_WHCell*)[_table cellForRowAtIndexPath:indexPath];
-        _selCell.checkBox.selected = !_selCell.checkBox.selected;
-        NSLog(@"indexNum = %d, isSelect = %d",_selCell.indexNum, _selCell.checkBox.selected);
-        [self chatCell:_selCell checkBoxSelectIndexNum:_selCell.indexNum isSelect:_selCell.checkBox.selected];
-    }else {
-        
-//        [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    
+    if (_array.count > indexPath.row) {
+        if (self.isSelectMore) {
+            //获取第几个Cell被点击
+            
+            _selCell = (WH_JXBaseChat_WHCell*)[_table cellForRowAtIndexPath:indexPath];
+            _selCell.checkBox.selected = !_selCell.checkBox.selected;
+            NSLog(@"indexNum = %d, isSelect = %d",_selCell.indexNum, _selCell.checkBox.selected);
+            [self chatCell:_selCell checkBoxSelectIndexNum:_selCell.indexNum isSelect:_selCell.checkBox.selected];
+        }else {
+            
+    //        [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+        }
     }
 }
 
@@ -5965,6 +5988,8 @@
             else
                 s = chatPerson.userId;
             [[WH_JXMessageObject sharedInstance] getHistory:array1 userId:s];
+            
+            self.requestCount = array1.count;
             
             if (self.roomJid && _taskList.count > 0) {
                 JXSynTask *task = _taskList.firstObject;

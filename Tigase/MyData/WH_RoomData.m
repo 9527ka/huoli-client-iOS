@@ -510,6 +510,11 @@
     }
 
     NSString *insertStr=[NSString stringWithFormat:@"INSERT INTO member_%@ (roomId,userId,userName,cardName,role,createTime,remarkName,vip,active,offlineTime,onLineState,isAddFirend) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",self.roomId];
+    
+//    NSString *insertStr=[NSString stringWithFormat:@"REPLACE INTO member_%@ (roomId,userId,userName,cardName,role,createTime,remarkName,vip,active,offlineTime,onLineState,isAddFirend) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",self.roomId]; 李哥教我的
+    
+    
+    
     BOOL worked = [db executeUpdate:insertStr,self.roomId,[NSNumber numberWithLong:self.userId],self.userNickName,self.userNickName,self.role,[NSNumber numberWithLongLong:self.createTime],self.lordRemarkName, self.vip,[NSNumber numberWithLongLong:self.active],[NSNumber numberWithLongLong:self.offlineTime],self.onLineState,self.isAddFirend];
 
     if (!worked) {

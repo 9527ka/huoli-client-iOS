@@ -588,6 +588,11 @@ static WH_JXMessageObject *shared;
     BOOL worked = [db executeUpdate:createStr];
     //    FMDBQuickCheck(worked);
     
+    //插入如果不存在amount插入进去
+//    NSString *amountStr=[NSString stringWithFormat:@"ALTER TABLE   msg_%@   ADD COLUMN IF NOT EXISTS  amount varchar",tableName];
+//    [db executeUpdate:amountStr];//李哥教我的
+    
+    
     NSString* sql= [NSString stringWithFormat:@"select messageId from msg_%@ where messageId=?",tableName];
     FMResultSet *rs=[db executeQuery:sql,self.messageId];
     while ([rs next]) {
