@@ -1218,9 +1218,10 @@
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
             [indexPaths addObject:indexPath];
             
-            [_table beginUpdates];
+//            [_table beginUpdates];
             [_table insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
-            [_table endUpdates];
+//            [_table endUpdates];
+            [_table reloadData];
             [_table WH_gotoFirstRow:YES];
         }
         
@@ -1237,9 +1238,7 @@
     [self WH_stopLoading];
     
     if(_wh_array==nil || _page == 0){
-//        NSLog(@"%d",[[_array objectAtIndex:0] retainCount]);
         [_wh_array removeAllObjects];
-//        [_array release];
         _wh_array = [[NSMutableArray alloc]init];
         _refreshCount++;
     }

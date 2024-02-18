@@ -920,6 +920,7 @@ typedef enum : NSUInteger {
     g_server.access_token = nil;
     [g_default setBool:NO forKey:kIsAutoLogin];
     [g_notify postNotificationName:kSystemLogout_WHNotifaction object:nil];
+    g_myself.userId = nil;
     [[JXXMPP sharedInstance] logout];
     
     NSLog(@"XMPP --- jxsettingsVC");
@@ -970,7 +971,7 @@ typedef enum : NSUInteger {
 #pragma mark - 请求失败回调
 -(int) WH_didServerResult_WHFailed:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict{
     if( [aDownload.action isEqualToString:wh_act_UserLogout] ){
-        [self performSelector:@selector(doSwitch) withObject:nil afterDelay:1];
+        [self performSelector:@selector(relogin) withObject:nil afterDelay:1];
     }
     return WH_hide_error;
 }

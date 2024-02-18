@@ -1132,9 +1132,10 @@
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
             [indexPaths addObject:indexPath];
             
-            [_table beginUpdates];
+//            [_table beginUpdates];
             [_table insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
-            [_table endUpdates];
+            [_table reloadData];
+//            [_table endUpdates];
             [_table WH_gotoFirstRow:YES];
         }
         

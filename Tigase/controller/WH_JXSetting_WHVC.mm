@@ -600,6 +600,7 @@
     [g_default removeObjectForKey:kMY_USER_TOKEN];
     [g_notify postNotificationName:kSystemLogout_WHNotifaction object:nil];
     [g_default setBool:NO forKey:kIsAutoLogin];
+    g_myself.userId = nil;
     [[JXXMPP sharedInstance] logout];
     NSLog(@"XMPP ---- WH_JXSetting_WHVC doSwitch");
     // 退出登录到登陆界面 隐藏悬浮窗
