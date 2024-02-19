@@ -69,7 +69,7 @@
 - (void)msgNumberBtnClick:(NSNotification *)note{
     NSString *countNum = note.object;
     if ([countNum intValue]>0) {
-        _msgNumberBtn.text = [NSString stringWithFormat:@"%@（%@）",Localized(@"New_Message"),countNum];;
+        _msgNumberBtn.text = [NSString stringWithFormat:@"%@（%@）",@"消息",countNum];;
     }
 }
 

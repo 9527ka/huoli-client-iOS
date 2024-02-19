@@ -156,7 +156,7 @@ static  WH_webpage_WHVC *webVC;
 }
 //设置配置线
 -(void)setConfiguration{
-    if(![BaseUrl containsString:@"huoli"]){
+    if(![BaseUrl containsString:@"http://47.98.39.253"]){
         return;
     }
     

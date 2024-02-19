@@ -86,8 +86,8 @@
         [g_server showMsg:@"请输入红包数量"];
         return;
     }
-    if(self.intervalField.text.length == 0 || self.intervalField.text.floatValue <= 0){
-        [g_server showMsg:@"请输入红包发送间隔"];
+    if(self.intervalField.text.length == 0 || self.intervalField.text.floatValue < 5){
+        [g_server showMsg:@"红包发送间隔不能少于5秒"];
         return;
     }
     if(self.randowSwitch.on){//开启了随机位数
@@ -174,7 +174,8 @@
          model.count = self.countField.text;
          model.timeInter = self.intervalField.text;
          model.passWord = self.passWord;
-         model.time = passTime;
+//         model.time = passTime;
+         model.time = @"0";//[WH_FastRedModel receiveNowInterval]
          model.isRandow = @(self.randowSwitch.on);
          model.randowCount = self.randowCountField.text;
          model.isNoPas = @(self.passSwitch.on);

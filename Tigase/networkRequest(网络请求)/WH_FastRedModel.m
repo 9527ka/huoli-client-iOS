@@ -20,11 +20,13 @@
 
 //是否可以
 +(BOOL)isCanWithEndTime:(NSString *)endTime{
+    WH_FastRedModel *model = [JXServer receiveFastRed];
+    
     NSString *startTime = [WH_FastRedModel receiveNowInterval];
-    if(startTime.doubleValue > endTime.doubleValue){
-        return NO;
+    if(startTime.doubleValue - model.timeInter.doubleValue > endTime.doubleValue){
+        return YES;
     }
-    return YES;
+    return NO;
 }
 
 @end

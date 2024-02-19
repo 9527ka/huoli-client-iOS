@@ -300,7 +300,9 @@
         NSMutableDictionary * muDict = [NSMutableDictionary dictionaryWithDictionary:dict];
          WH_FastRedModel *model = [JXServer receiveFastRed];
          model.greet = self.greetsField.text.length > 0?self.greetsField.text:self.greetsField.placeholder;
+         model.time = [WH_FastRedModel receiveNowInterval];
          [JXServer setFastRedWithDic:model.mj_keyValues];
+         
          
         [muDict setObject:self.greetsField.text.length > 0?self.greetsField.text:self.greetsField.placeholder forKey:@"greet"];
          [muDict setObject:@(0) forKey:@"isDiamound"];
@@ -319,6 +321,7 @@
              self.sendBtn.userInteractionEnabled = YES;
          });
          [g_server showMsg:@"发送成功"];
+         
          
          //更改随机数
          [self setGreetContent];

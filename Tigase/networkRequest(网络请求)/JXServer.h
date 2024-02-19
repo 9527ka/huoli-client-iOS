@@ -36,7 +36,7 @@
 #define WH_hide_error 0
 
 
-//#define BaseUrl @"http://192.168.1.88:8092/"   //开发环境
+#define BaseUrl @"http://192.168.1.88:8092/"   //开发环境
 //#define BaseUrl @"http://195.54.171.69:8092"   //测试环境
 //#define BaseUrl @"http://47.122.20.170:8092/"   //南京环境
 //#define BaseUrl @"http://8.217.169.145:8092"   //
@@ -45,7 +45,7 @@
 
 //#define BaseUrl @"http://im.huoli68.com/im/"   //
 
-#define BaseUrl @"http://47.98.39.253/im/"   //杭州环境
+//#define BaseUrl @"http://47.98.39.253/im/"   //杭州环境
 
 
 
@@ -209,7 +209,8 @@
 #define act_sendRedPacket @"redPacket/sendRedPacket"//发红包
 #define wh_act_sendRedPacketV1 @"redPacket/sendRedPacket/v1"//发红包(新)
 #define wh_act_getRedPacket @"redPacket/getRedPacket"//获取红包详情
-#define wh_act_openRedPacket @"redPacket/openRedPacket"//领取红包
+//#define wh_act_openRedPacket @"redPacket/openRedPacket"//领取红包
+#define wh_act_openRedPacket @"redPacket/openRedPacket24"//领取红包
 
 //我的
 #define wh_act_redPacketGetSendRedPacketList @"redPacket/getSendRedPacketList"// 获取发送的红包

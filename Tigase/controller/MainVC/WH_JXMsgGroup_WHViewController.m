@@ -2975,8 +2975,8 @@
 }
 
 -(void)showNewCount{//显示IM数量
-    [g_notify postNotificationName:@"msgNumberBtnClickNa" object:[NSString stringWithFormat:@"%d",self.wh_msgTotal]];
-    [g_mainVC.tb wh_setBadge:0 title:[NSString stringWithFormat:@"%d",self.wh_msgTotal]];
+//    [g_notify postNotificationName:@"msgNumberBtnClickNa" object:[NSString stringWithFormat:@"%d",self.wh_msgTotal]];
+//    [g_mainVC.tb wh_setBadge:0 title:[NSString stringWithFormat:@"%d",self.wh_msgTotal]];
 }
 
 -(void)setWh_msgTotal:(int)n{

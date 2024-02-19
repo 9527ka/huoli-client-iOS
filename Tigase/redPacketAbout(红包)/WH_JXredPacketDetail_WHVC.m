@@ -153,7 +153,7 @@
     [_wh_headImgV addSubview:title];
     
     
-    _wh_contentView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_wh_headImgV.frame), JX_SCREEN_WIDTH, self.money.length > 0 ? 210 : 150)];
+    _wh_contentView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_wh_headImgV.frame), JX_SCREEN_WIDTH, self.money.length > 0 ? 210 - 38 : 112)];//去掉回复的位置 38
     _wh_contentView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_wh_contentView];
     
@@ -224,6 +224,7 @@
         _replyLab.textAlignment = NSTextAlignmentCenter;
         _replyLab.userInteractionEnabled = YES;
         _replyLab.font = sysFontWithSize(11);
+        _replyLab.hidden = YES;
         [_wh_contentView addSubview:_replyLab];
     }
 

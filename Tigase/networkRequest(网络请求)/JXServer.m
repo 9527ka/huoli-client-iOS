@@ -2096,6 +2096,23 @@
     if (!IsStringNull(moneyStr)) {
         [p setPostValue:moneyStr forKey:@"money"];
     }
+    //设置秘钥
+    long time = (long)[[NSDate date] timeIntervalSince1970] + (g_server.timeDifference / 1000);
+    [p setPostValue:[NSNumber numberWithLong:time] forKey:@"time"];
+    
+    NSMutableString *str1 = [NSMutableString string];
+    [str1 appendString:APIKEY];
+    [str1 appendString:[NSString stringWithFormat:@"%ld",time]];
+    str1 = [[g_server WH_getMD5StringWithStr:str1] mutableCopy];
+    
+    [str1 appendString:g_myself.userId];
+    [str1 appendString:g_server.access_token];
+    [str1 appendString:redPacketId];
+    
+    str1 = [[g_server WH_getMD5StringWithStr:str1] mutableCopy];
+    
+    [p setPostValue:str1 forKey:@"secret"];
+
     [p go];
 }
 
@@ -3581,10 +3598,10 @@
 
 // 更新角标
 - (void)WH_userChangeMsgNum:(NSInteger)num toView:(id)toView {
-    WH_JXConnection* p = [self addTask:wh_act_userChangeMsgNum param:nil toView:toView];
-    [p setPostValue:access_token forKey:@"access_token"];
-    [p setPostValue:[NSNumber numberWithInteger:num] forKey:@"num"];
-    [p go];
+//    WH_JXConnection* p = [self addTask:wh_act_userChangeMsgNum param:nil toView:toView];
+//    [p setPostValue:access_token forKey:@"access_token"];
+//    [p setPostValue:[NSNumber numberWithInteger:num] forKey:@"num"];
+//    [p go];
 }
 
 // 设置群消息免打扰

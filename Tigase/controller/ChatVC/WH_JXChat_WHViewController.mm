@@ -7643,8 +7643,8 @@
 }
 #pragma mark - 群里发急速红包
 - (void)sendFastRedPacket {
-    [g_server showMsg:@"开发中~"];
-    return;
+//    [g_server showMsg:@"开发中~"];
+//    return;
     
     WH_FastRedModel *model = [JXServer receiveFastRed];
     if(!model){
@@ -7652,10 +7652,20 @@
         WH_JXFastRedSetVC *vc = [[WH_JXFastRedSetVC alloc] init];
         [g_navigation pushViewController:vc animated:YES];
     }else{
-        WH_JXFastRedView *view = [[WH_JXFastRedView alloc] init];
-        view.room = self.room;
-        view.delegate = self;
-        [self.view addSubview:view];
+        //判断时间间隔
+        WH_FastRedModel *model = [JXServer receiveFastRed];
+        
+        BOOL isCanSend = [WH_FastRedModel isCanWithEndTime:model.time];
+        if (isCanSend) {
+            WH_JXFastRedView *view = [[WH_JXFastRedView alloc] init];
+            view.room = self.room;
+            view.delegate = self;
+            [self.view addSubview:view];
+        }else{
+            [g_server showMsg:[NSString stringWithFormat:@"两次红包发送需间隔%@秒",model.timeInter]];
+        }
+        
+        
     }
 
     

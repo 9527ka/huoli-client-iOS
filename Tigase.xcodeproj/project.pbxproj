@@ -725,6 +725,8 @@
 		330F3B8D2B32853200E69B97 /* WH_JXCertainOrderVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 330F3B8B2B32853200E69B97 /* WH_JXCertainOrderVC.xib */; };
 		330F3B912B32BF2500E69B97 /* WH_JXOrderDetaileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 330F3B8F2B32BF2500E69B97 /* WH_JXOrderDetaileVC.m */; };
 		330F3B922B32BF2500E69B97 /* WH_JXOrderDetaileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 330F3B902B32BF2500E69B97 /* WH_JXOrderDetaileVC.xib */; };
+		3326FB862B81CD9900A65AF3 /* WH_JXLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3326FB842B81CD9900A65AF3 /* WH_JXLoginVC.m */; };
+		3326FB872B81CD9900A65AF3 /* WH_JXLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3326FB852B81CD9900A65AF3 /* WH_JXLoginVC.xib */; };
 		333824DE2B34150700AC4B06 /* WH_JXOrderListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 333824DC2B34150700AC4B06 /* WH_JXOrderListVC.m */; };
 		333824DF2B34150700AC4B06 /* WH_JXOrderListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 333824DD2B34150700AC4B06 /* WH_JXOrderListVC.xib */; };
 		333824E32B342B6400AC4B06 /* WH_JXOrderListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 333824E12B342B6400AC4B06 /* WH_JXOrderListCell.m */; };
@@ -3144,6 +3146,9 @@
 		330F3B8E2B32BF2500E69B97 /* WH_JXOrderDetaileVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXOrderDetaileVC.h; sourceTree = "<group>"; };
 		330F3B8F2B32BF2500E69B97 /* WH_JXOrderDetaileVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXOrderDetaileVC.m; sourceTree = "<group>"; };
 		330F3B902B32BF2500E69B97 /* WH_JXOrderDetaileVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXOrderDetaileVC.xib; sourceTree = "<group>"; };
+		3326FB832B81CD9900A65AF3 /* WH_JXLoginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXLoginVC.h; sourceTree = "<group>"; };
+		3326FB842B81CD9900A65AF3 /* WH_JXLoginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXLoginVC.m; sourceTree = "<group>"; };
+		3326FB852B81CD9900A65AF3 /* WH_JXLoginVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXLoginVC.xib; sourceTree = "<group>"; };
 		333824DB2B34150700AC4B06 /* WH_JXOrderListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXOrderListVC.h; sourceTree = "<group>"; };
 		333824DC2B34150700AC4B06 /* WH_JXOrderListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXOrderListVC.m; sourceTree = "<group>"; };
 		333824DD2B34150700AC4B06 /* WH_JXOrderListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXOrderListVC.xib; sourceTree = "<group>"; };
@@ -9136,6 +9141,9 @@
 				18F1788C22D4FEF700BBB8D5 /* WH_SMSLogin_WHViewController.h */,
 				18F1788D22D4FEF700BBB8D5 /* WH_SMSLogin_WHViewController.m */,
 				334FB9ED2B1425C000230991 /* userInfo.plist */,
+				3326FB832B81CD9900A65AF3 /* WH_JXLoginVC.h */,
+				3326FB842B81CD9900A65AF3 /* WH_JXLoginVC.m */,
+				3326FB852B81CD9900A65AF3 /* WH_JXLoginVC.xib */,
 			);
 			path = "RegisterAndLogin(登录注册)";
 			sourceTree = "<group>";
@@ -11243,6 +11251,7 @@
 				188EAB021D0BAF6900D00D24 /* title_more@2x.png in Resources */,
 				CC30174D1951BABF0059BADA /* f087@2x.png in Resources */,
 				CC3016F51951BABF0059BADA /* f043@2x.png in Resources */,
+				3326FB872B81CD9900A65AF3 /* WH_JXLoginVC.xib in Resources */,
 				E41DD99A22E9ABA2007F156B /* questionMark@2x.png in Resources */,
 				CC3017331951BABF0059BADA /* f074@2x.png in Resources */,
 				1851A37E2307B09400BA24A1 /* biaoqing_btnbg_sel@3x.png in Resources */,
@@ -12367,6 +12376,7 @@
 				0FA2D5AB1FB05CCC00D51BB9 /* GPUImageContrastFilter.m in Sources */,
 				0F304E3B2153AD0E001EC77E /* DDASLLogCapture.m in Sources */,
 				DE5C698F2326812E00321406 /* WH_SuccessfulWithdrawal_WHViewController.m in Sources */,
+				3326FB862B81CD9900A65AF3 /* WH_JXLoginVC.m in Sources */,
 				636E434D1F9DE23800BCBA9F /* WH_SkinManage.m in Sources */,
 				CC6E167919794906006ADA8A /* WH_JXNewFriend_WHViewController.m in Sources */,
 				6353D3E42182B64700CFBEA7 /* WH_JXRoomMemberList_WHVC.m in Sources */,
@@ -13008,7 +13018,7 @@
 				CODE_SIGN_ENTITLEMENTS = Tigase/Tigase.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 22;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 6QM4SXGT4R;
 				DOUBANGO_HOME = "";
@@ -13116,7 +13126,7 @@
 				CODE_SIGN_ENTITLEMENTS = Tigase/Tigase.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 22;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 6QM4SXGT4R;
 				DOUBANGO_HOME = "";

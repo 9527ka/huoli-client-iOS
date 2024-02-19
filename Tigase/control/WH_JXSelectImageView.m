@@ -175,7 +175,7 @@
             m += 1;
             X = m >8 ? SELECTIMAGE_WIDTH *n + (n+1)*inset+JX_SCREEN_WIDTH : SELECTIMAGE_WIDTH *n + (n+1)*inset;
             Y = m > 4 && m <=8 ? h+margeY*2 : margeY;//WH_awarda_a_bonus_normal
-            button = [self WH_create_WHButtonWithImage:@"WH_fast_a_bonus_normal" highlight:@"WH_fast_a_bonus_normal" target:delegate selector:self.onFastRedPacket title:@"极速红包"];
+            button = [self WH_create_WHButtonWithImage:@"WH_fast_a_bonus_use" highlight:@"WH_fast_a_bonus_use" target:delegate selector:self.onFastRedPacket title:@"极速红包"];//WH_fast_a_bonus_normal
             button.frame = CGRectMake(X, Y, SELECTIMAGE_WIDTH, h);
         }
 
