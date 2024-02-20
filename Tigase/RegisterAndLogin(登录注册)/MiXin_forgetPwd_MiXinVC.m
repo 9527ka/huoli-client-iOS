@@ -11,7 +11,7 @@
 #import "WH_JXUserObject.h"
  
 
-#import "WH_LoginViewController.h"
+#import "WH_JXLoginVC.h"
 
 #define HEIGHT 55
 
@@ -527,9 +527,8 @@
    [[JXXMPP sharedInstance] logout];
    NSLog(@"XMPP ---- MiXin_forgetPwd_MiXinVC relogin");
    
-//    WH_LoginViewController *loginVC = [[ WH_LoginViewController alloc] init];
-   WH_LoginViewController *loginVC = [[WH_LoginViewController alloc] init];
-   loginVC.isSwitchUser = NO;
+//    WH_JXLoginVC *loginVC = [[ WH_JXLoginVC alloc] init];
+   WH_JXLoginVC *loginVC = [[WH_JXLoginVC alloc] init];
    [g_mainVC.view removeFromSuperview];
    g_mainVC = nil;
    [self.view removeFromSuperview];

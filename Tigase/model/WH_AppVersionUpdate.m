@@ -62,6 +62,12 @@
                     //跳转第三方更新网站01
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://testflight.apple.com/join/9fLIIk8x"]];
                     
+                    int forceStatus = [dict[@"forceStatus"] intValue];
+                    if (forceStatus == 1) {
+                        //强制更新
+                        exit(0);
+                    }
+                    
                     return;
                     
                     if (IS_APP_STORE_VERSION) {

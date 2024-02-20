@@ -7,12 +7,16 @@
 //
 
 #import "WH_JXNetwork.h"
+#import "PPSPingServices.h"
+#import "PPSPingSummary.h"
 
 #define wh_act_UploadFile @"upload/UploadServlet" //上传文件
 #define act_SendMsg    @"user/sendMsg" //发消息
 #define wh_act_MsgAdd @"b/circle/msg/add" //发送生活圈
 
 @interface WH_JXHttpRequet : NSObject
+
+@property (nonatomic,strong)PPSPingServices *service;
 
 //上传文件
 -(void)WH_uploadFile:(NSString*)file validTime:(NSString *)validTime messageId:(NSString *)messageId toView:(id)toView;

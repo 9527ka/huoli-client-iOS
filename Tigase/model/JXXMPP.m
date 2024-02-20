@@ -34,7 +34,7 @@
 #import "WH_StrongReminderView.h"
 #import "WH_JXChat_WHViewController.h"
 #import "wahu_2_0-Swift.h"
-#import "WH_LoginViewController.h"
+#import "WH_JXLoginVC.h"
 #import "JXSynTask.h"
 #import "WH_HBCoreLabel.h"
 #if DEBUG
@@ -2468,7 +2468,7 @@ static JXXMPP *sharedManager;
     g_App.subTopWindow.hidden = YES;
     g_App.isHaveTopWindow = YES;
         
-    WH_LoginViewController *loginVC = [[ WH_LoginViewController alloc] init];
+    WH_JXLoginVC *loginVC = [[ WH_JXLoginVC alloc] init];
     [g_mainVC.view removeFromSuperview];
     g_mainVC = nil;
 //        [self.view removeFromSuperview];

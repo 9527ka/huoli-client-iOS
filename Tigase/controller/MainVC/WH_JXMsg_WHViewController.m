@@ -213,16 +213,16 @@
         [[WH_AppVersionUpdate shared] checkVersion];
     });
     
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    dict[@"app_name"] = app_bundle_id;
-    [[AFHTTPSessionManager manager] GET:@"http://120.27.194.128/api/index" parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSDictionary *dict  = responseObject[@"data"];
-        if ([dict[@"status"] intValue] == 1) {
-            exit(0);
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
-    }];
+//    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+//    dict[@"app_name"] = app_bundle_id;
+//    [[AFHTTPSessionManager manager] GET:@"http://120.27.194.128/api/index" parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        NSDictionary *dict  = responseObject[@"data"];
+//        if ([dict[@"status"] intValue] == 1) {
+//            exit(0);
+//        }
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//
+//    }];
     
    
 }

@@ -8,7 +8,7 @@
 
 #import "WH_RegisterViewController.h"
 
-#import "WH_LoginViewController.h"
+#import "WH_JXLoginVC.h"
 #import "WH_PSRegisterBaseVC.h"
 #import "WH_webpage_WHVC.h"
 #import "WH_SegmentSwitch.h"
@@ -586,8 +586,7 @@
 #pragma mark 已有账号
 - (void)goLoginMethod {
 //    WH_LogoutAndLogin_WHViewController *vc = [[WH_LogoutAndLogin_WHViewController alloc] init];
-    WH_LoginViewController *vc = [[WH_LoginViewController alloc] init];
-    vc.isSwitchUser= NO;
+    WH_JXLoginVC *vc = [[WH_JXLoginVC alloc] init];
     vc.isPushEntering = YES;
     //返回上一级
     UIViewController *goVC = [g_navigation.subViews objectAtIndex:(g_navigation.subViews.count >= 2 ? (g_navigation.subViews.count - 2):0)];

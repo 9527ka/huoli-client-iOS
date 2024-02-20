@@ -168,7 +168,7 @@
             // 获取国家代号
             for (NSDictionary *dict in arr) {
                 NSArray *types = dict[@"types"];
-                NSString *type = [types firstObject];
+                NSString *type = [NSString stringWithFormat:@"%@",[types firstObject]];
                 if ([type isEqualToString:@"country"]) {
                     
                     self.countryCode = dict[@"short_name"];
@@ -185,7 +185,7 @@
             // 获取到城市
             for (NSDictionary *dict in arr) {
                 NSArray *types = dict[@"types"];
-                NSString *type = [types firstObject];
+                NSString *type = [NSString stringWithFormat:@"%@",[types firstObject]];
                 if ([type isEqualToString:@"locality"]) {
                     
                     self.cityName = dict[@"long_name"];
@@ -197,7 +197,7 @@
             if (!self.cityId) {
                 for (NSDictionary *dict in arr) {
                     NSArray *types = dict[@"types"];
-                    NSString *type = [types firstObject];
+                    NSString *type = [NSString stringWithFormat:@"%@",[types firstObject]];
                     if ([type isEqualToString:@"administrative_area_level_1"]) {
                         
                         self.cityName = dict[@"long_name"];

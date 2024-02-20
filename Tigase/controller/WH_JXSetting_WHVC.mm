@@ -19,7 +19,7 @@
 #import "userWeiboVC.h"
 #import "WH_myMedia_WHVC.h"
 #import "WH_webpage_WHVC.h"
-#import "WH_LoginViewController.h"
+#import "WH_JXLoginVC.h"
 #import "WH_JXNewFriend_WHViewController.h"
 #import "WH_forgetPwd_WHVC.h"
 #import "WH_JXSelector_WHVC.h"
@@ -35,7 +35,7 @@
 #import "WH_JXGroupMessagesSelectFriend_WHVC.h"
 #import "WH_JXAccountBinding_WHVC.h"
 #import "WH_JXSecuritySetting_WHVC.h"
-#import "WH_LoginViewController.h"
+#import "WH_JXLoginVC.h"
 
 #define HEIGHT 55
 
@@ -565,8 +565,7 @@
     [[JXXMPP sharedInstance] logout];
     NSLog(@"XMPP ---- WH_JXSetting_WHVC relogin");
 
-     WH_LoginViewController* vc = [ WH_LoginViewController alloc];
-    vc.isSwitchUser= NO;
+     WH_JXLoginVC* vc = [ WH_JXLoginVC alloc];
     vc = [vc init];
     [g_mainVC.view removeFromSuperview];
     g_mainVC = nil;
@@ -580,7 +579,7 @@
 //    g_App.window.rootViewController = vc;
 //    [g_App.window makeKeyAndVisible];
     
-//     WH_LoginViewController* vc = [ WH_LoginViewController alloc];
+//     WH_JXLoginVC* vc = [ WH_JXLoginVC alloc];
 //    vc.isAutoLogin = NO;
 //    vc.isSwitchUser= NO;
 //    vc = [vc init];
@@ -607,7 +606,7 @@
     g_App.subTopWindow.hidden = YES;
     g_App.isHaveTopWindow = YES;
     
-//     WH_LoginViewController* vc = [ WH_LoginViewController alloc];
+//     WH_JXLoginVC* vc = [ WH_JXLoginVC alloc];
 //    vc.isAutoLogin = NO;
 //    vc.isSwitchUser= NO;
 //    vc = [vc init];
@@ -632,7 +631,7 @@
 //    self.view = nil;
 //    g_navigation.rootViewController = vc;
     
-     WH_LoginViewController *loginVC = [[ WH_LoginViewController alloc] init];
+     WH_JXLoginVC *loginVC = [[ WH_JXLoginVC alloc] init];
     [g_mainVC.view removeFromSuperview];
     g_mainVC = nil;
     [self.view removeFromSuperview];
@@ -641,7 +640,7 @@
     g_navigation.rootViewController = loginVC;
     
 
-//     WH_LoginViewController* vc = [ WH_LoginViewController alloc];
+//     WH_JXLoginVC* vc = [ WH_JXLoginVC alloc];
 //    vc.isAutoLogin = NO;
 //    vc.isSwitchUser= YES;
 //    vc = [vc init];

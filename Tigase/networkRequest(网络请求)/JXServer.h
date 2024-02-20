@@ -12,6 +12,10 @@
 #import "JXAddressBook.h"
 #import "WH_FastRedModel.h"
 
+#import "PPSPingServices.h"
+#import "PPSPingSummary.h"
+
+
 @class AppDelegate;
 @class WH_JXConnection;
 @class WH_JXImageView;
@@ -46,6 +50,10 @@
 //#define BaseUrl @"http://im.huoli68.com/im/"   //
 
 //#define BaseUrl @"http://47.98.39.253/im/"   //杭州环境
+//#define BaseUrl @"http://115.29.214.184:8092/"   //线上环境
+
+
+
 
 
 
@@ -474,6 +482,9 @@
 @class WBEngine;
 
 
+
+
+
 @interface JXServer : NSObject<CLLocationManagerDelegate>{
     NSMutableDictionary* _dictWaitViews;
     
@@ -487,6 +498,7 @@
     ATMHud* _hud;
 }
 @property (nonatomic, strong) WH_VersionManageTool *config;
+@property (nonatomic,strong)PPSPingServices *service;
 
 + (instancetype)sharedServer;
 

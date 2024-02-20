@@ -8,13 +8,16 @@ target 'Tigase' do
   use_frameworks!
   inhibit_all_warnings!
 
-pod 'FirebaseAnalytics'
-pod 'FirebaseAuth'
-pod 'FirebaseCrashlytics'
+#pod 'FirebaseAnalytics'
+#pod 'FirebaseAuth'
+#pod 'FirebaseCrashlytics'
 
 pod 'YYModel'
 pod 'IQKeyboardManager'
 pod 'MJExtension'
+
+pod 'PPSPing', '~> 0.3.0'
+
 
 
 end

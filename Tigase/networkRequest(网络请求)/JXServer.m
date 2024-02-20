@@ -15,7 +15,7 @@
 //#import "MobClick.h"
 #import "md5.h"
 #import "WeiboReplyData.h"
-#import "WH_LoginViewController.h"
+#import "WH_JXLoginVC.h"
 #import "WH_webpage_WHVC.h"
 #import "WH_SearchData.h"
 #import "WH_RoomData.h"
@@ -366,7 +366,21 @@
 //            [g_App showAlert:[NSString stringWithFormat:@"%@%@%@",Localized(@"JXServer_ErrorNetwork"),task.error.localizedDescription,task.url]];
             [g_App showAlert:[NSString stringWithFormat:@"%@%@",Localized(@"JXServer_ErrorNetwork"),task.error.localizedDescription]];
             
-            [g_server WH_erroUpdatWithContent:[NSString stringWithFormat:@"%@==%@==%@ == %@",task.action,task.url,task.error.localizedDescription,task.param?task.param:@""] toView:self];
+            
+            self.service = [PPSPingServices serviceWithAddress:@"www.baidu.com"];
+                [self.service startWithCallbackHandler:^(PPSPingSummary *pingItem, NSArray *pingItems) {
+                    
+                    id parama = task.param;
+                
+                    
+                    if (pingItem.status == PPSPingStatusFinished) {
+                        [g_server WH_erroUpdatWithContent:[NSString stringWithFormat:@"%@==%@==%@==%@ == %@",task.action,task.url,task.error.localizedDescription,task.error.localizedFailureReason,task.param?task.param:@""] toView:self];
+                    }else{
+                        [g_server WH_erroUpdatWithContent:[NSString stringWithFormat:@"%@==%@==%@==%@ == %@ ==111111",task.action,task.url,task.error.localizedDescription,task.error.localizedFailureReason,task.param?task.param:@""] toView:self];
+                    }
+//                    NSLog(@"ping====%@ == %d",pingItem,pingItems.count);
+                    [self.service cancel];
+                }];
         }
     }
 }
@@ -1314,7 +1328,7 @@
         [g_xmpp logout];
         NSLog(@"XMPP ---- jxserver");
         
-        if (![g_navigation.rootViewController isKindOfClass:[WH_LoginViewController class]]) {
+        if (![g_navigation.rootViewController isKindOfClass:[WH_JXLoginVC class]]) {
             
             [self showLogin];
         }else {
@@ -2849,15 +2863,14 @@
     [g_default removeObjectForKey:kMY_USER_PASSWORD];
     [g_default removeObjectForKey:kMY_USER_TOKEN];
     [share_defaults removeObjectForKey:kMY_ShareExtensionToken];
-//    WH_LoginViewController* vc = [WH_LoginViewController alloc];
+//    WH_JXLoginVC* vc = [WH_JXLoginVC alloc];
 //    vc.isAutoLogin = NO;
 //    vc.isSwitchUser= NO;
 //    vc = [vc init];
 //    g_navigation.rootViewController = vc;
     
-    WH_LoginViewController *loginVC = [[WH_LoginViewController alloc] init];
+    WH_JXLoginVC *loginVC = [[WH_JXLoginVC alloc] init];
 //    loginVC.isAutoLogin = YES;
-    loginVC.isSwitchUser= NO;
     loginVC.isPushEntering = YES;
     g_navigation.rootViewController = loginVC;
     
@@ -2868,7 +2881,7 @@
 //    g_App.window.rootViewController = vc;
 //    [g_App.window makeKeyAndVisible];
 
-//    WH_LoginViewController* vc = [WH_LoginViewController alloc];
+//    WH_JXLoginVC* vc = [WH_JXLoginVC alloc];
 //    vc.isAutoLogin = NO;
 //    vc.isSwitchUser= YES;
 //    vc = [vc init];

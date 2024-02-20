@@ -788,13 +788,13 @@ static WH_JXUserObject *sharedUser;
 
 - (NSString *)getLastListContent:(NSDictionary *)dict {
     int type = [dict[@"type"] intValue];
-    NSString *content = dict[@"content"];
-    NSString *fromUserId = dict[@"from"];
-    NSString *fromUserName = dict[@"fromUserName"];
+    NSString *content = [NSString stringWithFormat:@"%@",dict[@"content"]];
+    NSString *fromUserId = [NSString stringWithFormat:@"%@",dict[@"from"]];
+    NSString *fromUserName = [NSString stringWithFormat:@"%@",dict[@"fromUserName"]];
     if (!fromUserName) {
         fromUserName = @"";
     }
-    NSString *toUserId = dict[@"to"];
+    NSString *toUserId = [NSString stringWithFormat:@"%@",dict[@"to"]];
     NSString *toUserName = dict[@"toUserName"];
     if (!toUserName) {
         toUserName = @"";
@@ -802,7 +802,6 @@ static WH_JXUserObject *sharedUser;
     switch (type) {
         case kWCMessageTypeWithdraw:{
             if ([dict[@"isRoom"] boolValue]) {
-                
                 if ([fromUserId isEqualToString:MY_USER_ID]) {
                     content = Localized(@"JX_AlreadyWithdraw");
                 }else {

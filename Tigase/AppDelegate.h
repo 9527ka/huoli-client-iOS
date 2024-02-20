@@ -10,6 +10,8 @@
 #import <PushKit/PushKit.h>
 #import "JXNavigation.h"
 #import "WH_JXDidPushObj.h"
+
+
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
 #endif
@@ -75,6 +77,8 @@
 
 @property (nonatomic, unsafe_unretained) UIBackgroundTaskIdentifier taskId;
 @property (nonatomic, strong) NSTimer *timer;
+
+
 
 -(void) showAlert: (NSString *) message;
 -(UIAlertView *) showAlert: (NSString *) message delegate:(id)delegate;

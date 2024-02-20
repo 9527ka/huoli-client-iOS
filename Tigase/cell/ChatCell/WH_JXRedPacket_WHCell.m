@@ -170,12 +170,16 @@
     _checkLabel.text = self.room.category == 1?@"查看钻石":Localized(@"WH_Check_RedPacket");
     _checkLabel.hidden = YES;
     _headImageView.image = [UIImage imageNamed: self.room.category == 1?@"red_diamound_icon":@"WH_hongbao_top"];
+    //专属的用WH_hongbao_top
+    if(self.room.category != 1 && [self.msg.type intValue] != kWCMessageTypeRedPacketExclusive){
+        _headImageView.image = [UIImage imageNamed: @"WH_hongbao_top_icon"];
+    }
     
     //专属红包更改红包颜色
     //    if([self.msg.type intValue] == kWCMessageTypeRedPacketExclusive){
     UIImage *image = [[UIImage imageNamed:@"WH_hongbao_background"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
     _imageBackground.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    [_imageBackground setTintColor:self.room.category==1?HEXCOLOR(0x179cfb):[UIColor colorWithRed:245/255.0 green:145/255.0 blue:85/255.0 alpha:1.0]];//HEXCOLOR(0x)
+    [_imageBackground setTintColor:self.room.category==1?HEXCOLOR(0x179cfb):HEXCOLOR(0xfa9e3b)];
     //    }
 //    _title.textColor = [self.msg.type intValue] == kWCMessageTypeRedPacketExclusive?[UIColor whiteColor]:HEXCOLOR(0x8C9AB8);
     

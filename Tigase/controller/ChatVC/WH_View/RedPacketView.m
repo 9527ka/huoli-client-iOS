@@ -40,9 +40,12 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
     [self addGestureRecognizer:tap];
     
-    CGFloat h = JX_SCREEN_HEIGHT - JX_SCREEN_TOP - JX_SCREEN_BOTTOM - 30-50;
-    packetScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(25, 30+JX_SCREEN_TOP, JX_SCREEN_WIDTH-25*2, h)];
-    packetScrollView.contentSize = CGSizeMake(JX_SCREEN_WIDTH-25*2, h);
+//    CGFloat h = JX_SCREEN_HEIGHT - JX_SCREEN_TOP - JX_SCREEN_BOTTOM - 30-50;
+//w: 15    h:435
+    CGFloat h = 465.0f;
+    
+    packetScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(28, (JX_SCREEN_HEIGHT - h - JX_SCREEN_TOP)/2, JX_SCREEN_WIDTH-28*2, h)];
+    packetScrollView.contentSize = CGSizeMake(JX_SCREEN_WIDTH-28*2, h);
     packetScrollView.pagingEnabled = YES;
     packetScrollView.scrollEnabled = NO;
     [self addSubview:packetScrollView];
@@ -97,8 +100,9 @@
     tintLabel.textColor = HEXCOLOR(0xFFE2B1);
     [redPocketView addSubview:tintLabel];
     
-    CGFloat b = (redPocketView.height / JX_SCREEN_HEIGHT) * (redPocketView.height-88);
-    UIButton *openButton = [[UIButton alloc] initWithFrame:CGRectMake((JX_SCREEN_WIDTH-40-102)/2, b, 102, 102)];
+//    CGFloat b = (redPocketView.height / JX_SCREEN_HEIGHT) * (redPocketView.height-88);
+    CGFloat b = redPocketView.height - 108 - 102;
+    UIButton *openButton = [[UIButton alloc] initWithFrame:CGRectMake((redPocketView.width-102)/2, b, 102, 102)];
     [openButton setImage:[UIImage imageNamed:@"WH_redPacket_open"] forState:UIControlStateNormal];
     [openButton addTarget:self action:@selector(openRedPacket:) forControlEvents:UIControlEventTouchUpInside];
     [redPocketView addSubview:openButton];
@@ -136,7 +140,7 @@
         [specialButton addTarget:self action:@selector(goSpecialOpen) forControlEvents:UIControlEventTouchUpInside];
         [redPocketView addSubview:specialButton];
         
-        packetScrollView.contentSize = CGSizeMake((JX_SCREEN_WIDTH-25*2)*2, redPocketView.height);
+        packetScrollView.contentSize = CGSizeMake((JX_SCREEN_WIDTH-28*2)*2, redPocketView.height);
         packetScrollView.pagingEnabled = YES;
         
         secondBackView = [[UIImageView alloc] initWithFrame:CGRectMake(redPocketView.right, 0, packetScrollView.width, redPocketView.height)];
@@ -370,6 +374,7 @@
 }
 - (void)dismissKeyboard:(UITapGestureRecognizer *)tap {
     [self endEditing:YES];
+    [self closeRedPacket];
 }
 #pragma mark ---- NetWork
 -(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{

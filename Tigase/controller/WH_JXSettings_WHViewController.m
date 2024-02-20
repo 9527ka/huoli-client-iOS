@@ -8,7 +8,7 @@
 
 #import "WH_JXSettings_WHViewController.h"
 #import "UIImage+WH_Tint.h"
-#import "WH_LoginViewController.h"
+#import "WH_JXLoginVC.h"
 #import "WH_JXMoreSelect_WHVC.h"
 #import "WH_JXActionSheet_WHVC.h"
 #import "WH_BlackList_WHController.h"
@@ -925,8 +925,7 @@ typedef enum : NSUInteger {
     
     NSLog(@"XMPP --- jxsettingsVC");
     
-     WH_LoginViewController* vc = [ WH_LoginViewController alloc];
-    vc.isSwitchUser= NO;
+     WH_JXLoginVC* vc = [ WH_JXLoginVC alloc];
     vc = [vc init];
     [g_mainVC.view removeFromSuperview];
     g_mainVC = nil;
