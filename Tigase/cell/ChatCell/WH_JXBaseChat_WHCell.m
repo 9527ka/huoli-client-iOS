@@ -484,7 +484,7 @@ static double g_timeSend=0;
             _timeLabel.textColor = HEXCOLOR(0x8C9AB8);
             _timeLabel.font = pingFangMediumFontWithSize(10);
             _timeLabel.userInteractionEnabled = NO;
-            _timeLabel.frame = CGRectMake(JX_SCREEN_WIDTH/2 -40, 17, 80, 15);
+            _timeLabel.frame = CGRectMake(JX_SCREEN_WIDTH/2 -40, 10, 80, 15);
             _timeLabel.layer.cornerRadius = 3;
             _timeLabel.layer.masksToBounds = YES;
 
@@ -535,9 +535,9 @@ static double g_timeSend=0;
             
             
             if (_msg.isShowTime) {
-                _headImage.frame = CGRectMake(JX_SCREEN_WIDTH-INSETS-HEAD_SIZE, INSETS + 40, HEAD_SIZE , HEAD_SIZE);
+                _headImage.frame = CGRectMake(JX_SCREEN_WIDTH-INSETS-HEAD_SIZE, INSETS + 40 - 15, HEAD_SIZE , HEAD_SIZE);
                 _cerImgView.frame = CGRectMake(_headImage.frame.origin.x-CER_HEIGHT*0.5, _headImage.frame.origin.y-CER_HEIGHT*0.5, _headImage.frame.size.width+CER_HEIGHT, _headImage.frame.size.height+CER_HEIGHT);
-                _nicknameLabel.frame = CGRectMake(JX_SCREEN_WIDTH-INSETS-HEAD_SIZE - 200 - 10, 6 + 40, 200, 12);
+                _nicknameLabel.frame = CGRectMake(JX_SCREEN_WIDTH-INSETS-HEAD_SIZE - 200 - 10, 6 + 40 - 15, 200, 12);
                 
 //                _gradeImgView.frame = CGRectMake(JX_SCREEN_WIDTH-INSETS-HEAD_SIZE + CGRectGetWidth(_headImage.frame) - 16, INSETS + 40 + _headImage.height - 16, 16, 16);
             }
@@ -558,9 +558,9 @@ static double g_timeSend=0;
 //            _gradeImgView.frame = CGRectMake(_headImage.frame.origin.x + CGRectGetWidth(_headImage.frame) - 16, _headImage.frame.origin.y + CGRectGetHeight(_headImage.frame) - 16, 16, 16);
             
             if (_msg.isShowTime) {
-                _headImage.frame = CGRectMake(_headImage.frame.origin.x, INSETS + 40, HEAD_SIZE , HEAD_SIZE);
+                _headImage.frame = CGRectMake(_headImage.frame.origin.x, INSETS + 40 - 15, HEAD_SIZE , HEAD_SIZE);
                 _cerImgView.frame = CGRectMake(_headImage.frame.origin.x-CER_HEIGHT/2, _headImage.frame.origin.y-CER_HEIGHT/2, _headImage.frame.size.width+CER_HEIGHT, _headImage.frame.size.height+CER_HEIGHT);
-                _nicknameLabel.frame = CGRectMake(_nicknameLabel.frame.origin.x, 6 + 40, 200, 12);
+                _nicknameLabel.frame = CGRectMake(_nicknameLabel.frame.origin.x, 6 + 40 - 15, 200, 12);
             }
         }
         
@@ -632,7 +632,7 @@ static double g_timeSend=0;
     }
     if (self.msg.isShowTime) {
         CGRect frame = _wait.frame;
-        frame.origin.y = _wait.frame.origin.y + 40;
+        frame.origin.y = _wait.frame.origin.y + 40 - 15;
         _wait.frame = frame;
     }
     
@@ -943,11 +943,11 @@ static double g_timeSend=0;
             _burnImage.frame = CGRectMake(JX_SCREEN_WIDTH-HEAD_SIZE-imageItemHeight-INSETS*2 + 40 - 20 - INSETS * .5+2, 20+18, _burnImage.frame.size.width, _burnImage.frame.size.height);
             if (self.msg.isShowTime) {
                 CGRect frame = _readImage.frame;
-                frame.origin.y = _readImage.frame.origin.y + 40;
+                frame.origin.y = _readImage.frame.origin.y + 40 - 15;
                 _readImage.frame = frame;
                 
                 CGRect burnFrame = _burnImage.frame;
-                burnFrame.origin.y = _burnImage.frame.origin.y + 40;
+                burnFrame.origin.y = _burnImage.frame.origin.y + 40 - 15;
                 _burnImage.frame = burnFrame;
             }
         }

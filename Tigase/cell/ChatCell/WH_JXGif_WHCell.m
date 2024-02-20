@@ -52,7 +52,7 @@
     
     if (self.msg.isShowTime) {
         CGRect frame = _gif.frame;
-        frame.origin.y = _gif.frame.origin.y + 40;
+        frame.origin.y = _gif.frame.origin.y + 40 - 14;
         _gif.frame = frame;
     }
     

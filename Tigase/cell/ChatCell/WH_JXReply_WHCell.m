@@ -218,7 +218,7 @@
     }
     if (self.msg.isShowTime) {
         CGRect frame = self.bubbleBg.frame;
-        frame.origin.y = self.bubbleBg.frame.origin.y + 40;
+        frame.origin.y = self.bubbleBg.frame.origin.y + 40 - 14;
         self.bubbleBg.frame = frame;
         
         _timeIndexLabel.frame = CGRectMake(_timeIndexLabel.frame.origin.x, self.bubbleBg.frame.origin.y, 20, 20);

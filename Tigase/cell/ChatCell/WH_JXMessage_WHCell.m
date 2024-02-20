@@ -247,7 +247,7 @@
     }
     if (self.msg.isShowTime) {
         CGRect frame = self.bubbleBg.frame;
-        frame.origin.y = self.bubbleBg.frame.origin.y + 40;
+        frame.origin.y = self.bubbleBg.frame.origin.y + 40 - 14;
         self.bubbleBg.frame = frame;
         
         _timeIndexLabel.frame = CGRectMake(_timeIndexLabel.frame.origin.x, self.bubbleBg.frame.origin.y, 20, 20);
@@ -287,7 +287,7 @@
 
 + (float)getChatCellHeight:(WH_JXMessageObject *)msg {
     if ([msg.chatMsgHeight floatValue] > 1) {
-            return [msg.chatMsgHeight floatValue];
+//            return [msg.chatMsgHeight floatValue];
     }
     float n;
     WH_JXEmoji *messageConent=[[WH_JXEmoji alloc]initWithFrame:CGRectMake(0, 0, 200, 20)];
@@ -308,12 +308,12 @@
     if (msg.isGroup && !msg.isMySend) {
         n = messageConent.frame.size.height+10*3 + 20;
         if (msg.isShowTime) {
-            n=messageConent.frame.size.height+10*3 + 40 + 20;
+            n=messageConent.frame.size.height+10*3 + 40 + 20 - 7;
         }
     }else {
         n= messageConent.frame.size.height+10*3 + 10;
         if (msg.isShowTime) {
-            n=messageConent.frame.size.height+10*3 + 40 + 10;
+            n=messageConent.frame.size.height+10*3 + 40 + 10 - 7;
         }
     }
     
@@ -321,8 +321,8 @@
     if(n<55)
         n = 55;
     if (msg.isShowTime) {
-        if(n<95)
-            n = 95;
+        if(n<86)
+            n = 86;
     }
 //#ifdef IS_SHOW_NEWReadDelete
     if ([g_config.isDelAfterReading isEqualToString:@"0"]) {

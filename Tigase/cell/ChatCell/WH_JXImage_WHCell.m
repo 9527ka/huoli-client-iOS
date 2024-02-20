@@ -227,7 +227,7 @@
     
     if (self.msg.isShowTime) {
         CGRect frame = self.bubbleBg.frame;
-        frame.origin.y = self.bubbleBg.frame.origin.y + 40;
+        frame.origin.y = self.bubbleBg.frame.origin.y + 40 - 14;
         self.bubbleBg.frame = frame;
     }
     _imageProgress.center = CGPointMake(_chatImage.frame.size.width/2,_chatImage.frame.size.height/2);

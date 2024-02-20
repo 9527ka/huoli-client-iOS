@@ -103,19 +103,25 @@
 
     CGFloat bubbleX = .0f;
     CGFloat bubbleY = .0f;
-    CGFloat bubbleW = .0f;
+    CGFloat bubbleW = 220.0f;
     CGFloat bubbleH = .0f;
-    if(self.msg.isMySend) {
-        bubbleW = 220.0f;
+    
+    if(JX_SCREEN_WIDTH > 375.0){
+        bubbleW = 220 + (JX_SCREEN_WIDTH/375.0f)*24;
+    }
+    
+    if(self.msg.isMySend) {//屏幕375 等比缩放
+//        bubbleW = 220.0f;
         bubbleX = JX_SCREEN_WIDTH - INSETS - HEAD_SIZE - CHAT_WIDTH_ICON - bubbleW;
         bubbleY = INSETS;
         bubbleH = 87.0f;
     } else {
-        bubbleW = 220.0f;
+//        bubbleW = 220.0f;
         bubbleX = CGRectGetMaxX(self.headImage.frame) + CHAT_WIDTH_ICON;
         bubbleY = INSETS2(self.msg.isGroup);
         bubbleH = 87.0f;
     }
+    
     self.bubbleBg.frame = CGRectMake(bubbleX, bubbleY, bubbleW, bubbleH);
     _imageBackground.frame = self.bubbleBg.bounds;
     _title.frame = CGRectMake(CGRectGetMinX(_headImageView.frame) + 1.0f, _imageBackground.frame.size.height - (4+17), 120, 17);
@@ -124,9 +130,10 @@
     
     _line.frame = CGRectMake(8, _imageBackground.frame.size.height - (8+17), 200, 0.3);
     
+    
     if (self.msg.isShowTime) {
         CGRect frame = self.bubbleBg.frame;
-        frame.origin.y = self.bubbleBg.frame.origin.y + 40;
+        frame.origin.y = self.bubbleBg.frame.origin.y + 40 - 14;
         self.bubbleBg.frame = frame;
     }
     
@@ -225,7 +232,7 @@
         float n = 0;
         if (msg.isGroup && !msg.isMySend) {
             if (msg.isShowTime) {
-                n = JX_SCREEN_WIDTH/3 + 10 + 40;
+                n = JX_SCREEN_WIDTH/3 + 10 + 40 - 10;
             }else {
                 n = JX_SCREEN_WIDTH/3 + 10;
             }
@@ -236,12 +243,12 @@
                 n = JX_SCREEN_WIDTH/3;
             }
         }
-        
+        n-=20;
         msg.chatMsgHeight = [NSString stringWithFormat:@"%f",n];
         if (!msg.isNotUpdateHeight) {
             [msg updateChatMsgHeight];
         }
-        return n - 12;
+        return n;
         
     }else{
         
