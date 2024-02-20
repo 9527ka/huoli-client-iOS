@@ -44,7 +44,7 @@
 //w: 15    h:435
     CGFloat h = 465.0f;
     
-    packetScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(28, (JX_SCREEN_HEIGHT - h - JX_SCREEN_TOP)/2, JX_SCREEN_WIDTH-28*2, h)];
+    packetScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(28, (JX_SCREEN_HEIGHT - h)/2, JX_SCREEN_WIDTH-28*2, h)];
     packetScrollView.contentSize = CGSizeMake(JX_SCREEN_WIDTH-28*2, h);
     packetScrollView.pagingEnabled = YES;
     packetScrollView.scrollEnabled = NO;
@@ -236,7 +236,7 @@
 - (void)showRedPacket:(UIView *)view{
     [view addSubview:self];
     CAKeyframeAnimation* animation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
-    animation.duration = 0.5;
+    animation.duration = 0.4;
     
     NSMutableArray *values = [NSMutableArray array];
     [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.1, 0.1, 1.0)]];
