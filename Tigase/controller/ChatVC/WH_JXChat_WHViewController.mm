@@ -1967,6 +1967,7 @@
                     
                     if(self.requestCount == _array.count){//第一次请求
                         [_table WH_gotoLastRow:NO];
+                        self.requestCount = 0;
                         NSLog(@"=====走了数据=======11111111111111");
                     }else{
                         if (_array.count > self.requestCount) {
@@ -1984,8 +1985,14 @@
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                         [_table reloadData];
     //                    [self scrollToCurrentLine];
-                        [_table WH_gotoLastRow:NO];
-                        NSLog(@"=====走了数据=======2222222222");
+                        //判断当前是否是已经滑动过的
+                        if(_table.contentOffset.y < 80){
+                            NSLog(@"=====走了数据====11111===2222222222");
+                        }else{
+                            NSLog(@"=====走了数据=======2222222222");
+                        }
+//                        [_table WH_gotoLastRow:NO];
+//                        NSLog(@"=====走了数据=======2222222222");
                     });
                 }
                 
@@ -2884,7 +2891,7 @@
     if([msg.type intValue] == kWCMessageTypeText &&
        msg.translatedText.length == 0){
         
-        if(_array.count > indexPath.row){
+        if(_array.count > indexPath.row && _array.count > 0){
             [msg requestTranslatedText:^{
                 dispatch_async(dispatch_get_main_queue(), ^{
 //                    [tableView beginUpdates];

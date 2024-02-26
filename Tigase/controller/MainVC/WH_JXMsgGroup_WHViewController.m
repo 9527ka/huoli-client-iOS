@@ -1244,13 +1244,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
-//    NSLog(@"didSelectRowAtIndexPath.begin");
-//    if (_dalayAction) {
-//        return;
-//    }else{
-//        _dalayAction = YES;
-//        [self performSelector:@selector(afterDalay) withObject:nil afterDelay:0.5];
-//    }
+
     WH_JX_WH2Cell* cell = (WH_JX_WH2Cell*)[tableView cellForRowAtIndexPath:indexPath];
     
     cell.selected = NO;
@@ -1263,7 +1257,7 @@
     }else {
         array = _wh_array;
     }
-    WH_JXMsgAndUserObject *p=[array objectAtIndex:indexPath.row];
+    WH_JXMsgAndUserObject *p= [array objectAtIndex:indexPath.row];
     if (![p.user.userId isEqualToString:FRIEND_CENTER_USERID]) {
         self.wh_msgTotal -= [cell.bage intValue];
     }

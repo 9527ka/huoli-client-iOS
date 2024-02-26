@@ -383,9 +383,9 @@ static  WH_webpage_WHVC *webVC;
     
     NSLog(@"XMPP ---- Appdelegate");
     [g_server outTime:nil];
-    g_xmpp.isCloseStream = YES;
-    g_xmpp.isReconnect = NO;
-    [g_xmpp logout];
+//    g_xmpp.isCloseStream = YES;
+//    g_xmpp.isReconnect = NO;
+//    [g_xmpp logout];
 #if TAR_IM
 #ifdef Meeting_Version
     [jxMeeting WH_meetingDidEnterBackground:application];

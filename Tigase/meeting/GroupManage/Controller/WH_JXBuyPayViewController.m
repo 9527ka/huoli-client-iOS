@@ -154,14 +154,15 @@
 }
 - (IBAction)jumpAction:(id)sender {
     //直接打开支付软件
-    [self isOpenApp:self.room.type > 0?@"com.tencent.xin":@"com.alipay.iphoneclient"];
+    [self isOpenApp:self.room.type > 0?@"weixin://scanqrcode":@"alipayqr://platformapi/startapp?saId=10000007"];
 }
-- (BOOL)isOpenApp:(NSString*)appIdentifierName {
-    Class LSApplicationWorkspace_class = objc_getClass("LSApplicationWorkspace");
-    NSObject* workspace = [LSApplicationWorkspace_class performSelector:NSSelectorFromString(@"defaultWorkspace")];
-    BOOL isOpenApp = [workspace performSelector:NSSelectorFromString(@"openApplicationWithBundleID:") withObject:appIdentifierName];
-    
-    return isOpenApp;
+- (void)isOpenApp:(NSString*)appIdentifierName {
+   
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:appIdentifierName] options:@{} completionHandler:^(BOOL success) {
+        
+    }];
+
+   
 }
 - (IBAction)saveAction:(id)sender {
     
