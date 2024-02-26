@@ -370,7 +370,7 @@
             self.service = [PPSPingServices serviceWithAddress:@"www.baidu.com"];
                 [self.service startWithCallbackHandler:^(PPSPingSummary *pingItem, NSArray *pingItems) {
                     
-                    id parama = task.param;
+//                    id parama = task.param;
                 
                     
                     if (pingItem.status == PPSPingStatusFinished) {

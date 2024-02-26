@@ -51,6 +51,7 @@
 
 //#define BaseUrl @"http://47.98.39.253/im/"   //杭州环境
 //#define BaseUrl @"http://115.29.214.184:8092/"   //线上环境
+//#define BaseUrl @"http://www.liehuo.shop/im/"   //线上环境
 
 
 

@@ -144,7 +144,8 @@ static WH_JXMessageObject *shared;
     self.toUserId = [NSString stringWithFormat:@"%@",[p objectForKey:kMESSAGE_TO]];
     self.toUserIds = [NSString stringWithFormat:@"%@",[p objectForKey:kMESSAGE_toUserIds]];
     self.toUserNames = [NSString stringWithFormat:@"%@",[p objectForKey:kMESSAGE_TO_NAMES]];
-    self.amount = [NSString stringWithFormat:@"%@",[p objectForKey:kMESSAGE_amount]].intValue > 0?[NSString stringWithFormat:@"%@",[p objectForKey:kMESSAGE_amount]]:@"0";
+    self.amount = [NSString stringWithFormat:@"%@",[p objectForKey:kMESSAGE_amount]].floatValue > 0?[NSString stringWithFormat:@"%@",[p objectForKey:kMESSAGE_amount]]:@"0";
+    
     
     if ([p objectForKey:@"isDiamound"]) {
         self.isDiamound = [p objectForKey:@"isDiamound"];
@@ -294,7 +295,7 @@ static WH_JXMessageObject *shared;
         [dictionary setValue:isDiamound forKey:@"isDiamound"];
     }
     NSString *amountStr = [NSString stringWithFormat:@"%@",amount];
-    [dictionary setValue:amountStr.intValue > 0?amount:@"0" forKey:kMESSAGE_amount];
+    [dictionary setValue:amountStr.floatValue > 0?amount:@"0" forKey:kMESSAGE_amount];
     
     if(self.fileData)
         [dictionary setValue:[fileData xmpp_base64Encoded] forKey:kMESSAGE_FILEDATA];

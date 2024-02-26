@@ -7716,7 +7716,7 @@
             msg.toUserId     = chatPerson.userId;
             msg.isGroup = NO;
         }
-        msg.amount = redpacketDict[@"money"];
+        msg.amount = [NSString stringWithFormat:@"%@",redpacketDict[@"money"]];
         msg.content      = redpacketDict[@"greet"];
         msg.type         = [NSNumber numberWithInt:kWCMessageTypeRedPacket];
         msg.isSend       = [NSNumber numberWithInt:transfer_status_ing];
@@ -7755,7 +7755,7 @@
             msg.toUserId     = chatPerson.userId;
             msg.isGroup = NO;
         }
-        msg.amount = redpacketDict[@"money"];
+        msg.amount =  [NSString stringWithFormat:@"%@",redpacketDict[@"money"]];
         msg.content      = redpacketDict[@"greet"];
         msg.type         = [NSNumber numberWithInt:kWCMessageTypeRedPacketExclusive];
         msg.isSend       = [NSNumber numberWithInt:transfer_status_ing];

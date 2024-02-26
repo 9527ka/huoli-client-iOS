@@ -156,7 +156,8 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *responseDic = responseObject;
-        if ([responseDic[@"status"] isEqualToString:@"OK"]) {
+        NSString *status = [NSString stringWithFormat:@"%@",responseDic[@"status"]];
+        if ([status isEqualToString:@"OK"]) {
             NSArray *returenArray = responseDic[@"results"];
             NSDictionary *addressDic = returenArray[0];
             
