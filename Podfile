@@ -16,7 +16,6 @@ pod 'YYModel'
 pod 'IQKeyboardManager'
 pod 'MJExtension'
 
-pod 'PPSPing', '~> 0.3.0'
 
 
 

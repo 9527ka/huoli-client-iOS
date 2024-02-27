@@ -12,8 +12,6 @@
 #import "JXAddressBook.h"
 #import "WH_FastRedModel.h"
 
-#import "PPSPingServices.h"
-#import "PPSPingSummary.h"
 
 
 @class AppDelegate;
@@ -40,7 +38,7 @@
 #define WH_hide_error 0
 
 
-//#define BaseUrl @"http://192.168.1.88:8092/"   //开发环境
+#define BaseUrl @"http://192.168.1.88:8092/"   //开发环境
 //#define BaseUrl @"http://195.54.171.69:8092"   //测试环境
 //#define BaseUrl @"http://47.122.20.170:8092/"   //南京环境
 //#define BaseUrl @"http://8.217.169.145:8092"   //
@@ -50,8 +48,8 @@
 //#define BaseUrl @"http://im.huoli68.com/im/"   //
 
 //#define BaseUrl @"http://47.98.39.253/im/"   //杭州环境
-#define BaseUrl @"http://115.29.214.184:8092/"   //线上环境
-//#define BaseUrl @"http://www.liehuo.shop/im/"   //线上环境
+//#define BaseUrl @"http://115.29.214.184:8092/"   //线上环境
+//#define BaseUrl @"http://im.liehuo.shop/im/"   //线上环境
 
 
 
@@ -499,7 +497,6 @@
     ATMHud* _hud;
 }
 @property (nonatomic, strong) WH_VersionManageTool *config;
-@property (nonatomic,strong)PPSPingServices *service;
 
 + (instancetype)sharedServer;
 

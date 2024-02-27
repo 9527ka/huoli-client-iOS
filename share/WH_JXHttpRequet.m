@@ -264,19 +264,7 @@ static WH_JXHttpRequet *_httpRequet = nil;
                     error = @"服务器好像有点问题";
             }
             
-            self.service = [PPSPingServices serviceWithAddress:@"www.baidu.com"];
-                [self.service startWithCallbackHandler:^(PPSPingSummary *pingItem, NSArray *pingItems) {
-                    if (pingItem.status == PPSPingStatusFinished) {
-                        [g_server WH_erroUpdatWithContent:string toView:self];
-                    }else{
-                        [g_server WH_erroUpdatWithContent:[NSString stringWithFormat:@"%@ ==111111",string] toView:self];
-                    }
-//                    NSLog(@"ping====%@ == %d",pingItem,pingItems.count);
-                    [self.service cancel];
-                }];
-            
-            
-//            [g_server WH_erroUpdatWithContent:string toView:self];
+            [g_server WH_erroUpdatWithContent:string toView:self];
         }
         
         if(error){

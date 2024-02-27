@@ -366,21 +366,8 @@
 //            [g_App showAlert:[NSString stringWithFormat:@"%@%@%@",Localized(@"JXServer_ErrorNetwork"),task.error.localizedDescription,task.url]];
             [g_App showAlert:[NSString stringWithFormat:@"%@%@",Localized(@"JXServer_ErrorNetwork"),task.error.localizedDescription]];
             
+            [g_server WH_erroUpdatWithContent:[NSString stringWithFormat:@"%@==%@==%@==%@ == %@",task.action,task.url,task.error.localizedDescription,task.error.localizedFailureReason,task.param?task.param:@""] toView:self];
             
-            self.service = [PPSPingServices serviceWithAddress:@"www.baidu.com"];
-                [self.service startWithCallbackHandler:^(PPSPingSummary *pingItem, NSArray *pingItems) {
-                    
-//                    id parama = task.param;
-                
-                    
-                    if (pingItem.status == PPSPingStatusFinished) {
-                        [g_server WH_erroUpdatWithContent:[NSString stringWithFormat:@"%@==%@==%@==%@ == %@",task.action,task.url,task.error.localizedDescription,task.error.localizedFailureReason,task.param?task.param:@""] toView:self];
-                    }else{
-                        [g_server WH_erroUpdatWithContent:[NSString stringWithFormat:@"%@==%@==%@==%@ == %@ ==111111",task.action,task.url,task.error.localizedDescription,task.error.localizedFailureReason,task.param?task.param:@""] toView:self];
-                    }
-//                    NSLog(@"ping====%@ == %d",pingItem,pingItems.count);
-                    [self.service cancel];
-                }];
         }
     }
 }

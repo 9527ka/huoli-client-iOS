@@ -11493,14 +11493,12 @@
 				"${PODS_ROOT}/Target Support Files/Pods-Tigase/Pods-Tigase-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
-				"${BUILT_PRODUCTS_DIR}/PPSPing/PPSPing.framework",
 				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PPSPing.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -12897,10 +12895,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DOUBANGO_HOME = "$(SRCROOT)/Tigase/meeting/ios-ngn-stack/stacks";
-				DOUBANGO_LIBS = $DOUBANGO_HOME/thirdparties/iphone/lib/i386;
-				"DOUBANGO_LIBS[arch=armv6]" = $DOUBANGO_HOME/thirdparties/iphone/lib/armv6;
-				"DOUBANGO_LIBS[arch=armv7]" = $DOUBANGO_HOME/thirdparties/iphone/lib/armv7;
-				"DOUBANGO_LIBS[sdk=iphonesimulator*][arch=*]" = $DOUBANGO_HOME/thirdparties/iphone/lib/i386;
+				DOUBANGO_LIBS = "$DOUBANGO_HOME/thirdparties/iphone/lib/i386";
+				"DOUBANGO_LIBS[arch=armv6]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/armv6";
+				"DOUBANGO_LIBS[arch=armv7]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/armv7";
+				"DOUBANGO_LIBS[sdk=iphonesimulator*][arch=*]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/i386";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -12946,10 +12944,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				DOUBANGO_HOME = "$(SRCROOT)/Tigase/meeting/ios-ngn-stack/stacks";
-				DOUBANGO_LIBS = $DOUBANGO_HOME/thirdparties/iphone/lib/i386;
-				"DOUBANGO_LIBS[arch=armv6]" = $DOUBANGO_HOME/thirdparties/iphone/lib/armv6;
-				"DOUBANGO_LIBS[arch=armv7]" = $DOUBANGO_HOME/thirdparties/iphone/lib/armv7;
-				"DOUBANGO_LIBS[sdk=iphonesimulator*][arch=*]" = $DOUBANGO_HOME/thirdparties/iphone/lib/i386;
+				DOUBANGO_LIBS = "$DOUBANGO_HOME/thirdparties/iphone/lib/i386";
+				"DOUBANGO_LIBS[arch=armv6]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/armv6";
+				"DOUBANGO_LIBS[arch=armv7]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/armv7";
+				"DOUBANGO_LIBS[sdk=iphonesimulator*][arch=*]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/i386";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -12986,16 +12984,16 @@
 				CODE_SIGN_ENTITLEMENTS = Tigase/Tigase.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 27;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 6QM4SXGT4R;
 				DOUBANGO_HOME = "";
 				DOUBANGO_LIBS = "";
-				"DOUBANGO_LIBS[arch=arm64]" = $DOUBANGO_HOME/thirdparties/iphone/lib/arm64;
-				"DOUBANGO_LIBS[arch=armv6]" = $DOUBANGO_HOME/thirdparties/iphone/lib/armv6;
-				"DOUBANGO_LIBS[arch=armv7]" = $DOUBANGO_HOME/thirdparties/iphone/lib/armv7;
-				"DOUBANGO_LIBS[arch=armv7s]" = $DOUBANGO_HOME/thirdparties/iphone/lib/armv7s;
-				"DOUBANGO_LIBS[sdk=iphonesimulator*][arch=*]" = $DOUBANGO_HOME/thirdparties/iphone/lib/x86_64;
+				"DOUBANGO_LIBS[arch=arm64]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/arm64";
+				"DOUBANGO_LIBS[arch=armv6]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/armv6";
+				"DOUBANGO_LIBS[arch=armv7]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/armv7";
+				"DOUBANGO_LIBS[arch=armv7s]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/armv7s";
+				"DOUBANGO_LIBS[sdk=iphonesimulator*][arch=*]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/x86_64";
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -13094,16 +13092,16 @@
 				CODE_SIGN_ENTITLEMENTS = Tigase/Tigase.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 27;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 6QM4SXGT4R;
 				DOUBANGO_HOME = "";
 				DOUBANGO_LIBS = "";
-				"DOUBANGO_LIBS[arch=arm64]" = $DOUBANGO_HOME/thirdparties/iphone/lib/arm64;
-				"DOUBANGO_LIBS[arch=armv6]" = $DOUBANGO_HOME/thirdparties/iphone/lib/armv6;
-				"DOUBANGO_LIBS[arch=armv7]" = $DOUBANGO_HOME/thirdparties/iphone/lib/armv7;
-				"DOUBANGO_LIBS[arch=armv7s]" = $DOUBANGO_HOME/thirdparties/iphone/lib/armv7s;
-				"DOUBANGO_LIBS[sdk=iphonesimulator*][arch=*]" = $DOUBANGO_HOME/thirdparties/iphone/lib/x86_64;
+				"DOUBANGO_LIBS[arch=arm64]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/arm64";
+				"DOUBANGO_LIBS[arch=armv6]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/armv6";
+				"DOUBANGO_LIBS[arch=armv7]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/armv7";
+				"DOUBANGO_LIBS[arch=armv7s]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/armv7s";
+				"DOUBANGO_LIBS[sdk=iphonesimulator*][arch=*]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/x86_64";
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -13142,7 +13140,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					$DOUBANGO_LIBS,
+					"$DOUBANGO_LIBS",
 					"$(PROJECT_DIR)/Tigase/meeting/libs/arm",
 					"$(PROJECT_DIR)/Tigase/audioRecorder",
 					"$(PROJECT_DIR)/Tigase/3rd/alipay/Util",

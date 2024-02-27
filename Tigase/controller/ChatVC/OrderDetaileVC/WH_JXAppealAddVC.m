@@ -10,6 +10,7 @@
 #import "WH_JXAppealAddCell.h"
 #import "RITLPhotosViewController.h"
 #import "WH_JXMediaObject.h"
+#import "OBSHanderTool.h"
 
 @interface WH_JXAppealAddVC ()<UITableViewDataSource, UITableViewDelegate,RITLPhotosViewControllerDelegate>
 {
@@ -70,8 +71,66 @@
         weakSelf.contentStr = text;
         
         if(weakSelf.images.count > 0 || self.videoImage){
-            
-            [g_server uploadFile:_images audio:@"" video:weakSelf.wh_videoFile file:@"" type:weibo_dataType_image validTime:@"-1" timeLen:weakSelf.timeLen.intValue toView:self];
+            //判断是否打开云存储
+            if ([g_config.isOpenOSStatus intValue]) {
+                [_wait start];
+                [OBSHanderTool handleUploadFile:self.fileList audio:nil video:self.wh_videoFile file:@"" type:weibo_dataType_image validTime:@"-1" timeLen:self.timeLen.intValue toView:self success:^(int code, NSDictionary * _Nonnull dict) {
+                    [_wait stop];
+                    if (code == 1) {
+                        //回到主线程
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            // 需要在主线程执行的代码
+                            NSMutableArray *imageList = [NSMutableArray array];
+                            NSString *videoUrl;
+                            if(self.videoImage){
+                                NSArray *videos = dict[@"videos"];
+                                NSDictionary *videoDic = videos.firstObject;
+                                videoUrl = [NSString stringWithFormat:@"%@",videoDic[@"oUrl"]];
+                            }
+                            if(self.images.count > 0){
+                                if(self.wh_videoFile.length > 0){
+                                    NSArray *images = [dict allValues];
+                                    for (id imageDic in images) {
+                                        if([imageDic isKindOfClass:[NSDictionary class]]){
+                                            NSDictionary *imageDict = (NSDictionary *)imageDic;
+                                            [imageList addObject:[NSString stringWithFormat:@"%@",imageDict[@"oUrl"]]];
+                                        }
+                                    }
+                                }else{
+                                    NSArray *images = dict[@"images"];
+                                    for (NSDictionary *imageDict in images) {
+                                        [imageList addObject:[NSString stringWithFormat:@"%@",imageDict[@"oUrl"]]];
+                                    }
+                                }
+                                
+                            }
+                            NSMutableString *items = [NSMutableString string];
+                            for (NSString *url in imageList) {
+                                if(items.length > 0){
+                                    [items appendFormat:@"おお%@", url];
+                                }else{
+                                    [items appendFormat:@"%@", url];
+                                }
+                            }
+                            if(videoUrl.length > 0){
+                                if(items.length > 0){
+                                    [items appendFormat:@"おお%@", videoUrl];
+                                }else{
+                                    [items appendFormat:@"%@", videoUrl];
+                                }
+                            }
+                            
+                            NSString *resultString = [items copy];
+                            
+                            [g_server WH_orderAppealWithId:self.orderId content:self.contentStr items:resultString toView:self];
+                        });
+                    }
+                } failed:^(NSError * _Nonnull error) {
+                    [_wait stop];
+                }];
+            }else{
+                [g_server uploadFile:_images audio:@"" video:weakSelf.wh_videoFile file:@"" type:weibo_dataType_image validTime:@"-1" timeLen:weakSelf.timeLen.intValue toView:self];
+            }
             
         }else{
             [g_server WH_orderAppealWithId:self.orderId content:self.contentStr items:@"" toView:self];
@@ -159,11 +218,43 @@
 #pragma mark - 发送原图
 - (void)photosViewController:(UIViewController *)viewController images:(NSArray<UIImage *> *)images infos:(NSArray<NSDictionary *> *)infos {
     [_images addObjectsFromArray:images.mutableCopy];
+    
+    if ([g_config.isOpenOSStatus integerValue]) {
+        for (int i = 0; i < images.count; i++) {
+            
+            // 普通图片
+            UIImage *chosedImage = images[i];
+            NSString *name = @"jpg";
+            
+            NSString *file = [FileInfo getUUIDFileName:name];
+            //图片存储到本地
+            [g_server WH_saveImageToFileWithImage:chosedImage file:file isOriginal:YES];
+            
+            [self.fileList addObject:file];
+            
+        }
+    }
+    
     [self.tableView reloadData];
 }
 #pragma mark - 发送缩略图
 - (void)photosViewController:(UIViewController *)viewController thumbnailImages:(NSArray *)thumbnailImages infos:(NSArray<NSDictionary *> *)infos {
     [_images addObjectsFromArray:thumbnailImages.mutableCopy];
+    if ([g_config.isOpenOSStatus integerValue]) {
+        for (int i = 0; i < thumbnailImages.count; i++) {
+            
+            // 普通图片
+            UIImage *chosedImage = thumbnailImages[i];
+            NSString *name = @"jpg";
+            
+            NSString *file = [FileInfo getUUIDFileName:name];
+            //图片存储到本地
+            [g_server WH_saveImageToFileWithImage:chosedImage file:file isOriginal:YES];
+            
+            [self.fileList addObject:file];
+            
+        }
+    }
     [self.tableView reloadData];
 }
 
