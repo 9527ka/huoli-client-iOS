@@ -666,7 +666,7 @@
     self.backGroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH, JX_SCREEN_HEIGHT - JX_SCREEN_BOTTOM)];
     [self.view insertSubview:self.backGroundImageView belowSubview:_table];
 
-    NSData *imageData = [g_constant.userBackGroundImage objectForKey:[NSString stringWithFormat:@"%@_%@" ,MY_USER_ID ,self.chatPerson.userId]];
+    NSData *imageData = [g_constant.userBackGroundImage objectForKey:[NSString stringWithFormat:@"%@_%@" ,MY_USER_ID ,self.roomJid.length > 0?self.roomJid:self.chatPerson.userId]];
     
     NSData *imageData2 = [g_constant.chatBackgrounImage objectForKey:MY_USER_ID];
 //    UIImage *backGroundImage = [UIImage imageWithContentsOfFile:kChatBackgroundImagePath];

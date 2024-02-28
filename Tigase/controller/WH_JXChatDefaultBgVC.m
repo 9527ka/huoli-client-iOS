@@ -110,6 +110,7 @@
         }
         if (isSuccess) {
             [g_App showAlert:Localized(@"JX_SetUpSuccess")];
+            [g_navigation WH_dismiss_WHViewController:self animated:YES];
         }else {
             [g_App showAlert:Localized(@"JX_SettingFailure")];
         }

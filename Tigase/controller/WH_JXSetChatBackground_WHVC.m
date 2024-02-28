@@ -46,7 +46,7 @@
     iv.frame = CGRectMake(0,h, w, HEIGHT);
     h+=iv.frame.size.height;
     
-    iv = [self WH_createMiXinButton:Localized(@"JX_SelectionFromHandsetAlbum") drawTop:YES drawBottom:YES icon:nil click:@selector(onPickPhoto)];
+    iv = [self WH_createMiXinButton:Localized(@"JX_SelectionFromHandsetAlbum") drawTop:NO drawBottom:YES icon:nil click:@selector(onPickPhoto)];
     iv.frame = CGRectMake(0,h, w, HEIGHT);
     h+=iv.frame.size.height;
     

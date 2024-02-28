@@ -55,6 +55,7 @@
 #import "WH_JXBuyPayViewController.h"
 #import "WH_JXRoomDiamoundRechargeVC.h"
 #import "OBSHanderTool.h"
+#import "WH_JXSetChatBackground_WHVC.h"
 
 #define HEIGHT 55
 #define IMGSIZE 170
@@ -73,6 +74,7 @@
 @property (nonatomic,strong) UIImageView *topFiveView;
 @property (nonatomic,strong) UIImageView *topSixView;
 @property (nonatomic,strong) UIImageView *topSevenView;
+@property (nonatomic,strong) UIImageView *chatBgView;
 @property (nonatomic,strong) UIImageView *redPacketView;
 @property (nonatomic,strong) UIImageView *topDiamondView;
 @property (nonatomic,strong) UIButton *exitBtn;
@@ -1195,6 +1197,22 @@
     fourFrame.size.height = fourViewHei;
     topFourView.frame = fourFrame;
     
+    //设置聊天背景
+    membHeight += topBottomMargin;
+    [self.chatBgView removeFromSuperview];
+    UIImageView *chatBgView = [[UIImageView alloc] initWithFrame:CGRectMake(leftRightMargin, membHeight+topBottomMargin, JX_SCREEN_WIDTH-leftRightMargin*2, HEIGHT)];
+    chatBgView.userInteractionEnabled = YES;
+    chatBgView.backgroundColor = [UIColor whiteColor];
+    [self.wh_tableBody addSubview:chatBgView];
+    chatBgView.layer.cornerRadius = g_factory.cardCornerRadius;
+    chatBgView.layer.masksToBounds = YES;
+    chatBgView.layer.borderColor = g_factory.cardBorderColor.CGColor;
+    chatBgView.layer.borderWidth = g_factory.cardBorderWithd;
+    self.chatBgView = chatBgView;
+    self.wh_iv = [self WH_createMiXinButton:@"聊天背景" drawTop:NO drawBottom:YES must:NO click:@selector(chatbgViewAction) ParentView:chatBgView];
+    self.wh_iv.frame = CGRectMake(0, 0, chatBgView.frame.size.width, HEIGHT);
+    membHeight+=self.wh_iv.frame.size.height;
+    
     ///举报
     membHeight += topBottomMargin;
     [self.topSevenView removeFromSuperview];
@@ -1234,6 +1252,12 @@
     [self.wh_tableBody addSubview:_btn];
     self.exitBtn = _btn;
     return membHeight;
+}
+//聊天背景
+-(void)chatbgViewAction{
+    WH_JXSetChatBackground_WHVC *vc = [[WH_JXSetChatBackground_WHVC alloc] init];
+    vc.userId = self.wh_room.roomJid;
+    [g_navigation pushViewController:vc animated:YES];
 }
 //充值
 -(void)rechargeAction:(UIButton *)sender{

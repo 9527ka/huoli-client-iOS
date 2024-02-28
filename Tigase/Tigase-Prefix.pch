@@ -171,7 +171,7 @@
 
 #define share_defaults [[NSUserDefaults alloc] initWithSuiteName:APP_GROUP_ID]
 
-#define PAGE_SHOW_COUNT 20
+#define PAGE_SHOW_COUNT 50
 
 #define kLastOfflineTime  [NSString stringWithFormat:@"lastOfflineTime_%@",g_myself.userId]   // 离线时间
 #define kTHIRD_LOGIN_AUTO   @"thirdLoginAuto"   // 当前是否是第三方登录

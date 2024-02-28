@@ -251,8 +251,8 @@ static WH_JXHttpRequet *_httpRequet = nil;
             {
                 error = [resultObject objectForKey:@"resultMsg"];
                 if(IsStringNull(error))
-                    error = @"出错拉";
-//                    error
+                    error = @"出错啦";
+    //                    error
             }
         }else{
 //            NSString *data = [NSString stringWithFormat:@"%@",resultObject];
