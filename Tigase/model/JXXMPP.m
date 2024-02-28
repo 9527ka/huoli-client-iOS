@@ -1399,7 +1399,8 @@ static JXXMPP *sharedManager;
 - (void)disconnect
 {
     //未读上报
-    [g_server WH_userChangeMsgNum:[UIApplication sharedApplication].applicationIconBadgeNumber toView:self];
+//    [g_server WH_userChangeMsgNum:[UIApplication sharedApplication].applicationIconBadgeNumber toView:self];
+    
     // 离线前发送消息通知其他端
     [g_multipleLogin sendOfflineMessage];
     

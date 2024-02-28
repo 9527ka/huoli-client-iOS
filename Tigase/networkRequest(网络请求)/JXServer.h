@@ -51,6 +51,10 @@
 //#define BaseUrl @"http://115.29.214.184:8092/"   //线上环境
 //#define BaseUrl @"http://im.liehuo.shop/im/"   //线上环境
 
+//#define BaseUrl @"http://im.liehuo.shop:8092/"   //线上环境
+
+
+
 
 
 
@@ -225,6 +229,7 @@
 
 //群成员的
 //#define wh_act_getSendRedPacketList @"redPacket/group/all"// 获取发送的红包
+#define wh_act_getRedPacketEarnList @"redPacket/group/summary"// 获取红包收益
 #define wh_act_getSendRedPacketList @"redPacket/group/all/summary"// 获取发送的红包
 //#define wh_act_getRedReceiveList @"redPacket/group/received"   // 收到的红包
 #define wh_act_getRedReceiveList @"redPacket/group/received/summary"   // 收到的红包
@@ -850,6 +855,8 @@
 - (void)WH_openRedPacketWithRedPacketId:(NSString *)redPacketId money:(NSString *)moneyStr toView:(id)toView;
 //获取红包记录
 - (void)WH_getConsumeRecordWithIndex:(NSInteger)pageIndex toView:(id)toView;
+// 获得红包收益
+- (void)WH_redPacketEarnListIndex:(NSInteger)index startTime:(NSString *)startTime endTime:(NSString *)endTime type:(NSInteger)type roomJId:(NSString *)roomJId toView:(id)toView;
 // 获得发送的红包
 - (void)WH_redPacketGetSendRedPacketListIndex:(NSInteger)index startTime:(NSString *)startTime endTime:(NSString *)endTime type:(NSInteger)type roomJId:(NSString *)roomJId toView:(id)toView;
 // 获得接收的红包

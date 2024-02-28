@@ -1989,7 +1989,20 @@
     //    [p setPostValue:[NSNumber numberWithInteger:10] forKey:@"pageSize"];
     [p go];
 }
-
+// 获得红包收益
+- (void)WH_redPacketEarnListIndex:(NSInteger)index startTime:(NSString *)startTime endTime:(NSString *)endTime type:(NSInteger)type roomJId:(NSString *)roomJId toView:(id)toView {
+    WH_JXConnection *p = [self addTask:wh_act_getRedPacketEarnList param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:[NSNumber numberWithInteger:index] forKey:@"pageIndex"];
+    //    [p setPostValue:[NSNumber numberWithInteger:10] forKey:@"pageSize"];
+    [p setPostValue:[NSNumber numberWithInteger:200] forKey:@"pageSize"];
+    [p setPostValue:[NSNumber numberWithInteger:type] forKey:@"type"];
+    [p setPostValue:startTime forKey:@"startTime"];
+    [p setPostValue:endTime forKey:@"endTime"];
+    [p setPostValue:roomJId forKey:@"roomJId"];
+    
+    [p go];
+}
 // 获得发送的红包
 - (void)WH_redPacketGetSendRedPacketListIndex:(NSInteger)index startTime:(NSString *)startTime endTime:(NSString *)endTime type:(NSInteger)type roomJId:(NSString *)roomJId toView:(id)toView {
     WH_JXConnection *p = [self addTask:wh_act_getSendRedPacketList param:nil toView:toView];

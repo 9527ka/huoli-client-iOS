@@ -1018,8 +1018,8 @@
             filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/JXServer.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4822"
-            endingLineNumber = "4822"
+            startingLineNumber = "4835"
+            endingLineNumber = "4835"
             landmarkName = "-secretEncryption:payPassword:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1034,8 +1034,8 @@
             filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/JXServer.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4825"
-            endingLineNumber = "4825"
+            startingLineNumber = "4838"
+            endingLineNumber = "4838"
             landmarkName = "-secretEncryption:payPassword:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1050,8 +1050,8 @@
             filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/JXServer.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4801"
-            endingLineNumber = "4801"
+            startingLineNumber = "4814"
+            endingLineNumber = "4814"
             landmarkName = "-WH_AddUserAccountWithName:accountNo:payPassword:type:roomJid:qrCode:addId:telNumber:toView:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1322,8 +1322,8 @@
             filePath = "Tigase/model/JXXMPP.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2149"
-            endingLineNumber = "2149"
+            startingLineNumber = "2150"
+            endingLineNumber = "2150"
             landmarkName = "-xmppStream:didReceiveMessage:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1338,8 +1338,8 @@
             filePath = "Tigase/model/JXXMPP.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2083"
-            endingLineNumber = "2083"
+            startingLineNumber = "2084"
+            endingLineNumber = "2084"
             landmarkName = "-xmppStream:didReceiveMessage:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1354,8 +1354,8 @@
             filePath = "Tigase/model/JXXMPP.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2107"
-            endingLineNumber = "2107"
+            startingLineNumber = "2108"
+            endingLineNumber = "2108"
             landmarkName = "-xmppStream:didReceiveMessage:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1370,8 +1370,8 @@
             filePath = "Tigase/model/JXXMPP.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2039"
-            endingLineNumber = "2039"
+            startingLineNumber = "2040"
+            endingLineNumber = "2040"
             landmarkName = "-xmppStream:didReceiveMessage:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1386,8 +1386,8 @@
             filePath = "Tigase/model/JXXMPP.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2097"
-            endingLineNumber = "2097"
+            startingLineNumber = "2098"
+            endingLineNumber = "2098"
             landmarkName = "-xmppStream:didReceiveMessage:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1402,8 +1402,8 @@
             filePath = "Tigase/model/JXXMPP.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2199"
-            endingLineNumber = "2199"
+            startingLineNumber = "2200"
+            endingLineNumber = "2200"
             landmarkName = "-baiduTranslation:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1466,8 +1466,8 @@
             filePath = "Tigase/model/JXXMPP.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2015"
-            endingLineNumber = "2015"
+            startingLineNumber = "2016"
+            endingLineNumber = "2016"
             landmarkName = "-xmppStream:didReceiveMessage:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1482,8 +1482,8 @@
             filePath = "Tigase/model/JXXMPP.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2587"
-            endingLineNumber = "2587"
+            startingLineNumber = "2588"
+            endingLineNumber = "2588"
             landmarkName = "-doReceiveFriendRequest:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1498,8 +1498,8 @@
             filePath = "Tigase/model/JXXMPP.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1989"
-            endingLineNumber = "1989"
+            startingLineNumber = "1990"
+            endingLineNumber = "1990"
             landmarkName = "-xmppStream:didReceiveMessage:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1754,8 +1754,8 @@
             filePath = "Tigase/model/JXXMPP.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2050"
-            endingLineNumber = "2050"
+            startingLineNumber = "2051"
+            endingLineNumber = "2051"
             landmarkName = "-xmppStream:didReceiveMessage:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1930,8 +1930,8 @@
             filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/JXServer.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4979"
-            endingLineNumber = "4979"
+            startingLineNumber = "4992"
+            endingLineNumber = "4992"
             landmarkName = "-WH_TradeApplyBuyWithAmount:payAmount:payType:merchant:paymentCode:isBuy:toView:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2410,8 +2410,8 @@
             filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/JXServer.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4739"
-            endingLineNumber = "4739"
+            startingLineNumber = "4752"
+            endingLineNumber = "4752"
             landmarkName = "-WH_WithdrawWithAmount:usdtUrl:payPassword:targetAmount:serviceCharge:toView:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2426,8 +2426,8 @@
             filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/JXServer.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4755"
-            endingLineNumber = "4755"
+            startingLineNumber = "4768"
+            endingLineNumber = "4768"
             landmarkName = "-secretEncryption:amount:time:payPassword:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2442,8 +2442,8 @@
             filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/JXServer.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4760"
-            endingLineNumber = "4760"
+            startingLineNumber = "4773"
+            endingLineNumber = "4773"
             landmarkName = "-secretEncryption:amount:time:payPassword:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2458,8 +2458,8 @@
             filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/JXServer.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4762"
-            endingLineNumber = "4762"
+            startingLineNumber = "4775"
+            endingLineNumber = "4775"
             landmarkName = "-secretEncryption:amount:time:payPassword:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2474,8 +2474,8 @@
             filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/JXServer.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4736"
-            endingLineNumber = "4736"
+            startingLineNumber = "4749"
+            endingLineNumber = "4749"
             landmarkName = "-WH_WithdrawWithAmount:usdtUrl:payPassword:targetAmount:serviceCharge:toView:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3402,8 +3402,8 @@
             filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/JXServer.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2486"
-            endingLineNumber = "2486"
+            startingLineNumber = "2499"
+            endingLineNumber = "2499"
             landmarkName = "-WH_addMessage:type:data:flag:visible:lookArray:coor:location:remindArray:lable:isAllowComment:toView:"
             landmarkType = "7">
          </BreakpointContent>

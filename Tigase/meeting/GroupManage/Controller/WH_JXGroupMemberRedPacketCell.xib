@@ -43,32 +43,39 @@
                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXI-3N-vdS">
-                        <rect key="frame" x="310.66666666666669" y="18.666666666666664" width="49.333333333333314" height="22.666666666666664"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXI-3N-vdS">
+                        <rect key="frame" x="303.66666666666669" y="18.666666666666664" width="33.333333333333314" height="22.666666666666664"/>
                         <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="16"/>
                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unit_icon" translatesAutoresizingMaskIntoConstraints="NO" id="SkK-nI-SZU">
+                        <rect key="frame" x="339.33333333333331" y="18" width="23.666666666666686" height="8"/>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="HFJ-ix-tSn" firstAttribute="centerX" secondItem="gUJ-O1-hzt" secondAttribute="centerX" id="Cju-hS-VoU"/>
                     <constraint firstItem="HFJ-ix-tSn" firstAttribute="centerY" secondItem="Fee-eD-gqj" secondAttribute="centerY" id="G30-dA-nIU"/>
+                    <constraint firstItem="SkK-nI-SZU" firstAttribute="top" secondItem="Fee-eD-gqj" secondAttribute="top" constant="18" id="Pkz-Gs-EhS"/>
                     <constraint firstItem="gUJ-O1-hzt" firstAttribute="centerY" secondItem="Fee-eD-gqj" secondAttribute="centerY" id="R8k-ee-D88"/>
                     <constraint firstItem="oB6-pd-KBU" firstAttribute="leading" secondItem="o71-Jb-r5i" secondAttribute="trailing" constant="10" id="YEa-ef-nhH"/>
                     <constraint firstItem="o71-Jb-r5i" firstAttribute="leading" secondItem="gUJ-O1-hzt" secondAttribute="trailing" constant="10" id="YfB-OB-L73"/>
                     <constraint firstItem="o71-Jb-r5i" firstAttribute="centerY" secondItem="Fee-eD-gqj" secondAttribute="centerY" id="awa-ME-QgY"/>
-                    <constraint firstAttribute="trailing" secondItem="aXI-3N-vdS" secondAttribute="trailing" constant="15" id="g9k-lD-QHT"/>
+                    <constraint firstAttribute="trailing" secondItem="aXI-3N-vdS" secondAttribute="trailing" constant="38" id="g9k-lD-QHT"/>
                     <constraint firstItem="oB6-pd-KBU" firstAttribute="centerY" secondItem="Fee-eD-gqj" secondAttribute="centerY" id="lNr-sr-GNe"/>
                     <constraint firstItem="gUJ-O1-hzt" firstAttribute="leading" secondItem="Fee-eD-gqj" secondAttribute="leading" constant="15" id="qRp-w5-edq"/>
                     <constraint firstItem="aXI-3N-vdS" firstAttribute="centerY" secondItem="Fee-eD-gqj" secondAttribute="centerY" id="tMH-Fu-4nT"/>
+                    <constraint firstAttribute="trailing" secondItem="SkK-nI-SZU" secondAttribute="trailing" constant="12" id="u4c-DK-P9Z"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="Ubj-VK-ARD"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="avatarImage" destination="o71-Jb-r5i" id="u16-O5-44W"/>
+                <outlet property="hotcIcon" destination="SkK-nI-SZU" id="M6u-7S-QaR"/>
                 <outlet property="medalIcon" destination="gUJ-O1-hzt" id="f8f-KG-QNS"/>
                 <outlet property="moneyLabel" destination="aXI-3N-vdS" id="8xE-mr-gwE"/>
+                <outlet property="moneyRightConstaint" destination="g9k-lD-QHT" id="gL3-sB-e5A"/>
                 <outlet property="nicknameLabel" destination="oB6-pd-KBU" id="H2f-16-yib"/>
                 <outlet property="numberLabel" destination="HFJ-ix-tSn" id="poa-EO-R07"/>
             </connections>
@@ -77,5 +84,6 @@
     </objects>
     <resources>
         <image name="gold_medal" width="20" height="20"/>
+        <image name="unit_icon" width="23.666666030883789" height="8"/>
     </resources>
 </document>

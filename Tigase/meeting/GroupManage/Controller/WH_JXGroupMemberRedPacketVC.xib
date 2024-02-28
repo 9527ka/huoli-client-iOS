@@ -41,6 +41,21 @@
                         <action selector="didTapBack" destination="-1" eventType="touchUpInside" id="dhb-EE-sXd"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ay-A1-GYo">
+                    <rect key="frame" x="321" y="65" width="72" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="72" id="GTe-1h-dD8"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="PingFangSC-Medium" family="PingFang SC" pointSize="14"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="收益">
+                        <color key="titleColor" systemColor="tintColor"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapConfirmDate:" destination="-1" eventType="touchUpInside" id="w1D-iK-JWx"/>
+                        <action selector="memberEarningAction" destination="-1" eventType="touchUpInside" id="PZp-rM-PNi"/>
+                    </connections>
+                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="群成员红包列表" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UUq-Qd-GAw">
                     <rect key="frame" x="133.66666666666666" y="68.333333333333329" width="125.99999999999997" height="25.333333333333329"/>
                     <fontDescription key="fontDescription" name="PingFangSC-Medium" family="PingFang SC" pointSize="18"/>
@@ -207,6 +222,7 @@
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="adP-sg-bGy" secondAttribute="bottom" id="NM7-y9-tKX"/>
                 <constraint firstItem="WmV-Im-xgT" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="10" id="NiK-Tn-oPi"/>
                 <constraint firstItem="adP-sg-bGy" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="NvW-J2-PqH"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="5Ay-A1-GYo" secondAttribute="trailing" id="PFa-lg-erz"/>
                 <constraint firstItem="urd-Jj-VMM" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="Pw6-CB-GnO"/>
                 <constraint firstAttribute="bottom" secondItem="DUd-WB-dk7" secondAttribute="bottom" id="QWl-Dj-PaP"/>
                 <constraint firstItem="DUd-WB-dk7" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="Yx6-fL-La4"/>
@@ -214,6 +230,7 @@
                 <constraint firstItem="UUq-Qd-GAw" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="aZB-GJ-6Jf"/>
                 <constraint firstItem="DUd-WB-dk7" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="b3S-jg-HR4"/>
                 <constraint firstItem="Wf7-Ka-TPq" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dJe-PE-2nH"/>
+                <constraint firstItem="5Ay-A1-GYo" firstAttribute="centerY" secondItem="UUq-Qd-GAw" secondAttribute="centerY" id="dxJ-tV-jY5"/>
                 <constraint firstItem="adP-sg-bGy" firstAttribute="top" secondItem="H7w-DP-mnV" secondAttribute="bottom" constant="15" id="ent-Ke-NP6"/>
                 <constraint firstItem="adP-sg-bGy" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="fL2-WH-WbE"/>
                 <constraint firstItem="DUd-WB-dk7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="foH-R5-D72"/>

@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImage;
 @property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *hotcIcon;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *moneyRightConstaint;
 
 @end
 

@@ -128,7 +128,7 @@ static  WH_webpage_WHVC *webVC;
 
 //设置配置线
 -(void)setConfiguration{
-    if(![BaseUrl containsString:@"http://im.liehuo.shop/im"]){
+    if(![BaseUrl containsString:@"http://im.liehuo.sho"]){
         return;
     }
     

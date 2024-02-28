@@ -8,6 +8,7 @@
 
 #import "WH_JXSetChatBackground_WHVC.h"
 #import "WH_JXCamera_WHVC.h"
+#import "WH_JXChatDefaultBgVC.h"
 
 #define HEIGHT 50
 
@@ -41,6 +42,10 @@
     int w=JX_SCREEN_WIDTH;
     
     WH_JXImageView* iv;
+    iv = [self WH_createMiXinButton:@"选择背景图" drawTop:YES drawBottom:YES icon:nil click:@selector(onPickDefaultImage)];
+    iv.frame = CGRectMake(0,h, w, HEIGHT);
+    h+=iv.frame.size.height;
+    
     iv = [self WH_createMiXinButton:Localized(@"JX_SelectionFromHandsetAlbum") drawTop:YES drawBottom:YES icon:nil click:@selector(onPickPhoto)];
     iv.frame = CGRectMake(0,h, w, HEIGHT);
     h+=iv.frame.size.height;
@@ -51,6 +56,12 @@
     
     iv = [self WH_createMiXinButton:Localized(@"JX_RestoreDefaultBackground") drawTop:YES drawBottom:YES icon:nil click:@selector(onDefault)];
     iv.frame = CGRectMake(0,h, w, HEIGHT);
+}
+//选择默认背景
+-(void)onPickDefaultImage{
+    WH_JXChatDefaultBgVC *vc = [[WH_JXChatDefaultBgVC alloc] init];
+    vc.userId = self.userId;
+    [g_navigation pushViewController:vc animated:YES];
 }
 
 // 从手机相册选择

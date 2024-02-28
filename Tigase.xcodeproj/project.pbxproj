@@ -726,6 +726,10 @@
 		330F3B912B32BF2500E69B97 /* WH_JXOrderDetaileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 330F3B8F2B32BF2500E69B97 /* WH_JXOrderDetaileVC.m */; };
 		330F3B922B32BF2500E69B97 /* WH_JXOrderDetaileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 330F3B902B32BF2500E69B97 /* WH_JXOrderDetaileVC.xib */; };
 		332DB1AA2B82FEA000B4D6D4 /* WH_JXLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 332DB1A92B82FEA000B4D6D4 /* WH_JXLoginVC.m */; };
+		332DB1B42B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 332DB1B22B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.m */; };
+		332DB1B52B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 332DB1B32B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.xib */; };
+		332DB1B82B8ED68E00B4D6D4 /* WH_JXChatDefaultBgVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 332DB1B72B8ED68E00B4D6D4 /* WH_JXChatDefaultBgVC.m */; };
+		332DB1BB2B8EDC1A00B4D6D4 /* WH_JXChatDefaultBgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 332DB1BA2B8EDC1A00B4D6D4 /* WH_JXChatDefaultBgCell.m */; };
 		333824DE2B34150700AC4B06 /* WH_JXOrderListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 333824DC2B34150700AC4B06 /* WH_JXOrderListVC.m */; };
 		333824DF2B34150700AC4B06 /* WH_JXOrderListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 333824DD2B34150700AC4B06 /* WH_JXOrderListVC.xib */; };
 		333824E32B342B6400AC4B06 /* WH_JXOrderListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 333824E12B342B6400AC4B06 /* WH_JXOrderListCell.m */; };
@@ -3147,6 +3151,13 @@
 		330F3B902B32BF2500E69B97 /* WH_JXOrderDetaileVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXOrderDetaileVC.xib; sourceTree = "<group>"; };
 		332DB1A82B82FEA000B4D6D4 /* WH_JXLoginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXLoginVC.h; sourceTree = "<group>"; };
 		332DB1A92B82FEA000B4D6D4 /* WH_JXLoginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXLoginVC.m; sourceTree = "<group>"; };
+		332DB1B12B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXGroupMemberEarningVC.h; sourceTree = "<group>"; };
+		332DB1B22B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXGroupMemberEarningVC.m; sourceTree = "<group>"; };
+		332DB1B32B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXGroupMemberEarningVC.xib; sourceTree = "<group>"; };
+		332DB1B62B8ED68E00B4D6D4 /* WH_JXChatDefaultBgVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXChatDefaultBgVC.h; sourceTree = "<group>"; };
+		332DB1B72B8ED68E00B4D6D4 /* WH_JXChatDefaultBgVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXChatDefaultBgVC.m; sourceTree = "<group>"; };
+		332DB1B92B8EDC1A00B4D6D4 /* WH_JXChatDefaultBgCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXChatDefaultBgCell.h; sourceTree = "<group>"; };
+		332DB1BA2B8EDC1A00B4D6D4 /* WH_JXChatDefaultBgCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXChatDefaultBgCell.m; sourceTree = "<group>"; };
 		333824DB2B34150700AC4B06 /* WH_JXOrderListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXOrderListVC.h; sourceTree = "<group>"; };
 		333824DC2B34150700AC4B06 /* WH_JXOrderListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXOrderListVC.m; sourceTree = "<group>"; };
 		333824DD2B34150700AC4B06 /* WH_JXOrderListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXOrderListVC.xib; sourceTree = "<group>"; };
@@ -9093,6 +9104,9 @@
 				33CD3C6A2B64F999001BFBFF /* WH_JXRedPacketSecCell.h */,
 				33CD3C6B2B64F999001BFBFF /* WH_JXRedPacketSecCell.m */,
 				33CD3C6C2B64F999001BFBFF /* WH_JXRedPacketSecCell.xib */,
+				332DB1B12B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.h */,
+				332DB1B22B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.m */,
+				332DB1B32B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -9794,6 +9808,8 @@
 				DE64B3D922AF506E00FDDB15 /* WH_JXHaveInverted_WHCell.xib */,
 				DE5E40D222F03A5B00D98B8F /* WH_BtnInCenter_WHCell.h */,
 				DE5E40D322F03A5B00D98B8F /* WH_BtnInCenter_WHCell.m */,
+				332DB1B92B8EDC1A00B4D6D4 /* WH_JXChatDefaultBgCell.h */,
+				332DB1BA2B8EDC1A00B4D6D4 /* WH_JXChatDefaultBgCell.m */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -9852,6 +9868,8 @@
 				CC4DD7411A5E2A660002FFEB /* WH_JXSetting_WHVC.mm */,
 				0F6D75641FDA404D003CD7A2 /* WH_JXSetChatBackground_WHVC.h */,
 				0F6D75651FDA404D003CD7A2 /* WH_JXSetChatBackground_WHVC.m */,
+				332DB1B62B8ED68E00B4D6D4 /* WH_JXChatDefaultBgVC.h */,
+				332DB1B72B8ED68E00B4D6D4 /* WH_JXChatDefaultBgVC.m */,
 				0F30AA8620B2ADDB001CC39C /* WH_JXSetChatTextFont_WHVC.h */,
 				0F30AA8720B2ADDB001CC39C /* WH_JXSetChatTextFont_WHVC.m */,
 				6393A9582239EC8C005CE2D6 /* WH_JXAccountBinding_WHVC.h */,
@@ -11169,6 +11187,7 @@
 				0F5C92971E4DA252005C31C2 /* WH_input_ptt_normal@2x.png in Resources */,
 				CC3016A11951BABF0059BADA /* f001@2x.png in Resources */,
 				CCC88B631E4C526E00180080 /* recorder_trash_can2.png in Resources */,
+				332DB1B52B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.xib in Resources */,
 				CC3016E21951BABF0059BADA /* f034.png in Resources */,
 				CC3017191951BABF0059BADA /* f061@2x.png in Resources */,
 				CC3016B21951BABF0059BADA /* f010.png in Resources */,
@@ -11605,6 +11624,7 @@
 				B203A84223238E85001B2575 /* WH_LoginViewController.m in Sources */,
 				0F304DC52153AD0E001EC77E /* XMPPvCardTempModule.m in Sources */,
 				B22AA224233A0D3200906412 /* AppVersionControll.m in Sources */,
+				332DB1B82B8ED68E00B4D6D4 /* WH_JXChatDefaultBgVC.m in Sources */,
 				CC6E16A519794B5A006ADA8A /* QBImagePickerVideoInfoView.m in Sources */,
 				0F745D96225B3061009FFEAD /* WH_JXSearchFileLog_WHVC.m in Sources */,
 				0F304DBF2153AD0E001EC77E /* XMPPJabberRPCModule.m in Sources */,
@@ -12253,6 +12273,7 @@
 				0FA2D6C11FB05D5100D51BB9 /* WH_GPUImageBeautifyFilter.m in Sources */,
 				0F304DC82153AD0E001EC77E /* XMPPvCard.xcdatamodeld in Sources */,
 				0F304E302153AD0E001EC77E /* XMPPXOAuth2Google.m in Sources */,
+				332DB1B42B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.m in Sources */,
 				88D9A2841F3B07A600CE321F /* WH_JXAutoSizeImageView.m in Sources */,
 				0F304E352153AD0E001EC77E /* DDContextFilterLogFormatter.m in Sources */,
 				0F304E172153AD0E001EC77E /* XMPPMessage+XEP_0066.m in Sources */,
@@ -12663,6 +12684,7 @@
 				DE5C695C232666D400321406 /* MiXin_WithdrawStatus_MiXinVC.m in Sources */,
 				0FA2D6511FB05CCD00D51BB9 /* GPUImagePosterizeFilter.m in Sources */,
 				6317CCA81FB9798500CEF9EF /* DMHeartFlyView.m in Sources */,
+				332DB1BB2B8EDC1A00B4D6D4 /* WH_JXChatDefaultBgCell.m in Sources */,
 				CCC88D061E4C772200180080 /* WH_JXSettings_WHCell.m in Sources */,
 				CC1D191E1954527F0029F7FD /* addMsgVC.m in Sources */,
 				B203A84F23238E94001B2575 /* WH_PSRegisterBaseVC.m in Sources */,
@@ -12895,10 +12917,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DOUBANGO_HOME = "$(SRCROOT)/Tigase/meeting/ios-ngn-stack/stacks";
-				DOUBANGO_LIBS = "$DOUBANGO_HOME/thirdparties/iphone/lib/i386";
-				"DOUBANGO_LIBS[arch=armv6]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/armv6";
-				"DOUBANGO_LIBS[arch=armv7]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/armv7";
-				"DOUBANGO_LIBS[sdk=iphonesimulator*][arch=*]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/i386";
+				DOUBANGO_LIBS = $DOUBANGO_HOME/thirdparties/iphone/lib/i386;
+				"DOUBANGO_LIBS[arch=armv6]" = $DOUBANGO_HOME/thirdparties/iphone/lib/armv6;
+				"DOUBANGO_LIBS[arch=armv7]" = $DOUBANGO_HOME/thirdparties/iphone/lib/armv7;
+				"DOUBANGO_LIBS[sdk=iphonesimulator*][arch=*]" = $DOUBANGO_HOME/thirdparties/iphone/lib/i386;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -12944,10 +12966,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				DOUBANGO_HOME = "$(SRCROOT)/Tigase/meeting/ios-ngn-stack/stacks";
-				DOUBANGO_LIBS = "$DOUBANGO_HOME/thirdparties/iphone/lib/i386";
-				"DOUBANGO_LIBS[arch=armv6]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/armv6";
-				"DOUBANGO_LIBS[arch=armv7]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/armv7";
-				"DOUBANGO_LIBS[sdk=iphonesimulator*][arch=*]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/i386";
+				DOUBANGO_LIBS = $DOUBANGO_HOME/thirdparties/iphone/lib/i386;
+				"DOUBANGO_LIBS[arch=armv6]" = $DOUBANGO_HOME/thirdparties/iphone/lib/armv6;
+				"DOUBANGO_LIBS[arch=armv7]" = $DOUBANGO_HOME/thirdparties/iphone/lib/armv7;
+				"DOUBANGO_LIBS[sdk=iphonesimulator*][arch=*]" = $DOUBANGO_HOME/thirdparties/iphone/lib/i386;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -12984,16 +13006,16 @@
 				CODE_SIGN_ENTITLEMENTS = Tigase/Tigase.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 28;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 6QM4SXGT4R;
 				DOUBANGO_HOME = "";
 				DOUBANGO_LIBS = "";
-				"DOUBANGO_LIBS[arch=arm64]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/arm64";
-				"DOUBANGO_LIBS[arch=armv6]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/armv6";
-				"DOUBANGO_LIBS[arch=armv7]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/armv7";
-				"DOUBANGO_LIBS[arch=armv7s]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/armv7s";
-				"DOUBANGO_LIBS[sdk=iphonesimulator*][arch=*]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/x86_64";
+				"DOUBANGO_LIBS[arch=arm64]" = $DOUBANGO_HOME/thirdparties/iphone/lib/arm64;
+				"DOUBANGO_LIBS[arch=armv6]" = $DOUBANGO_HOME/thirdparties/iphone/lib/armv6;
+				"DOUBANGO_LIBS[arch=armv7]" = $DOUBANGO_HOME/thirdparties/iphone/lib/armv7;
+				"DOUBANGO_LIBS[arch=armv7s]" = $DOUBANGO_HOME/thirdparties/iphone/lib/armv7s;
+				"DOUBANGO_LIBS[sdk=iphonesimulator*][arch=*]" = $DOUBANGO_HOME/thirdparties/iphone/lib/x86_64;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -13092,16 +13114,16 @@
 				CODE_SIGN_ENTITLEMENTS = Tigase/Tigase.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 28;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 6QM4SXGT4R;
 				DOUBANGO_HOME = "";
 				DOUBANGO_LIBS = "";
-				"DOUBANGO_LIBS[arch=arm64]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/arm64";
-				"DOUBANGO_LIBS[arch=armv6]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/armv6";
-				"DOUBANGO_LIBS[arch=armv7]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/armv7";
-				"DOUBANGO_LIBS[arch=armv7s]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/armv7s";
-				"DOUBANGO_LIBS[sdk=iphonesimulator*][arch=*]" = "$DOUBANGO_HOME/thirdparties/iphone/lib/x86_64";
+				"DOUBANGO_LIBS[arch=arm64]" = $DOUBANGO_HOME/thirdparties/iphone/lib/arm64;
+				"DOUBANGO_LIBS[arch=armv6]" = $DOUBANGO_HOME/thirdparties/iphone/lib/armv6;
+				"DOUBANGO_LIBS[arch=armv7]" = $DOUBANGO_HOME/thirdparties/iphone/lib/armv7;
+				"DOUBANGO_LIBS[arch=armv7s]" = $DOUBANGO_HOME/thirdparties/iphone/lib/armv7s;
+				"DOUBANGO_LIBS[sdk=iphonesimulator*][arch=*]" = $DOUBANGO_HOME/thirdparties/iphone/lib/x86_64;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -13140,7 +13162,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$DOUBANGO_LIBS",
+					$DOUBANGO_LIBS,
 					"$(PROJECT_DIR)/Tigase/meeting/libs/arm",
 					"$(PROJECT_DIR)/Tigase/audioRecorder",
 					"$(PROJECT_DIR)/Tigase/3rd/alipay/Util",
