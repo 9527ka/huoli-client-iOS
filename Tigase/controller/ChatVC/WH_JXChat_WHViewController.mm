@@ -1877,19 +1877,20 @@
                 }
                 if (loadHistory) {
                     if (self.roomJid.length > 0) { //&&_taskList.count > 0
-                        long  endTime = 0;
-                        WH_JXMessageObject *msg = _array.firstObject;
-                        if (msg) {
-                            // 7天前的时间戳
-                            endTime = [msg.timeSend timeIntervalSince1970] * 1000;
-                            if (endTime == 0) {
-                                endTime = [[NSDate date] timeIntervalSince1970] * 1000;
-                            }
-                        }
+//                        long  endTime = 0;
+//                        WH_JXMessageObject *msg = _array.firstObject;
+//                        if (msg) {
+//                            // 7天前的时间戳
+//                            endTime = [msg.timeSend timeIntervalSince1970] * 1000;
+//                            if (endTime == 0) {
+//                                endTime = [[NSDate date] timeIntervalSince1970] * 1000;
+//                            }
+//                        }
+//                        [NSDate dateWithTimeIntervalSince1970:endTime]
+//
+                        JXSynTask *task = _taskList.firstObject;
                         
-//                        JXSynTask *task = _taskList.firstObject;
-                        
-                        p = [[WH_JXMessageObject sharedInstance] fetchMessageListWithUser:s byAllNum:_array.count pageCount:pageCount startTime:[NSDate dateWithTimeIntervalSince1970:endTime]];
+                        p = [[WH_JXMessageObject sharedInstance] fetchMessageListWithUser:s byAllNum:_array.count pageCount:pageCount startTime:task.endTime];
                         
                     }else {
                         p = [[WH_JXMessageObject sharedInstance] fetchMessageListWithUser:s byAllNum:_array.count pageCount:pageCount startTime:[NSDate dateWithTimeIntervalSince1970:0]];
@@ -1975,12 +1976,14 @@
                     [_table reloadData];
                     
                     if(self.requestCount == _array.count){//第一次请求
-                        [_table WH_gotoLastRow:NO];
+//                        [_table WH_gotoLastRow:NO];
                         NSLog(@"=====走了数据=======11111111111111");
+                        _table.contentOffset = CGPointMake(0, allHeight);
                     }else{
                         if (_array.count > self.requestCount) {
-                            [_table WH_gotoRow:self.requestCount];
+//                            [_table WH_gotoRow:self.requestCount];
                             NSLog(@"=====走了数据=======666666666");
+                            _table.contentOffset = CGPointMake(0, allHeight);
                         }
                     }
                     
@@ -1994,8 +1997,9 @@
                         [_table reloadData];
     //                    [self scrollToCurrentLine];
                         
-                        [_table WH_gotoLastRow:NO];
+//                        [_table WH_gotoLastRow:NO];
                         NSLog(@"=====走了数据=======2222222222");
+                        _table.contentOffset = CGPointMake(0, allHeight);
                     });
                 }
                 
@@ -2005,15 +2009,16 @@
                     
                     [_table reloadData];
                     if (self.isSyncMsg || self.isGotoLast) {
-                        [_table WH_gotoLastRow:NO];
+//                        [_table WH_gotoLastRow:NO];
                         NSLog(@"=====走了数据=======3333333");
+                        _table.contentOffset = CGPointMake(0, allHeight);
                     }
                 }
                 else{
                     if([_array count]>0){
                         
                         [_table reloadData];
-                        [_table WH_gotoLastRow:NO];
+//                        [_table WH_gotoLastRow:NO];
                         _table.contentOffset = CGPointMake(0, allHeight);
                         NSLog(@"=====走了数据=======444444444");
                         

@@ -81,9 +81,11 @@
         [cell setDataWithMsg:msg model:model];
     }else if ([msg.type intValue] == kRoomRemind_REQUEST_NOTIFICATION ||[msg.type intValue] == kRoomRemind_REQUEST_PAID ||[msg.type intValue] == kRoomRemind_REQUEST_CONFIRMED ||[msg.type intValue] == kRoomRemind_REQUEST_CANCELLED ||[msg.type intValue] == kRoomRemind_REQUEST_REFUND ||[msg.type intValue] == kRoomRemind_REQUEST_COMPLAINING ||[msg.type intValue] == kRoomRemind_REQUEST_COMPLAINING_END ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_REFUND ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_PAID ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_CONFIRMED||[msg.type intValue] == kWCMessageTypeUpgrade||[msg.type intValue] == kWCMessageTypeRenewal||[msg.type intValue] == kWCMessageTypeActivePay || [msg.type intValue] == kWCMessageTypeWirawRefuse || [msg.type intValue] == kWCMessageTypeRedPacketReturn) {
         
-        WH_JXTransferModel *model = [[WH_JXTransferModel alloc] init];
-        [model getTransferDataWithDict:dict];
-        [cell setDataWithMsg:msg model:model];
+        if(dict){
+            WH_JXTransferModel *model = [[WH_JXTransferModel alloc] init];
+            [model getTransferDataWithDict:dict];
+            [cell setDataWithMsg:msg model:model];
+        }
         
     }else {
         WH_JXTransferNoticeModel *model = [[WH_JXTransferNoticeModel alloc]init];
