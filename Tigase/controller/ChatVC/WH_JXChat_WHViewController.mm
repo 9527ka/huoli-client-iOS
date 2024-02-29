@@ -1876,11 +1876,20 @@
                     pageCount = self.newMsgCount;
                 }
                 if (loadHistory) {
-                    if (self.roomJid.length > 0 && _taskList.count > 0) {
+                    if (self.roomJid.length > 0) { //&&_taskList.count > 0
+                        long  endTime = 0;
+                        WH_JXMessageObject *msg = _array.firstObject;
+                        if (msg) {
+                            // 7天前的时间戳
+                            endTime = [msg.timeSend timeIntervalSince1970] * 1000;
+                            if (endTime == 0) {
+                                endTime = [[NSDate date] timeIntervalSince1970] * 1000;
+                            }
+                        }
                         
-                        JXSynTask *task = _taskList.firstObject;
+//                        JXSynTask *task = _taskList.firstObject;
                         
-                        p = [[WH_JXMessageObject sharedInstance] fetchMessageListWithUser:s byAllNum:_array.count pageCount:pageCount startTime:task.endTime];
+                        p = [[WH_JXMessageObject sharedInstance] fetchMessageListWithUser:s byAllNum:_array.count pageCount:pageCount startTime:[NSDate dateWithTimeIntervalSince1970:endTime]];
                         
                     }else {
                         p = [[WH_JXMessageObject sharedInstance] fetchMessageListWithUser:s byAllNum:_array.count pageCount:pageCount startTime:[NSDate dateWithTimeIntervalSince1970:0]];
@@ -5895,6 +5904,9 @@
         _audioMeetingNo = [NSString stringWithFormat:@"%@",dict[@"call"]];
         _videoMeetingNo = [NSString stringWithFormat:@"%@",dict[@"videoMeetingNo"]];
         _userNickName = dict[@"nickname"];
+        if(!_userNickName){
+            _userNickName = MY_USER_NAME;
+        }
         [_table reloadData];
         
         if (self.relayMsgArray.count > 0) {

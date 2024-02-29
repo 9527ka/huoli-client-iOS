@@ -2041,8 +2041,7 @@ static JXXMPP *sharedManager;
                         isSysTom = YES;
                     }
 
-                    if (![msg haveTheMessage] && !isSysTom) {//消息不存在
-
+                    if (![msg haveTheMessage] && !isSysTom && !msg.isGroup) {//消息不存在
                         [self baiduTranslation:msg];
 //                        [msg updateLastSend:UpdateLastSendType_Add];
 //                                [msg notifyNewMsg];//在显示时检测MessageId是否已显示

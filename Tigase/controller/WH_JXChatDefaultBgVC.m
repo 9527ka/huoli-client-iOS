@@ -26,7 +26,7 @@
     self.wh_heightFooter = 0;
     //self.view.frame = CGRectMake(0, 0, JX_SCREEN_WIDTH, JX_SCREEN_HEIGHT);
     [self createHeadAndFoot];
-    _dataArray = [NSMutableArray arrayWithArray:@[@"chat_bg_1",@"chat_bg_2",@"chat_bg_3",@"chat_bg_4",@"chat_bg_5",@"chat_bg_6",@"chat_bg_7",@"chat_bg_8",@"chat_bg_9"]];
+    _dataArray = [NSMutableArray arrayWithArray:@[@"chat_bg_1",@"chat_bg_2",@"chat_bg_3",@"chat_bg_4",@"chat_bg_5",@"chat_bg_6",@"chat_bg_7",@"chat_bg_8",@"chat_bg_9",@"chat_bg_10",@"chat_bg_11"]];
     [self creatUI];
 }
 
@@ -93,6 +93,9 @@
     if(indexPath.item < self.dataArray.count){
         NSString *name = [NSString stringWithFormat:@"%@",self.dataArray[indexPath.item]];
         UIImage *image = [UIImage imageNamed:name];
+        if(!image){
+            return;
+        }
         NSData *imageData = UIImageJPEGRepresentation(image, 1);
         BOOL isSuccess = NO;
         if (self.userId.length > 0) {
