@@ -38,7 +38,7 @@
 #define WH_hide_error 0
 
 
-//#define BaseUrl @"http://192.168.1.88:8092/"   //开发环境
+#define BaseUrl @"http://192.168.1.88:8092/"   //开发环境
 //#define BaseUrl @"http://195.54.171.69:8092"   //测试环境
 //#define BaseUrl @"http://47.122.20.170:8092/"   //南京环境
 //#define BaseUrl @"http://8.217.169.145:8092"   //
@@ -51,7 +51,7 @@
 //#define BaseUrl @"http://115.29.214.184:8092/"   //线上环境
 //#define BaseUrl @"http://im.liehuo.shop/im/"   //线上环境
 
-#define BaseUrl @"http://im.liehuo.shop:8092/"   //线上环境
+//#define BaseUrl @"http://im.liehuo.shop:8092/"   //线上环境
 
 
 
@@ -474,7 +474,7 @@
 #define wh_shortcut_update @"room/shortcut/update"    //更新秒抢配置
 #define wh_shortcut_delete @"room/shortcut/delete"    //删除秒抢红包成员
 #define wh_login_send @"log/send"    //调用接口不是预期的,或报错时,上传错误接口
-
+#define wh_room_ClearRecord @"room/resetTime"    //删除群成员红包记录
 
 
 
@@ -1375,6 +1375,8 @@
 
 #pragma mark -- 错误上传接口
 -(void)WH_erroUpdatWithContent:(NSString *)content toView:(id)toView;
+#pragma mark -- 删除群成员红包记录
+-(void)WH_clearRedRecordWithId:(NSString *)roomId toView:(id)toView;
 
 
 

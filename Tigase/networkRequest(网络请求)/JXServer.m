@@ -5132,6 +5132,17 @@
     [p go];
 }
 
+#pragma mark -- 删除群成员红包记录
+-(void)WH_clearRedRecordWithId:(NSString *)roomId toView:(id)toView{
+    WH_JXConnection* p = [self addTask:wh_room_ClearRecord param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:roomId forKey:@"roomId"];
+    
+    [p go];
+}
+
+
+
 
 
 

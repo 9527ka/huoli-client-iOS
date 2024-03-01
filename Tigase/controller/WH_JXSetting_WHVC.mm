@@ -36,6 +36,7 @@
 #import "WH_JXAccountBinding_WHVC.h"
 #import "WH_JXSecuritySetting_WHVC.h"
 #import "WH_JXLoginVC.h"
+#import "WH_JXDownloadUrlVC.h"
 
 #define HEIGHT 55
 
@@ -181,6 +182,13 @@
 //            iv.frame = CGRectMake(0,HEIGHT, w, HEIGHT);
             h += view.frame.size.height+12;
         }
+        
+        
+        UIView *downLoadView = [self bgViewWithOrginY:h viewHeight:HEIGHT];
+        iv = [self WH_createMiXinButton:@"下载地址" drawTop:YES drawBottom:YES icon:nil click:@selector(onCopyUrlAction) superView:downLoadView];
+        iv.frame = CGRectMake(0, 0, w, HEIGHT);
+        h += downLoadView.frame.size.height+12;
+        
         
         UIView *aboutUs = [self bgViewWithOrginY:h viewHeight:HEIGHT];
         iv = [self WH_createMiXinButton:Localized(@"WaHu_AboutUs_WaHu") drawTop:YES drawBottom:YES icon:nil click:@selector(onAbout) superView:aboutUs];
@@ -675,6 +683,11 @@
 
 - (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+//下载地址
+-(void)onCopyUrlAction{
+    WH_JXDownloadUrlVC *vc = [[WH_JXDownloadUrlVC alloc] init];
+    [g_navigation pushViewController:vc animated:YES];
 }
 
 -(void)onAbout{

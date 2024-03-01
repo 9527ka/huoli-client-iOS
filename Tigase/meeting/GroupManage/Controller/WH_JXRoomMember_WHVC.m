@@ -56,6 +56,7 @@
 #import "WH_JXRoomDiamoundRechargeVC.h"
 #import "OBSHanderTool.h"
 #import "WH_JXSetChatBackground_WHVC.h"
+#import "UIAlertController+category.h"
 
 #define HEIGHT 55
 #define IMGSIZE 170
@@ -387,6 +388,10 @@
             [g_navigation pushViewController:vc animated:YES];
         }
             
+    }
+    
+    if( [aDownload.action isEqualToString:wh_room_ClearRecord] ){
+        [g_server showMsg:@"清除成功"];
     }
     
     if( [aDownload.action isEqualToString:wh_act_UserGet] ){
@@ -1024,9 +1029,13 @@
     self.wh_iv.frame = CGRectMake(0, 0, self.redPacketView.frame.size.width, HEIGHT);
     membHeight+=self.wh_iv.frame.size.height;
     if ([data.role intValue] == 1 || [data.role intValue] == 2) {
-        self.redPacketView.height = HEIGHT * 2;
+        self.redPacketView.height = HEIGHT * 3;
         self.wh_iv = [self WH_createMiXinButton:self.wh_room.category == 1?@"群成员钻石红包列表":@"群成员红包列表" drawTop:YES drawBottom:NO must:NO click:@selector(groupMemberRedPacketListAction) ParentView:self.redPacketView];
         self.wh_iv.frame = CGRectMake(0, HEIGHT, self.redPacketView.frame.size.width, HEIGHT);
+        membHeight+=self.wh_iv.frame.size.height;
+        
+        self.wh_iv = [self WH_createMiXinButton:self.wh_room.category == 1?@"清除群成员红包信息":@"清除群成员钻石信息" drawTop:YES drawBottom:NO must:NO click:@selector(groupMemberRedPacketClearAction) ParentView:self.redPacketView];
+        self.wh_iv.frame = CGRectMake(0, HEIGHT*2, self.redPacketView.frame.size.width, HEIGHT);
         membHeight+=self.wh_iv.frame.size.height;
     }
     if ([data.role intValue] == 1 || [data.role intValue] == 2 || self.wh_room.showAllValidRedPacket) {//群主开启了也可以使用
@@ -1855,6 +1864,15 @@
     vc.room = self.wh_room;
     [g_navigation pushViewController:vc animated:YES];
 }
+// MARK: -- 清除群成员红包列表
+- (void)groupMemberRedPacketClearAction {
+    [UIAlertController showAlertViewWithTitle:@"清除信息" message:@"确定删除群成员发送红包和领取红包的数据么" controller:self block:^(NSInteger buttonIndex) {
+        if (buttonIndex==1) {//删除
+            [g_server WH_clearRedRecordWithId:self.wh_room.roomId toView:self];
+        }
+    } cancelButtonTitle:Localized(@"JX_Cencal") otherButtonTitles:Localized(@"JX_Confirm")];
+}
+
 
 // MARK: -- 长时间未领取红包
 - (void)groupMemberRedPacketUnclaimedAction {

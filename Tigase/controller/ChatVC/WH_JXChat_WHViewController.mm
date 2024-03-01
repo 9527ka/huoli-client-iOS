@@ -1976,14 +1976,12 @@
                     [_table reloadData];
                     
                     if(self.requestCount == _array.count){//第一次请求
-//                        [_table WH_gotoLastRow:NO];
+                        [_table WH_gotoLastRow:NO];
                         NSLog(@"=====走了数据=======11111111111111");
-                        _table.contentOffset = CGPointMake(0, allHeight);
                     }else{
                         if (_array.count > self.requestCount) {
-//                            [_table WH_gotoRow:self.requestCount];
+                            [_table WH_gotoRow:self.requestCount];
                             NSLog(@"=====走了数据=======666666666");
-                            _table.contentOffset = CGPointMake(0, allHeight);
                         }
                     }
                     
@@ -1997,9 +1995,8 @@
                         [_table reloadData];
     //                    [self scrollToCurrentLine];
                         
-//                        [_table WH_gotoLastRow:NO];
+                        [_table WH_gotoLastRow:NO];
                         NSLog(@"=====走了数据=======2222222222");
-                        _table.contentOffset = CGPointMake(0, allHeight);
                     });
                 }
                 
@@ -2009,16 +2006,15 @@
                     
                     [_table reloadData];
                     if (self.isSyncMsg || self.isGotoLast) {
-//                        [_table WH_gotoLastRow:NO];
+                        [_table WH_gotoLastRow:NO];
                         NSLog(@"=====走了数据=======3333333");
-                        _table.contentOffset = CGPointMake(0, allHeight);
                     }
                 }
                 else{
                     if([_array count]>0){
                         
                         [_table reloadData];
-//                        [_table WH_gotoLastRow:NO];
+                        [_table WH_gotoLastRow:NO];
                         _table.contentOffset = CGPointMake(0, allHeight);
                         NSLog(@"=====走了数据=======444444444");
                         
