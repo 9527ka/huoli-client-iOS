@@ -674,7 +674,7 @@ static  WH_webpage_WHVC *webVC;
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     [g_server outTime:nil];
-    [g_server WH_userChangeMsgNum:[UIApplication sharedApplication].applicationIconBadgeNumber toView:self];
+//    [g_server WH_userChangeMsgNum:[UIApplication sharedApplication].applicationIconBadgeNumber toView:self];
     [g_myself saveCurrentUser:[g_myself toDictionary]];
 #if TAR_IM
 #ifdef Meeting_Version

@@ -60,7 +60,7 @@
 
                     
                     //跳转第三方更新网站01
-                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://testflight.apple.com/join/9fLIIk8x"]];
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://testflight.apple.com/join/d6QcK52T"]];
                     
                     int forceStatus = [dict[@"forceStatus"] intValue];
                     if (forceStatus == 1) {
@@ -76,7 +76,7 @@
                     }else{
                         NSString *downLoadUrl = [NSString stringWithFormat:@"%@",dict[@"downloadUrl"]?:@""];
                         
-//                        downLoadUrl = @"https://testflight.apple.com/join/9fLIIk8x";
+//                        downLoadUrl = @"https://testflight.apple.com/join/d6QcK52T";
                         
                         if (downLoadUrl) {
                             if (downLoadUrl.length) {

@@ -1832,9 +1832,9 @@
     self.wh_msgTotal =  n;
 //    [UIApplication sharedApplication].applicationIconBadgeNumber = n;
     [self showNewCount];
-    if (g_xmpp.isLogined) {
-        [g_server WH_userChangeMsgNum:[UIApplication sharedApplication].applicationIconBadgeNumber toView:self];
-    }
+//    if (g_xmpp.isLogined) {
+//        [g_server WH_userChangeMsgNum:[UIApplication sharedApplication].applicationIconBadgeNumber toView:self];
+//    }
 }
 
 - (void)chatViewDisappear:(NSNotification *)notif{

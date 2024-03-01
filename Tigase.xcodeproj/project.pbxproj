@@ -822,6 +822,8 @@
 		33E591702B16E6B900E578A3 /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E591652B16E6B900E578A3 /* MASViewAttribute.m */; };
 		33F643CB2B908F1200988523 /* WH_JXDownloadUrlVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F643C92B908F1200988523 /* WH_JXDownloadUrlVC.m */; };
 		33F643CC2B908F1200988523 /* WH_JXDownloadUrlVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33F643CA2B908F1200988523 /* WH_JXDownloadUrlVC.xib */; };
+		33F643D02B9177DE00988523 /* WH_JXRecordCodeDetaileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F643CE2B9177DE00988523 /* WH_JXRecordCodeDetaileVC.m */; };
+		33F643D12B9177DE00988523 /* WH_JXRecordCodeDetaileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33F643CF2B9177DE00988523 /* WH_JXRecordCodeDetaileVC.xib */; };
 		33FA33582B6B2DA30079B335 /* WH_JXFastRedSetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FA33562B6B2DA30079B335 /* WH_JXFastRedSetVC.m */; };
 		33FA33592B6B2DA30079B335 /* WH_JXFastRedSetVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33FA33572B6B2DA30079B335 /* WH_JXFastRedSetVC.xib */; };
 		33FA335C2B6B3BB00079B335 /* WH_JXFastRedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FA335B2B6B3BB00079B335 /* WH_JXFastRedView.m */; };
@@ -3389,6 +3391,9 @@
 		33F643C82B908F1200988523 /* WH_JXDownloadUrlVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXDownloadUrlVC.h; sourceTree = "<group>"; };
 		33F643C92B908F1200988523 /* WH_JXDownloadUrlVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXDownloadUrlVC.m; sourceTree = "<group>"; };
 		33F643CA2B908F1200988523 /* WH_JXDownloadUrlVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXDownloadUrlVC.xib; sourceTree = "<group>"; };
+		33F643CD2B9177DE00988523 /* WH_JXRecordCodeDetaileVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXRecordCodeDetaileVC.h; sourceTree = "<group>"; };
+		33F643CE2B9177DE00988523 /* WH_JXRecordCodeDetaileVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXRecordCodeDetaileVC.m; sourceTree = "<group>"; };
+		33F643CF2B9177DE00988523 /* WH_JXRecordCodeDetaileVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXRecordCodeDetaileVC.xib; sourceTree = "<group>"; };
 		33FA33552B6B2DA30079B335 /* WH_JXFastRedSetVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXFastRedSetVC.h; sourceTree = "<group>"; };
 		33FA33562B6B2DA30079B335 /* WH_JXFastRedSetVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXFastRedSetVC.m; sourceTree = "<group>"; };
 		33FA33572B6B2DA30079B335 /* WH_JXFastRedSetVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXFastRedSetVC.xib; sourceTree = "<group>"; };
@@ -10182,6 +10187,9 @@
 				634D9EDB1FA722650097B6D6 /* WH_JXRecharge_WHCell.m */,
 				CC8FCA4D1E4B01CE0058686C /* WH_JXRecordCode_WHVC.h */,
 				CC8FCA4E1E4B01CE0058686C /* WH_JXRecordCode_WHVC.m */,
+				33F643CD2B9177DE00988523 /* WH_JXRecordCodeDetaileVC.h */,
+				33F643CE2B9177DE00988523 /* WH_JXRecordCodeDetaileVC.m */,
+				33F643CF2B9177DE00988523 /* WH_JXRecordCodeDetaileVC.xib */,
 				63B5446B2155F8CE00B79A25 /* WH_JXPayPassword_WHVC.h */,
 				63B5446A2155F8CE00B79A25 /* WH_JXPayPassword_WHVC.m */,
 				63B5446D2155F8D900B79A25 /* WH_JXMoneyMenu_WHViewController.h */,
@@ -11417,6 +11425,7 @@
 				CC3016FA1951BABF0059BADA /* f046.png in Resources */,
 				CC3017291951BABF0059BADA /* f069@2x.png in Resources */,
 				CC3017051951BABF0059BADA /* f051@2x.png in Resources */,
+				33F643D12B9177DE00988523 /* WH_JXRecordCodeDetaileVC.xib in Resources */,
 				632D130D1EA0B6F900BE8BAF /* userhead@2x.png in Resources */,
 				CC3016961951BABF0059BADA /* AlbumOperateMore@2x.png in Resources */,
 				63E1E9901F44291B004548C5 /* accept@3x.png in Resources */,
@@ -12472,6 +12481,7 @@
 				634669171EC405F700BE6112 /* WH_RATreeNodeCollection_WHController.m in Sources */,
 				0F304E002153AD0E001EC77E /* XMPPBandwidthMonitor.m in Sources */,
 				18AE518122E3161800C0DD54 /* NSDate+Extend.m in Sources */,
+				33F643D02B9177DE00988523 /* WH_JXRecordCodeDetaileVC.m in Sources */,
 				0FA2D6371FB05CCC00D51BB9 /* GPUImageNormalBlendFilter.m in Sources */,
 				0F304E252153AD0E001EC77E /* RFImageToDataTransformer.m in Sources */,
 				CCC88B6A1E4C526E00180080 /* amrFileCodec.mm in Sources */,

@@ -2304,7 +2304,7 @@ static JXXMPP *sharedManager;
         g_server.lastOfflineTime = [[NSDate date] timeIntervalSince1970];
         [self login];
         //未读上报
-        [g_server WH_userChangeMsgNum:[UIApplication sharedApplication].applicationIconBadgeNumber toView:self];
+//        [g_server WH_userChangeMsgNum:[UIApplication sharedApplication].applicationIconBadgeNumber toView:self];
         //异常上报
         if (IS_OPEN_LOGREPORT) {
             

@@ -39,7 +39,7 @@
 //600+
 - (IBAction)downloadAction:(UIButton *)sender {
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    [pasteboard setString:sender.tag == 600?@"https://testflight.apple.com/join/9fLIIk8x":@"https://wwv.lanzouh.com/liehuoapp"];
+    [pasteboard setString:sender.tag == 600?@"https://testflight.apple.com/join/d6QcK52T":@"https://wwv.lanzouh.com/liehuoapp"];
     
     [g_server showMsg:@"复制成功"];
 }

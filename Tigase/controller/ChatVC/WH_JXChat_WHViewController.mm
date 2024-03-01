@@ -1862,7 +1862,9 @@
                 }
             }else if (task && self.roomJid.length > 0) {
                 endTime = [task.endTime timeIntervalSince1970] * 1000;
-           }
+            }else{//当前时间戳
+                endTime = [[NSDate date] timeIntervalSince1970] * 1000;
+            }
             
             if([self.roomJid length]>0)
                [g_server WH_tigaseMucMsgsWithRoomId:s StartTime:starTime EndTime:endTime PageIndex:0 PageSize:PAGECOUNT toView:self];//PAGECOUNT
@@ -1876,7 +1878,7 @@
                     pageCount = self.newMsgCount;
                 }
                 if (loadHistory) {
-                    if (self.roomJid.length > 0) { //&&_taskList.count > 0
+                    if (self.roomJid.length > 0 &&_taskList.count > 0) { //&&_taskList.count > 0
 //                        long  endTime = 0;
 //                        WH_JXMessageObject *msg = _array.firstObject;
 //                        if (msg) {
@@ -1982,6 +1984,7 @@
                         if (_array.count > self.requestCount) {
                             [_table WH_gotoRow:self.requestCount];
                             NSLog(@"=====走了数据=======666666666");
+//                            _table.contentOffset = CGPointMake(0, allHeight);
                         }
                     }
                     
@@ -1997,6 +2000,9 @@
                         
                         [_table WH_gotoLastRow:NO];
                         NSLog(@"=====走了数据=======2222222222");
+//                        if(_page > 0){
+//                            _table.contentOffset = CGPointMake(0, allHeight);
+//                        }
                     });
                 }
                 

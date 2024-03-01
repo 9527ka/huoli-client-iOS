@@ -8,6 +8,9 @@
 
 #import "WH_JXRecordCode_WHVC.h"
 #import "WH_JXRecordTB_WHCell.h"
+#import "WH_JXRecordCodeDetaileVC.h"
+
+
 @interface WH_JXRecordCode_WHVC ()
 
 @end
@@ -47,7 +50,7 @@
     _table.delegate = self;
     _table.dataSource = self;
     _table.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _table.allowsSelection = NO;
+//    _table.allowsSelection = NO;
     
 }
 
@@ -93,17 +96,13 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-//    [UIView animateWithDuration:0.3 animations:^{
-//        self.view.frame = CGRectMake(0, 0, JX_SCREEN_WIDTH, JX_SCREEN_HEIGHT);
-//    }];
+
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-//    return 1;
      return [_wh_dataArr count];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//    return [_dataArr count];
     return 1;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -123,22 +122,6 @@
     cell.layer.cornerRadius = g_factory.cardCornerRadius;
     cell.layer.borderColor = g_factory.cardBorderColor.CGColor;
     cell.layer.borderWidth = g_factory.cardBorderWithd;
-    
-//    [cell setBackgroundColor:[UIColor clearColor]];
-//    [cell.contentView setBackgroundColor:[UIColor clearColor]];
-//    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-//
-//    //创建背景
-//    UIView *bgView = [[UIView alloc] init];
-//    [bgView setBackgroundColor:HEXCOLOR(0xffffff)];
-//    [cell.contentView addSubview:bgView];
-//    [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.edges.equalTo(cell);
-//    }];
-//    bgView.layer.cornerRadius = 10;
-//    bgView.layer.masksToBounds = YES;
-//    bgView.layer.borderColor = g_factory.cardBorderColor.CGColor;
-//    bgView.layer.borderWidth = g_factory.cardBorderWithd;
     
     NSDictionary * cellModel = _wh_dataArr[indexPath.section];
     
@@ -249,147 +232,13 @@
     [view setBackgroundColor:_table.backgroundColor];
     return view;
 }
-
-
-- (NSString *)getTogetherType:(NSInteger)type{
-    
-    switch (type) {
-        case 1:  /// 用户充值
-            {
-                return Localized(@"New_user_recharge");
-            }
-            break;
-        case 2:  /// 用户提现
-            {
-                return Localized(@"New_user_withdrawal");
-            }
-            break;
-        case 3:  /// 后台充值
-            {
-                return Localized(@"New_background_recharge");
-            }
-            break;
-        case 4:  /// 发红包
-            {
-                return Localized(@"New_red_envelopes");
-            }
-            break;
-        case 5:  /// 领取红包
-            {
-                return Localized(@"New_receive_red_envelopes");
-            }
-            break;
-        case 6:  /// 红包退款
-            {
-                return Localized(@"New_red_envelope_refund");
-            }
-            break;
-        case 7:  /// 转账
-            {
-                return Localized(@"New_transfer");
-            }
-            break;
-        case 8:  /// 接受转账
-            {
-                return Localized(@"New_accept_transfers");
-            }
-            break;
-        case 9:  /// 转账退回
-            {
-                return Localized(@"New_transfer_back");
-            }
-            break;
-        case 10:  /// 付款码付款
-            {
-                return Localized(@"New_payment_code_payment");
-            }
-            break;
-        case 11:  /// 付款码收款
-            {
-                return Localized(@"New_payment_code_collection");
-            }
-            break;
-        case 12:  /// 二维码收款 付款方
-            {
-                return Localized(@"New_qrcode_receipt_payer");
-            }
-            break;
-        case 13:  /// 二维码收款 收款方
-            {
-                return Localized(@"New_qrcode_payment_recipient");
-            }
-            break;
-        case 14:  /// 签到红包
-            {
-                return Localized(@"New_sign_red_envelope");
-            }
-            break;
-        case 15:  /// 提现到后台审核
-            {
-                return Localized(@"New_withdraw_background_review");
-            }
-            break;
-        case 16:  /// 提现到后台审核
-            {
-                return Localized(@"New_background_debit");
-            }
-            break;
-        case 17:  /// 黑马充值
-            {
-                return Localized(@"New_dark_horse_recharge");
-            }
-            break;
-        case 23:  ///  线下入款记录列表,线下充值记录
-            {
-                return @"线下充值";
-            }
-            break;
-        case 24:  ///   新注册用户奖励
-
-            {
-                return @"新注册用户奖励";
-            }
-            break;
-        case 25:  ///   USDT提现 （已当做复核参数使用）
-
-            {
-                return @"提现";
-            }
-            break;
-        case 27:  ///   充值记录（线下、线上）
-
-            {
-                return @"充值";
-            }
-            break;
-        case 28:  ///   邀请码推广奖励
-
-            {
-                return @"邀请码推广奖励";
-            }
-            break;
-        case 29:  ///   群内兑换
-
-            {
-                return @"群内兑换";
-            }
-            break;
-        case 30:  ///   退款
-
-            {
-                return @"群内购买退款";
-            }
-            break;
-            
-        default:
-        {
-            return @"";
-        }
-            break;
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(_wh_dataArr.count > indexPath.section){
+        NSDictionary *cellModel = _wh_dataArr[indexPath.section];
+        WH_JXRecordCodeDetaileVC *vc = [[WH_JXRecordCodeDetaileVC alloc] init];
+        [g_navigation pushViewController:vc animated:YES];
     }
 }
-
-
 
 #pragma mark - 请求成功回调
 -(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{

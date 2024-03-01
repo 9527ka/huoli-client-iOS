@@ -522,7 +522,7 @@ static WH_JXMessageObject *shared;
         }
         if([self.type intValue]==kWCMessageTypeRedPacketReturn){// 红包退回
             
-//            if(![self.fromUserId isEqualToString:WAHU_TRANSFER]){
+            if(![self.fromUserId isEqualToString:WAHU_TRANSFER]){
                 self.type = [NSNumber numberWithInt:kWCMessageTypeRemind];
                 self.isShowRemind = YES;
                 if(self.objectId){//群聊红包
@@ -532,7 +532,7 @@ static WH_JXMessageObject *shared;
                 }
                 self.objectId = self.content;
                 self.content = [NSString stringWithFormat:@"%@",Localized(@"JX_ RedEnvelopeExpired")];
-//            }
+            }
         }
         if([self.type intValue]==kWCMessageTypeDelMsgScreenshots){// 截屏消息(对方在聊天中进行了截屏)
             self.type = [NSNumber numberWithInt:kWCMessageTypeRemind];
@@ -744,6 +744,10 @@ static WH_JXMessageObject *shared;
         case kWCMessageTypeTransfer:
             s = [NSString stringWithFormat:@"[%@]",Localized(@"JX_Transfer")];
             break;
+        case kWCMessageTypeRedPacketReturn:
+            s = @"红包过期，金额已退回零钱";
+            break;
+            
         case kWCMessageTypeActivePay: //激活群
             s = @"[钻石群激活]";
             break;
@@ -810,6 +814,9 @@ static WH_JXMessageObject *shared;
             break;
         case kWCMessageTypeTransfer:
             s = [NSString stringWithFormat:@"[%@]%@",Localized(@"JX_Transfer"),self.isMySend ? Localized(@"JX_WaitForYourFriend'sConfirmation") : @""];
+            break;
+        case kWCMessageTypeRedPacketReturn:
+            s = @"红包过期，金额已退回零钱";
             break;
         case kWCMessageTypeTransferReceive:
             s = [NSString stringWithFormat:@"[%@]%@",Localized(@"JX_Transfer"),Localized(@"JX_TheFriendHasConfirmedTheCharge")];

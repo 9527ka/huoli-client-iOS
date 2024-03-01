@@ -681,6 +681,8 @@
     CGRect frame=cell.label.frame;
     cell.backgroundColor=[UIColor clearColor];
     frame.size.height= height + 3;
+    frame.origin.x = CGRectGetMaxX(cell.icon.frame) + 10;
+    frame.origin.y = 20;
     cell.label.frame=frame;
     
     

@@ -119,7 +119,7 @@
     _backLab.text = @"";
     _backTime.text = @"";
     
-    if ([msg.type intValue] == kRoomRemind_REQUEST_NOTIFICATION ||[msg.type intValue] == kRoomRemind_REQUEST_PAID ||[msg.type intValue] == kRoomRemind_REQUEST_CONFIRMED ||[msg.type intValue] == kRoomRemind_REQUEST_CANCELLED ||[msg.type intValue] == kRoomRemind_REQUEST_REFUND ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_REFUND ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_PAID ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_CONFIRMED|[msg.type intValue] == kWCMessageTypeActivePay||[msg.type intValue] == kWCMessageTypeRenewal||[msg.type intValue] == kWCMessageTypeUpgrade||[msg.type intValue] == kWCMessageTypeWirawRefuse){
+    if ([msg.type intValue] == kRoomRemind_REQUEST_NOTIFICATION ||[msg.type intValue] == kRoomRemind_REQUEST_PAID ||[msg.type intValue] == kRoomRemind_REQUEST_CONFIRMED ||[msg.type intValue] == kRoomRemind_REQUEST_CANCELLED ||[msg.type intValue] == kRoomRemind_REQUEST_REFUND ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_REFUND ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_PAID ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_CONFIRMED|[msg.type intValue] == kWCMessageTypeActivePay||[msg.type intValue] == kWCMessageTypeRenewal||[msg.type intValue] == kWCMessageTypeUpgrade||[msg.type intValue] == kWCMessageTypeWirawRefuse || [msg.type intValue] == kWCMessageTypeRedPacketReturn){
         WH_JXTransferModel *model = (WH_JXTransferModel *)tModel;
         
         _moneyTit.text = @"付款金额";
@@ -172,8 +172,9 @@
             model.userName = g_myself.userNickname;
         }else if ([msg.type intValue] == kWCMessageTypeRedPacketReturn){
             lastContet = @"红包退回";
-            _payTit.text = @"发送者";
-            _noteTit.text = @"交易类型";
+            _payTit.text = @"接收者";
+            _noteTit.text = @"退款类型";
+            _moneyTit.text = @"退款金额";
         }
         
         
@@ -183,7 +184,7 @@
         _nameLab.text = model.userName;
         
         [self hideTime:NO];
-        _backLab.text = @"下单时间";
+        _backLab.text = [msg.type intValue] == kWCMessageTypeRedPacketReturn?@"退款时间":@"下单时间";
         _backTime.text = model.createTime;
         
         
