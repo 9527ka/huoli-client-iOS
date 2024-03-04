@@ -77,7 +77,8 @@
     }
 }
 
--(void)WH_gotoRow:(int)n{
+-(void)WH_gotoRow:(NSInteger)n{
+    NSLog(@"刷新的当前行======%ld",n);
     if(n<0)
         return;
     if([self numberOfRowsInSection:0] > n && [self numberOfRowsInSection:0] > 0){

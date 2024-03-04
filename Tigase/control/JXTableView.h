@@ -41,7 +41,7 @@ typedef enum : NSUInteger {
 
 - (void)WH_gotoLastRow:(BOOL)animated;
 - (void)WH_gotoFirstRow:(BOOL)animated;
-- (void)WH_gotoRow:(int)n;
+- (void)WH_gotoRow:(NSInteger)n;
 
 - (void)WH_showEmptyImage:(EmptyType)emptyType;
 - (void)WH_hideEmptyImage;

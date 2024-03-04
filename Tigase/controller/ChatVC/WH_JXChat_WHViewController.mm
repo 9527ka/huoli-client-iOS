@@ -141,7 +141,7 @@
 
 
 #define faceHeight (THE_DEVICE_HAVE_HEAD ? 253 : 218)
-#define PAGECOUNT 200
+#define PAGECOUNT 51
 #define NOTICE_WIDTH  120  // 调整两条公告间的距离
 
 //@人功能
@@ -1840,10 +1840,11 @@
     CGFloat allHeight = 0;
     if(msg == nil){
         NSString* s;
-        if([self.roomJid length]>0)
+        if([self.roomJid length]>0){
             s = self.roomJid;
-        else
+        } else{
             s = chatPerson.userId;
+        }
         NSMutableArray* p;
         if (self.isGetServerMsg) {
             // 获取漫游聊天记录
@@ -1866,10 +1867,11 @@
                 endTime = [[NSDate date] timeIntervalSince1970] * 1000;
             }
             
-            if([self.roomJid length]>0)
-               [g_server WH_tigaseMucMsgsWithRoomId:s StartTime:starTime EndTime:endTime PageIndex:0 PageSize:PAGECOUNT toView:self];//PAGECOUNT
-            else
+            if([self.roomJid length]>0){
+                [g_server WH_tigaseMucMsgsWithRoomId:s StartTime:starTime EndTime:endTime PageIndex:0 PageSize:PAGECOUNT toView:self];//PAGECOUNT
+            }else{
                 [g_server WH_tigaseMsgsWithReceiver:s StartTime:starTime EndTime:endTime  PageIndex:0 toView:self];
+            }
         }else {
             //获取本地聊天记录
             if (self.scrollLine == 0) {
@@ -1979,12 +1981,15 @@
                     
                     if(self.requestCount == _array.count){//第一次请求
                         [_table WH_gotoLastRow:NO];
-                        NSLog(@"=====走了数据=======11111111111111");
+                        NSLog(@"=====刷新了数据=======11111111111111");
                     }else{
                         if (_array.count > self.requestCount) {
                             [_table WH_gotoRow:self.requestCount];
-                            NSLog(@"=====走了数据=======666666666");
+                            NSLog(@"=====刷新了数据=======666666666");
 //                            _table.contentOffset = CGPointMake(0, allHeight);
+                        }else{
+                            _table.contentOffset = CGPointMake(0, allHeight);
+                            NSLog(@"=====刷新了数据=======77777777");
                         }
                     }
                     
@@ -1999,7 +2004,7 @@
     //                    [self scrollToCurrentLine];
                         
                         [_table WH_gotoLastRow:NO];
-                        NSLog(@"=====走了数据=======2222222222");
+                        NSLog(@"=====刷新了数据=======2222222222");
 //                        if(_page > 0){
 //                            _table.contentOffset = CGPointMake(0, allHeight);
 //                        }
@@ -2013,17 +2018,18 @@
                     [_table reloadData];
                     if (self.isSyncMsg || self.isGotoLast) {
                         [_table WH_gotoLastRow:NO];
-                        NSLog(@"=====走了数据=======3333333");
+                        NSLog(@"=====刷新了数据=======3333333");
                     }
                 }
                 else{
                     if([_array count]>0){
-                        
                         [_table reloadData];
-                        [_table WH_gotoLastRow:NO];
-                        _table.contentOffset = CGPointMake(0, allHeight);
-                        NSLog(@"=====走了数据=======444444444");
                         
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                            [_table WH_gotoLastRow:NO];
+                            _table.contentOffset = CGPointMake(0, allHeight);
+                        });
+                        NSLog(@"=====刷新了数据=======444444444");
                     }
                 }
             }
@@ -2036,7 +2042,7 @@
 - (void) scrollToCurrentLine {
     if(_array.count > self.scrollLine){
         [_table WH_gotoRow:self.scrollLine];
-        NSLog(@"=====走了数据=======55555");
+        NSLog(@"=====刷新了数据=======55555");
     }
     
 //    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.scrollLine - 1 inSection:0];
@@ -5790,7 +5796,8 @@
             self.groupStatus = self.groupStatus.intValue > 0?@(0):self.groupStatus;
         }else{
 //            [JXMyTools showTipView:@"你已被踢出群组"];
-            
+            //清空聊天记录
+            _table.hidden = YES;
             [UIAlertController showAlertViewWithTitle:@"你已被踢出群组" message:nil controller:self block:^(NSInteger buttonIndex) {
                 if (buttonIndex==1) {
                     
@@ -6951,9 +6958,10 @@
             }
         }
         if([p.type intValue] == kRoomRemind_DelMember){
-            if([p.toUserId isEqualToString:g_myself.userId])
+            if([p.toUserId isEqualToString:g_myself.userId]){
                 self.groupStatus = [NSNumber numberWithInt:1];
 //                [self actionQuit];
+            }
             
             NSArray * memberArray = [memberData fetchAllMembers:_room.roomId];
             self.groupSize = memberArray.count;

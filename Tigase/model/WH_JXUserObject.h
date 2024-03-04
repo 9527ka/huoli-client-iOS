@@ -20,7 +20,7 @@
 @property (nonatomic,copy) NSString* amount;//群成员的钻石额度
 @property (nonatomic,copy) NSString* quota;//群的钻石总配额
 @property (nonatomic, strong) NSString *name; //!< 
-@property (nonatomic, strong) NSString *email;
+@property (nonatomic, copy) NSString *email;
 @property (nonatomic, strong) NSString *active; //!<
 @property (nonatomic, strong) NSString *anonymous;
 @property (nonatomic, strong) NSString *carrier;

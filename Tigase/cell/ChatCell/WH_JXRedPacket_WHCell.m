@@ -142,7 +142,6 @@
 //    self.toUserLab.text = [NSString stringWithFormat:@"仅 %@ 可领",self.msg.toUserNames];
     self.toUserLab.text = [NSString stringWithFormat:@"金额：%.2f",self.msg.amount.doubleValue];
     
-    NSLog(@"金额======%@",self.msg.amount);
         
     //服务端返回的数据类型错乱，强行改
     self.msg.fileName = [NSString stringWithFormat:@"%@",self.msg.fileName];
