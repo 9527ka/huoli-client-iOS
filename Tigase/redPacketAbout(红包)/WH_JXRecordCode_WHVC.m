@@ -9,7 +9,7 @@
 #import "WH_JXRecordCode_WHVC.h"
 #import "WH_JXRecordTB_WHCell.h"
 #import "WH_JXRecordCodeDetaileVC.h"
-
+#import "WH_JXRecordCodeModel.h"
 
 @interface WH_JXRecordCode_WHVC ()
 
@@ -146,7 +146,21 @@
     [cell.timeLabel setFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 13]];
     
     //交易金额
-    cell.moneyLabel.text = [NSString stringWithFormat:@"%@ %@",cellModel[@"money"],@"HOTC"];
+    float endMoney = 0.0f;
+    if(cellModel[@"endMoney"]){
+        endMoney = [NSString stringWithFormat:@"%@",cellModel[@"endMoney"]].floatValue;
+    }
+    
+    float startMoney = 0.0f;
+    if(cellModel[@"startMoney"]){
+        endMoney = [NSString stringWithFormat:@"%@",cellModel[@"startMoney"]].floatValue;
+    }
+    
+    NSString *iconStr = endMoney > startMoney?@"+":@"-";
+    
+    NSString *addStr = (startMoney == 0.00 && endMoney == 0.00)?@"":iconStr;
+    
+    cell.moneyLabel.text = [NSString stringWithFormat:@"%@%@ %@",addStr,cellModel[@"money"],@"HOTC"];
     //是否退款
     cell.refundLabel.text = @"";
     
@@ -235,7 +249,9 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if(_wh_dataArr.count > indexPath.section){
         NSDictionary *cellModel = _wh_dataArr[indexPath.section];
+        WH_JXRecordCodeModel *model = [WH_JXRecordCodeModel mj_objectWithKeyValues:cellModel];
         WH_JXRecordCodeDetaileVC *vc = [[WH_JXRecordCodeDetaileVC alloc] init];
+        vc.model = model;
         [g_navigation pushViewController:vc animated:YES];
     }
 }

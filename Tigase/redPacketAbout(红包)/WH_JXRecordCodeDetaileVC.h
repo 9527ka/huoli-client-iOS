@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WH_JXRecordCodeModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WH_JXRecordCodeDetaileVC : UIViewController
+
+@property(nonatomic,strong)WH_JXRecordCodeModel *model;
 
 @end
 

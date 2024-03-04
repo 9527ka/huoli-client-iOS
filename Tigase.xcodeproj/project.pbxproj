@@ -810,6 +810,7 @@
 		33CD3C6D2B64F999001BFBFF /* WH_JXRedPacketSecCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CD3C6B2B64F999001BFBFF /* WH_JXRedPacketSecCell.m */; };
 		33CD3C6E2B64F999001BFBFF /* WH_JXRedPacketSecCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CD3C6C2B64F999001BFBFF /* WH_JXRedPacketSecCell.xib */; };
 		33CD3C712B650ED7001BFBFF /* WH_UserRedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CD3C702B650ED7001BFBFF /* WH_UserRedData.m */; };
+		33CEFB892B91CF6B0005B68D /* WH_JXRecordCodeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CEFB882B91CF6B0005B68D /* WH_JXRecordCodeModel.m */; };
 		33E591672B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E5914E2B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		33E591682B16E6B900E578A3 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E591572B16E6B900E578A3 /* ViewController+MASAdditions.m */; };
 		33E591692B16E6B900E578A3 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E5915B2B16E6B900E578A3 /* MASCompositeConstraint.m */; };
@@ -3363,6 +3364,8 @@
 		33CD3C6C2B64F999001BFBFF /* WH_JXRedPacketSecCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXRedPacketSecCell.xib; sourceTree = "<group>"; };
 		33CD3C6F2B650ED7001BFBFF /* WH_UserRedData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_UserRedData.h; sourceTree = "<group>"; };
 		33CD3C702B650ED7001BFBFF /* WH_UserRedData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_UserRedData.m; sourceTree = "<group>"; };
+		33CEFB872B91CF6B0005B68D /* WH_JXRecordCodeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXRecordCodeModel.h; sourceTree = "<group>"; };
+		33CEFB882B91CF6B0005B68D /* WH_JXRecordCodeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXRecordCodeModel.m; sourceTree = "<group>"; };
 		33E5914D2B16E6B900E578A3 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		33E5914E2B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
 		33E5914F2B16E6B900E578A3 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -10206,6 +10209,8 @@
 				DE5C698B2326810E00321406 /* WH_WithdrawalToBackground_WHViewController.m */,
 				DE5C698D2326812E00321406 /* WH_SuccessfulWithdrawal_WHViewController.h */,
 				DE5C698E2326812E00321406 /* WH_SuccessfulWithdrawal_WHViewController.m */,
+				33CEFB872B91CF6B0005B68D /* WH_JXRecordCodeModel.h */,
+				33CEFB882B91CF6B0005B68D /* WH_JXRecordCodeModel.m */,
 			);
 			path = "redPacketAbout(红包)";
 			sourceTree = "<group>";
@@ -12524,6 +12529,7 @@
 				18A0A12322CF5B270061B2B4 /* WH_Collect_WHViewController.m in Sources */,
 				0F304DE02153AD0E001EC77E /* XMPPRoomOccupantHybridMemoryStorageObject.m in Sources */,
 				63DD4F6521314DB800DC45F8 /* PHImageRequestOptions+RITLPhotos.m in Sources */,
+				33CEFB892B91CF6B0005B68D /* WH_JXRecordCodeModel.m in Sources */,
 				0FCEA8191F62A39800E247EA /* WH_JXServerList_WHVC.m in Sources */,
 				0F8F58EA1F96F595004B1EEA /* MKAnnotationView+WebCache.m in Sources */,
 				DE5C6960232666D400321406 /* WH_PayTypeModel.m in Sources */,
