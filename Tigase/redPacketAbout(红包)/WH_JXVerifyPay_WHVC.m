@@ -49,7 +49,7 @@
 }
 
 - (void)WH_setupViews {
-    self.baseView = [[UIView alloc] initWithFrame:CGRectMake(20, 160, JX_SCREEN_WIDTH-20*2, 232)];
+    self.baseView = [[UIView alloc] initWithFrame:CGRectMake(20, (JX_SCREEN_HEIGHT - 232)/2, JX_SCREEN_WIDTH-20*2, 232)];
     if (self.type == JXVerifyTypeWithdrawal) {//提现
         self.baseView.height = self.baseView.height + 70;
     }

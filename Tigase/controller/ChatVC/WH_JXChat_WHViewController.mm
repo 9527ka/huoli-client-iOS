@@ -1751,7 +1751,7 @@
         self.backGroundImageView.image = image;
     }else {
         self.backGroundImageView.image = nil;
-        _table.backgroundColor = HEXCOLOR(0xD0D0D0);
+        _table.backgroundColor =  g_factory.globalBgColor;
     }
 }
 
@@ -3512,9 +3512,10 @@
     }
     [self.tableView reloadData];
 //    [_table WH_insertRow:(int)[_array count]-1 section:0];
-    if (flag || msg.isMySend) {
+    if (flag || (msg.isMySend && msg.type.intValue != kWCMessageTypeRemind)) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [_table WH_gotoLastRow:NO];
+            
         });
     }
 
@@ -3672,8 +3673,9 @@
     WH_JXMessageObject *msg = (WH_JXMessageObject *)notifacation.object;
     if(msg==nil)
         return;
-    if ([[msg getTableName] isEqualToString:chatPerson.userId] && msg.isMySend)
-            [self WH_show_WHOneMsg:msg];
+    if ([[msg getTableName] isEqualToString:chatPerson.userId] && msg.isMySend){
+        [self WH_show_WHOneMsg:msg];
+    }
 }
 
 #pragma mark  接受新消息广播

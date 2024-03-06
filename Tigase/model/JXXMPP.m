@@ -569,6 +569,7 @@ static JXXMPP *sharedManager;
                         }
 
                         [msg updateLastSend:UpdateLastSendType_Add];
+                        NSLog(@"加了==========11111");
                         [msg notifyNewMsg];//在显示时检测MessageId是否已显示
                     }
                 }else{
@@ -632,6 +633,7 @@ static JXXMPP *sharedManager;
                         msg.isRepeat = YES;
                     }else {
                         [msg updateLastSend:UpdateLastSendType_Add];
+                        NSLog(@"加了==========22222");
                     }
                     
                     if (msg.type.integerValue == kWCMessageTypeRemind) {
@@ -1213,6 +1215,7 @@ static JXXMPP *sharedManager;
                 msg.content = Localized(@"JX_AlreadyWithdraw");
             }
             [msg updateLastSend:UpdateLastSendType_Add];
+            NSLog(@"加了==========33333");
             [msg updateIsSend:transfer_status_yes];
             [msg notifyReceipt];
             [msg notifyMyLastSend];
@@ -1605,6 +1608,7 @@ static JXXMPP *sharedManager;
 
             [self doSendFriendRequest:msg];
             [msg updateLastSend:UpdateLastSendType_Add];
+            NSLog(@"加了==========44444");
             [msg updateIsSend:transfer_status_yes];
             [msg notifyReceipt];
             [msg notifyMyLastSend];
@@ -2057,6 +2061,7 @@ static JXXMPP *sharedManager;
                             }
 
                             [msg updateLastSend:UpdateLastSendType_Add];
+                            NSLog(@"加了==========5555");
                             [msg notifyNewMsg];
                         
                         }
@@ -2099,10 +2104,12 @@ static JXXMPP *sharedManager;
                             return;
                         }
                         msg.isRepeat = YES;
-                    }else {
-                        [msg updateLastSend:UpdateLastSendType_Add];
+                    }else {//消息保存到本地
+                        if([type isEqualToString:@"groupchat"] && [g_xmpp.roomPool getRoom:msg.objectId]){
+                            [msg updateLastSend:UpdateLastSendType_Add];
+                            NSLog(@"加了==========666666");
+                        }
                     }
-                    
 
                     if (msg.type.integerValue == kWCMessageTypeRemind) {
                         //公告类型,判断是否为强提醒公告
@@ -2200,6 +2207,7 @@ static JXXMPP *sharedManager;
             
         }else{
             [msg updateLastSend:UpdateLastSendType_Add];
+            NSLog(@"加了==========77777");
             [msg notifyNewMsg];//在显示时检测MessageId是否已显示
         }
 
@@ -2207,6 +2215,7 @@ static JXXMPP *sharedManager;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
 
         [msg updateLastSend:UpdateLastSendType_Add];
+        NSLog(@"加了==========88888");
         [msg notifyNewMsg];//在显示时检测MessageId是否已显示
     }];
 }
@@ -2596,6 +2605,7 @@ static JXXMPP *sharedManager;
 //    }else {
         [user updateNewMsgUserId:user.userId num:1];
         [msg updateLastSend:UpdateLastSendType_Add];
+    NSLog(@"加了==========9999999");
 //    }
     [msg notifyNewMsg];
 }

@@ -54,7 +54,7 @@
     UILabel* _roomNum;
 }
 
-@property (nonatomic, assign) NSString *wh_roomId;
+@property (nonatomic, copy) NSString *wh_roomId;
 
 @property (nonatomic,strong) WH_JXRoomObject *wh_chatRoom;
 @property (nonatomic,strong) WH_RoomData *wh_room;

@@ -990,8 +990,6 @@
     
     
     if (msg.isGroup && msg.isDelay) {
-        
-        
         // 更新任务endTime
         for (NSInteger i = 0; i < _taskArray.count; i ++) {
             NSDictionary *taskDic = _taskArray[i];
@@ -1160,8 +1158,7 @@
         if([current_chat_userId isEqualToString:s] || msg.isMySend || !showNumber){//假如是我发送的，或正在这个界面，或不显示数量时
             if([current_chat_userId isEqualToString:s])//正在聊天时，置0;是我发送的消息时，不变化数量
                 newobj.user.msgsNew = [NSNumber numberWithInt:0];
-        }
-        else
+        }else
             if([s isEqualToString:FRIEND_CENTER_USERID])//假如是朋友验证消息，总为1
                 return;
 //                newobj.user.msgsNew = [NSNumber numberWithInt:1];
@@ -1207,7 +1204,7 @@
         newUser.status = @(0);
         newobj.user = newUser;
         
-        if (newobj.user) {
+        if (newobj.user && !msg.isGroup) {
             //访问数据库是否存在改好友，没有则写入数据库
 //            if (newobj.user.userId.length > 5) {
                 [newobj.user insertFriend];
