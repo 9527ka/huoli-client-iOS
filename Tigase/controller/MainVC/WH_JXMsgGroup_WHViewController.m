@@ -1826,15 +1826,12 @@
     for (WH_JXMsgAndUserObject * dict in _wh_array) {
         if (![dict.user.userId isEqualToString:FRIEND_CENTER_USERID]) {
             n += [dict.user.msgsNew intValue];
-//            NSLog(@"新消息=%d",[dict.user.msgsNew intValue]);
+            NSLog(@"新消息111111=%d",[dict.user.msgsNew intValue]);
         }
     }
     self.wh_msgTotal =  n;
-//    [UIApplication sharedApplication].applicationIconBadgeNumber = n;
     [self showNewCount];
-//    if (g_xmpp.isLogined) {
-//        [g_server WH_userChangeMsgNum:[UIApplication sharedApplication].applicationIconBadgeNumber toView:self];
-//    }
+
 }
 
 - (void)chatViewDisappear:(NSNotification *)notif{

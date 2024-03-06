@@ -141,7 +141,7 @@
 
 
 #define faceHeight (THE_DEVICE_HAVE_HEAD ? 253 : 218)
-#define PAGECOUNT 51
+#define PAGECOUNT 200
 #define NOTICE_WIDTH  120  // 调整两条公告间的距离
 
 //@人功能
@@ -285,6 +285,8 @@
 @property(nonatomic,assign)NSInteger tag;
 
 @property(nonatomic,assign)NSInteger requestCount;//服务器返回数量
+
+@property(nonatomic,strong)WH_JXMessageObject *refreshMsg;
 
 //@property (nonatomic ,strong) UIView *bottomView;//阅后即焚使用
 //@property (nonatomic ,strong) UIImageView *clockImageV;
@@ -462,9 +464,8 @@
 // 重新加载
 - (void)refreshChatLogNotif:(NSNotification *)notif {
     self.isGetServerMsg = NO;
-    [_array removeAllObjects];
+//    [_array removeAllObjects];
     [self refresh:nil loadHistory:YES];
-    [self.tableView reloadData];
 }
 
 -(void)cardCellClick:(NSNotification *) notification{
@@ -1832,12 +1833,9 @@
     [_messageText resignFirstResponder];
     BOOL b=YES;
     BOOL bPull=NO;
-    NSInteger firstNum = 1;
-    if([_array count]>0){
-        firstNum = _array.count;
-    }
     
     CGFloat allHeight = 0;
+    
     if(msg == nil){
         NSString* s;
         if([self.roomJid length]>0){
@@ -1880,7 +1878,10 @@
                     pageCount = self.newMsgCount;
                 }
                 if (loadHistory) {
-                    if (self.roomJid.length > 0 &&_taskList.count > 0) { //&&_taskList.count > 0
+                    if (self.roomJid.length > 0 &&_taskList.count > 0) {
+                        
+                        //
+                        
 //                        long  endTime = 0;
 //                        WH_JXMessageObject *msg = _array.firstObject;
 //                        if (msg) {
@@ -1889,39 +1890,44 @@
 //                            if (endTime == 0) {
 //                                endTime = [[NSDate date] timeIntervalSince1970] * 1000;
 //                            }
+//                        }else{//当前时间戳
+//                            endTime = [[NSDate date] timeIntervalSince1970] * 1000;
 //                        }
-//                        [NSDate dateWithTimeIntervalSince1970:endTime]
 //
                         JXSynTask *task = _taskList.firstObject;
                         
                         p = [[WH_JXMessageObject sharedInstance] fetchMessageListWithUser:s byAllNum:_array.count pageCount:pageCount startTime:task.endTime];
-                        
+                                                
                     }else {
                         p = [[WH_JXMessageObject sharedInstance] fetchMessageListWithUser:s byAllNum:_array.count pageCount:pageCount startTime:[NSDate dateWithTimeIntervalSince1970:0]];
                     }
                     //修复历史消息最多加载一页问题
-//                    bPull = p.count>0?YES:NO;
+                    //                    bPull = p.count>0?YES:NO;
                     bPull = p.count>=pageCount?YES:NO;
                 }
             }else {
+                
                 p = [[WH_JXMessageObject sharedInstance] fetchAllMessageListWithUser:s];
                 [_array removeAllObjects];
                 bPull = NO;
             }
         }
     
+    
         /// 是不是群主 或者 管理员 yes:是 no:不是
         BOOL isManger = [WH_JXChatTool isManagrData:self.roomJid];
         NSMutableArray *tempArr = [NSMutableArray arrayWithArray:p];
-        for (WH_JXMessageObject *msg in p) {
+        for (int i = 0; i < p.count; i++) {
+            WH_JXMessageObject *msg = p[i];
             //不是我的并且我不是群管理专属红包去掉
             if ([msg.type intValue] == kWCMessageTypeRedPacketExclusive && !isManger && ![msg.toUserIds isEqualToString:MY_USER_ID] && ![msg.fromUserId isEqualToString:MY_USER_ID]) {
-                self.requestCount--;
                 [tempArr removeObject:msg];
             }else{
                 allHeight += [msg.chatMsgHeight floatValue];
             }
+            
         }
+
         [p removeAllObjects];
         [p addObjectsFromArray:tempArr];
         
@@ -1967,76 +1973,63 @@
     
     [self setIsShowTime];
     
+    
     if (b) {
         [_pool removeAllObjects];
         _refreshCount++;
+        
+//        //判断当前表格有多少行
+//        NSInteger row = [_table numberOfRowsInSection:0];
+//        NSInteger count = _array.count - row;
+//
+//        self.requestCount = count > 0?count:0;
+        
+        self.requestCount = 0;
+        if (self.refreshMsg) {
+            for (int i = 0; i < _array.count; i++) {
+                WH_JXMessageObject *msg = _array[i];
+                if ([msg.messageId isEqualToString:self.refreshMsg.messageId]) {
+                    self.requestCount = i;
+                    break;
+                }
+            }
+        }
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            //刷新完成
-            if (self.scrollLine > 0) {
-                if (_array.count > 50) {//请求服务器之后获取到的数据
+            
+            [_table reloadData];
+            
+            NSLog(@"=====刷新了数据====%ld, 现在总数==%ld",self.requestCount,_array.count);
+            
+            if (self.scrollLine > 0) {//服务端请求，并且有数据
+                if(_array.count > 0){//之前有数据
                     self.isGetServerMsg = NO;
                     self.scrollLine = 0;
-                    [_table reloadData];
-                    
-                    if(self.requestCount == _array.count){//第一次请求
-                        [_table WH_gotoLastRow:NO];
-                        NSLog(@"=====刷新了数据=======11111111111111");
-                    }else{
-                        if (_array.count > self.requestCount) {
-                            [_table WH_gotoRow:self.requestCount];
-                            NSLog(@"=====刷新了数据=======666666666");
-//                            _table.contentOffset = CGPointMake(0, allHeight);
-                        }else{
-                            _table.contentOffset = CGPointMake(0, allHeight);
-                            NSLog(@"=====刷新了数据=======77777777");
-                        }
-                    }
-                    
-//                    NSInteger row = firstNum;
-//                    [_table WH_gotoRow:row];
-                    
-                    
-
+                }
+                
+                if(_page == 0){
+                    [_table WH_gotoLastRow:NO];
+                    NSLog(@"=====刷新了数据=======1111111");
                 }else{
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        [_table reloadData];
-    //                    [self scrollToCurrentLine];
-                        
-                        [_table WH_gotoLastRow:NO];
-                        NSLog(@"=====刷新了数据=======2222222222");
-//                        if(_page > 0){
-//                            _table.contentOffset = CGPointMake(0, allHeight);
-//                        }
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.02 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [_table WH_scrollTopRow:self.requestCount];
+                        NSLog(@"=====刷新了数据=======2222222");
                     });
                 }
                 
-                
-            }else {
-                if(msg || _page == 0){
+            }else{//请求的本地
+                if(_page == 0){
+                    [_table WH_gotoLastRow:NO];
+                    NSLog(@"=====刷新了数据=======444444");
+                }else{
+                    [_table WH_scrollTopRow:self.requestCount];
                     
-                    [_table reloadData];
-                    if (self.isSyncMsg || self.isGotoLast) {
-                        [_table WH_gotoLastRow:NO];
-                        NSLog(@"=====刷新了数据=======3333333");
-                    }
-                }
-                else{
-                    if([_array count]>0){
-                        [_table reloadData];
-                        
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                            [_table WH_gotoLastRow:NO];
-                            _table.contentOffset = CGPointMake(0, allHeight);
-                        });
-                        NSLog(@"=====刷新了数据=======444444444");
-                    }
+                    NSLog(@"=====刷新了数据=======3333333");
                 }
             }
+            
         });
-        
     }
-    
 }
 
 - (void) scrollToCurrentLine {
@@ -2044,9 +2037,6 @@
         [_table WH_gotoRow:self.scrollLine];
         NSLog(@"=====刷新了数据=======55555");
     }
-    
-//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.scrollLine - 1 inSection:0];
-//    [_table scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -5329,6 +5319,7 @@
         return;
     NSLog(@"WH_scrollToPageUp");
     _page ++;
+    self.refreshMsg = _array.firstObject;
     [self WH_getServerData];
 }
 
@@ -5798,6 +5789,7 @@
             self.groupStatus = self.groupStatus.intValue > 0?@(0):self.groupStatus;
         }else{
 //            [JXMyTools showTipView:@"你已被踢出群组"];
+            [[JXXMPP sharedInstance].roomPool delRoom:self.roomJid.length > 0?self.roomJid:@""];
             //清空聊天记录
             _table.hidden = YES;
             [UIAlertController showAlertViewWithTitle:@"你已被踢出群组" message:nil controller:self block:^(NSInteger buttonIndex) {
@@ -6011,15 +6003,7 @@
         g_App.myMoney = [dict[@"balance"] doubleValue];
     }else if ([aDownload.action isEqualToString:wh_act_tigaseMsgs] || [aDownload.action isEqualToString:wh_act_tigaseMucMsgs]) {// 漫游聊天记录
         if (array1.count > 0) {
-            NSString* s;
-            if([self.roomJid length]>0)
-                s = self.roomJid;
-            else
-                s = chatPerson.userId;
-            [[WH_JXMessageObject sharedInstance] getHistory:array1 userId:s];
-            
-            self.requestCount = array1.count;
-            
+                        
             if (self.roomJid && _taskList.count > 0) {
                 JXSynTask *task = _taskList.firstObject;
                 if (array1.count < PAGECOUNT) {
@@ -6030,23 +6014,44 @@
                     task.endTime = [NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kMESSAGE_TIMESEND] doubleValue]];
                 }
                 
-                self.isGetServerMsg = NO;
-                self.scrollLine = 1;
-                [self refresh:nil loadHistory:YES];
-
-                
             }else {
                                 
                 self.wh_isShowHeaderPull = array1.count >= PAGE_SHOW_COUNT?YES:NO;
-                [_array removeAllObjects];
-                _page = 0;
+//                [_array removeAllObjects];
+//                _page = 0;
                 
-                self.isGetServerMsg = NO;
-                self.scrollLine = 1;
-                [self refresh:nil loadHistory:YES];
             }
-        }
-        else{
+            
+            NSString* s;
+            if([self.roomJid length]>0){
+                s = self.roomJid;
+                
+                /// 是不是群主 或者 管理员 yes:是 no:不是
+                BOOL isManger = [WH_JXChatTool isManagrData:self.roomJid];
+                NSMutableArray *tempArr = [NSMutableArray arrayWithArray:array1];
+                for (int i = 0; i < array1.count; i++) {
+                    NSDictionary *msgDic = array1[i];
+                    WH_JXMessageObject *msg = [[WH_JXMessageObject alloc] init];
+                    [msg fromGroupXmlDict:msgDic];
+                   
+                    //不是我的并且我不是群管理专属红包去掉
+                    if ([msg.type intValue] == kWCMessageTypeRedPacketExclusive && !isManger && ![msg.toUserIds isEqualToString:MY_USER_ID] && ![msg.fromUserId isEqualToString:MY_USER_ID]) {
+                        [tempArr removeObject:msgDic];
+                    }
+                    
+                }
+                array1 = tempArr;
+                
+            }else{
+                s = chatPerson.userId;
+            }
+            
+            [[WH_JXMessageObject sharedInstance] getHistory:array1 userId:s];
+            
+            self.isGetServerMsg = NO;
+            self.scrollLine = 1;
+            [self refresh:nil loadHistory:YES];
+        }else{
             
             if (self.roomJid && _taskList.count > 0) {
                 JXSynTask *task = _taskList.firstObject;
@@ -7078,7 +7083,6 @@
             }
             
             [self refresh:nil loadHistory:NO];
-            [_table reloadData];
         }
         
         if([p.type intValue] == kRoomRemind_ShowRead){

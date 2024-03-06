@@ -1109,13 +1109,13 @@
             if([current_chat_userId isEqualToString:s] || msg.isMySend || !showNumber){//假如是我发送的，或正在这个界面，或不显示数量时
                 if([current_chat_userId isEqualToString:s])//正在聊天时，置0;是我发送的消息时，不变化数量
                     oldobj.user.msgsNew = [NSNumber numberWithInt:0];
-            }
-            else{
+            }else{
                 if ([msg.content rangeOfString:Localized(@"JX_OtherWithdraw")].location == NSNotFound) {
                     oldobj.user.msgsNew = [NSNumber numberWithInt:[oldobj.user.msgsNew intValue]+1];
                 }
-                
             }
+            //更新本地的角标
+            [oldobj.user WH_updateNewMsgNum];
             [_wh_array removeObjectAtIndex:i];
             break;
         }
@@ -1919,18 +1919,15 @@
     for (WH_JXMsgAndUserObject * dict in _wh_array) {
         if (![dict.user.userId isEqualToString:FRIEND_CENTER_USERID]) {
             n += [dict.user.msgsNew intValue];
-//            NSLog(@"新消息=%d",[dict.user.msgsNew intValue]);
+            NSLog(@"新消息=%d",[dict.user.msgsNew intValue]);
         }
     }
     self.wh_msgTotal =  n;
-//    [UIApplication sharedApplication].applicationIconBadgeNumber = n;
-//    [g_notify postNotificationName:@"msgNumberBtnClickNa" object:[NSString stringWithFormat:@"%d",self.wh_msgTotal]];
+
     
     [self showNewCount];
     
-//    if (g_xmpp.isLogined) {
-//        [g_server WH_userChangeMsgNum:[UIApplication sharedApplication].applicationIconBadgeNumber toView:self];
-//    }
+
 }
 
 - (void)chatViewDisappear:(NSNotification *)notif{
@@ -3072,8 +3069,9 @@
 }
 
 -(void)setWh_msgTotal:(int)n{
-    if(n<0)
+    if(n<0){
         n = 0;
+    }
     _wh_msgTotal = n;
     [self showNewCount];
 }

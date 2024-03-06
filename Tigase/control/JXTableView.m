@@ -85,6 +85,14 @@
         [self scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:n inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
     }
 }
+-(void)WH_scrollTopRow:(NSInteger)n{
+    NSLog(@"刷新的当前行======%ld",n);
+    if(n<0)
+        return;
+    if([self numberOfRowsInSection:0] > n && [self numberOfRowsInSection:0] > 0){
+        [self scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:n inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    }
+}
 
 - (void)WH_showEmptyImage:(EmptyType)emptyType{
     if(!_wh_emptyView){
