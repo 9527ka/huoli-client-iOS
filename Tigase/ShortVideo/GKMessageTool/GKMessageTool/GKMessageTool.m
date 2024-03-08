@@ -236,6 +236,6 @@ static MBProgressHUD *_hud;
 
 
 - (void)sp_getUsersMostLikedSuccess {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 @end

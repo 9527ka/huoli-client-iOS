@@ -28,7 +28,7 @@
     if (canOpen) {
         [[UIApplication sharedApplication] openURL:safariUrl];
     }else {
-        NSLog(@"打开浏览器失败");
+        //NSLog(@"打开浏览器失败");
     }
 }
 

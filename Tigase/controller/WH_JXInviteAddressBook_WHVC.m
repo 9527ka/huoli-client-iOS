@@ -123,11 +123,11 @@
     
         if (completed) {
         
-            NSLog(@"分享成功");
+            //NSLog(@"分享成功");
         
         }else{
             
-            NSLog(@"分享取消");
+            //NSLog(@"分享取消");
             
         }
     
@@ -399,6 +399,6 @@
 
 
 - (void)sp_checkNetWorking:(NSString *)followCount {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 @end

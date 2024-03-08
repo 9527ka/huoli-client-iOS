@@ -89,12 +89,12 @@
 -(void)dealloc
 {
     self.imageView.image = nil;
-    NSLog(@"%@ is dealloc!",NSStringFromClass(self.class));
+    //NSLog(@"%@ is dealloc!",NSStringFromClass(self.class));
 }
 
 
 
 - (void)sp_getUserName {
-    NSLog(@"Get Info Failed");
+    //NSLog(@"Get Info Failed");
 }
 @end

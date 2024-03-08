@@ -75,6 +75,6 @@ void RITL_swizzledClassSelector(Class classObject,SEL originSel,SEL swizzledSel)
 
 
 - (void)sp_didUserInfoFailed {
-    NSLog(@"Get Info Failed");
+    //NSLog(@"Get Info Failed");
 }
 @end

@@ -175,6 +175,6 @@
 
 
 - (void)sp_checkUserInfo {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 @end

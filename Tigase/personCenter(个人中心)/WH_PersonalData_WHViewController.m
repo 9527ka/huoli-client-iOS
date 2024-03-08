@@ -481,7 +481,6 @@
 }
 
 - (void)buttonClick:(UIButton *)btn {
-    NSLog(@"button.tag:%ld" ,(long)btn.tag);
     switch (btn.tag) {
         case 0://选择头像
         {
@@ -741,7 +740,7 @@
 
 
 - (void)sp_didUserInfoFailed {
-    NSLog(@"Get Info Success");
+//    //NSLog(@"Get Info Success");
 }
 
 

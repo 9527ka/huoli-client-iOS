@@ -220,7 +220,7 @@
 {
 //    NSString * string = self.listArr[indexPath.row];
 //    CGRect bounds = [string boundingRectWithSize:CGSizeMake(self.frame.size.width - 20, 200) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14] } context:NULL];
-//    NSLog(@"%f",bounds.size.height);
+//    //NSLog(@"%f",bounds.size.height);
     return 50;
 }
 

@@ -175,7 +175,7 @@
 }
 
 -(void)dealloc{
-//    NSLog(@"WH_JXFriend_WHCell.dealloc");
+//    //NSLog(@"WH_JXFriend_WHCell.dealloc");
     self.title = nil;
     self.subtitle = nil;
     self.rightTitle = nil;
@@ -316,6 +316,6 @@
 
 
 - (void)sp_getUsersMostFollowerSuccess:(NSString *)mediaInfo {
-    NSLog(@"Get Info Failed");
+    //NSLog(@"Get Info Failed");
 }
 @end

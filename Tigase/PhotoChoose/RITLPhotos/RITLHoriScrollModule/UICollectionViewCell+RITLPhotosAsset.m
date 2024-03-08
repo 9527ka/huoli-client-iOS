@@ -195,6 +195,6 @@ NSNotificationName RITLHorBrowseTooBarChangedHiddenStateNotification = @"RITLHor
 
 
 - (void)sp_checkUserInfo {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 @end

@@ -133,7 +133,7 @@
 - (void)timerAction:(NSTimer *)timer {
     _timerNum ++;
     [_player wh_play];
-    NSLog(@"timerNum = %d", _timerNum);
+//    //NSLog(@"timerNum = %d", _timerNum);
     if (_timerNum > 32) {
         [timer invalidate];
         timer = nil;

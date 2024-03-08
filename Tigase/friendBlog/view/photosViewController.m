@@ -65,7 +65,7 @@
 }
 
 -(void)dealloc{
-//    NSLog(@"photosViewController.dealloc");
+//    //NSLog(@"photosViewController.dealloc");
     [UIApplication sharedApplication].statusBarHidden = NO;
     [_array removeAllObjects];
 //    [_array release];
@@ -183,7 +183,7 @@
     int mod   = fmod(scrollView.contentOffset.x,JX_SCREEN_WIDTH);
     if( mod >= 160)
         index++;
-//    NSLog(@"%f,%f,%f",scrollView.contentOffset.x,index,mod);
+//    //NSLog(@"%f,%f,%f",scrollView.contentOffset.x,index,mod);
     _wh_page = index;
     [self setPage];    
     [self doReadNext];

@@ -35,7 +35,7 @@
 
 #pragma mark - 下一步
 - (void) nextBtnClick{
-    NSLog(@"更换绑定");
+    //NSLog(@"更换绑定");
     
 }
 

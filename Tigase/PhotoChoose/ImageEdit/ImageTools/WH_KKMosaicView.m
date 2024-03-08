@@ -118,6 +118,6 @@
 
 
 - (void)sp_getUsersMostLiked:(NSString *)isLogin {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 @end

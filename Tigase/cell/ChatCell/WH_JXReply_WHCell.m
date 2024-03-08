@@ -125,12 +125,12 @@
 //            NSString *messageText = [messageN stringByReplacingOccurrencesOfString:@" " withString:@""];  //去掉空格
 //            CGSize size = [messageText boundingRectWithSize:CGSizeMake(_messageConent.frame.size.width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:sysFontWithSize(g_constant.chatFont)} context:nil].size;
 //            NSInteger count = size.height / _messageConent.font.lineHeight;
-//            NSLog(@"countcount ===  %ld-----%f-----%@",count,[[NSDate date] timeIntervalSince1970],self.msg.fileName);
-//            //            NSLog(@"countcount === %ld,,,,%f,,,,%@",count,[[NSDate date] timeIntervalSince1970], self.msg.fileName);
+//            //NSLog(@"countcount ===  %ld-----%f-----%@",count,[[NSDate date] timeIntervalSince1970],self.msg.fileName);
+//            //            //NSLog(@"countcount === %ld,,,,%f,,,,%@",count,[[NSDate date] timeIntervalSince1970], self.msg.fileName);
 //            count = count * 10 - ([[NSDate date] timeIntervalSince1970] - [self.msg.fileName longLongValue]);
 //            self.timerIndex = count;
 //
-//            NSLog(@"countcount1 ===  %ld",count);
+//            //NSLog(@"countcount1 ===  %ld",count);
 //            if (count > 0) {
 //                self.timeIndexLabel.text = [NSString stringWithFormat:@"%ld",count];
 //                if (!self.readDelTimer) {
@@ -295,7 +295,7 @@
         }
     }
     
-    //NSLog(@"heightForRowAtIndexPath_%d,%d:=%@",indexPath.row,n,_messageConent.text);
+    ////NSLog(@"heightForRowAtIndexPath_%d,%d:=%@",indexPath.row,n,_messageConent.text);
     if(n<55)
         n = 55;
     if (msg.isShowTime) {
@@ -307,7 +307,7 @@
 //#ifdef IS_SHOW_NEWReadDelete
     if ([g_config.isDelAfterReading isEqualToString:@"0"]) {
     if ([msg.isReadDel integerValue] >= 1) {
-        NSLog(@"阅后即焚消息");
+        //NSLog(@"阅后即焚消息");
         n+=30;
 //        if ([msg.isShowDel integerValue]>=1) {
 //

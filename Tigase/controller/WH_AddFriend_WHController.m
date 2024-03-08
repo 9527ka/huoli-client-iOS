@@ -250,7 +250,7 @@
     job.minAge = 0;
     job.maxAge = 0;
     
-    NSLog(@"self.user:%@  self.user.isAddFriend:%@" ,self.user ,self.user.isAddFirend);
+    //NSLog(@"self.user:%@  self.user.isAddFriend:%@" ,self.user ,self.user.isAddFirend);
     
     WH_SearchFriendResult_WHController *vc = [WH_SearchFriendResult_WHController alloc];
     vc.isAddFriend = self.user.isAddFirend;

@@ -68,7 +68,7 @@ static CGFloat paddingScale = 2;
             } else if ([obj isKindOfClass:[UIImage class]]){
                 image = (UIImage *)obj;
             } else {
-                NSLog(@"%s Unrecognizable class type", __FUNCTION__);
+                //NSLog(@"%s Unrecognizable class type", __FUNCTION__);
                 break;
             }
 

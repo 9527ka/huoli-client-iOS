@@ -581,7 +581,7 @@
                 UIImage * codeImage = [UIImage imageWithData:data];
                 _imgCodeImg.image = codeImage;
             }else{
-                NSLog(@"%@",connectionError);
+                //NSLog(@"%@",connectionError);
                 [g_App showAlert:connectionError.localizedDescription];
             }
         }];
@@ -590,7 +590,7 @@
 //            if (!error) {
 //                _imgCodeImg.image = image;
 //            }else{
-//                NSLog(@"%@",error);
+//                //NSLog(@"%@",error);
 //            }
 //        }];
     }else{

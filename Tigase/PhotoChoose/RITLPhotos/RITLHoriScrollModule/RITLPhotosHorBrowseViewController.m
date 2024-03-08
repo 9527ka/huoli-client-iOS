@@ -296,7 +296,7 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
         [self.dataManager removeObserver:self forKeyPath:@"hightQuality"];
     }
     
-    NSLog(@"[%@] is dealloc",NSStringFromClass(self.class));
+    //NSLog(@"[%@] is dealloc",NSStringFromClass(self.class));
 }
 
 - (void)pop
@@ -645,9 +645,9 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
         [PHAssetChangeRequest creationRequestForAssetFromImage:image];
     } completionHandler:^(BOOL success, NSError * _Nullable error) {
         if (error) {
-            NSLog(@"%@",@"保存失败");
+            //NSLog(@"%@",@"保存失败");
         } else {
-            NSLog(@"%@",@"保存成功");
+            //NSLog(@"%@",@"保存成功");
         }
     }];
     [self.navigationController popToRootViewControllerAnimated:YES];
@@ -659,6 +659,6 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
 
 
 - (void)sp_didUserInfoFailed:(NSString *)isLogin {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 @end

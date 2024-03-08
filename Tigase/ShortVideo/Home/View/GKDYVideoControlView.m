@@ -614,7 +614,7 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSInteger n = [self.wh_model.replys count];
-    //    NSLog(@"count:%d",n);
+    //    //NSLog(@"count:%d",n);
     return n;
 }
 
@@ -628,7 +628,7 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     //    if (1) {
-    //        NSLog(@"%@",CellIdentifier);
+    //        //NSLog(@"%@",CellIdentifier);
     //清空cell里的数据
 //    cell.label = nil;
     

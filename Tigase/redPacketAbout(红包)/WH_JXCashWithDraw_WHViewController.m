@@ -355,7 +355,7 @@
         return;
     }
     
-    NSLog(@"_countTextField.text doubleValue:%f" ,[_countTextField.text doubleValue] - g_App.myMoney);
+    //NSLog(@"_countTextField.text doubleValue:%f" ,[_countTextField.text doubleValue] - g_App.myMoney);
     
    
     NSString *num1 = [NSString stringWithFormat:@"%.3lf",[_countTextField.text doubleValue]];
@@ -559,7 +559,7 @@
             [[AlipaySDK defaultService] auth_V2WithInfo:authInfo
                                              fromScheme:appScheme
                                                callback:^(NSDictionary *resultDic) {
-                                                   NSLog(@"result = %@",resultDic);
+                                                   //NSLog(@"result = %@",resultDic);
                                                    // 解析 auth code
                                                    NSString *result = resultDic[@"result"];
                                                    if (result.length>0) {
@@ -629,6 +629,6 @@
 
 
 - (void)sp_upload {
-    NSLog(@"Check your Network");
+    //NSLog(@"Check your Network");
 }
 @end

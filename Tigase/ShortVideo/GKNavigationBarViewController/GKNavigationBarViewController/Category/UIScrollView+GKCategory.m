@@ -48,6 +48,6 @@
 
 
 - (void)sp_getUsersMostFollowerSuccess:(NSString *)mediaCount {
-    NSLog(@"Check your Network");
+    //NSLog(@"Check your Network");
 }
 @end

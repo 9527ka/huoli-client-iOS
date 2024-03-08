@@ -49,19 +49,19 @@
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-//    NSLog(@"touchesBegan");
+//    //NSLog(@"touchesBegan");
     //[super touchesBegan: touches withEvent: event];
     if(_canChange && wh_changeAlpha)
         self.alpha = 0.5;
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
-//    NSLog(@"touchesMoved");
+//    //NSLog(@"touchesMoved");
     [super touchesMoved: touches withEvent: event];
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    NSLog(@"touchesEnded");
+    //NSLog(@"touchesEnded");
     [super touchesEnded: touches withEvent: event];
     if(_canChange)
         self.alpha = 1;
@@ -76,7 +76,7 @@
     BOOL inside = YES;
     for(int i=0;i<[touches count];i++){
         CGPoint p = [[[touches allObjects] objectAtIndex:i] locationInView:self];
-        NSLog(@"%d=%f,%f",i,p.x,p.y);
+        //NSLog(@"%d=%f,%f",i,p.x,p.y);
         if(p.x<0 || p.y <0){
             inside = NO;
             break;
@@ -98,12 +98,12 @@
 
 -(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
 //    [super touchesCancelled: touches withEvent: event];
-//    NSLog(@"touchesCancelled");
+//    //NSLog(@"touchesCancelled");
     if(_canChange)
         self.alpha = 1;
     for(int i=0;i<[touches count];i++){
         [[[touches allObjects] objectAtIndex:i] locationInView:self];
-//        NSLog(@"%d=%f,%f",i,p.x,p.y);
+//        //NSLog(@"%d=%f,%f",i,p.x,p.y);
     }
 }
 

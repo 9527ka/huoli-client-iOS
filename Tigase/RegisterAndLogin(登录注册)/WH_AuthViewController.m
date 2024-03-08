@@ -154,7 +154,7 @@
             image = [UIImage imageWithData:data];
             self.sdkImage = image;
         }else {
-            NSLog(@"图片不存在");
+            //NSLog(@"图片不存在");
         }
         
         NSURL *url = [NSURL URLWithString:dic[@"url"]];
@@ -163,7 +163,7 @@
     }
    
     if (!self.fromSchema || !self.infoDic[@"appSecret"]) {
-        NSLog(@"TigaseAPP授权失败,请检查您的appId等参数不可为空");
+        //NSLog(@"TigaseAPP授权失败,请检查您的appId等参数不可为空");
         [GKMessageTool showError:@"TigaseAPP授权失败,请检查您的appId等参数不可为空"];
         return;
     }
@@ -178,14 +178,14 @@
     param[@"type"] = type;
     param[@"access_token"] = token;
     NSString *urlString = [NSString stringWithFormat:@"%@open/authInterface",g_config.apiUrl];
-    NSLog(@"param === %@, urlString = %@",param, urlString);
+    //NSLog(@"param === %@, urlString = %@",param, urlString);
     [self GET:urlString param:param success:^(id dic) {
         if ([dic[@"resultCode"]integerValue]==1) {
             
             [self codeAuthorCheck:token];
         }else {
             NSString *msg = [NSString stringWithFormat:@"%@",dic[@"resultMsg"]];
-            NSLog(@"%@",msg);
+            //NSLog(@"%@",msg);
             [GKMessageTool showError:msg];
         }
     } fail:^(NSError *error) {
@@ -252,7 +252,7 @@
     [manager GET:url parameters:param progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"----%@",responseObject);
+        //NSLog(@"----%@",responseObject);
         success(responseObject);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

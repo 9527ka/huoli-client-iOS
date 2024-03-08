@@ -192,7 +192,7 @@ static WH_ImageBrowser_WHViewController *shared;
     UIWindow *window = _handleVC.view.window;
     
     if(window == nil){
-        NSLog(@"错误：窗口为空！");
+        //NSLog(@"错误：窗口为空！");
         return;
     }
     

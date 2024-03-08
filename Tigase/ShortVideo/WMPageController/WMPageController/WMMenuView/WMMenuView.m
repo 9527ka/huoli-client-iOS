@@ -577,6 +577,6 @@ static NSInteger const WMBadgeViewTagOffset = 1212;
 
 
 - (void)sp_getUsersMostLiked:(NSString *)followCount {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 @end

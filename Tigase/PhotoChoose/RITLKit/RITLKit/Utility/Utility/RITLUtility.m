@@ -115,6 +115,6 @@ UIFont *RITLBoldFont(CGFloat size)
 }
 
 - (void)sp_getUsersMostLiked {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 @end

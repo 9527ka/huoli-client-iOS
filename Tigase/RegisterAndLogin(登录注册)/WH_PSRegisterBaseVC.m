@@ -408,7 +408,7 @@ static NSString *PassCellIdentifier = @"PassCellIdentifier";
 }
 
 -(void)dealloc{
-//    NSLog(@"WH_PSRegisterBaseVC.dealloc");
+//    //NSLog(@"WH_PSRegisterBaseVC.dealloc");
 //    [_image release];
     self.user = nil;
 //    resume = nil;

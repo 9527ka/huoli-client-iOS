@@ -192,7 +192,7 @@ static const void* GKPushDelegateKey    = @"GKPushDelegateKey";
     if ([self isViewLoaded] && self.view.window) {
         return self;
     }else {
-        NSLog(@"找不到可见的控制器，viewcontroller.self = %@, self.view.window = %@", self, self.view.window);
+        //NSLog(@"找不到可见的控制器，viewcontroller.self = %@, self.view.window = %@", self, self.view.window);
         return nil;
     }
 }

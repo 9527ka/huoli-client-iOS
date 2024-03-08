@@ -62,6 +62,6 @@
 }
 
 - (void)sp_getLoginState {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 @end

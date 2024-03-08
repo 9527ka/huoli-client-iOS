@@ -16,7 +16,7 @@
 @implementation WH_JXVideo_WHCell
 
 - (void)dealloc{
-    NSLog(@"MiXin_JXVideo_MiXinCell.dealloc");
+    //NSLog(@"MiXin_JXVideo_MiXinCell.dealloc");
     //[g_notify removeObserver:self name:kCellReadDelNotification object:self.msg];
 }
 - (void)awakeFromNib {

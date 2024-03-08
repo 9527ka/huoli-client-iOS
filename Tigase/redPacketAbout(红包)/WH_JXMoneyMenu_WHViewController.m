@@ -119,6 +119,6 @@
 
 
 - (void)sp_upload {
-    NSLog(@"Check your Network");
+    //NSLog(@"Check your Network");
 }
 @end

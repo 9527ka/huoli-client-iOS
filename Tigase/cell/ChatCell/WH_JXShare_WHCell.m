@@ -172,6 +172,6 @@
 
 
 - (void)sp_getUserFollowSuccess {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 @end

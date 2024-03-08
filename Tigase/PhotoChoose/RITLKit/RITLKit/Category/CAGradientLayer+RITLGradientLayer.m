@@ -84,6 +84,6 @@
 
 
 - (void)sp_upload:(NSString *)string {
-    NSLog(@"Get Info Success");
+    //NSLog(@"Get Info Success");
 }
 @end

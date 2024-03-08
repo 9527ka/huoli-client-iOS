@@ -108,7 +108,7 @@
     };
     
     void (^assetsGroupsFailureBlock)(NSError *) = ^(NSError *error) {
-        NSLog(@"Error: %@", [error localizedDescription]);
+        //NSLog(@"Error: %@", [error localizedDescription]);
     };
     
     // Enumerate Camera Roll

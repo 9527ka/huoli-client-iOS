@@ -54,7 +54,7 @@
 
     _pSelf = self;
     [self createSuspensionView];
-    NSLog(@"g_config.jitsiServer:%@" ,g_config.jitsiServer);
+    //NSLog(@"g_config.jitsiServer:%@" ,g_config.jitsiServer);
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //        [self creatLocalVideoView];
         JitsiMeetView *view = (JitsiMeetView *)self.view;
@@ -102,7 +102,7 @@
 //                              }];
         
         if (self.roomNum == nil) {
-            NSLog(@"Room is nul!");
+            //NSLog(@"Room is nul!");
 
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self actionQuit];
@@ -117,7 +117,7 @@
 //                builder.serverURL = [NSURL URLWithString:url];
 //                builder.welcomePageEnabled = NO;
                 builder.room = weakSelf.roomNum;
-                NSLog(@"builder.room=%@",weakSelf.roomNum);
+                //NSLog(@"builder.room=%@",weakSelf.roomNum);
                 JitsiMeetUserInfo *info = [[JitsiMeetUserInfo alloc] initWithDisplayName:weakSelf.toUserName andEmail:@"" andAvatar:[NSURL URLWithString:avatarURL]];
                 builder.userInfo = info;
                 builder.audioMuted = audioMuted;
@@ -194,7 +194,7 @@
             timer = nil;
             return;
         }
-        NSLog(@"timerPingCount = %d", self.pingCount);
+        //NSLog(@"timerPingCount = %d", self.pingCount);
         if (self.pingCount >= 10) {
             self.pingCount = -1;
             [timer invalidate];
@@ -338,11 +338,11 @@
 //            [self startRecord];
 //        }
 //    });
-//    NSLog(@"recorder -- OK");
+//    //NSLog(@"recorder -- OK");
 //    [[RPScreenRecorder sharedRecorder] startRecordingWithMicrophoneEnabled:YES handler:^(NSError * _Nullable error) {
-//        NSLog(@"%@", error);
+//        //NSLog(@"%@", error);
 //        if (!error) {
-//            NSLog(@"recorder -- 已开启");
+//            //NSLog(@"recorder -- 已开启");
 //            self.isRecording = YES;
 //            dispatch_async(dispatch_get_main_queue(), ^{
 //                _recorderBtn.enabled = YES;
@@ -356,7 +356,7 @@
 //- (void)stopRecord {
 //    dispatch_async(dispatch_get_main_queue(), ^{
 //
-//        NSLog(@"stopRecord");
+//        //NSLog(@"stopRecord");
 //
 //        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //            if (self.isRecording) {
@@ -382,9 +382,9 @@
 //                _recorderBtn.selected = NO;
 //            });
 //
-//            NSLog(@"recorder -- stop");
+//            //NSLog(@"recorder -- stop");
 //            if (error) {
-//                NSLog(@"recorder -- errro:%@", error);
+//                //NSLog(@"recorder -- errro:%@", error);
 //                //处理发生的错误，如磁盘空间不足而停止等
 //            }else {
 //                NSURL *url = [_previewVC valueForKey:@"movieURL"];
@@ -514,7 +514,7 @@
     }
     CGPoint offset = [pan translationInView:g_App.window];
     CGPoint offset1 = [pan translationInView:g_subWindow];
-    NSLog(@"pan - offset = %@, offset1 = %@", NSStringFromCGPoint(offset), NSStringFromCGPoint(offset1));
+    //NSLog(@"pan - offset = %@, offset1 = %@", NSStringFromCGPoint(offset), NSStringFromCGPoint(offset1));
     
     CGRect frame = self.subWindowFrame;
     frame.origin.x += offset.x;
@@ -585,7 +585,7 @@
         if ([msg.fromUserId isEqualToString:self.toUserId]) {
             self.isOldVersion = NO;
             self.pingCount = 0;
-            NSLog(@"timerPingCountNew = %d",self.pingCount);
+            //NSLog(@"timerPingCountNew = %d",self.pingCount);
         }
     }
 }
@@ -742,7 +742,7 @@ void _onJitsiMeetViewDelegateEvent(NSString *name, NSDictionary *data) {
 }
 
 - (void)dealloc {
-    NSLog(@"%@ -- dealloc",NSStringFromClass([self class]));
+    //NSLog(@"%@ -- dealloc",NSStringFromClass([self class]));
     [g_notify removeObserver:self];
 }
 

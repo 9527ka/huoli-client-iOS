@@ -55,7 +55,7 @@
 //边缘手势事件
 - (void)screenPanAction:(UIScreenEdgePanGestureRecognizer *)screenPan {
     CGPoint p = [screenPan translationInView:self.view];
-    NSLog(@"p = %@",NSStringFromCGPoint(p));
+    //NSLog(@"p = %@",NSStringFromCGPoint(p));
     self.view.frame = CGRectMake(p.x, 0, JX_SCREEN_WIDTH, JX_SCREEN_HEIGHT);
     if (screenPan.state == UIGestureRecognizerStateEnded) {
         if (p.x > JX_SCREEN_WIDTH/2) {
@@ -67,7 +67,7 @@
 }
 
 - (void)dealloc {
-    NSLog(@"dealloc - %@",[self class]);
+    //NSLog(@"dealloc - %@",[self class]);
     self.title = nil;
     self.wh_headerTitle = nil;
 //    [super dealloc];
@@ -79,7 +79,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    NSLog(@"CurrentController = %@",[self class]);
+    //NSLog(@"CurrentController = %@",[self class]);
 }
 
 -(void)createHeaderViewWithColor:(UIColor *)color {

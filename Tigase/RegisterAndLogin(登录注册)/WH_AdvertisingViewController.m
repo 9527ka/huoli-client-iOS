@@ -45,7 +45,7 @@ NSInteger adTime = 3;
     [self.view addSubview:_advertisingView];
     __weak typeof(self) weakSelf = self;
     _advertisingView.skipAdBlock = ^{
-        NSLog(@"跳过");
+        //NSLog(@"跳过");
         __strong typeof(weakSelf) strongSelf = weakSelf;
         if (strongSelf.skipActionBlock) {
             strongSelf.skipActionBlock();
@@ -61,7 +61,7 @@ NSInteger adTime = 3;
 #pragma mark ------ 网络请求
 -(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1 {
     [g_default setBool:YES forKey:kTHIRD_LOGIN_AUTO];
-    NSLog(@"网络请求成功：%@ %@ %@", dict, aDownload, array1);
+    //NSLog(@"网络请求成功：%@ %@ %@", dict, aDownload, array1);
     if ([array1 isKindOfClass:[NSArray class]]) {
         NSDictionary *firstImageDic = [array1 firstObject];
         if (firstImageDic) {
@@ -74,19 +74,19 @@ NSInteger adTime = 3;
 
 #pragma mark - 请求失败回调
 -(int) WH_didServerResult_WHFailed:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict {
-    NSLog(@"网络请求失败：%@", dict);
+    //NSLog(@"网络请求失败：%@", dict);
     return WH_hide_error;
 }
 
 #pragma mark - 请求出错回调
 -(int) WH_didServerConnect_WHError:(WH_JXConnection*)aDownload error:(NSError *)error {//error为空时，代表超时
-    NSLog(@"网络请求出错：%@", error);
+    //NSLog(@"网络请求出错：%@", error);
     return WH_hide_error;
 }
 
 #pragma mark - 开始请求服务器回调
 -(void) WH_didServerConnect_MiXinStart:(WH_JXConnection*)aDownload{
-    NSLog(@"开始请求");
+    //NSLog(@"开始请求");
 }
 
 #pragma mark -- 倒计时方法

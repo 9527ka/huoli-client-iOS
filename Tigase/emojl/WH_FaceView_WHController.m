@@ -30,7 +30,7 @@
 //    NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
 //    faceArray = [FileInfo getFilesName:bundlePath];
     
-//    NSLog(@"faceArray = %@", faceArray);
+//    //NSLog(@"faceArray = %@", faceArray);
     
     //@"[微笑]",@"[得意]",@"[害羞]",@"[汗]",@"[奸笑]",@"[惊呆了]",@"[开心]",@"[哭]",@"[呕吐]",@"[亲亲]",@"[色眯眯]",@"[生病]",@"[生气]",@"[爽]",@"[委屈]",@"[严肃]",@"[疑问]",@"[晕]"
 //Localized(@"[Smile]"),Localized(@"[Proud]"),Localized(@"[Shy]"),Localized(@"[Sweat]"),Localized(@"[Smirking]"),Localized(@"[Shocked]"),Localized(@"[Happy]"),Localized(@"[Cry]"),Localized(@"[Sick]"),Localized(@"[Kiss]"),Localized(@"[Yasisi]"),Localized(@"[Ill]"),Localized(@"[Angry]"),Localized(@"[Cool]"),Localized(@"[Grievance]"),Localized(@"[Serious]"),Localized(@"[Doubt]"),Localized(@"[Halo]")
@@ -195,7 +195,7 @@
             n++;
             UIImage * emojiImage = [UIImage imageNamed:s];
             if (!emojiImage)
-                NSLog(@"kong:%@",s);
+                //NSLog(@"kong:%@",s);
             [button setBackgroundImage:emojiImage forState:UIControlStateNormal];
             [_sv addSubview:button];
             
@@ -279,7 +279,7 @@
 - (void) setPage
 {
 	_sv.contentOffset = CGPointMake(WIDTH_PAGE*_pc.currentPage, 0.0f);
-//    NSLog(@"setPage:%d,%ld",_sv.contentOffset,_pc.currentPage);
+//    //NSLog(@"setPage:%d,%ld",_sv.contentOffset,_pc.currentPage);
     [_pc setNeedsDisplay];
 }
 

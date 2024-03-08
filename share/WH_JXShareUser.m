@@ -32,10 +32,10 @@ static WH_JXShareUser *_user = nil;
     NSURL *fileURL = [groupURL URLByAppendingPathComponent:fileName];
     //写入文件
     //    [copyPath writeToURL:fileURL atomically:YES encoding:NSUTF8StringEncoding error:nil];
-    //    NSLog(@"------ path: %@",fileName.lastPathComponent);
+    //    //NSLog(@"------ path: %@",fileName.lastPathComponent);
     //读取文件
     NSString *path = [fileURL.absoluteString substringFromIndex:7];
-    NSLog(@"str = %@", path);
+    //NSLog(@"str = %@", path);
     FMDatabase *dataBase = [FMDatabase databaseWithPath:path];
     
     [dataBase open];
@@ -69,10 +69,10 @@ static WH_JXShareUser *_user = nil;
     NSURL *fileURL = [groupURL URLByAppendingPathComponent:fileName];
     //写入文件
     //    [copyPath writeToURL:fileURL atomically:YES encoding:NSUTF8StringEncoding error:nil];
-    //    NSLog(@"------ path: %@",fileName.lastPathComponent);
+    //    //NSLog(@"------ path: %@",fileName.lastPathComponent);
     //读取文件
     NSString *path = [fileURL.absoluteString substringFromIndex:7];
-    NSLog(@"str = %@", path);
+    //NSLog(@"str = %@", path);
     FMDatabase *dataBase = [FMDatabase databaseWithPath:path];
     
     [dataBase open];

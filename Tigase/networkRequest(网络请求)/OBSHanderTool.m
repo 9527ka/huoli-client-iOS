@@ -70,10 +70,10 @@ static OBSClient *client;
                             client = [[OBSClient alloc] initWithConfiguration:conf];
                             
                             
-                            NSLog(@"=======file=%@",fileName);
+                            //NSLog(@"=======file=%@",fileName);
                             // 创建列举对象请求
                             __block NSString *md5File = [NSString stringWithFormat:@"%@.%@",[self getFileMd5:fileName],fileExt];
-                            NSLog(@"=======md5File=%@",md5File);
+                            //NSLog(@"=======md5File=%@",md5File);
                             OBSPutObjectWithFileRequest *request = [[OBSPutObjectWithFileRequest alloc]initWithBucketName:bucket_name objectKey:md5File uploadFilePath:file];
                             // 开启后台上传，当应用退出到后台后，上传任务仍然会进行
                             request.background = YES;
@@ -119,9 +119,9 @@ static OBSClient *client;
                                                 NSFileManager *fileManager = [NSFileManager defaultManager];
                                                 BOOL isDelete = [fileManager removeItemAtPath:path error:nil];
                                                 if (isDelete) {
-                                                    NSLog(@"===删除成功");
+                                                    //NSLog(@"===删除成功");
                                                 }else{
-                                                    NSLog(@"===删除失败");
+                                                    //NSLog(@"===删除失败");
                                                 }
                                             }
                                             
@@ -131,7 +131,7 @@ static OBSClient *client;
                                             NSData *data = [content dataUsingEncoding:NSUTF8StringEncoding];
                                             [tempFileManager createFileAtPath:txtPath contents:data attributes:nil];
                                             
-                //                            NSLog(@"=========logPath:%@" ,txtPath);
+                //                            //NSLog(@"=========logPath:%@" ,txtPath);
                                             [self handleUploadFile:txtPath obsType:g_config.osType validTime:validTime messageId:messageId toView:toView success:^(int code, NSString *fileUrl, NSString *fileName) {
                                                 
                                             } failed:^(NSError *error) {
@@ -188,9 +188,9 @@ static OBSClient *client;
                             NSFileManager *fileManager = [NSFileManager defaultManager];
                             BOOL isDelete = [fileManager removeItemAtPath:path error:nil];
                             if (isDelete) {
-                                NSLog(@"===删除成功");
+                                //NSLog(@"===删除成功");
                             }else{
-                                NSLog(@"===删除失败");
+                                //NSLog(@"===删除失败");
                             }
                         }
                         
@@ -200,7 +200,7 @@ static OBSClient *client;
                         NSData *data = [content dataUsingEncoding:NSUTF8StringEncoding];
                         [tempFileManager createFileAtPath:txtPath contents:data attributes:nil];
                         
-//                        NSLog(@"=========logPath:%@" ,txtPath);
+//                        //NSLog(@"=========logPath:%@" ,txtPath);
                         [self handleUploadFile:txtPath obsType:g_config.osType validTime:validTime messageId:messageId toView:toView success:^(int code, NSString *fileUrl, NSString *fileName) {
                             
                         } failed:^(NSError *error) {
@@ -655,7 +655,7 @@ static OBSClient *client;
             deviceIP = [NSString stringWithFormat:@"%@",ips.lastObject];
         }
     }
-    NSLog(@"deviceIP========%@",deviceIP);
+    //NSLog(@"deviceIP========%@",deviceIP);
     return deviceIP;
 }
 
@@ -669,7 +669,7 @@ static OBSClient *client;
         return [[manager attributesOfItemAtPath:filePath error:nil] fileSize];
         
     }else{
-        NSLog(@"计算文件大小：文件不存在");
+        //NSLog(@"计算文件大小：文件不存在");
     }
     
     return 0;
@@ -741,7 +741,7 @@ static OBSClient *client;
     
     
     
-    NSLog(@"\n[getInterfaceBytes-Total]%d,%d",iBytes,oBytes);
+    //NSLog(@"\n[getInterfaceBytes-Total]%d,%d",iBytes,oBytes);
     
     return iBytes + oBytes;
     
@@ -791,10 +791,10 @@ static OBSClient *client;
                     client = [[OBSClient alloc] initWithConfiguration:conf];
                     
                     
-                    NSLog(@"=======file=%@",fileName);
+                    //NSLog(@"=======file=%@",fileName);
                     // 创建列举对象请求
                     __block NSString *md5File = [NSString stringWithFormat:@"%@.%@",[self getFileMd5:fileName],fileExt];
-                    NSLog(@"=======md5File=%@",md5File);
+                    //NSLog(@"=======md5File=%@",md5File);
                     OBSPutObjectWithFileRequest *request = [[OBSPutObjectWithFileRequest alloc]initWithBucketName:bucket_name objectKey:md5File uploadFilePath:file];
                     // 开启后台上传，当应用退出到后台后，上传任务仍然会进行
                     request.background = YES;
@@ -810,12 +810,12 @@ static OBSClient *client;
             //                    [g_server uploadFile:file validTime:validTime messageId:messageId toView:toView];
             //                });
             //                failed(error);
-                            NSLog(@"华为云文件上传失败");
+                            //NSLog(@"华为云文件上传失败");
                         }else{
                             // 获取结果
                             [self fileUrl:md5File competion:^(NSString *fileUrl) {
             //                    success(1,fileUrl,fileName);
-                                NSLog(@"华为云文件上传成功");
+                                //NSLog(@"华为云文件上传成功");
                             }];
                             
                         }
@@ -840,12 +840,12 @@ static OBSClient *client;
 //                dispatch_async(dispatch_get_main_queue(), ^{
 //                    [g_server uploadFile:file validTime:validTime messageId:messageId toView:toView];
 //                });
-                NSLog(@"腾讯云文件上传失败");
+                //NSLog(@"腾讯云文件上传失败");
             }else{
 //                success(1,result.location,fileName);
-                NSLog(@"result:%@" ,result);
-                NSLog(@"result.location:%@  fileName:%@" ,result.location ,fileName);
-                NSLog(@"腾讯云文件上传成功");
+                //NSLog(@"result:%@" ,result);
+                //NSLog(@"result.location:%@  fileName:%@" ,result.location ,fileName);
+                //NSLog(@"腾讯云文件上传成功");
             }
             
         }];

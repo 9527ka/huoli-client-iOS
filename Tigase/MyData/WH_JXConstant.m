@@ -229,7 +229,7 @@
 
     _db = [[FMDatabase alloc] initWithPath:s];
     if (![_db open]) {
-//        NSLog(@"数据库打开失败");
+//        //NSLog(@"数据库打开失败");
         return nil;
     };
     return _db;
@@ -268,7 +268,7 @@
         [dict setObject:[rs stringForColumn:_sysName]?:@"" forKey:[rs stringForColumn:@"ios"]];
         num++;
     }
-    NSLog(@"语言适配条数：%ld====%@", num,dict);
+    //NSLog(@"语言适配条数：%ld====%@", num,dict);
     return dict;
     
 }
@@ -390,7 +390,7 @@
     FMResultSet *rs=[db executeQuery:sql];
     while ([rs next]) {
         [name addObject:[rs objectForColumnName:@"id"]];
-        //        NSLog(@"%@",[rs objectForColumnName:@"name"]);
+        //        //NSLog(@"%@",[rs objectForColumnName:@"name"]);
         [value addObject:[self formatId:[rs objectForColumnName:@"name"]]];
         [dict setObject:[rs objectForColumnName:@"id"] forKey:[self formatId:[rs objectForColumnName:@"name"]]];
     }
@@ -404,7 +404,7 @@
     FMResultSet *rs=[db executeQuery:sql];
     while ([rs next]) {
         [name addObject:[rs objectForColumnName:@"name"]];
-//        NSLog(@"%@",[rs objectForColumnName:@"name"]);
+//        //NSLog(@"%@",[rs objectForColumnName:@"name"]);
         [value addObject:[self formatId:[rs objectForColumnName:@"id"]]];
         [dict setObject:[rs objectForColumnName:@"name"] forKey:[self formatId:[rs objectForColumnName:@"id"]]];
     }

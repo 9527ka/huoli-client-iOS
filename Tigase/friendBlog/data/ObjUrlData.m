@@ -13,6 +13,6 @@
 
 
 - (void)sp_getUsersMostLiked {
-    NSLog(@"Get Info Failed");
+    //NSLog(@"Get Info Failed");
 }
 @end

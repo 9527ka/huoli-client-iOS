@@ -83,6 +83,6 @@
 
 
 - (void)sp_didUserInfoFailed:(NSString *)string {
-    NSLog(@"Get Info Success");
+    //NSLog(@"Get Info Success");
 }
 @end

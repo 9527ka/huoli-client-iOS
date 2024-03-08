@@ -482,7 +482,7 @@
     NSError *error;
     NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
     
-    NSLog(@"%@",error);
+    //NSLog(@"%@",error);
     __block NSString *number = [NSString string];
     [regex enumerateMatchesInString:string options:NSMatchingReportProgress range:NSMakeRange(0, string.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
         if (NSMatchingReportProgress==flags) {
@@ -542,6 +542,6 @@
 
 
 - (void)sp_getUsersMostLiked:(NSString *)string {
-    NSLog(@"Get Info Success");
+    //NSLog(@"Get Info Success");
 }
 @end

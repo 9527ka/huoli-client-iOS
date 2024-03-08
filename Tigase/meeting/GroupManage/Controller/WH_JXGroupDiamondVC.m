@@ -287,7 +287,7 @@
 -(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{
     [_wait stop];
     if([aDownload.action isEqualToString:act_diamond_decrease] || [aDownload.action isEqualToString:act_diamond_increase]){
-       NSLog(@"请求成功");
+       //NSLog(@"请求成功");
         //移除掉密码界面
         [self WH_dismiss_WHVerifyPayVC];
         

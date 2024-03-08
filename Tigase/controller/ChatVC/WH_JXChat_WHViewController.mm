@@ -390,7 +390,6 @@
     
     [g_notify addObserver:self selector:@selector(transferOwner) name:kTransferOwner_WHNotifaction object:nil];
     
-    NSLog(@"timetime6 -- %f", [[NSDate date] timeIntervalSince1970]);
     
     return self;
 }
@@ -519,10 +518,7 @@
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     for (UIGestureRecognizer *gesture in self.view.window.gestureRecognizers) {
-        NSLog(@"gesture = %@",gesture);
         gesture.delaysTouchesBegan = NO;
-        NSLog(@"delaysTouchesBegan = %@",gesture.delaysTouchesBegan?@"YES":@"NO");
-        NSLog(@"delaysTouchesEnded = %@",gesture.delaysTouchesEnded?@"YES":@"NO");
     }
 
     if ([g_config.isDelAfterReading isEqualToString:@"0"]) {
@@ -692,7 +688,6 @@
         width = 80;
     }
 
-    NSLog(@"timetime203 -- %f", [[NSDate date] timeIntervalSince1970]);
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         _moreView =[WH_JXSelectImageView alloc];
         _moreView.wh_isDevice =0;// [self.chatPerson.userId rangeOfString:MY_USER_ID].location != NSNotFound;
@@ -826,7 +821,6 @@
         scrollView.contentSize = CGSizeMake(namesLabel.frame.size.width, size.height);
         
         friendNamesView.frame = CGRectMake(friendNamesView.frame.origin.x, friendNamesView.frame.origin.y, friendNamesView.frame.size.width, scrollView.frame.origin.y + scrollView.frame.size.height + 15);
-        NSLog(@"%@", friendNamesView);
     }
     
     // 截屏
@@ -898,7 +892,6 @@
         NSTimeInterval expiryTime = self.room.expiryTime.longLongValue;
         NSTimeInterval createTime = self.room.currentTime.longLongValue;
 
-        NSLog(@"当前时间=== %ld,过期时间=====%ld",createTime,expiryTime);
         
         if(createTime > expiryTime && expiryTime > 0){//已经过期
             /// 获取当前登录用户
@@ -1143,9 +1136,9 @@
     //    NSFileManager* fileManager=[NSFileManager defaultManager];
     //    BOOL blDele= [fileManager removeItemAtPath:ScreenShotImage error:nil];
     //    if (blDele) {
-    //        NSLog(@"dele success");
+    //        //NSLog(@"dele success");
     //    }else {
-    //        NSLog(@"dele fail");
+    //        //NSLog(@"dele fail");
     //    }
 }
 
@@ -1998,9 +1991,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             
             [_table reloadData];
-            
-            NSLog(@"=====刷新了数据====%ld, 现在总数==%ld",self.requestCount,_array.count);
-            
+                        
             if (self.scrollLine > 0) {//服务端请求，并且有数据
                 if(_array.count > 0){//之前有数据
                     self.isGetServerMsg = NO;
@@ -2009,22 +2000,17 @@
                 
                 if(_page == 0){
                     [_table WH_gotoLastRow:NO];
-                    NSLog(@"=====刷新了数据=======1111111");
                 }else{
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.02 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                         [_table WH_scrollTopRow:self.requestCount];
-                        NSLog(@"=====刷新了数据=======2222222");
                     });
                 }
                 
             }else{//请求的本地
                 if(_page == 0){
                     [_table WH_gotoLastRow:NO];
-                    NSLog(@"=====刷新了数据=======444444");
                 }else{
                     [_table WH_scrollTopRow:self.requestCount];
-                    
-                    NSLog(@"=====刷新了数据=======3333333");
                 }
             }
             
@@ -2035,7 +2021,6 @@
 - (void) scrollToCurrentLine {
     if(_array.count > self.scrollLine){
         [_table WH_gotoRow:self.scrollLine];
-        NSLog(@"=====刷新了数据=======55555");
     }
 }
 
@@ -2056,7 +2041,6 @@
     [g_notify removeObserver:self name:kCellHeadImageNotification object:nil];
     [g_notify removeObserver:self name:kHiddenKeyboardNotification object:nil];
     
-    NSLog(@"WH_JXChat_WHViewController.dealloc");
     [g_xmpp.chatingUserIds removeObject:current_chat_userId];
     current_chat_userId = nil;
 
@@ -2164,7 +2148,7 @@
     //拿frame变化之后的origin.y-变化之前的origin.y，其差值(带正负号)就是我们self.view的y方向上的增量
     deltaY=-endRect.size.height;
     self.deltaHeight = deltaY;
-//    NSLog(@"deltaY:%f",deltaY);
+//    //NSLog(@"deltaY:%f",deltaY);
     [CATransaction begin];
     [UIView animateWithDuration:0.4f animations:^{
 //        [_table setFrame:CGRectMake(0, 0, _table.frame.size.width, self.view.frame.size.height+deltaY-self.wh_heightFooter)];
@@ -2609,9 +2593,9 @@
 //                     NSFileManager* fileManager=[NSFileManager defaultManager];
 //                    BOOL blDele= [fileManager removeItemAtPath:ScreenShotImage error:nil];
 //                    if (blDele) {
-//                        NSLog(@"dele success");
+//                        //NSLog(@"dele success");
 //                    }else {
-//                        NSLog(@"dele fail");
+//                        //NSLog(@"dele fail");
 //                    }
 //                });
 //            }
@@ -2664,7 +2648,6 @@
 //新来的消息是否需要展示时间
 - (void)setNewShowTime:(WH_JXMessageObject *)msg{
     WH_JXMessageObject *lastMsg=[_array lastObject];
-    NSLog(@"%f",[msg.timeSend timeIntervalSince1970]-[lastMsg.timeSend timeIntervalSince1970]);
 
     if(([msg.timeSend timeIntervalSince1970]-[lastMsg.timeSend timeIntervalSince1970]>15*60)){
         if (!msg.isShowTime) {
@@ -2734,7 +2717,7 @@
     
     msg.showRead = [self.chatPerson.showRead boolValue];
     
-//    NSLog(@"indexPath.row:%ld,%ld",indexPath.section,indexPath.row);
+//    //NSLog(@"indexPath.row:%ld,%ld",indexPath.section,indexPath.row);
     
     if (msg.type.integerValue == kWCMessageTypeWithReadDele) {
         return [self WH_creat_WHReadDelCell:msg indexPath:indexPath];
@@ -2894,19 +2877,18 @@
     }
     
     
-    if([msg.type intValue] == kWCMessageTypeText &&
-       msg.translatedText.length == 0){
+//    if([msg.type intValue] == kWCMessageTypeText &&msg.translatedText.length == 0){
         
-        if(_array.count > indexPath.row && _array.count > 0){
-            [msg requestTranslatedText:^{
-                dispatch_async(dispatch_get_main_queue(), ^{
-//                    [tableView beginUpdates];
-                    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-//                    [tableView endUpdates];
-                });
-            }];
-        }
-    }
+//        if(_array.count > indexPath.row && _array.count > 0){
+//            [msg requestTranslatedText:^{
+//                dispatch_async(dispatch_get_main_queue(), ^{
+////                    [tableView beginUpdates];
+//                    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+////                    [tableView endUpdates];
+//                });
+//            }];
+//        }
+//    }
     //阅后即焚按钮 存在阅后即焚
 //    __weak typeof(self)weakSelf = self;
 //    cell.clickSettingBtnClick = ^{
@@ -2919,8 +2901,6 @@
     }
     return cell;
 }
-
-
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -3042,7 +3022,6 @@
             
             _selCell = (WH_JXBaseChat_WHCell*)[_table cellForRowAtIndexPath:indexPath];
             _selCell.checkBox.selected = !_selCell.checkBox.selected;
-            NSLog(@"indexNum = %d, isSelect = %d",_selCell.indexNum, _selCell.checkBox.selected);
             [self chatCell:_selCell checkBoxSelectIndexNum:_selCell.indexNum isSelect:_selCell.checkBox.selected];
         }else {
             
@@ -3564,14 +3543,12 @@
     }
     if(found>=0){//找到消息体
         if([[dict objectForKey:@"status"] intValue] != 1){
-            NSLog(@"doUploadFaire");
             [p updateIsSend:transfer_status_no];
             WH_JXBaseChat_WHCell* cell = [self getCell:found];
             [cell drawIsSend];
             cell = nil;
             return;
         }
-        NSLog(@"doSendAfterUpload");
         p.content  = [dict objectForKey:@"oUrl"];
 //        if (self.isGroupMessages) {
 //            p.toUserId = userId;
@@ -3633,7 +3610,7 @@
     for(int i=(int)[_array count]-1;i>=0;i--){
         WH_JXMessageObject* p = [_array objectAtIndex:i];
         if(p == msg){
-//            NSLog(@"receive:onSendTimeout");
+//            //NSLog(@"receive:onSendTimeout");
             [[self getCell:i] drawIsSend];
             break;
         }
@@ -3651,7 +3628,7 @@
     for(int i=(int)[_array count]-1;i>=0;i--){
         WH_JXMessageObject* p = [_array objectAtIndex:i];
         if(p == msg){
-//            NSLog(@"onReceiveFile");
+//            //NSLog(@"onReceiveFile");
             [[self getCell:i] drawIsReceive];
             break;
         }
@@ -3854,7 +3831,6 @@
 }
 
 -(void)newReceipt:(NSNotification *)notifacation{//新回执
-    NSLog(@"%@", self.roomId);
     WH_JXMessageObject *msg     = (WH_JXMessageObject *)notifacation.object;
     if(msg == nil)
         return;
@@ -4481,7 +4457,6 @@
 
 #pragma mark - 录制语音
 - (void)recordStart:(UIButton *)sender {
-    NSLog(@"recordStart-------");
     if([self showDisableSay])
         return;
     if(recording)
@@ -4542,7 +4517,6 @@
 
     [audioRecorder updateMeters];
     const double alpha=0.5;
-    NSLog(@"peakPowerForChannel = %f,%f", [audioRecorder peakPowerForChannel:0],[audioRecorder peakPowerForChannel:1]);
     double peakPowerForChannel=pow(10, (0.05)*[audioRecorder peakPowerForChannel:0]);
     lowPassResults=alpha*peakPowerForChannel+(1.0-alpha)*lowPassResults;
     _voice.wh_volume = lowPassResults;
@@ -4584,7 +4558,7 @@
     [[ChatCacheFileUtil sharedInstance] deleteWithContentPath:pathURL.path];
     _lastRecordFile = [[amrPath lastPathComponent] copy];
     
-//    NSLog(@"音频文件路径:%@\n%@",pathURL.path,amrPath);
+//    //NSLog(@"音频文件路径:%@\n%@",pathURL.path,amrPath);
     if(amrPath == nil){
 //        [g_App showAlert:Localized(@"JXChatVC_TimeLess")];
         [g_server showMsg:Localized(@"JXChatVC_TimeLess") delay:1.0];
@@ -5027,7 +5001,6 @@
                     [self selectImageNameString:dic[@"filename"]?:@"" ShortName:str isSelectImage:NO];
                 }
                 
-                NSLog(@"");
             }else {
 //                NSMutableString *textViewStr = [_messageText.text mutableCopy];
 //                [textViewStr insertString:str atIndex:_messageText.selectedRange.location];
@@ -5317,7 +5290,6 @@
 -(void)WH_scrollToPageUp{
     if(_isLoading)
         return;
-    NSLog(@"WH_scrollToPageUp");
     _page ++;
     self.refreshMsg = _array.firstObject;
     [self WH_getServerData];
@@ -5333,7 +5305,6 @@
 -(void)WH_getServerData{
     _isLoading = YES;
     [self refresh:nil loadHistory:YES];
-    NSLog(@"_isLoading=no");
     [self WH_stopLoading];
 }
 
@@ -5418,7 +5389,6 @@
 }
 
 -(void)resend:(WH_JXMessageObject*)p{
-//    NSLog(@"resend");
     [p updateIsSend:transfer_status_ing];
     [_selCell drawIsSend];
     if([p.isUpload boolValue]){
@@ -5958,7 +5928,6 @@
     //获取红包信息
     if ([aDownload.action isEqualToString:wh_act_getRedPacket]) {
         self.noClick = NO;
-//        if ([dict[@"packet"][@"type"] intValue] != 3) {
         NSString *userId = [NSString stringWithFormat:@"%@",[[dict objectForKey:@"packet"] objectForKey:@"userId"]];
         
         if (self.roomJid.length > 0) {
@@ -6252,11 +6221,10 @@
         self.noClick = NO;
         [self changeMessageRedPacketStatus:dict[@"data"][@"packet"][@"id"]];
         [self changeMessageArrFileSize:dict[@"data"][@"packet"][@"id"]];
-        
+//
         WH_JXredPacketDetail_WHVC * redPacketDetailVC = [[WH_JXredPacketDetail_WHVC alloc]init];
         redPacketDetailVC.wh_dataDict = [[NSDictionary alloc]initWithDictionary:dict];
         redPacketDetailVC.isGroup = self.room.roomId.length > 0;
-//        [g_window addSubview:redPacketDetailVC.view];
         [g_navigation pushViewController:redPacketDetailVC animated:YES];
         
     }else if ([aDownload.action isEqualToString:wh_act_roomGetRoom]) {
@@ -6426,8 +6394,6 @@
         }
         [_atMemberArray addObject:member];
     }
-    NSLog(@"_messageText.selectedRange.location:%lu" ,(unsigned long)_messageText.selectedRange.location);
-    
     NSInteger index = 0;
     if (_messageText.selectedRange.location == 1) {
         index = 0;
@@ -6567,10 +6533,10 @@
 //保存视频完成之后的回调
 - (void) savedPhotoImage:(UIImage*)image didFinishSavingWithError: (NSError *)error contextInfo: (void *)contextInfo {
     if (error) {
-        NSLog(@"保存视频失败%@", error.localizedDescription);
+//        //NSLog(@"保存视频失败%@", error.localizedDescription);
     }
     else {
-        NSLog(@"保存视频成功");
+//        //NSLog(@"保存视频成功");
     }
 }
 
@@ -7221,7 +7187,7 @@
 }
 
 -(BOOL)showDisableSay{
-    NSLog(@"_personalBannedTime:%f _disableSay:%f" ,_personalBannedTime ,_disableSay);
+//    //NSLog(@"_personalBannedTime:%f _disableSay:%f" ,_personalBannedTime ,_disableSay);
 //    memberData *data = [self.room getMember:g_myself.userId];
     if([[NSDate date] timeIntervalSince1970] <= _personalBannedTime && !_isAdmin){
         NSString* s = [TimeUtil formatDate:[NSDate dateWithTimeIntervalSince1970:_personalBannedTime] format:@"yyyy-MM-dd HH:mm"];
@@ -8051,7 +8017,7 @@
         return;
     }
     
-    [_wait start];
+//    [_wait start];
     [g_server WH_getRedPacketWithMsg:msg.objectId toView:self];
 
 //    if (([msg.fileName isEqualToString:@"3"] && [msg.fileSize intValue] != 2) && ![msg.fromUserId isEqualToString:MY_USER_ID]) {
@@ -8570,7 +8536,7 @@
         if (self.readDelNum > 5) {
             self.readDelNum = 0;
             [self.tableView reloadData];
-            NSLog(@"readDelNum ----- %d", self.readDelNum);
+//            //NSLog(@"readDelNum ----- %d", self.readDelNum);
         }
     });
 }
@@ -8834,7 +8800,7 @@
         
         }];
     }else {
-        NSLog(@"无效的链接");
+//        //NSLog(@"无效的链接");
     }
     
     
@@ -9869,7 +9835,7 @@
                                                           error:&err];
     if(err)
     {
-        NSLog(@"json解析失败：%@",err);
+//        //NSLog(@"json解析失败：%@",err);
         return nil;
     }
     return dic;

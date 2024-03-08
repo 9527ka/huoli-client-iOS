@@ -129,7 +129,7 @@ static JXXMPP *sharedManager;
         [_eventSource creatEventSourceWithHost:[NSString stringWithFormat:@"%@:8095" ,urlPath] uid:g_server.access_token];
 
         [_eventSource onMessage:^(NSString * _Nullable sid, id _Nullable event, id _Nullable data) {
-            NSLog(@"sse收到 %@ %@ %@", sid, event, data);
+            //NSLog(@"sse收到 %@ %@ %@", sid, event, data);
             NSString *dataStr = [NSString stringWithFormat:@"%@",data];
             if (![dataStr isEqualToString:@"ok"] && ![dataStr isEqualToString:@"fail"]) {
                 
@@ -174,7 +174,7 @@ static JXXMPP *sharedManager;
 }
 - (void)dealEventSourceMessageWithDict:(NSDictionary *)dict
 {
-    NSLog(@"=====第二通道:%@" ,dict);
+    //NSLog(@"=====第二通道:%@" ,dict);
     NSString* type = [JXXMPP getString:dict[@"attributes"][@"type"]];
 //    NSString* read = [[message attributeForName:@"read"] stringValue];
     NSString* messageId = [JXXMPP getString:dict[@"attributes"][@"id"]];
@@ -267,7 +267,7 @@ static JXXMPP *sharedManager;
             }
             
             if ([msg.type intValue] == kWCMessageTypeMultipleLogin) {
-                NSLog(@"200消息=====fromId:%@",msg.fromId);
+                //NSLog(@"200消息=====fromId:%@",msg.fromId);
                 
             }else {
                 if ([type isEqualToString:@"groupchat"]) {
@@ -341,7 +341,7 @@ static JXXMPP *sharedManager;
                                                 WH_JXMessageObject *newMsg = [[WH_JXMessageObject alloc] init];
                                                 newMsg.isShowTime = NO;
                                                 newMsg.messageId = msg.content;
-                                                if(![type isEqualToString:@"chat"]){
+                                                if([type isEqualToString:@"groupchat"]){
                                                     newMsg.isGroup = YES;
                                                     msg.toUserId = fromUserId;
                                                 }else {
@@ -377,7 +377,7 @@ static JXXMPP *sharedManager;
                     WH_JXMessageObject *newMsg = [[WH_JXMessageObject alloc] init];
                     newMsg.isShowTime = NO;
                     newMsg.messageId = msg.content;
-                    if(![type isEqualToString:@"chat"]){
+                    if([type isEqualToString:@"groupchat"]){
                         newMsg.isGroup = YES;
                         msg.toUserId = fromUserId;
                     }else {
@@ -477,7 +477,7 @@ static JXXMPP *sharedManager;
                             }
                         }
                         
-                        NSLog(@"isFriendFrom:%hhu isFriendTo:%hhu myUserId:%@",isFriendFrom ,isFriendTo ,MY_USER_ID);
+                        //NSLog(@"isFriendFrom:%hhu isFriendTo:%hhu myUserId:%@",isFriendFrom ,isFriendTo ,MY_USER_ID);
                         if ((isFriendFrom && isSystemTo) || (isServer && [msg.toUserId isEqualToString:MY_USER_ID]) || (isServer && isFriendTo) ||(isFriendFrom && [msg.toUserId isEqualToString:MY_USER_ID]) || (isFriendFrom && isFriendTo)) {
                             JXBlogRemind *br = [[JXBlogRemind alloc] init];
                             [br fromObject:msg];
@@ -499,7 +499,7 @@ static JXXMPP *sharedManager;
 //                        NSMutableArray *friendArray = [[WH_JXUserObject sharedUserInstance] WH_fetchAllFriendsFromLocal];
 //                        if ([friendArray containsObject:msg.fromUserId]) {
 //                            //好友关系
-//                            NSLog(@"好友关系");
+//                            //NSLog(@"好友关系");
 //                            NSString *toUserId = msg.toUserId;
 //                            //yzk添加过滤,过滤非自己好友发布的点赞评论(fromUserId是自己的好友,toUserId是自己)
 //                            if (obj != nil && [toUserId isEqualToString:MY_USER_ID]) {
@@ -569,7 +569,7 @@ static JXXMPP *sharedManager;
                         }
 
                         [msg updateLastSend:UpdateLastSendType_Add];
-                        NSLog(@"加了==========11111");
+//                        //NSLog(@"加了==========11111");
                         [msg notifyNewMsg];//在显示时检测MessageId是否已显示
                     }
                 }else{
@@ -587,7 +587,7 @@ static JXXMPP *sharedManager;
                     
                     if ([msg.type intValue] == kWCMessageTypeTwoWayWithdrawal) {
                         //双向撤回
-                        NSLog(@"=====双向撤回");
+                        //NSLog(@"=====双向撤回");
                         WH_JXMessageObject *msgObj = [[WH_JXMessageObject alloc] init];
                         msgObj.isGroup = YES;
                         
@@ -633,7 +633,6 @@ static JXXMPP *sharedManager;
                         msg.isRepeat = YES;
                     }else {
                         [msg updateLastSend:UpdateLastSendType_Add];
-                        NSLog(@"加了==========22222");
                     }
                     
                     if (msg.type.integerValue == kWCMessageTypeRemind) {
@@ -730,7 +729,7 @@ static JXXMPP *sharedManager;
 }
 
 -(void)doLogin{
-    NSLog(@"XMPP开始登录");
+    //NSLog(@"XMPP开始登录");
     self.newMsgAfterLogin = 0; //重新登陆后，新消息要置0
     pingTimeoutCount = 0;
     self.isCloseStream = NO;
@@ -757,7 +756,7 @@ static JXXMPP *sharedManager;
     if(!isLogined)
         return;
     
-    NSLog(@"isLogined = %d", self.isLogined);
+    //NSLog(@"isLogined = %d", self.isLogined);
     if (self.isLogined == login_status_yes) {
         g_server.lastOfflineTime = [[NSDate date] timeIntervalSince1970];
         [g_default setObject:[NSNumber numberWithLongLong:g_server.lastOfflineTime] forKey:kLastOfflineTime];
@@ -816,7 +815,7 @@ static JXXMPP *sharedManager;
     [xmppIQ WH_addChild:xmlns];
     
     [xmppStream sendElement:xmppIQ];
-    NSLog(@"xmppIQ = %@",xmppIQ);
+//    //NSLog(@"xmppIQ = %@",xmppIQ);
 }
 
 //开启消息压缩
@@ -828,7 +827,7 @@ static JXXMPP *sharedManager;
     [method setStringValue:@"zlib"];
     [compress WH_addChild:method];
     
-    NSLog(@"========%@",[compress XMLString]);
+//    //NSLog(@"========%@",[compress XMLString]);
     [xmppStream sendElement:compress];
 }
 
@@ -837,7 +836,7 @@ static JXXMPP *sharedManager;
 #pragma mark 暂停消息回执
     //    DDLogVerbose(@"%@: %@ - %@", THIS_FILE, THIS_METHOD, [iq elementID]);
     if ([[iq stringValue] rangeOfString:@"enable"].location != NSNotFound) {
-      NSLog(@"收到iq:%@",iq);
+//      //NSLog(@"收到iq:%@",iq);
       self.enableMsgIQ = YES;
       self.IQTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(sendIQ:) userInfo:nil repeats:YES];
     }
@@ -922,9 +921,9 @@ static JXXMPP *sharedManager;
     [aMessage WH_addChild:node];
     node = nil;
 
-//    NSLog(@"sendMessage:%@,%@",msg.messageId,jsonString);
+//    //NSLog(@"sendMessage:%@,%@",msg.messageId,jsonString);
     [xmppStream sendElement:aMessage];
-    NSLog(@">>>>>>>>>>>发送消息:%@_ios,%@",MY_USER_ID,aMessage);
+//    //NSLog(@">>>>>>>>>>>发送消息:%@_ios,%@",MY_USER_ID,aMessage);
     
     //判断消息是否为已读类型
     if ([msg.type intValue] == kWCMessageTypeIsRead) {
@@ -1023,7 +1022,7 @@ static JXXMPP *sharedManager;
     node = nil;
     
     [xmppStream sendElement:aMessage];
-    NSLog(@">>>>>>>>>>>转发消息:%@,%@",relayUserId,aMessage);
+    //NSLog(@">>>>>>>>>>>转发消息:%@,%@",relayUserId,aMessage);
     //判断消息是否为已读类型
     if ([msg.type intValue] == kWCMessageTypeIsRead) {
         bool found = NO;
@@ -1086,7 +1085,7 @@ static JXXMPP *sharedManager;
         return;
     [p updateIsSend:transfer_status_ing];
     if(p.sendCount>0){//一般只重发3次，在发之前赋值3
-        NSLog(@"超时未收到回执重发开始执行 msg->%@--messageId->%@--sendCount--%ld",p,p.messageId,(long)p.sendCount);
+//        //NSLog(@"超时未收到回执重发开始执行 msg->%@--messageId->%@--sendCount--%ld",p,p.messageId,(long)p.sendCount);
         [self login];
         NSString* roomJid=nil;
         if(p.isGroup)
@@ -1162,7 +1161,7 @@ static JXXMPP *sharedManager;
     [xmppReconnect addDelegate:self delegateQueue:dispatch_get_main_queue()];
 	[xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
     
-    NSLog(@"配置XML流时xmpp连接的域名（XMPPHost）和端口号（Port）%@:%ld",g_config.XMPPHost,(long)g_config.XMPPHostPort);
+    //NSLog(@"配置XML流时xmpp连接的域名（XMPPHost）和端口号（Port）%@:%ld",g_config.XMPPHost,(long)g_config.XMPPHostPort);
     xmppStream.hostName = g_config.XMPPHost;
     xmppStream.hostPort = g_config.XMPPHostPort;
     
@@ -1197,7 +1196,6 @@ static JXXMPP *sharedManager;
 
 #pragma mark - 消息回执
 - (void)xmppStreamManagement:(XMPPStreamManagement *)sender didReceiveAckForStanzaIds:(NSArray<id> *)stanzaIds {
-    NSLog(@"XMPPElement2 --- ");
     if ([g_config.isOpenReceipt boolValue]) {
         return;
     }
@@ -1208,14 +1206,14 @@ static JXXMPP *sharedManager;
 //        if ([msg.type intValue] == kWCMessageTypeMultipleLogin) {
 //            [g_multipleLogin upDateOtherOnline:message isOnLine:[NSNumber numberWithInt:msg.content.intValue]];
 //        }
-//        NSLog(@"收到回执:%@,%@",messageId,[message receiptResponseID]);
+//        //NSLog(@"收到回执:%@,%@",messageId,[message receiptResponseID]);
         if([msg.isSend intValue] != transfer_status_yes &&msg.messageId != nil){
             [self doSendFriendRequest:msg];
             if ([msg.type intValue] == kWCMessageTypeWithdraw || [msg.type intValue] == kWCMessageTypeWithdrawWithServer) {
                 msg.content = Localized(@"JX_AlreadyWithdraw");
             }
             [msg updateLastSend:UpdateLastSendType_Add];
-            NSLog(@"加了==========33333");
+//            //NSLog(@"加了==========33333");
             [msg updateIsSend:transfer_status_yes];
             [msg notifyReceipt];
             [msg notifyMyLastSend];
@@ -1272,7 +1270,7 @@ static JXXMPP *sharedManager;
     // 收到两次超时，就disconnect
     pingTimeoutCount++;
     if (pingTimeoutCount >= 2) {
-        NSLog(@"xmpp ---- PingDidTimeout");
+        //NSLog(@"xmpp ---- PingDidTimeout");
         [self logout];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self login];
@@ -1344,7 +1342,7 @@ static JXXMPP *sharedManager;
     if (isMultipleLogin) {
         sameResource = @"/ios";
     }
-    NSLog(@"xmpp连接的域名（XMPPHost）和端口号（Port）%@:%ld",g_config.XMPPHost,(long)g_config.XMPPHostPort);
+    //NSLog(@"xmpp连接的域名（XMPPHost）和端口号（Port）%@:%ld",g_config.XMPPHost,(long)g_config.XMPPHostPort);
     xmppStream.hostName = g_config.XMPPHost;
     xmppStream.hostPort = g_config.XMPPHostPort;
     
@@ -1366,7 +1364,7 @@ static JXXMPP *sharedManager;
 	{
         self.isLogined = login_status_no;
         [self notify];
-        NSLog(@"XMPP连接失败错误信息: %@", error);
+        //NSLog(@"XMPP连接失败错误信息: %@", error);
 		return NO;
 	}
 	return YES;
@@ -1434,7 +1432,7 @@ static JXXMPP *sharedManager;
 	{
 		[application setKeepAliveTimeout:600 handler:^{
 			
-			DDLogVerbose(@"KeepAliveHandler");
+//			DDLogVerbose(@"KeepAliveHandler");
 			
 			// Do other keep alive stuff here.
 		}];
@@ -1443,7 +1441,7 @@ static JXXMPP *sharedManager;
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+//	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
 }
 
 - (NSManagedObjectContext *)managedObjectContext_roster
@@ -1458,12 +1456,12 @@ static JXXMPP *sharedManager;
 
 - (void)xmppStream:(XMPPStream *)sender socketDidConnect:(GCDAsyncSocket *)socket
 {
-	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+//	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
 }
 
 - (void)xmppStream:(XMPPStream *)sender willSecureWithSettings:(NSMutableDictionary *)settings
 {
-	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+//	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
 	
 	if (allowSelfSignedCertificates)
 	{
@@ -1515,14 +1513,14 @@ static JXXMPP *sharedManager;
 
 - (void)xmppStreamDidSecure:(XMPPStream *)sender
 {
-	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+//	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
 }
 
 //连接成功时调用
 - (void)xmppStreamDidConnect:(XMPPStream *)sender
 {
 	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
-    NSLog(@"XMPP连接成功");
+    //NSLog(@"XMPP连接成功");
 	isXmppConnected = YES;
 	
 	NSError *error = nil;
@@ -1532,14 +1530,14 @@ static JXXMPP *sharedManager;
         self.isLogined = login_status_no;
         [self notify];
 		DDLogError(@"Error authenticating: %@", error);
-        NSLog(@"XMPP授权失败错误信息:%@",error);
+        //NSLog(@"XMPP授权失败错误信息:%@",error);
 	}
 }
 
 //授权成功时调用
 - (void)xmppStreamDidAuthenticate:(XMPPStream *)sender
 {
-    NSLog(@"XMPP授权成功%@: %@",THIS_FILE, THIS_METHOD);
+    //NSLog(@"XMPP授权成功%@: %@",THIS_FILE, THIS_METHOD);
 	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
     [self doLogin];
 //    if (![g_config.isOpenReceipt boolValue]) {
@@ -1558,7 +1556,7 @@ static JXXMPP *sharedManager;
     self.isLogined = login_status_no;
     self.isReconnect = NO;
     [self notify];
-    NSLog(@"XMPP授权失败%@: %@",THIS_FILE, THIS_METHOD);
+    //NSLog(@"XMPP授权失败%@: %@",THIS_FILE, THIS_METHOD);
 	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
 }
 
@@ -1566,7 +1564,7 @@ static JXXMPP *sharedManager;
 //{
 ////    DDLogVerbose(@"%@: %@ - %@", THIS_FILE, THIS_METHOD, [iq elementID]);
 //
-////    NSLog(@"收到iq:%@",iq);
+////    //NSLog(@"收到iq:%@",iq);
 //
 //
 //    return NO;
@@ -1574,8 +1572,10 @@ static JXXMPP *sharedManager;
 #pragma mark - －－－－－－－－－收到消息时调用
 - (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message
 {
-    NSLog(@"<<<<<<<<<<<收到消息: %@", message);
-    NSLog(@"%@", MY_USER_ID);
+#ifdef DEBUG
+//    //NSLog(@"<<<<<<<<<<<收到消息: %@", message);
+#endif
+//    //NSLog(@"%@", MY_USER_ID);
         pingTimeoutCount = 0;
     
 //    NSString* read = [[message attributeForName:@"read"] stringValue];
@@ -1592,7 +1592,7 @@ static JXXMPP *sharedManager;
 
 //    NSXMLElement *x = [message elementForName:@"x"];
     
-//    NSLog(@"didReceiveMessage:%@,%@",messageId,body);
+//    //NSLog(@"didReceiveMessage:%@,%@",messageId,body);
 //    if(delay != nil && [type isEqualToString:@"groupchat"] && messageId == nil)//如果是群聊的历史消息，则忽略
 //        return;
     if([message hasReceiptResponse]) {//如果是回执，则通知界面
@@ -1604,11 +1604,11 @@ static JXXMPP *sharedManager;
         }
 
         if(([msg.isSend intValue] != transfer_status_yes) && (msg.messageId != nil)){
-            NSLog(@"收到回执-改变状态开始 msg->%@--receiptResponseID->%@--messageId->%@",msg,receiptResponseID,msg.isSend);
+//            //NSLog(@"收到回执-改变状态开始 msg->%@--receiptResponseID->%@--messageId->%@",msg,receiptResponseID,msg.isSend);
 
             [self doSendFriendRequest:msg];
             [msg updateLastSend:UpdateLastSendType_Add];
-            NSLog(@"加了==========44444");
+//            //NSLog(@"加了==========44444");
             [msg updateIsSend:transfer_status_yes];
             [msg notifyReceipt];
             [msg notifyMyLastSend];
@@ -1710,7 +1710,7 @@ static JXXMPP *sharedManager;
             }
 
             if ([msg.type intValue] == kWCMessageTypeMultipleLogin) {
-                NSLog(@"200消息=====fromId:%@",msg.fromId);
+//                //NSLog(@"200消息=====fromId:%@",msg.fromId);
                 [self sendMsgReceipt:message];//收到200验证消息后，发回执
                 [g_multipleLogin upDateOtherOnline:message isOnLine:[NSNumber numberWithInt:msg.content.intValue]];
             }else {
@@ -1848,7 +1848,7 @@ static JXXMPP *sharedManager;
                 
                 if ([msg.type intValue] == kWCMessageTypeTwoWayWithdrawal) {
                     //双向撤回
-                    NSLog(@"=====双向撤回");
+                    //NSLog(@"=====双向撤回");
                     WH_JXMessageObject *msgObj = [[WH_JXMessageObject alloc] init];
                     msgObj.isGroup = YES;
                     
@@ -1952,7 +1952,7 @@ static JXXMPP *sharedManager;
                             }
                         }
 
-                        NSLog(@"isFriendFrom:%hhu isFriendTo:%hhu myUserId:%@",isFriendFrom ,isFriendTo ,MY_USER_ID);
+                        //NSLog(@"isFriendFrom:%hhu isFriendTo:%hhu myUserId:%@",isFriendFrom ,isFriendTo ,MY_USER_ID);
                         if ((isFriendFrom && isSystemTo) || (isServer && [msg.toUserId isEqualToString:MY_USER_ID]) || (isServer && isFriendTo) ||(isFriendFrom && [msg.toUserId isEqualToString:MY_USER_ID]) || (isFriendFrom && isFriendTo)) {
                             JXBlogRemind *br = [[JXBlogRemind alloc] init];
                             [br fromObject:msg];
@@ -1974,7 +1974,7 @@ static JXXMPP *sharedManager;
 //                        NSMutableArray *friendArray = [[WH_JXUserObject sharedUserInstance] WH_fetchAllFriendsFromLocal];
 //                        if ([friendArray containsObject:msg.fromUserId]) {
 //                            //好友关系
-//                            NSLog(@"好友关系");
+//                            //NSLog(@"好友关系");
 //                            NSString *toUserId = msg.toUserId;
 //                            //yzk添加过滤,过滤非自己好友发布的点赞评论(fromUserId是自己的好友,toUserId是自己)
 //                            if (obj != nil && [toUserId isEqualToString:MY_USER_ID]) {
@@ -2061,7 +2061,6 @@ static JXXMPP *sharedManager;
                             }
 
                             [msg updateLastSend:UpdateLastSendType_Add];
-                            NSLog(@"加了==========5555");
                             [msg notifyNewMsg];
                         
                         }
@@ -2107,7 +2106,6 @@ static JXXMPP *sharedManager;
                     }else {//消息保存到本地
                         if([type isEqualToString:@"groupchat"] && [g_xmpp.roomPool getRoom:msg.objectId]){
                             [msg updateLastSend:UpdateLastSendType_Add];
-                            NSLog(@"加了==========666666");
                         }
                     }
 
@@ -2207,7 +2205,6 @@ static JXXMPP *sharedManager;
             
         }else{
             [msg updateLastSend:UpdateLastSendType_Add];
-            NSLog(@"加了==========77777");
             [msg notifyNewMsg];//在显示时检测MessageId是否已显示
         }
 
@@ -2215,7 +2212,6 @@ static JXXMPP *sharedManager;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
 
         [msg updateLastSend:UpdateLastSendType_Add];
-        NSLog(@"加了==========88888");
         [msg notifyNewMsg];//在显示时检测MessageId是否已显示
     }];
 }
@@ -2260,7 +2256,9 @@ static JXXMPP *sharedManager;
         }else {
              [_poolSendIQ removeAllObjects];
          }
-        NSLog(@"每秒执行一次，判断5秒没发回执就发一次，或者消息数量大于100也发一次,xmppIQ = %@",xmppIQ);
+#ifdef DEBUG
+//        //NSLog(@"每秒执行一次，判断5秒没发回执就发一次，或者消息数量大于100也发一次,xmppIQ = %@",xmppIQ);
+#endif
      }
 }
 
@@ -2270,13 +2268,13 @@ static JXXMPP *sharedManager;
     if([message hasReceiptRequest]){//离线也发送回执，这样服务器可以确保消息送达
         XMPPMessage* reply = [message generateReceiptResponse];//发送回执
         [xmppStream sendElement:reply];
-        NSLog(@"单聊发送消息回执===%@",reply);
+//        //NSLog(@"单聊发送消息回执===%@",reply);
     }
 }
 
 - (void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence
 {
-	DDLogVerbose(@"%@: %@ - %@", THIS_FILE, THIS_METHOD, [presence fromStr]);
+//	DDLogVerbose(@"%@: %@ - %@", THIS_FILE, THIS_METHOD, [presence fromStr]);
 }
 
 - (void)xmppStream:(XMPPStream *)sender didReceiveError:(NSXMLElement*)element
@@ -2292,7 +2290,7 @@ static JXXMPP *sharedManager;
                 self.isReconnect = NO;
                 [_reconnectTimer invalidate];
                 _reconnectTimer = nil;
-                NSLog(@"xmpp ---- error");
+                //NSLog(@"xmpp ---- error");
                 [self logout];
                 [g_notify postNotificationName:kXMPPLoginOther_WHNotification object:nil];
                 return;
@@ -2305,8 +2303,7 @@ static JXXMPP *sharedManager;
 - (void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error
 {
 	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
-    NSLog(@"XMPP ---- disconnect");
-    NSLog(@"XMPP连接失败错误信息:%@", error.userInfo.description);
+    //NSLog(@"XMPP连接失败错误信息:%@", error.userInfo.description);
     if (error && self.isReconnect) {
         [roomPool deleteAll];
         self.isLogined = login_status_no;
@@ -2387,14 +2384,14 @@ static JXXMPP *sharedManager;
     
     NSString *currentTimeString = [formatter stringFromDate:datenow];
     
-    NSLog(@"currentTimeString =  %@",currentTimeString);
+    //NSLog(@"currentTimeString =  %@",currentTimeString);
     
     return currentTimeString;
     
 }
 
 - (NSString *)xmppStream:(XMPPStream *)sender alternativeResourceForConflictingResource:(NSString *)conflictingResource{
-    DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+//    DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
     return nil;
 }
 
@@ -2413,7 +2410,7 @@ static JXXMPP *sharedManager;
 }
 #pragma mark 开始检索好友列表的方法
 -(void)xmppRosterDidBeginPopulating:(XMPPRoster *)sender{
-    NSLog(@"开始检索好友列表");
+    //NSLog(@"开始检索好友列表");
 }
 
 - (void)addSomeBody:(NSString *)userId
@@ -2429,11 +2426,11 @@ static JXXMPP *sharedManager;
 #pragma mark - 请求成功回调
 -(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{
     if ([aDownload.action isEqualToString:wh_act_readDelMsg]) {
-        NSLog(@"删除成功");
+        //NSLog(@"删除成功");
     }else if ([aDownload.action isEqualToString:act_LogReport]) {
-        NSLog(@"XMPP连接异常上报成功");
+        //NSLog(@"XMPP连接异常上报成功");
     }else if ([aDownload.action isEqualToString:wh_act_UserLogout]) {
-        NSLog(@"退出登录");
+        //NSLog(@"退出登录");
         [self loginOutMethod];
     }else if ([aDownload.action rangeOfString:@"messages/sync"].location != NSNotFound){
             if (array1.count) {
@@ -2444,7 +2441,7 @@ static JXXMPP *sharedManager;
                 }
             }
             
-            NSLog(@"退出登录");
+            //NSLog(@"退出登录");
         }
 
     if([dict count]>0){
@@ -2459,7 +2456,7 @@ static JXXMPP *sharedManager;
 -(int) WH_didServerResult_WHFailed:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict{
     
     if ([aDownload.action isEqualToString:@"messages/sync"]) {
-           NSLog(@"退出登录");
+           //NSLog(@"退出登录");
        }
 }
 
@@ -2472,7 +2469,7 @@ static JXXMPP *sharedManager;
     g_myself.userId = nil;
     
     [[JXXMPP sharedInstance] logout];
-    NSLog(@"XMPP ---- WH_JXSetting_WHVC doSwitch");
+    //NSLog(@"XMPP ---- WH_JXSetting_WHVC doSwitch");
         // 退出登录到登陆界面 隐藏悬浮窗
     g_App.subTopWindow.hidden = YES;
     g_App.isHaveTopWindow = YES;
@@ -2513,10 +2510,10 @@ static JXXMPP *sharedManager;
 //    [_db release];
     _db = [[FMDatabase alloc] initWithPath:s];
     if (![_db open]) {
-//        NSLog(@"数据库打开失败");
+//        //NSLog(@"数据库打开失败");
         return nil;
     };
-    NSLog(@"本地自己用户表地址dataPath:%@",_db.databasePath);
+    //NSLog(@"本地自己用户表地址dataPath:%@",_db.databasePath);
     
     if (userId.length > 0) {
         [self getBlackList];
@@ -2573,10 +2570,10 @@ static JXXMPP *sharedManager;
 }
 
 -(void)notifyNewMsg{
-//    NSLog(@"收到新消息：%f",g_xmpp.lastNewMsgTime);
+//    //NSLog(@"收到新消息：%f",g_xmpp.lastNewMsgTime);
     double n = [[NSDate date] timeIntervalSince1970]-g_xmpp.lastNewMsgTime;
     if(n>0.5){//假如0.5秒之内没有新消息到达，则认为收取完毕，一次性刷新
-//        NSLog(@"刷新聊天记录：%f",n);
+//        //NSLog(@"刷新聊天记录：%f",n);
 //        self.newMsgAfterLogin = 1;
         [g_notify postNotificationName:kXMPPAllMsg_WHNotifaction object:nil userInfo:nil];
     }
@@ -2605,7 +2602,7 @@ static JXXMPP *sharedManager;
 //    }else {
         [user updateNewMsgUserId:user.userId num:1];
         [msg updateLastSend:UpdateLastSendType_Add];
-    NSLog(@"加了==========9999999");
+//    //NSLog(@"加了==========9999999");
 //    }
     [msg notifyNewMsg];
 }
@@ -2676,7 +2673,7 @@ static JXXMPP *sharedManager;
                     if (self.isLogined != 1) {
                         self.timer = [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(timerAction:) userInfo:nil repeats:NO];
                         //                    self.loginStatus = YES;
-                        NSLog(@"XMPP --- alert");
+                        //NSLog(@"XMPP --- alert");
                         [self logout];
                         [_wait start:Localized(@"JX_Connection")];
                         [self login];
@@ -2750,7 +2747,7 @@ static JXXMPP *sharedManager;
         [_reconnectTimer invalidate];
         _reconnectTimer = nil;
         _reconnectTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(xmppTimerAction:) userInfo:nil repeats:NO];
-        NSLog(@"login-开始登陆 - %d",self.isLogined);
+        //NSLog(@"login-开始登陆 - %d",self.isLogined);
     }else {
         [_reconnectTimer invalidate];
         _reconnectTimer = nil;
@@ -2758,7 +2755,7 @@ static JXXMPP *sharedManager;
 }
 
 - (void)xmppTimerAction:(NSTimer *)timer {
-    NSLog(@"login-timerAction - %d",self.isLogined);
+    //NSLog(@"login-timerAction - %d",self.isLogined);
     if (self.isLogined != login_status_yes){
         [self logout];
         [self login];

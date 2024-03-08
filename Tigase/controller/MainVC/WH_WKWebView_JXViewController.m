@@ -98,7 +98,7 @@
     
     self.wkWebView = [[WKWebView  alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP + 3, JX_SCREEN_WIDTH, CGRectGetHeight(self.view.frame) - JX_SCREEN_TOP - JX_SCREEN_BOTTOM - 3)];
     [self.wkWebView setBackgroundColor:[UIColor whiteColor]];
-    NSLog(@"self.url:%@" ,self.url);
+    //NSLog(@"self.url:%@" ,self.url);
     self.wkWebView.navigationDelegate = self;
     self.wkWebView.UIDelegate = self;
     if ([self.url ritl_containChinese]) {
@@ -134,7 +134,7 @@
 
 #pragma mark - 开始请求服务器回调
 -(void) WH_didServerConnect_WHStart:(WH_JXConnection*)aDownload{
-    NSLog(@"开始加载");
+    //NSLog(@"开始加载");
     // 开始走进度条
     [self.progressLine startLoadingAnimation];
 }
@@ -143,11 +143,11 @@
     
 }
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    NSLog(@"加载完成");
+    //NSLog(@"加载完成");
     [self.progressLine endLoadingAnimation];
 }
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
-    NSLog(@"加载失败");
+    //NSLog(@"加载失败");
 //    [GKMessageTool showText:@"加载失败！"];
     [self.progressLine endLoadingAnimation];
 }
@@ -161,8 +161,8 @@
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
     NSString*urlString = navigationAction.request.URL.absoluteString;
     urlString = [urlString stringByRemovingPercentEncoding];
-    NSLog(@"拦截到的Url%@",navigationAction.request.URL);
-    NSLog(@"拦截到的方法%@",navigationAction.request.URL.scheme);
+    //NSLog(@"拦截到的Url%@",navigationAction.request.URL);
+    //NSLog(@"拦截到的方法%@",navigationAction.request.URL.scheme);
     if ([urlString containsString:@"alipay"]){//alipay://alipayclient/
         //拦截到之后不允许跳转
         decisionHandler(WKNavigationActionPolicyCancel);

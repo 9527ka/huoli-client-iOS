@@ -182,12 +182,12 @@ static NSString const * ConstTextField;
     //获得背景视图
     for (UIView *subView in textField.subviews) {
         
-        NSLog(@"class = %@",NSStringFromClass(subView.class));
+        //NSLog(@"class = %@",NSStringFromClass(subView.class));
     }
 }
 
 
 - (void)sp_getMediaFailed {
-    NSLog(@"Get Info Failed");
+    //NSLog(@"Get Info Failed");
 }
 @end

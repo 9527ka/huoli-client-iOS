@@ -199,7 +199,7 @@
     iv = [self WH_createMiXinButton:Localized(@"JX_MobilePhoneNo.") drawTop:NO drawBottom:YES must:NO click:nil superView:self.wh_cView];
     iv.frame = CGRectMake(0, 3*(HEIGHT), CGRectGetWidth(self.wh_cView.frame), HEIGHT);
     _showNImgV = iv;
-    NSLog(@"self.user.telephone:%@" ,self.wh_user.telephone);
+    //NSLog(@"self.user.telephone:%@" ,self.wh_user.telephone);
     _showNum = [self WH_createLabel:iv default:self.wh_user.telephone];
     
 //    h+=iv.frame.size.height;
@@ -264,7 +264,7 @@
     // && ([g_constant.isAddFriend integerValue] == 1 || _friendStatus == friend_status_friend)
 #pragma mark 是否显示添加好友按钮
     if (!self.wh_isJustShow) {
-        NSLog(@"g_constant.isAddFriend == %@", g_constant.isAddFriend);
+        //NSLog(@"g_constant.isAddFriend == %@", g_constant.isAddFriend);
         if(([self.wh_userId intValue] != [MY_USER_ID intValue]) || [g_constant.isAddFriend integerValue] == 1 || [self.wh_user.friends count] > 0){
             _btn = [UIFactory WH_create_WHCommonButton:Localized(@"JX_AddFriend") target:self action:@selector(WH_actionWithAddFriendAction:)];
             _btn.frame = CGRectMake(g_factory.globelEdgeInset, CGRectGetHeight(self.wh_cView.frame) + self.wh_cView.frame.origin.y + TopSpace, JX_SCREEN_WIDTH - 2*(g_factory.globelEdgeInset), 44);
@@ -663,7 +663,7 @@
 }
 
 -(void)dealloc{
-    NSLog(@"WH_JXUserInfo_WHVC.dealloc");
+    //NSLog(@"WH_JXUserInfo_WHVC.dealloc");
     [g_notify  removeObserver:self name:kXMPPSendTimeOut_WHNotifaction object:nil];
     [g_notify  removeObserver:self name:kXMPPReceipt_WHNotifaction object:nil];
     [g_notify removeObserver:self];
@@ -934,14 +934,14 @@
 
 -(void)WH_onSendTimeout:(NSNotification *)notifacation//超时未收到回执
 {
-//    NSLog(@"onSendTimeout");
+//    //NSLog(@"onSendTimeout");
     [_wait stop];
 //    [g_App showAlert:Localized(@"JXAlert_SendFilad")];
     [JXMyTools showTipView:Localized(@"JXAlert_SendFilad")];
 }
 
 -(void)newReceipt:(NSNotification *)notifacation{//新回执
-//    NSLog(@"newReceipt");
+//    //NSLog(@"newReceipt");
     WH_JXMessageObject *msg     = (WH_JXMessageObject *)notifacation.object;
     if(msg == nil)
         return;

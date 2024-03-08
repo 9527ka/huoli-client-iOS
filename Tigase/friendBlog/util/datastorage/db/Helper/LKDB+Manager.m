@@ -87,6 +87,6 @@
     [self.tableInfos removeAllObjects];
 }
 - (void)sp_checkUserInfo {
-    NSLog(@"Get Info Success");
+    //NSLog(@"Get Info Success");
 }
 @end

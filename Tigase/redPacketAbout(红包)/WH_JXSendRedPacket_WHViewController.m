@@ -251,7 +251,7 @@
 
 #pragma mark 选择能领取红包的人
 - (void)wh_canCalimRedPacketPeopleNum:(UIButton *)button {
-    NSLog(@"button.tag:%li" ,(long)button.tag);
+//    //NSLog(@"button.tag:%li" ,(long)button.tag);
     WH_SelectReceiveRedPacket_ViewController *selectVC = [[WH_SelectReceiveRedPacket_ViewController alloc] init];
     selectVC.roomId = self.wh_roomId;
     selectVC.roomData = self.room;
@@ -585,6 +585,6 @@
 
 
 - (void)sp_getMediaData:(NSString *)isLogin {
-    NSLog(@"Get User Succrss");
+//    //NSLog(@"Get User Succrss");
 }
 @end

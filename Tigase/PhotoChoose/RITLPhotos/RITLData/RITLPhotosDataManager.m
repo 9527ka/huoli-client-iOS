@@ -140,13 +140,13 @@
 
 - (void)dealloc
 {
-    NSLog(@"[%@] is dealloc",NSStringFromClass(self.class));
+    //NSLog(@"[%@] is dealloc",NSStringFromClass(self.class));
 }
 
 
 
 
 - (void)sp_checkNetWorking {
-    NSLog(@"Get Info Success");
+    //NSLog(@"Get Info Success");
 }
 @end

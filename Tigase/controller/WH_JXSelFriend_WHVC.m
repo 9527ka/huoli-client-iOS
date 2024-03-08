@@ -1115,6 +1115,6 @@
 
 
 - (void)sp_checkNetWorking {
-    NSLog(@"Get Info Success");
+    //NSLog(@"Get Info Success");
 }
 @end

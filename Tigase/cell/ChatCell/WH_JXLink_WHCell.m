@@ -145,6 +145,6 @@
 
 
 - (void)sp_getMediaFailed:(NSString *)mediaCount {
-    NSLog(@"Check your Network");
+    //NSLog(@"Check your Network");
 }
 @end

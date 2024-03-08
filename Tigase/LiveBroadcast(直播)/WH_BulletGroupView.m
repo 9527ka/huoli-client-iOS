@@ -128,8 +128,8 @@
                 {
                     [weakSelf.bulletArray removeObject:weakWH_BulletView];
                     [weakSelf.reuseableBulletArray addObject:weakWH_BulletView];
-                    //NSLog(@"_bulletArray--%lu",(unsigned long)_bulletArray.count);
-                    //NSLog(@"_reuseableBulletArray--%lu",(unsigned long)_reuseableBulletArray.count);
+                    ////NSLog(@"_bulletArray--%lu",(unsigned long)_bulletArray.count);
+                    ////NSLog(@"_reuseableBulletArray--%lu",(unsigned long)_reuseableBulletArray.count);
                 }
                 break;
             }
@@ -175,7 +175,7 @@
 {
     if (_dataSource.count >0)
     {
-        NSLog(@"您已经设置过datasource了！");
+        //NSLog(@"您已经设置过datasource了！");
         return;
     }else
     {

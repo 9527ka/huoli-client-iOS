@@ -24,6 +24,6 @@
 
 
 - (void)sp_getUsersMostLiked {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 @end

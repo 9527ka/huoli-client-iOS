@@ -1204,11 +1204,16 @@
         newUser.status = @(0);
         newobj.user = newUser;
         
-        if (newobj.user && !msg.isGroup) {
+        BOOL isToMe = NO;
+        if([newobj.message.fromUserId isEqualToString:MY_USER_ID] || [newobj.message.toUserId isEqualToString:MY_USER_ID]){
+            isToMe = YES;
+        }
+        
+//        if (newobj.user) {
+        
+        if (newobj.user && !msg.isGroup && isToMe && newobj.user.userId.length > 5) {
             //访问数据库是否存在改好友，没有则写入数据库
-//            if (newobj.user.userId.length > 5) {
-                [newobj.user insertFriend];
-//            }
+            [newobj.user insertFriend];
             [_wh_array insertObject:newobj atIndex:_topNum];
             
             NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
@@ -1295,10 +1300,10 @@
         {
             WH_JXMsgAndUserObject * dicta = (WH_JXMsgAndUserObject*) [_wh_array objectAtIndex:i];
             NSDate * a = dicta.message.timeSend ;
-//            NSLog(@"a = %d",[dicta.user.msgsNew intValue]);
+//            //NSLog(@"a = %d",[dicta.user.msgsNew intValue]);
             WH_JXMsgAndUserObject * dictb = (WH_JXMsgAndUserObject*) [_wh_array objectAtIndex:j];
             NSDate * b = dictb.message.timeSend ;
-            //                NSLog(@"b = %d",b);
+            //                //NSLog(@"b = %d",b);
             
             if ([[a laterDate:b] isEqualToDate:b])
             {
@@ -1327,7 +1332,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
-//    NSLog(@"didSelectRowAtIndexPath.begin");
+//    //NSLog(@"didSelectRowAtIndexPath.begin");
 //    if (_dalayAction) {
 //        return;
 //    }else{
@@ -1659,7 +1664,7 @@
 
 -(void)delFriend:(NSNotification *)notifacation
 {
-//    NSLog(@"delFriend.notify");
+//    //NSLog(@"delFriend.notify");
     WH_JXUserObject* user = (WH_JXUserObject *)notifacation.object;
     NSString* userId = user.userId;
     if(userId==nil)
@@ -1819,7 +1824,6 @@
     }
 
     textView.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, (size.height < 60)?size.height:size.height);
-    NSLog(@"--------%@",NSStringFromCGRect(self.baseView.frame));
 
     self.baseView.frame = CGRectMake(20, JX_SCREEN_HEIGHT/4+35-size.height, JX_SCREEN_WIDTH-40, baseViewHeight+size.height);
 //    self.topView.frame = CGRectMake(0, 118-35+size.height, self.baseView.frame.size.width, 60);
@@ -1919,7 +1923,7 @@
     for (WH_JXMsgAndUserObject * dict in _wh_array) {
         if (![dict.user.userId isEqualToString:FRIEND_CENTER_USERID]) {
             n += [dict.user.msgsNew intValue];
-            NSLog(@"新消息=%d",[dict.user.msgsNew intValue]);
+//            //NSLog(@"新消息=%d",[dict.user.msgsNew intValue]);
         }
     }
     self.wh_msgTotal =  n;
@@ -2046,9 +2050,7 @@
             WH_RoomData * roomdata = [[WH_RoomData alloc] init];
             [roomdata WH_getDataFromDict:dict];
             if (roomdata.isNeedVerify) {
-                NSLog(@"+++++111");//kai
             }else{
-                NSLog(@"+++++222");//guan
                 _chatRoom = [g_xmpp.roomPool joinRoom:[dict objectForKey:@"jid"] title:[dict objectForKey:@"name"] isNew:YES];
             }
             
@@ -2364,9 +2366,7 @@
 //context:注册观察者的时候,context传递过来的值
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
     id oldName = [change objectForKey:NSKeyValueChangeOldKey];
-    NSLog(@"oldName----------%@",oldName);
     id newName = [change objectForKey:NSKeyValueChangeNewKey];
-    NSLog(@"newName-----------%@",newName);
     
     
     if ([newName integerValue] == 1) {
@@ -2376,9 +2376,9 @@
 //        WH_RoomData * roomdata = [[WH_RoomData alloc] init];
 //        [roomdata WH_getDataFromDict:dict];
 //        if (roomdata.isNeedVerify) {
-//            NSLog(@"+++++111");//kai
+//            //NSLog(@"+++++111");//kai
 //        }else{
-//            NSLog(@"+++++222");//guan
+//            //NSLog(@"+++++222");//guan
 //            _chatRoom = [g_xmpp.roomPool joinRoom:[dict objectForKey:@"jid"] title:[dict objectForKey:@"name"] isNew:YES];
 //        }
         
@@ -3149,7 +3149,7 @@
                                                           error:&err];
     if(err)
     {
-        NSLog(@"json解析失败：%@",err);
+        //NSLog(@"json解析失败：%@",err);
         return nil;
     }
     return dic;
@@ -3157,6 +3157,6 @@
 
 
 - (void)sp_getMediaFailed {
-    NSLog(@"Continue");
+//    //NSLog(@"Continue");
 }
 @end

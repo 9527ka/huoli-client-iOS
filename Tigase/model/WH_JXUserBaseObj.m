@@ -64,7 +64,7 @@
 }
 
 -(void)dealloc{
-//    NSLog(@"WH_JXUserBaseObj.dealloc");
+//    //NSLog(@"WH_JXUserBaseObj.dealloc");
     self.userId = nil;
     self.userNickname = nil;
     self.remarkName = nil;

@@ -592,7 +592,7 @@
         if ([mem.userId intValue] == [self.userId intValue]) {
             _anchorMember = mem;
             [_membersSet addObject:mem.userId];
-            NSLog(@"主播来了");
+            //NSLog(@"主播来了");
         }else{
             NSUInteger index = [_membersArray indexOfObject:_currentMember];
             if (index != NSNotFound) {
@@ -799,7 +799,7 @@
     
     if(_chatRoom.isConnected){
         [self showWelcomeMsg];
-//        NSLog(@"showWelcomeMsg_isconnect");
+//        //NSLog(@"showWelcomeMsg_isconnect");
         _chatRoom.delegate = self;
         [_chatRoom joinRoom:YES];
     }else{
@@ -810,7 +810,7 @@
 -(void)xmppRoomDidJoin:(XMPPRoom *)sender{
     
     [self showWelcomeMsg];
-//    NSLog(@"showWelcomeMsg_xmppRoomDidJoin");
+//    //NSLog(@"showWelcomeMsg_xmppRoomDidJoin");
 }
 
 -(void)WH_show_WHOneMsg:(WH_JXMessageObject*)msg{
@@ -1073,7 +1073,7 @@
         if ([mem.userId intValue] == [self.userId intValue]) {
             _anchorMember = mem;
             [_membersSet addObject:mem.userId];
-            NSLog(@"主播来了");
+            //NSLog(@"主播来了");
             return;
         }
         if ([mem.userId isEqualToString:g_myself.userId]){
@@ -1096,7 +1096,7 @@
 -(void)userQuitRemind:(WH_JXRoomRemind *)remind{
     
     if ([remind.toUserId intValue] == [self.userId intValue]) {
-        NSLog(@"主播走了");
+        //NSLog(@"主播走了");
         [g_App showAlert:Localized(@"JX_TheAnchorHasStoppedBroadcasting") delegate:self tag:2457 onlyConfirm:YES];
         return;
     }

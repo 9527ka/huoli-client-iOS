@@ -41,7 +41,7 @@
     CGFloat gifW = imageItemHeight;
     CGFloat gifH = imageItemHeight;
     if(self.msg.isMySend){
-//        NSLog(@"%f %f %f %d",JX_SCREEN_WIDTH, HEAD_SIZE,imageItemHeight, INSETS);
+//        //NSLog(@"%f %f %f %d",JX_SCREEN_WIDTH, HEAD_SIZE,imageItemHeight, INSETS);
         gifX = JX_SCREEN_WIDTH - INSETS - HEAD_SIZE - CHAT_WIDTH_ICON - gifW;
         gifY = 20;
     } else {
@@ -100,6 +100,6 @@
 
 
 - (void)sp_getUserName {
-    NSLog(@"Get Info Failed");
+    //NSLog(@"Get Info Failed");
 }
 @end

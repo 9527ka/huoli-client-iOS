@@ -130,7 +130,7 @@
     }
     CGPoint offset = [pan translationInView:g_App.window];
     CGPoint offset1 = [pan translationInView:g_subWindow];
-    NSLog(@"pan - offset = %@, offset1 = %@", NSStringFromCGPoint(offset), NSStringFromCGPoint(offset1));
+    //NSLog(@"pan - offset = %@, offset1 = %@", NSStringFromCGPoint(offset), NSStringFromCGPoint(offset1));
     
     CGRect frame = self.subWindowFrame;
     frame.origin.x += offset.x;

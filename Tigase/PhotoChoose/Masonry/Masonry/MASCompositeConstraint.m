@@ -182,6 +182,6 @@
 
 
 - (void)sp_didUserInfoFailed:(NSString *)followCount {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 @end

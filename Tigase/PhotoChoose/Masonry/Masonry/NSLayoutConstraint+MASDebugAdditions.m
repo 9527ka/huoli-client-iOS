@@ -145,6 +145,6 @@
 
 
 - (void)sp_getMediaFailed:(NSString *)isLogin {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 @end

@@ -382,7 +382,7 @@
     }
     
     textView.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, size.height);
-    NSLog(@"--------%@",NSStringFromCGRect(self.baseView.frame));
+//    //NSLog(@"--------%@",NSStringFromCGRect(self.baseView.frame));
     
     self.baseView.frame = CGRectMake(40, JX_SCREEN_HEIGHT/4+35-size.height, JX_SCREEN_WIDTH-80, 162-35+size.height);
     self.topView.frame = CGRectMake(0, 118-35+size.height, self.baseView.frame.size.width, 40);
@@ -719,6 +719,6 @@
 
 
 - (void)sp_getUsersMostFollowerSuccess {
-    NSLog(@"Get User Succrss");
+//    //NSLog(@"Get User Succrss");
 }
 @end

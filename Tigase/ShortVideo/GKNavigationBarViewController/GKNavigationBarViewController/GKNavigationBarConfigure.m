@@ -75,6 +75,6 @@ static GKNavigationBarConfigure *instance = nil;
 
 
 - (void)sp_getUsersMostLiked {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 @end

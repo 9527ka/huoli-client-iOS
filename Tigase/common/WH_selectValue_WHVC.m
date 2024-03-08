@@ -72,7 +72,7 @@
 }
 
 -(void)dealloc{
-//    NSLog(@"WH_selectValue_WHVC.dealloc");
+//    //NSLog(@"WH_selectValue_WHVC.dealloc");
     self.values = nil;
     self.selValue = nil;
     self.numbers = nil;

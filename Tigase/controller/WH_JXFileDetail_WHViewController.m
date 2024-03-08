@@ -65,7 +65,7 @@
         self.shareFieldUrl = fieldUrl;//不编码
     }
     
-    NSLog(@"shareField url:%@" ,[NSURL URLWithString:self.shareFieldUrl]);
+    //NSLog(@"shareField url:%@" ,[NSURL URLWithString:self.shareFieldUrl]);
     
     if (self.shareFile) {
         [self WH_setViewDataWith:0 expectedSize:0 speed:0];

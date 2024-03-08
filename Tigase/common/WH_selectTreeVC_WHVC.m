@@ -59,7 +59,7 @@
             NSMutableArray* p1 = [[NSMutableArray alloc]init];
             NSMutableArray* p2 = [[NSMutableArray alloc]init];
             int n = [[_typeIds objectAtIndex:i] intValue];
-//            NSLog(@"%d",n);
+//            //NSLog(@"%d",n);
             [g_constant getNameValues:n name:p1 value:p2];
             [_names addObject:p1];
             [_ids addObject:p2];
@@ -200,7 +200,7 @@
         a = [_ids objectAtIndex:indexPath.section];
         self.selNumber = [[a objectAtIndex:indexPath.row] intValue];
         
-//        NSLog(@"选中%@,%d",self.selValue,self.selected);
+//        //NSLog(@"选中%@,%d",self.selValue,self.selected);
         if (delegate && [delegate respondsToSelector:didSelect])
 //            [delegate performSelector:didSelect withObject:self];
             [delegate performSelectorOnMainThread:didSelect withObject:self waitUntilDone:NO];
@@ -214,7 +214,7 @@
     self.selected = sender.selected;
     self.selNumber = sender.selNumber;
 
-//    NSLog(@"选中%@,%d,%d",self.selValue,self.selected,selNumber);
+//    //NSLog(@"选中%@,%d,%d",self.selValue,self.selected,selNumber);
     if (delegate && [delegate respondsToSelector:didSelect])
 //        [delegate performSelector:didSelect withObject:self];
         [delegate performSelectorOnMainThread:didSelect withObject:self waitUntilDone:NO];

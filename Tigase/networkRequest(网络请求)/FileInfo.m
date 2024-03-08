@@ -51,7 +51,7 @@
 
 + (NSString*) pathForDocument {
     NSString *s = [NSString stringWithFormat:@"%@/Library/Caches/",NSHomeDirectory()];
-    //NSLog(@"%@",s);
+    ////NSLog(@"%@",s);
     return s;
 }
 
@@ -203,7 +203,7 @@
     CGImageRelease(cgImage);
     
     if (!cgImage) {
-        NSLog(@"获取视频第一帧图片失败:%@",error);
+        //NSLog(@"获取视频第一帧图片失败:%@",error);
         return nil;
     }
     //保存图片到本地
@@ -211,7 +211,7 @@
     NSError *imageerror =nil;
     BOOL isSuccess = [imageData writeToFile:filePath atomically:YES];
     if (!isSuccess) {
-        NSLog(@"获取视频第一帧图片写入失败,%@",imageerror);
+        //NSLog(@"获取视频第一帧图片写入失败,%@",imageerror);
     }
     
 //    return [UIImage imageWithCGImage:cgImage];
@@ -274,6 +274,6 @@
 
 
 - (void)sp_checkNetWorking {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 @end

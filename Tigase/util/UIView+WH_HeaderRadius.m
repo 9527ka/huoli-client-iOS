@@ -33,6 +33,6 @@
 
 
 - (void)sp_getUserFollowSuccess:(NSString *)mediaInfo {
-    NSLog(@"Get Info Failed");
+    //NSLog(@"Get Info Failed");
 }
 @end

@@ -568,7 +568,7 @@
 - (void)mapView:(BMKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
     CLLocationCoordinate2D mapCoordinate=  mapView.getMapStatus.targetGeoPt;
-    NSLog(@"locX: %f locY: %f, long: %f lat: %f",_locX,_locY,mapCoordinate.longitude,mapCoordinate.latitude);
+    //NSLog(@"locX: %f locY: %f, long: %f lat: %f",_locX,_locY,mapCoordinate.longitude,mapCoordinate.latitude);
     if (fabs(self.locX-mapCoordinate.longitude) > 0.0001 || fabs(self.locY-mapCoordinate.latitude) > 0.0001) {
         self.locX = mapCoordinate.longitude;
         self.locY = mapCoordinate.latitude;
@@ -598,7 +598,7 @@
     
         coor.latitude = [dict[@"loc"][@"lat"] doubleValue];
         coor.longitude = [dict[@"loc"][@"lng"] doubleValue];
-//    NSLog(@"annotcoor-> %d %f %f",i,[dict[@"loc"][@"lat"] doubleValue],[dict[@"loc"][@"lng"] doubleValue]);
+//    //NSLog(@"annotcoor-> %d %f %f",i,[dict[@"loc"][@"lat"] doubleValue],[dict[@"loc"][@"lng"] doubleValue]);
     
     pointAnnotation.coordinate = coor;
     pointAnnotation.title = [NSString stringWithFormat:@"%d",i];
@@ -636,7 +636,7 @@
     
 }
 -(void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view{
-    NSLog(@"didSelectAnnotationView");
+    //NSLog(@"didSelectAnnotationView");
     //清除上一个放大的标签
     if (_lastAnnotationView) {
         BMKPointAnnotation * anno = _lastAnnotationView.annotation;
@@ -680,7 +680,7 @@
 }
 
 -(void)doScale:(UIButton *)button{
-    NSLog(@"doScale");
+    //NSLog(@"doScale");
     if (button.tag == 10001) {
         [_imageMapView zoomOut];
     }else if(button.tag == 10002){
@@ -689,7 +689,7 @@
 }
 
 -(void)showDetailResume:(UIButton*)button{
-//    NSLog(@"showDetailResume");
+//    //NSLog(@"showDetailResume");
     NSString *jobId = nil;
     int version = 0;
     jobId = [[_nearbyData objectAtIndex:_currentIndex] objectForKey:@"jobId"];
@@ -779,6 +779,6 @@
 
 
 - (void)sp_didUserInfoFailed:(NSString *)string {
-    NSLog(@"Get Info Success");
+    //NSLog(@"Get Info Success");
 }
 @end

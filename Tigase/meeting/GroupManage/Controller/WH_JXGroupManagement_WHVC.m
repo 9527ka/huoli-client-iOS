@@ -108,8 +108,8 @@
     
     
     CGFloat viewOrginY = membHeight;
-    NSLog(@"roomId:%@" ,self.room.roomId);
-    NSLog(@"self.room.isShowSignIn:%li" ,(long)self.room.isShowSignIn);
+    //NSLog(@"roomId:%@" ,self.room.roomId);
+    //NSLog(@"self.room.isShowSignIn:%li" ,(long)self.room.isShowSignIn);
     
     if (IS_SHOW_GROUPSIGNIN) {
         if (self.room.isShowSignIn == 1) {
@@ -857,6 +857,6 @@
 
 
 - (void)sp_getUsersMostLikedSuccess {
-    NSLog(@"Get Info Success");
+    //NSLog(@"Get Info Success");
 }
 @end

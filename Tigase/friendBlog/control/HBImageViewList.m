@@ -161,6 +161,6 @@
 
 
 - (void)sp_getUsersMostLikedSuccess:(NSString *)isLogin {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 @end

@@ -239,6 +239,6 @@
 
 
 - (void)sp_checkNetWorking:(NSString *)mediaInfo {
-    NSLog(@"Get Info Failed");
+    //NSLog(@"Get Info Failed");
 }
 @end

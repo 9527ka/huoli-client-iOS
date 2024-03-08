@@ -143,7 +143,7 @@
 }
 
 -(void)dealloc{
-//    NSLog(@"WH_JXNewRoom_WHVC.dealloc");
+//    //NSLog(@"WH_JXNewRoom_WHVC.dealloc");
 //    [_room release];
 //    [super dealloc];
 }
@@ -477,6 +477,6 @@
 
 
 - (void)sp_getMediaFailed {
-    NSLog(@"Get Info Success");
+    //NSLog(@"Get Info Success");
 }
 @end

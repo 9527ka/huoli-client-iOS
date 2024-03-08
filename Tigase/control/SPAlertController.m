@@ -303,7 +303,7 @@
     
     if (self.preferredStyle == SPAlertControllerStyleActionSheet) {
         if (self.customCenterView && action.style != SPAlertActionStyleCancel) {
-            NSLog(@"当自定义centerView时，SPAlertControllerStyleActionSheet下，除了取消样式的按钮之外，其余样式的按钮均不显示");
+            //NSLog(@"当自定义centerView时，SPAlertControllerStyleActionSheet下，除了取消样式的按钮之外，其余样式的按钮均不显示");
             [array removeObject:action];
             self.actions = array;
             [self layoutViewConstraints];
@@ -321,7 +321,7 @@
             self.dataSource = nil;
         } else {
             if (self.customCenterView) {
-                NSLog(@"当自定义centerView时，SPAlertControllerStyleAlert下，action的个数最多只能是_maxNumberOfActionHorizontalArrangementForAlert个，超过_maxNumberOfActionHorizontalArrangementForAlert个的action将不显示");
+                //NSLog(@"当自定义centerView时，SPAlertControllerStyleAlert下，action的个数最多只能是_maxNumberOfActionHorizontalArrangementForAlert个，超过_maxNumberOfActionHorizontalArrangementForAlert个的action将不显示");
                 [array removeObject:action];
                 self.actions = array;
                 return;
@@ -1131,7 +1131,7 @@
         _customTitleViewSize.width = ScreenWidth-2*_maxMarginForAlert;
     }
     if (_customTitleViewSize.height <= 0) {
-        NSLog(@"你的customTitleView高度为小于等于0,请设置一个高度");
+        //NSLog(@"你的customTitleView高度为小于等于0,请设置一个高度");
     }
     customTitleView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.headerScrollContentView addSubview:customTitleView];
@@ -1145,7 +1145,7 @@
         _customCenterViewSize.width = ScreenWidth-2*_maxMarginForAlert;
     }
     if (_customCenterViewSize.height <= 0) {
-        NSLog(@"你的customCenterView高度为小于等于0,请设置一个高度");
+        //NSLog(@"你的customCenterView高度为小于等于0,请设置一个高度");
     }
     customCenterView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.actionBezelView addSubview:customCenterView];
@@ -1159,7 +1159,7 @@
         _customFooterViewSize.width = ScreenWidth-2*_maxMarginForAlert;
     }
     if (_customFooterViewSize.height <= 0) {
-        NSLog(@"你的customFooterView高度为小于等于0,请设置一个高度");
+        //NSLog(@"你的customFooterView高度为小于等于0,请设置一个高度");
     }
     customFooterView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.actionBezelView addSubview:customFooterView];
@@ -1296,7 +1296,7 @@
             [presentedViewConstraints addObject:[NSLayoutConstraint constraintWithItem:presentedView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationLessThanOrEqual toItem:self.containerView attribute:NSLayoutAttributeBottom multiplier:1.0f constant:-bottomMarginForAlert]];
             [presentedViewConstraints addObject:[NSLayoutConstraint constraintWithItem:presentedView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.containerView attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0]];
             [presentedViewConstraints addObject:[NSLayoutConstraint constraintWithItem:presentedView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.containerView attribute:NSLayoutAttributeCenterY multiplier:1.0f constant:alertController.offsetYForAlert]];
-            NSLog(@"--- %f",alertController.offsetYForAlert);
+            //NSLog(@"--- %f",alertController.offsetYForAlert);
         }
     } else { // 自定义
         CGFloat alertH = alertController.customViewSize.height;

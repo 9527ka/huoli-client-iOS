@@ -325,7 +325,7 @@
 //        }
 //    }
     
-    NSLog(@"加载xmpp配置 %@:%ld",self.XMPPHost,self.XMPPHostPort);
+    //NSLog(@"加载xmpp配置 %@:%ld",self.XMPPHost,self.XMPPHostPort);
     
     if([p objectForKey:@"meetingHost"]){
         self.meetingHost = [p objectForKey:@"meetingHost"];

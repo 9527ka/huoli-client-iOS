@@ -29,7 +29,7 @@
 }
 
 - (void)dealloc {
-//    NSLog(@"WH_JXConvertMedia.dealloc");
+//    //NSLog(@"WH_JXConvertMedia.dealloc");
 //    [_videoReader release];
 //    [_audioReader1 release];
 //    [_audioReader2 release];
@@ -80,7 +80,7 @@
         
         _videoReader = [[AVAssetReader alloc] initWithAsset:asset error:&error];
 //        if (error)
-//            NSLog(@"_videoReader fail!\n");
+//            //NSLog(@"_videoReader fail!\n");
         
         NSString* key = (NSString*)kCVPixelBufferPixelFormatTypeKey;
         NSNumber* value = [NSNumber numberWithUnsignedInt:kCVPixelFormatType_32BGRA];
@@ -106,7 +106,7 @@
         
         _audioReader1 = [[AVAssetReader alloc] initWithAsset:asset error:&error];
 //        if (error)
-//            NSLog(@"_audioReader fail!\n");
+//            //NSLog(@"_audioReader fail!\n");
 
         NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
                                   [NSNumber numberWithInt:kAudioFormatLinearPCM], AVFormatIDKey,
@@ -129,7 +129,7 @@
         
         _audioReader2 = [[AVAssetReader alloc] initWithAsset:asset error:&error];
 //        if (error)
-//            NSLog(@"_audioReader fail!\n");
+//            //NSLog(@"_audioReader fail!\n");
         
         NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
                                   [NSNumber numberWithInt:kAudioFormatLinearPCM], AVFormatIDKey,
@@ -161,11 +161,11 @@
     [_audioInput markAsFinished];
     [_writer finishWriting];
 //    [_writer finishWritingWithCompletionHandler:^{
-//        NSLog(@"convert completed");
+//        //NSLog(@"convert completed");
 //		[self.delegate performSelectorOnMainThread:self.onFinish withObject:[outputFileName lastPathComponent] waitUntilDone:NO];
 //    }];
 
-//    NSLog(@"convert ok");
+//    //NSLog(@"convert ok");
 }
 
 -(void) convertVideo{
@@ -197,7 +197,7 @@
             _writeVideoCount++;
             CMItemCount numSamplesInBuffer = CMSampleBufferGetNumSamples(sampleBuffer);
             double sec = (double)_time.value/_time.timescale;
-//            NSLog(@"%d,%d,%d,%d,%f",_writeVideoCount,numSamplesInBuffer,_time.value,_time.timescale,sec);
+//            //NSLog(@"%d,%d,%d,%d,%f",_writeVideoCount,numSamplesInBuffer,_time.value,_time.timescale,sec);
             CFRelease(sampleBuffer);
             
         }
@@ -235,7 +235,7 @@
 
             _writeVideoCount++;
             CMItemCount numSamplesInBuffer = CMSampleBufferGetNumSamples(sampleBuffer);
-            NSLog(@"video=%d,%d",_writeVideoCount,numSamplesInBuffer);
+            //NSLog(@"video=%d,%d",_writeVideoCount,numSamplesInBuffer);
             CFRelease(sampleBuffer);
             
             if ([_audioReader1 status] == AVAssetReaderStatusReading)
@@ -246,7 +246,7 @@
                     [self writeSampleBuffer:sampleBuffer ofType:AVMediaTypeAudio];
                     _writeAudioCount1++;
                     CMItemCount numSamplesInBuffer = CMSampleBufferGetNumSamples(sampleBuffer);
-                    NSLog(@"audio=%d,%d",_writeAudioCount1,numSamplesInBuffer);
+                    //NSLog(@"audio=%d,%d",_writeAudioCount1,numSamplesInBuffer);
                     CFRelease(sampleBuffer);
                 }
             }
@@ -272,7 +272,7 @@
 //            _time = CMSampleBufferGetOutputPresentationTimeStamp(sampleBuffer);
             double sec = (double)_time.value/_time.timescale;
             CMItemCount numSamplesInBuffer = CMSampleBufferGetNumSamples(sampleBuffer);
-//            NSLog(@"%d,%d,%d,%d,%f",_writeAudioCount1,numSamplesInBuffer,_time.value,_time.timescale,sec);
+//            //NSLog(@"%d,%d,%d,%d,%f",_writeAudioCount1,numSamplesInBuffer,_time.value,_time.timescale,sec);
             CFRelease(sampleBuffer);
         }
     }
@@ -336,7 +336,7 @@
                         p2 = NULL;
                         
                         CFRelease(sampleBuffer2);
-//                        NSLog(@"count=%d,mDataByteSize=%d,%d;samples=%d,%d;",_writeAudioCount1,audioBuffer1.mDataByteSize,audioBuffer2.mDataByteSize,samples1,samples2);
+//                        //NSLog(@"count=%d,mDataByteSize=%d,%d;samples=%d,%d;",_writeAudioCount1,audioBuffer1.mDataByteSize,audioBuffer2.mDataByteSize,samples1,samples2);
                     }
                 }
             }
@@ -345,8 +345,8 @@
             [self writeSampleBuffer:sampleBuffer1 ofType:AVMediaTypeAudio];
             CFRelease(sampleBuffer1);
 
-//            NSLog(@"%d",_writeAudioCount1);
-//            NSLog(@"count=%d,mDataByteSize=%d,%d;samples=%d,%d;",_writeAudioCount1,audioBuffer1.mDataByteSize,audioBuffer2.mDataByteSize);
+//            //NSLog(@"%d",_writeAudioCount1);
+//            //NSLog(@"count=%d,mDataByteSize=%d,%d;samples=%d,%d;",_writeAudioCount1,audioBuffer1.mDataByteSize,audioBuffer2.mDataByteSize);
             _writeAudioCount1++;
         }
     }
@@ -413,7 +413,7 @@ SInt16 get2To1Sample16(SInt16 n1,SInt16 n2,float volume,float volRecord){
     
     if (error)
     {
-//        NSLog(@"%@", error);
+//        //NSLog(@"%@", error);
         return NO;
     }
     
@@ -514,7 +514,7 @@ SInt16 get2To1Sample16(SInt16 n1,SInt16 n2,float volume,float volRecord){
             UIImage *image= [UIImage imageWithCGImage:newImage scale:1.0 orientation:UIImageOrientationRight];
             image = [image imageAtRect:CGRectMake(80, 0, JX_SCREEN_WIDTH, JX_SCREEN_WIDTH)];
             NSData* data = UIImageJPEGRepresentation(image,0.8f);
-//            NSLog(@"saveToImage:%@",s);
+//            //NSLog(@"saveToImage:%@",s);
             [data writeToFile:s atomically:YES];
             image = nil;
             data  = nil;
@@ -533,13 +533,13 @@ SInt16 get2To1Sample16(SInt16 n1,SInt16 n2,float volume,float volRecord){
 //    [rotatedViewBox release];
     rotateSize.width=480;
     rotateSize.height=480;
-//    NSLog(@"rotateSize=%f,%f",rotateSize.width, rotateSize.height);
+//    //NSLog(@"rotateSize=%f,%f",rotateSize.width, rotateSize.height);
 }
 
 
 
 - (void)sp_getUsersMostLiked {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 
 

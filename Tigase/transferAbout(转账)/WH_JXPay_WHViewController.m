@@ -208,7 +208,7 @@ static dispatch_source_t _timer;
     
     NSString *code = [NSString stringWithFormat:@"%ld%@%d%ld",str.length,str,opt,timeOpt];
     
-    NSLog(@"length = %lu   code = %@",code.length,code);
+    //NSLog(@"length = %lu   code = %@",code.length,code);
     
     return code;
 }

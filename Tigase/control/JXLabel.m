@@ -39,7 +39,7 @@
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
-//    NSLog(@"touchesMoved");
+//    //NSLog(@"touchesMoved");
     [super touchesMoved: touches withEvent: event];
 }
 
@@ -59,7 +59,7 @@
     BOOL inside = YES;
     for(int i=0;i<[touches count];i++){
         CGPoint p = [[[touches allObjects] objectAtIndex:i] locationInView:self];
-//        NSLog(@"%d=%f,%f",i,p.x,p.y);
+//        //NSLog(@"%d=%f,%f",i,p.x,p.y);
         if(p.x<0 || p.y <0){
             inside = NO;
             break;

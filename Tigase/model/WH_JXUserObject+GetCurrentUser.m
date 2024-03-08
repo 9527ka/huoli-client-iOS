@@ -56,14 +56,14 @@ static NSString *completeKey = @"completeKey";
 - (void)saveCurrentUser:(NSDictionary *_Nullable)dict {
     if (!dict) {
         dict = [self objectToDictionary];
-        NSLog(@"saveCurrentUser Dict Not Exsited userId == %@", dict[@"userId"]);
+        //NSLog(@"saveCurrentUser Dict Not Exsited userId == %@", dict[@"userId"]);
     }
-    NSLog(@"saveCurrentUser userId == %@", dict[@"userId"]);
+    //NSLog(@"saveCurrentUser userId == %@", dict[@"userId"]);
    BOOL saveResult = [dict writeToFile:[docFilePath stringByAppendingPathComponent:@"userInfo.plist"] atomically:YES];
     if (saveResult) {
-        NSLog(@"保存成功");
+        //NSLog(@"保存成功");
     }else {
-        NSLog(@"保存失败");
+        //NSLog(@"保存失败");
     }
 }
 - (void)getCurrentUserFromDocument {
@@ -72,7 +72,7 @@ static NSString *completeKey = @"completeKey";
         NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:userDicPath];
         [self objectFromDocumentDictionary:dict];
     }else {
-        NSLog(@"用户plist文件不存在");
+        //NSLog(@"用户plist文件不存在");
     }
 }
 

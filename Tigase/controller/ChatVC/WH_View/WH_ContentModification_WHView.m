@@ -263,6 +263,6 @@
 
 
 - (void)sp_getMediaData {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 @end

@@ -256,7 +256,7 @@ static WH_JXHttpRequet *_httpRequet = nil;
             }
         }else{
 //            NSString *data = [NSString stringWithFormat:@"%@",resultObject];
-            NSLog(@"错误信息=====%@",string);
+            //NSLog(@"错误信息=====%@",string);
             error = [NSString stringWithFormat:@"不能识别返回值 %@",string];
             
             if([string length]>=6){
@@ -370,7 +370,7 @@ static WH_JXHttpRequet *_httpRequet = nil;
     CGImageRelease(cgImage);
     
     if (!cgImage) {
-        NSLog(@"获取视频第一帧图片失败:%@",error);
+        //NSLog(@"获取视频第一帧图片失败:%@",error);
         return nil;
     }
     //保存图片到本地
@@ -378,7 +378,7 @@ static WH_JXHttpRequet *_httpRequet = nil;
     NSError *imageerror =nil;
     BOOL isSuccess = [imageData writeToFile:filePath atomically:YES];
     if (!isSuccess) {
-        NSLog(@"获取视频第一帧图片写入失败,%@",imageerror);
+        //NSLog(@"获取视频第一帧图片写入失败,%@",imageerror);
     }
     
     return videoImage;
@@ -393,7 +393,7 @@ static WH_JXHttpRequet *_httpRequet = nil;
 
 //压缩
 - (NSString *)WH_compressionVideoWithUlr:(NSURL *)url{
-//    NSLog(@"压缩前大小 %f MB",[self fileSize:url]);
+//    //NSLog(@"压缩前大小 %f MB",[self fileSize:url]);
 
     NSFileManager *manager = [NSFileManager defaultManager];
     NSURL *groupURL = [manager containerURLForSecurityApplicationGroupIdentifier:APP_GROUP_ID];
@@ -413,16 +413,16 @@ static WH_JXHttpRequet *_httpRequet = nil;
 //         BOOL goToUploadFile=NO;
          switch (exportSession.status) {
              case AVAssetExportSessionStatusCancelled:
-                 NSLog(@"AVAssetExportSessionStatusCancelled");
+                 //NSLog(@"AVAssetExportSessionStatusCancelled");
                  break;
              case AVAssetExportSessionStatusUnknown:
-                 NSLog(@"AVAssetExportSessionStatusUnknown");
+                 //NSLog(@"AVAssetExportSessionStatusUnknown");
                  break;
              case AVAssetExportSessionStatusWaiting:
-                 NSLog(@"AVAssetExportSessionStatusWaiting");
+                 //NSLog(@"AVAssetExportSessionStatusWaiting");
                  break;
              case AVAssetExportSessionStatusExporting:
-                 NSLog(@"AVAssetExportSessionStatusExporting");
+                 //NSLog(@"AVAssetExportSessionStatusExporting");
                  break;
              case AVAssetExportSessionStatusCompleted:{
                 //压缩成功

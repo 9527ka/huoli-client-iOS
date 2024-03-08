@@ -44,7 +44,7 @@ static WH_JXMediaObject *shared;
 }
 
 -(void)dealloc{
-    //    NSLog(@"WH_JXMediaObject.dealloc");
+    //    //NSLog(@"WH_JXMediaObject.dealloc");
     self.userId = nil;
     self.fileName = nil;
     self.photoPath = nil;

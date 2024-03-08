@@ -10,6 +10,8 @@
 #import "WH_JXRecordTB_WHCell.h"
 #import "WH_JXRecordCodeDetaileVC.h"
 #import "WH_JXRecordCodeModel.h"
+#import "WH_JXredPacketDetail_WHVC.h"
+#import "WH_JXTransferDeatil_WHVC.h"
 
 @interface WH_JXRecordCode_WHVC ()
 
@@ -153,7 +155,7 @@
     
     float startMoney = 0.0f;
     if(cellModel[@"startMoney"]){
-        endMoney = [NSString stringWithFormat:@"%@",cellModel[@"startMoney"]].floatValue;
+        startMoney = [NSString stringWithFormat:@"%@",cellModel[@"startMoney"]].floatValue;
     }
     
     NSString *iconStr = endMoney > startMoney?@"+":@"-";
@@ -250,9 +252,32 @@
     if(_wh_dataArr.count > indexPath.section){
         NSDictionary *cellModel = _wh_dataArr[indexPath.section];
         WH_JXRecordCodeModel *model = [WH_JXRecordCodeModel mj_objectWithKeyValues:cellModel];
-        WH_JXRecordCodeDetaileVC *vc = [[WH_JXRecordCodeDetaileVC alloc] init];
-        vc.model = model;
-        [g_navigation pushViewController:vc animated:YES];
+        //判断是不是要跳转红包详情  1:用户充值, 2:用户提现, 3:后台充值, 4:发红包, 5:领取红包,* 6:红包退款  7:转账   8:接受转账   9:转账退回   10:付款码付款*  11:付款码到账   12:二维码付款  13:二维码到账  14:第三方调取IM支付通知
+        if((model.type.intValue == 4 || model.type.intValue == 5 || model.type.intValue == 6) && model.referenceData.intValue == 2){//手气红包
+            //红包详情接口
+            [g_server WH_getRedPacketWithMsg:[NSString stringWithFormat:@"%@",model.referenceId] toView:self];
+            
+        }
+//        else if (model.type.intValue == 7 || model.type.intValue == 8 || model.type.intValue == 9){//转账
+//
+//            WH_JXMessageObject *msg = [[WH_JXMessageObject alloc] init];
+//            msg.objectId = [NSString stringWithFormat:@"%@",model.referenceId];
+////            msg.messageId = [NSString stringWithFormat:@"%@",model.referenceId];
+////            msg.timeSend =
+//
+//            WH_JXTransferDeatil_WHVC *detailVC = [WH_JXTransferDeatil_WHVC alloc];
+//            detailVC.wh_msg = msg;
+////            detailVC.onResend = @selector(WH_onResend:);
+////            detailVC.delegate = self;
+//            detailVC = [detailVC init];
+//            [g_navigation pushViewController:detailVC animated:YES];
+//        }
+        else{
+            WH_JXRecordCodeDetaileVC *vc = [[WH_JXRecordCodeDetaileVC alloc] init];
+            vc.model = model;
+            [g_navigation pushViewController:vc animated:YES];
+        }
+        
     }
 }
 
@@ -288,6 +313,13 @@
         }else{
             [self createEmptyView];
         }  
+    }else if ([aDownload.action isEqualToString:wh_act_getRedPacket]){//红包详情
+//        NSString *userId = [NSString stringWithFormat:@"%@",[[dict objectForKey:@"packet"] objectForKey:@"userId"]];
+        
+        WH_JXredPacketDetail_WHVC * redPacketDetailVC = [[WH_JXredPacketDetail_WHVC alloc]init];
+        redPacketDetailVC.wh_dataDict = [[NSDictionary alloc]initWithDictionary:dict];
+        [g_navigation pushViewController:redPacketDetailVC animated:YES];
+       
     }
 }
 
@@ -295,6 +327,15 @@
 -(int) WH_didServerResult_WHFailed:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict{
     [_wait stop];
     [self WH_stopLoading];
+    
+    if ([aDownload.action isEqualToString:wh_act_getRedPacket]){//红包详情
+        //        if ([dict[@"packet"][@"type"] intValue] != 3) {
+        NSString *userId = [NSString stringWithFormat:@"%@",[[dict objectForKey:@"packet"] objectForKey:@"userId"]];
+        WH_JXredPacketDetail_WHVC * redPacketDetailVC = [[WH_JXredPacketDetail_WHVC alloc]init];
+        redPacketDetailVC.wh_dataDict = [[NSDictionary alloc]initWithDictionary:dict];
+        [g_navigation pushViewController:redPacketDetailVC animated:YES];
+    }
+    
     return WH_hide_error;
 }
 
@@ -305,6 +346,6 @@
 
 
 - (void)sp_getMediaFailed {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 @end

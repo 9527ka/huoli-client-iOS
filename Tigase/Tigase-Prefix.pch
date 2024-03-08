@@ -271,7 +271,7 @@
 //WH_WeiboCell点击电话号码
 #define kCellTouchPhone_WHNotifaction @"kCellTouchPhone_WHNotifaction"
 //FMDB
-//#define FMDBQuickCheck(SomeBool) { if (!(SomeBool)) { NSLog(@"Failure on line %d", __LINE__); abort(); } }
+//#define FMDBQuickCheck(SomeBool) { if (!(SomeBool)) { //NSLog(@"Failure on line %d", __LINE__); abort(); } }
 #define DATABASE_PATH [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingString:@"/weChat.db"]
 
 

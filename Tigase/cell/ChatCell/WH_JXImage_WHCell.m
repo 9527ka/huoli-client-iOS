@@ -236,7 +236,7 @@
 }
 
 -(void)didTouch:(UIButton*)button{
-    NSLog(@"imageCell ------");
+    //NSLog(@"imageCell ------");
     [g_notify postNotificationName:kCellImageNotifaction object:@(self.indexNum)];
     
     if ([self.msg.isReadDel boolValue] && !self.msg.isMySend) {

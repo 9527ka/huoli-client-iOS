@@ -28,6 +28,6 @@
 
 
 - (void)sp_getUserFollowSuccess {
-    NSLog(@"Get Info Failed");
+    //NSLog(@"Get Info Failed");
 }
 @end

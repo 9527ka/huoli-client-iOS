@@ -237,7 +237,7 @@ static NSString *const reuseIdentifier = @"photo";
     }
 
     [self.dataManager removeAllPHAssets];
-    NSLog(@"[%@] is dealloc",NSStringFromClass(self.class));
+    //NSLog(@"[%@] is dealloc",NSStringFromClass(self.class));
 }
 
 

@@ -324,7 +324,6 @@
 }
 
 - (void)textField1TextChange:(UITextField *)textField {
-    NSLog(@"textField.tag:%li" ,(long)textField.tag);
     
     if (textField.tag == 10) {
 //        [self.pMoneyLabel setText:@""];

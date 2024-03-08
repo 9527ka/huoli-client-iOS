@@ -44,7 +44,7 @@
     
     if(![[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error])
     {
-//        NSLog(@"create dir error: %@",error.debugDescription);
+//        //NSLog(@"create dir error: %@",error.debugDescription);
     }
     return path;
 }
@@ -108,6 +108,6 @@
 }
 
 - (void)sp_didUserInfoFailed:(NSString *)isLogin {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 @end

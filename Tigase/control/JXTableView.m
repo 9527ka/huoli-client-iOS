@@ -11,7 +11,7 @@
 }
 
 -(void)dealloc{
-    NSLog(@"JXTableView.dealloc");
+    //NSLog(@"JXTableView.dealloc");
     [self clearPool];
     _pool = nil;
 //    [super dealloc];
@@ -64,7 +64,6 @@
 - (void) WH_gotoLastRow:(BOOL)animated{
     NSInteger n = [self numberOfRowsInSection:0]-1;
     if(n>=1){
-        NSLog(@"=====走了数据=======%ld",(long)n);
         [self scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:n inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:animated];
     }
 }
@@ -72,13 +71,11 @@
 - (void) WH_gotoFirstRow:(BOOL)animated{
     NSInteger n = [self numberOfRowsInSection:0]-1;
     if(n>=1){
-        NSLog(@"=====走了数据=======回到第一行%ld",(long)n);
         [self scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:animated];
     }
 }
 
 -(void)WH_gotoRow:(NSInteger)n{
-    NSLog(@"刷新的当前行======%ld",n);
     if(n<0)
         return;
     if([self numberOfRowsInSection:0] > n && [self numberOfRowsInSection:0] > 0){
@@ -86,7 +83,6 @@
     }
 }
 -(void)WH_scrollTopRow:(NSInteger)n{
-    NSLog(@"刷新的当前行======%ld",n);
     if(n<0)
         return;
     if([self numberOfRowsInSection:0] > n && [self numberOfRowsInSection:0] > 0){

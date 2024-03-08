@@ -208,7 +208,7 @@
         //请求图片验证码
         NSString *areaCode = [_areaCodeBtn.titleLabel.text stringByReplacingOccurrencesOfString:@"+" withString:@""];
         NSString * codeUrl = [g_server getImgCode:_phone.text areaCode:areaCode];
-        NSLog(@"CODEuURL：%@" ,codeUrl);
+        //NSLog(@"CODEuURL：%@" ,codeUrl);
         NSURLRequest * request = [NSURLRequest requestWithURL:[NSURL URLWithString:codeUrl] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:10.0];
         
         [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
@@ -224,7 +224,7 @@
                 }
                 
             }else{
-                NSLog(@"%@",connectionError);
+                //NSLog(@"%@",connectionError);
                 [g_App showAlert:connectionError.localizedDescription];
             }
         }];

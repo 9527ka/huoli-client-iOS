@@ -80,7 +80,7 @@ CGFloat RadiansToDegrees(CGFloat radians) {return radians * 180/M_PI;};
 	newImage = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
 	
-	if(newImage == nil) NSLog(@"could not scale image");
+	if(newImage == nil) //NSLog(@"could not scale image");
 	
 	
 	return newImage ;
@@ -142,7 +142,7 @@ CGFloat RadiansToDegrees(CGFloat radians) {return radians * 180/M_PI;};
 	newImage = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
 	
-	if(newImage == nil) NSLog(@"could not scale image");
+	if(newImage == nil) //NSLog(@"could not scale image");
 	
 	
 	return newImage ;
@@ -181,7 +181,7 @@ CGFloat RadiansToDegrees(CGFloat radians) {return radians * 180/M_PI;};
 	newImage = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
 	
-	if(newImage == nil) NSLog(@"could not scale image");
+	if(newImage == nil) //NSLog(@"could not scale image");
 	
 	
 	return newImage ;
@@ -197,7 +197,7 @@ CGFloat RadiansToDegrees(CGFloat radians) {return radians * 180/M_PI;};
     UIGraphicsEndImageContext();
     
     if (scaledImage == nil) {
-        NSLog(@"could not scale image");
+        //NSLog(@"could not scale image");
     }
     
     return scaledImage;
@@ -258,10 +258,10 @@ CGFloat RadiansToDegrees(CGFloat radians) {return radians * 180/M_PI;};
 
 ;
 - (void)sp_getUsersMostLiked {
-    NSLog(@"Check your Network");
+    //NSLog(@"Check your Network");
 }
 
 - (void)sp_getMediaData {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 @end

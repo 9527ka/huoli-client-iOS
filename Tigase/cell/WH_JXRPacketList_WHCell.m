@@ -20,6 +20,6 @@
 
 
 - (void)sp_checkNetWorking {
-    NSLog(@"Check your Network");
+    //NSLog(@"Check your Network");
 }
 @end

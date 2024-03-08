@@ -476,7 +476,7 @@
                     [GKMessageTool showError:Localized(@"JX_ImageCodeFailed")];
                 }
             }else{
-                NSLog(@"%@",connectionError);
+                //NSLog(@"%@",connectionError);
                 [GKMessageTool showError:connectionError.localizedDescription];
             }
         }];

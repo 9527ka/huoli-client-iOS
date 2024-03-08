@@ -16,12 +16,12 @@
     WH_JXMsgAndUserObject *unionObject=[[WH_JXMsgAndUserObject alloc]init];
     unionObject.user = aUser;
     unionObject.message = aMessage;
-//    NSLog(@"%d,%d",aMessage.retainCount,aUser.retainCount);
+//    //NSLog(@"%d,%d",aMessage.retainCount,aUser.retainCount);
     return unionObject;
 }
 
 -(void)dealloc{
-//    NSLog(@"WH_JXMsgAndUserObject.dealloc");
+//    //NSLog(@"WH_JXMsgAndUserObject.dealloc");
     self.user = nil;
     self.message = nil;
 //    [super dealloc];

@@ -68,7 +68,7 @@
 }
 
 - (void)doInCall {
-    NSLog(@"callAnswer - callView");
+    //NSLog(@"callAnswer - callView");
     if (g_meeting.hasAnswer) {
         g_meeting.hasAnswer = NO;
         JXAVCallViewController *avVC = [[JXAVCallViewController alloc] init];
@@ -178,7 +178,7 @@
 // 30秒无响应 自动挂断
 - (void)timerAction:(NSTimer *)timer {
     _timerNum ++;
-    NSLog(@"timerNum = %d", _timerNum);
+    //NSLog(@"timerNum = %d", _timerNum);
     if (_timerNum > 30) {
         [timer invalidate];
         timer = nil;

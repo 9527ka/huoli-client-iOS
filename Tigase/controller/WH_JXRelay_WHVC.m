@@ -98,10 +98,10 @@ typedef enum : NSUInteger {
         {
             WH_JXMsgAndUserObject * dicta = (WH_JXMsgAndUserObject*) [_msgArray objectAtIndex:i];
             NSDate * a = dicta.message.timeSend ;
-            //            NSLog(@"a = %d",[dicta.user.msgsNew intValue]);
+            //            //NSLog(@"a = %d",[dicta.user.msgsNew intValue]);
             WH_JXMsgAndUserObject * dictb = (WH_JXMsgAndUserObject*) [_msgArray objectAtIndex:j];
             NSDate * b = dictb.message.timeSend ;
-            //                NSLog(@"b = %d",b);
+            //                //NSLog(@"b = %d",b);
             
             if ([[a laterDate:b] isEqualToDate:b])
             {
@@ -626,6 +626,6 @@ typedef enum : NSUInteger {
 
 
 - (void)sp_getLoginState:(NSString *)mediaInfo {
-    NSLog(@"Get Info Failed");
+    //NSLog(@"Get Info Failed");
 }
 @end

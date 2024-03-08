@@ -152,12 +152,12 @@
     CGPoint touchPoint = [tapGes locationInView:tapGes.view];
     float progress = touchPoint.x / tapGes.view.frame.size.width;
     _wh_progressView.progress = progress;
-    NSLog(@"ddddd%f",_player.duration*progress);
+    //NSLog(@"ddddd%f",_player.duration*progress);
     _player.currentTime = _player.duration*progress;
 }
 
 - (void)dealloc {
-    NSLog(@"WH_AudioPlayerTool.dealloc");
+    //NSLog(@"WH_AudioPlayerTool.dealloc");
     self.wh_parent = nil;
     [g_notify removeObserver:self];
     [self freeTimer];
@@ -216,14 +216,14 @@
             return;
         
         if(![[AVAudioSession sharedInstance].category isEqualToString:AVAudioSessionCategoryPlayAndRecord]) {
-            NSLog(@"切换到听筒模式");
+            //NSLog(@"切换到听筒模式");
             [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
         }
     }
     else
     {
         if(![[AVAudioSession sharedInstance].category isEqualToString:AVAudioSessionCategoryPlayback]) {
-            NSLog(@"切换到免提模式");
+            //NSLog(@"切换到免提模式");
             [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
         }
         
@@ -408,7 +408,7 @@
 }
 
 - (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError * __nullable)error{
-    //NSLog(@"");
+    ////NSLog(@"");
 }
 
 -(void)doAudioOpen{
@@ -555,7 +555,7 @@
 
 -(void)updateProgress{
     [_wh_progressView setProgress:(_player.currentTime/_player.duration) animated:YES];
-//    NSLog(@"player_%f,%f",_player.currentTime,_player.duration);
+//    //NSLog(@"player_%f,%f",_player.currentTime,_player.duration);
 }
 
 

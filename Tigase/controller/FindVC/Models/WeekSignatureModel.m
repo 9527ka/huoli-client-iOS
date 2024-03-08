@@ -12,6 +12,6 @@
 
 
 - (void)sp_getUsersMostLikedSuccess {
-    NSLog(@"Get Info Success");
+    //NSLog(@"Get Info Success");
 }
 @end

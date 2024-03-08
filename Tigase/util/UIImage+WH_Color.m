@@ -36,6 +36,6 @@
 
 
 - (void)sp_didUserInfoFailed:(NSString *)isLogin {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 @end

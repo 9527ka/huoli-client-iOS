@@ -1152,7 +1152,7 @@
     [self WH_stopLoading];
     
     if(_wh_array==nil || _page == 0){
-//        NSLog(@"%d",[[_array objectAtIndex:0] retainCount]);
+//        //NSLog(@"%d",[[_array objectAtIndex:0] retainCount]);
         [_wh_array removeAllObjects];
 //        [_array release];
         _wh_array = [[NSMutableArray alloc]init];
@@ -1212,10 +1212,10 @@
         {
             WH_JXMsgAndUserObject * dicta = (WH_JXMsgAndUserObject*) [_wh_array objectAtIndex:i];
             NSDate * a = dicta.message.timeSend ;
-//            NSLog(@"a = %d",[dicta.user.msgsNew intValue]);
+//            //NSLog(@"a = %d",[dicta.user.msgsNew intValue]);
             WH_JXMsgAndUserObject * dictb = (WH_JXMsgAndUserObject*) [_wh_array objectAtIndex:j];
             NSDate * b = dictb.message.timeSend ;
-            //                NSLog(@"b = %d",b);
+            //                //NSLog(@"b = %d",b);
             
             if ([[a laterDate:b] isEqualToDate:b])
             {
@@ -1568,7 +1568,7 @@
 
 -(void)delFriend:(NSNotification *)notifacation
 {
-//    NSLog(@"delFriend.notify");
+//    //NSLog(@"delFriend.notify");
     WH_JXUserObject* user = (WH_JXUserObject *)notifacation.object;
     NSString* userId = user.userId;
     if(userId==nil)
@@ -1728,7 +1728,6 @@
     }
 
     textView.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, (size.height < 60)?size.height:size.height);
-    NSLog(@"--------%@",NSStringFromCGRect(self.baseView.frame));
 
     self.baseView.frame = CGRectMake(20, JX_SCREEN_HEIGHT/4+35-size.height, JX_SCREEN_WIDTH-40, baseViewHeight+size.height);
 //    self.topView.frame = CGRectMake(0, 118-35+size.height, self.baseView.frame.size.width, 60);
@@ -1826,7 +1825,7 @@
     for (WH_JXMsgAndUserObject * dict in _wh_array) {
         if (![dict.user.userId isEqualToString:FRIEND_CENTER_USERID]) {
             n += [dict.user.msgsNew intValue];
-            NSLog(@"新消息111111=%d",[dict.user.msgsNew intValue]);
+//            //NSLog(@"新消息111111=%d",[dict.user.msgsNew intValue]);
         }
     }
     self.wh_msgTotal =  n;
@@ -1952,9 +1951,7 @@
             WH_RoomData * roomdata = [[WH_RoomData alloc] init];
             [roomdata WH_getDataFromDict:dict];
             if (roomdata.isNeedVerify) {
-                NSLog(@"+++++111");//kai
             }else{
-                NSLog(@"+++++222");//guan
                 _chatRoom = [g_xmpp.roomPool joinRoom:[dict objectForKey:@"jid"] title:[dict objectForKey:@"name"] isNew:YES];
             }
             
@@ -2270,9 +2267,7 @@
 //context:注册观察者的时候,context传递过来的值
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
     id oldName = [change objectForKey:NSKeyValueChangeOldKey];
-    NSLog(@"oldName----------%@",oldName);
     id newName = [change objectForKey:NSKeyValueChangeNewKey];
-    NSLog(@"newName-----------%@",newName);
     
     
     if ([newName integerValue] == 1) {
@@ -2282,9 +2277,9 @@
 //        WH_RoomData * roomdata = [[WH_RoomData alloc] init];
 //        [roomdata WH_getDataFromDict:dict];
 //        if (roomdata.isNeedVerify) {
-//            NSLog(@"+++++111");//kai
+//            //NSLog(@"+++++111");//kai
 //        }else{
-//            NSLog(@"+++++222");//guan
+//            //NSLog(@"+++++222");//guan
 //            _chatRoom = [g_xmpp.roomPool joinRoom:[dict objectForKey:@"jid"] title:[dict objectForKey:@"name"] isNew:YES];
 //        }
         
@@ -3046,6 +3041,6 @@
 
 
 - (void)sp_getMediaFailed {
-    NSLog(@"Continue");
+//    //NSLog(@"Continue");
 }
 @end

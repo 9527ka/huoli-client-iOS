@@ -176,7 +176,7 @@
 }
 
 -(void)dealloc{
-//    NSLog(@"WH_JX_WHCell.dealloc");
+//    //NSLog(@"WH_JX_WHCell.dealloc");
 //    [self.bageDict removeAllObjects];
 //    self.bageDict = nil;
     
@@ -402,7 +402,7 @@
         
         NSString *object = contentArray[i];
         
-//        NSLog(@"%@",object);
+//        //NSLog(@"%@",object);
         BOOL flag = NO;
         if ([object hasSuffix:@"]"]&&[object hasPrefix:@"["]) {
             
@@ -520,6 +520,6 @@
 }
 
 - (void)sp_getUsersMostLiked {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 @end

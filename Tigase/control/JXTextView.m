@@ -46,7 +46,7 @@
 }
 
 -(void)dealloc{
-//    NSLog(@"JXTextView.dealloc");
+//    //NSLog(@"JXTextView.dealloc");
     if(!self.wh_disableAutoSize){
         [self removeObserver:self forKeyPath:@"contentSize"];
         [g_notify  removeObserver:self name:UIKeyboardWillShowNotification object:nil];
@@ -296,7 +296,7 @@
 //    //拿frame变化之后的origin.y-变化之前的origin.y，其差值(带正负号)就是我们self.view的y方向上的增量
 //    deltaY=-endRect.size.height;
 //    
-////    NSLog(@"deltaY:%f",deltaY);
+////    //NSLog(@"deltaY:%f",deltaY);
 //    
 //    [self.superview setFrame:CGRectMake(0, JX_SCREEN_HEIGHT+deltaY-self.superview.frame.size.height, self.superview.frame.size.width, self.superview.frame.size.height)];
 }

@@ -280,7 +280,7 @@
 //        [self.viewModel refreshNewListWithSuccess:^(NSArray * _Nonnull list) {
 //            [self.videos addObjectsFromArray:list];
 //        } failure:^(NSError * _Nonnull error) {
-//            NSLog(@"%@", error);
+//            //NSLog(@"%@", error);
 //        }];
         if (self.page >= 0) {
             [g_server WH_circleMsgPureVideoPageIndex:self.page lable:[NSString stringWithFormat:@"%ld",self.type] toView:self];
@@ -496,6 +496,6 @@
 
 
 - (void)sp_upload {
-    NSLog(@"Get Info Success");
+    //NSLog(@"Get Info Success");
 }
 @end

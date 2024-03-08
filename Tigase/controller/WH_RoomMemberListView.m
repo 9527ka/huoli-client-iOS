@@ -236,6 +236,5 @@
 
 
 - (void)sp_getUserFollowSuccess:(NSString *)isLogin {
-    NSLog(@"Get User Succrss");
 }
 @end

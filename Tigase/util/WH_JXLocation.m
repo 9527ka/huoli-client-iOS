@@ -46,7 +46,7 @@
     CLLocation *currentLocation = [locations lastObject];
     double latitude  =  currentLocation.coordinate.latitude;
     double longitude =  currentLocation.coordinate.longitude;
-    NSLog(@"成功获得位置:latitude:%f,longitude:%f",latitude,longitude);
+//    //NSLog(@"成功获得位置:latitude:%f,longitude:%f",latitude,longitude);
     
     //根据经纬度反向地理编译出地址信息
     [self getAddressInfo:currentLocation];
@@ -55,12 +55,12 @@
     [manager stopUpdatingLocation];
 }
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
-    NSLog(@"成功获得状态");
+//    //NSLog(@"成功获得状态");
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
-    NSLog(@"找不到位置: %@", [error description]);
+//    //NSLog(@"找不到位置: %@", [error description]);
     [self getLocationWithIp];
     return;
 }
@@ -85,7 +85,7 @@
         if (placemarks.count > 0) {
             CLPlacemark *placeMark = [placemarks firstObject];
             
-            //            NSLog(@"placeMark:%@\n name:%@\n thoroughfare:%@\n subThoroughfare:%@\n locality:%@\n subLocality:%@\n administrativeArea:%@\n subAdministrativeArea:%@\n postalCode:%@\n ISOcountryCode:%@\n country:%@\n inlandWater:%@\n ocean:%@\n areasOfInterest:%@",placeMark.addressDictionary,placeMark.name,placeMark.thoroughfare,placeMark.subThoroughfare,placeMark.locality,placeMark.subLocality,placeMark.administrativeArea,placeMark.subAdministrativeArea,placeMark.postalCode,placeMark.ISOcountryCode,placeMark.country,placeMark.inlandWater,placeMark.ocean,placeMark.areasOfInterest);
+            //            //NSLog(@"placeMark:%@\n name:%@\n thoroughfare:%@\n subThoroughfare:%@\n locality:%@\n subLocality:%@\n administrativeArea:%@\n subAdministrativeArea:%@\n postalCode:%@\n ISOcountryCode:%@\n country:%@\n inlandWater:%@\n ocean:%@\n areasOfInterest:%@",placeMark.addressDictionary,placeMark.name,placeMark.thoroughfare,placeMark.subThoroughfare,placeMark.locality,placeMark.subLocality,placeMark.administrativeArea,placeMark.subAdministrativeArea,placeMark.postalCode,placeMark.ISOcountryCode,placeMark.country,placeMark.inlandWater,placeMark.ocean,placeMark.areasOfInterest);
             
             //获取城市名
             NSString *city = placeMark.locality;
@@ -113,7 +113,7 @@
             
             //从 placeMark.addressDictionary 获取详细地址信息
             NSDictionary *addressDict = placeMark.addressDictionary;
-            //            NSLog(@"addressDict:%@",addressDict);
+            //            //NSLog(@"addressDict:%@",addressDict);
             
             //详细地址
             NSString *addressStr = [addressDict objectForKey:@"Name"];
@@ -134,7 +134,7 @@
                 [self.delegate location:self CountryCode:self.countryCode CityName:self.cityName CityId:self.cityId Address:self.address Latitude:location.coordinate.latitude Longitude:location.coordinate.longitude];
             }
             
-            //            NSLog(@"登录地址:%@ countryCode:%@ city:%@ cityId:%d",_address,self.countryCode,_cityName,_cityId);
+            //            //NSLog(@"登录地址:%@ countryCode:%@ city:%@ cityId:%d",_address,self.countryCode,_cityName,_cityId);
             
             //            if (isLogin || _isGetSetting) {
             //                [self getSetting:self];
@@ -225,15 +225,15 @@
             //                        [self getSetting:self];
             //                    }
             
-            NSLog(@"response = %@",responseObject);
+//            //NSLog(@"response = %@",responseObject);
         }else {
             [self getLocationWithIp];
         }
-        NSLog(@"response = %@",responseObject);
+//        //NSLog(@"response = %@",responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self getLocationWithIp];
         //        self.addrBtn.hidden = YES;
-        NSLog(@"error = %@",error);
+        //NSLog(@"error = %@",error);
     }];
 }
 
@@ -289,18 +289,18 @@
 //            [self getSetting:self];
 //        }
         
-        NSLog(@"response = %@",responseObject);
+//        //NSLog(@"response = %@",responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if ([self.delegate respondsToSelector:@selector(location:getLocationError:)]) {
             [self.delegate location:self getLocationError:error];
         }
         //        self.addrBtn.hidden = YES;
-        NSLog(@"error = %@",error);
+//        //NSLog(@"error = %@",error);
     }];
 }
 
 
 - (void)sp_getUsersMostFollowerSuccess {
-    NSLog(@"Get Info Failed");
+//    //NSLog(@"Get Info Failed");
 }
 @end

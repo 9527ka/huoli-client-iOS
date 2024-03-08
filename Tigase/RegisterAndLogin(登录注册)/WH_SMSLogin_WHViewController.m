@@ -171,7 +171,7 @@
                 }
                 
             }else{
-                NSLog(@"%@",connectionError);
+                //NSLog(@"%@",connectionError);
                 [g_App showAlert:connectionError.localizedDescription];
             }
         }];
@@ -356,6 +356,6 @@
 
 
 - (void)sp_didUserInfoFailed {
-    NSLog(@"Get Info Failed");
+    //NSLog(@"Get Info Failed");
 }
 @end

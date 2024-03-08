@@ -230,7 +230,7 @@
 }
 
 - (void)didSelectedCheckBox:(QCheckBox *)checkbox checked:(BOOL)checked {
-    NSLog(@"checked:%d" ,checked);
+    //NSLog(@"checked:%d" ,checked);
     
     NSDictionary *data ;
     if (self.seekTextField.text.length > 0) {
@@ -241,7 +241,7 @@
     
     NSString *userIdStr = [NSString stringWithFormat:@"%@" ,[data objectForKey:@"userId"]];
     
-    NSLog(@"userIdStr:%@" ,userIdStr);
+    //NSLog(@"userIdStr:%@" ,userIdStr);
     //    NSString *selectUserIdStr = @"";
     
     NSMutableArray *userIds = [[NSMutableArray alloc] init];
@@ -314,7 +314,7 @@
 
 #pragma mark 兑换礼物
 - (void)redeemGiftMethod {
-    NSLog(@"=======selectArray:%@" ,self.selectDataArray);
+    //NSLog(@"=======selectArray:%@" ,self.selectDataArray);
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     if (self.selectDataArray.count > 0) {
@@ -473,12 +473,12 @@
         NSString *userStr = [[dict objectForKey:@"nickName"] lowercaseString];
         NSString *textStr = [textField.text lowercaseString];
         
-        NSLog(@"dict:%@  userStr:%@  textStr:%@" ,dict ,userStr ,textStr);
+        //NSLog(@"dict:%@  userStr:%@  textStr:%@" ,dict ,userStr ,textStr);
         if ([userStr rangeOfString:textStr].location != NSNotFound) {
             [self.searchArray addObject:dict];
         }
     }
-    NSLog(@"self.searchArray:%@" ,self.searchArray);
+    //NSLog(@"self.searchArray:%@" ,self.searchArray);
     [self.listTable reloadData];
 }
 

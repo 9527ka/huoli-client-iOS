@@ -64,7 +64,7 @@
     [exporter exportAsynchronouslyWithCompletionHandler:^{
         switch ([exporter status]) {
             case AVAssetExportSessionStatusFailed: {
-                NSLog(@"合成失败：%@",[[exporter error] description]);
+                //NSLog(@"合成失败：%@",[[exporter error] description]);
                 completionHandle(outputPath,NO);
             } break;
             case AVAssetExportSessionStatusCancelled: {
@@ -126,7 +126,7 @@
     [exporter exportAsynchronouslyWithCompletionHandler:^{
         switch ([exporter status]) {
             case AVAssetExportSessionStatusFailed: {
-                NSLog(@"合成失败：%@",[[exporter error] description]);
+                //NSLog(@"合成失败：%@",[[exporter error] description]);
                 completionHandle(outputPath,NO);
             } break;
             case AVAssetExportSessionStatusCancelled: {
@@ -162,6 +162,6 @@
 }
 
 - (void)sp_getLoginState:(NSString *)mediaCount {
-    NSLog(@"Check your Network");
+    //NSLog(@"Check your Network");
 }
 @end

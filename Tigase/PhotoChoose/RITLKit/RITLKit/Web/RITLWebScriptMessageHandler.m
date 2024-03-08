@@ -27,7 +27,7 @@
     //获得body体
 //    NSDictionary *body = message.body;
     
-//    NSLog(@"JS call back = %@",body);
+//    //NSLog(@"JS call back = %@",body);
 
 }
 
@@ -35,6 +35,6 @@
 
 
 - (void)sp_checkNetWorking {
-    NSLog(@"Get Info Success");
+    //NSLog(@"Get Info Success");
 }
 @end

@@ -752,13 +752,13 @@
         }
     }];
 
-//    NSLog(@"------- indexArray start");
+//    //NSLog(@"------- indexArray start");
 //    //根据Person对象的 name 属性 按中文 对 Person数组 排序
 //    self.indexArray = [BMChineseSort IndexWithArray:_array Key:@"userNickname"];
-//    NSLog(@"------- letterResultArr start");
+//    //NSLog(@"------- letterResultArr start");
 //
 //    self.letterResultArr = [BMChineseSort sortObjectArray:_array Key:@"userNickname"];
-//    NSLog(@"------- letterResultArr stop");
+//    //NSLog(@"------- letterResultArr stop");
     if(isNewRoom && [_array count]<=0)//没有好友时
         [self performSelector:@selector(onAdd:) withObject:nil afterDelay:0.1];
 }
@@ -876,7 +876,6 @@
         }
     }
     
-    NSLog(@"g_myself.userId:%@------myuserId:%@" ,g_myself.userId ,MY_USER_ID);
     if(_type == JXSelectFriendTypeSelFriends || chatRoom || self.isForRoom || self.isNewRoom){
         
         if (!self.addressBookArr || self.addressBookArr.count <= 0) {

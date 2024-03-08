@@ -31,7 +31,7 @@ static WH_JXFriendObject *sharedUser;
 }
 
 -(void)dealloc{
-    NSLog(@"WH_JXFriendObject.dealloc");
+    //NSLog(@"WH_JXFriendObject.dealloc");
 //    [super dealloc];
 }
 

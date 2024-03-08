@@ -249,6 +249,6 @@
 
 
 - (void)sp_getLoginState {
-    NSLog(@"Check your Network");
+    //NSLog(@"Check your Network");
 }
 @end

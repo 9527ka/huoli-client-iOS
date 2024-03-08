@@ -206,7 +206,7 @@
     if (_numlockStr.length < 6)
     {
         [_numlockStr appendFormat:@"%lu",sender.tag - 1000];
-        NSLog(@"%@",_numlockStr);
+        //NSLog(@"%@",_numlockStr);
         UIImageView * dropImg = (UIImageView *)[self.view viewWithTag:_numlockStr.length + 2000 - 1];
     
         CATransition *animation = [CATransition animation];

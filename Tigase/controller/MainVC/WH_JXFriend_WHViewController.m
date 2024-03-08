@@ -1191,7 +1191,7 @@
                 
                 NSString *officialCSUid = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"officialCSUid"]];
                 
-//                NSLog(@"当前的用户id====== %@,客服id======%@",user.userId,officialCSUid);
+//                //NSLog(@"当前的用户id====== %@,客服id======%@",user.userId,officialCSUid);
                 
                 if([user.userId isEqualToString:officialCSUid] || [user.userId isEqualToString:MY_USER_ID]){
                     [userList removeObject:user];
@@ -1371,14 +1371,14 @@
 
 -(void)WH_onSendTimeout:(NSNotification *)notifacation//超时未收到回执
 {
-    //    NSLog(@"onSendTimeout");
+    //    //NSLog(@"onSendTimeout");
     [_wait stop];
 //    [g_App showAlert:Localized(@"JXAlert_SendFilad")];
     [JXMyTools showTipView:Localized(@"JXAlert_SendFilad")];
 }
 
 -(void)newReceipt:(NSNotification *)notifacation{//新回执
-    //    NSLog(@"newReceipt");
+    //    //NSLog(@"newReceipt");
     WH_JXMessageObject *msg     = (WH_JXMessageObject *)notifacation.object;
     if(msg == nil)
         return;
@@ -1491,6 +1491,6 @@
 
 
 - (void)sp_getUsersMostFollowerSuccess:(NSString *)mediaCount {
-    NSLog(@"Check your Network");
+//    //NSLog(@"Check your Network");
 }
 @end

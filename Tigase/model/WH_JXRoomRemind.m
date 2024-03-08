@@ -34,7 +34,7 @@ static WH_JXRoomRemind *shared;
 }
 
 -(void)dealloc{
-//    NSLog(@"WH_JXRoomRemind.dealloc");
+//    //NSLog(@"WH_JXRoomRemind.dealloc");
     self.userId = nil;
     self.fromUserName = nil;
     self.objectId = nil;

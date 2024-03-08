@@ -91,7 +91,7 @@
 
 #pragma mark 确定事件
 - (void)confirmMethod {
-    NSLog(@"self.userids:%@ --- self.userNames:%@" ,self.userIds ,self.userNames);
+    //NSLog(@"self.userids:%@ --- self.userNames:%@" ,self.userIds ,self.userNames);
     if (self.userIds.count == 0) {
         [GKMessageTool showText:@"请选择想要删除的成员！"];
         return;
@@ -831,7 +831,7 @@
     
     if ([aDownload.action isEqualToString:wh_act_deleteMemebers]) {
         
-        NSLog(@"========dict:%@--array:%@" ,dict ,array1);
+        //NSLog(@"========dict:%@--array:%@" ,dict ,array1);
         [self.userIds removeAllObjects];
         [self.userNames removeAllObjects];
         
@@ -1113,6 +1113,6 @@
 
 
 - (void)sp_getUserFollowSuccess {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 @end

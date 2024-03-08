@@ -317,7 +317,7 @@
     
     while (strPath = [myDirectoryEnumerator nextObject]) {
         for (NSString * namePath in strPath.pathComponents) {
-            NSLog(@"-----AAA-----%@", namePath  );
+            //NSLog(@"-----AAA-----%@", namePath  );
         }
     }
 }
@@ -369,19 +369,19 @@
 //            }];
 //        } else {
 //            //没有更多的group时，即可认为已经加载完成。
-//            NSLog(@"after load, the total alumvideo count is %ld",_albumVideoInfos.count);
+//            //NSLog(@"after load, the total alumvideo count is %ld",_albumVideoInfos.count);
 //            dispatch_async(dispatch_get_main_queue(), ^{
 //                [self showAlbumVideos];
 //            });
 //        }
 //        
 //    } failureBlock:^(NSError *error) {
-//        NSLog(@"Failed.");
+//        //NSLog(@"Failed.");
 //    }];
 }
 
 
 - (void)sp_upload {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 @end

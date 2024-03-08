@@ -37,6 +37,6 @@
 }
 
 - (void)sp_checkUserInfo {
-    NSLog(@"Check your Network");
+    //NSLog(@"Check your Network");
 }
 @end

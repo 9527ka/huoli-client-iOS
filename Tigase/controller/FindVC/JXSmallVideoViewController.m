@@ -53,7 +53,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    NSLog(@"CurrentController = %@",[self class]);
 //    [UIApplication sharedApplication].statusBarHidden = !THE_DEVICE_HAVE_HEAD;
 }
 
@@ -119,7 +118,6 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat offsetY = scrollView.contentOffset.y;
-    NSLog(@"------scrollView.contentOffset.y = %f = %f",offsetY,_wh_lastOffsetY);
     if (offsetY > JX_SCREEN_TOP) {
         if (offsetY < _wh_lastOffsetY) {
             [UIView animateWithDuration:.3f animations:^{
@@ -435,7 +433,6 @@
 -(void)WH_scrollToPageUp{
     if(_isLoading)
         return;
-    NSLog(@"WH_scrollToPageUp");
     _page = 0;
     [self WH_getServerData];
     [self performSelector:@selector(WH_stopLoading) withObject:nil afterDelay:1.0];
@@ -448,7 +445,6 @@
 }
 
 - (void)dealloc {
-    NSLog(@"dealloc - %@",[self class]);
     
 //    [UIApplication sharedApplication].statusBarHidden = NO;
     [_header free];

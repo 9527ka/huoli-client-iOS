@@ -98,6 +98,6 @@ static NSMutableDictionary *propertyClassByClassAndPropertyName;
 
 
 - (void)sp_getMediaData:(NSString *)followCount {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 @end

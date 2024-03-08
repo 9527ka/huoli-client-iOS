@@ -46,7 +46,7 @@ static NSString* const imageSelectCellID = @"imageSelectCellID";
 }
 
 - (void)dealloc{
-    NSLog(@"%@.dealloc",NSStringFromClass([self class]));
+    //NSLog(@"%@.dealloc",NSStringFromClass([self class]));
 //    [g_notify removeObserver:self name:@"ImageSelectirCollectionCellSetSelected" object:nil];
 //    [super dealloc];
 }
@@ -175,8 +175,8 @@ static NSString* const imageSelectCellID = @"imageSelectCellID";
     for (int i=0; i<_imageFileNameArray.count; i++) {
         if (i != _selectIndex) {
             BOOL b = [[NSFileManager defaultManager] removeItemAtPath:_imageFileNameArray[i] error:nil];
-            if (!b)
-                NSLog(@"文件删除失败");
+//            if (!b)
+                //NSLog(@"文件删除失败");
         }
     }
 }

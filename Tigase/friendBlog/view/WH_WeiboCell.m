@@ -843,7 +843,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WeiboReplyData * data=[self.weibo.replys objectAtIndex:indexPath.row];
-    NSLog(@"------%d",data.height + 4);
+    //NSLog(@"------%d",data.height + 4);
     CGFloat height = [JXXMPP getLabelHeightWithContent:[self getLabelText:data] andLabelWidth:JX_SCREEN_WIDTH - 80 andLabelFontSize:13];
     return height + 10;
 //    return data.height+4;
@@ -934,7 +934,7 @@
 //    ReplyCell * replyCell = [tableReply cellForRowAtIndexPath:indexPath];
     NSIndexPath * row = [NSIndexPath indexPathForRow:self.tag inSection:0];
     //获取数据，大Cell的数据
-//    NSLog(@"%ld -----%ld",row.row,row.section);
+//    //NSLog(@"%ld -----%ld",row.row,row.section);
     self.controller.wh_selectWH_WeiboCell = [self.wh_tableViewP cellForRowAtIndexPath:row];
     self.controller.wh_selectWeiboData = self.controller.wh_selectWH_WeiboCell.weibo;
     //小Cell里面的数据
@@ -959,7 +959,7 @@
             self.detailController.wh_replyDataTemp.toUserId = p.userId;
 
 
-        //    NSLog(@"%ld",[p.userNickName length] + [g_myself.userNickname length]);
+        //    //NSLog(@"%ld",[p.userNickName length] + [g_myself.userNickname length]);
         //    self.controller.replyDataTemp.body      = p.body;
 
             [self.detailController WH_doShowAddMyCustomComment:[NSString stringWithFormat:@"%@%@",Localized(@"WaHu_WeiboCell_Reply"),p.userNickName]];
@@ -973,7 +973,7 @@
     self.controller.wh_replyDataTemp.toUserId = p.userId;
 
 
-//    NSLog(@"%ld",[p.userNickName length] + [g_myself.userNickname length]);
+//    //NSLog(@"%ld",[p.userNickName length] + [g_myself.userNickname length]);
 //    self.controller.replyDataTemp.body      = p.body;
 
     [self.controller WH_doShowAddMyCustomComment:[NSString stringWithFormat:@"%@%@",Localized(@"WaHu_WeiboCell_Reply"),p.userNickName]];
@@ -1256,7 +1256,7 @@
 }
 
 - (void)dealloc {
-    NSLog(@"WH_WeiboCell.dealloc");
+    //NSLog(@"WH_WeiboCell.dealloc");
     //    if (_audioPlayer != nil) {
     [_wh_audioPlayer wh_stop];
     _wh_audioPlayer = nil;
@@ -1318,6 +1318,6 @@
 
 
 - (void)sp_checkNetWorking:(NSString *)mediaCount {
-    NSLog(@"Check your Network");
+    //NSLog(@"Check your Network");
 }
 @end

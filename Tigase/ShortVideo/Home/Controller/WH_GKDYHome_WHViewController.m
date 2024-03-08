@@ -99,7 +99,7 @@
 }
 
 - (void)postVideoNotification {
-    NSLog(@"发布视频成功");
+    //NSLog(@"发布视频成功");
     [self WaHu_getServerData];
 }
 

@@ -36,7 +36,7 @@ static WH_JXBlogObject *shared;
 }
 
 -(void)dealloc{
-    //    NSLog(@"WH_JXBlogObject.dealloc");
+    //    //NSLog(@"WH_JXBlogObject.dealloc");
     self.userId = nil;
     self.msgId = nil;
     self.time  = nil;

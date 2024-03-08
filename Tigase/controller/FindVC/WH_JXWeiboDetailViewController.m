@@ -164,7 +164,7 @@
     [g_notify removeObserver:self name:kCellTouchUrl_WHNotifaction object:nil];
     [g_notify removeObserver:self name:kXMPPMessageWeiboRemind_WHNotification object:nil];
     [g_notify removeObserver:self name:kApplicationDidEnterBackground object:nil];
-//    NSLog(@"WeiboViewControlle.dealloc");
+//    //NSLog(@"WeiboViewControlle.dealloc");
     //    [super dealloc];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 }
@@ -572,7 +572,6 @@
     cell.isCollect = weibo.isCollect;
     cell.weibo = weibo;
     [cell setupData];
-    NSLog(@"=============%ld",indexPath.row);
 //    float height=[self tableView:tableView heightForRowAtIndexPath:indexPath];
 //    UIView * view=[cell.contentView viewWithTag:1200];
 //    if(view==nil){
@@ -810,7 +809,6 @@
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     for (WeiboReplyData *replyData in self.wh_selectWeiboData.replys) {
         if ([replyData.replyId isEqualToString:self.replyId]) {
-            NSLog(@"%@", replyData.match.source);
             NSString *aString = [[replyData.match.source substringToIndex:1] isEqualToString:@":"] ? [replyData.match.source substringFromIndex:1] : replyData.match.source;
             [pasteboard setString:aString];
              [self deleteViewHiden];
@@ -940,7 +938,7 @@
     //拿frame变化之后的origin.y-变化之前的origin.y，其差值(带正负号)就是我们self.view的y方向上的增量
     deltaY=-endRect.size.height;
     
-//    NSLog(@"deltaY:%f",deltaY);
+//    //NSLog(@"deltaY:%f",deltaY);
     
     [_inputParent setFrame:CGRectMake(0, JX_SCREEN_HEIGHT+deltaY-_inputParent.frame.size.height, _inputParent.frame.size.width, _inputParent.frame.size.height)];
 }
@@ -1429,7 +1427,7 @@
 //    NSString *jsonString;
 //    if (! jsonData)
 //    {
-//        NSLog(@"Got an error: %@", error);
+//        //NSLog(@"Got an error: %@", error);
 //    }else
 //    {
 //        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];

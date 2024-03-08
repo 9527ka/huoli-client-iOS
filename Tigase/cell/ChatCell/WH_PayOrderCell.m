@@ -117,7 +117,7 @@
                                                           error:&err];
     if(err)
     {
-        NSLog(@"json解析失败：%@",err);
+        //NSLog(@"json解析失败：%@",err);
         return nil;
     }
     return dic;

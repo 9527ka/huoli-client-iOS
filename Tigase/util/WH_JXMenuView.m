@@ -127,6 +127,6 @@
 
 
 - (void)sp_getLoginState {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 @end

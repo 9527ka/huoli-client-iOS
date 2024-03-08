@@ -74,14 +74,14 @@
 //        NSString *messageText = [messageN stringByReplacingOccurrencesOfString:@" " withString:@""];  //去掉空格
 //        CGSize size = [messageText boundingRectWithSize:CGSizeMake(_messageConent.frame.size.width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:sysFontWithSize(g_constant.chatFont)} context:nil].size;
 //        NSInteger count = size.height / _messageConent.font.lineHeight;
-//        NSLog(@"countcount ===  %ld-----%f-----%@",count,[[NSDate date] timeIntervalSince1970],self.msg.fileName);
+//        //NSLog(@"countcount ===  %ld-----%f-----%@",count,[[NSDate date] timeIntervalSince1970],self.msg.fileName);
 //
 //        count = count * 10 - ([[NSDate date] timeIntervalSince1970] - [self.msg.fileName longLongValue]);
 //        self.timerIndex = count;
 //        self.timerTotal = count;
 //        //校验时间逻辑 当前时间 - 发送时间
 //
-//        NSLog(@"countcount1 ===  %ld",count);
+//        //NSLog(@"countcount1 ===  %ld",count);
 //        if (count > 0) {
 //            //self.timeIndexLabel.text = [NSString stringWithFormat:@"%ld",count];
 //            if (!self.readDelTimer) {
@@ -140,10 +140,14 @@
         [self.msg WH_sendAlreadyRead_WHMsg];
         
         //self.msg.fileName = [NSString stringWithFormat:@"%f", [[NSDate date] timeIntervalSince1970]];
+        
+        
         [self.msg updateFileName];
         self.isDidMsgCell = YES;
         self.msg.chatMsgHeight = [NSString stringWithFormat:@"0"];
         [self.msg updateChatMsgHeight];
+        
+        
         //[g_notify postNotificationName:kCellMessageReadDelNotifaction object:[NSNumber numberWithInt:self.indexNum]];
     }
     
@@ -287,7 +291,7 @@
 
 + (float)getChatCellHeight:(WH_JXMessageObject *)msg {
     if ([msg.chatMsgHeight floatValue] > 1) {
-//            return [msg.chatMsgHeight floatValue];
+            return [msg.chatMsgHeight floatValue];
     }
     float n;
     WH_JXEmoji *messageConent=[[WH_JXEmoji alloc]initWithFrame:CGRectMake(0, 0, 200, 20)];
@@ -317,7 +321,7 @@
         }
     }
     
-    //NSLog(@"heightForRowAtIndexPath_%d,%d:=%@",indexPath.row,n,_messageConent.text);
+    ////NSLog(@"heightForRowAtIndexPath_%d,%d:=%@",indexPath.row,n,_messageConent.text);
     if(n<55)
         n = 55;
     if (msg.isShowTime) {

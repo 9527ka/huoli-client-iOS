@@ -99,9 +99,9 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    NSLog(@"CurrentController = %@",[self class]);
+    //NSLog(@"CurrentController = %@",[self class]);
 //    UIView *view = g_window.subviews.lastObject;
-//    NSLog(@"lastObject = %@",g_window.subviews.lastObject);
+//    //NSLog(@"lastObject = %@",g_window.subviews.lastObject);
 //    if (self.wh_isGotoBack){
 //        
 //        if (self.view.frame.origin.x != 0) {
@@ -147,7 +147,7 @@
 {
     
     CGPoint p = [screenPan translationInView:self.view];
-    NSLog(@"p = %@",NSStringFromCGPoint(p));
+//    //NSLog(@"p = %@",NSStringFromCGPoint(p));
     self.view.frame = CGRectMake(p.x, 0, JX_SCREEN_WIDTH, JX_SCREEN_HEIGHT);
     if (screenPan.state == UIGestureRecognizerStateEnded) {
         if (p.x > JX_SCREEN_WIDTH/2) {
@@ -214,7 +214,7 @@
 }
 
 - (void)dealloc {
-    NSLog(@"dealloc - %@",[self class]);
+    //NSLog(@"dealloc - %@",[self class]);
     [_header free];
     [_footer free];
     wh_tableHeader = nil;
@@ -402,7 +402,6 @@
 -(void)WH_scrollToPageUp{
     if(_isLoading)
         return;
-    NSLog(@"WH_scrollToPageUp");
     _page = 0;
     [self WH_getServerData];
     [self performSelector:@selector(WH_stopLoading) withObject:nil afterDelay:1.0];
@@ -441,26 +440,26 @@
     _footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
         
         [weakSelf WH_scrollToPageDown];
-//        NSLog(@"%@----开始进入刷新状态", refreshView.class);
+//        //NSLog(@"%@----开始进入刷新状态", refreshView.class);
     };
     _footer.endStateChangeBlock = ^(MJRefreshBaseView *refreshView) {
         
         // 刷新完毕就会回调这个Block
-//        NSLog(@"%@----刷新完毕", refreshView.class);
+//        //NSLog(@"%@----刷新完毕", refreshView.class);
     };
     _footer.refreshStateChangeBlock = ^(MJRefreshBaseView *refreshView, MJRefreshState state) {
         // 控件的刷新状态切换了就会调用这个block
         switch (state) {
             case MJRefreshStateNormal:
-//                NSLog(@"%@----切换到：普通状态", refreshView.class);
+//                //NSLog(@"%@----切换到：普通状态", refreshView.class);
                 break;
                 
             case MJRefreshStatePulling:
-//                NSLog(@"%@----切换到：松开即可刷新的状态", refreshView.class);
+//                //NSLog(@"%@----切换到：松开即可刷新的状态", refreshView.class);
                 break;
                 
             case MJRefreshStateRefreshing:
-//                NSLog(@"%@----切换到：正在刷新状态", refreshView.class);
+//                //NSLog(@"%@----切换到：正在刷新状态", refreshView.class);
                 break;
             default:
                 break;
@@ -483,21 +482,21 @@
     };
     _header.endStateChangeBlock = ^(MJRefreshBaseView *refreshView) {
         // 刷新完毕就会回调这个Block
-//        NSLog(@"%@----刷新完毕", refreshView.class);
+//        //NSLog(@"%@----刷新完毕", refreshView.class);
     };
     _header.refreshStateChangeBlock = ^(MJRefreshBaseView *refreshView, MJRefreshState state) {
         // 控件的刷新状态切换了就会调用这个block
         switch (state) {
             case MJRefreshStateNormal:
-//                NSLog(@"%@----切换到：普通状态", refreshView.class);
+//                //NSLog(@"%@----切换到：普通状态", refreshView.class);
                 break;
                 
             case MJRefreshStatePulling:
-//                NSLog(@"%@----切换到：松开即可刷新的状态", refreshView.class);
+//                //NSLog(@"%@----切换到：松开即可刷新的状态", refreshView.class);
                 break;
                 
             case MJRefreshStateRefreshing:
-//                NSLog(@"%@----切换到：正在刷新状态", refreshView.class);
+//                //NSLog(@"%@----切换到：正在刷新状态", refreshView.class);
                 break;
             default:
                 break;
@@ -531,7 +530,6 @@
     if(wh_isShowHeaderPull && !wh_isShowFooterPull){//如果只有向上翻页
         if(indexPath.row == 0){
             _oldRowCount = (int)[self tableView:_table numberOfRowsInSection:indexPath.section];
-            NSLog(@"doAutoScroll=%d",_oldRowCount);
             [self WH_scrollToPageUp];
             _lastScrollTime = [[NSDate date] timeIntervalSince1970];
 //            _isLoading = YES;
@@ -541,7 +539,6 @@
     if(wh_isShowFooterPull){//如果有向下翻页
         if(indexPath.row == [self tableView:_table numberOfRowsInSection:indexPath.section]-1){
             _oldRowCount = (int)[self tableView:_table numberOfRowsInSection:indexPath.section];
-            NSLog(@"doAutoScroll=%d",_oldRowCount);
             [self WH_scrollToPageDown];
 //            _isLoading = YES;
             _lastScrollTime = [[NSDate date] timeIntervalSince1970];

@@ -92,7 +92,7 @@ static NSMutableArray *shortNameArrayE;
     CGFloat upX=0;
     CGFloat upY=0;
     CGFloat height = 0;
-    //    NSLog(@"%f,%f,%f,%f",rect.origin.x,rect.origin.y,rect.size.width,rect.size.height);
+    //    //NSLog(@"%f,%f,%f,%f",rect.origin.x,rect.origin.y,rect.size.width,rect.size.height);
     for (int i=0;i<[data count];i++) {
         
         
@@ -114,7 +114,7 @@ static NSMutableArray *shortNameArrayE;
                 }
                 //
                 [img drawInRect:CGRectMake(upX, upY+_top, faceWidth, faceHeight)];
-                //                NSLog(@"%@,%f,%f",str,upX,upY);
+                //                //NSLog(@"%@,%f,%f",str,upX,upY);
                 upX=faceWidth+upX;
                 height = faceHeight;
             }else {
@@ -134,7 +134,7 @@ static NSMutableArray *shortNameArrayE;
                     upX=faceWidth+upX;
                     height = faceHeight;
                     
-                    //                NSLog(@"%@,%f,%f",str,upX,upY);
+                    //                //NSLog(@"%@,%f,%f",str,upX,upY);
                 }
             }
         }
@@ -180,7 +180,7 @@ static NSMutableArray *shortNameArrayE;
                         height = _size;
                     }
                 }
-                //                NSLog(@"%@,%f,%f",temp,upX,upY);
+                //                //NSLog(@"%@,%f,%f",temp,upX,upY);
             }
         }
     }
@@ -529,7 +529,7 @@ static NSMutableArray *shortNameArrayE;
     
     NSInteger numberOfLines = self.numberOfLines > 0 ? MIN(self.numberOfLines, CFArrayGetCount(lines)) : CFArrayGetCount(lines);
     
-    //NSLog(@"num lines: %d", numberOfLines);
+    ////NSLog(@"num lines: %d", numberOfLines);
     
     if (numberOfLines == 0) {
         CFRelease(frame);
@@ -751,7 +751,7 @@ static NSMutableArray *shortNameArrayE;
     }
     if(upY<self.frame.size.height){
         //        _top = (self.frame.size.height-upY)/2;
-        //        NSLog(@"_top=%d/%d",_top,self.frame.size.height);
+        //        //NSLog(@"_top=%d/%d",_top,self.frame.size.height);
     }
     if(upY<_size)
         upY = _size;
@@ -769,7 +769,7 @@ static NSMutableArray *shortNameArrayE;
     else
         upX = upX;
     self.frame = CGRectMake(self.frame.origin.x,self.frame.origin.y, upX, upY + 3); //@ 需要将该view的尺寸记下，方便以后使用
-    //    NSLog(@"%d,%.1f %.1f", [data count], upX, upY);
+    //    //NSLog(@"%d,%.1f %.1f", [data count], upX, upY);
     
     if (!self.contentEmoji) {
         if (text == nil) {

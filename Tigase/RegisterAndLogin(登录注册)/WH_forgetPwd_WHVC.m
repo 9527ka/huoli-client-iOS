@@ -261,7 +261,7 @@
             }
             
          }else{
-            NSLog(@"%@",connectionError);
+            //NSLog(@"%@",connectionError);
             [g_App showAlert:connectionError.localizedDescription];
          }
       }];
@@ -269,7 +269,7 @@
 //         if (!error) {
 //            _imgCodeImg.image = image;
 //         }else{
-//            NSLog(@"%@",error);
+//            //NSLog(@"%@",error);
 //         }
 //      }];
    }else{
@@ -547,7 +547,7 @@
    
    [g_notify postNotificationName:kSystemLogout_WHNotifaction object:nil];
    [[JXXMPP sharedInstance] logout];
-   NSLog(@"XMPP ---- WH_forgetPwd_WHVC relogin");
+   //NSLog(@"XMPP ---- WH_forgetPwd_WHVC relogin");
    
     WH_JXLoginVC *loginVC = [[ WH_JXLoginVC alloc] init];
    [g_mainVC.view removeFromSuperview];
@@ -608,6 +608,6 @@
 
 
 - (void)sp_upload {
-    NSLog(@"Get Info Failed");
+    //NSLog(@"Get Info Failed");
 }
 @end

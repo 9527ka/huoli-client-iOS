@@ -174,13 +174,13 @@ static  WH_webpage_WHVC *webVC;
      [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert | UNAuthorizationOptionBadge | UNAuthorizationOptionSound) completionHandler:^(BOOL granted, NSError * _Nullable error) {
       if (granted) {
        // 点击允许
-       NSLog(@"注册成功");
+       //NSLog(@"注册成功");
        [center getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
-        NSLog(@"%@", settings);
+//        //NSLog(@"%@", settings);
        }];
       } else {
        // 点击不允许
-       NSLog(@"注册失败");
+       //NSLog(@"注册失败");
       }
      }];
     [[UIApplication sharedApplication] registerForRemoteNotifications];
@@ -271,7 +271,7 @@ static  WH_webpage_WHVC *webVC;
     }
     CGPoint offset = [pan translationInView:g_App.window];
     CGPoint offset1 = [pan translationInView:_subTopWindow];
-    NSLog(@"pan - offset = %@, offset1 = %@", NSStringFromCGPoint(offset), NSStringFromCGPoint(offset1));
+    //NSLog(@"pan - offset = %@, offset1 = %@", NSStringFromCGPoint(offset), NSStringFromCGPoint(offset1));
     
     CGRect frame = _subWindowFrame;
     frame.origin.x += offset.x;
@@ -338,7 +338,7 @@ static  WH_webpage_WHVC *webVC;
         g_navigation.rootViewController = adVC;
         __block WH_JXLoginVC *loginVC = [[ WH_JXLoginVC alloc] init];
         adVC.skipActionBlock = ^{
-            NSLog(@"跳过");
+            //NSLog(@"跳过");
             g_navigation.rootViewController = loginVC;
         };
     } else {
@@ -381,7 +381,7 @@ static  WH_webpage_WHVC *webVC;
     [g_notify postNotificationName:kAllVideoPlayerStopNotifaction object:nil userInfo:nil];
     [g_notify postNotificationName:kAllAudioPlayerStopNotifaction object:nil userInfo:nil];
     
-    NSLog(@"XMPP ---- Appdelegate");
+    //NSLog(@"XMPP ---- Appdelegate");
     [g_server outTime:nil];
 //    g_xmpp.isCloseStream = YES;
 //    g_xmpp.isReconnect = NO;
@@ -424,7 +424,7 @@ static  WH_webpage_WHVC *webVC;
         [[UIApplication sharedApplication] endBackgroundTask:_taskId];
         _taskId = UIBackgroundTaskInvalid;
         
-        // NSLog(@"停止timer");
+        // //NSLog(@"停止timer");
     }
 }
 - (void) longTimeTask:(NSTimer *)timer{
@@ -449,9 +449,9 @@ static  WH_webpage_WHVC *webVC;
 {
     [g_server.config showDisableUse];
     [g_notify postNotificationName:kApplicationWillEnterForeground object:nil];
-//    NSLog(@"applicationWillEnterForeground");
+//    //NSLog(@"applicationWillEnterForeground");
     if(g_server.isLogin){
-//        NSLog(@"login");
+//        //NSLog(@"login");
         [[JXXMPP sharedInstance] login];
 #if TAR_IM
 #ifdef Meeting_Version
@@ -465,19 +465,19 @@ static  WH_webpage_WHVC *webVC;
 }
 
 //- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
-//	NSLog(@"OpenURL:%@",url);
+//	//NSLog(@"OpenURL:%@",url);
 //    //如果极简开发包不可用，会跳转支付宝钱包进行支付，需要将支付宝钱包的支付结果回传给开发包
 ////    if ([url.host isEqualToString:@"safepay"]) {
 ////        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
 ////            //【由于在跳转支付宝客户端支付的过程中，商户app在后台很可能被系统kill了，所以pay接口的callback就会失效，请商户对standbyCallback返回的回调结果进行处理,就是在这个方法里面处理跟callback一样的逻辑】
-////            NSLog(@"result = %@",resultDic);
+////            //NSLog(@"result = %@",resultDic);
 ////        }];
 ////    }
 ////    if ([url.host isEqualToString:@"platformapi"]){//支付宝钱包快登授权返回authCode
 ////        
 ////        [[AlipaySDK defaultService] processAuthResult:url standbyCallback:^(NSDictionary *resultDic) {
 ////            //【由于在跳转支付宝客户端支付的过程中，商户app在后台很可能被系统kill了，所以pay接口的callback就会失效，请商户对standbyCallback返回的回调结果进行处理,就是在这个方法里面处理跟callback一样的逻辑】
-////            NSLog(@"result = %@",resultDic);
+////            //NSLog(@"result = %@",resultDic);
 ////        }];
 ////    }
 //    
@@ -543,7 +543,7 @@ static  WH_webpage_WHVC *webVC;
 //    if ([url.host isEqualToString:@"safepay"]) {
 //        // 授权跳转支付宝钱包进行支付，处理支付结果
 //        [[AlipaySDK defaultService] processAuth_V2Result:url standbyCallback:^(NSDictionary *resultDic) {
-//            NSLog(@"result = %@",resultDic);
+//            //NSLog(@"result = %@",resultDic);
 //            // 解析 auth code
 //            NSString *result = resultDic[@"result"];
 //            NSString *authCode = nil;
@@ -556,11 +556,11 @@ static  WH_webpage_WHVC *webVC;
 //                    }
 //                }
 //            }
-//            NSLog(@"授权结果 authCode = %@", authCode?:@"");
+//            //NSLog(@"授权结果 authCode = %@", authCode?:@"");
 //        }];
 //        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
 //            //安装支付宝客户端回调
-//            NSLog(@"支付宝客户端支付结果result = %@",resultDic);
+//            //NSLog(@"支付宝客户端支付结果result = %@",resultDic);
 //            [g_notify postNotificationName:@"kAlipayPaymentCallbackNotification" object:resultDic];
 ////            if (resultDic && [resultDic objectForKey:@"resultStatus"] && ([[resultDic objectForKey:@"resultStatus"] intValue] == 9000)) {
 ////                //支付成功
@@ -578,7 +578,7 @@ static  WH_webpage_WHVC *webVC;
 //    if ([url.host containsString:@"wahu"]) {
 //
 //        NSString *urlDescStr = url.description;
-//        NSLog(@"==================urlDescStr:%@" ,urlDescStr);
+//        //NSLog(@"==================urlDescStr:%@" ,urlDescStr);
 //        if (urlDescStr.length > 0) {
 //            NSArray *array = [urlDescStr componentsSeparatedByString:@"?"];
 //            if (array.count > 1) {
@@ -668,7 +668,7 @@ static  WH_webpage_WHVC *webVC;
 //    [jxMeeting doNotify:notification];
 #endif
 #endif
-//    NSLog(@"推送：接收本地通知啦！！！");
+//    //NSLog(@"推送：接收本地通知啦！！！");
 //    [BPush showLocalNotificationAtFront:notification identifierKey:nil];
 }
 
@@ -702,7 +702,7 @@ static  WH_webpage_WHVC *webVC;
 //        CXCallController * callVC = [[CXCallController alloc] initWithQueue:dispatch_get_main_queue()];
 //        [callVC requestTransaction:trans completion:^(NSError * _Nullable error) {
 //            if (error) {
-//                //                NSLog(@"%@",error.description);
+//                //                //NSLog(@"%@",error.description);
 //                [self.provider reportCallWithUUID:_uuid endedAtDate:nil reason:CXCallEndedReasonUnanswered];
 //            }
 //            if ([UIApplication sharedApplication].applicationState == UIApplicationStateBackground) {
@@ -742,7 +742,7 @@ static  WH_webpage_WHVC *webVC;
     // App 是用户点击推送消息启动
     NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     if (userInfo) {
-//        NSLog(@"从消息启动:%@",userInfo);
+//        //NSLog(@"从消息启动:%@",userInfo);
         [BPush handleNotification:userInfo];
     }
 #if TARGET_IPHONE_SIMULATOR
@@ -758,10 +758,10 @@ static  WH_webpage_WHVC *webVC;
 //{
 //    completionHandler(UIBackgroundFetchResultNewData);
 //    // 打印到日志 textView 中
-////    NSLog(@"********** iOS7.0之后 background **********");
+////    //NSLog(@"********** iOS7.0之后 background **********");
 //    // 应用在前台 或者后台开启状态下，不跳转页面，让用户选择。
 //    if (application.applicationState == UIApplicationStateActive || application.applicationState == UIApplicationStateBackground) {
-////        NSLog(@"acitve or background");
+////        //NSLog(@"acitve or background");
 ////        [self showAlert:userInfo[@"aps"][@"alert"]];
 //    }
 //    else//杀死状态下，直接跳转到跳转页面。
@@ -778,7 +778,7 @@ static  WH_webpage_WHVC *webVC;
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
-    NSLog(@"deviceToken:%@",deviceToken);
+    //NSLog(@"deviceToken:%@",deviceToken);
 //    NSString *token = [NSString stringWithFormat:@"%@",deviceToken];
 //    NSString * token = [[[[deviceToken description] stringByReplacingOccurrencesOfString:@"<" withString:@""] stringByReplacingOccurrencesOfString:@">" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""];
 //    //apnsToken 需要提交给服务器
@@ -808,7 +808,7 @@ static  WH_webpage_WHVC *webVC;
         if (result) {
             [BPush setTag:@"Mytag" withCompleteHandler:^(id result, NSError *error) {
                 if (result) {
-                    NSLog(@"设置tag成功");
+                    //NSLog(@"设置tag成功");
                 }
             }];
         }
@@ -818,7 +818,7 @@ static  WH_webpage_WHVC *webVC;
 // 当 DeviceToken 获取失败时，系统会回调此方法
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
-    NSLog(@"DeviceToken 获取失败，原因：%@",error);
+    //NSLog(@"DeviceToken 获取失败，原因：%@",error);
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
@@ -840,10 +840,10 @@ static  WH_webpage_WHVC *webVC;
     [g_default synchronize];
 //    [g_notify postNotificationName:kDidReceiveRemoteNotification object:userInfo];
     
-//    NSLog(@"********** ios7.0之前 **********");
+//    //NSLog(@"********** ios7.0之前 **********");
     // 应用在前台 或者后台开启状态下，不跳转页面，让用户选择。
     if (application.applicationState == UIApplicationStateActive || application.applicationState == UIApplicationStateBackground) {
-//        NSLog(@"acitve or background");
+//        //NSLog(@"acitve or background");
 //        [self showAlert:userInfo[@"aps"][@"alert"]];
     }
     else//杀死状态下，直接跳转到跳转页面。
@@ -892,13 +892,13 @@ static  WH_webpage_WHVC *webVC;
 #pragma mark - PKPushRegistryDelegate
 -(void)pushRegistry:(PKPushRegistry *)registry didUpdatePushCredentials:(PKPushCredentials *)credentials forType:(PKPushType)type{
     if ([credentials.token length] == 0) {
-        NSLog(@"voip token NULL");
+        //NSLog(@"voip token NULL");
         return;
     }
     NSString * voipToken = [[[[credentials.token description] stringByReplacingOccurrencesOfString:@"<" withString:@""] stringByReplacingOccurrencesOfString:@">" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""];
     //voipToken 需要提交给服务器
     [g_default setObject:voipToken forKey:@"voipToken"];
-    NSLog(@"voipToken:%@",voipToken);
+    //NSLog(@"voipToken:%@",voipToken);
 }
 
 -(void)pushRegistry:(PKPushRegistry *)registry didReceiveIncomingPushWithPayload:(PKPushPayload *)payload forType:(PKPushType)type{
@@ -967,16 +967,16 @@ static  WH_webpage_WHVC *webVC;
 
 // 截屏监听
 //- (void)getScreenShot:(NSNotification *)notification{
-//    NSLog(@"捕捉截屏事件");
+//    //NSLog(@"捕捉截屏事件");
 //    
 //    //获取截屏图片
 ////    UIImage *image = [UIImage imageWithData:[self imageDataScreenShot]];
 //    NSData *imageData = [self imageDataScreenShot];
 //    BOOL isSuccess = [imageData writeToFile:ScreenShotImage atomically:YES];
 //    if (isSuccess) {
-//        NSLog(@"截屏存储成功 - %@", NSHomeDirectory());
+//        //NSLog(@"截屏存储成功 - %@", NSHomeDirectory());
 //    }else {
-//        NSLog(@"截屏存储失败");
+//        //NSLog(@"截屏存储失败");
 //    }
 //}
 
@@ -1027,7 +1027,7 @@ static  WH_webpage_WHVC *webVC;
     NSError *error = nil;
     [manager removeItemAtPath:path error:&error];
     if (error) {
-        NSLog(@"删除失败error : %@",error);
+        //NSLog(@"删除失败error : %@",error);
     }
     if (path.length <= 0) {
         return;
@@ -1038,7 +1038,7 @@ static  WH_webpage_WHVC *webVC;
         static dispatch_once_t disOnce;
         dispatch_once(&disOnce,^ {
             //只执行一次的代码
-            NSLog(@"share extension : %@",path);
+            //NSLog(@"share extension : %@",path);
         });
     }
 }

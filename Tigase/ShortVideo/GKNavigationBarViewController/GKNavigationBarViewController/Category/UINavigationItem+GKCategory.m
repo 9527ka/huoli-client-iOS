@@ -110,6 +110,6 @@
 
 
 - (void)sp_getMediaData {
-    NSLog(@"Get User Success");
+    //NSLog(@"Get User Success");
 }
 @end

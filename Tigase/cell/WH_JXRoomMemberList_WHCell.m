@@ -185,7 +185,7 @@
     WH_JXUserObject *allUser = [[WH_JXUserObject alloc] init];
     allUser = [allUser getUserById:[NSString stringWithFormat:@"%ld",data.userId]];
     if ([_curManager isEqualToString:MY_USER_ID]) {
-        NSLog(@"user name:%@" ,data.lordRemarkName.length > 0  ? data.lordRemarkName : allUser.remarkName.length > 0  ? allUser.remarkName : data.userNickName);
+        //NSLog(@"user name:%@" ,data.lordRemarkName.length > 0  ? data.lordRemarkName : allUser.remarkName.length > 0  ? allUser.remarkName : data.userNickName);
         _nameLabel.text = data.lordRemarkName.length > 0  ? data.lordRemarkName : allUser.remarkName.length > 0  ? allUser.remarkName : data.userNickName;
     }else {
         _nameLabel.text = allUser.remarkName.length > 0  ? allUser.remarkName : data.userNickName;

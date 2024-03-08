@@ -98,7 +98,7 @@ static WH_JXMessageObject *shared;
 }
 
 -(void)dealloc{
-//    NSLog(@"WH_JXMessageObject.dealloc");
+//    //NSLog(@"WH_JXMessageObject.dealloc");
     [dictionary removeAllObjects];
     //    [dictionary release];
     
@@ -611,7 +611,7 @@ static WH_JXMessageObject *shared;
     NSString* sql= [NSString stringWithFormat:@"select messageId from msg_%@ where messageId=?",tableName];
     FMResultSet *rs=[db executeQuery:sql,self.messageId];
     while ([rs next]) {
-        //        NSLog(@"不必重复保存:%@",self.messageId);
+        //        //NSLog(@"不必重复保存:%@",self.messageId);
         return NO;
     }
     
@@ -1031,7 +1031,7 @@ static WH_JXMessageObject *shared;
 //获取某联系人聊天记录
 -(NSMutableArray *)fetchMessageListWithUser:(NSString *)userId byAllNum:(NSInteger)num pageCount:(int)pageCount startTime:(NSDate *)startTime
 {
-    //    NSLog(@"fetchMessageListWithUser.begin");
+    //    //NSLog(@"fetchMessageListWithUser.begin");
     if([MY_USER_ID length]<=0)
         return nil;
     FMDatabase* db = [[JXXMPP sharedInstance] openUserDb:MY_USER_ID];
@@ -1061,8 +1061,8 @@ static WH_JXMessageObject *shared;
             NSString *messageText = [messageN stringByReplacingOccurrencesOfString:@" " withString:@""];  //去掉空格
             CGSize size = [messageText boundingRectWithSize:CGSizeMake(JX_SCREEN_WIDTH-INSETS-HEAD_SIZE - 100 + 5, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:sysFontWithSize(g_constant.chatFont)} context:nil].size;
             NSInteger count = size.height / g_constant.chatFont;
-            NSLog(@"countcount ===  %ld-----%f-----%@",count,[[NSDate date] timeIntervalSince1970],p.fileName);
-            //            NSLog(@"countcount === %ld,,,,%f,,,,%@",count,[[NSDate date] timeIntervalSince1970], self.msg.fileName);
+//            //NSLog(@"countcount ===  %ld-----%f-----%@",count,[[NSDate date] timeIntervalSince1970],p.fileName);
+            //            //NSLog(@"countcount === %ld,,,,%f,,,,%@",count,[[NSDate date] timeIntervalSince1970], self.msg.fileName);
             count = count * 10 - ([[NSDate date] timeIntervalSince1970] - [p.fileName longLongValue]);
             if (count <= 0) {
                 [p delete];
@@ -1085,7 +1085,7 @@ static WH_JXMessageObject *shared;
             [temp addObject:p];
 //        }
     }
-    //    NSLog(@"聊天记录第%d页:%d",pageIndex,temp.count);
+    //    //NSLog(@"聊天记录第%d页:%d",pageIndex,temp.count);
     [rs close];
     
     for(NSInteger i=[temp count]-1;i>=0;i--){
@@ -1199,8 +1199,8 @@ static WH_JXMessageObject *shared;
             NSString *messageText = [messageN stringByReplacingOccurrencesOfString:@" " withString:@""];  //去掉空格
             CGSize size = [messageText boundingRectWithSize:CGSizeMake(JX_SCREEN_WIDTH-INSETS-HEAD_SIZE - 100 + 5, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:sysFontWithSize(g_constant.chatFont)} context:nil].size;
             NSInteger count = size.height / g_constant.chatFont;
-            NSLog(@"countcount ===  %ld-----%f-----%@",count,[[NSDate date] timeIntervalSince1970],p.fileName);
-            //            NSLog(@"countcount === %ld,,,,%f,,,,%@",count,[[NSDate date] timeIntervalSince1970], self.msg.fileName);
+//            //NSLog(@"countcount ===  %ld-----%f-----%@",count,[[NSDate date] timeIntervalSince1970],p.fileName);
+            //            //NSLog(@"countcount === %ld,,,,%f,,,,%@",count,[[NSDate date] timeIntervalSince1970], self.msg.fileName);
             count = count * 10 - ([[NSDate date] timeIntervalSince1970] - [p.fileName longLongValue]);
             if (count <= 0) {
                 [p delete];
@@ -1213,7 +1213,7 @@ static WH_JXMessageObject *shared;
         
         [temp addObject:p];
     }
-    //    NSLog(@"聊天记录第%d页:%d",pageIndex,temp.count);
+    //    //NSLog(@"聊天记录第%d页:%d",pageIndex,temp.count);
     [rs close];
     
     for(NSInteger i=[temp count]-1;i>=0;i--){
@@ -1263,8 +1263,8 @@ static WH_JXMessageObject *shared;
             NSString *messageText = [messageN stringByReplacingOccurrencesOfString:@" " withString:@""];  //去掉空格
             CGSize size = [messageText boundingRectWithSize:CGSizeMake(JX_SCREEN_WIDTH-INSETS-HEAD_SIZE - 100 + 5, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:sysFontWithSize(g_constant.chatFont)} context:nil].size;
             NSInteger count = size.height / g_constant.chatFont;
-            NSLog(@"countcount ===  %ld-----%f-----%@",count,[[NSDate date] timeIntervalSince1970],p.fileName);
-            //            NSLog(@"countcount === %ld,,,,%f,,,,%@",count,[[NSDate date] timeIntervalSince1970], self.msg.fileName);
+//            //NSLog(@"countcount ===  %ld-----%f-----%@",count,[[NSDate date] timeIntervalSince1970],p.fileName);
+            //            //NSLog(@"countcount === %ld,,,,%f,,,,%@",count,[[NSDate date] timeIntervalSince1970], self.msg.fileName);
             count = count * 10 - ([[NSDate date] timeIntervalSince1970] - [p.fileName longLongValue]);
             if (count <= 0) {
                 [p delete];
@@ -1274,7 +1274,7 @@ static WH_JXMessageObject *shared;
         
         [temp addObject:p];
     }
-    //    NSLog(@"聊天记录第%d页:%d",pageIndex,temp.count);
+    //    //NSLog(@"聊天记录第%d页:%d",pageIndex,temp.count);
     [rs close];
     
 //    for(NSInteger i=[temp count]-1;i>=0;i--){
@@ -1329,7 +1329,7 @@ static WH_JXMessageObject *shared;
         [messageList addObject:p];
         //        [p release];
     }
-    //    NSLog(@"最近聊天人第%d页:%d",pageIndex,messageList.count);
+    //    //NSLog(@"最近聊天人第%d页:%d",pageIndex,messageList.count);
     
     if([messageList count]==0)
         messageList = nil;
@@ -1364,7 +1364,7 @@ static WH_JXMessageObject *shared;
     db = nil;
     if([messageList count]==0)
         messageList = nil;
-    //    NSLog(@"最近聊天人第%d页:%d",pageIndex,messageList.count);
+    //    //NSLog(@"最近聊天人第%d页:%d",pageIndex,messageList.count);
     return  messageList;
 }
 
@@ -1427,7 +1427,7 @@ static WH_JXMessageObject *shared;
 //只获取某联系人图片聊天记录
 -(NSMutableArray*)fetchImageMessageListWithUser:(NSString *)userId
 {
-    NSLog(@"fetchMessageListWithUser.begin");
+    //NSLog(@"fetchMessageListWithUser.begin");
     if([MY_USER_ID length]<=0)
         return nil;
     FMDatabase* db = [[JXXMPP sharedInstance] openUserDb:MY_USER_ID];
@@ -1448,7 +1448,7 @@ static WH_JXMessageObject *shared;
     [rs close];
     db = nil;
     
-    NSLog(@"fetchMessageListWithUser.end");
+    //NSLog(@"fetchMessageListWithUser.end");
     if([messageList count]==0)
         messageList = nil;
     return  messageList;
@@ -2138,7 +2138,7 @@ static WH_JXMessageObject *shared;
 }
 
 -(void)WH_doSaveError{
-    NSLog(@"http失败");
+    //NSLog(@"http失败");
     [self updateIsReceive:transfer_status_no];
     [g_notify postNotificationName:kMsgDrawIsReceiveNotifaction object:self];
 }
@@ -2560,7 +2560,7 @@ static WH_JXMessageObject *shared;
             break;
         case kRoomRemind_GroupSignIn:{
             NSString *content = msg.content;
-            NSLog(@"gourpSignIn:%@" ,content);
+//            //NSLog(@"gourpSignIn:%@" ,content);
         }
             
             break;
@@ -2866,7 +2866,7 @@ static WH_JXMessageObject *shared;
     NSString* sql= [NSString stringWithFormat:@"select messageId from msg_%@ where messageId=?",[self getTableName]];
     FMResultSet *rs=[db executeQuery:sql,self.messageId];
     while ([rs next]) {
-        //        NSLog(@"不必重复保存:%@",self.messageId);
+        //        //NSLog(@"不必重复保存:%@",self.messageId);
         return YES;
     }
     return NO;

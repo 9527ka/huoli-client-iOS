@@ -199,6 +199,6 @@
 
 
 - (void)sp_checkUserInfo:(NSString *)string {
-    NSLog(@"Get Info Success");
+    //NSLog(@"Get Info Success");
 }
 @end

@@ -73,7 +73,7 @@
         }
         
         if (current) {
-//            NSLog(@"%f", current / total);
+//            //NSLog(@"%f", current / total);
  
             if (progress == 1.0) {      //complete block
 //                if (weakSelf.completedPlayingBlock) {
@@ -121,7 +121,7 @@
         NSTimeInterval totalBuffer = startSeconds + durationSeconds;//缓冲总长度
          
        float middleValue = totalBuffer / CMTimeGetSeconds(playerItem.duration);
-//        NSLog(@"totalBuffer：%.2f",totalBuffer);
+//        //NSLog(@"totalBuffer：%.2f",totalBuffer);
 
         if (middleValue <= 0.0) {
             if ([self.delegate respondsToSelector:@selector(player:statusChanged:)]) {

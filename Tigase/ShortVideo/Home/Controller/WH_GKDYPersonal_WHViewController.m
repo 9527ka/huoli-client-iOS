@@ -74,11 +74,11 @@
 //    NSString *url = @"http://c.tieba.baidu.com/c/u/nani/profile";
 //
 //    [GKNetworking get:url params:params success:^(id  _Nonnull responseObject) {
-//        NSLog(@"%@", responseObject);
+//        //NSLog(@"%@", responseObject);
 //
 //        GKDYProfileModel *model = [GKDYProfileModel yy_modelWithDictionary:responseObject[@"data"]];
 //
-//        NSLog(@"%@", model);
+//        //NSLog(@"%@", model);
 //    } failure:^(NSError * _Nonnull error) {
 //
 //    }];
@@ -86,6 +86,6 @@
 
 
 - (void)sp_checkUserInfo {
-    NSLog(@"Get Info Failed");
+    //NSLog(@"Get Info Failed");
 }
 @end

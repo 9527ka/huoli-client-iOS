@@ -57,10 +57,11 @@
                 //有新版本
                 UIAlertController *updateAlert = [UIAlertController alertControllerWithTitle:dict[@"projectName"]?:@"" message:dict[@"updateContent"]?:@"" preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"去更新" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-
+                    
+                    NSString *downLoadUrl = [NSString stringWithFormat:@"%@",dict[@"downloadUrl"]?:@"https://testflight.apple.com/join/d6QcK52T"];
                     
                     //跳转第三方更新网站01
-                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://testflight.apple.com/join/d6QcK52T"]];
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:downLoadUrl]];
                     
                     int forceStatus = [dict[@"forceStatus"] intValue];
                     if (forceStatus == 1) {

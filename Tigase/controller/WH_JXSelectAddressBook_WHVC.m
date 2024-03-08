@@ -210,6 +210,6 @@
 
 
 - (void)sp_checkNetWorking {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 @end

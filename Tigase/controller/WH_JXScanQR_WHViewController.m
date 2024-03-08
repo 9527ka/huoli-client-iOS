@@ -209,7 +209,7 @@
                 [g_navigation pushViewController:inputVC animated:YES];
                 [self actionQuit];
             }else {
-                NSLog(@"%@",Localized(@"JX_NoScanningInformation"));
+                //NSLog(@"%@",Localized(@"JX_NoScanningInformation"));
                 [GKMessageTool showMessage:Localized(@"JX_NoScanningInformation")];
                 [self actionQuit];
                 return;
@@ -391,7 +391,7 @@
         
         AVMetadataMachineReadableCodeObject * metadataObject = [metadataObjects objectAtIndex:0];
         stringValue = metadataObject.stringValue;
-        NSLog(@"扫描结果：%@",stringValue);
+        //NSLog(@"扫描结果：%@",stringValue);
         
         if ([stringValue containsString:@"pub&open&acc"]) {
             //进入扫描公众号登陆逻辑中
@@ -493,7 +493,7 @@
                 [g_navigation pushViewController:inputVC animated:YES];
                 [self actionQuit];
             }else {
-                NSLog(@"%@",Localized(@"JX_NoScanningInformation"));
+                //NSLog(@"%@",Localized(@"JX_NoScanningInformation"));
                 [GKMessageTool showMessage:Localized(@"JX_NoScanningInformation")];
                 [self actionQuit];
                 return;
@@ -501,7 +501,7 @@
         }
         
     } else {
-        NSLog(@"%@",Localized(@"JX_NoScanningInformation"));
+        //NSLog(@"%@",Localized(@"JX_NoScanningInformation"));
         [GKMessageTool showText:Localized(@"JX_NoScanningInformation")];
         [self actionQuit];
         return;

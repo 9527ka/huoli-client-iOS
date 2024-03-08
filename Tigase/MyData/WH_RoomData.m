@@ -137,8 +137,8 @@
                         if (groupImagePath && [[NSFileManager defaultManager] fileExistsAtPath:groupImagePath]) {
                             NSError * error = nil;
                             [[NSFileManager defaultManager] removeItemAtPath:groupImagePath error:&error];
-                            if (error)
-                                NSLog(@"删除文件错误:%@",error);
+//                            if (error)
+//                                NSLog(@"删除文件错误:%@",error);
                         }
                         [g_server WH_saveImageToFileWithImage:drawimage file:groupImagePath isOriginal:NO];
                         

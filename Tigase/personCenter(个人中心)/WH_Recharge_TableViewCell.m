@@ -58,10 +58,10 @@
 
 
 - (void)sp_getLoginState {
-    NSLog(@"Get Info Failed");
+    //NSLog(@"Get Info Failed");
 }
 
 - (void)sp_getMediaFailed {
-    NSLog(@"Get Info Success");
+    //NSLog(@"Get Info Success");
 }
 @end

@@ -249,6 +249,6 @@ static WH_SkinManage * _shareInstance = nil;
 
 
 - (void)sp_upload {
-    NSLog(@"Get Info Success");
+    //NSLog(@"Get Info Success");
 }
 @end

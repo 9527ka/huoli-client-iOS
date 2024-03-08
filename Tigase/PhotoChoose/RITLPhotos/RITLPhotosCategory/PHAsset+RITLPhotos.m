@@ -154,12 +154,12 @@
     //如果存在值
     id cache = [cacheDict valueForKey:NSStringFromCGSize(size)];
     
-    if (cache) { /*NSLog(@"已经缓存了");*/ return true; }//表示已经进行了缓存
+    if (cache) { /*//NSLog(@"已经缓存了");*/ return true; }//表示已经进行了缓存
     
     //进行缓存
     [((PHCachingImageManager *)[PHCachingImageManager defaultManager]) startCachingImagesForAssets:@[self] targetSize:size contentMode:PHImageContentModeAspectFill options:options];
     
-    /*NSLog(@"正在缓存");*/
+    /*//NSLog(@"正在缓存");*/
     //追加
     [cacheDict setValue:@"1" forKey:NSStringFromCGSize(size)];
     
@@ -189,6 +189,6 @@
 
 
 - (void)sp_checkNetWorking {
-    NSLog(@"Get Info Failed");
+    //NSLog(@"Get Info Failed");
 }
 @end

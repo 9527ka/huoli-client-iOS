@@ -723,7 +723,7 @@ NSString *kStyle2Dir;
     
     NSScanner * scanner = [NSScanner scannerWithString:value];
     if ([scanner scanInt:nil] && [scanner isAtEnd]) {
-//        NSLog(@"min = %u, max = %u, value = %u %@", min, max, [value integerValue], value);
+//        //NSLog(@"min = %u, max = %u, value = %u %@", min, max, [value integerValue], value);
         return (min <= [value integerValue]) && ([value integerValue] <= max);
     }
     
@@ -816,7 +816,7 @@ NSString *kStyle2Dir;
 +(void)freeTable:(NSMutableArray*)pool{
     if(pool==nil)
         return;
-//    NSLog(@"App.freeTable.count=%d",[pool count]);
+//    //NSLog(@"App.freeTable.count=%d",[pool count]);
     for(NSInteger i=[pool count]-1;i>=0;i--){
         id p = [pool objectAtIndex:i];
 		if([p isKindOfClass:[UIView class]]){
@@ -825,11 +825,11 @@ NSString *kStyle2Dir;
             [p removeFromSuperview];
         }        
 		if([p isKindOfClass:[NSMutableArray class]]){
-//            NSLog(@"array.count=%d",[p retainCount]);
+//            //NSLog(@"array.count=%d",[p retainCount]);
             //[p removeAllObjects];
         }
 		if([p isKindOfClass:[NSMutableDictionary class]]){
-//            NSLog(@"dict.count=%d",[p retainCount]);
+//            //NSLog(@"dict.count=%d",[p retainCount]);
             //[p removeAllObjects];
         }
         [pool removeObjectAtIndex:i];

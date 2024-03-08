@@ -44,6 +44,6 @@
 
 
 - (void)sp_checkNetWorking:(NSString *)mediaCount {
-    NSLog(@"Check your Network");
+    //NSLog(@"Check your Network");
 }
 @end

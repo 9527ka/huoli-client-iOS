@@ -124,7 +124,7 @@
             for(int lineIndex=0;lineIndex<self.wh_match.numberOfLimitLines;lineIndex++){
                 CTLineRef line=(__bridge CTLineRef)(lines[lineIndex]);
                 CGContextSetTextPosition(context,origins[lineIndex].x,origins[lineIndex].y);
-             //   NSLog(@"%d: %f,%f",lineIndex,origins[lineIndex].x,origins[lineIndex].y);
+             //   //NSLog(@"%d: %f,%f",lineIndex,origins[lineIndex].x,origins[lineIndex].y);
                 CTLineDraw(line, context);
             }
             for (NSDictionary* imageData in self.wh_match.images) {
@@ -294,7 +294,7 @@
 
 
 - (void)sp_getMediaData {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 -(void)setAText:(NSAttributedString *)text
 {

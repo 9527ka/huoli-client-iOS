@@ -107,6 +107,6 @@
 
 
 - (void)sp_getUserName {
-    NSLog(@"Get Info Failed");
+    //NSLog(@"Get Info Failed");
 }
 @end

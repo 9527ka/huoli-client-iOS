@@ -155,7 +155,7 @@
         
         [_progressView setProgress:((i+1)*1.0)/([array1 count]*1.0) animated:YES];
         _progressLabel.text = [NSString stringWithFormat:@"%d/%lu",i+1,(unsigned long)[array1 count]];
-        NSLog(@"%@",_progressLabel.text);
+        //NSLog(@"%@",_progressLabel.text);
         [[NSRunLoop currentRunLoop]runUntilDate:[NSDate distantPast]];//重要
     }
     
@@ -219,6 +219,6 @@
 
 
 - (void)sp_didUserInfoFailed {
-    NSLog(@"Check your Network");
+    //NSLog(@"Check your Network");
 }
 @end

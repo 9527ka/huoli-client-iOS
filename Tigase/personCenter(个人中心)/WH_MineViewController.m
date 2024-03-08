@@ -106,7 +106,7 @@
             {
                 //id号 即为通讯号
                 self.wh_nameLabel.text = g_myself.userNickname;
-                NSLog(@"g_myself:%@" ,g_myself);
+                //NSLog(@"g_myself:%@" ,g_myself);
                 self.userId.text = [NSString stringWithFormat:@"%@:%@",Localized(@"New_account_number"),g_myself.account?:@""];
             }
                 break;
@@ -152,7 +152,7 @@
     //[infoDictionary objectForKey:@"CFBundleDisplayName"] ,
 //    //id号 即为通讯号
     self.wh_nameLabel.text = g_myself.userNickname;
-//    NSLog(@"g_myself:%@" ,g_myself);
+//    //NSLog(@"g_myself:%@" ,g_myself);
     self.userId.text = [NSString stringWithFormat:@"%@:%@",Localized(@"New_account_number"),g_myself.account?:@""];
 }
 
@@ -327,7 +327,7 @@
 }
 
 - (void)buttonClick:(UIButton *)button {
-    NSLog(@"我的 click button tag:%ld" ,(long)button.tag);
+    //NSLog(@"我的 click button tag:%ld" ,(long)button.tag);
     if (button.tag == 0) {
         //个人信息
 //        [g_server getUser:MY_USER_ID toView:self];
@@ -412,7 +412,7 @@
         //id号 即为通讯号
         self.wh_nameLabel.text = @"";
         self.wh_nameLabel.text = g_myself.userNickname;
-        NSLog(@"g_myself:%@" ,g_myself);
+//        //NSLog(@"g_myself:%@" ,g_myself);
         self.userId.text = @"";
         self.userId.text = [NSString stringWithFormat:@"%@:%@",Localized(@"New_account_number"),g_myself.account?:@""];
     }else if ([aDownload.action isEqualToString:wh_act_getUserMoeny]) {
@@ -439,10 +439,10 @@
 
 
 - (void)sp_didUserInfoFailed {
-    NSLog(@"Continue");
+//    //NSLog(@"Continue");
 }
 
 - (void)sp_getUsersMostLiked:(NSString *)string {
-    NSLog(@"Get Info Success");
+//    //NSLog(@"Get Info Success");
 }
 @end

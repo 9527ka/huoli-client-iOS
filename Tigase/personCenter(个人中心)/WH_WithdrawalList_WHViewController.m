@@ -428,7 +428,7 @@
     [self WH_stopLoading];
     if ([aDownload.action isEqualToString:wh_act_userWithdrawMethodGet]) {
         [self.accountArray removeAllObjects];
-        NSLog(@"账号列表:dict:%@ array1:%@", dict, array1);
+//        //NSLog(@"账号列表:dict:%@ array1:%@", dict, array1);
         NSArray *alipayMethod = [dict objectForKey:@"alipayMethod"];
         NSArray *bankCardMethod = [dict objectForKey:@"bankCardMethod"];
         NSArray *otherMethod = [dict objectForKey:@"otherMethod"];

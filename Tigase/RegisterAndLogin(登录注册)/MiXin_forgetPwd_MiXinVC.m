@@ -260,7 +260,7 @@
             }
             
          }else{
-            NSLog(@"%@",connectionError);
+            //NSLog(@"%@",connectionError);
             [g_App showAlert:connectionError.localizedDescription];
          }
       }];
@@ -268,7 +268,7 @@
 //         if (!error) {
 //            _imgCodeImg.image = image;
 //         }else{
-//            NSLog(@"%@",error);
+//            //NSLog(@"%@",error);
 //         }
 //      }];
    }else{
@@ -525,7 +525,7 @@
    
    [g_notify postNotificationName:kSystemLogout_WHNotifaction object:nil];
    [[JXXMPP sharedInstance] logout];
-   NSLog(@"XMPP ---- MiXin_forgetPwd_MiXinVC relogin");
+   //NSLog(@"XMPP ---- MiXin_forgetPwd_MiXinVC relogin");
    
 //    WH_JXLoginVC *loginVC = [[ WH_JXLoginVC alloc] init];
    WH_JXLoginVC *loginVC = [[WH_JXLoginVC alloc] init];

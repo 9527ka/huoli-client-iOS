@@ -155,7 +155,7 @@
 }
 
 - (void)dealloc {
-    NSLog(@"WH_recordVideo_WHViewController.dealloc");
+    //NSLog(@"WH_recordVideo_WHViewController.dealloc");
     [UIApplication sharedApplication].statusBarHidden = NO;
 //    [super dealloc];
 }
@@ -199,7 +199,7 @@
 }
 
 -(void)imageSelectorDidiSelectImage:(NSString *)imagePath{
-    NSLog(@"imageSelectorDidiSelectImage:%@",imagePath);
+    //NSLog(@"imageSelectorDidiSelectImage:%@",imagePath);
     [self notifyWithImage:imagePath];
     [self doQuit];
 }
@@ -306,7 +306,7 @@
 }
 
 -(void)recordAutoEnd:(NSNotification*)notification{
-    NSLog(@"sssss");
+    //NSLog(@"sssss");
     dispatch_async(dispatch_get_main_queue(), ^{
         
         [self onSave];

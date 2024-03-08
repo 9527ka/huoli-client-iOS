@@ -146,7 +146,7 @@
 
 #pragma mark 充值/提现事件
 - (void)payMethod {
-    NSLog(@"current select:%@" ,[self.wh_zfList objectAtIndex:self.wh_checkIndex]);
+    //NSLog(@"current select:%@" ,[self.wh_zfList objectAtIndex:self.wh_checkIndex]);
     [self.wh_moneyText resignFirstResponder];
     
     if (self.wh_moneyText.text.floatValue == 0) {
@@ -184,7 +184,7 @@
 - (void)WH_didServerResult_WHSucces:(WH_JXConnection *)aDownload dict:(NSDictionary *)dict array:(NSArray *)array1{
     [_wait stop];
     if ([aDownload.action isEqualToString:wh_act_getSign]) {
-        NSLog(@"dict:%@  array1:%@" ,dict ,array1);
+        //NSLog(@"dict:%@  array1:%@" ,dict ,array1);
 
         [g_server h5PaymentWithMoney:[dict objectForKey:@"money"]?:@"" notifyUrl:[dict objectForKey:@"notify_url"]?:@"" tradeNo:[dict objectForKey:@"out_trade_no"]?:@"" pId:[dict objectForKey:@"pid"]?:@"" returnUrl:[dict objectForKey:@"return_url"]?:@"" sign:[dict objectForKey:@"sign"]?:@"" type:[dict objectForKey:@"type"]?:@"" userId:[dict objectForKey:@"userid"]?:@"" userIp:[dict objectForKey:@"userip"]?:@"" toView:self];
     }else{

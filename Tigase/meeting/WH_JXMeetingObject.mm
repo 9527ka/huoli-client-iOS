@@ -62,7 +62,7 @@ static dispatch_block_t sExpirationHandler = nil;
 }
 
 -(void)onOtherEvent:(NSNotification*)notification {
-    NSLog(@"onOtherEvent:  %@",notification.name);
+    //NSLog(@"onOtherEvent:  %@",notification.name);
 }
 
 -(NSString*)getVideoSize{
@@ -96,7 +96,7 @@ static dispatch_block_t sExpirationHandler = nil;
 //    UIApplication* app = [UIApplication sharedApplication];
 //    //sExpirationHandler = ^{//老代码
 //    sBackgroundTask = [app beginBackgroundTaskWithExpirationHandler:^{
-//        //NSLog(@"Background task completed");
+//        ////NSLog(@"Background task completed");
 //        [app endBackgroundTask:sBackgroundTask];
 //        sBackgroundTask = UIBackgroundTaskInvalid;
 //    }];
@@ -146,11 +146,11 @@ static dispatch_block_t sExpirationHandler = nil;
         [[AVAudioSession sharedInstance] performSelector:@selector(requestRecordPermission:) withObject:^(BOOL granted) {
             if (granted) {
                 // Microphone enabled code
-                //                NSLog(@"Microphone is enabled..");
+                //                //NSLog(@"Microphone is enabled..");
             }
             else {
                 // Microphone disabled code
-                //                NSLog(@"Microphone is disabled..");
+                //                //NSLog(@"Microphone is disabled..");
                 
                 // We're in a background thread here, so jump to main thread to do UI work.
                 dispatch_async(dispatch_get_main_queue(), ^{

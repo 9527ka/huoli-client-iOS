@@ -30,6 +30,6 @@
 }
 
 - (void)sp_getUserFollowSuccess {
-    NSLog(@"Check your Network");
+    //NSLog(@"Check your Network");
 }
 @end

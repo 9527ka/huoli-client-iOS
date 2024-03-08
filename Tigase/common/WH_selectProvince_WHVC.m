@@ -219,7 +219,7 @@
 {   [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     if(indexPath.section==0){
         self.selValue = self.cityName;
-//        NSLog(@"%@",g_constant.cityN);
+//        //NSLog(@"%@",g_constant.cityN);
         
         //市
         NSString * cityNameS = [NSString stringWithFormat:@"%@%@",self.cityName,Localized(@"WaHu_selectProvince_WaHuVC_City")];
@@ -381,7 +381,7 @@
             
             //将获得的所有信息显示到label上
             
-//            NSLog(@"%@",placemark.name);
+//            //NSLog(@"%@",placemark.name);
             
             //获取城市
             
@@ -406,7 +406,7 @@
             
         {
             
-//            NSLog(@"No results were returned.");
+//            //NSLog(@"No results were returned.");
             
         }
         
@@ -414,7 +414,7 @@
             
         {
             
-//            NSLog(@"An error occurred = %@", error);
+//            //NSLog(@"An error occurred = %@", error);
             
         }
         

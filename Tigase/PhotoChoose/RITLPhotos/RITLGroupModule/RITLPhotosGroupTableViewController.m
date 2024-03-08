@@ -218,6 +218,6 @@
 
 
 - (void)sp_upload:(NSString *)followCount {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 @end

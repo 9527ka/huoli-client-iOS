@@ -218,7 +218,7 @@ static double g_timeSend=0;
 //创建子类通用
 -(void)startTimeer:(void(^)(WH_JXMessageObject *msg))block {
     _block = block;
-    //NSLog(@"===========%@",self.msg.readTime);
+    ////NSLog(@"===========%@",self.msg.readTime);
     [self.readDelTimer invalidate];
     self.readDelTimer = nil;
     
@@ -283,7 +283,7 @@ static double g_timeSend=0;
     _checkBox.frame = CGRectMake(INSETS, INSETS, 20, 20);
     [self.contentView addSubview:_checkBox];
     
-    NSLog(@"=============MSG.TYPE3:%@" ,_msg.type);
+//    //NSLog(@"=============MSG.TYPE3:%@" ,_msg.type);
     
     //头像
     _headImage = [[UIImageView alloc] initWithFrame:CGRectMake(INSETS, INSETS,HEAD_SIZE , HEAD_SIZE)];
@@ -825,7 +825,7 @@ static double g_timeSend=0;
 }
 
 -(void)MiXin_doSaveError{
-    NSLog(@"http失败");
+    //NSLog(@"http失败");
     [_msg updateIsReceive:transfer_status_no];
     [self drawIsReceive];
 }
@@ -1136,7 +1136,7 @@ static double g_timeSend=0;
     NSProgress *progress = [dict objectForKey:@"uploadProgress"];
     self.fileDict = [dict objectForKey:@"file"];
     self.loadProgress = progress.fractionCompleted;
-    NSLog(@"-------------- %f--- %@  ---  %@",self.loadProgress,self.fileDict, self.msg.messageId);
+//    //NSLog(@"-------------- %f--- %@  ---  %@",self.loadProgress,self.fileDict, self.msg.messageId);
     
     [self updateFileLoadProgress];
 }
@@ -1436,7 +1436,7 @@ static double g_timeSend=0;
     // Configure the view for the selected state
 }
 -(void)dealloc{
-    NSLog(@"WH_JXBaseChat_WHCell.delloc");
+    //NSLog(@"WH_JXBaseChat_WHCell.delloc");
 //    [super dealloc];
 //    [_bubbleBg release];
     _bubbleBg = nil;

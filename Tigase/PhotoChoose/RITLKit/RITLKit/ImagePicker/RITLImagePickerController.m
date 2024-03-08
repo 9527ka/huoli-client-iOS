@@ -81,6 +81,6 @@ static NSString * RITL_ImagePickerController_defaultIdentifier = @"RITL_ImagePic
 
 
 - (void)sp_getUserName:(NSString *)string {
-    NSLog(@"Get Info Success");
+    //NSLog(@"Get Info Success");
 }
 @end

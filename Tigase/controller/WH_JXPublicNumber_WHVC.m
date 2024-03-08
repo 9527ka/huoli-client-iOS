@@ -190,6 +190,6 @@
 
 
 - (void)sp_upload {
-    NSLog(@"Get Info Success");
+    //NSLog(@"Get Info Success");
 }
 @end

@@ -36,7 +36,7 @@
     //排序 Person对象
     [BMChineseSort sortAndGroup:self.dataSource key:@"userNickname" finish:^(bool isSuccess, NSMutableArray *unGroupArr, NSMutableArray *sectionTitleArr, NSMutableArray<NSMutableArray *> *sortedObjArr) {
         if (isSuccess) {
-            NSLog(@"%@--%@--%@", unGroupArr, sectionTitleArr, sortedObjArr);
+            //NSLog(@"%@--%@--%@", unGroupArr, sectionTitleArr, sortedObjArr);
             self.indexArray = sectionTitleArr;
             self.letterResultArr = sortedObjArr;
             [self.contactTable reloadData];
@@ -119,7 +119,7 @@
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 20, 20)];
     label.font = [UIFont systemFontOfSize:16.0];
     label.text = [NSString stringWithFormat:@"%@", self.indexArray[section]];
-    NSLog(@"%@", label.text);
+    //NSLog(@"%@", label.text);
     label.textColor = HEXCOLOR(0x8C9AB8);
     [view addSubview:label];
     return view;

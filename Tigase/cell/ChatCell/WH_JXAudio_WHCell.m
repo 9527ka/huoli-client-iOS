@@ -30,7 +30,7 @@
 
 -(void)dealloc{
     //[g_notify removeObserver:self name:kCellReadDelNotification object:self.msg];
-    NSLog(@"MiXin_JXAudio_MiXinCell.dealloc");
+    //NSLog(@"MiXin_JXAudio_MiXinCell.dealloc");
 //    [_audioPlayer release];
 //    [super dealloc];
     _audioPlayer = nil;

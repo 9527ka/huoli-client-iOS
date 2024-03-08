@@ -19,7 +19,7 @@
     if (range.location != NSNotFound) {
         NSString *contentString = [urlString substringFromIndex:(range.location + range.length)];
         NSDictionary *infoDic = [contentString.stringByRemovingPercentEncoding mj_JSONObject];
-        NSLog(@"infoDic == %@", infoDic);
+        //NSLog(@"infoDic == %@", infoDic);
         //Verify = 0, Login=1, Text=2, Image=3, Link=4, Audio=5, Video=6, File=7
         if ([infoDic[@"type"] integerValue] == 1) {
             [self handleLoginWithInfoDic:infoDic url:url];
@@ -51,7 +51,7 @@
         image = [UIImage imageWithData:data];
     }
     if (g_server.isLogin) {
-        NSLog(@"login status ----handleLoginWithInfoDic ");
+        //NSLog(@"login status ----handleLoginWithInfoDic ");
         WH_AuthViewController *vc = [[WH_AuthViewController alloc] init];
         vc.infoDic = infoDic[@"info"];
         vc.sdkImage = image;
@@ -60,7 +60,7 @@
     }else {
         NSDictionary *shareDic = @{@"info":infoDic[@"info"], @"url":url.absoluteString};
         [g_default setObject:shareDic forKey:@"beAuth"];
-        NSLog(@"logout status ---- handleLoginWithInfoDic ");
+        //NSLog(@"logout status ---- handleLoginWithInfoDic ");
     }
 }
 - (WH_JXMessageObject *)handleTextWithInfoDic:(NSDictionary *)infoDic url:(NSURL *)url{
@@ -134,7 +134,7 @@
     
     BOOL result =[UIImagePNGRepresentation(image)writeToFile:filePath   atomically:YES]; // 保存成功会返回YES
     if (result == YES) {
-        NSLog(@"保存成功");
+        //NSLog(@"保存成功");
         NSData *dictData = [NSKeyedArchiver archivedDataWithRootObject:@(0)];
         [pasteboard setData:dictData forPasteboardType:@"BLNImage"];
     }

@@ -58,7 +58,7 @@
             
             !success ? : success(array);
         }else {
-            NSLog(@"%@", responseObject);
+            //NSLog(@"%@", responseObject);
         }
     } failure:^(NSError * _Nonnull error) {
         !failure ? : failure(error);
@@ -67,6 +67,6 @@
 
 
 - (void)Tigase_sp_TigasegetUsersMostLikedSuccess {
-    NSLog(@"Get Info Failed");
+    //NSLog(@"Get Info Failed");
 }
 @end

@@ -323,7 +323,7 @@
 }
 
 -(void)newReceipt:(NSNotification *)notifacation{//新回执
-    //    NSLog(@"newReceipt");
+    //    //NSLog(@"newReceipt");
     WH_JXMessageObject *msg     = (WH_JXMessageObject *)notifacation.object;
     if(msg == nil)
         return;

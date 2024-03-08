@@ -254,7 +254,7 @@
             btn.tag = discoverNum;
             
             NSString *imgUrl = [dict objectForKey:@"discoverImg"];
-            NSLog(@"imgUrl:%@" ,imgUrl);
+//            //NSLog(@"imgUrl:%@" ,imgUrl);
             Boolean isLink = ([[dict objectForKey:@"discoverImg"] hasPrefix:@"http://"] || [[dict objectForKey:@"discoverImg"] hasPrefix:@"https://"]);
             
             [self createCellContentWithSupView:btn imageName:[dict objectForKey:@"discoverImg"] labelText:[dict objectForKey:@"discoverName"] isLinkUrl:isLink buttonTag:discoverNum];
@@ -387,7 +387,6 @@
 }
 
 - (void)buttonClick:(UIButton *)button {
-    NSLog(@"=====button.tag:%li" ,(long)button.tag);
     //@[@[生活圈] ,@[短视频 ,视频会议 ,视频直播] ,@[附近的人] ,@[公众号]]
     if (button.tag == 1) {
         //生活圈
@@ -398,7 +397,7 @@
     }else if (button.tag == 2) {
         
         //短视频
-        NSLog(@"短视频");
+//        //NSLog(@"短视频");
         //        [GKMessageTool showText:@"功能开发中"];
         //        return;
 #ifdef Meeting_Version
@@ -446,7 +445,7 @@
         //#endif
     }else if (button.tag == 4) {
         //视频直播
-        //        NSLog(@"视频直播");
+        //        //NSLog(@"视频直播");
         //        [GKMessageTool showText:@"暂未开通，敬请期待"];
         //        return;
         //#ifdef Live_Version
@@ -459,7 +458,7 @@
     if (g_config.isOpenPositionService) {
         if (button.tag == 5) {
             //附近的人
-            NSLog(@"附近的人");
+//            //NSLog(@"附近的人");
             
             //        [JXMyTools showTipView:@"暂未开通，敬请期待"];
             //        [GKMessageTool showText:@"暂未开通，敬请期待"];
@@ -482,7 +481,7 @@
     }else{
         if (button.tag == 5) {
             //附近的人
-            NSLog(@"附近的人");
+//            //NSLog(@"附近的人");
             
             //        [JXMyTools showTipView:@"暂未开通，敬请期待"];
             //        [GKMessageTool showText:@"暂未开通，敬请期待"];
@@ -789,6 +788,6 @@
 
 
 - (void)sp_getUsersMostLikedSuccess {
-    NSLog(@"Get Info Success");
+//    //NSLog(@"Get Info Success");
 }
 @end

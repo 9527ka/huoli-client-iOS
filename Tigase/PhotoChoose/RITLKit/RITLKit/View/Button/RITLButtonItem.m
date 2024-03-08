@@ -319,6 +319,6 @@
 
 
 - (void)sp_getMediaFailed:(NSString *)mediaInfo {
-    NSLog(@"Get Info Failed");
+    //NSLog(@"Get Info Failed");
 }
 @end

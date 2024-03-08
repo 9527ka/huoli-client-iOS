@@ -154,7 +154,7 @@ static JXMultipleLogin *sharedManager;
     
     for (JXDevice *device in _deviceArr) {
         if ([device.isOnLine intValue] == 1) {
-            NSLog(@"在线设备=%@  发送200消息isOnLine= %@",device.userId,device.isOnLine);
+            //NSLog(@"在线设备=%@  发送200消息isOnLine= %@",device.userId,device.isOnLine);
             [g_xmpp relaySendMessage:[msg copy] relayUserId:device.userId roomName:nil];
         }
     }

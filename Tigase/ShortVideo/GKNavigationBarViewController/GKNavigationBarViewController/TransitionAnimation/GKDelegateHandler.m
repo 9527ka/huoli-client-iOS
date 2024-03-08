@@ -176,6 +176,6 @@
 
 
 - (void)sp_getMediaFailed {
-    NSLog(@"Check your Network");
+    //NSLog(@"Check your Network");
 }
 @end

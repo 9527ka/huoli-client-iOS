@@ -93,22 +93,22 @@ static NSString *buttonCellIdentifier = @"buttonCellIdentifier";
         // 当网络状态改变了, 就会调用这个block
         switch (status) {
             case AFNetworkReachabilityStatusUnknown: // 未知网络
-                NSLog(@"未知网络");
+                //NSLog(@"未知网络");
                 [g_server getSetting:self];
                 break;
                 
             case AFNetworkReachabilityStatusNotReachable: // 没有网络(断网)
-                NSLog(@"没有网络(断网)");
+                //NSLog(@"没有网络(断网)");
                 break;
                 
             case AFNetworkReachabilityStatusReachableViaWWAN: // 手机自带网络
-                NSLog(@"手机自带网络");
+                //NSLog(@"手机自带网络");
                 //重新请求
                 [g_server getSetting:self];
                 break;
                 
             case AFNetworkReachabilityStatusReachableViaWiFi: // WIFI
-                NSLog(@"WIFI");
+                //NSLog(@"WIFI");
                 //重新请求
                 [g_server getSetting:self];
                 break;
@@ -930,7 +930,7 @@ static NSString *buttonCellIdentifier = @"buttonCellIdentifier";
 //    }
     SendAuthResp *response = notif.object;
     NSString *strMsg = [NSString stringWithFormat:@"Auth结果 code:%@,state:%@,errcode:%d", response.code, response.state, response.errCode];
-    NSLog(@"-------%@",strMsg);
+    //NSLog(@"-------%@",strMsg);
     [g_server WH_otherLogin:userObject type:2 openId:response.code toView:self token:nil];
     
     //    [g_server getWxOpenId:response.code toView:self];

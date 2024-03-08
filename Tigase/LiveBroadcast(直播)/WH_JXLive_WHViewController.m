@@ -280,14 +280,14 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"didUnhighlightItemAtIndexPath");
+    //NSLog(@"didUnhighlightItemAtIndexPath");
     WH_JXLive_WHCell *cell = (WH_JXLive_WHCell *)[_collectionView cellForItemAtIndexPath:indexPath];
     cell.backgroundColor = [UIColor whiteColor];
     
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath{
-    //    NSLog(@"didHighlightItemAtIndexPath");
+    //    //NSLog(@"didHighlightItemAtIndexPath");
     WH_JXLive_WHCell *cell = (WH_JXLive_WHCell *)[_collectionView cellForItemAtIndexPath:indexPath];
     cell.backgroundColor = [UIColor groupTableViewBackgroundColor];
 }
@@ -392,14 +392,14 @@
     }else if( [aDownload.action isEqualToString:act_liveRoomCreate]){
         dispatch_async(dispatch_get_main_queue(), ^{
             [self enterLiveRoom:dict];
-            NSLog(@"推流：%@",[dict objectForKey:@"url"]);
+            //NSLog(@"推流：%@",[dict objectForKey:@"url"]);
         });
     }else if( [aDownload.action isEqualToString:act_liveRoomEnter]){
         dispatch_async(dispatch_get_main_queue(), ^{
 //            NSDictionary* roomDict = [array objectAtIndex:_sel];
             NSDictionary* roomDict = _myLiveDict;
             [self enterLiveRoom:roomDict];
-            NSLog(@"拉流：%@",[roomDict objectForKey:@"url"]);
+            //NSLog(@"拉流：%@",[roomDict objectForKey:@"url"]);
         });
     }else if( [aDownload.action isEqualToString:act_liveRoomDelete]){
         [g_server showMsg:Localized(@"JXAlert_DeleteOK")];

@@ -88,14 +88,14 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"didUnhighlightItemAtIndexPath");
+    //NSLog(@"didUnhighlightItemAtIndexPath");
     WH_JXSearchImageLog_WHCell *cell = (WH_JXSearchImageLog_WHCell *)[_collectionView cellForItemAtIndexPath:indexPath];
     cell.backgroundColor = [UIColor whiteColor];
     
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath{
-    //    NSLog(@"didHighlightItemAtIndexPath");
+    //    //NSLog(@"didHighlightItemAtIndexPath");
     WH_JXSearchImageLog_WHCell *cell = (WH_JXSearchImageLog_WHCell *)[_collectionView cellForItemAtIndexPath:indexPath];
     cell.backgroundColor = [UIColor groupTableViewBackgroundColor];
 }
@@ -210,6 +210,6 @@
 
 
 - (void)sp_checkUserInfo:(NSString *)followCount {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 @end

@@ -22,6 +22,6 @@
 
 
 - (void)sp_getMediaData {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 @end

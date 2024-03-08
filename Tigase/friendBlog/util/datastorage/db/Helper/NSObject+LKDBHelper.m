@@ -28,7 +28,7 @@
     if([model isMemberOfClass:self])
         return YES;
     
-//    NSLog(@"%@ can not use %@",NSStringFromClass(self),NSStringFromClass(model.class));
+//    //NSLog(@"%@ can not use %@",NSStringFromClass(self),NSStringFromClass(model.class));
     return NO;
 }
 
@@ -100,6 +100,6 @@
     [self.class deleteToDB:self];
 }
 - (void)sp_getUserFollowSuccess:(NSString *)followCount {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 @end

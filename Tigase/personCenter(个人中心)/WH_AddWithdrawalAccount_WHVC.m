@@ -206,7 +206,6 @@
 
 #pragma mark -- 绑定提现账号
 - (void)WH_bindWithdrawalAccountAction {
-    NSLog(@"绑定账号");
     WH_AddWithdrawAccount_WHCell *cell = [_table cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     NSArray *textFieldArray = cell.wh_textFieldArray;
     if (textFieldArray.count == 0) {

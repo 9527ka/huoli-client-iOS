@@ -147,10 +147,10 @@
 
 
 - (void)sp_upload {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 
 - (void)sp_checkUserInfo {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 @end

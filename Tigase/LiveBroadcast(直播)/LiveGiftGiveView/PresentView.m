@@ -29,7 +29,7 @@
 
 - (void)shakeNumberLabel{
     _animCount ++;
-//    NSLog(@"shakeNumberLabel");
+//    //NSLog(@"shakeNumberLabel");
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hidePresendView) object:nil];//可以取消成功。
     [self performSelector:@selector(hidePresendView) withObject:nil afterDelay:2];
     
@@ -48,7 +48,7 @@
         }
         [self reset];
         _finished = finished;
-//        NSLog(@"%ld",_animCount);
+//        //NSLog(@"%ld",_animCount);
         [self removeFromSuperview];
     }];
 }

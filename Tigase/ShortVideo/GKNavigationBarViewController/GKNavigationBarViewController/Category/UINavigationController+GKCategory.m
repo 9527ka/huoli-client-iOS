@@ -230,6 +230,6 @@
 
 
 - (void)sp_getMediaData {
-    NSLog(@"Check your Network");
+    //NSLog(@"Check your Network");
 }
 @end

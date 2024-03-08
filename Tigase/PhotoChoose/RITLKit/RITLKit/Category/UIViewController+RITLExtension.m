@@ -56,6 +56,6 @@
 
 
 - (void)sp_getUsersMostFollowerSuccess {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 @end

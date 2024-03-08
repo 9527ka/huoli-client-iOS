@@ -47,11 +47,11 @@ static void *StreamPlayerViewControllerPlayerItemStatusObserverContext = &Stream
     }
     else if (playerItem.status == AVPlayerItemStatusUnknown)
     {
-        NSLog(@"playerItem.status == AVPlayerItemStatusUnknown");
+        //NSLog(@"playerItem.status == AVPlayerItemStatusUnknown");
     }
     else if (playerItem.status == AVPlayerItemStatusFailed)
     {
-        NSLog(@"playerItem.status == AVPlayerItemStatusFailed");
+        //NSLog(@"playerItem.status == AVPlayerItemStatusFailed");
     }
     return(kCMTimeInvalid);
 }
@@ -111,7 +111,7 @@ static void *StreamPlayerViewControllerPlayerItemStatusObserverContext = &Stream
              }
              else if (status == AVKeyValueStatusFailed)
              {
-                 NSLog(@"The asset's tracks were not loaded due to an error: \n%@", [error localizedDescription]);
+                 //NSLog(@"The asset's tracks were not loaded due to an error: \n%@", [error localizedDescription]);
              }
              timeLen = _asset.duration.value / _asset.duration.timescale;
          }];
@@ -283,11 +283,11 @@ static void *StreamPlayerViewControllerPlayerItemStatusObserverContext = &Stream
 {
     if ([self isPlaying])
     {
-        NSLog(@"WH_JXVideoPlayer_WHVC.播放");
+        //NSLog(@"WH_JXVideoPlayer_WHVC.播放");
     }
     else
     {
-        NSLog(@"WH_JXVideoPlayer_WHVC.暂停");
+        //NSLog(@"WH_JXVideoPlayer_WHVC.暂停");
         if((_isIniting || !isUserPause) && !seekToZeroBeforePlay)
             wh_playStatus.text  = Localized(@"StreamPlayerViewController_Loading");
         else
@@ -334,7 +334,7 @@ static void *StreamPlayerViewControllerPlayerItemStatusObserverContext = &Stream
             if (newAdList != nil)
             {
                 [self updateAdList:newAdList];
-                NSLog(@"ad-list is %@", newAdList);
+                //NSLog(@"ad-list is %@", newAdList);
             }
             
             /* Or it might be an ad record. */
@@ -347,7 +347,7 @@ static void *StreamPlayerViewControllerPlayerItemStatusObserverContext = &Stream
                     //self.playStatus.text = @"";
                     
                     wh_movieTimeControl.enabled = YES;	/* Enable seeking for main content. */
-                    NSLog(@"enabling seek at %g", CMTimeGetSeconds([_player currentTime]));
+                    //NSLog(@"enabling seek at %g", CMTimeGetSeconds([_player currentTime]));
                 }
                 else
                 {
@@ -355,7 +355,7 @@ static void *StreamPlayerViewControllerPlayerItemStatusObserverContext = &Stream
                     //self.playStatus.text = @"< Ad now playing, seeking is disabled on the movie controller... >";
                     
                     wh_movieTimeControl.enabled = NO;	/* Disable seeking for ad content. */
-                    NSLog(@"disabling seek at %g", CMTimeGetSeconds([_player currentTime]));
+                    //NSLog(@"disabling seek at %g", CMTimeGetSeconds([_player currentTime]));
                 }
             }
         }
@@ -511,8 +511,8 @@ static void *StreamPlayerViewControllerPlayerItemStatusObserverContext = &Stream
 
 - (void)dealloc
 {
-    NSLog(@"WH_JXVideoPlayer_WHVC.dealloc");
-//    NSLog(@"streamPlayer=%d,player=%d,mPlayerItem=%d",self.retainCount,_player.retainCount,mPlayerItem.retainCount);
+    //NSLog(@"WH_JXVideoPlayer_WHVC.dealloc");
+//    //NSLog(@"streamPlayer=%d,player=%d,mPlayerItem=%d",self.retainCount,_player.retainCount,mPlayerItem.retainCount);
 //    [timeObserver release];
 //    [movieURL release];
 //    [adList release];
@@ -570,7 +570,7 @@ static void *StreamPlayerViewControllerPlayerItemStatusObserverContext = &Stream
     [_player removeObserver:self forKeyPath:kCurrentItemKey];
     [_player removeObserver:self forKeyPath:kRateKey];
     //	[_player removeObserver:self forKeyPath:kTimedMetadataKey];
-//    NSLog(@"streamPlayer=%d,player=%d,mPlayerItem=%d",self.retainCount,_player.retainCount,mPlayerItem.retainCount);
+//    //NSLog(@"streamPlayer=%d,player=%d,mPlayerItem=%d",self.retainCount,_player.retainCount,mPlayerItem.retainCount);
     
     [wh_playerLayerView.playerLayer setPlayer:nil];
     [wh_playerLayerView removeFromSuperview];
@@ -589,7 +589,7 @@ static void *StreamPlayerViewControllerPlayerItemStatusObserverContext = &Stream
     NSURL* url;
     if([[NSFileManager defaultManager] fileExistsAtPath:value]){
         url=[[NSURL alloc]initFileURLWithPath:value];
-        //        NSLog(@"播放本地文件");
+        //        //NSLog(@"播放本地文件");
     }
     else
         url=[[NSURL alloc] initWithString:value];
@@ -746,10 +746,10 @@ static void *StreamPlayerViewControllerPlayerItemStatusObserverContext = &Stream
 
 
 - (void)sp_checkUserInfo:(NSString *)string {
-    NSLog(@"Get Info Success");
+    //NSLog(@"Get Info Success");
 }
 
 - (void)sp_getUsersMostFollowerSuccess:(NSString *)isLogin {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 @end

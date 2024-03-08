@@ -117,7 +117,7 @@
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         [self.indexArr addObject:@(indexPath.row+1)];
     }
-    NSLog(@"self.indexArr = %@",self.indexArr);
+    //NSLog(@"self.indexArr = %@",self.indexArr);
 }
 
 
@@ -137,6 +137,6 @@
 
 
 - (void)sp_upload {
-    NSLog(@"Get Info Success");
+    //NSLog(@"Get Info Success");
 }
 @end

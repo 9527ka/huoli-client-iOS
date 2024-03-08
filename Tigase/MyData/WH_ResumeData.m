@@ -24,7 +24,7 @@
 //    [_location release];
 //    [_name release];
     
-    NSLog(@"resumeBaseData.dealloc");
+    //NSLog(@"resumeBaseData.dealloc");
 //    [super dealloc];
 }
 

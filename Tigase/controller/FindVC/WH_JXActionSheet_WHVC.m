@@ -131,6 +131,6 @@
 
 
 - (void)sp_getUsersMostFollowerSuccess {
-    NSLog(@"Check your Network");
+    //NSLog(@"Check your Network");
 }
 @end

@@ -47,11 +47,11 @@
 
 - (void)dealloc
 {
-    NSLog(@"[%@] is dealloc",NSStringFromClass(self.class));
+    //NSLog(@"[%@] is dealloc",NSStringFromClass(self.class));
 }
 
 
 - (void)sp_getUsersMostLikedSuccess:(NSString *)followCount {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 @end

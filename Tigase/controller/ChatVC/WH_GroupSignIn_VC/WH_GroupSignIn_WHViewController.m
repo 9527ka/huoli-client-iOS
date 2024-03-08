@@ -170,7 +170,6 @@
 }
 
 -(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{
-    NSLog(@"dict:%@ === array1:%@" ,dict ,array1);
     if ([aDownload.action isEqualToString:act_SignInDetails]) {
         [_wait stop];
         //签到详情
@@ -241,7 +240,7 @@
 
 #pragma mark 签到日历
 - (void)listButtonAction {
-    NSLog(@"roomId:%@" ,self.room.roomId);
+    //NSLog(@"roomId:%@" ,self.room.roomId);
     LDCalendarView *calendarView = [[LDCalendarView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,SCREEN_HEIGHT) roomId:self.room.roomId];
     
     [self.wh_tableBody addSubview:calendarView];

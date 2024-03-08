@@ -339,7 +339,7 @@
 }
 
 - (void)confirmMethod {
-    NSLog(@"_userId:%@ userNames:%@" ,_userIds ,_userNames);
+    //NSLog(@"_userId:%@ userNames:%@" ,_userIds ,_userNames);
     if (_userIds.count == 0) {
         [GKMessageTool showText:self.isExclusive ? @"请指定领取钻石的人！" : @"请指定领取红包的人！"];
         return;

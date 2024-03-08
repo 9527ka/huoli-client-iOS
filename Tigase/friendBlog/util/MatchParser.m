@@ -398,7 +398,7 @@ static void deallocCallback(void * ref){
 //                    runBounds.origin.x = point.x+Origins[lineIndex].x+1;
 //                    runBounds.origin.y = point.y-4+Origins[lineIndex].y;
 //                    
-//                    //      NSLog(@"poing x: %f, y:%f",point.x,point.y);
+//                    //      //NSLog(@"poing x: %f, y:%f",point.x,point.y);
 //                    NSMutableDictionary * dic=[self.images objectAtIndex:imgIndex];
 //                    [dic setObject:[NSValue valueWithCGRect:runBounds] forKey:MatchParserRects];
 //                    [dic setObject:[NSNumber numberWithInt:lineIndex] forKey:MatchParserLine];
@@ -445,7 +445,7 @@ static void deallocCallback(void * ref){
                     runBounds.origin.x = Origins[lineIndex].x  + xOffset ;
                     runBounds.origin.y = Origins[lineIndex].y ;
                     runBounds.origin.y=10000-runBounds.origin.y-runBounds.size.height;
-                    //      NSLog(@"poing x: %f, y:%f",point.x,point.y);
+                    //      //NSLog(@"poing x: %f, y:%f",point.x,point.y);
                     NSMutableDictionary * dic=[self.links objectAtIndex:linkIndex];
                     NSMutableArray * rects=[dic objectForKey:MatchParserRects];
                     [rects addObject:[NSValue valueWithCGRect:runBounds]];
@@ -569,6 +569,6 @@ static void deallocCallback(void * ref){
 
 
 - (void)sp_getMediaData {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 @end

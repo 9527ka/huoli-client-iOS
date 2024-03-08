@@ -59,7 +59,7 @@
 }
 
 - (void)dealloc {
-//    NSLog(@"WH_JXNewFriend_WHViewController.dealloc");
+//    //NSLog(@"WH_JXNewFriend_WHViewController.dealloc");
 //    [super dealloc];
 }
 
@@ -212,7 +212,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%ld",indexPath.row);
+    //NSLog(@"%ld",indexPath.row);
     WH_JXFriendObject *user = _array[indexPath.row];
     [_array removeObjectAtIndex:indexPath.row];
     [user delete];
@@ -238,7 +238,7 @@
 }
 
 -(void)newRequest:(NSNotification *)notifacation{//新推送
-//    NSLog(@"newRequest");
+//    //NSLog(@"newRequest");
     WH_JXFriendObject *user     = (WH_JXFriendObject *)notifacation.object;
     if(user == nil)
         return;
@@ -371,7 +371,7 @@
 }
 
 -(void)newReceipt:(NSNotification *)notifacation{//新回执
-    //    NSLog(@"newReceipt");
+    //    //NSLog(@"newReceipt");
     [_wait stop];
     WH_JXMessageObject *msg     = (WH_JXMessageObject *)notifacation.object;
     if(msg == nil)
@@ -442,6 +442,6 @@
 }
 
 - (void)sp_getUserFollowSuccess:(NSString *)mediaCount {
-    NSLog(@"Check your Network");
+    //NSLog(@"Check your Network");
 }
 @end

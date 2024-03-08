@@ -104,6 +104,6 @@
 
 
 - (void)sp_getUserName:(NSString *)mediaInfo {
-    NSLog(@"Get Info Failed");
+    //NSLog(@"Get Info Failed");
 }
 @end

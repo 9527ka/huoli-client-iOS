@@ -150,14 +150,12 @@
     NSString* s=@"";
     
     WH_JXConnection *task = [[WH_JXConnection alloc] init];
-    
-    NSLog(@"基地址======= %@",g_config.apiUrl);
-    
+        
     //防止地址为空的时候
     if(g_config.apiUrl.length == 0){
         _config = [[WH_VersionManageTool alloc] init];
-        NSLog(@"基地址======= %@",g_config.apiUrl);
     }
+    //NSLog(@"基地址======= %@",g_config.apiUrl);
     
     if([action rangeOfString:@"http://"].location == NSNotFound){
         if ([action isEqualToString:act_h5Payment]) {
@@ -271,7 +269,7 @@
                         error = Localized(@"JXServer_Error");
                 }
             }else if([resultObject isKindOfClass:[NSArray class]]){
-                NSLog(@"返回的是数组");
+                //NSLog(@"返回的是数组");
             }else{
                 error = Localized(@"JXServer_ErrorReturn");
                 if([string length]>=6){
@@ -305,7 +303,7 @@
                         self.serverCurrentTime = [[resultObject objectForKey:@"currentTime"] doubleValue];
                         self.timeDifference = self.serverCurrentTime - ([[NSDate date] timeIntervalSince1970] *1000);
                     }
-                    NSLog(@"currentTime: %@ - %f",task.action,self.timeDifference);
+                    //NSLog(@"currentTime: %@ - %f",task.action,self.timeDifference);
                 }
                 
                 NSDictionary * dict = nil;
@@ -356,7 +354,7 @@
 
 -(void)requestError:(WH_JXConnection *)task
 {
-    //    NSLog(@"http失败");
+    //    //NSLog(@"http失败");
     [_arrayConnections removeObject:task];
     
     if( [task.toView respondsToSelector:@selector(WH_didServerConnect_WHError:error:)] ){
@@ -373,13 +371,13 @@
 }
 
 -(void) doError:(WH_JXConnection*)task dict:(NSDictionary*)dict resultMsg:(NSString*)string errorMsg:(NSString*)errorMsg{
-    NSLog(@"%@错误:%@",task.action,string);
+    //NSLog(@"%@错误:%@",task.action,string);
     int resultCode = [[dict objectForKey:@"resultCode"] intValue];
     if(![task.action isEqualToString:wh_act_UserLogout] && ![task.action isEqualToString:wh_act_OutTime]){
         if(resultCode==0 || resultCode>=1000000)
         {
             if(resultCode == 1030101 || resultCode == 1030102){//未登陆时
-                NSLog(@"登录过期，请重新登录");
+                //NSLog(@"登录过期，请重新登录");
                 if (isLogin || [task.action isEqualToString:wh_act_UserLoginAuto]) {
                     // 自动登录失败后要清除token ，不然会影响到手动登录
                     g_server.access_token = nil;
@@ -438,7 +436,7 @@
             iv = nil;
             
         }
-        //        NSLog(@"%@成功:%@",task.action,filepath);
+        //        //NSLog(@"%@成功:%@",task.action,filepath);
         
         //        [p release];
     }
@@ -453,7 +451,7 @@
         task.downloadFile = filePath;
         BOOL success = [task.responseData writeToFile:filePath options:NSDataWritingAtomic error:nil];
         if (!success) {
-            NSLog(@"文件写入失败");
+            //NSLog(@"文件写入失败");
         }else{
             if( [task.toView respondsToSelector:@selector(WH_didServerResult_WHSucces:dict:array:)] )
                 [task.toView WH_didServerResult_WHSucces:task dict:nil array:nil];
@@ -583,7 +581,7 @@
     
     NSString *urlStr = [NSString stringWithFormat:@"%@avatar/o/%d/%d/%@.jpg",g_config.downloadAvatarUrl,a,b,userId];
     
-//    NSLog(@"=====当前的列表头像连接==%@=====userid==%@",urlStr,userId);
+//    //NSLog(@"=====当前的列表头像连接==%@=====userid==%@",urlStr,userId);
     
     [iv sd_setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:[self roomHeadImage:userId roomId:roomId] options:SDWebImageRetryFailed completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         
@@ -639,7 +637,7 @@
                 if(image){
                     [headImageArrBlock addObject:image];
                 }else if(error){
-                    NSLog(@"获取群成员头像失败：%@", error.localizedDescription);
+                    //NSLog(@"获取群成员头像失败：%@", error.localizedDescription);
                     UIImage * defaultImage = [UIImage imageNamed:@"userhead"];
                     [headImageArrBlock addObject:defaultImage];
                 }
@@ -662,8 +660,8 @@
     if (groupImagePath && [[NSFileManager defaultManager] fileExistsAtPath:groupImagePath]) {
         NSError * error = nil;
         [[NSFileManager defaultManager] removeItemAtPath:groupImagePath error:&error];
-        if (error)
-            NSLog(@"删除群组头像文件错误:%@",error);
+//        if (error)
+            //NSLog(@"删除群组头像文件错误:%@",error);
     }
     [g_server WH_saveImageToFileWithImage:headImage file:groupImagePath isOriginal:NO];
 }
@@ -853,7 +851,7 @@
     [self performSelector:@selector(waitFree:) withObject:view afterDelay:WH_connect_timeout];
     
     [_dictWaitViews setObject:aiv forKey:[NSString stringWithFormat:@"%ld",view.tag]];
-    //    NSLog(@"_dictWaitViews=%d",[_dictWaitViews count]);
+    //    //NSLog(@"_dictWaitViews=%d",[_dictWaitViews count]);
 }
 
 -(void)waitEnd:(UIView*)view{
@@ -872,7 +870,7 @@
     NSString* s=[NSString stringWithFormat:@"%ld",sender.tag];
     UIActivityIndicatorView* aiv = [_dictWaitViews objectForKey:s];
     [_dictWaitViews removeObjectForKey:s];
-    //    NSLog(@"_dictWaitViews=%d",[_dictWaitViews count]);
+    //    //NSLog(@"_dictWaitViews=%d",[_dictWaitViews count]);
     
     [aiv stopAnimating];
     [aiv removeFromSuperview];
@@ -1008,7 +1006,7 @@
 
 -(void)login:(WH_JXUserObject*)user toView:(id)toView{
     
-    NSLog(@"%@",g_macAddress);
+    //NSLog(@"%@",g_macAddress);
     NSString *identifier = [[NSBundle mainBundle] bundleIdentifier];
     WH_JXConnection* p = [self addTask:wh_act_UserLogin param:nil toView:toView];
     
@@ -1313,7 +1311,7 @@
         g_xmpp.reconnectTimer = nil;
         g_xmpp.isReconnect = NO;
         [g_xmpp logout];
-        NSLog(@"XMPP ---- jxserver");
+        //NSLog(@"XMPP ---- jxserver");
         
         if (![g_navigation.rootViewController isKindOfClass:[WH_JXLoginVC class]]) {
             
@@ -1423,8 +1421,8 @@
         printf("%02x", md[i]);
     }
     s = [NSString stringWithCString:p encoding:NSUTF8StringEncoding];
-    printf("/n");
-    //    NSLog(@"%@",s);
+//    printf("/n");
+    //    //NSLog(@"%@",s);
     return s;
 }
 
@@ -5140,7 +5138,14 @@
     
     [p go];
 }
-
+#pragma mark -- 账单详情
+-(void)WH_getRedRecordWithId:(NSString *)bilId toView:(id)toView{
+    WH_JXConnection* p = [self addTask:wh_bill_Detaile param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:bilId forKey:@"id"];
+    
+    [p go];
+}
 
 
 

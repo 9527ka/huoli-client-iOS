@@ -1494,6 +1494,6 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
 
 
 - (void)sp_checkNetWorking:(NSString *)followCount {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 @end

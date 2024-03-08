@@ -41,7 +41,7 @@
                     HUD.progress = ((float)receivedSize)/expectedSize;
                 } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
                     self.imageView.frame=[self caculateOriginImageSizeWith:image];
-                    NSLog(@"图片加载完成");
+                    //NSLog(@"图片加载完成");
                     if ([photoUrl rangeOfString:@".gif"].location != NSNotFound) {
                         
                         HUD = [MBProgressHUD showHUDAddedTo:self animated:YES];
@@ -49,7 +49,7 @@
                         
                         [self loadAnimatedImageWithURL:url completion:^(FLAnimatedImage *animatedImage) {
                             self.imageView.animatedImage = animatedImage;
-                            NSLog(@"图片加载完成");
+                            //NSLog(@"图片加载完成");
                             [HUD hide:YES];
                         }];
                         
@@ -69,7 +69,7 @@
                     
                     [self loadAnimatedImageWithURL:[NSURL URLWithString:photoUrl] completion:^(FLAnimatedImage *animatedImage) {
                         self.imageView.animatedImage = animatedImage;
-                        NSLog(@"图片加载完成");
+                        //NSLog(@"图片加载完成");
                         [HUD hide:YES];
                     }];
                     

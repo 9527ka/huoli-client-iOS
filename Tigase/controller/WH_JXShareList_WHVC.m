@@ -135,7 +135,6 @@
 }
 
 - (void)dealloc {
-    NSLog(@"WH_JXShareList_WHVC -- dealloc");
 }
 
 /*
@@ -148,6 +147,5 @@
 
 
 - (void)sp_getLoginState {
-    NSLog(@"Get User Succrss");
 }
 @end

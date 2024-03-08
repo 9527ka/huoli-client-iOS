@@ -22,7 +22,7 @@
 }
 
 -(void)dealloc{
-    NSLog(@"MJRefreshHeaderView.dealloc");
+    //NSLog(@"MJRefreshHeaderView.dealloc");
 }
 
 #pragma mark - UIScrollView相关

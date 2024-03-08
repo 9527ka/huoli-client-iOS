@@ -216,16 +216,16 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
 //                                           &numBytesEncrypted);//*dataOutMoved
 //    
 //    if (cryptStatus2 == kCCSuccess) {
-//        NSLog(@"DES加密成功");
+//        //NSLog(@"DES加密成功");
 //        
 //        NSData *data = [NSData dataWithBytes:buffer length:(NSUInteger)numBytesEncrypted];
 //        NSString * base = [data base64EncodedStringWithOptions:0];
 //        ciphertext = [self stringWithHexBytes2:data];
 //        
 //    }else{
-//        NSLog(@"DES加密失败");
+//        //NSLog(@"DES加密失败");
 //    }
-//    NSLog(@"%@",[self decryptUseDES:ciphertext key:key]);
+//    //NSLog(@"%@",[self decryptUseDES:ciphertext key:key]);
 ////    free(buffer);
 //    return ciphertext;
 //}
@@ -254,12 +254,12 @@ static Byte iv[] = {1,2,3,4,5,6,7,8};
 //                                          bufferSize,
 //                                          &numBytesEncrypted);
 //    if (cryptStatus == kCCSuccess) {
-//        NSLog(@"DES解密成功");
+//        //NSLog(@"DES解密成功");
 //        
 //        NSData *data = [NSData dataWithBytes:buffer length:(NSUInteger)numBytesEncrypted];
 //        cleartext = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 //    }else{
-//        NSLog(@"DES解密失败");
+//        //NSLog(@"DES解密失败");
 //    }
 //    
 ////    free(buffer);

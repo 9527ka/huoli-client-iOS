@@ -106,7 +106,7 @@ void smbPitchShift(float pitchShift, long numSampsToProcess, long fftFrameSize, 
 
 	/* initialize our static arrays */
 	if (gInit == FALSE) {
-//		NSLog(@"init static arrays");
+//		//NSLog(@"init static arrays");
 		printFFTInitSnapshot(fftFrameSize2,stepSize, freqPerBin, expct, inFifoLatency, gRover);
 
  
@@ -159,7 +159,7 @@ void smbPitchShift(float pitchShift, long numSampsToProcess, long fftFrameSize, 
 				window = -.5*cos(2.*M_PI*(double)k/(double)fftFrameSize)+.5;
 				gFFTworksp[2*k] = gInFIFO[k] * window;				// real part is winowed amplitude of samples
 				gFFTworksp[2*k+1] = 0.;								// imag part is set to 0
-			//	NSLog(@"i: %d, k: %d, window: %f", i, k, window );
+			//	//NSLog(@"i: %d, k: %d, window: %f", i, k, window );
 			}
 
 
@@ -224,7 +224,7 @@ void smbPitchShift(float pitchShift, long numSampsToProcess, long fftFrameSize, 
 					displayFreq = gAnaFreq[k];
 				}
 			}
-			NSLog(@"pitch is: %f", displayFreq);
+			//NSLog(@"pitch is: %f", displayFreq);
 
 */
  
@@ -239,7 +239,7 @@ void smbPitchShift(float pitchShift, long numSampsToProcess, long fftFrameSize, 
 			
 			for (k = 0; k <= fftFrameSize2; k++) { 
 				index = (long) (k * pitchShift);
-	//			NSLog(@"i: %d, index: %d, k: %d, pitchShift: %f", i, index, k, pitchShift );
+	//			//NSLog(@"i: %d, index: %d, k: %d, pitchShift: %f", i, index, k, pitchShift );
 				if (index <= fftFrameSize2) { 
 					gSynMagn[index] += gAnaMagn[k]; 
 					gSynFreq[index] = gAnaFreq[k] * pitchShift; 
@@ -372,7 +372,7 @@ void smb2PitchShift(float pitchShift, long numSampsToProcess, long fftFrameSize,
 	
 	/* initialize our static arrays */
 	if (gInit == FALSE) {
-//		NSLog(@"init static arrays");
+//		//NSLog(@"init static arrays");
 		printFFTInitSnapshot(fftFrameSize2,stepSize, freqPerBin, expct, inFifoLatency, gRover);
 		
 		
@@ -395,7 +395,7 @@ void smb2PitchShift(float pitchShift, long numSampsToProcess, long fftFrameSize,
 		gInit = true;
 	}
 	
-//	NSLog(@"before load");
+//	//NSLog(@"before load");
 	/* main processing loop */
 	for (i = 0; i < numSampsToProcess; i++){
 		
@@ -433,7 +433,7 @@ void smb2PitchShift(float pitchShift, long numSampsToProcess, long fftFrameSize,
 //				window = -.5*cos(2.*M_PI*(double)k/(double)fftFrameSize)+.5;
 //				gFFTworksp[2*k] = gInFIFO[k] * window;				// real part is winowed amplitude of samples
 //				gFFTworksp[2*k+1] = 0.;								// imag part is set to 0
-//				//	NSLog(@"i: %d, k: %d, window: %f", i, k, window );
+//				//	//NSLog(@"i: %d, k: %d, window: %f", i, k, window );
 //			}
 		
 			
@@ -441,7 +441,7 @@ void smb2PitchShift(float pitchShift, long numSampsToProcess, long fftFrameSize,
 				window = -.5*cos(2.*M_PI*(double)k/(double)fftFrameSize)+.5;
 				gFFTworksp[k] = gInFIFO[k] * window;				// real part is winowed amplitude of samples
 //				gFFTworksp[2*k+1] = 0.;								// imag part is set to 0
-				//	NSLog(@"i: %d, k: %d, window: %f", i, k, window );
+				//	//NSLog(@"i: %d, k: %d, window: %f", i, k, window );
 			}
 			
 			// cast to complex interleaved then convert to split complex vector
@@ -450,11 +450,11 @@ void smb2PitchShift(float pitchShift, long numSampsToProcess, long fftFrameSize,
 			
 			// Carry out a Forward FFT transform.
 			
-//			NSLog(@"before transform");
+//			//NSLog(@"before transform");
 			
 			vDSP_fft_zrip(fftSetup, &A, stride, log2n, FFT_FORWARD);
 			
-//			NSLog(@"after transform");
+//			//NSLog(@"after transform");
 
             // convert from split complex to complex interleaved for analysis
 			
@@ -538,7 +538,7 @@ void smb2PitchShift(float pitchShift, long numSampsToProcess, long fftFrameSize,
 			
 			for (k = 0; k <= fftFrameSize2; k++) { 
 				index = (long) (k * pitchShift);
-				//			NSLog(@"i: %d, index: %d, k: %d, pitchShift: %f", i, index, k, pitchShift );
+				//			//NSLog(@"i: %d, index: %d, k: %d, pitchShift: %f", i, index, k, pitchShift );
 				if (index <= fftFrameSize2) { 
 					gSynMagn[index] += gAnaMagn[k]; 
 					gSynFreq[index] = gAnaFreq[k] * pitchShift; 
@@ -637,9 +637,9 @@ void smb2PitchShift(float pitchShift, long numSampsToProcess, long fftFrameSize,
 	}
 	
 	
-	// NSLog(@"pitchCount: %d", pitchCount);
+	// //NSLog(@"pitchCount: %d", pitchCount);
 	*frequency = (float) (freqTotal / pitchCount);
-	//			NSLog(@"pitch is: %f", *frequency );
+	//			//NSLog(@"pitch is: %f", *frequency );
 
 }
 
@@ -750,14 +750,14 @@ double smbAtan2(double x, double y)
 void printFFTInitSnapshot(long fftFrameSize2,long stepSize,double freqPerBin,double expct,
 						  long inFifoLatency, long gRover) {
 
-//	NSLog(@"fft init snapshot");
+//	//NSLog(@"fft init snapshot");
 //
-//	NSLog(@"fftFrameSize2: %ld", fftFrameSize2);
-//	NSLog(@"stepSize: %ld", stepSize);
-//	NSLog(@"freqPerBin: %f", freqPerBin);
-//	NSLog(@"expct: %f", expct);
-//	NSLog(@"inFifoLatency: %ld", inFifoLatency);
-//	NSLog(@"gRover: %ld", gRover);
+//	//NSLog(@"fftFrameSize2: %ld", fftFrameSize2);
+//	//NSLog(@"stepSize: %ld", stepSize);
+//	//NSLog(@"freqPerBin: %f", freqPerBin);
+//	//NSLog(@"expct: %f", expct);
+//	//NSLog(@"inFifoLatency: %ld", inFifoLatency);
+//	//NSLog(@"gRover: %ld", gRover);
 	
 }
 
@@ -766,11 +766,11 @@ void printFFTSnapshot(long i, long k, long qpd, long index,
 					  double window, double real, double imag,
 					  long gRover){
 	
-//	NSLog(@"fft snapshot");
-//	NSLog(@"i: %ld, k: %ld, qpd: %ld, index: %ld", i,k,qpd,index);
-//	NSLog(@"magn: %f, phase: %f, tmp: %f", magn, phase, tmp );
-//	NSLog(@"window: %f, real: %f, imag: %f ", window, real, imag);
-//	NSLog(@"gRover %ld", gRover);
+//	//NSLog(@"fft snapshot");
+//	//NSLog(@"i: %ld, k: %ld, qpd: %ld, index: %ld", i,k,qpd,index);
+//	//NSLog(@"magn: %f, phase: %f, tmp: %f", magn, phase, tmp );
+//	//NSLog(@"window: %f, real: %f, imag: %f ", window, real, imag);
+//	//NSLog(@"gRover %ld", gRover);
 //	
 }
 

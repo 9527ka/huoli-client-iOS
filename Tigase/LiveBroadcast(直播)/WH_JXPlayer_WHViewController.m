@@ -190,7 +190,7 @@
 //        }
 //    }
     
-//    NSLog(@"evtId = %d", EvtID);
+//    //NSLog(@"evtId = %d", EvtID);
 }
 
 #pragma Install Notifiacation
@@ -261,34 +261,34 @@
 //- (void)player:(UPAVPlayer *)player playerStatusDidChange:(UPAVPlayerStatus)playerStatus{
 //    switch (playerStatus) {
 //        case UPAVPlayerStatusIdle:{
-//            NSLog(@"播放停止－－－－－");
+//            //NSLog(@"播放停止－－－－－");
 //            [self.activityIndicatorView stopAnimating];
 //            self.bufferingProgressLabel.hidden = YES;
 //        }
 //            break;
 //
 //        case UPAVPlayerStatusPause:{
-//            NSLog(@"播放暂停－－－－－");
+//            //NSLog(@"播放暂停－－－－－");
 //            [self.activityIndicatorView stopAnimating];
 //            self.bufferingProgressLabel.hidden = YES;
 //        }
 //            break;
 //
 //        case UPAVPlayerStatusPlaying_buffering:{
-//            NSLog(@"播放缓冲－－－－－");
+//            //NSLog(@"播放缓冲－－－－－");
 //            [self.activityIndicatorView startAnimating];
 //            self.bufferingProgressLabel.hidden = NO;
 //        }
 //            break;
 //        case UPAVPlayerStatusPlaying:{
 ////            _isSeeking = NO;
-//            NSLog(@"播放中－－－－－");
+//            //NSLog(@"播放中－－－－－");
 //            [self.activityIndicatorView stopAnimating];
 //            self.bufferingProgressLabel.hidden = YES;
 //        }
 //            break;
 //        case UPAVPlayerStatusFailed:{
-//            NSLog(@"播放失败－－－－－");
+//            //NSLog(@"播放失败－－－－－");
 //
 //
 //        }
@@ -298,25 +298,25 @@
 //    }
 //}
 //- (void)player:(UPAVPlayer *)player displayPositionDidChange:(float)position{
-//    NSLog(@"live_position:%f",position);
+//    //NSLog(@"live_position:%f",position);
 //}
 //- (void)player:(UPAVPlayer *)player bufferingProgressDidChange:(float)progress{
 //    self.bufferingProgressLabel.text = [NSString stringWithFormat:@"%.0f %%", (progress * 100)];
-//    NSLog(@"live_progress:%f",progress);
+//    //NSLog(@"live_progress:%f",progress);
 //}
 ////视频流状态
 //
 //- (void)player:(UPAVPlayer *)player streamStatusDidChange:(UPAVStreamStatus)streamStatus{
 //    switch (streamStatus) {
 //        case UPAVStreamStatusIdle:
-//            NSLog(@"连接断开－－－－－");
+//            //NSLog(@"连接断开－－－－－");
 //            break;
 //        case UPAVStreamStatusConnecting:{
-//            NSLog(@"建立连接－－－－－");
+//            //NSLog(@"建立连接－－－－－");
 //        }
 //            break;
 //        case UPAVStreamStatusReady:{
-//            NSLog(@"连接成功－－－－－");
+//            //NSLog(@"连接成功－－－－－");
 //        }
 //            break;
 //        default:
@@ -324,7 +324,7 @@
 //    }
 //}
 //- (void)player:(UPAVPlayer *)player streamInfoDidReceive:(UPAVPlayerStreamInfo *)streamInfo{
-//    NSLog(@"%@",streamInfo.descriptionInfo);
+//    //NSLog(@"%@",streamInfo.descriptionInfo);
 //}
 
 
@@ -402,12 +402,12 @@
 //    if ((loadState & IJKMPMovieLoadStatePlaythroughOK) != 0) {
 //        _activity.hidden = YES;
 //        [_activity stopAnimating];
-//        NSLog(@"LoadStateDidChange: IJKMovieLoadStatePlayThroughOK: %d\n",(int)loadState);
+//        //NSLog(@"LoadStateDidChange: IJKMovieLoadStatePlayThroughOK: %d\n",(int)loadState);
 //    }else if ((loadState & IJKMPMovieLoadStateStalled) != 0) {
-//        NSLog(@"loadStateDidChange: IJKMPMovieLoadStateStalled: %d\n", (int)loadState);
+//        //NSLog(@"loadStateDidChange: IJKMPMovieLoadStateStalled: %d\n", (int)loadState);
 ////        [g_App showAlert:@"主播已停止直播" delegate:self tag:2457 onlyConfirm:YES];
 //    } else {
-//        NSLog(@"loadStateDidChange: ???: %d\n", (int)loadState);
+//        //NSLog(@"loadStateDidChange: ???: %d\n", (int)loadState);
 //    }
 //}
 //
@@ -415,26 +415,26 @@
 //    int reason =[[[notification userInfo] valueForKey:IJKMPMoviePlayerPlaybackDidFinishReasonUserInfoKey] intValue];
 //    switch (reason) {
 //        case IJKMPMovieFinishReasonPlaybackEnded:
-//            NSLog(@"playbackStateDidChange: IJKMPMovieFinishReasonPlaybackEnded: %d\n", reason);
+//            //NSLog(@"playbackStateDidChange: IJKMPMovieFinishReasonPlaybackEnded: %d\n", reason);
 //            break;
 //
 //        case IJKMPMovieFinishReasonUserExited:
-//            NSLog(@"playbackStateDidChange: IJKMPMovieFinishReasonUserExited: %d\n", reason);
+//            //NSLog(@"playbackStateDidChange: IJKMPMovieFinishReasonUserExited: %d\n", reason);
 //            break;
 //
 //        case IJKMPMovieFinishReasonPlaybackError:
-//            NSLog(@"playbackStateDidChange: IJKMPMovieFinishReasonPlaybackError: %d\n", reason);
+//            //NSLog(@"playbackStateDidChange: IJKMPMovieFinishReasonPlaybackError: %d\n", reason);
 //            [self.view removeFromSuperview];
 //            break;
 //
 //        default:
-//            NSLog(@"playbackPlayBackDidFinish: ???: %d\n", reason);
+//            //NSLog(@"playbackPlayBackDidFinish: ???: %d\n", reason);
 //            break;
 //    }
 //}
 
 - (void)mediaIsPreparedToPlayDidChange:(NSNotification*)notification {
-    NSLog(@"mediaIsPrepareToPlayDidChange\n");
+    //NSLog(@"mediaIsPrepareToPlayDidChange\n");
 }
 
 - (void)moviePlayBackStateDidChange:(NSNotification*)notification {
@@ -444,29 +444,29 @@
 //    switch (_player.playbackState) {
 //
 //        case IJKMPMoviePlaybackStateStopped:
-//            NSLog(@"IJKMPMoviePlayBackStateDidChange %d: stoped", (int)_player.playbackState);
+//            //NSLog(@"IJKMPMoviePlayBackStateDidChange %d: stoped", (int)_player.playbackState);
 //            break;
 //
 //        case IJKMPMoviePlaybackStatePlaying:
-//            NSLog(@"IJKMPMoviePlayBackStateDidChange %d: playing", (int)_player.playbackState);
+//            //NSLog(@"IJKMPMoviePlayBackStateDidChange %d: playing", (int)_player.playbackState);
 //            break;
 //
 //        case IJKMPMoviePlaybackStatePaused:
-//            NSLog(@"IJKMPMoviePlayBackStateDidChange %d: paused", (int)_player.playbackState);
+//            //NSLog(@"IJKMPMoviePlayBackStateDidChange %d: paused", (int)_player.playbackState);
 //            break;
 //
 //        case IJKMPMoviePlaybackStateInterrupted:
-//            NSLog(@"IJKMPMoviePlayBackStateDidChange %d: interrupted", (int)_player.playbackState);
+//            //NSLog(@"IJKMPMoviePlayBackStateDidChange %d: interrupted", (int)_player.playbackState);
 //            break;
 //
 //        case IJKMPMoviePlaybackStateSeekingForward:
 //        case IJKMPMoviePlaybackStateSeekingBackward: {
-//            NSLog(@"IJKMPMoviePlayBackStateDidChange %d: seeking", (int)_player.playbackState);
+//            //NSLog(@"IJKMPMoviePlayBackStateDidChange %d: seeking", (int)_player.playbackState);
 //            break;
 //        }
 //
 //        default: {
-//            NSLog(@"IJKMPMoviePlayBackStateDidChange %d: unknown", (int)_player.playbackState);
+//            //NSLog(@"IJKMPMoviePlayBackStateDidChange %d: unknown", (int)_player.playbackState);
 //            break;
 //        }
 //    }

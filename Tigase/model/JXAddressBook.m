@@ -55,9 +55,9 @@ static JXAddressBook *shared;
         ABAddressBookRequestAccessWithCompletion(addressBookRef, ^(bool granted, CFErrorRef error) {
             if (granted) { // 授权成功
                 [shared upLoadAddressBook];
-                NSLog(@"授权成功！");
+                //NSLog(@"授权成功！");
             } else {  // 授权失败
-                NSLog(@"授权失败！");
+                //NSLog(@"授权失败！");
             }
         });
     }
@@ -82,7 +82,7 @@ static JXAddressBook *shared;
     ABAuthorizationStatus authorizationStatus = ABAddressBookGetAuthorizationStatus();
     if (authorizationStatus != kABAuthorizationStatusAuthorized) {
         
-        NSLog(@"没有授权");
+        //NSLog(@"没有授权");
         return nil;
     }
     
@@ -167,7 +167,7 @@ void ContactsChangeCallback (ABAddressBookRef addressBook,
                              void *context){
     [shared upLoadAddressBook];
     
-    NSLog(@"ContactsChangeCallback");
+    //NSLog(@"ContactsChangeCallback");
 }
 
 - (void) upLoadAddressBook {

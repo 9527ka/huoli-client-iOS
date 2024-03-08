@@ -288,6 +288,6 @@
 
 
 - (void)sp_getUserName {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 @end

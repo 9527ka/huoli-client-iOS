@@ -69,6 +69,6 @@
 
 
 - (void)sp_getUserName {
-    NSLog(@"Check your Network");
+    //NSLog(@"Check your Network");
 }
 @end

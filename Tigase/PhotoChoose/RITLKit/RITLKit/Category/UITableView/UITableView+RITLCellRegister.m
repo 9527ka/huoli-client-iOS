@@ -69,6 +69,6 @@
 
 
 - (void)sp_upload {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 @end

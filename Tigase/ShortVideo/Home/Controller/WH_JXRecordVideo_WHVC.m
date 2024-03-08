@@ -837,7 +837,7 @@
                 [self showPreview:[outputPath absoluteString]];
             });
             
-            NSLog(@"%@",outputPath);
+//            //NSLog(@"%@",outputPath);
         }];
     });
     
@@ -867,7 +867,7 @@
 
 - (NSString *)getDataFilePath {
     NSString* s = [NSString stringWithFormat:@"%@/Library/Caches/",NSHomeDirectory()];
-    //NSLog(@"%@",s);
+    ////NSLog(@"%@",s);
     return s;
 }
 
@@ -881,7 +881,7 @@
     
     //    [videoArray addObject:pathToMovie];
     
-    NSLog(@"%@",pathToMovie);
+//    //NSLog(@"%@",pathToMovie);
     
     unlink([pathToMovie UTF8String]);
     
@@ -998,7 +998,7 @@
                                        atTime:totalDuration
                                         error:&erroraudio];
         
-        NSLog(@"erroraudio:%@%d",erroraudio,ba);
+        //NSLog(@"erroraudio:%@%d",erroraudio,ba);
         NSError *errorVideo = nil;
         AVAssetTrack *assetVideoTrack = [[asset tracksWithMediaType:AVMediaTypeVideo]firstObject];
         BOOL bl = [videoTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, asset.duration)
@@ -1006,10 +1006,10 @@
                                        atTime:totalDuration
                                         error:&errorVideo];
         
-        NSLog(@"errorVideo:%@%d",errorVideo,bl);
+        //NSLog(@"errorVideo:%@%d",errorVideo,bl);
         totalDuration = CMTimeAdd(totalDuration, asset.duration);
     }
-    NSLog(@"%@",NSHomeDirectory());
+    //NSLog(@"%@",NSHomeDirectory());
     
     //创建视频水印layer 并添加到视频layer上
     //2017 年 04 月 19 日 视频水印由后台统一转码添加   del by hyy；
@@ -1077,7 +1077,7 @@
 }
 
 - (void)exportTimerAction:(NSTimer *)timer {
-    NSLog(@"exporter.progress = %f",_exporter.progress);
+    //NSLog(@"exporter.progress = %f",_exporter.progress);
     
     NSString *str = [NSString stringWithFormat:@"%d%%",(int)(_exporter.progress * 100)];
     _exportPro.text = str;
@@ -1200,7 +1200,7 @@
     //值越小，磨皮效果越好
     [_bilateralFilter setDistanceNormalizationFactor:[self getBilValue:slider.value]];
     self.bilHis = slider.value;
-    NSLog(@"------调整磨皮 = %f - %f - %f",[self getBilValue:slider.value],(ldexp(slider.value, 10)),slider.value);
+    //NSLog(@"------调整磨皮 = %f - %f - %f",[self getBilValue:slider.value],(ldexp(slider.value, 10)),slider.value);
 }
 
 #pragma mark - 调整亮度
@@ -1208,7 +1208,7 @@
     [self recoverFilterGroup];
     _brightnessFilter.brightness = slider.value;
     self.briHis = slider.value;
-    NSLog(@"------调整亮度 = %f",slider.value);
+    //NSLog(@"------调整亮度 = %f",slider.value);
 }
 
 // 恢复调整状态下的磨皮和亮度
@@ -1248,6 +1248,6 @@
 
 
 - (void)sp_getLoginState {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 @end

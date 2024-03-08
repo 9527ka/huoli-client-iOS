@@ -124,7 +124,7 @@
 }
 
 -(void)dealloc{
-    NSLog(@"WH_JXInput_WHVC.dealloc");
+    //NSLog(@"WH_JXInput_WHVC.dealloc");
 //    [super dealloc];
 }
 
@@ -157,6 +157,6 @@
 
 
 - (void)sp_getUserName {
-    NSLog(@"Check your Network");
+    //NSLog(@"Check your Network");
 }
 @end

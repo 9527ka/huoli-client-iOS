@@ -45,7 +45,7 @@
     return [urlTest evaluateWithObject:url];
 }
 - (void)sp_getUserName {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 
 + (BOOL)isHasChineseWithStr:(NSString *)strFrom {

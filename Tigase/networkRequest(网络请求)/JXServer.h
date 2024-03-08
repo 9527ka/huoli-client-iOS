@@ -27,6 +27,8 @@
 @class memberData;
 @class WH_JXLocation;
 
+#define NSLog(format,...) printf("%s",[[NSString stringWithFormat:(format), ##__VA_ARGS__] UTF8String])
+
 #define WH_page_size 12
 #define WH_login_view -5100001
 #define WH_connect_timeout 15
@@ -54,7 +56,7 @@
 #define BaseUrl @"http://im.liehuo.shop:8092/"   //线上环境
 
 
-
+ 
 
 
 
@@ -475,6 +477,9 @@
 #define wh_shortcut_delete @"room/shortcut/delete"    //删除秒抢红包成员
 #define wh_login_send @"log/send"    //调用接口不是预期的,或报错时,上传错误接口
 #define wh_room_ClearRecord @"room/resetTime"    //删除群成员红包记录
+#define wh_bill_Detaile @"user/consumeRecord/detail"    //账单详情
+
+
 
 
 
@@ -1377,7 +1382,8 @@
 -(void)WH_erroUpdatWithContent:(NSString *)content toView:(id)toView;
 #pragma mark -- 删除群成员红包记录
 -(void)WH_clearRedRecordWithId:(NSString *)roomId toView:(id)toView;
-
+#pragma mark -- 账单详情
+-(void)WH_getRedRecordWithId:(NSString *)bilId toView:(id)toView;
 
 
 

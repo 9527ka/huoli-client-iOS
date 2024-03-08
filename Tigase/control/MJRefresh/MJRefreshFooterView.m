@@ -36,7 +36,7 @@
 }
 
 -(void)dealloc{
-    NSLog(@"MJRefreshFooterView.dealloc");
+    //NSLog(@"MJRefreshFooterView.dealloc");
 }
 
 

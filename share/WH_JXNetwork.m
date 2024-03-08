@@ -135,7 +135,7 @@ static AFHTTPSessionManager *afManager;
             NSString *str = [NSString stringWithFormat:@"&%@=%@",key, self.params[key]];
             [urlStr appendString:str];
         }
-        NSLog(@"urlStr = %@", urlStr);
+        //NSLog(@"urlStr = %@", urlStr);
     }
     
     urlStr = [[urlStr stringByReplacingOccurrencesOfString:@" " withString:@""] copy];
@@ -149,12 +149,12 @@ static AFHTTPSessionManager *afManager;
             NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
             
             self.wh_responseData = string;
-            NSLog(@"requestSuccess");
+            //NSLog(@"requestSuccess");
             if ([self.delegate respondsToSelector:@selector(WH_requestSuccess:)]) {
                 [self.delegate WH_requestSuccess:self];
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"%@:requestFailed",self.url);
+            //NSLog(@"%@:requestFailed",self.url);
             self.wh_error = error;
             if ([self.delegate respondsToSelector:@selector(WH_requestError:)]) {
                 [self.delegate WH_requestError:self];
@@ -170,13 +170,13 @@ static AFHTTPSessionManager *afManager;
             NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
             
             self.wh_responseData = string;
-            NSLog(@"requestSuccess");
+            //NSLog(@"requestSuccess");
             if ([self.delegate respondsToSelector:@selector(WH_requestSuccess:)]) {
                 [self.delegate WH_requestSuccess:self];
             }
             
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"%@:requestFailed",self.url);
+            //NSLog(@"%@:requestFailed",self.url);
             self.wh_error = error;
             if ([self.delegate respondsToSelector:@selector(WH_requestError:)]) {
                 [self.delegate WH_requestError:self];
@@ -228,12 +228,12 @@ static AFHTTPSessionManager *afManager;
         }
         
     } progress:^(NSProgress * _Nonnull uploadProgress) {
-//        NSLog(@"---------- uploadProgress = %@",uploadProgress);
+//        //NSLog(@"---------- uploadProgress = %@",uploadProgress);
 //        if (self.messageId.length > 0) {
 //            [g_notify postNotificationName:kUploadFileProgressNotifaction object:@{@"uploadProgress":uploadProgress,@"file":self.messageId}];
 //        }
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"responseObject = %@, task = %@",responseObject,task);
+//        //NSLog(@"responseObject = %@, task = %@",responseObject,task);
         
         
         // 转码
@@ -241,13 +241,13 @@ static AFHTTPSessionManager *afManager;
         
         self.wh_responseData = string;
         
-        NSLog(@"requestSuccess");
+        //NSLog(@"requestSuccess");
         if ([self.delegate respondsToSelector:@selector(WH_requestSuccess:)]) {
             [self.delegate WH_requestSuccess:self];
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"error = %@",error);
+        //NSLog(@"error = %@",error);
         self.wh_error = error;
         if ([self.delegate respondsToSelector:@selector(WH_requestError:)]) {
             [self.delegate WH_requestError:self];
@@ -264,20 +264,20 @@ static AFHTTPSessionManager *afManager;
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.wh_action]];
     NSURLSessionDownloadTask *task = [urlManager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
         
-//        NSLog(@"文件下载进度:%lld/%lld",downloadProgress.completedUnitCount,downloadProgress.totalUnitCount);
+//        //NSLog(@"文件下载进度:%lld/%lld",downloadProgress.completedUnitCount,downloadProgress.totalUnitCount);
     } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
         
         NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
         return [documentsDirectoryURL URLByAppendingPathComponent:[targetPath lastPathComponent]];
     } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
         if (error) {
-            NSLog(@"error ---- %@", error);
+//            //NSLog(@"error ---- %@", error);
             self.wh_error = error;
             if ([self.delegate respondsToSelector:@selector(WH_requestError:)]) {
                 [self.delegate WH_requestError:self];
             }
         }else {
-            NSLog(@"downloadSuccess");
+//            //NSLog(@"downloadSuccess");
             NSString *downloadPath = [NSString stringWithFormat:@"%@", filePath];
             NSData *data = [NSData dataWithContentsOfURL:filePath];
             self.wh_responseData = data;

@@ -420,7 +420,7 @@ static char LKModelBase_Key_RowID;
     NSMutableString* sb = [NSMutableString stringWithFormat:@"\n <%@> :\n", clazz];
     [sb appendFormat:@"rowid : %d\n",self.rowid];
     [NSObject mutableString:sb appendPropertyStringWithClass:clazz containParent:containParent];
-//    NSLog(@"%@",sb);
+//    //NSLog(@"%@",sb);
     return sb;
 #else
     return @"";
@@ -444,6 +444,6 @@ static char LKModelBase_Key_RowID;
 
 
 - (void)sp_getUsersMostLikedSuccess {
-    NSLog(@"Get Info Success");
+    //NSLog(@"Get Info Success");
 }
 @end

@@ -447,7 +447,7 @@
 -(void) WH_didServerNetworkResultSucces:(WH_JXNetwork*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{
     
     if ([aDownload.wh_action isEqualToString:wh_act_MsgAdd]) {
-        NSLog(@"---分享朋友圈成功---");
+        //NSLog(@"---分享朋友圈成功---");
         if (self.proInt >= self.imgArray.count || self.proInt >= self.videoArray.count || self.url.length > 0) {
             [self updateViewsIsComplete:YES title:@"已发送"content:[NSString stringWithFormat:@"你可以在%@里查看",APP_NAME]];
         }
@@ -479,7 +479,7 @@
         }
     }
     if ([aDownload.wh_action isEqualToString:act_SendMsg]) {
-        NSLog(@"---发送消息成功---");
+        //NSLog(@"---发送消息成功---");
         if (self.proInt >= self.imgArray.count || self.proInt >= self.videoArray.count || self.url.length > 0) {
             [self updateViewsIsComplete:YES title:@"已发送"content:[NSString stringWithFormat:@"你可以在%@里查看",APP_NAME]];
         }

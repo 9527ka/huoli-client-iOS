@@ -22,7 +22,7 @@
 }
 
 -(void)dealloc{
-//    NSLog(@"WH_JXRoomPool.dealloc");
+//    //NSLog(@"WH_JXRoomPool.dealloc");
     [g_notify  removeObserver:self name:kQuitRoom_WHNotifaction object:nil];
     [self deleteAll];
 //    [_storage release];

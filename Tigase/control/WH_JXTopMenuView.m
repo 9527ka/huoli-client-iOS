@@ -67,7 +67,7 @@
     sender.selected = YES;
 
 
-//    NSLog(@"%d",sender.tag);
+//    //NSLog(@"%d",sender.tag);
     wh_selected = (int)sender.tag;
 	if(self.wh_delegate != nil && [self.wh_delegate respondsToSelector:self.wh_onClick])
 		[self.wh_delegate performSelectorOnMainThread:self.wh_onClick withObject:sender waitUntilDone:NO];

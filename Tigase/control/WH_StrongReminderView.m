@@ -53,9 +53,9 @@ void systemAudioCallback()
 
 //- (void)isMuted:(BOOL)muted {
 //    if (muted) {
-//        NSLog(@"静音");
+//        //NSLog(@"静音");
 //    }else{
-//        NSLog(@"非静音");
+//        //NSLog(@"非静音");
 //    }
 //}
 
@@ -97,7 +97,7 @@ void systemAudioCallback()
     UIView *lView = [[UIView alloc] initWithFrame:CGRectMake(12, tView.frame.origin.y + CGRectGetHeight(tView.frame) + 25, CGRectGetWidth(self.frame) - 24, 20)];
     [self addSubview:lView];
     
-    NSLog(@"%@", [NSString stringWithFormat:@"%ld", (NSInteger)[[NSDate date] timeIntervalSince1970]]);
+    //NSLog(@"%@", [NSString stringWithFormat:@"%ld", (NSInteger)[[NSDate date] timeIntervalSince1970]]);
     UILabel *timeLb = [UILabel new];
     timeLb.textColor = [UIColor whiteColor];
     [tView addSubview:timeLb];
@@ -202,7 +202,7 @@ void systemAudioCallback()
     if (btnTag == 0) {
         [self wh_close];
     }else{
-        NSLog(@"进群");
+        //NSLog(@"进群");
         if (self.entryGroupCallback) {
             self.entryGroupCallback(self);
         }

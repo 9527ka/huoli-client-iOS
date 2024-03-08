@@ -176,7 +176,7 @@
 - (void)loginSynchronizeFriends:(NSNotification*)notification{
     //判断服务器好友数量是否与本地一致
     _friendArray = [g_myself WH_fetchAllFriendsOrNotFromLocal];
-//    NSLog(@"%d -------%ld",[g_myself.friendCount intValue] , [_friendArray count]);
+//    //NSLog(@"%d -------%ld",[g_myself.friendCount intValue] , [_friendArray count]);
 //    if ([g_myself.friendCount intValue] > [_friendArray count] && [g_myself.friendCount intValue] >0) {
 //        [g_App showAlert:Localized(@"JXAlert_SynchFirendOK") delegate:self];
     if ([g_myself.isupdate intValue] == 1 || _friendArray.count <= 0) {
@@ -533,6 +533,6 @@
 
 
 - (void)sp_getUsersMostLiked {
-    NSLog(@"Check your Network");
+//    //NSLog(@"Check your Network");
 }
 @end

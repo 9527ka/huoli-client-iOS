@@ -159,7 +159,7 @@
 - (void) setPage
 {
 	_sv.contentOffset = CGPointMake(WIDTH_PAGE*_pc.currentPage, 0.0f);
-//    NSLog(@"setPage:%d,%f",_sv.contentOffset,_pc.currentPage);
+//    //NSLog(@"setPage:%d,%f",_sv.contentOffset,_pc.currentPage);
     [_pc setNeedsDisplay];
 }
 

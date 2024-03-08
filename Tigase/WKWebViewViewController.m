@@ -98,26 +98,26 @@
 //页面开始加载时调用
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation
 {
-    NSLog(@"开始加载2");
+    //NSLog(@"开始加载2");
 }
 
 //内容返回时调用，得到请求内容时调用(内容开始加载) -> view的过渡动画可在此方法中加载
 - (void)webView:(WKWebView *)webView didCommitNavigation:( WKNavigation *)navigation
 {
-    NSLog(@"内容返回时调用，得到请求内容时4");
+    //NSLog(@"内容返回时调用，得到请求内容时4");
     
 }
 
 //页面加载完成时调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:( WKNavigation *)navigation
 {
-    NSLog(@"页面加载完成时5");
+    //NSLog(@"页面加载完成时5");
 //    CGFloat width = [[UIScreen mainScreen] bounds].size.width;
 //    CGFloat height = [[UIScreen mainScreen] bounds].size.height;
 //    NSString * funcStr = [NSString stringWithFormat:@"widthAndHeight(%f,%f)", width, height];
 //    [self.wkWebView evaluateJavaScript:funcStr completionHandler:^(id _Nullable response, NSError * _Nullable error) {
 //        //TODO
-//        NSLog(@"%@ %@",response,error);
+//        //NSLog(@"%@ %@",response,error);
 //    }];
     
 }
@@ -125,12 +125,12 @@
 //请求失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error
 {
-    NSLog(@"error1:%@",error);
+    //NSLog(@"error1:%@",error);
 }
 
 -(void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
 {
-    NSLog(@"error2:%@",error);
+    //NSLog(@"error2:%@",error);
 }
 
 //在请求发送之前，决定是否跳转 -> 该方法如果不实现，系统默认跳转。如果实现该方法，则需要设置允许跳转，不设置则报错。
@@ -139,7 +139,7 @@
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
     
-    NSLog(@"url =========== %@", navigationAction.request.URL);
+    //NSLog(@"url =========== %@", navigationAction.request.URL);
     
     
     
@@ -148,7 +148,7 @@
     
     //不允许跳转
     //        decisionHandler(WKNavigationActionPolicyCancel);
-    NSLog(@"在请求发送之前，决定是否跳转 1");
+    //NSLog(@"在请求发送之前，决定是否跳转 1");
 }
 
 //在收到响应后，决定是否跳转（同上）
@@ -159,26 +159,26 @@
     decisionHandler(WKNavigationResponsePolicyAllow);
     //不允许跳转
     //    decisionHandler(WKNavigationResponsePolicyCancel);
-    NSLog(@"在收到响应后，决定是否跳转。 3");
+    //NSLog(@"在收到响应后，决定是否跳转。 3");
     
 }
 
 //接收到服务器跳转请求之后调用
 - (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(null_unspecified WKNavigation *)navigation
 {
-    NSLog(@"接收到服务器跳转请求之后调用");
+    //NSLog(@"接收到服务器跳转请求之后调用");
 }
 
 -(void)webViewWebContentProcessDidTerminate:(WKWebView *)webView
 {
-    NSLog(@"webViewWebContentProcessDidTerminate");
+    //NSLog(@"webViewWebContentProcessDidTerminate");
 }
 
 #pragma mark - WKScriptMessageHandler
 
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
-    NSLog(@"message.name = %@",message.name);
-    NSLog(@"message.body = %@",message.body);
+    //NSLog(@"message.name = %@",message.name);
+    //NSLog(@"message.body = %@",message.body);
     
     if ([message.name isEqualToString:@"oh_initWithFrame"]) {//初始化和frame
         
@@ -332,7 +332,7 @@
     NSString * funcStr = [NSString stringWithFormat:@"pressOhButton(%ld)", (long)tag];
     [self.wkWebView evaluateJavaScript:funcStr completionHandler:^(id _Nullable response, NSError * _Nullable error) {
         //TODO
-        NSLog(@"%@ %@",response,error);
+        //NSLog(@"%@ %@",response,error);
     }];
     
 }

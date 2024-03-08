@@ -199,7 +199,7 @@
 
 - (void)doSomething:(UIPanGestureRecognizer *)sender
 {
-    NSLog(@"do something");
+    //NSLog(@"do something");
 }
 
 
@@ -241,7 +241,7 @@
     
     CGPoint translate = [recognizer translationInView:gestureRecognizer.view];
 
-//    NSLog(@"translate = %@",NSStringFromCGPoint(translate));
+//    //NSLog(@"translate = %@",NSStringFromCGPoint(translate));
     
     if (translate.x <= 0) {//到达最右侧
         
@@ -456,6 +456,6 @@
 
 
 - (void)sp_getMediaData {
-    NSLog(@"Check your Network");
+    //NSLog(@"Check your Network");
 }
 @end

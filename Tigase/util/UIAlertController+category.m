@@ -51,7 +51,6 @@
  
     if (cancelButtonTitle) {
         UIAlertAction *cancle = [UIAlertAction actionWithTitle:cancelButtonTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            NSLog(@"点击了alert的取消按钮");
             inblock(2);
         }];
         //[cancle setValue:KDARKCOLOR forKey:@"titleTextColor"];

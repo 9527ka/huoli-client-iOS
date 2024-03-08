@@ -574,7 +574,7 @@
     UIView * view = tapGestureRecognizer.view;
     NSUInteger index = view.tag - 200;
     
-    NSLog(@"%ld----%ld",self.selIndex,index);
+    //NSLog(@"%ld----%ld",self.selIndex,index);
     NSDictionary *tempDic;
     NSArray *tempArr;
     if (self.selIndex>=2) {

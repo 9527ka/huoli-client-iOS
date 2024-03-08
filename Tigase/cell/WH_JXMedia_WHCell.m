@@ -118,7 +118,7 @@
 }
 
 -(void)dealloc{
-    NSLog(@"WH_JXMedia_WHCell.dealloc");
+    //NSLog(@"WH_JXMedia_WHCell.dealloc");
     self.media = nil;
     self.delegate = nil;
     self.bage = nil;
@@ -147,6 +147,6 @@
 
 
 - (void)sp_getUserName {
-    NSLog(@"Check your Network");
+    //NSLog(@"Check your Network");
 }
 @end

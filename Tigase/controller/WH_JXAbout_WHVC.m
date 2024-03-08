@@ -296,7 +296,7 @@
 }
 
 -(void)dealloc{
-    NSLog(@"WH_JXAbout_WHVC.dealloc");
+    //NSLog(@"WH_JXAbout_WHVC.dealloc");
 }
 
 - (void)viewDidLoad

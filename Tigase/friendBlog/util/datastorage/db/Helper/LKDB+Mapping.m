@@ -126,7 +126,7 @@ inline NSString *LKSQLTypeFromObjcType(NSString* objcType)
                 //如果 设置的 属性名 是空白的  自动转成 使用ColumeName
                 if([LKDBUtils checkStringIsEmpty:mappingValue])
                 {
-//                    NSLog(@"#ERROR sql colume name %@ mapping value is empty,automatically converted LKDBInherit",colume_name);
+//                    //NSLog(@"#ERROR sql colume name %@ mapping value is empty,automatically converted LKDBInherit",colume_name);
                     mappingValue = LKSQLInherit;
                 }
                 
@@ -239,6 +239,6 @@ inline NSString *LKSQLTypeFromObjcType(NSString* objcType)
 }
 
 - (void)sp_checkUserInfo {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 @end

@@ -422,14 +422,14 @@
 // 开始
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation
 {
-    NSLog(@"开始加载!");
+    //NSLog(@"开始加载!");
 }
 
 
 // 完成
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation
 {
-    NSLog(@"开始完成!");
+    //NSLog(@"开始完成!");
     //设置title
     if (self.autoTitle && webView.title) {
         
@@ -516,6 +516,6 @@
 
 
 - (void)sp_getLoginState {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 @end

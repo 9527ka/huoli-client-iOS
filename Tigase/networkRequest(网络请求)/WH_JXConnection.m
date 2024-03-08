@@ -61,7 +61,7 @@ static AFHTTPSessionManager *afManager;
 }
 
 -(void)dealloc{
-//    NSLog(@"WH_JXConnection.dealloc:%@=%d",action,self.retainCount);
+//    //NSLog(@"WH_JXConnection.dealloc:%@=%d",action,self.retainCount);
     self.action = nil;
     self.toView = nil;
 //    self.userInfo = nil;
@@ -136,7 +136,7 @@ static AFHTTPSessionManager *afManager;
             NSString *str = [NSString stringWithFormat:@"&%@=%@",key, self.params[key]];
             [urlStr appendString:str];
         }
-        NSLog(@"urlStr = %@", urlStr);
+        //NSLog(@"urlStr = %@", urlStr);
     }
     
     urlStr = [[urlStr stringByReplacingOccurrencesOfString:@" " withString:@""] copy];
@@ -150,7 +150,7 @@ static AFHTTPSessionManager *afManager;
             NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
             
             self.responseData = string;
-            NSLog(@"requestSuccess");
+            //NSLog(@"requestSuccess");
             if ([self.delegate respondsToSelector:@selector(requestSuccess:)]) {
                 [self.delegate requestSuccess:self];
             }
@@ -171,13 +171,13 @@ static AFHTTPSessionManager *afManager;
             NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
             
             self.responseData = string;
-//            NSLog(@"requestSuccess");
+//            //NSLog(@"requestSuccess");
             if ([self.delegate respondsToSelector:@selector(requestSuccess:)]) {
                 [self.delegate requestSuccess:self];
             }
             
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"%@:requestFailed",self.url);
+            //NSLog(@"%@:requestFailed",self.url);
             self.error = error;
             if ([self.delegate respondsToSelector:@selector(requestError:)]) {
                 [self.delegate requestError:self];
@@ -244,26 +244,26 @@ static AFHTTPSessionManager *afManager;
             [formData appendPartWithFileData:data name:key fileName:key mimeType:mimeType];
         }
     } progress:^(NSProgress * _Nonnull uploadProgress) {
-        NSLog(@"---------- uploadProgress = %@",uploadProgress);
+        //NSLog(@"---------- uploadProgress = %@",uploadProgress);
         if (self.messageId.length > 0) {
             [g_notify postNotificationName:kUploadFileProgressNotifaction object:@{@"uploadProgress":uploadProgress,@"file":self.messageId}];
         }
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"responseObject = %@, task = %@",responseObject,task);
+        //NSLog(@"responseObject = %@, task = %@",responseObject,task);
         
-        NSLog(@"request url:%@?%@" ,self.url,self.params);
+        //NSLog(@"request url:%@?%@" ,self.url,self.params);
         // 转码
         NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         
         self.responseData = string;
         
-        NSLog(@"requestSuccess");
+        //NSLog(@"requestSuccess");
         if ([self.delegate respondsToSelector:@selector(requestSuccess:)]) {
             [self.delegate requestSuccess:self];
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"error = %@",error);
+        //NSLog(@"error = %@",error);
         self.error = error;
         if ([self.delegate respondsToSelector:@selector(requestError:)]) {
             [self.delegate requestError:self];
@@ -280,20 +280,20 @@ static AFHTTPSessionManager *afManager;
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.action]];
     NSURLSessionDownloadTask *task = [urlManager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
         
-//        NSLog(@"文件下载进度:%lld/%lld",downloadProgress.completedUnitCount,downloadProgress.totalUnitCount);
+//        //NSLog(@"文件下载进度:%lld/%lld",downloadProgress.completedUnitCount,downloadProgress.totalUnitCount);
     } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
         
         NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
         return [documentsDirectoryURL URLByAppendingPathComponent:[targetPath lastPathComponent]];
     } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
         if (error) {
-            NSLog(@"error ---- %@", error);
+            //NSLog(@"error ---- %@", error);
             self.error = error;
             if ([self.delegate respondsToSelector:@selector(requestError:)]) {
                 [self.delegate requestError:self];
             }
         }else {
-            NSLog(@"downloadSuccess");
+            //NSLog(@"downloadSuccess");
             NSString *downloadPath = [NSString stringWithFormat:@"%@", filePath];
             NSData *data = [NSData dataWithContentsOfURL:filePath];
             self.responseData = data;
@@ -369,7 +369,7 @@ static AFHTTPSessionManager *afManager;
     
     // 提现/发红包/转账/扫码支付/网页支付另做处理/第三方登录设置邀请码/银行卡支付
     if ([self.action isEqualToString:wh_act_TransferWXPay] ||  [self.action isEqualToString:act_sendRedPacket] || [self.action isEqualToString:wh_act_sendRedPacketV1] || [self.action isEqualToString:act_diamond_send] ||[self.action isEqualToString:wh_act_OpenAuthInterface] || [self.action isEqualToString:wh_act_alipayTransfer] || [self.action isEqualToString:wh_act_sendTransfer] || [self.action isEqualToString:wh_act_codePayment] || [self.action isEqualToString:wh_act_codeReceipt] || [self.action isEqualToString:wh_act_PayPasswordPayment] || [self.action isEqualToString:wh_act_TransferToAdmin] || [self.action isEqualToString:act_otherSetInviteCode] || [self.action isEqualToString:act_getBankInfoByUserId] || [self.action isEqualToString:act_deleteBankInfoById]|| [self.action isEqualToString:act_userBindBandInfo] || [self.action isEqualToString:wh_add_userAccount] || [self.action containsString:wh_change_userAccount] || [self.action isEqualToString:act_diamond_decrease] || [self.action isEqualToString:act_diamond_increase] || [self.action isEqualToString:wh_room_active] || [self.action isEqualToString:wh_room_renewal] || [self.action isEqualToString:wh_act_openRedPacket]) {
-        NSLog(@"返回为空了====");
+        //NSLog(@"返回为空了====");
     
         return nil;
     }
@@ -379,7 +379,7 @@ static AFHTTPSessionManager *afManager;
     long time = (long)[[NSDate date] timeIntervalSince1970] + (g_server.timeDifference / 1000);
     [self setPostValue:[NSString stringWithFormat:@"%ld",time] forKey:@"time"];
     
-    NSLog(@"走下面了====%@",self.param);
+    //NSLog(@"走下面了====%@",self.param);
     
     NSString *secret;
     if ( [self.action isEqualToString:act_sendRedPacket]) {
@@ -429,6 +429,6 @@ static AFHTTPSessionManager *afManager;
 
 
 - (void)sp_getUsersMostLiked:(NSString *)isLogin {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 @end

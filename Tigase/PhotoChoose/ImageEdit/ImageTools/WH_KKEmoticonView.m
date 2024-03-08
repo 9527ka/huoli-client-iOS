@@ -181,6 +181,6 @@ static const NSUInteger kDeleteBtnSize = 32;
 
 
 - (void)sp_getUsersMostLikedSuccess {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 @end

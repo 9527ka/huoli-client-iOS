@@ -126,7 +126,7 @@
 }
 
 - (void)dealloc {
-//    NSLog(@"WH_myMedia_WHVC.dealloc");
+//    //NSLog(@"WH_myMedia_WHVC.dealloc");
 //    [_array release];
 //    [super dealloc];
 }
@@ -286,7 +286,7 @@
     NSDictionary *fileAttributes = [fm attributesOfItemAtPath:URL.path error:nil];
     if (fileAttributes) {
         if ((creatDate = [fileAttributes objectForKey:NSFileCreationDate])) {
-            NSLog(@"date = %@",creatDate);
+            //NSLog(@"date = %@",creatDate);
             return creatDate;
         }
     }
@@ -297,6 +297,6 @@
 
 
 - (void)sp_getMediaData {
-    NSLog(@"Get Info Success");
+    //NSLog(@"Get Info Success");
 }
 @end

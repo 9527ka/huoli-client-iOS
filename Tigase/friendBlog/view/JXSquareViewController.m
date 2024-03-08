@@ -247,26 +247,26 @@ typedef NS_ENUM(NSInteger, JXSquareType) {
     _footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
         
         [weakSelf WH_scrollToPageDown];
-        //        NSLog(@"%@----开始进入刷新状态", refreshView.class);
+        //        //NSLog(@"%@----开始进入刷新状态", refreshView.class);
     };
     _footer.endStateChangeBlock = ^(MJRefreshBaseView *refreshView) {
         
         // 刷新完毕就会回调这个Block
-        //        NSLog(@"%@----刷新完毕", refreshView.class);
+        //        //NSLog(@"%@----刷新完毕", refreshView.class);
     };
     _footer.refreshStateChangeBlock = ^(MJRefreshBaseView *refreshView, MJRefreshState state) {
         // 控件的刷新状态切换了就会调用这个block
         switch (state) {
             case MJRefreshStateNormal:
-                //                NSLog(@"%@----切换到：普通状态", refreshView.class);
+                //                //NSLog(@"%@----切换到：普通状态", refreshView.class);
                 break;
                 
             case MJRefreshStatePulling:
-                //                NSLog(@"%@----切换到：松开即可刷新的状态", refreshView.class);
+                //                //NSLog(@"%@----切换到：松开即可刷新的状态", refreshView.class);
                 break;
                 
             case MJRefreshStateRefreshing:
-                //                NSLog(@"%@----切换到：正在刷新状态", refreshView.class);
+                //                //NSLog(@"%@----切换到：正在刷新状态", refreshView.class);
                 break;
             default:
                 break;
@@ -289,21 +289,21 @@ typedef NS_ENUM(NSInteger, JXSquareType) {
     };
     _header.endStateChangeBlock = ^(MJRefreshBaseView *refreshView) {
         // 刷新完毕就会回调这个Block
-        //        NSLog(@"%@----刷新完毕", refreshView.class);
+        //        //NSLog(@"%@----刷新完毕", refreshView.class);
     };
     _header.refreshStateChangeBlock = ^(MJRefreshBaseView *refreshView, MJRefreshState state) {
         // 控件的刷新状态切换了就会调用这个block
         switch (state) {
             case MJRefreshStateNormal:
-                //                NSLog(@"%@----切换到：普通状态", refreshView.class);
+                //                //NSLog(@"%@----切换到：普通状态", refreshView.class);
                 break;
                 
             case MJRefreshStatePulling:
-                //                NSLog(@"%@----切换到：松开即可刷新的状态", refreshView.class);
+                //                //NSLog(@"%@----切换到：松开即可刷新的状态", refreshView.class);
                 break;
                 
             case MJRefreshStateRefreshing:
-                //                NSLog(@"%@----切换到：正在刷新状态", refreshView.class);
+                //                //NSLog(@"%@----切换到：正在刷新状态", refreshView.class);
                 break;
             default:
                 break;
@@ -458,14 +458,14 @@ typedef NS_ENUM(NSInteger, JXSquareType) {
 - (void)clickButtonMethod:(UIButton *)btn {
     if (btn.tag == 0) {
         //朋友圈
-        NSLog(@"朋友圈");
+        //NSLog(@"朋友圈");
         WH_WeiboViewControlle *weiboVC = [WH_WeiboViewControlle alloc];
         weiboVC.user = g_myself;
         weiboVC = [weiboVC init];
         [g_navigation pushViewController:weiboVC animated:YES];
     }else if (btn.tag == 1) {
         //视频会议
-        NSLog(@"视频会议");
+        //NSLog(@"视频会议");
         [GKMessageTool showText:@"功能开发中"];
         return;
 #ifdef Meeting_Version
@@ -486,7 +486,7 @@ typedef NS_ENUM(NSInteger, JXSquareType) {
 #endif
     }else if (btn.tag == 2) {
         //视频直播
-        NSLog(@"视频直播");
+        //NSLog(@"视频直播");
         [GKMessageTool showText:@"功能开发中"];
         return;
 #ifdef Live_Version
@@ -497,7 +497,7 @@ typedef NS_ENUM(NSInteger, JXSquareType) {
         
     }else if (btn.tag == 3) {
         //短视频
-        NSLog(@"短视频");
+        //NSLog(@"短视频");
         
 #ifdef Meeting_Version
 #ifdef Live_Version
@@ -512,7 +512,7 @@ typedef NS_ENUM(NSInteger, JXSquareType) {
         
     }else if (btn.tag == 4) {
         //附近的人
-        NSLog(@"附近的人");
+        //NSLog(@"附近的人");
         
 //        [JXMyTools showTipView:@"暂未开通，敬请期待"];
         [GKMessageTool showText:@"暂未开通，敬请期待"];

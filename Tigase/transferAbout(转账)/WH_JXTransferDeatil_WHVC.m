@@ -149,7 +149,8 @@ typedef NS_ENUM(NSInteger, JXTransferDeatilType) {
         image = [UIImage imageNamed:@"ic_ts_status3"];
         hintStr = Localized(@"JX_Returned(expired)");
         botTimeStr = Localized(@"JX_ExpirationTime");
-        oneDayStr = Localized(@"JX_TheChangeHasBeenRefunded,");
+//        oneDayStr = Localized(@"JX_TheChangeHasBeenRefunded,");
+        oneDayStr = @"已退款到零钱 ";
         clickLabStr = Localized(@"JX_LookAtTheChange");
         botTime = self.model.outTime;
     }

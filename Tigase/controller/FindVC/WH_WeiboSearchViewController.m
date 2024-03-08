@@ -66,7 +66,6 @@
 //上拉加载
 -(void)WH_getServerData{
       [_wait start];
-    NSLog(@"%d", _page);
     if (self.wh_isShowFooterPull) {
         [g_server searchCircleWithUserId:self.lastUserId keyWord:!self.lastUserId || [self.lastUserId isEqualToString:MY_USER_ID] ? self.lastKeyWord : @"" monthStr:self.lastMonthStr pageIndex:[NSString stringWithFormat:@"%d", _page] pageSize:@"5" type:self.lastType toView:self];
     }
@@ -167,7 +166,6 @@
     [g_navigation WH_dismiss_WHViewController:self animated:YES];
 }
 - (void)getFriend {
-    NSLog(@"%@", MY_USER_ID);
     [g_server WH_listAttentionWithPage:0 userId:MY_USER_ID toView:self];
 }
 - (void)releasePersonAction {
@@ -195,7 +193,6 @@
     [self windowViewShow];
 }
 - (void)finishAction {
-    NSLog(@"%@--%@", self.year, self.month);
     NSArray *array = [[JXXMPP getCurrentDay] componentsSeparatedByString:@"-"];
     if (([array[0] intValue] == [self.year intValue] && [array[1] intValue] < [self.month intValue])) {
         [GKMessageTool showText:@"请选择正确时间"];
@@ -233,7 +230,6 @@
         [JXXMPP becomeButtonStyle:self.releaseTimeBtn];
     }
     [_table reloadData];
-    NSLog(@"%@-%@-%@-%@", monthStr, type, self.currentUserId, self.searchBar.text);
     _page = 0;
     [g_server searchCircleWithUserId:self.currentUserId ? self.currentUserId : MY_USER_ID keyWord:!self.currentUserId || [self.currentUserId isEqualToString:MY_USER_ID] ? self.searchBar.text : @"" monthStr:monthStr pageIndex:[NSString stringWithFormat:@"%d", _page] pageSize:@"5" type:type toView:self];
     self.lastType = type;
@@ -249,7 +245,6 @@
     if (tableView == self.searchTable) {
         return self.currentArray.count;
     } else {
-        NSLog(@"%ld", self.weiboArray.count);
         return self.weiboArray.count;
     }
 }
@@ -329,7 +324,6 @@
         paragraphStyle.lineSpacing = 5.0; // 设置行间距
         [text addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, text.length)];
         subLabel.attributedText = text;
-        NSLog(@"=============%ld",indexPath.row);
         float height=[self tableView:tableView heightForRowAtIndexPath:indexPath];
         UIView * view=[cell.contentView viewWithTag:1200];
         if(view==nil){
@@ -616,7 +610,6 @@
             model.toUserId = [JXXMPP getString:dic[@"toUserId"]];
             model.toNickname = [JXXMPP getString:dic[@"toNickname"]];
             model.userNickname = model.remarkName.length > 0 ? model.remarkName : model.toNickname;
-            NSLog(@"%@", model.userNickname);
             [self.dataSource addObject:model];
         }
     }
@@ -723,7 +716,6 @@
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     
-    NSLog(@"输入的关键字是---%@---%lu",searchText,(unsigned long)searchText.length);
     if (searchBar.text.length == 0) {
         self.placeholderView.hidden = YES;
         _table.hidden = YES;
@@ -768,7 +760,6 @@
 //点击键盘上的搜索时
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    NSLog(@"%@", searchBar.text);
     UITextField *searchField = [self.searchBar valueForKey:@"searchField"];
     if (searchField) {
         searchField.textColor = HEXCOLOR(0x0093FF);

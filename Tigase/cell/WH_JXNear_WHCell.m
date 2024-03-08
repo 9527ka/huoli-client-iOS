@@ -265,6 +265,6 @@
 
 
 - (void)sp_checkNetWorking {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 @end

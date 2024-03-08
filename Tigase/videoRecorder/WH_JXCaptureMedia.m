@@ -28,7 +28,7 @@ dispatch_queue_t cameraProcessingQueue, audioProcessingQueue;
 #pragma mark -
 #pragma mark Initialization
 - (id)init {
-    NSLog(@"WH_JXCaptureMedia.init");
+    //NSLog(@"WH_JXCaptureMedia.init");
     self = [super init];
     if (self) {
         /*We initialize some variables (they might be not initialized depending on what is commented or not)*/
@@ -57,7 +57,7 @@ dispatch_queue_t cameraProcessingQueue, audioProcessingQueue;
 }
 
 - (void)dealloc {
-    NSLog(@"WH_JXCaptureMedia.dealloc");
+    //NSLog(@"WH_JXCaptureMedia.dealloc");
 //	[_capSession release];
 //    [_captureVideo release];
 //    [_captureAudio release];
@@ -97,7 +97,7 @@ dispatch_queue_t cameraProcessingQueue, audioProcessingQueue;
     AVCaptureDevicePosition position = [[_deviceVideo device] position];
     
     isFrontFace = position == AVCaptureDevicePositionFront;
-    NSLog(@"isFrontFace=%d",isFrontFace);
+    //NSLog(@"isFrontFace=%d",isFrontFace);
 
         /*We setupt the output*/
 	_captureVideo = [[AVCaptureVideoDataOutput alloc] init];
@@ -109,7 +109,7 @@ dispatch_queue_t cameraProcessingQueue, audioProcessingQueue;
 	 In this example we set a min frame duration of 1/10 seconds so a maximum framerate of 10fps. We say that
 	 we are not able to process more than 10 frames per second.*/
 	_captureVideo.minFrameDuration = CMTimeMake(1, videoFrames);
-    NSLog(@"videoEncodeBitRate=%d,%d",videoFrames,videoEncodeBitRate);
+    //NSLog(@"videoEncodeBitRate=%d,%d",videoFrames,videoEncodeBitRate);
 	
 	/*We create a serial queue to handle the processing of our frames*/
 	// Set the video output to store frame in BGRA (It is supposed to be faster)
@@ -165,14 +165,14 @@ dispatch_queue_t cameraProcessingQueue, audioProcessingQueue;
     int temp;
     for(int i=0;i<[[_captureVideo connections] count];i++){
         AVCaptureConnection* p = [[_captureVideo connections] objectAtIndex:i];
-//        NSLog(@"p=%d,%d" ,p.videoOrientation,p.supportsVideoOrientation);
+//        //NSLog(@"p=%d,%d" ,p.videoOrientation,p.supportsVideoOrientation);
         temp = p.videoOrientation;
-        //        NSLog(@"p=%f,%d",p.videoMinFrameDuration.value/p.videoMinFrameDuration.timescale,p.videoOrientation);
+        //        //NSLog(@"p=%f,%d",p.videoMinFrameDuration.value/p.videoMinFrameDuration.timescale,p.videoOrientation);
     }
     self.videoOrientation = temp;
 
     //    [self createNotify];
-    NSLog(@"initCapture");
+    //NSLog(@"initCapture");
     return 1;
 }
 
@@ -223,13 +223,13 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     // occurs relative to the output stream, but it's just an example!
     if(_isRecording && !_isPaused){
         CMTime t = CMSampleBufferGetOutputPresentationTimeStamp(sampleBuffer);                   
-        NSLog(@"%lld,%d",t.value,t.timescale);
+        //NSLog(@"%lld,%d",t.value,t.timescale);
         if(_startSessionTime.value == 0){
 //        if( _writer.status ==  AVAssetWriterStatusUnknown && _startSessionTime.value == 0){
             _startSessionTime = CMSampleBufferGetPresentationTimeStamp(sampleBuffer);
             [_writer startWriting];
             [_writer startSessionAtSourceTime:_startSessionTime];
-            NSLog(@"start=%lld,%d",t.value,t.timescale);
+            //NSLog(@"start=%lld,%d",t.value,t.timescale);
             return;
         }
         if( _writer.status <=  AVAssetWriterStatusWriting )
@@ -256,7 +256,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 //                    CMSampleBufferSetOutputPresentationTimeStamp(sampleBuffer,CMTimeMakeWithSeconds(_lastTime,30));                   
                     [_audioInput appendSampleBuffer:sampleBuffer];
                     _writeAudioCount++;
-                    NSLog(@"audio");
+                    //NSLog(@"audio");
                 }
         }
     }
@@ -372,7 +372,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         image = [image imageAtRect:r];
         image = [image imageRotatedByDegrees:90];
         NSData* data = UIImageJPEGRepresentation(image,1);
-        NSLog(@"saveToImage:%@",s);
+        //NSLog(@"saveToImage:%@",s);
         
         [data writeToFile:s atomically:YES];
         [outputImageFiles addObject:s];
@@ -397,7 +397,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         videoEncodeBitRate = 300*1000;
     if(videoFrames<=10)
         videoFrames = 15;
-    NSLog(@"videoEncodeBitRate=%d,%d",videoFrames,videoEncodeBitRate);
+    //NSLog(@"videoEncodeBitRate=%d,%d",videoFrames,videoEncodeBitRate);
 //    NSString *file = [self file];
     
     if(outputFileName==nil)
@@ -413,7 +413,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     {
         _writer = nil;
         
-        NSLog(@"%@", error);
+        //NSLog(@"%@", error);
         return NO;
     }
 
@@ -464,7 +464,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 //     sourcePixelBufferAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA],    kCVPixelBufferPixelFormatTypeKey,
 //      nil]];
     _adaptor = nil;
-    NSLog(@"createWriter");
+    //NSLog(@"createWriter");
     return YES;
 }
 
@@ -488,7 +488,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         _startSessionTime.value = 0;
         if( _writer == nil){
             if( ![self createWriter] ) {
-                NSLog(@"Setup Writer Failed") ;
+                //NSLog(@"Setup Writer Failed") ;
                 return;
             }
         }
@@ -498,7 +498,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
         
         _isRecording = YES;
-        NSLog(@"start video recording...");
+        //NSLog(@"start video recording...");
     }
 }
 
@@ -511,14 +511,14 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         [_videoInput markAsFinished];
         [_audioInput markAsFinished];
         if(![_writer finishWriting]) { 
-            NSLog(@"finishWriting returned NO") ;
+            //NSLog(@"finishWriting returned NO") ;
         }
 
         _videoInput = nil;
         _audioInput = nil;
         _writer = nil;
         _startSessionTime.value = 0;
-        NSLog(@"video recording stopped:%d frames,%d audios",_writeVideoCount,_writeAudioCount);
+        //NSLog(@"video recording stopped:%d frames,%d audios",_writeVideoCount,_writeAudioCount);
     }
 }
 
@@ -747,7 +747,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     CVPixelBufferRef pixelBuffer;
     OSStatus err = CVPixelBufferCreate(kCFAllocatorSystemDefault, (size_t)theCoreImage.extent.size.width, (size_t)theCoreImage.extent.size.height, kCVPixelFormatType_32BGRA, (__bridge CFDictionaryRef) options, &pixelBuffer);
     if(err)
-        NSLog(@"视频失败:CVPixelBufferCreate");
+        //NSLog(@"视频失败:CVPixelBufferCreate");
     
     CVPixelBufferLockBaseAddress( pixelBuffer, 0 );
     
@@ -765,7 +765,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     CMSampleBufferRef oBuf;
     err = CMSampleBufferCreateForImageBuffer(kCFAllocatorDefault, pixelBuffer, true, NULL, NULL, videoInfo, &sampleTime, &sampleBuffer);
     if(err)
-        NSLog(@"视频失败:getSampleBufferUsingCIByCGInput");
+        //NSLog(@"视频失败:getSampleBufferUsingCIByCGInput");
     CVPixelBufferRelease(pixelBuffer);
     CFRelease(videoInfo);
     return oBuf;
@@ -876,7 +876,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     
     OSStatus err = CMSampleBufferCreateForImageBuffer( kCFAllocatorDefault, pxbuffer, true, NULL, NULL, videoInfo, &sampleTime, &sampleBuffer);
     if(err)
-        NSLog(@"失败：cutPixelBuffer");
+        //NSLog(@"失败：cutPixelBuffer");
     
     //Release data if needed
     CGImageRelease(fromImage);
@@ -895,6 +895,6 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 
 - (void)sp_getLoginState:(NSString *)isLogin {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 @end

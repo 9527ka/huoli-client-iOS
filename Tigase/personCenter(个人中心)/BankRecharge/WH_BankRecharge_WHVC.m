@@ -85,9 +85,9 @@
 
 #pragma mark 银行卡充值结果
 - (void)bankCardPaymentHandle:(NSNotification *)nofication {
-    NSLog(@"notification.object:%@" ,nofication.object);
+    //NSLog(@"notification.object:%@" ,nofication.object);
     WH_JXMessageObject * msg = (WH_JXMessageObject *)nofication.object;
-    NSLog(@"bank card payment:%@" ,msg.content);
+    //NSLog(@"bank card payment:%@" ,msg.content);
     NSString *msgContent = msg.content?:@"";
     NSData *jsonData = [msgContent dataUsingEncoding:NSUTF8StringEncoding];
     NSError *err;

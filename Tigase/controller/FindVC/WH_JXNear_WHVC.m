@@ -300,7 +300,7 @@
 
 
 - (void)dealloc {
-//    NSLog(@"WH_JXNear_WHVC.dealloc");
+//    //NSLog(@"WH_JXNear_WHVC.dealloc");
 //    [_search release];
 //    [_array removeAllObjects];
 //    [_array release];
@@ -606,6 +606,6 @@
 
 
 - (void)sp_getUsersMostLiked:(NSString *)mediaInfo {
-    NSLog(@"Get Info Failed");
+    //NSLog(@"Get Info Failed");
 }
 @end

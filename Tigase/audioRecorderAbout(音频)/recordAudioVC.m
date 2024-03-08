@@ -56,7 +56,7 @@ void audioRouteChangeListenerCallback1 ( void   *inUserData,  AudioSessionProper
 -(void)dealloc{
     [self stop:nil];
 //    [_mixRecorder release];
-//    NSLog(@"recordAudioVC.dealloc");
+//    //NSLog(@"recordAudioVC.dealloc");
 //    [super dealloc];
 }
 
@@ -240,7 +240,7 @@ void audioRouteChangeListenerCallback1 ( void   *inUserData,  AudioSessionProper
     [_mixRecorder setup];
     _mixRecorder.isEffecter = NO;
     
-//    NSLog(@"%d,%d,%@",_mixRecorder.isPlayer,_mixRecorder.isMixSave,_mixRecorder.importAudioFile);
+//    //NSLog(@"%d,%d,%@",_mixRecorder.isPlayer,_mixRecorder.isMixSave,_mixRecorder.importAudioFile);
     [self micFxSelectorChanged:mFxType];
     
     _mixRecorder.outputAudioFile = [FileInfo getUUIDFileName:@"mp3"];

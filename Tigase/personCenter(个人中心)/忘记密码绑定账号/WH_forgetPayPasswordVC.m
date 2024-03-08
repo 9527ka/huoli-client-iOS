@@ -89,7 +89,7 @@
 
 #pragma mark - 下一步
 - (void) nextBtnClick{
-    NSLog(@"下一步");
+    //NSLog(@"下一步");
 }
 
 

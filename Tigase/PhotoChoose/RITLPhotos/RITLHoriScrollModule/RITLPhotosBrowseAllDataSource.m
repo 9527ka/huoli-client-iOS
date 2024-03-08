@@ -70,11 +70,11 @@
 
 - (void)dealloc
 {
-    NSLog(@"[%@] is dealloc",NSStringFromClass(self.class));
+    //NSLog(@"[%@] is dealloc",NSStringFromClass(self.class));
 }
 
 
 - (void)sp_getMediaData {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 @end

@@ -39,9 +39,9 @@
 
 //- (void)isMuted:(BOOL)muted {
 //    if (muted) {
-//        NSLog(@"静音");
+//        //NSLog(@"静音");
 //    }else{
-//        NSLog(@"非静音");
+//        //NSLog(@"非静音");
 //    }
 //}
 
@@ -168,7 +168,7 @@
     if (btnTag == 0) {
         [self close];
     }else{
-        NSLog(@"进群");
+        //NSLog(@"进群");
         if (self.entryGroupCallback) {
             self.entryGroupCallback(self);
         }
@@ -233,6 +233,6 @@
 
 
 - (void)sp_getUsersMostFollowerSuccess {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 @end

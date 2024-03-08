@@ -73,7 +73,7 @@
     _input.frame  =  CGRectMake(-0.2, 70*m -5 , 34, 70);
     _input.image = [UIImage imageNamed:@"pub_microphone_volume"];
 //    _input.contentMode = UIViewContentModeScaleAspectFill;
-//    NSLog(@"n:%f  m:%f",n,m);
+//    //NSLog(@"n:%f  m:%f",n,m);
     
 //    _input.image = [_input.image imageAtRect:CGRectMake(9, 69 * m -1 , 34, 69*n )];
 //    _input.frame = CGRectMake(9, 69 * m -2 , 34, 69*n );

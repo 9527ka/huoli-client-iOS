@@ -381,7 +381,7 @@
         [randomNumber appendString:[[digits objectAtIndex:i] stringValue]];
     }
     
-    NSLog(@"Generated unique random number: %@", randomNumber);
+    //NSLog(@"Generated unique random number: %@", randomNumber);
     return randomNumber;
 }
 -(NSMutableArray *)shuffleArrayWithArray:(NSMutableArray *)array{

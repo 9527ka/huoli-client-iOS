@@ -32,7 +32,7 @@
 
 -(void)dealloc{
     [self resume];
-    NSLog(@"WH_JXAudioRecorder_WHViewController.dealloc");
+    //NSLog(@"WH_JXAudioRecorder_WHViewController.dealloc");
 //    [_audioRecorder release];
 //    _audioRecorder = nil;
 //    [super dealloc];
@@ -300,7 +300,7 @@
     [[ChatCacheFileUtil sharedInstance] deleteWithContentPath:_pathURL.path];
     _lastRecordFile = [amrPath copy];
     
-    NSLog(@"音频文件路径:%@\n%@",_pathURL.path,amrPath);
+    //NSLog(@"音频文件路径:%@\n%@",_pathURL.path,amrPath);
     
     if(amrPath == nil){
         [g_App showAlert:Localized(@"WH_AudioRecorder_NotRecorder")];

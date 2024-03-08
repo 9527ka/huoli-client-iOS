@@ -389,6 +389,6 @@ static char operationKey='a';
 
 
 - (void)sp_getLoginState:(NSString *)followCount {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 @end

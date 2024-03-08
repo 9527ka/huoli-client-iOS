@@ -117,7 +117,7 @@
 }
 
 -(void)dealloc{
-//    NSLog(@"WH_JXSearchUser_WHVC.dealloc");
+//    //NSLog(@"WH_JXSearchUser_WHVC.dealloc");
     self.job = nil;
 //    [super dealloc];
 }

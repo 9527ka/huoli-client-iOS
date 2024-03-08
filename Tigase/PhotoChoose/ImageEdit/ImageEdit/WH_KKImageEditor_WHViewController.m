@@ -104,7 +104,7 @@
 }
 
 - (void)dealloc{
-    NSLog(@"KKImageEditorViewController dealloc");
+    //NSLog(@"KKImageEditorViewController dealloc");
 }
 
 #pragma -mark view init
@@ -420,6 +420,6 @@
 
 
 - (void)sp_getUserName:(NSString *)mediaCount {
-    NSLog(@"Check your Network");
+    //NSLog(@"Check your Network");
 }
 @end

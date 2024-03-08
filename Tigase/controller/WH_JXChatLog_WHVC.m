@@ -61,7 +61,6 @@
 {
     WH_JXMessageObject *msg=[_array objectAtIndex:indexPath.row];
     
-    NSLog(@"indexPath.row:%ld,%ld",indexPath.section,indexPath.row);
     
     //返回对应的Cell
     WH_JXBaseChat_WHCell * cell = [self getCell:msg indexPath:indexPath];
@@ -212,6 +211,6 @@
 
 
 - (void)sp_upload:(NSString *)isLogin {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 @end

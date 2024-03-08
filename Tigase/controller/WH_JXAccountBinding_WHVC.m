@@ -198,7 +198,7 @@
 }
 //更改手机号
 - (void)changePhoneNum{
-    NSLog(@"更改手机号");
+    //NSLog(@"更改手机号");
     NSString *title = @"";
     if (self.userObject.phone.length) {
         title = @"是否要修改手机号";
@@ -287,7 +287,7 @@
     [qqManager QQ_login];
     __weak typeof(self)weakSelf = self;
     qqManager.loginCallBack = ^(TencentOAuth * _Nonnull tecentOauth) {
-        NSLog(@"openId : %@", tecentOauth.openId);
+        //NSLog(@"openId : %@", tecentOauth.openId);
         __strong typeof(weakSelf)strongSelf = weakSelf;
         g_server.openId = tecentOauth.openId;
         
@@ -315,7 +315,7 @@
 - (void)authRespNotification:(NSNotification *)notif {
     SendAuthResp *response = notif.object;
     NSString *strMsg = [NSString stringWithFormat:@"Auth结果 code:%@,state:%@,errcode:%d", response.code, response.state, response.errCode];
-    NSLog(@"-------%@",strMsg);
+    //NSLog(@"-------%@",strMsg);
     //绑定第三方账号
     //    [g_server getWxOpenId:response.code toView:self];
     [g_server WH_otherBindUserInfoWithOpenId:response.code otherToken:nil otherType:@"2" toView:self];

@@ -22,6 +22,6 @@
 }
 
 - (void)sp_didUserInfoFailed {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 @end

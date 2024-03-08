@@ -400,6 +400,6 @@ static UIView *supView;
 
 
 - (void)sp_getMediaData {
-    NSLog(@"Get Info Failed");
+    //NSLog(@"Get Info Failed");
 }
 @end

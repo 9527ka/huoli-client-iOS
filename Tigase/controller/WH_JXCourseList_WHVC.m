@@ -392,6 +392,6 @@
 
 
 - (void)sp_getMediaFailed {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 @end

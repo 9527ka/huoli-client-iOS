@@ -125,7 +125,7 @@
     //计算处于背景图的几分之几，并将之转换为滑块的值（1~6）
     float tempFloat = (p.x - 20) / (_slider.frame.size.width) * 6 + 1;
     NSString *tempStr = [self numberFormat:tempFloat];
-    //    NSLog(@"%f,%f,%@", p.x, tempFloat, tempStr);
+    //    //NSLog(@"%f,%f,%@", p.x, tempFloat, tempStr);
     [_slider setValue:tempStr.floatValue];
     g_constant.chatFont = tempStr.floatValue + 15.0 - 2.0;
     [self.tableView reloadData];
@@ -176,9 +176,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WH_JXMessageObject *msg=[_array objectAtIndex:indexPath.row];
-    
-    NSLog(@"indexPath.row:%ld,%ld",indexPath.section,indexPath.row);
-    
+        
     //返回对应的Cell
     WH_JXBaseChat_WHCell * cell = [self getCell:msg indexPath:indexPath];
     cell.msg = msg;
@@ -256,6 +254,6 @@
 
 
 - (void)sp_getLoginState {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 @end

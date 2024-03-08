@@ -135,8 +135,8 @@ static OSStatus inputRenderCallback (void *inRefCon,
             OSStatus result;
             result = ExtAudioFileRead (soundPtr->audioFile,&numberOfPacketsToRead,ioData);
             if(result != noErr){
-//                NSLog(@"ExtAudioFileRead=%d",result);
-//                NSLog(@"mNumberBuffers=%d,%d",ioData->mNumberBuffers,ioData->mBuffers[0].mDataByteSize);
+//                //NSLog(@"ExtAudioFileRead=%d",result);
+//                //NSLog(@"mNumberBuffers=%d,%d",ioData->mNumberBuffers,ioData->mBuffers[0].mDataByteSize);
             }
             soundPtr->sampleNumber += numberOfPacketsToRead;
 
@@ -208,7 +208,7 @@ static OSStatus synthRenderCallback (void *inRefCon,
     float envelope;                 // scaling factor from envelope generator 0->1
 	
 	
-    //	NSLog(@"inside callback - freq: %f phase: %f", freq, phase );
+    //	//NSLog(@"inside callback - freq: %f phase: %f", freq, phase );
 	double phaseIncrement = 2 * M_PI * freq / THIS.graphSampleRate; // phase change per sample
 	
 	AudioSampleType *outSamples;
@@ -316,7 +316,7 @@ OSStatus micLineInCallback (void *inRefCon,
     isStereo = numberOfChannels > 1 ? 1 : 0;  // decide stereo or mono
 
     //  printf("isStereo: %d\n", isStereo);
-    //  NSLog(@"frames: %lu, bus: %lu",inNumberFrames, inBusNumber );
+    //  //NSLog(@"frames: %lu, bus: %lu",inNumberFrames, inBusNumber );
 	
 	// copy all the input samples to the callback buffer - after this point we could bail and have a pass through
 	
@@ -372,7 +372,7 @@ OSStatus micLineInCallback (void *inRefCon,
     // for now, run the effects in mono
 
     
-//    NSLog(@"inNumberFrames=:%d",inNumberFrames);
+//    //NSLog(@"inNumberFrames=:%d",inNumberFrames);
     if(THIS.isEffecter) {       // if user toggled on mic fx
         
         if(isStereo) {              // if stereo, combine left and right channels into left
@@ -450,7 +450,7 @@ OSStatus micLineInCallback (void *inRefCon,
                 dataInRight  = soundStructPointerArray->audioDataRight;
             
             float volume = THIS.volumePlayer;
-//            NSLog(@"%d,%d",THIS.isHeadset,THIS.isHeadsetTrue);
+//            //NSLog(@"%d,%d",THIS.isHeadset,THIS.isHeadsetTrue);
             
             if( THIS.isHeadset && THIS.isHeadsetTrue)
                 volume = volume*2;
@@ -461,7 +461,7 @@ OSStatus micLineInCallback (void *inRefCon,
                 volRecord = 2;
             else
                 volRecord = 1;
-            //NSLog(@"volRecord=%f",volRecord);
+            ////NSLog(@"volRecord=%f",volRecord);
             
             
             UInt32 writeNumber = soundStructPointerArray->writeNumber;
@@ -471,7 +471,7 @@ OSStatus micLineInCallback (void *inRefCon,
                 {
                     SInt16To32(&inSamplesLeft[i],&out32SamplesLeft[i]);
                     SInt16To32(&inSamplesLeft[i],&out32SamplesRight[i]);
-                    //NSLog(@"out32SamplesLeft=%d,dataInLeft=%d",out32SamplesLeft[i],dataInRight[writeNumber]);
+                    ////NSLog(@"out32SamplesLeft=%d,dataInLeft=%d",out32SamplesLeft[i],dataInRight[writeNumber]);
                     if(THIS.isReadFileToMemory){
                         out32SamplesLeft[i]  = get2To1Sample(out32SamplesLeft[i],dataInLeft[writeNumber+soundStructPointerArray->sampleNumber],volume,volRecord);
                     }else{
@@ -483,7 +483,7 @@ OSStatus micLineInCallback (void *inRefCon,
                         }else
                             out32SamplesLeft[i]  = get2To1Sample(out32SamplesLeft[i],dataInLeft[writeNumber],volume,volRecord);
                     }
-                    //NSLog(@"out32SamplesLeft=%d,%d",out32SamplesLeft[i],n);
+                    ////NSLog(@"out32SamplesLeft=%d,%d",out32SamplesLeft[i],n);
                     SInt32To16(&out32SamplesLeft[i], &out16SamplesLeft[i]);
                 }
                 writeNumber++;
@@ -511,7 +511,7 @@ OSStatus micLineInCallback (void *inRefCon,
         
         if(status != noErr){
             THIS.isErroring = YES;
-//            NSLog(@"ExtAudioFileWriteAsync=%d",status);
+//            //NSLog(@"ExtAudioFileWriteAsync=%d",status);
         }
     }
     
@@ -531,7 +531,7 @@ OSStatus micLineInCallback (void *inRefCon,
                     max = n;
                 SInt16To32(&n,&out32SamplesRight[i]);
             }*/
-            //NSLog(@"max=%d",max);
+            ////NSLog(@"max=%d",max);
         }
     }else
         memset(out32SamplesRight, 0, ioData->mBuffers[0].mDataByteSize);        
@@ -788,15 +788,15 @@ OSStatus fftPassThrough (   void                        *inRefCon,          // s
 	
 	// so I have a question - the fft buffer  needs to be an even multiple of the frame (packet size?) or what?
     
-	// NSLog(@"index: %d", index);
+	// //NSLog(@"index: %d", index);
 	int read = bufferCapacity - index;
 	if (read > inNumberFrames) {
-		// NSLog(@"filling");
+		// //NSLog(@"filling");
         
 		memcpy((SInt16 *)dataBuffer + index, sampleBuffer, inNumberFrames * sizeof(SInt16));
 		THIS.fftIndex += inNumberFrames;
 	} else {
-		// NSLog(@"processing");
+		// //NSLog(@"processing");
 		// If we enter this conditional, our buffer will be filled and we should 
 		// perform the FFT.
         
@@ -1917,7 +1917,7 @@ float MagnitudeSquared(float x, float y) {
 #pragma mark Deallocate
 
 - (void) dealloc {
-//    NSLog(@"audioRecorder.dealloc");
+//    //NSLog(@"audioRecorder.dealloc");
     //AudioSessionRemovePropertyListener(kAudioSessionProperty_AudioRouteChange);
     //AUGraphUninitialize(processingGraph);
     //DisposeAUGraph(processingGraph);
@@ -2022,23 +2022,23 @@ float MagnitudeSquared(float x, float y) {
 // some debugging to find out about ourselves    
     OSStatus error;
 #if !CA_PREFER_FIXED_POINT
-//	NSLog(@"not fixed point");
+//	//NSLog(@"not fixed point");
 #else
-//	NSLog(@"fixed point");
+//	//NSLog(@"fixed point");
 #endif
 	
 
 #if TARGET_IPHONE_SIMULATOR
 
 // #warning *** Simulator mode: beware ***
-//	NSLog(@"simulator is running");
+//	//NSLog(@"simulator is running");
 #else
-//	NSLog(@"device is running");
+//	//NSLog(@"device is running");
 #endif
       
     
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-//        NSLog(@"running iphone or ipod touch...\n");
+//        //NSLog(@"running iphone or ipod touch...\n");
     }
     
 	
@@ -2065,10 +2065,10 @@ float MagnitudeSquared(float x, float y) {
     
 	inputDeviceIsAvailable = [mySession inputIsAvailable];
     if(inputDeviceIsAvailable) {
-//            NSLog(@"input device is available");
+//            //NSLog(@"input device is available");
     }
     else {
-//        NSLog(@"input device not available...");
+//        //NSLog(@"input device not available...");
         [mySession setCategory: AVAudioSessionCategoryPlayback
                          error: &audioSessionError];
        
@@ -2099,7 +2099,7 @@ float MagnitudeSquared(float x, float y) {
 	UInt32 sss = sizeof(currentBufferDuration);
 	
 	AudioSessionSetProperty(kAudioSessionProperty_CurrentHardwareIOBufferDuration, sizeof(currentBufferDuration), &currentBufferDuration);
-//	NSLog(@"setting buffer duration to: %f", currentBufferDuration);
+//	//NSLog(@"setting buffer duration to: %f", currentBufferDuration);
 	
 	
     UInt32 doChangeDefaultRoute = 1;
@@ -2131,14 +2131,14 @@ float MagnitudeSquared(float x, float y) {
 
     // Obtain the actual hardware sample rate and store it for later use in the audio processing graph.
     self.graphSampleRate = [mySession currentHardwareSampleRate];
-//	NSLog(@"Actual sample rate is: %f", self.graphSampleRate );
+//	//NSLog(@"Actual sample rate is: %f", self.graphSampleRate );
 	
 	// find out the current buffer duration
 	// to calculate duration use: buffersize / sample rate, eg., 512 / 44100 = .012
 	
 	// Obtain the actual buffer duration - this may be necessary to get fft stuff working properly in passthru
 	AudioSessionGetProperty(kAudioSessionProperty_CurrentHardwareIOBufferDuration, &sss, &currentBufferDuration);
-//	NSLog(@"Actual current hardware io buffer duration: %f ", currentBufferDuration );
+//	//NSLog(@"Actual current hardware io buffer duration: %f ", currentBufferDuration );
 	
 	
 
@@ -2151,7 +2151,7 @@ float MagnitudeSquared(float x, float y) {
     
     
     NSInteger numberOfChannels = [mySession currentHardwareInputNumberOfChannels];  
-//	NSLog(@"number of channels: %d", numberOfChannels );	
+//	//NSLog(@"number of channels: %d", numberOfChannels );	
     displayNumberOfInputChannels = numberOfChannels;    // set instance variable for display
 
     mySession = nil;
@@ -2191,13 +2191,13 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
 	
 	err = AudioConverterNew(&inFormat, &outFormat, &converter);
 	if(noErr != err) {
-//		NSLog(@"error in audioConverterNew: %ld", err);
+//		//NSLog(@"error in audioConverterNew: %ld", err);
 	}
 	
 	
 	err = AudioConverterConvertBuffer(converter, inSize, buf, &outSize, outputBuf);
 	if(noErr != err) {
-//		NSLog(@"error in audioConverterConvertBuffer: %ld", err);
+//		//NSLog(@"error in audioConverterConvertBuffer: %ld", err);
 	}
 	
 }
@@ -2461,7 +2461,7 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
 	
 	fftSetup = vDSP_create_fftsetup(fftLog2n, FFT_RADIX2);
     if( fftSetup == (FFTSetup) 0) {
-//        NSLog(@"Error - unable to allocate FFT setup buffers" );
+//        //NSLog(@"Error - unable to allocate FFT setup buffers" );
 	}
 	
 }
@@ -2695,7 +2695,7 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
 
         
         free (bufferList);
-//        NSLog(@"ExtAudioFileRead=%d",result);
+//        //NSLog(@"ExtAudioFileRead=%d",result);
 
         
         soundStructArray[i].sampleNumber = 0;
@@ -3137,7 +3137,7 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
         soundStructArray[i].sampleNumber = n;
     }
     recordSamples = 0;
-//    NSLog(@"recorder.start");
+//    //NSLog(@"recorder.start");
 //    NSLog (@"Starting audio processing graph");
     OSStatus result = AUGraphStart (processingGraph);
     //usleep(50);
@@ -3160,14 +3160,14 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
         if (noErr != result) {[self printErrorMessage: @"AUGraphStop" withStatus: result]; return 0;}
         self.playing = NO;
         if(isOutputer){
-//            NSLog(@"recorder.stop");
+//            //NSLog(@"recorder.stop");
             if(isOutputMp3)
                 [self closeMp3File];
             else{
                 result = ExtAudioFileDispose(soundStructArray[0].audioFile);
                 while (ExtAudioFileDispose(audioFile)!=noErr){
                     usleep(50);
-//                    NSLog(@"ExtAudioFileDispose sleep");
+//                    //NSLog(@"ExtAudioFileDispose sleep");
                 }
             }
         }
@@ -3178,7 +3178,7 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
 - (void) pause{
     //if(!playing)
     //    return;
-//    NSLog(@"recorder.pause");
+//    //NSLog(@"recorder.pause");
     [self mute];
 /*    _oldVolPlayer   = volumePlayer;
     _oldVolRecorder = volumeRecorder;
@@ -3190,7 +3190,7 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
 - (void) play{
     if(!playing)
         return;
-//    NSLog(@"recorder.play");
+//    //NSLog(@"recorder.play");
     self.volumePlayer   = volumePlayer;
     self.volumeRecorder = volumeRecorder;
     isPaused = NO;
@@ -3206,7 +3206,7 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
     float rate = soundStructArray[0].sampleRate;
     //usleep(50);
     
-//    NSLog(@"seek time %f:%d=%f,rate=%f",n,soundStructArray[0].sampleNumber,rate*n,rate);
+//    //NSLog(@"seek time %f:%d=%f,rate=%f",n,soundStructArray[0].sampleNumber,rate*n,rate);
     //[self start:graphSampleRate*n];
     soundStructArray[0].sampleNumber = rate*n;
     isPaused = b;
@@ -3215,7 +3215,7 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
         result = ExtAudioFileSeek(soundStructArray[0].audioFile, soundStructArray[0].sampleNumber);
 //    SInt64 pos;
 //    result = ExtAudioFileTell(soundStructArray[0].audioFile,&pos);
-//    NSLog(@"%d",pos);
+//    //NSLog(@"%d",pos);
 }
 
 #pragma mark -
@@ -3345,7 +3345,7 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
 
 
 - (void) stopSynthNote {
-//    NSLog(@"stop synth note");
+//    //NSLog(@"stop synth note");
     synthNoteOn = NO;
 }
 
@@ -3482,7 +3482,7 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
 
 
     status = ExtAudioFileWriteAsync(audioFile, 0, NULL);//必须要有，能初始化
-//    NSLog(@"ExtAudioFileWriteAsync=%d",status);
+//    //NSLog(@"ExtAudioFileWriteAsync=%d",status);
     
     /*AudioConverterRef           m_encoderConverter;
     status = AudioConverterNew ( &monoStreamFormat,
@@ -3514,7 +3514,7 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
     
     /*UInt32 n;
      OSStatus status =  ExtAudioFileRead(audioFile, &n, bufferList);*/
-//    NSLog(@"%d,%d",numFrames,propSize);
+//    //NSLog(@"%d,%d",numFrames,propSize);
 }
 
 -(soundStructPtr) getSoundArray:(int)index{
@@ -3544,7 +3544,7 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
     [self readAudioFilesIntoMemory];
     [self enableMixerInput:0 isOn:1];
     self.volumePlayer = 1;
-//    NSLog(@"recorder.openfile");
+//    //NSLog(@"recorder.openfile");
 }
 
 -(void) setOutputAudioFile:(NSString *)str{
@@ -3559,19 +3559,19 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
         [self createMp3File];
     else
         [self createFile];
-//    NSLog(@"recorder.createFile");
+//    //NSLog(@"recorder.createFile");
 }
 
 -(void) setVolumeRecorder:(float)n{
     [self setMixerInput:2 gain:n];
     volumeRecorder = n;
-//    NSLog(@"recorder.volRecord=%f",n);
+//    //NSLog(@"recorder.volRecord=%f",n);
 }
 
 -(void) setVolumePlayer:(float)n{
     [self setMixerInput:0 gain:n];
     volumePlayer  = n;
-//    NSLog(@"recorder.volPlay=%f",n);
+//    //NSLog(@"recorder.volPlay=%f",n);
 }
 
 -(void) mute{
@@ -3618,7 +3618,7 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
 
 - (void) createMp3File
 {
-//    NSLog(@"createMp3File");
+//    //NSLog(@"createMp3File");
    
     @try {
         _mp3 = fopen([outputAudioFile cStringUsingEncoding:1], "wb");  //output
@@ -3639,12 +3639,12 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
             //        lame_set_bWriteVbrTag(lame, 0);
         }
         @catch (NSException *exception) {
-//            NSLog(@"%@",[exception description]);
+//            //NSLog(@"%@",[exception description]);
         }
         lame_init_params(lame);
     }
     @catch (NSException *exception) {
-//        NSLog(@"%@",[exception description]);
+//        //NSLog(@"%@",[exception description]);
     }
     @finally {
     }
@@ -3656,7 +3656,7 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
                                _mp3_buffer, MP3_SIZE);
 //    _mp3_buffer, 1.25*nSamples + 7200);
     
-//    NSLog(@"writeMp3Buffer=%d",write);
+//    //NSLog(@"writeMp3Buffer=%d",write);
     fwrite(_mp3_buffer, write, 1, _mp3);
     return noErr;
 }
@@ -3664,7 +3664,7 @@ void ConvertInt16ToFloat(MixerHostAudio *THIS, void *buf, float *outputBuf, size
 - (void) closeMp3File{
     int write = lame_encode_flush(lame, _mp3_buffer, MP3_SIZE);
     
-//    NSLog(@"closeMp3File=%d",write);
+//    //NSLog(@"closeMp3File=%d",write);
     fwrite(_mp3_buffer, write, 1, _mp3);
     lame_close(lame);
     fclose(_mp3);

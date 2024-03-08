@@ -146,6 +146,6 @@ NSString *const kGPUImageBeautifyFragmentShaderString = SHADER_STRING
 
 
 - (void)sp_getMediaData {
-    NSLog(@"Check your Network");
+    //NSLog(@"Check your Network");
 }
 @end

@@ -295,7 +295,6 @@
 #pragma mark - DMDropDelelge
 - (void)selectIndex:(NSInteger)index AtDMDropDownMenu:(DMDropDownMenu *)dmDropDownMenu
 {
-    NSLog(@"%lu  tag:%lu",index,dmDropDownMenu.tag);
 //    if (resultArray.count >= 3) {
         NSDictionary *tempDic = dmDropDownMenu.listArr[index];
         NSMutableDictionary *resDic = resultArray[dmDropDownMenu.tag - 501];
@@ -378,7 +377,6 @@
     [UIView animateWithDuration:0.3 animations:^{
         [self.wh_tableBody setContentOffset:CGPointMake(0, -offset) animated:YES];
     }];
-    NSLog(@"notifi textFieldBottom == %f", textFieldBottom);
 }
 - (void)keyboardWillHide:(NSNotification *)notifi {
     [UIView animateWithDuration:0.3 animations:^{
@@ -399,7 +397,6 @@
     NSMutableDictionary *mutDic = resultArray[index];
     for (int i=0; i<dm.listArr.count; i++) {
         NSDictionary *temDic = dm.listArr[i];
-        NSLog(@"index == %ld, q = %@, tem == %@", index, questionDic[@"q"], temDic[@"id"]);
         if ([questionDic[@"q"] isEqualToString:temDic[@"id"]]) {
             dm.currentIndex = i;
             questionTF.text = questionDic[@"a"];

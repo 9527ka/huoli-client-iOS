@@ -29,7 +29,7 @@ static WH_JXShareManager *shared;
     }
     
     [JXMyTools showTipView:Localized(@"ShareSuccess")];
-    NSLog(@"分享成功");
+    //NSLog(@"分享成功");
 }
 
 - (void)shareWith:(WH_JXShareModel *)shareModel delegate:(id)delegate{
@@ -78,7 +78,7 @@ static WH_JXShareManager *shared;
             //                [[UMSocialDataService defaultDataService] postSNSWithTypes:@[UMShareToFacebook] content:[NSString stringWithFormat:@"%@",_shareTitle] image:nil location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response) {
             //                    if (response.responseCode == UMSResponseCodeSuccess) {
             //                        [self updateShareActivi];
-            //                        NSLog(@"分享成功");
+            //                        //NSLog(@"分享成功");
             //                    }
             //                }];
             
@@ -220,11 +220,11 @@ static WH_JXShareManager *shared;
 //}
 
 //- (void)sharer:(id<FBSDKSharing>)sharer didFailWithError:(NSError *)error{
-//    NSLog(@"FB Share error:%@",error);
+//    //NSLog(@"FB Share error:%@",error);
 //}
 //
 //- (void)sharerDidCancel:(id<FBSDKSharing>)sharer{
-//    NSLog(@"FB Share cancel");
+//    //NSLog(@"FB Share cancel");
 //}
 
 @end

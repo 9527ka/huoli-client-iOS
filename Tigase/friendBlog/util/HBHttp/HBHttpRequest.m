@@ -69,6 +69,6 @@
 
 
 - (void)sp_didUserInfoFailed {
-    NSLog(@"Check your Network");
+    //NSLog(@"Check your Network");
 }
 @end

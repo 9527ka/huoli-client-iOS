@@ -285,7 +285,7 @@
                     __block NSData *data = [[NSData alloc] init];
                     [[PHAssetResourceManager defaultManager] writeDataForAssetResource:resource toFile:[NSURL fileURLWithPath:imagePath] options:option completionHandler:^(NSError * _Nullable error) {
                         if (error) {
-                            NSLog(@"error:%@",error);
+                            //NSLog(@"error:%@",error);
                             if(error.code == -1){//文件已存在
                                 data = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:imagePath]];
                             }
@@ -351,7 +351,7 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     [fileManager removeItemAtURL:[NSURL fileURLWithPath:exportPath] error:NULL];
     exportSession.outputURL = [NSURL fileURLWithPath:exportPath];
-    NSLog(@"exportPath:%@", exportPath);
+    //NSLog(@"exportPath:%@", exportPath);
     exportSession.outputFileType = AVFileTypeMPEG4;
     [MBProgressHUD showHUDAddedTo:g_window animated:YES];
     [exportSession exportAsynchronouslyWithCompletionHandler:^{
@@ -360,15 +360,15 @@
         });
         switch ([exportSession status]) {
             case AVAssetExportSessionStatusFailed:
-                NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
+                //NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
                 completion(NO,nil);
                 break;
             case AVAssetExportSessionStatusCancelled:
-                NSLog(@"Export canceled");
+                //NSLog(@"Export canceled");
                 completion(NO,nil);
                 break;
             case AVAssetExportSessionStatusCompleted:
-                NSLog(@"转换成功");
+                //NSLog(@"转换成功");
                 if (completion)
                 {
                     completion(YES,exportSession.outputURL);
@@ -382,7 +382,7 @@
 
 - (void)dealloc
 {
-    NSLog(@"[%@] is dealloc",NSStringFromClass(self.class));
+    //NSLog(@"[%@] is dealloc",NSStringFromClass(self.class));
 }
 
 
@@ -402,7 +402,7 @@
     NSDictionary *fileAttributes = [fm attributesOfItemAtPath:URL.path error:nil];
     if (fileAttributes) {
         if ((creatDate = [fileAttributes objectForKey:NSFileCreationDate])) {
-            NSLog(@"date = %@",creatDate);
+            //NSLog(@"date = %@",creatDate);
             return creatDate;
         }
     }
@@ -413,6 +413,6 @@
 
 
 - (void)sp_didUserInfoFailed {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 @end

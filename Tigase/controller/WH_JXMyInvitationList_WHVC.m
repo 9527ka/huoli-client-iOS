@@ -174,6 +174,6 @@
 
 
 - (void)sp_getUsersMostLikedSuccess {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 @end

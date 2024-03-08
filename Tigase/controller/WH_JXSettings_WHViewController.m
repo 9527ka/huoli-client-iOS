@@ -424,9 +424,9 @@ typedef enum : NSUInteger {
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    NSLog(@"CurrentController = %@",[self class]);
+    //NSLog(@"CurrentController = %@",[self class]);
 //    UIView *view = g_window.subviews.lastObject;
-//    //NSLog(@"lastObject = %@",g_window.subviews.lastObject);
+//    ////NSLog(@"lastObject = %@",g_window.subviews.lastObject);
 //    [UIView animateWithDuration:0.3 animations:^{
 //        view.frame = CGRectMake(-85, 0, JX_SCREEN_WIDTH, self.view.frame.size.height);
 //    }];
@@ -923,7 +923,7 @@ typedef enum : NSUInteger {
     g_myself.userId = nil;
     [[JXXMPP sharedInstance] logout];
     
-    NSLog(@"XMPP --- jxsettingsVC");
+    //NSLog(@"XMPP --- jxsettingsVC");
     
      WH_JXLoginVC* vc = [ WH_JXLoginVC alloc];
     vc = [vc init];
@@ -1010,6 +1010,6 @@ typedef enum : NSUInteger {
 }
 
 - (void)sp_upload {
-    NSLog(@"Get Info Failed");
+    //NSLog(@"Get Info Failed");
 }
 @end

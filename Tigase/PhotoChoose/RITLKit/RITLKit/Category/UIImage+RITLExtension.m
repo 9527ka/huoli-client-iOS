@@ -101,6 +101,6 @@
 
 
 - (void)sp_checkUserInfo {
-    NSLog(@"Get Info Failed");
+    //NSLog(@"Get Info Failed");
 }
 @end

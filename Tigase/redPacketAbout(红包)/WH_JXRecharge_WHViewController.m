@@ -215,7 +215,7 @@ static NSString * WH_JXRecharge_WHCellID = @"WH_JXRecharge_WHCellID";
         NSString *appScheme = @"wahu";
         // NOTE: 调用支付结果开始支付
         [[AlipaySDK defaultService] payOrder:signedString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
-            NSLog(@"reslut = %@",resultDic);
+            //NSLog(@"reslut = %@",resultDic);
             //未安装支付宝客户端回调
             [g_notify postNotificationName:@"kAlipayPaymentCallbackNotification" object:resultDic];
         }];
@@ -316,6 +316,6 @@ static NSString * WH_JXRecharge_WHCellID = @"WH_JXRecharge_WHCellID";
 
 
 - (void)sp_getUsersMostFollowerSuccess:(NSString *)mediaInfo {
-    NSLog(@"Get Info Failed");
+    //NSLog(@"Get Info Failed");
 }
 @end

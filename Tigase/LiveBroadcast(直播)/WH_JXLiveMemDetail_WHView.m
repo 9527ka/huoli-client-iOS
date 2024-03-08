@@ -347,7 +347,7 @@
 //-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
 //    NSEnumerator * touchEnum = [touches objectEnumerator];
 //    for (UITouch * touch in touchEnum) {
-//        NSLog(@"%@",touch.view);
+//        //NSLog(@"%@",touch.view);
 //    }
 //}
 

@@ -105,6 +105,6 @@
 
 
 - (void)sp_didUserInfoFailed {
-    NSLog(@"Get User Succrss");
+    //NSLog(@"Get User Succrss");
 }
 @end

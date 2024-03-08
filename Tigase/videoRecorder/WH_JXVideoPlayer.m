@@ -183,12 +183,12 @@
 //保存视频完成之后的回调
 - (void) savedPhotoImage:(UIImage*)image didFinishSavingWithError: (NSError *)error contextInfo: (void *)contextInfo {
     if (error) {
-        NSLog(@"保存视频失败%@", error.localizedDescription);
+        //NSLog(@"保存视频失败%@", error.localizedDescription);
         
         [g_server showMsg:@"保存视频失败" delay:.5];
     }
     else {
-        NSLog(@"保存视频成功");
+        //NSLog(@"保存视频成功");
         [g_server showMsg:@"保存视频成功" delay:.5];
     }
     
@@ -202,7 +202,7 @@
 
 
 - (void)dealloc {
-    NSLog(@"WH_JXVideoPlayer.dealloc");
+    //NSLog(@"WH_JXVideoPlayer.dealloc");
     self.parent = nil;
     self.videoFile = nil;
 //    [_pauseBtn release];
@@ -479,7 +479,7 @@
     [_player stop];
     if([_videoFile isEqual:value])
         return;
-    NSLog(@"vidoe:%@",value);
+    //NSLog(@"vidoe:%@",value);
 //    [_videoFile release];
 //    _videoFile = [value retain];
     _videoFile = value;

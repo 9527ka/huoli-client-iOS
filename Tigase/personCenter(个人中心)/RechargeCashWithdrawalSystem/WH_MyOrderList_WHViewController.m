@@ -45,7 +45,7 @@
     [self.view addSubview:self.topNavView];
     __weak typeof(self) weakSelf = self;
     [self.topNavView setSelectedOrderTypeBlock:^(NSInteger orderType) {
-        NSLog(@"orderType:%li" ,(long)orderType);
+        //NSLog(@"orderType:%li" ,(long)orderType);
         //@[@"全部" ,@"待付款" ,@"待放行" ,@"已完成" ,@"已取消"]
         weakSelf.typeIndex = orderType;
         [weakSelf MiXin_scrollToPageUp];

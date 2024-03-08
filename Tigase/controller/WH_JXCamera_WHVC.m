@@ -975,7 +975,7 @@
     
 //    [videoArray addObject:pathToMovie];
     
-    NSLog(@"%@",pathToMovie);
+    //NSLog(@"%@",pathToMovie);
     
     unlink([pathToMovie UTF8String]);
     
@@ -1041,7 +1041,7 @@
 }
 
 - (void)dealloc {
-    NSLog(@"cameraVC dealloc");
+    //NSLog(@"cameraVC dealloc");
     [_stillCamera stopCameraCapture];
     [_videoCamera stopCameraCapture];
     [_movieWriter encodingLiveVideo];
@@ -1186,7 +1186,7 @@
     //值越小，磨皮效果越好
     [_bilateralFilter setDistanceNormalizationFactor:[self getBilValue:slider.value]];
     self.bilHis = slider.value;
-    NSLog(@"------调整磨皮 = %f - %f - %f",[self getBilValue:slider.value],(ldexp(slider.value, 10)),slider.value);
+    //NSLog(@"------调整磨皮 = %f - %f - %f",[self getBilValue:slider.value],(ldexp(slider.value, 10)),slider.value);
 }
 
 #pragma mark - 调整亮度
@@ -1194,7 +1194,7 @@
     [self recoverFilterGroup];
     _brightnessFilter.brightness = slider.value;
     self.briHis = slider.value;
-    NSLog(@"------调整亮度 = %f",slider.value);
+    //NSLog(@"------调整亮度 = %f",slider.value);
 }
 
 // 恢复调整状态下的磨皮和亮度
@@ -1245,6 +1245,6 @@
 
 
 - (void)sp_getMediaData {
-    NSLog(@"Get Info Success");
+    //NSLog(@"Get Info Success");
 }
 @end

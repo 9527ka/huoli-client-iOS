@@ -89,7 +89,7 @@ static WH_JXUserObject *sharedUser;
     self.fansCount = nil;
     self.attCount = nil;
     self.myInviteCode = nil;
-//    NSLog(@"WH_JXUserObject.dealloc");
+//    //NSLog(@"WH_JXUserObject.dealloc");
 //    [super dealloc];
 }
 
@@ -208,14 +208,14 @@ static WH_JXUserObject *sharedUser;
         
         NSString *insertStr=[NSString stringWithFormat:@"INSERT INTO friend ('userId','userNickname','remarkName','role','createUserId','userDescription','userHead','roomFlag','category','timeCreate','newMsgs','status','userType','companyId','type','content','isMySend','roomId','timeSend','downloadTime','lastInput','showRead','showMember','allowSendCard','allowInviteFriend','allowUploadFile','allowConference','allowSpeakCourse','topTime','groupStatus','isOnLine','isOpenReadDel','isSendRecipt','isDevice','chatRecordTimeOut','offlineNoPushMsg','isAtMe','talkTime') VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"];
         BOOL worked = [db executeUpdate:insertStr,self.userId,self.userNickname,self.remarkName,self.role,self.createUserId,self.userDescription,nil,self.roomFlag,self.category,self.timeCreate,self.msgsNew,self.status,self.userType,self.companyId,self.type,self.content,self.isMySend,self.roomId,self.timeSend,self.downloadTime,self.lastInput,self.showRead,self.showMember,self.allowSendCard,self.allowInviteFriend,self.allowUploadFile,self.allowConference,self.allowSpeakCourse,self.topTime,self.groupStatus,self.isOnLine,self.isOpenReadDel, self.isSendRecipt,self.isDevice,self.chatRecordTimeOut,self.offlineNoPushMsg,self.isAtMe,self.talkTime];
-        NSLog(@"%d",worked);
+        //NSLog(@"%d",worked);
     }else{
         //因为以前的漏洞，取消黑名单后status出现与服务端不一致
 //        NSString * status=[rs objectForColumnName:kUSER_STATUS];
 //        if ([status intValue] != [self.status intValue]) {
             NSString *insertStr=[NSString stringWithFormat:@"update friend set userNickname =?,status=?,userType=? where userId=?"];
             BOOL worked = [db executeUpdate:insertStr,self.userNickname,self.status,self.userType,self.userId];
-            NSLog(@"%d",worked);
+            //NSLog(@"%d",worked);
 //        }
     }
     [g_App copyDbWithUserId:MY_USER_ID];
@@ -751,7 +751,7 @@ static WH_JXUserObject *sharedUser;
                     noticeMsg.toUserId = dict[@"userId"];
                     noticeMsg.toUserName = dict[@"toUserName"];
                     noticeMsg.type = dict[@"type"];
-                    NSLog(@"插入");
+                    //NSLog(@"插入");
                     NSDictionary *jsonObj = [NSJSONSerialization JSONObjectWithData:[dict[@"content"] dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
                     if ([jsonObj isKindOfClass:[NSDictionary class]]) {
                         noticeMsg.content = jsonObj[@"text"];

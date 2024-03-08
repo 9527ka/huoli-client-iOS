@@ -44,7 +44,7 @@
 }
 
 - (void)dealloc {
-//    NSLog(@"WH_JXRoomObject.dealloc");
+//    //NSLog(@"WH_JXRoomObject.dealloc");
     self.fullJid = nil;
     self.roomName = nil;
     self.roomTitle = nil;
@@ -86,7 +86,7 @@
 
     _isNew = NO;
     self.fullJid = [NSString stringWithFormat:@"%@@muc.%@",self.roomJid,g_config.XMPPDomain];
-//    NSLog(@"xmpp -- fullJid-%@, n-%d",self.fullJid,n);
+//    //NSLog(@"xmpp -- fullJid-%@, n-%d",self.fullJid,n);
     _xmppRoom = [[XMPPRoom alloc] initWithRoomStorage:storage jid:[XMPPJID jidWithString:self.fullJid] dispatchQueue:dispatch_get_global_queue(1, 0)];
     [_xmppRoom activate:[JXXMPP sharedInstance].stream];
     [_xmppRoom joinRoomUsingNickname:nickName history:p];
@@ -116,7 +116,7 @@
 
 - (void)xmppRoom:(XMPPRoom *)sender didFetchConfigurationForm:(DDXMLElement *)configForm
 {
-//    NSLog(@"config : %@", configForm);
+//    //NSLog(@"config : %@", configForm);
     NSXMLElement *newConfig = [configForm copy];
     NSArray* fields = [newConfig elementsForName:@"field"];
     for (NSXMLElement *field in fields) {
@@ -132,7 +132,7 @@
 #pragma mark - XMPPRoom delegate
 //创建结果
 -(void)xmppRoomDidCreate:(XMPPRoom *)sender{
-//    NSLog(@"xmppRoomDidCreate");
+//    //NSLog(@"xmppRoomDidCreate");
     
     isConnected = YES;
 //    [_xmppRoom changeRoomSubject:self.roomTitle];
@@ -148,7 +148,7 @@
     }
     
     isConnected = YES;
-//    NSLog(@"xmppRoomDidJoin");
+//    //NSLog(@"xmppRoomDidJoin");
     //    [_xmppRoom chageNickname:@"fuck"];
     //    [_xmppRoom changeRoomSubject:@"聊天室主题名"];
     //    [_xmppRoom changeToMember:self.roomJid nickName:@"tjx"];
@@ -168,7 +168,7 @@
 //是否已经离开
 -(void)xmppRoomDidLeave:(XMPPRoom *)sender{
     isConnected = NO;
-//    NSLog(@"xmppRoomDidLeave");
+//    //NSLog(@"xmppRoomDidLeave");
     
     if(delegate != nil && [delegate respondsToSelector:@selector(xmppRoomDidLeave:)])
         [delegate xmppRoomDidLeave:_xmppRoom];
@@ -179,7 +179,7 @@
 //是否已经离开
 -(void)xmppRoomDidDestroy:(XMPPRoom *)sender{
     isConnected = NO;
-//    NSLog(@"xmppRoomDidDestroy");
+//    //NSLog(@"xmppRoomDidDestroy");
     
     if(delegate != nil && [delegate respondsToSelector:@selector(xmppRoomDidDestroy:)])
         [delegate xmppRoomDidDestroy:_xmppRoom];
@@ -193,7 +193,7 @@
 
 //房间人员加入
 - (void)xmppRoom:(XMPPRoom *)sender occupantDidJoin:(XMPPJID *)occupantJID withPresence:(XMPPPresence *)presence{
-//    NSLog(@"occupantDidJoin");
+//    //NSLog(@"occupantDidJoin");
 //    NSString *jid = occupantJID.user;
 //    NSString *domain = occupantJID.domain;
 //    NSString *resource = occupantJID.resource;
@@ -201,7 +201,7 @@
     NSString *userId = [sender myRoomJID].user;
     NSString *presenceFromUser = [[presence from] user];
     
-//    NSLog(@"occupantDidJoin----jid=%@,domain=%@,resource=%@,当前用户:%@ ,出席用户:%@,presenceType:%@",jid,domain,resource,userId,presenceFromUser,presenceType);
+//    //NSLog(@"occupantDidJoin----jid=%@,domain=%@,resource=%@,当前用户:%@ ,出席用户:%@,presenceType:%@",jid,domain,resource,userId,presenceFromUser,presenceType);
     
     if (![presenceFromUser isEqualToString:userId]) {
         //对收到的用户的在线状态的判断在线状态
@@ -228,7 +228,7 @@
     NSString *presenceType = [presence type];
     NSString *userId = [sender myRoomJID].user;
     NSString *presenceFromUser = [[presence from] user];
-    NSLog(@"occupantDidLeave----jid=%@,domain=%@,resource=%@,当前用户:%@ ,出席用户:%@,presenceType:%@",jid,domain,resource,userId,presenceFromUser,presenceType);*/
+    //NSLog(@"occupantDidLeave----jid=%@,domain=%@,resource=%@,当前用户:%@ ,出席用户:%@,presenceType:%@",jid,domain,resource,userId,presenceFromUser,presenceType);*/
 }
 
 //房间人员加入
@@ -240,15 +240,15 @@
     NSString *presenceType = [presence type];
     NSString *userId = [sender myRoomJID].user;
     NSString *presenceFromUser = [[presence from] user];
-    NSLog(@"occupantDidUpdate----jid=%@,domain=%@,resource=%@,当前用户:%@ ,出席用户:%@,presenceType:%@",jid,domain,resource,userId,presenceFromUser,presenceType);*/
+    //NSLog(@"occupantDidUpdate----jid=%@,domain=%@,resource=%@,当前用户:%@ ,出席用户:%@,presenceType:%@",jid,domain,resource,userId,presenceFromUser,presenceType);*/
 }
 
 - (void)xmppRoom:(XMPPRoom *)sender didFetchMembersList:(NSArray *)items{
-    NSLog(@"didFetchMembersList");
+    //NSLog(@"didFetchMembersList");
 }
 
 - (void)xmppRoom:(XMPPRoom *)sender didFetchModeratorsList:(NSArray *)items{
-    NSLog(@"didFetchModeratorsList");
+    //NSLog(@"didFetchModeratorsList");
 }
 
 - (void)noSendHistory

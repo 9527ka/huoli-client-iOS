@@ -29,6 +29,6 @@
 
 
 - (void)sp_getUserFollowSuccess {
-    NSLog(@"Continue");
+    //NSLog(@"Continue");
 }
 @end

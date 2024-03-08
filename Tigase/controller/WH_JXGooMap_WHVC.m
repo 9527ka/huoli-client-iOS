@@ -401,7 +401,7 @@
 
 - (void)mapView:(GMSMapView *)mapView
 didTapAtCoordinate:(CLLocationCoordinate2D)coordinate {
-    NSLog(@"You tapped at %f,%f", coordinate.latitude, coordinate.longitude);
+    //NSLog(@"You tapped at %f,%f", coordinate.latitude, coordinate.longitude);
     [self dissmissScrollView];
 }
 //移动
@@ -630,7 +630,7 @@ didTapAtCoordinate:(CLLocationCoordinate2D)coordinate {
 }
 
 -(void)doScale:(UIButton *)button{
-    NSLog(@"doScale");
+    //NSLog(@"doScale");
     if (button.tag == 10001) {
         _zoomLevel -= 1;
         [_gooMapView animateToZoom:_zoomLevel];

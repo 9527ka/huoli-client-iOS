@@ -192,7 +192,7 @@
 }
 
 -(void)dealloc{
-//    NSLog(@"WH_JX_WH2Cell.dealloc");
+//    //NSLog(@"WH_JX_WH2Cell.dealloc");
 //    [self.bageDict removeAllObjects];
 //    self.bageDict = nil;
     
@@ -448,7 +448,7 @@
         
         NSString *object = contentArray[i];
         
-//        NSLog(@"%@",object);
+//        //NSLog(@"%@",object);
         BOOL flag = NO;
         if ([object hasSuffix:@"]"]&&[object hasPrefix:@"["]) {
             

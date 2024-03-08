@@ -327,7 +327,7 @@
 }
 
 -(void)dealloc{
-//    NSLog(@"WH_JXRoomMember_WHVC.dealloc");
+//    //NSLog(@"WH_JXRoomMember_WHVC.dealloc");
     [g_notify  removeObserver:self name:kXMPPRoom_WHNotifaction object:nil];
     [_names removeAllObjects];
 //    [_names release];
@@ -1432,7 +1432,7 @@
     // 删除sdwebimage 缓存
     NSString *urlStr = [NSString stringWithFormat:@"%@avatar/o/%d/%d/%@.jpg",g_config.downloadAvatarUrl,a,b,roomId];
     
-//    NSLog(@"当前上传之后的头像链接 == %@ userid===%@ userJid ==%@",urlStr,!IsStringNull(self.wh_chatRoom.roomId)?self.wh_chatRoom.roomId:self.wh_room.roomId,!IsStringNull(self.wh_chatRoom.roomJid)?self.wh_chatRoom.roomJid:self.wh_room.roomJid);
+//    //NSLog(@"当前上传之后的头像链接 == %@ userid===%@ userJid ==%@",urlStr,!IsStringNull(self.wh_chatRoom.roomId)?self.wh_chatRoom.roomId:self.wh_room.roomId,!IsStringNull(self.wh_chatRoom.roomJid)?self.wh_chatRoom.roomJid:self.wh_room.roomJid);
     
     [[SDImageCache sharedImageCache] removeImageForKey:urlStr withCompletion:^{
         [g_server showMsg:Localized(@"JX_GroupAvatarUpdatedSuccessfully") delay:0.5];
@@ -2870,6 +2870,6 @@
 
 
 - (void)sp_checkUserInfo {
-    NSLog(@"Get Info Failed");
+    //NSLog(@"Get Info Failed");
 }
 @end

@@ -107,7 +107,7 @@
 - (void) strongNoticeBtnClick:(UIButton *)sender{
     sender.selected = !sender.selected;
     self.allowForceNotice = sender.selected;
-    NSLog(@"%@", sender.selected ? @"强提醒打开" : @"强提醒关闭");
+    //NSLog(@"%@", sender.selected ? @"强提醒打开" : @"强提醒关闭");
 }
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     //判断类型，如果不是UITextView类型，收起键盘
@@ -128,10 +128,10 @@
 
 - (void)textViewDidBeginEditing:(UITextView *)textView{
     [self.textDefaultLabel setHidden:YES];
-    NSLog(@"开始编辑");
+    //NSLog(@"开始编辑");
 }
 - (void)textViewDidEndEditing:(UITextView *)textView{
-    NSLog(@"结束编辑");
+    //NSLog(@"结束编辑");
 }
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     

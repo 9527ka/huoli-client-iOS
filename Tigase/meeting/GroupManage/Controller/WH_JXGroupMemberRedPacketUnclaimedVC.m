@@ -57,7 +57,7 @@
     _footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
         weakSelf.page ++;
         [weakSelf receiveRedReceiveListData];
-        //        NSLog(@"%@----开始进入刷新状态", refreshView.class);
+        //        //NSLog(@"%@----开始进入刷新状态", refreshView.class);
     };
     
     

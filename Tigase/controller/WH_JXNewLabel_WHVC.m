@@ -399,6 +399,6 @@
 
 
 - (void)sp_getUsersMostLikedSuccess {
-    NSLog(@"Get Info Failed");
+    //NSLog(@"Get Info Failed");
 }
 @end

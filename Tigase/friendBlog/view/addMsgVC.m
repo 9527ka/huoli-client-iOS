@@ -144,7 +144,7 @@ typedef enum {
 }
 
 -(void)dealloc{
-//    NSLog(@"addMsgVC.dealloc");
+//    //NSLog(@"addMsgVC.dealloc");
     [_images removeAllObjects];
     [_imageStrings removeAllObjects];
 //    [_images release];
@@ -1051,7 +1051,7 @@ typedef enum {
 {
     if(imagePickerController.allowsMultipleSelection) {
         NSArray *mediaInfoArray = (NSArray *)info;
-//        NSLog(@"Selected %d photos", mediaInfoArray.count);
+//        //NSLog(@"Selected %d photos", mediaInfoArray.count);
         
         for(int i=0;i<[mediaInfoArray count];i++){
             NSDictionary *selected = (NSDictionary *)[mediaInfoArray objectAtIndex:i];
@@ -1060,7 +1060,7 @@ typedef enum {
     } else {
         NSDictionary *selected = (NSDictionary *)info;
         [_images replaceObjectAtIndex:_photoIndex withObject:[selected objectForKey:@"UIImagePickerControllerOriginalImage"]];
-//        NSLog(@"Selected: %@", selected);
+//        //NSLog(@"Selected: %@", selected);
     }
     
     [self dismissViewControllerAnimated:YES completion:NULL];

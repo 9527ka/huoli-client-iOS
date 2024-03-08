@@ -412,14 +412,14 @@
 
 -(void)WH_onSendTimeout:(NSNotification *)notifacation//超时未收到回执
 {
-    //    NSLog(@"onSendTimeout");
+    //    //NSLog(@"onSendTimeout");
     [_wait stop];
 //    [g_App showAlert:Localized(@"JXAlert_SendFilad")];
     [JXMyTools showTipView:Localized(@"JXAlert_SendFilad")];
 }
 
 -(void)newReceipt:(NSNotification *)notifacation{//新回执
-    //    NSLog(@"newReceipt");
+    //    //NSLog(@"newReceipt");
     WH_JXMessageObject *msg     = (WH_JXMessageObject *)notifacation.object;
     if(msg == nil)
         return;

@@ -198,7 +198,7 @@
             }
         }
     }
-    NSLog(@"========param:%@" ,param);
+    //NSLog(@"========param:%@" ,param);
     [g_server WH_addWithdrawalAccountWithParam:param toView:self];
 }
 

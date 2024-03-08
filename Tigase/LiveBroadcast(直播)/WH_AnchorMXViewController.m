@@ -176,16 +176,16 @@
 }
 
 - (void)liveSession:(LFLiveSession *)session debugInfo:(LFLiveDebug *)debugInfo {
-    NSLog(@"debugInfo == %@", debugInfo);
+    //NSLog(@"debugInfo == %@", debugInfo);
 }
 
 - (void)liveSession:(LFLiveSession *)session errorCode:(LFLiveSocketErrorCode)errorCode {
     
-    NSLog(@"errorCode == %lu", (unsigned long)errorCode);
+    //NSLog(@"errorCode == %lu", (unsigned long)errorCode);
 }
 
 - (void)liveSession:(LFLiveSession *)session liveStateDidChange:(LFLiveState)state {
-    NSLog(@"state == %lu", (unsigned long)state);
+    //NSLog(@"state == %lu", (unsigned long)state);
     if (state == LFLiveError) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             

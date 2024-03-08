@@ -134,7 +134,7 @@
         self.url = [self.url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     }
     
-    NSLog(@"self.url:%@" ,self.url);
+    //NSLog(@"self.url:%@" ,self.url);
     self.images = [NSMutableArray array];
     
     webView = [[WKWebView alloc] initWithFrame:self.wh_tableBody.bounds];
@@ -223,14 +223,14 @@
                 [request setHTTPMethod:@"POST"];
                 [request setHTTPBody:[url dataUsingEncoding:NSUTF8StringEncoding]];
                 
-//                NSLog(@"request:%@" ,request);
+//                //NSLog(@"request:%@" ,request);
                 [webView loadRequest:request];
             }else{
                 [webView loadRequest:p];
             }
         }
         
-        NSLog(@"webUrl=%@",p);
+        //NSLog(@"webUrl=%@",p);
     }
 }
 
@@ -602,7 +602,7 @@
     }
     CGPoint offset = [pan translationInView:g_App.window];
     CGPoint offset1 = [pan translationInView:g_subWindow];
-    NSLog(@"pan - offset = %@, offset1 = %@", NSStringFromCGPoint(offset), NSStringFromCGPoint(offset1));
+    //NSLog(@"pan - offset = %@, offset1 = %@", NSStringFromCGPoint(offset), NSStringFromCGPoint(offset1));
     
     CGRect frame = self.subWindowFrame;
     frame.origin.x += offset.x;
@@ -696,7 +696,7 @@
     //只取整数值，固定间距
     NSString *tempStr = [self numberFormat:sender.value];
     [sender setValue:tempStr.floatValue];
-    NSLog(@"--------%@",tempStr);
+    //NSLog(@"--------%@",tempStr);
     //设置网页字体大小
     int font = (tempStr.floatValue -1) *10 + 90;
     NSString* fontSize = [NSString stringWithFormat:@"%d%%",font];
@@ -714,7 +714,7 @@
     float tempFloat = (p.x - 20) / (_slider.frame.size.width) * 6 + 1;
     NSString *tempStr = [self numberFormat:tempFloat];
     [_slider setValue:tempStr.floatValue];
-    //    NSLog(@"-------- %f,%f,%@", p.x, tempFloat, tempStr);
+    //    //NSLog(@"-------- %f,%f,%@", p.x, tempFloat, tempStr);
     //设置网页字体大小
     int font = (tempStr.floatValue -1) *10 + 90;
     NSString* fontSize = [NSString stringWithFormat:@"%d%%",font];
@@ -760,7 +760,7 @@
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter]removeObserver:self];
-    //    NSLog(@"WH_webpage_WHVC.dealloc");
+    //    //NSLog(@"WH_webpage_WHVC.dealloc");
     self.url = nil;
     //    [super dealloc];
 }
@@ -831,7 +831,7 @@
     
     //    NSString *string = [self.webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     [self.webView evaluateJavaScript:@"document.title" completionHandler:^(NSString *_Nullable string, NSError * _Nullable error) {
-        NSLog(@"title===%@",string);
+        //NSLog(@"title===%@",string);
         if (self.titleString.length > 0) {
             self.title = self.titleString;
             self.titleStr = self.titleString;
@@ -847,9 +847,9 @@
     }];
     
 //    NSString *articleImageUrl = [self.webView stringByEvaluatingJavaScriptFromString:@"document.images[0].src"];
-//    NSLog(@"imageurl===%@",articleImageUrl);
+//    //NSLog(@"imageurl===%@",articleImageUrl);
 //    NSString *lJs = [self.webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.innerHTML"];
-//    NSLog(@"lJs===%@",lJs);
+//    //NSLog(@"lJs===%@",lJs);
     
     //这里是js，主要目的实现对url的获取
 //    static  NSString * const jsGetImages =
@@ -896,12 +896,12 @@
 //
 //        NSArray *arguments = [JSContext currentArguments];
 //        for (JSValue *jsValue in arguments) {
-//            NSLog(@"=======%@",jsValue);
+//            //NSLog(@"=======%@",jsValue);
 //            NSData *jsonData = [[jsValue toString] dataUsingEncoding:NSUTF8StringEncoding];
 //            NSError *err;
 //            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData   options:NSJSONReadingMutableContainers error:&err];
 //            self.shareDic = [dic copy];
-//            NSLog(@"dict1 ===== %@",dic);
+//            //NSLog(@"dict1 ===== %@",dic);
 //
 //        }
 //
@@ -945,13 +945,13 @@
 //    context[@"chooseSKPayInApp"] = ^() {
 //        NSArray *arguments = [JSContext currentArguments];
 //        for (JSValue *jsValue in arguments) {
-//            NSLog(@"=======%@",jsValue);
+//            //NSLog(@"=======%@",jsValue);
 //            NSData *jsonData = [[jsValue toString] dataUsingEncoding:NSUTF8StringEncoding];
 //            NSError *err;
 //            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData   options:NSJSONReadingMutableContainers error:&err];
 //            self.orderDic = [dic copy];
 //            [g_server WH_payGetOrderInfoWithAppId:[dic objectForKey:@"appId"] prepayId:[dic objectForKey:@"prepayId"] toView:self];
-//            NSLog(@"dict1 ===== %@",dic);
+//            //NSLog(@"dict1 ===== %@",dic);
 //
 //        }
 //    };
