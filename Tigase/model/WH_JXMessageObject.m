@@ -507,12 +507,13 @@ static WH_JXMessageObject *shared;
         if([self.type intValue]==kWCMessageTypeRedPacketReceive){// 红包被领取
             self.type = [NSNumber numberWithInt:kWCMessageTypeRemind];
             self.isShowRemind = YES;
+//            NSLog(@"红包数据====%@==objectId=%@",self,self.objectId);
             if(self.objectId){//群聊红包
-                self.toUserId = self.objectId;
-                room = self.objectId;
+                self.toUserId = [NSString stringWithFormat:@"%@",self.objectId];
+                room = [NSString stringWithFormat:@"%@",self.objectId];
                 self.isGroup = YES;
             }
-            self.objectId = self.content;
+            self.objectId = [NSString stringWithFormat:@"%@",self.content];
             NSString *overStr = [NSString string];
             if ([self.fileSize intValue] == 1) {
                 

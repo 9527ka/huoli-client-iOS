@@ -15,47 +15,47 @@
 
 @interface WH_JXUserObject : WH_JXUserBaseObj{
 }
-@property (nonatomic,strong) NSString* telephone; //!< 加区号
-@property (nonatomic,strong) NSString* phone; //!< 未加区号,暂未存数据库
+@property (nonatomic,copy) NSString* telephone; //!< 加区号
+@property (nonatomic,copy) NSString* phone; //!< 未加区号,暂未存数据库
 @property (nonatomic,copy) NSString* amount;//群成员的钻石额度
 @property (nonatomic,copy) NSString* quota;//群的钻石总配额
-@property (nonatomic, strong) NSString *name; //!< 
+@property (nonatomic, copy) NSString *name; //!<
 @property (nonatomic, copy) NSString *email;
-@property (nonatomic, strong) NSString *active; //!<
-@property (nonatomic, strong) NSString *anonymous;
-@property (nonatomic, strong) NSString *carrier;
-@property (nonatomic, strong) NSString *idCard;
-@property (nonatomic, strong) NSString *idCardUrl;
+@property (nonatomic, copy) NSString *active; //!<
+@property (nonatomic, copy) NSString *anonymous;
+@property (nonatomic, copy) NSString *carrier;
+@property (nonatomic, copy) NSString *idCard;
+@property (nonatomic, copy) NSString *idCardUrl;
 @property (nonatomic, copy) NSString *officialCSUid;//客服id
 @property (nonatomic, assign) BOOL isAuth;
-@property (nonatomic, strong) NSString *isCreateRoom;
-@property (nonatomic, strong) NSString *isPasuse;
-@property (nonatomic, strong) NSString *loginIp;
-@property (nonatomic, strong) NSString *modifyTime;
+@property (nonatomic, copy) NSString *isCreateRoom;
+@property (nonatomic, copy) NSString *isPasuse;
+@property (nonatomic, copy) NSString *loginIp;
+@property (nonatomic, copy) NSString *modifyTime;
 @property (nonatomic, strong) NSNumber *num;
 @property (nonatomic, strong) NSNumber *onlinestate;
-@property (nonatomic, strong) NSString *phoneToLocation;
-@property (nonatomic, strong) NSString *regInviteCode;
-@property (nonatomic, strong) NSString *serInviteCode;
-@property (nonatomic, strong) NSString *allowAtt;
-@property (nonatomic, strong) NSString *allowGreet;
-@property (nonatomic, strong) NSString *closeTelephoneFind;
-@property (nonatomic, strong) NSString *friendFromList;
+@property (nonatomic, copy) NSString *phoneToLocation;
+@property (nonatomic, copy) NSString *regInviteCode;
+@property (nonatomic, copy) NSString *serInviteCode;
+@property (nonatomic, copy) NSString *allowAtt;
+@property (nonatomic, copy) NSString *allowGreet;
+@property (nonatomic, copy) NSString *closeTelephoneFind;
+@property (nonatomic, copy) NSString *friendFromList;
 @property (nonatomic, assign) BOOL isKeepalive;
 @property (nonatomic, assign) BOOL openService;
 @property (nonatomic, assign) BOOL showTelephone;
-@property (nonatomic, strong) NSString *totalConsume;
-@property (nonatomic, strong) NSString *totalRecharge;
-@property (nonatomic, strong) NSString *userKey;
+@property (nonatomic, copy) NSString *totalConsume;
+@property (nonatomic, copy) NSString *totalRecharge;
+@property (nonatomic, copy) NSString *userKey;
 @property (nonatomic, assign) BOOL isTestAccount;
 
-@property (nonatomic,strong) NSString* password;
+@property (nonatomic,copy) NSString* password;
 @property (nonatomic,strong) NSDate*   birthday;
-@property (nonatomic,strong) NSString* companyName;
-@property (nonatomic,strong) NSString* model;
-@property (nonatomic,strong) NSString* osVersion;
-@property (nonatomic,strong) NSString* serialNumber;
-@property (nonatomic,strong) NSString* location;
+@property (nonatomic,copy) NSString* companyName;
+@property (nonatomic,copy) NSString* model;
+@property (nonatomic,copy) NSString* osVersion;
+@property (nonatomic,copy) NSString* serialNumber;
+@property (nonatomic,copy) NSString* location;
 @property (nonatomic,strong) NSNumber* sex;  //0 : 女   1 : 男
 @property (nonatomic,strong) NSNumber* countryId;
 @property (nonatomic,strong) NSNumber* provinceId;
@@ -67,11 +67,11 @@
 @property (nonatomic,strong) NSNumber* vip;
 @property (nonatomic,strong) NSNumber* fansCount;
 @property (nonatomic,strong) NSNumber* attCount;
-@property (nonatomic,strong) NSString * friendCount;
-@property (nonatomic,strong) NSString* areaCode;
+@property (nonatomic,copy) NSString * friendCount;
+@property (nonatomic,copy) NSString* areaCode;
 @property (nonatomic,strong) NSNumber* isBeenBlack;//!< 是否被拉黑
 @property (nonatomic,strong) NSNumber* merchant;//是否是代理商
-@property (nonatomic,strong) NSString* myInviteCode;  //!<  多人邀请码
+@property (nonatomic,copy) NSString* myInviteCode;  //!<  多人邀请码
 @property (nonatomic, copy) NSString *account;  //!< 即时通讯号
 @property (nonatomic, copy) NSString *setAccountCount;  //!< 即时通讯号已修改次数
 //@property (nonatomic, strong) NSNumber *isMultipleLogin;
@@ -82,25 +82,25 @@
 @property (nonatomic, strong) NSNumber *redPacketVip; //!< 红包Vip 0、否; 1、是
 
 // 隐私设置
-@property (nonatomic,strong) NSString *chatSyncTimeLen; //!< 单聊聊天记录 同步时长
-@property (nonatomic,strong) NSString *friendsVerify; //!< 好友验证
-@property (nonatomic,strong) NSString *isEncrypt; //!< 消息加密传输
-@property (nonatomic,strong) NSString *isTyping; //!<正在输入
-@property (nonatomic,strong) NSString *isVibration; //!< 震动
-@property (nonatomic,strong) NSString *multipleDevices; //!< 多点登录
-@property (nonatomic,strong) NSString *isUseGoogleMap; //!< 谷歌地图
-@property (nonatomic,strong) NSString *payPassword; //!< 支付密码
-@property (nonatomic,strong) NSString *oldPayPassword; //!< 旧支付密码
+@property (nonatomic,copy) NSString *chatSyncTimeLen; //!< 单聊聊天记录 同步时长
+@property (nonatomic,copy) NSString *friendsVerify; //!< 好友验证
+@property (nonatomic,copy) NSString *isEncrypt; //!< 消息加密传输
+@property (nonatomic,copy) NSString *isTyping; //!<正在输入
+@property (nonatomic,copy) NSString *isVibration; //!< 震动
+@property (nonatomic,copy) NSString *multipleDevices; //!< 多点登录
+@property (nonatomic,copy) NSString *isUseGoogleMap; //!< 谷歌地图
+@property (nonatomic,copy) NSString *payPassword; //!< 支付密码
+@property (nonatomic,copy) NSString *oldPayPassword; //!< 旧支付密码
 @property (nonatomic,strong) NSNumber *isPayPassword; //!< 是否存在支付密码
-@property (nonatomic,strong) NSString *phoneSearch; //!< 允许通过手机号搜索我 1 允许 0 不允许
-@property (nonatomic,strong) NSString *nameSearch; //!< 允许通过昵称搜索我  1 允许 0 不允许
+@property (nonatomic,copy) NSString *phoneSearch; //!< 允许通过手机号搜索我 1 允许 0 不允许
+@property (nonatomic,copy) NSString *nameSearch; //!< 允许通过昵称搜索我  1 允许 0 不允许
 
-@property (nonatomic, strong) NSString *msgBackGroundUrl;//!< 朋友圈顶部图片URL
+@property (nonatomic, copy) NSString *msgBackGroundUrl;//!< 朋友圈顶部图片URL
 
 @property (nonatomic ,strong) NSDictionary *friends; 
 
 //短信验证码登录
-@property (nonatomic, strong) NSString *verificationCode;//!< 短信验证码
+@property (nonatomic, copy) NSString *verificationCode;//!< 短信验证码
 
 // 我收藏的表情
 @property (nonatomic, strong) NSMutableArray *favorites;

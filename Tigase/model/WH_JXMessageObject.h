@@ -187,13 +187,13 @@ typedef enum {
 
 @interface WH_JXMessageObject : NSObject<NSCopying>
 //以下字段用于通讯,message里：
-@property (nonatomic,strong) NSString*  messageId;//消息标识号，字符串,UUID <message>里
-@property (nonatomic,strong) NSString*  toUserIds;//专属红包指定人
-@property (nonatomic,strong) NSString*  toUserNames;//专属红包指定人
+@property (nonatomic,copy) NSString*  messageId;//消息标识号，字符串,UUID <message>里
+@property (nonatomic,copy) NSString*  toUserIds;//专属红包指定人
+@property (nonatomic,copy) NSString*  toUserNames;//专属红包指定人
 @property (nonatomic,strong) NSNumber*  isDiamound;//是否是钻石红包
 
-@property (nonatomic,strong) NSString*  fromId;//发送ID <message>里
-@property (nonatomic,strong) NSString*  toId;//目标ID <message>里
+@property (nonatomic,copy) NSString*  fromId;//发送ID <message>里
+@property (nonatomic,copy) NSString*  toId;//目标ID <message>里
 //以下字段用于通讯，Body里：
 @property (nonatomic,strong) NSNumber*  type;//消息类型 <body>里
 @property (nonatomic,copy) NSString*  fromUserId;//源
@@ -208,7 +208,7 @@ typedef enum {
 @property (nonatomic,strong) NSNumber*  timeLen;//录音时长，秒
 @property (nonatomic,strong) NSNumber*  location_x;//位置经度，或图片宽，或视频宽
 @property (nonatomic,strong) NSNumber*  location_y;//位置纬度，或图片高，或视频高
-@property (nonatomic,assign) NSNumber*  isReadDel;//是否阅后即焚,0或1
+@property (nonatomic,strong) NSNumber*  isReadDel;//是否阅后即焚,0或1
 @property (nonatomic,strong) NSNumber*  isEncrypt;//是否加密信息,0或1
 @property (nonatomic,strong) NSDate*    timeSend;//发送的时间，发送前赋当前机器时间
 @property (nonatomic, strong) NSDate *deleteTime;  // 消息过期时间
@@ -218,12 +218,12 @@ typedef enum {
 @property (nonatomic,strong) NSNumber*  isSend;//是否已送达
 @property (nonatomic,strong) NSNumber*  isRead;//是否已被对方阅读
 @property (nonatomic,strong) NSNumber*  isReceive;//是否下载成功
-@property (nonatomic,assign) NSNumber*  isUpload;//是否上传完成
+@property (nonatomic,strong) NSNumber*  isUpload;//是否上传完成
 @property (nonatomic,strong) NSDate*    timeReceive;//收到回执的时间，接收后赋当前机器时间
 @property (nonatomic,strong) NSData*    fileData;//文件内容，字节内容
 @property (nonatomic,strong) NSNumber*  readPersons;  // 已读人数
 @property (nonatomic,strong) NSDate*    readTime; // 已读时间
-@property (nonatomic, strong) NSString *chatMsgHeight;  // 聊天消息行高
+@property (nonatomic, copy) NSString *chatMsgHeight;  // 聊天消息行高
 @property (nonatomic, assign) BOOL isNotUpdateHeight;   // 是否不更新行高
 
 //以下只是内存变量，计算赋值，不传输也不保存:
@@ -232,8 +232,8 @@ typedef enum {
 @property (nonatomic,getter=getIsGroup)  BOOL       isGroup;//是否群聊，发送前赋值
 @property (nonatomic,assign) BOOL       isShowTime;//是否展示时间
 @property (nonatomic,assign) BOOL       isDelay;//是否离线消息，单聊有意义，群聊好像都返回YES
-@property (nonatomic,assign) NSNumber*  imageWidth;//聊天图片的长度
-@property (nonatomic,assign) NSNumber*  imageHeight;//聊天图片的高度
+@property (nonatomic,strong) NSNumber*  imageWidth;//聊天图片的长度
+@property (nonatomic,strong) NSNumber*  imageHeight;//聊天图片的高度
 @property (nonatomic,strong) NSMutableDictionary*  dictionary;
 @property (nonatomic,assign) float      progress;
 @property (nonatomic,assign) int        index;

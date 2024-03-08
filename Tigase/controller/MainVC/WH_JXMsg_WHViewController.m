@@ -1093,6 +1093,7 @@
 
 #pragma --------------------新来的消息Badge计算---------------
 -(void)WH_doRefresh:(WH_JXMessageObject*)msg showNumber:(BOOL)showNumber{
+    
     NSString* s;
     s = [msg getTableName];
     
@@ -1171,19 +1172,8 @@
             }
         
         //如果user为空的话创建一下插入数据库
-//        if(!newobj.user){
-            WH_JXUserObject *newUser = [[WH_JXUserObject alloc] init];
-//            newUser.userId = [newobj.message.fromUserId isEqualToString:MY_USER_ID]?newobj.message.toUserId:newobj.message.fromUserId;
-//            newUser.userNickname = [newobj.message.fromUserId isEqualToString:MY_USER_ID]?newobj.message.toUserName:newobj.message.fromUserName;
-//            newUser.remarkName = [newobj.message.fromUserId isEqualToString:MY_USER_ID]?newobj.message.toUserName:newobj.message.fromUserName;
-//            newUser.timeCreate = [newobj.message.fromUserId isEqualToString:MY_USER_ID]?newobj.message.timeSend:newobj.message.timeReceive;
-//            newUser.content = newobj.message.content;
-//            newUser.companyId = @(0);
-//            newUser.timeSend = newobj.message.timeSend;
-//            newUser.roomFlag = @(0);
-//            newUser.status = @(0);
-//            newobj.user = newUser;
-//        }
+        WH_JXUserObject *newUser = [[WH_JXUserObject alloc] init];
+
         NSString *officialCSUid = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"officialCSUid"]];
         
         if([newobj.message.fromUserId isEqualToString:MY_USER_ID] && [newobj.message.toUserId isEqualToString:officialCSUid]){//我联系的客服
@@ -1204,14 +1194,9 @@
         newUser.status = @(0);
         newobj.user = newUser;
         
-        BOOL isToMe = NO;
-        if([newobj.message.fromUserId isEqualToString:MY_USER_ID] || [newobj.message.toUserId isEqualToString:MY_USER_ID]){
-            isToMe = YES;
-        }
-        
 //        if (newobj.user) {
         
-        if (newobj.user && !msg.isGroup && isToMe && newobj.user.userId.length > 5) {
+        if (newobj.user && newobj.message.fromId.length > 5) {
             //访问数据库是否存在改好友，没有则写入数据库
             [newobj.user insertFriend];
             [_wh_array insertObject:newobj atIndex:_topNum];

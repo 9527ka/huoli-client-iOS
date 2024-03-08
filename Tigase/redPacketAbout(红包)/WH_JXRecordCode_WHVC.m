@@ -318,6 +318,7 @@
         
         WH_JXredPacketDetail_WHVC * redPacketDetailVC = [[WH_JXredPacketDetail_WHVC alloc]init];
         redPacketDetailVC.wh_dataDict = [[NSDictionary alloc]initWithDictionary:dict];
+        redPacketDetailVC.isGroup = YES;
         [g_navigation pushViewController:redPacketDetailVC animated:YES];
        
     }

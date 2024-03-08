@@ -282,7 +282,10 @@
         if(error){
             [self doError:task dict:resultObject resultMsg:string errorMsg:error];
         }else{
+#ifdef DEBUG
             MyLog(@"接口请求%@成功:%@",task.action,string);
+#endif
+            
             if ([task.action isEqualToString:act_h5Payment]) {
                 if( [task.toView respondsToSelector:@selector(WH_didServerResult_WHSucces:dict:array:)] )
                     [task.toView WH_didServerResult_WHSucces:task dict:resultObject array:nil];
@@ -371,7 +374,11 @@
 }
 
 -(void) doError:(WH_JXConnection*)task dict:(NSDictionary*)dict resultMsg:(NSString*)string errorMsg:(NSString*)errorMsg{
-    //NSLog(@"%@错误:%@",task.action,string);
+
+#ifdef DEBUG
+    NSLog(@"%@错误:%@",task.action,string);
+#endif
+    
     int resultCode = [[dict objectForKey:@"resultCode"] intValue];
     if(![task.action isEqualToString:wh_act_UserLogout] && ![task.action isEqualToString:wh_act_OutTime]){
         if(resultCode==0 || resultCode>=1000000)
@@ -1402,28 +1409,44 @@
 }
 
 -(NSString*)WH_getMD5StringWithStr:(NSString*)s{
+//    if(IsStringNull(s))
+//        return nil;
+////    if(s.length == 32){
+////        return s;
+////    }
+//    const char *buf = [s cStringUsingEncoding:NSUTF8StringEncoding];
+//    unsigned char md[MD5_DIGEST_LENGTH];
+//    unsigned long n = strlen(buf);
+//    MD5(buf, n, md);
+//
+////    printf("%s md5: ", buf);
+//    char t[50]="",p[50]="";
+//    int i;
+//    for(i = 0; i< MD5_DIGEST_LENGTH; i++){
+//        sprintf(t, "%02x", md[i]);
+//        strcat(p, t);
+//        printf("%02x", md[i]);
+//    }
+//    s = [NSString stringWithCString:p encoding:NSUTF8StringEncoding];
+////    printf("/n");
+//    //    //NSLog(@"%@",s);
+//    return s;
+    
     if(IsStringNull(s))
         return nil;
-//    if(s.length == 32){
-//        return s;
-//    }
-    const char *buf = [s cStringUsingEncoding:NSUTF8StringEncoding];
-    unsigned char md[MD5_DIGEST_LENGTH];
-    unsigned long n = strlen(buf);
-    MD5(buf, n, md);
+
+    const char *str = [s UTF8String];
+       unsigned char result[CC_MD5_DIGEST_LENGTH];
+       CC_MD5(str, (CC_LONG)strlen(str), result);
+       NSMutableString *ret = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH];
+       
+       for(int i = 0; i<CC_MD5_DIGEST_LENGTH; i++) {
+           //%02意思是不足两位将用0补齐，如果多于两位则不影响
+         //小写x表示输出小写，大写X表示输出大写,可以根据需求更改
+           [ret appendFormat:@"%02x",result[i]];
+       }
+       return ret;
     
-//    printf("%s md5: ", buf);
-    char t[50]="",p[50]="";
-    int i;
-    for(i = 0; i< MD5_DIGEST_LENGTH; i++){
-        sprintf(t, "%02x", md[i]);
-        strcat(p, t);
-        printf("%02x", md[i]);
-    }
-    s = [NSString stringWithCString:p encoding:NSUTF8StringEncoding];
-//    printf("/n");
-    //    //NSLog(@"%@",s);
-    return s;
 }
 
 - (NSString *)MD5WithStr:(NSString *)str AndSalt:(NSString *)salt

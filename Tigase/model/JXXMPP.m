@@ -1573,7 +1573,7 @@ static JXXMPP *sharedManager;
 - (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message
 {
 #ifdef DEBUG
-//    //NSLog(@"<<<<<<<<<<<收到消息: %@", message);
+    NSLog(@"<<<<<<<<<<<收到消息: %@", message);
 #endif
 //    //NSLog(@"%@", MY_USER_ID);
         pingTimeoutCount = 0;

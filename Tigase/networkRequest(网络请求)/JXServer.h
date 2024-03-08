@@ -27,7 +27,6 @@
 @class memberData;
 @class WH_JXLocation;
 
-#define NSLog(format,...) printf("%s",[[NSString stringWithFormat:(format), ##__VA_ARGS__] UTF8String])
 
 #define WH_page_size 12
 #define WH_login_view -5100001
