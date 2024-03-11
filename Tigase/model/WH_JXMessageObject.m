@@ -507,7 +507,6 @@ static WH_JXMessageObject *shared;
         if([self.type intValue]==kWCMessageTypeRedPacketReceive){// 红包被领取
             self.type = [NSNumber numberWithInt:kWCMessageTypeRemind];
             self.isShowRemind = YES;
-//            NSLog(@"红包数据====%@==objectId=%@",self,self.objectId);
             if(self.objectId){//群聊红包
                 self.toUserId = [NSString stringWithFormat:@"%@",self.objectId];
                 room = [NSString stringWithFormat:@"%@",self.objectId];
@@ -1541,8 +1540,8 @@ static WH_JXMessageObject *shared;
 -(void)notifyNewMsg{
     if([self.type intValue] == kWCMessageTypeNone)//如果是被踢出群或解散群时,type为0
         return;
-    NSString* s;
-    s = [self getTableName];
+//    NSString* s;
+//    s = [self getTableName];
     
 //    BOOL isMeeting = [self.type intValue] == kWCMessageTypeAudioMeetingInvite || [self.type intValue] == kWCMessageTypeVideoMeetingInvite;
 //    if(g_xmpp.newMsgAfterLogin==0 && ![current_chat_userId isEqualToString:s] && self.isVisible && !isMeeting){ //假如不在和目标对象的聊天记录界面里，则延迟统一一次性刷新:
@@ -1552,8 +1551,12 @@ static WH_JXMessageObject *shared;
 //        g_xmpp.newMsgAfterLogin++;
 //        [g_notify postNotificationName:kXMPPNewMsg_WHNotifaction object:nil userInfo:nil];//刷新首页
 //    }
+
     [g_notify postNotificationName:kXMPPNewMsg_WHNotifaction object:self userInfo:nil];//刷新聊天详情页
+    
+    
 }
+
 
 -(void)notifyReceipt{
     [g_notify postNotificationName:kXMPPReceipt_WHNotifaction object:self userInfo:nil];

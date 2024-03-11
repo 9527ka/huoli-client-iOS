@@ -180,10 +180,6 @@
     
     url = [NSString stringWithFormat:@"%@%@%@",s,action,param];
     
-//    if([url containsString:wh_act_UserLogin]){//登录失败模拟
-//        url = @"h:///logiiiiiiiii";
-//    }
-    
     
     if([action isEqualToString:wh_act_BaiduTranslation]){
         url = wh_act_BaiduTranslation;

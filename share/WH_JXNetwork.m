@@ -135,7 +135,10 @@ static AFHTTPSessionManager *afManager;
             NSString *str = [NSString stringWithFormat:@"&%@=%@",key, self.params[key]];
             [urlStr appendString:str];
         }
-        //NSLog(@"urlStr = %@", urlStr);
+#ifdef DEBUG
+        NSLog(@"urlStr = %@", urlStr);
+#endif
+        
     }
     
     urlStr = [[urlStr stringByReplacingOccurrencesOfString:@" " withString:@""] copy];

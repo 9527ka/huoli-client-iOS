@@ -2045,14 +2045,19 @@ static JXXMPP *sharedManager;
                         isSysTom = YES;
                     }
 
-                    if (![msg haveTheMessage] && !isSysTom && !msg.isGroup) {//消息不存在
-                        [self baiduTranslation:msg];
+//                    if (![msg haveTheMessage] && !isSysTom) {//消息不存在
+////                        [self baiduTranslation:msg];
+//                        BOOL isRoomControlMsg = msg.isRoomControlMsg;
+//                        BOOL isInsert = [msg insert:nil];//在保存时检测MessageId是否已存在记录
+//                        if (isRoomControlMsg && !isInsert) {
+//                            return;
+//                        }
 //                        [msg updateLastSend:UpdateLastSendType_Add];
-//                                [msg notifyNewMsg];//在显示时检测MessageId是否已显示
-                    }else{//保存消息
-                        if(msg.isGroup){
-                            return;
-                        }
+//                        [msg notifyNewMsg];//在显示时检测MessageId是否已显示
+//                    }else{//保存消息
+//                        if(msg.isGroup){
+//                            return;
+//                        }
                         if (![msg haveTheMessage]) {
                             BOOL isRoomControlMsg = msg.isRoomControlMsg;
                             BOOL isInsert = [msg insert:nil];//在保存时检测MessageId是否已存在记录
@@ -2062,8 +2067,7 @@ static JXXMPP *sharedManager;
 
                             [msg updateLastSend:UpdateLastSendType_Add];
                             [msg notifyNewMsg];
-                        
-                        }
+//                        }
                     }
                 }else{
 
