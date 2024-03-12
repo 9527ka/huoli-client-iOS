@@ -148,8 +148,8 @@ static NSString *buttonCellIdentifier = @"buttonCellIdentifier";
         currentLoginType = [g_config.regeditPhoneOrName integerValue];
     }
     
-    NSString *loginName = [g_default objectForKey:kMY_USER_LoginName];
-    NSString *userId = [g_default objectForKey:kMY_USER_ID];
+    NSString *loginName = [NSString stringWithFormat:@"%@",[g_default objectForKey:kMY_USER_LoginName]];
+    NSString *userId = [NSString stringWithFormat:@"%@",[g_default objectForKey:kMY_USER_ID]];
     if (IsStringNull(loginName) || IsStringNull(userId)) {
         isHadLoginName = NO;
         userObject = [[WH_JXUserObject alloc] init];

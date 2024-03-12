@@ -185,10 +185,13 @@ static  WH_webpage_WHVC *webVC;
      }];
     [[UIApplication sharedApplication] registerForRemoteNotifications];
 
-    }else if ([[UIDevice currentDevice].systemVersion floatValue] >8.0){
-      UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
     }
+    // 注册push权限，用于显示本地推送
+    [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+//       else if ([[UIDevice currentDevice].systemVersion floatValue] >8.0){
+//      UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert categories:nil];
+//        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+//    }
 }
 
 -(UIView *)subWindow
@@ -669,7 +672,7 @@ static  WH_webpage_WHVC *webVC;
 #endif
 #endif
 //    //NSLog(@"推送：接收本地通知啦！！！");
-//    [BPush showLocalNotificationAtFront:notification identifierKey:nil];
+    [BPush showLocalNotificationAtFront:notification identifierKey:nil];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -719,25 +722,31 @@ static  WH_webpage_WHVC *webVC;
 
 
 -(void)startPush:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
-    // iOS8 下需要使用新的 API
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
-        UIUserNotificationType myTypes = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
-        
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:myTypes categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-    }else {
-        UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound;
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:myTypes];
-    }
-    
-    // 在 App 启动时注册百度云推送服务，需要提供 Apikey
-//    NSString * identifier = [[NSBundle mainBundle] bundleIdentifier];
-//    if ([identifier isEqualToString:@"com.shiku.im.push"]) {
-//        [BPush registerChannel:launchOptions apiKey:@"YWCjFscGk7cv3RlEtaxoypzt0sipp6vw" pushMode: BPushModeProduction withFirstAction:nil withSecondAction:nil withCategory:nil useBehaviorTextInput:YES isDebug:NO];
-//    }else{
-//        [BPush registerChannel:launchOptions apiKey:@"7LlWDe0AZGKILS4Tq5cMNMum" pushMode: BPushModeProduction withFirstAction:nil withSecondAction:nil withCategory:nil useBehaviorTextInput:YES isDebug:NO];
-//    }
-    
+    if (@available(iOS 11.0, *))
+        {
+            UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+            [center requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
+                if (!granted)
+                {
+//                    dispatch_async_main_safe(^{
+//                        [[UIApplication sharedApplication].keyWindow makeToast:@"请开启推送功能否则无法收到推送通知" duration:2.0 position:CSToastPositionCenter];
+//                    })
+                }
+            }];
+        }
+        else
+        {
+            UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+            UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types
+                                                                                     categories:nil];
+            [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        }
+
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+
+
+        // 注册push权限，用于显示本地推送
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
 //
     // App 是用户点击推送消息启动
     NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];

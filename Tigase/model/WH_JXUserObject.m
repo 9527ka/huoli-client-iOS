@@ -451,7 +451,7 @@ static WH_JXUserObject *sharedUser;
     self.msgBackGroundUrl = [dict objectForKey:@"msgBackGroundUrl"];
     self.showLastLoginTime = [dict objectForKey:@"showLastLoginTime"];
     
-    self.telephone = [dict objectForKey:@"telephone"];
+    self.telephone = [NSString stringWithFormat:@"%@",[dict objectForKey:@"telephone"]];
     self.phone = [dict objectForKey:@"phone"];
     self.password = [dict objectForKey:@"password"];
     self.userType = [dict objectForKey:@"userType"];

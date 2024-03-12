@@ -79,6 +79,8 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -149,10 +151,9 @@
 	<string>MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCYMaBXqMSxEfaKrMmdi3jj6Gek7fhWWg4veuoyHexzcNtE44pFBHOfJzam9sMrK5fXUil2awyZV7+xkJ/KLG30GmM8IPTn6sbwAKTMxnsCgs/S//FMzZr8mrcIfa117ykyv5Thqfr9qatXmmUVSUYXb3YhrTG5DDMijR80aXVj6wIDAQAB</string>
 	<key>Seller</key>
 	<string>2088001053772698</string>
-	<key>ITSAppUsesNonExemptEncryption</key>
-	<false/>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>fetch</string>
 		<string>remote-notification</string>
 	</array>
 	<key>UIPrerenderedIcon</key>
