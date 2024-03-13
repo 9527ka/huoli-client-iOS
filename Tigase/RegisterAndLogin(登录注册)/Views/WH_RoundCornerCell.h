@@ -18,6 +18,7 @@ typedef NS_ENUM(NSUInteger, RoundCornerCellType) {
 
 @interface WH_RoundCornerCell : UITableViewCell
 
+@property(nonatomic,strong)UIView *bgView;
 @property (nonatomic, strong) UIView *backView;
 @property (nonatomic, assign) RoundCornerCellType cellType;
 @property (nonatomic, strong) NSIndexPath *cellIndexPath;

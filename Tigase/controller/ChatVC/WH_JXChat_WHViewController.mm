@@ -115,7 +115,6 @@
 //自定义表情相关
 #import "WWAddEmoticonViewController.h"
 #import "WWEmoticonManagerViewController.h"
-#import "WH_RegisterViewController.h"
 #import "UIView+WH_CustomAlertView.h"
 #import "WH_CustomActionSheetView.h"
 

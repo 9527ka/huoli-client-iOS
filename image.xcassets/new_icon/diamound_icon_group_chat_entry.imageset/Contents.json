@@ -5,11 +5,12 @@
       "scale" : "1x"
     },
     {
+      "filename" : "zuan@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "diamound_icon_group_chat_entry@3x.png",
+      "filename" : "zuan@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

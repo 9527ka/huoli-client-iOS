@@ -32,7 +32,8 @@
         //每格高度heigth
         //大小
         self.frame = CGRectMake(0, 0, JX_SCREEN_WIDTH, JX_SCREEN_HEIGHT);
-        self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.3];
+//        self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.3];
+        self.backgroundColor = [UIColor clearColor];
         UITapGestureRecognizer *bigTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideMenuView)];
         [self addGestureRecognizer:bigTap];
         UIView *bigView = [[UIView alloc] init];
@@ -49,8 +50,8 @@
         }
         [self addSubview:bigView];
         
-        bigView.backgroundColor = [UIColor whiteColor];
-        bigView.layer.cornerRadius = 10;
+        bigView.backgroundColor = HEXCOLOR(0x8B8C8C);
+        bigView.layer.cornerRadius = 15;
         bigView.layer.masksToBounds = YES;
         //背景图片
 //        UIImageView * bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, bigView.frame.size.width, bigView.frame.size.height)];
@@ -67,11 +68,11 @@
             UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didMenuViewCell:)];
             [baseView addGestureRecognizer:tap];
             //添加分割线
-            if (i < [titleArr count]-1) {
-                UIView * lineView = [[UIView alloc]initWithFrame:CGRectMake(0, baseView.frame.size.height-0.5, baseView.frame.size.width, 0.5)];
-                lineView.backgroundColor = [HEXCOLOR(0xE1E4E8) colorWithAlphaComponent:0.3];
-                [baseView addSubview:lineView];
-            }
+//            if (i < [titleArr count]-1) {
+//                UIView * lineView = [[UIView alloc]initWithFrame:CGRectMake(0, baseView.frame.size.height-0.5, baseView.frame.size.width, 0.5)];
+//                lineView.backgroundColor = [HEXCOLOR(0xE1E4E8) colorWithAlphaComponent:0.3];
+//                [baseView addSubview:lineView];
+//            }
             
             UILabel * titleLabel = [[UILabel alloc]init];
             UIImageView *imageView;
@@ -88,7 +89,7 @@
             }
             //设置标题
             titleLabel.text = titleArr[i];
-            titleLabel.textColor = HEXCOLOR(0x333333);
+            titleLabel.textColor = [UIColor whiteColor];
             titleLabel.font = sysFontWithSize(14);
             titleLabel.userInteractionEnabled = NO;
             [baseView addSubview:titleLabel];

@@ -16,7 +16,6 @@
 #import "JX_NewWithdrawViewController.h"
 
 #import "WH_Recharge_WHViewController.h"
-#import "WH_RegisterViewController.h"
 
 
 #import "WH_NewRecharge_WHViewController.h"

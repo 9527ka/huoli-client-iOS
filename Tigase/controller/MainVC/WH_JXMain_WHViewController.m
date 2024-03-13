@@ -92,13 +92,6 @@
         NSDictionary *tabBarConfig = g_config.tabBarConfigList;
         if (tabBarConfig) {
             //有自定义tab
-//            self.customTabVC = [WH_webpage_WHVC alloc];
-//            NSString *tabBarLinkUrl = tabBarConfig[@"tabBarLinkUrl"];
-//            self.customTabVC.wh_isGotoBack = NO;
-//            self.customTabVC.isSend = NO;
-//            self.customTabVC.url = tabBarLinkUrl;
-//            self.customTabVC.isOnMainVC = YES;
-//            self.customTabVC = [self.customTabVC init];
             
             self.wkWebViewVC = [[WH_WKWebView_JXViewController alloc] init];
             NSString *tabBarLinkUrl = tabBarConfig[@"tabBarLinkUrl"];
@@ -210,26 +203,22 @@
     _tb = [WH_JXTabMenuView alloc];
 #ifdef IS_OPEN_CUSTOM_TAB
     NSDictionary *tabBarConfig = g_config.tabBarConfigList;
-    NSString *tabBarName = [tabBarConfig objectForKey:@"tabBarName"]?:@"";
-    if (tabBarConfig && tabBarName.length> 0 && ![tabBarName isKindOfClass:[NSNull class]]) {
-        //有自定义tab
-        NSString *tabBarImg = tabBarConfig[@"tabBarImg"]?:@"";
-        NSString *tabBarName = tabBarConfig[@"tabBarName"]?:@"";
-        NSString *tabBarImg1 = tabBarConfig[@"tabBarImg1"]?:@"";
+    
+    NSString *tabBarImg = @"tabBarName";
+    NSString *tabBarName = @"";
+    NSString *tabBarImg1 = @"tabBarName";
         
-        NSString *selectImgName = tabBarImg1;
-        if (selectImgName.length == 0) {
-            selectImgName = tabBarImg;
-        }
+    NSString *selectImgName = tabBarImg1;
+
         
         _tb.wh_items = [NSArray arrayWithObjects:Localized(@"WaHu_JXMain_WaHuViewController_Message"),Localized(@"JX_MailList"),tabBarName,Localized(@"WaHu_JXMain_WaHuViewController_Find"),Localized(@"JX_My"),nil];
         _tb.wh_imagesNormal = [NSArray arrayWithObjects:@"xiaoximoren",@"tongxunlumoren",tabBarImg,@"guangchangmoren",@"wodemoren",nil];
         _tb.wh_imagesSelect = [NSArray arrayWithObjects:@"xiaoxixuanzhong",@"tongxunluxuanzhong",selectImgName,@"guangchangxuanzhong",@"wodexuanzhong",nil];
-    } else {
-        _tb.wh_items = [NSArray arrayWithObjects:Localized(@"WaHu_JXMain_WaHuViewController_Message"),Localized(@"JX_MailList"),Localized(@"WaHu_JXMain_WaHuViewController_Find"),Localized(@"JX_My"),nil];
-        _tb.wh_imagesNormal = [NSArray arrayWithObjects:@"xiaoximoren",@"tongxunlumoren",@"guangchangmoren",@"wodemoren",nil];
-        _tb.wh_imagesSelect = [NSArray arrayWithObjects:@"xiaoxixuanzhong",@"tongxunluxuanzhong",@"guangchangxuanzhong",@"wodexuanzhong",nil];
-    }
+//    } else {
+//        _tb.wh_items = [NSArray arrayWithObjects:Localized(@"WaHu_JXMain_WaHuViewController_Message"),Localized(@"JX_MailList"),Localized(@"WaHu_JXMain_WaHuViewController_Find"),Localized(@"JX_My"),nil];
+//        _tb.wh_imagesNormal = [NSArray arrayWithObjects:@"xiaoximoren",@"tongxunlumoren",@"guangchangmoren",@"wodemoren",nil];
+//        _tb.wh_imagesSelect = [NSArray arrayWithObjects:@"xiaoxixuanzhong",@"tongxunluxuanzhong",@"guangchangxuanzhong",@"wodexuanzhong",nil];
+//    }
 #else
     _tb.items = [NSArray arrayWithObjects:Localized(@"WaHu_JXMain_WaHuViewController_Message"),Localized(@"JX_MailList"),Localized(@"WaHu_JXMain_WaHuViewController_Find"),Localized(@"JX_My"),nil];
     _tb.imagesNormal = [NSArray arrayWithObjects:@"xiaoximoren",@"tongxunlumoren",@"guangchangmoren",@"wodemoren",nil];
@@ -256,18 +245,19 @@
 -(void)doSelected:(int)n{
     [_selectVC.view removeFromSuperview];
     
-#ifdef IS_OPEN_CUSTOM_TAB
-    NSDictionary *tabBarConfig = g_config.tabBarConfigList;
-    NSString *tabBarName = [tabBarConfig objectForKey:@"tabBarName"]?:@"";
-    if (tabBarConfig && tabBarName.length > 0 && ![tabBarName isKindOfClass:[NSNull class]]) {
+//#ifdef IS_OPEN_CUSTOM_TAB
+//    NSDictionary *tabBarConfig = g_config.tabBarConfigList;
+//    NSString *tabBarName = [tabBarConfig objectForKey:@"tabBarName"]?:@"";
+//    if (tabBarConfig && tabBarName.length > 0 && ![tabBarName isKindOfClass:[NSNull class]]) {
         //有自定义tab
         [self hasCustomTabSelectedHandle:n];
-    } else {
-        [self noCustomTabSelectedHandler:n];
-    }
-#else
-    [self noCustomTabSelectedHandler:n];
-#endif
+//    }
+//    else {
+//        [self noCustomTabSelectedHandler:n];
+//    }
+//#else
+//    [self noCustomTabSelectedHandler:n];
+//#endif
     
     [_tb wh_selectOne:n];
     [_mainView addSubview:_selectVC.view];

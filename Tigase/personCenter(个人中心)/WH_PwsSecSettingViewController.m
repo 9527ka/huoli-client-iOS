@@ -43,40 +43,29 @@
         [self.wh_tableBody addSubview:iv];
         
         
+        UILabel *bgLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 12, JX_SCREEN_WIDTH, 40)];
+        bgLab.backgroundColor = HEXCOLOR(0xF3FFF8);
+        [self.wh_tableBody addSubview:bgLab];
         
-        UILabel *desLabel = [[UILabel alloc] initWithFrame:CGRectMake(g_factory.globelEdgeInset, 12, JX_SCREEN_WIDTH - 2*g_factory.globelEdgeInset, 40)];
+        UILabel *desLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 12, JX_SCREEN_WIDTH - 2*20, 40)];
         desLabel.numberOfLines = 0;
+        desLabel.textColor = HEXCOLOR(0x2BAF67);
+        desLabel.text = Localized(@"New_remeber_answer");
+        desLabel.font = [UIFont systemFontOfSize:12];
         [self.wh_tableBody addSubview:desLabel];
         
-        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:Localized(@"New_remeber_answer")attributes: @{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Regular" size: 14],NSForegroundColorAttributeName: [UIColor colorWithRed:150/255.0 green:150/255.0 blue:150/255.0 alpha:1.0]}];
+        //创建整体背景
+        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(desLabel.frame)+20, JX_SCREEN_WIDTH - 40, 317)];
+        bgView.backgroundColor = [UIColor whiteColor];
+        bgView.layer.cornerRadius = 6.0f;
+        bgView.layer.masksToBounds = YES;
+        [self.wh_tableBody addSubview:bgView];
         
-        desLabel.attributedText = string;
-        desLabel.textAlignment = NSTextAlignmentLeft;
         
-        
-        
-        //问题一
-        UILabel *title1 = [self MiXin_createLabel:self.wh_tableBody default:[NSString stringWithFormat:@"%@:",Localized(@"New_question1")]];
-        title1.frame = CGRectMake(g_factory.globelEdgeInset, CGRectGetMaxY(desLabel.frame)+20, JX_SCREEN_WIDTH - 2*g_factory.globelEdgeInset, 20);
-        
-        iv = [[WH_JXImageView alloc] init];
-        iv.backgroundColor = [UIColor whiteColor];
-        iv.userInteractionEnabled = YES;
-        iv.didTouch = @selector(hideKeyboard);
-        iv.wh_delegate = self;
-        iv.frame = CGRectMake(g_factory.globelEdgeInset, CGRectGetMaxY(title1.frame)+12, JX_SCREEN_WIDTH - 2*g_factory.globelEdgeInset, 56);
-        [self.wh_tableBody addSubview:iv];
-        
-        iv.layer.masksToBounds = YES;
-        iv.layer.cornerRadius = g_factory.cardCornerRadius;
-        iv.layer.borderWidth = g_factory.cardBorderWithd;
-        iv.layer.borderColor = g_factory.cardBorderColor.CGColor;
-        
-        DMDropDownMenu *dm1 = [[DMDropDownMenu alloc] initWithFrame:iv.frame];
+        DMDropDownMenu *dm1 = [[DMDropDownMenu alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(desLabel.frame)+20, JX_SCREEN_WIDTH - 2*20, 44)];
         dm1.delegate = self;
         dm1.tag = 501;
         self.dm1 = dm1;
-        
         [self.wh_tableBody addSubview:dm1];
         
         
@@ -85,9 +74,9 @@
         iv.userInteractionEnabled = YES;
         iv.didTouch = @selector(hideKeyboard);
         iv.wh_delegate = self;
-        iv.frame = CGRectMake(g_factory.globelEdgeInset, CGRectGetMaxY(dm1.frame)+12, JX_SCREEN_WIDTH - 2*g_factory.globelEdgeInset, 56);
+        iv.frame = CGRectMake(40, CGRectGetMaxY(dm1.frame)+3, JX_SCREEN_WIDTH - 80, 44);
         [self.wh_tableBody addSubview:iv];
-        
+
         iv.layer.masksToBounds = YES;
         iv.layer.cornerRadius = g_factory.cardCornerRadius;
         iv.layer.borderWidth = g_factory.cardBorderWithd;
@@ -97,36 +86,18 @@
         
 
         //问题二
-        UILabel *title2 = [self MiXin_createLabel:self.wh_tableBody default:[NSString stringWithFormat:@"%@:",Localized(@"New_question2")]];
-        title2.frame = CGRectMake(g_factory.globelEdgeInset, CGRectGetMaxY(iv.frame)+20, JX_SCREEN_WIDTH - 2*g_factory.globelEdgeInset, 20);
-        
-        iv = [[WH_JXImageView alloc] init];
-        iv.backgroundColor = [UIColor whiteColor];
-        iv.userInteractionEnabled = YES;
-        iv.didTouch = @selector(hideKeyboard);
-        iv.wh_delegate = self;
-        iv.frame = CGRectMake(g_factory.globelEdgeInset, CGRectGetMaxY(title2.frame)+12, JX_SCREEN_WIDTH - 2*g_factory.globelEdgeInset, 56);
-        [self.wh_tableBody addSubview:iv];
-        
-        iv.layer.masksToBounds = YES;
-        iv.layer.cornerRadius = g_factory.cardCornerRadius;
-        iv.layer.borderWidth = g_factory.cardBorderWithd;
-        iv.layer.borderColor = g_factory.cardBorderColor.CGColor;
-        
-        DMDropDownMenu *dm2 = [[DMDropDownMenu alloc] initWithFrame:iv.frame];
+        DMDropDownMenu *dm2 = [[DMDropDownMenu alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(iv.frame)+6, JX_SCREEN_WIDTH - 2*20, 44)];
         self.dm2 = dm2;
         dm2.tag = 502;
         dm2.delegate = self;
-        
         [self.wh_tableBody addSubview:dm2];
-        
         
         iv = [[WH_JXImageView alloc] init];
         iv.backgroundColor = [UIColor whiteColor];
         iv.userInteractionEnabled = YES;
         iv.didTouch = @selector(hideKeyboard);
         iv.wh_delegate = self;
-        iv.frame = CGRectMake(g_factory.globelEdgeInset, CGRectGetMaxY(dm2.frame)+12, JX_SCREEN_WIDTH - 2*g_factory.globelEdgeInset, 56);
+        iv.frame = CGRectMake(40, CGRectGetMaxY(dm2.frame)+3, JX_SCREEN_WIDTH - 2*40, 44);
         [self.wh_tableBody addSubview:iv];
         
         iv.layer.masksToBounds = YES;
@@ -137,23 +108,7 @@
         self.question2TF = [self MiXin_createMiXinTextField:iv defaultString:nil hint:Localized(@"New_input_answer")];
         
         //问题三
-        UILabel *title3 = [self MiXin_createLabel:self.wh_tableBody default:[NSString stringWithFormat:@"%@:",Localized(@"New_question3")]];
-        title3.frame = CGRectMake(g_factory.globelEdgeInset, CGRectGetMaxY(iv.frame)+20, JX_SCREEN_WIDTH - 2*g_factory.globelEdgeInset, 20);
-        
-        iv = [[WH_JXImageView alloc] init];
-        iv.backgroundColor = [UIColor whiteColor];
-        iv.userInteractionEnabled = YES;
-        iv.didTouch = @selector(hideKeyboard);
-        iv.wh_delegate = self;
-        iv.frame = CGRectMake(g_factory.globelEdgeInset, CGRectGetMaxY(title3.frame)+12, JX_SCREEN_WIDTH - 2*g_factory.globelEdgeInset, 56);
-        [self.wh_tableBody addSubview:iv];
-        
-        iv.layer.masksToBounds = YES;
-        iv.layer.cornerRadius = g_factory.cardCornerRadius;
-        iv.layer.borderWidth = g_factory.cardBorderWithd;
-        iv.layer.borderColor = g_factory.cardBorderColor.CGColor;
-        
-        DMDropDownMenu *dm3 = [[DMDropDownMenu alloc] initWithFrame:iv.frame];
+        DMDropDownMenu *dm3 = [[DMDropDownMenu alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(iv.frame)+6, JX_SCREEN_WIDTH - 2*20, 44)];
         self.dm3 = dm3;
         dm3.tag = 503;
         dm3.delegate = self;
@@ -166,7 +121,7 @@
         iv.userInteractionEnabled = YES;
         iv.didTouch = @selector(hideKeyboard);
         iv.wh_delegate = self;
-        iv.frame = CGRectMake(g_factory.globelEdgeInset, CGRectGetMaxY(dm3.frame)+12, JX_SCREEN_WIDTH - 2*g_factory.globelEdgeInset, 56);
+        iv.frame = CGRectMake(40, CGRectGetMaxY(dm3.frame)+3, JX_SCREEN_WIDTH - 2*40, 44);
         [self.wh_tableBody addSubview:iv];
         
         iv.layer.masksToBounds = YES;
@@ -177,16 +132,15 @@
         self.question3TF = [self MiXin_createMiXinTextField:iv defaultString:nil hint:Localized(@"New_input_answer")];
         
         //完成按钮
-        
         UIButton* _btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_btn setTitle:Localized(@"JX_Confirm") forState:UIControlStateNormal];
         [_btn setTitleColor:HEXCOLOR(0xffffff) forState:UIControlStateNormal];
         [_btn addTarget:self action:@selector(doneBtnClick) forControlEvents:UIControlEventTouchUpInside];
-        _btn.layer.cornerRadius = g_factory.cardCornerRadius;
+        _btn.layer.cornerRadius = 24.0f;
         _btn.custom_acceptEventInterval = .25f;
         _btn.clipsToBounds = YES;
-        _btn.frame = CGRectMake(g_factory.globelEdgeInset, CGRectGetMaxY(iv.frame) + 20, JX_SCREEN_WIDTH - 2*g_factory.globelEdgeInset, 44);
-        [_btn setBackgroundColor:HEXCOLOR(0x0093FF)];
+        _btn.frame = CGRectMake(37, CGRectGetMaxY(bgView.frame) + 50, JX_SCREEN_WIDTH - 2*37, 48);
+        [_btn setBackgroundColor:HEXCOLOR(0x2BAF67)];
         [self.wh_tableBody addSubview:_btn];
         
         self.wh_tableBody.contentSize = CGSizeMake(JX_SCREEN_WIDTH, _btn.bottom+20);
@@ -230,7 +184,7 @@
 }
 
 -(UITextField*)MiXin_createMiXinTextField:(UIView*)parent defaultString:(NSString*)s hint:(NSString*)hint{
-    UITextField* p = [[UITextField alloc] initWithFrame:CGRectMake(parent.frame.origin.x + 10, 0, parent.frame.size.width, parent.frame.size.height)];
+    UITextField* p = [[UITextField alloc] initWithFrame:CGRectMake(10, 0, parent.frame.size.width - 20, parent.frame.size.height)];
     p.delegate = self;
     p.autocorrectionType = UITextAutocorrectionTypeNo;
     p.autocapitalizationType = UITextAutocapitalizationTypeNone;

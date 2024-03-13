@@ -578,7 +578,6 @@
     g_mainVC = nil;
     [self.view removeFromSuperview];
     self.view = nil;
-    vc.isPushEntering = YES;
     g_navigation.rootViewController = vc;
 //    g_navigation.lastVC = nil;
 //    [g_navigation.subViews removeAllObjects];
@@ -642,7 +641,6 @@
     g_mainVC = nil;
     [self.view removeFromSuperview];
     self.view = nil;
-    loginVC.isPushEntering = YES;
     g_navigation.rootViewController = loginVC;
     
 

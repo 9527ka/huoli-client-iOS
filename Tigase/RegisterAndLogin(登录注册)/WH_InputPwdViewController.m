@@ -69,17 +69,17 @@
     
     
     
-    UIButton* _btn = [[UIButton alloc] initWithFrame:CGRectMake(rePwdField.left, rePwdField.bottom+20, rePwdField.width, 44)];
+    UIButton* _btn = [[UIButton alloc] initWithFrame:CGRectMake(37, rePwdField.bottom+20, JX_SCREEN_WIDTH - 74, 48)];
     _btn.custom_acceptEventInterval = .25f;
     [_btn setTitle:Localized(self.resetPass? @"JX_Confirm" : @"JX_NextStep") forState:UIControlStateNormal];
     _btn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16];
     [_btn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
     [_btn addTarget:self action:@selector(onClick) forControlEvents:UIControlEventTouchUpInside];
     _btn.clipsToBounds = YES;
-    _btn.layer.cornerRadius = g_factory.cardCornerRadius;
-    _btn.layer.borderColor = g_factory.cardBorderColor.CGColor;
-    _btn.layer.borderWidth = g_factory.cardBorderWithd;
-    _btn.backgroundColor = HEXCOLOR(0x0093FF);
+    _btn.layer.cornerRadius = 24;
+//    _btn.layer.borderColor = g_factory.cardBorderColor.CGColor;
+//    _btn.layer.borderWidth = g_factory.cardBorderWithd;
+    _btn.backgroundColor = HEXCOLOR(0x2BAF67);
     [self.view addSubview:_btn];
     
     

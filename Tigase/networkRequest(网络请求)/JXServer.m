@@ -2888,7 +2888,6 @@
     
     WH_JXLoginVC *loginVC = [[WH_JXLoginVC alloc] init];
 //    loginVC.isAutoLogin = YES;
-    loginVC.isPushEntering = YES;
     g_navigation.rootViewController = loginVC;
     
     

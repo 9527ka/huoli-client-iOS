@@ -52,7 +52,7 @@
 - (void)loadSubViews {
     CGFloat buttonOriginY = JX_SCREEN_TOP+13;
     if (self.forgetStep == 1) {
-        userField = [[WH_LoginTextField alloc] initWithFrame:CGRectMake(g_factory.globelEdgeInset, JX_SCREEN_TOP+13, JX_SCREEN_WIDTH-2*g_factory.globelEdgeInset, 50)];
+        userField = [[WH_LoginTextField alloc] initWithFrame:CGRectMake(20, JX_SCREEN_TOP+13, JX_SCREEN_WIDTH-40, 50)];
         userField.fieldType = LoginFieldUserNameType;
         userField.delegate = self;
         userField.tag = 1;
@@ -61,27 +61,18 @@
         buttonOriginY = userField.bottom + 20;
     }else {
         
-        UILabel *desLabel = [[UILabel alloc] initWithFrame:CGRectMake(g_factory.globelEdgeInset, buttonOriginY+12, JX_SCREEN_WIDTH-2*g_factory.globelEdgeInset, 20)];
-        desLabel.backgroundColor = g_factory.globalBgColor;
+        UILabel *desLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, buttonOriginY+12, JX_SCREEN_WIDTH-2*40, 20)];
         desLabel.text = @"请选择密保问题进行验证:";
-        desLabel.textColor = HEXCOLOR(0x8F9CBB);
-        desLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:14];
+        desLabel.textColor = HEXCOLOR(0x797979);
+        desLabel.font = [UIFont systemFontOfSize:14];
         [self.view addSubview:desLabel];
         
-        UIView *passSecBackView = [[UIView alloc] initWithFrame:CGRectMake(desLabel.left, desLabel.bottom+12, desLabel.width, 56)];
+        UIView *passSecBackView = [[UIView alloc] initWithFrame:CGRectMake(desLabel.left, desLabel.bottom+12, JX_SCREEN_WIDTH-40, 101)];
         passSecBackView.backgroundColor = UIColor.whiteColor;
-        passSecBackView.layer.borderColor = g_factory.cardBorderColor.CGColor;
-        passSecBackView.layer.borderWidth = g_factory.cardBorderWithd;
-        passSecBackView.layer.cornerRadius = g_factory.cardCornerRadius;
-        //    [self.view addSubview:passSecBackView];
+        passSecBackView.layer.cornerRadius = 6.0f;
+        [self.view addSubview:passSecBackView];
         
-        passSecLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 17, passSecBackView.width-20*2-24-12, 56-17*2)];
-        passSecLabel.text = @"";
-        passSecLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:15];
-        passSecLabel.textColor = HEXCOLOR(0x3A404C);
-        //    [passSecBackView addSubview:passSecLabel];
-        
-        questionMenu = [[DMDropDownMenu alloc] initWithFrame:CGRectMake(desLabel.left, desLabel.bottom+12, desLabel.width, 56)];
+        questionMenu = [[DMDropDownMenu alloc] initWithFrame:CGRectMake(desLabel.left, desLabel.bottom+12, passSecBackView.width, 50)];
         questionMenu.delegate = self;
         questionMenu.backgroundColor = UIColor.whiteColor;
         questionMenu.clipsToBounds = YES;
@@ -94,11 +85,11 @@
         [self.view addSubview:questionMenu];
         
         UIButton *arrowButton = [[UIButton alloc] initWithFrame:CGRectMake(passSecBackView.width-27*2, 0, 27*2, passSecBackView.height)];
-        [arrowButton setImage:[UIImage imageNamed:@"newicon_arrowup"] forState:UIControlStateNormal];
+//        [arrowButton setImage:[UIImage imageNamed:@"newicon_arrowup"] forState:UIControlStateNormal];// icon_right_arrow
         [arrowButton addTarget:self action:@selector(showPwdQuestions:) forControlEvents:UIControlEventTouchUpInside];
         [passSecBackView addSubview:arrowButton];
         
-        answerField = [[UITextField alloc] initWithFrame:CGRectMake(passSecBackView.left, passSecBackView.bottom+12, passSecBackView.width, 56)];
+        answerField = [[UITextField alloc] initWithFrame:CGRectMake(passSecBackView.left, passSecBackView.top+51, passSecBackView.width, 50)];
         answerField.delegate = self;
         answerField.tag = 2;
         answerField.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -111,25 +102,29 @@
         answerField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:Localized(@"New_input_answer") attributes:@{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Regular" size:15], NSForegroundColorAttributeName:HEXCOLOR(0xBAC3D5)}];
         answerField.font = sysFontWithSize(16);
         [self customLayerCornerStyleWithGlobalParams:answerField.layer];
-        UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 16, answerField.height)];
+        UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, answerField.height)];
         leftView.backgroundColor = UIColor.whiteColor;
         answerField.leftViewMode = UITextFieldViewModeAlways;
         answerField.leftView = leftView;
         [self.view addSubview:answerField];
+        
+        passSecLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 50, passSecBackView.width-20*2, 1)];
+        passSecLabel.backgroundColor = HEXCOLOR(0xEEEEEE);
+        [passSecBackView addSubview:passSecLabel];
         
         buttonOriginY = answerField.bottom + 20;
     }
     
   
     
-    UIButton *confirmButton = [[UIButton alloc] initWithFrame:CGRectMake(g_factory.globelEdgeInset, buttonOriginY, JX_SCREEN_WIDTH-2*g_factory.globelEdgeInset, 44)];
+    UIButton *confirmButton = [[UIButton alloc] initWithFrame:CGRectMake(37, buttonOriginY + 26, JX_SCREEN_WIDTH-74, 48)];
     [confirmButton setTitle:self.forgetStep == 1 ? Localized(@"JX_NextStep") : Localized(@"JX_Confirm") forState:UIControlStateNormal];
     [confirmButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
-    confirmButton.backgroundColor = HEXCOLOR(0x0093FF);
-    confirmButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16];
-    confirmButton.layer.cornerRadius = g_factory.cardCornerRadius;
-    confirmButton.layer.borderWidth = g_factory.cardBorderWithd;
-    confirmButton.layer.borderColor = g_factory.cardBorderColor.CGColor;
+    confirmButton.backgroundColor = HEXCOLOR(0x2BAF67);
+    confirmButton.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+    confirmButton.layer.cornerRadius = 24.0f;
+//    confirmButton.layer.borderWidth = g_factory.cardBorderWithd;
+//    confirmButton.layer.borderColor = g_factory.cardBorderColor.CGColor;
     confirmButton.layer.masksToBounds = YES;
     [confirmButton addTarget:self action:@selector(nextStep) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:confirmButton];
@@ -137,8 +132,8 @@
 
 - (void)customLayerCornerStyleWithGlobalParams:(CALayer *)layer {
     layer.cornerRadius = g_factory.cardCornerRadius;
-    layer.borderColor = g_factory.cardBorderColor.CGColor;
-    layer.borderWidth = g_factory.cardBorderWithd;
+//    layer.borderColor = g_factory.cardBorderColor.CGColor;
+//    layer.borderWidth = g_factory.cardBorderWithd;
     layer.masksToBounds = YES;
 }
 

@@ -340,12 +340,14 @@ static  WH_webpage_WHVC *webVC;
         WH_AdvertisingViewController *adVC = [[WH_AdvertisingViewController alloc] init];
         g_navigation.rootViewController = adVC;
         __block WH_JXLoginVC *loginVC = [[ WH_JXLoginVC alloc] init];
+        loginVC.isShow = YES;
         adVC.skipActionBlock = ^{
             //NSLog(@"跳过");
             g_navigation.rootViewController = loginVC;
         };
     } else {
         WH_JXLoginVC *loginVC = [[ WH_JXLoginVC alloc] init];
+        loginVC.isShow = YES;
         g_navigation.rootViewController = loginVC;
     }
 }

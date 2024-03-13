@@ -61,7 +61,7 @@
     borderSpace = 20;
     horizontalSpace = 25;
     verticalSpace = 20;
-    headWidth = (JX_SCREEN_WIDTH - 10*2/*tableView两边距*/ - borderSpace*2/*内部边距*/ - horizontalSpace*3/*间距*/)/4;
+    headWidth = (JX_SCREEN_WIDTH - 20*2/*tableView两边距*/ - borderSpace*2/*内部边距*/ - horizontalSpace*3/*间距*/)/4;
     headCellTotalHeight = 20*2/*上下边距*/ + headWidth*4/*图片总高度*/ + verticalSpace*3/*间距总高度*/;
 }
 - (void)loadSubView {
@@ -85,7 +85,7 @@
     if (indexPath.section == 1) {
         height = headCellTotalHeight;
     }else if (indexPath.section == 2) {
-        height = 44;
+        height = 48;
     }
     
     return height;
@@ -98,18 +98,17 @@
         cell.backgroundColor = g_factory.globalBgColor;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, JX_SCREEN_WIDTH-20, 56)];
+    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(20, 0, JX_SCREEN_WIDTH-40, 56)];
     backView.layer.cornerRadius = 10;
     backView.layer.masksToBounds = YES;
-    backView.layer.borderColor = g_factory.cardBorderColor.CGColor;
-    backView.layer.borderWidth = g_factory.cardBorderWithd;
     backView.backgroundColor = [UIColor whiteColor];
     [cell.contentView addSubview:backView];
     switch (indexPath.section) {
         case 0:
             {
                 UILabel *chooseLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, backView.width-40-12, 56)];
-                chooseLabel.text = Localized(@"JX_SelectionFromHandsetAlbum");
+//                chooseLabel.text = Localized(@"JX_SelectionFromHandsetAlbum");
+                chooseLabel.text = @"自定义头像";
                 chooseLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 15];
                 chooseLabel.textColor = HEXCOLOR(0x3A404C);
                 [backView addSubview:chooseLabel];
@@ -127,7 +126,7 @@
                     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(borderSpace+(headWidth+horizontalSpace)*j, 20+(headWidth+verticalSpace)*i, headWidth, headWidth)];
                     [button setImage:[UIImage imageNamed:imageArray[imageIndex]] forState:UIControlStateNormal];
                     [button addTarget:self action:@selector(selectHeadImage:) forControlEvents:UIControlEventTouchUpInside];
-                    button.layer.cornerRadius = headWidth/2;
+                    button.layer.cornerRadius = 12;
                     button.layer.masksToBounds = YES;
                     button.tag = imageIndex;
                     [backView addSubview:button];
@@ -141,10 +140,12 @@
             break;
         case 2:
         {
-            backView.height = 44;
-            backView.backgroundColor = HEXCOLOR(0x0093FF);
-            UIButton *confirmButton = [[UIButton alloc] initWithFrame:backView.bounds];
+            backView.height = 48;
+            backView.backgroundColor = [UIColor clearColor];
+            UIButton *confirmButton = [[UIButton alloc] initWithFrame:CGRectMake(37, 0, JX_SCREEN_WIDTH - 74, 48)];
+            confirmButton.layer.cornerRadius = 24;
             [confirmButton setTitle:Localized(@"JX_Confirm") forState:UIControlStateNormal];
+            confirmButton.backgroundColor = HEXCOLOR(0x2BAF67);
             [confirmButton addTarget:self action:@selector(confirmButtonAction:) forControlEvents:UIControlEventTouchUpInside];
             [cell.contentView addSubview:confirmButton];
             self.confirmBtn = confirmButton;

@@ -59,16 +59,16 @@
     _isOpen = NO;
     self.menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _menuBtn.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-    _menuBtn.layer.borderColor = g_factory.cardBorderColor.CGColor;
+//    _menuBtn.layer.borderColor = g_factory.cardBorderColor.CGColor;
     [_menuBtn.layer setCornerRadius:g_factory.cardCornerRadius];
-    _menuBtn.layer.borderWidth = g_factory.cardBorderWithd;
+//    _menuBtn.layer.borderWidth = g_factory.cardBorderWithd;
     _menuBtn.clipsToBounds = YES;
     _menuBtn.layer.masksToBounds = YES;
     
     [_menuBtn addTarget:self action:@selector(tapAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_menuBtn];
     
-    self.curText = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, self.frame.size.width - 30, self.frame.size.height)];
+    self.curText = [[UILabel alloc] initWithFrame:CGRectMake(14, 0, self.frame.size.width - 30, self.frame.size.height)];
     _curText.textColor = [UIColor blackColor];
     _curText.textAlignment = NSTextAlignmentLeft;
     [_menuBtn addSubview:_curText];
@@ -77,14 +77,25 @@
     
     self.arrowImg = [[UIImageView alloc] initWithImage:image];
     _arrowImg.center = CGPointMake(self.frame.size.width - 15, self.frame.size.height/2);
+    _arrowImg.contentMode = UIViewContentModeScaleAspectFit;
     [_menuBtn addSubview:_arrowImg];
     
     self.menuTableView = [[UITableView alloc] initWithFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y + self.frame.size.height, self.frame.size.width, 0) style:UITableViewStylePlain];
     _menuTableView.delegate = self;
     _menuTableView.dataSource = self;
     [_menuTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
-    _menuTableView.layer.borderWidth = 1;
-    _menuTableView.layer.borderColor = kBorderColor.CGColor;
+//    _menuTableView.layer.borderWidth = 1;
+//    _menuTableView.layer.borderColor = kBorderColor.CGColor;
+    _menuTableView.layer.cornerRadius = 6.0f;
+    _menuTableView.layer.masksToBounds = YES;
+    //定义view的阴影颜色
+    _menuTableView.layer.shadowColor = UIColor.blackColor.CGColor;
+    //阴影偏移量
+    _menuTableView.layer.shadowOffset = CGSizeMake(4, 4);
+    //定义view的阴影宽度，模糊计算的半径
+    _menuTableView.layer.shadowRadius = 6;
+    //定义view的阴影透明度，注意:如果view没有设置背景色阴影也是不会显示的
+    _menuTableView.layer.shadowOpacity = 0.8;
     _menuTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self.superview addSubview:_menuTableView];
@@ -176,17 +187,18 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
         cell.backgroundColor = [UIColor clearColor];
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, self.frame.size.width - 20, self.frame.size.height)];
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(16, 0, self.frame.size.width - 20, self.frame.size.height)];
         label.backgroundColor = [UIColor clearColor];
         label.textAlignment = NSTextAlignmentLeft;
         label.font = [UIFont systemFontOfSize:14];
         label.tag = 1000;
+        label.textColor = HEXCOLOR(0x797979);
         label.numberOfLines = 0;
         [cell addSubview:label];
         
-        UIImageView *line = [[UIImageView alloc]initWithFrame:CGRectMake(10, self.frame.size.height + 5, cell.frame.size.width - 20, 0.5)];
-        line.image = [UIImage imageNamed:@"line"];
-        
+        UIImageView *line = [[UIImageView alloc]initWithFrame:CGRectMake(16, self.frame.size.height + 5, cell.frame.size.width - 32, 0.5)];
+//        line.image = [UIImage imageNamed:@"line"];
+        line.backgroundColor = HEXCOLOR(0xEEEEEE);
         [cell addSubview:line];
     }
     UILabel *label = (UILabel *)[cell viewWithTag:1000];

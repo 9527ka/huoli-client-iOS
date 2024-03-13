@@ -22,31 +22,28 @@
 
         self.selectionStyle  = UITableViewCellSelectionStyleBlue;
         //内容
-        UIFont* f0 = sysFontWithSize(13);
+        UIFont* f0 = sysFontWithSize(12);
         //名称
-        UIFont * f1 = pingFangSemiBoldFontWithSize(15);
+        UIFont * f1 = pingFangSemiBoldFontWithSize(14);
         //时间
-        UIFont* timeFont = sysFontWithSize(11);
+        UIFont* timeFont = sysFontWithSize(10);
         
-        _bgView = [[UIView alloc] initWithFrame:CGRectMake(g_factory.globelEdgeInset, 4, JX_SCREEN_WIDTH - g_factory.globelEdgeInset*2, 85.0f)];
+        _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH, 80.0f)];
         [self.contentView addSubview:_bgView];
         _bgView.backgroundColor = [UIColor whiteColor];
-//        _bgView.layer.shadowColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.14].CGColor;
-//        _bgView.layer.shadowOffset = CGSizeMake(0,1);
-//        _bgView.layer.shadowOpacity = 1;
-//        _bgView.layer.shadowRadius = 2;
-        _bgView.layer.borderWidth = g_factory.cardBorderWithd;
-        _bgView.layer.borderColor = g_factory.cardBorderColor.CGColor;
-        _bgView.layer.cornerRadius = 10;
+
+//        _bgView.layer.borderWidth = g_factory.cardBorderWithd;
+//        _bgView.layer.borderColor = g_factory.cardBorderColor.CGColor;
+//        _bgView.layer.cornerRadius = 10;
         
-        int n = 64;
+        int n = 80;
         UIView* v = [[UIView alloc]initWithFrame:CGRectMake(0,0, JX_SCREEN_WIDTH, n)];
         v.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
         self.selectedBackgroundView = v;
 
-        self.lineView = [[UIView alloc]initWithFrame:CGRectMake(SEPSRATOR_WIDTH,n-0.5,JX_SCREEN_WIDTH,0.5)];
-        self.lineView.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
-        [self.contentView addSubview:self.lineView];
+//        self.lineView = [[UIView alloc]initWithFrame:CGRectMake(SEPSRATOR_WIDTH,n-0.5,JX_SCREEN_WIDTH,0.5)];
+//        self.lineView.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
+//        [self.contentView addSubview:self.lineView];
         
         
         _headImageView = [[WH_JXImageView alloc]init];
@@ -54,18 +51,18 @@
         _headImageView.tag = index;
         _headImageView.wh_delegate = self;
         _headImageView.didTouch = @selector(WH_headImageDidTouch);
-        _headImageView.frame = CGRectMake(12,20,45,45);
-        [_headImageView headRadiusWithAngle:_headImageView.frame.size.width *0.5];
+        _headImageView.frame = CGRectMake(15,10,60,60);
+        [_headImageView headRadiusWithAngle:30];
 //        _headImageView.layer.borderWidth = 0.5;
 //        _headImageView.layer.borderColor = [UIColor darkGrayColor].CGColor;
         [_bgView addSubview:self.headImageView];
         
         [g_notify addObserver:self selector:@selector(headImageNotification:) name:kGroupHeadImageModifyNotifaction object:nil];
         
-        CGFloat headTitleInterval = 8.0f;
+        CGFloat headTitleInterval = 10.0f;
         
         CGFloat timeW = 115.0f; //时间标题宽度
-        CGFloat timeRightOffset = 12.0f; //时间标题右侧间隔
+        CGFloat timeRightOffset = 15.0f; //时间标题右侧间隔
         CGFloat titleTimeInterval = 25.0f; //昵称和时间标题间隔
         
         CGFloat replayW = 23.0f; //快捷回复宽
@@ -76,7 +73,7 @@
         //昵称Label
         JXLabel* lb;
         lb = [[JXLabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headImageView.frame)+headTitleInterval, CGRectGetMinY(_headImageView.frame), CGRectGetWidth(_bgView.frame) -CGRectGetMaxX(_headImageView.frame) - timeRightOffset - timeW - titleTimeInterval - headTitleInterval, CGRectGetHeight(self.headImageView.frame) / 2)];
-        lb.textColor = HEXCOLOR(0x3A404C);
+        lb.textColor = HEXCOLOR(0x161819);
         lb.userInteractionEnabled = NO;
         lb.backgroundColor = [UIColor clearColor];
         lb.font = f1;
@@ -106,7 +103,7 @@
         
         //聊天消息Label
         lb = [[JXLabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(self.lbTitle.frame), CGRectGetMaxY(self.lbTitle.frame), CGRectGetWidth(_bgView.frame) - CGRectGetMinX(self.lbTitle.frame) - timeRightOffset - replayW - subTitleReplayInterval, CGRectGetHeight(self.headImageView.frame) / 2)];
-        lb.textColor = HEXCOLOR(0x3A404C);
+        lb.textColor = HEXCOLOR(0x797979);
         lb.userInteractionEnabled = NO;
         lb.backgroundColor = [UIColor clearColor];
         lb.font = f0;
@@ -117,7 +114,7 @@
         
         //时间Label
         self.timeLabel = [[JXLabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(_bgView.frame) - timeW - timeRightOffset, 20, timeW, 20)];
-        self.timeLabel.textColor = HEXCOLOR(0xBAC3D5);
+        self.timeLabel.textColor = HEXCOLOR(0xBABABA);
         self.timeLabel.userInteractionEnabled = NO;
         self.timeLabel.backgroundColor = [UIColor clearColor];
         self.timeLabel.textAlignment = NSTextAlignmentRight;
@@ -543,8 +540,8 @@
 //        self.lineView.frame = CGRectMake(CGRectGetMaxX(_headImageView.frame)+14,64-0.5,JX_SCREEN_WIDTH,0.5);
     }else {
         
-        _headImageView.frame = CGRectMake(16,5,42,42);
-        [_headImageView headRadiusWithAngle:_headImageView.frame.size.width *0.5];
+        _headImageView.frame = CGRectMake(15,10,60,60);
+        [_headImageView headRadiusWithAngle:30];
         self.lbTitle.frame = CGRectMake(CGRectGetMaxX(_headImageView.frame)+14, 10, JX_SCREEN_WIDTH - 100 -CGRectGetMaxX(_headImageView.frame)-14, 54 - 20);
         self.lineView.frame = CGRectMake(CGRectGetMaxX(_headImageView.frame)+14,54-0.5,JX_SCREEN_WIDTH,0.5);
     }

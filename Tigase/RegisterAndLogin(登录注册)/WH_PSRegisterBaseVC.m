@@ -107,7 +107,7 @@ static NSString *PassCellIdentifier = @"PassCellIdentifier";
     }
     NSInteger sections = [tableView numberOfSections];
     if (indexPath.section == sections-1) {
-        cellHeight = 44;
+        cellHeight = 48;
     }
     return cellHeight;
 }
@@ -148,23 +148,23 @@ static NSString *PassCellIdentifier = @"PassCellIdentifier";
     WH_RoundCornerCell *cell = [basicInfoTable dequeueReusableCellWithIdentifier:HeadImgCellIdentifier];
     if (!cell) {
         cell = [[WH_RoundCornerCell alloc] initWithReuseIdentifier:HeadImgCellIdentifier tableView:basicInfoTable indexPath:indexPath];
-        WH_JXImageView *headImgView = [[WH_JXImageView alloc]initWithFrame:CGRectMake(16+g_factory.globelEdgeInset, (75-36)/2, 36, 36)];
-        headImgView.layer.cornerRadius = 36/2;
+        WH_JXImageView *headImgView = [[WH_JXImageView alloc]initWithFrame:CGRectMake(40, (75-44)/2, 44, 44)];
+        headImgView.layer.cornerRadius = 44/2;
         headImgView.layer.masksToBounds = YES;
         headImgView.wh_delegate = self;
         headImgView.image = [UIImage imageNamed:@"avatar_normal"];
         headImgView.tag = 100;
         [cell.contentView addSubview:headImgView];
         
-        UILabel *setHeadLabel = [[UILabel alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH - g_factory.globelEdgeInset - 20 - 70 - 12-7, 0, 70, 75)];
+        UILabel *setHeadLabel = [[UILabel alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH - 20 - 20 - 70 - 12-7, 0, 70, 75)];
         [setHeadLabel setText:Localized(@"New_set_avatar")];
         [setHeadLabel setTextAlignment:NSTextAlignmentRight];
-        [setHeadLabel setTextColor:HEXCOLOR(0x969696)];
+        [setHeadLabel setTextColor:HEXCOLOR(0xBABABA)];
         [setHeadLabel setFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 15]];
         [cell.contentView addSubview:setHeadLabel];
         
         UIImageView *arrowImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"emarrow"]];
-        arrowImage.frame = CGRectMake(JX_SCREEN_WIDTH - 10 - 10 - 12, (75-7)/2, 7, 12);
+        arrowImage.frame = CGRectMake(JX_SCREEN_WIDTH - 20 - 10 - 12, (75-7)/2, 7, 12);
         arrowImage.centerY = setHeadLabel.centerY;
         [cell.contentView addSubview:arrowImage];
     }
@@ -181,28 +181,28 @@ static NSString *PassCellIdentifier = @"PassCellIdentifier";
     if (!cell) {
         cell = [[WH_RoundCornerCell alloc] initWithReuseIdentifier:NameCellIdentifier tableView:basicInfoTable indexPath:indexPath];
         
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20+g_factory.globelEdgeInset, 0, 50, 55)];
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, 50, 55)];
         titleLabel.textColor = HEXCOLOR(0x3A404C);
         titleLabel.font = pingFangRegularFontWithSize(15);
         titleLabel.backgroundColor = UIColor.whiteColor;
         titleLabel.tag = 101;
         [cell.contentView addSubview:titleLabel];
         
-        UITextField *nickTextField = [[UITextField alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH-g_factory.globelEdgeInset-12-200, 0, 200, 55)];
+        UITextField *nickTextField = [[UITextField alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH-40-12-200, 0, 200, 55)];
         nickTextField.textAlignment = NSTextAlignmentRight;
-        nickTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:Localized(@"JX_NickName") attributes:@{NSFontAttributeName:pingFangRegularFontWithSize(15), NSForegroundColorAttributeName:HEXCOLOR(0x969696)}];
+        nickTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:Localized(@"JX_NickName") attributes:@{NSFontAttributeName:pingFangRegularFontWithSize(15), NSForegroundColorAttributeName:HEXCOLOR(0xBABABA)}];
         nickTextField.delegate = self;
         nickTextField.tag = 10;
         [cell.contentView addSubview:nickTextField];
     
         UISegmentedControl *sexSegment = [[UISegmentedControl alloc] initWithItems:@[Localized(@"JX_Man"), Localized(@"JX_Wuman")]];
         [sexSegment addTarget:self action:@selector(segmentClicked:) forControlEvents:UIControlEventValueChanged];
-        sexSegment.frame = CGRectMake(JX_SCREEN_WIDTH - 80 - 12 - g_factory.globelEdgeInset,INSETS+3, 80, 55-2*13);
+        sexSegment.frame = CGRectMake(JX_SCREEN_WIDTH - 80 - 12 - 20,INSETS+3, 80, 55-2*13);
         sexSegment.selectedSegmentIndex = 0;
-        sexSegment.tintColor = THEMECOLOR;
+        sexSegment.tintColor = HEXCOLOR(0x2BAF67);
         sexSegment.layer.cornerRadius = 5;
         sexSegment.layer.borderWidth = 1.5;
-        sexSegment.layer.borderColor = [THEMECOLOR CGColor];
+        sexSegment.layer.borderColor = [HEXCOLOR(0x2BAF67) CGColor];
         sexSegment.clipsToBounds = YES;
         //设置文字属性
         sexSegment.selectedSegmentIndex = [_user.sex boolValue];
@@ -267,7 +267,7 @@ static NSString *PassCellIdentifier = @"PassCellIdentifier";
         [cell.contentView addSubview:titleLabel];
         
         UILabel *passSecStatus = [[UILabel alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH-20-12-100-10, 0, 100, 55)];
-        passSecStatus.textColor = HEXCOLOR(0x969696);
+        passSecStatus.textColor = HEXCOLOR(0xBABABA);
         passSecStatus.font = pingFangRegularFontWithSize(15);
         passSecStatus.textAlignment = NSTextAlignmentRight;
         passSecStatus.tag = 102;
@@ -282,29 +282,7 @@ static NSString *PassCellIdentifier = @"PassCellIdentifier";
     passSecStatus.text = hasSetPassSec ? Localized(@"PassHasSet") : Localized(@"SetPassSecurity");
     return cell;
 }
-//- (WH_RoundCornerCell *)getInviteCodeCell:(NSIndexPath *)indexPath {
-//    WH_RoundCornerCell *cell = [basicInfoTable dequeueReusableCellWithIdentifier:InviteCodeCellIdentifier];
-//    if (!cell) {
-//        cell = [[WH_RoundCornerCell alloc] initWithReuseIdentifier:InviteCodeCellIdentifier tableView:basicInfoTable indexPath:indexPath];
-//
-//        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20+g_factory.globelEdgeInset, 0, 50, 55)];
-//        titleLabel.textColor = HEXCOLOR(0x3A404C);
-//        titleLabel.font = pingFangRegularFontWithSize(15);
-//        titleLabel.backgroundColor = UIColor.whiteColor;
-//        titleLabel.text = Localized(@"JX_InvitationCode");
-//        [cell.contentView addSubview:titleLabel];
-//
-//        if (indexPath.row == 0) {
-//            UITextField *inviteCodeField = [[UITextField alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH-g_factory.globelEdgeInset-12-150, 0, 150, 55)];
-//            inviteCodeField.textAlignment = NSTextAlignmentRight;
-//            inviteCodeField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:Localized(@"JX_NickName") attributes:@{NSFontAttributeName:pingFangRegularFontWithSize(15), NSForegroundColorAttributeName:HEXCOLOR(0x969696)}];
-//            inviteCodeField.delegate = self;
-//            inviteCodeField.tag = 11;
-//            [cell.contentView addSubview:inviteCodeField];
-//        }
-//    }
-//    return cell;
-//}
+
 - (WH_RoundCornerCell *)getButtonCell:(NSIndexPath *)indexPath {
     WH_RoundCornerCell *cell = [basicInfoTable dequeueReusableCellWithIdentifier:ButtonCellIdentifier];
     if (!cell) {
@@ -313,18 +291,19 @@ static NSString *PassCellIdentifier = @"PassCellIdentifier";
         [button setTitle:Localized(@"JX_Confirm") forState:UIControlStateNormal];
         [button setTitleColor:HEXCOLOR(0xffffff) forState:UIControlStateNormal];
         [button addTarget:self action:@selector(confirmButtonAction) forControlEvents:UIControlEventTouchUpInside];
-        button.layer.cornerRadius = g_factory.cardCornerRadius;
+        button.layer.cornerRadius = 24.0f;
         button.custom_acceptEventInterval = 1.5f;
         button.clipsToBounds = YES;
         button.enabled = NO;
         button.tag = 202;
-        button.frame = CGRectMake(g_factory.globelEdgeInset,  0, JX_SCREEN_WIDTH - 2*g_factory.globelEdgeInset, 44);
-        [button setBackgroundColor:HEXCOLOR(0x0093FF)];
+        button.frame = CGRectMake(37,  0, JX_SCREEN_WIDTH - 74, 48);
+        [button setBackgroundColor:HEXCOLOR(0x2BAF67)];
         [cell.contentView addSubview:button];
+        cell.bgView.hidden = YES;
     }
     UIButton *button = (UIButton *)[cell.contentView viewWithTag:202];
     button.enabled = [self shouldConfirm];
-    button.backgroundColor = button.enabled ? HEXCOLOR(0x0093FF) : UIColor.lightGrayColor;
+    button.backgroundColor = button.enabled ? HEXCOLOR(0x2BAF67) : HEXCOLOR(0x88D5AB);
     return cell;
 }
 #pragma mark ----- UITapGesture
@@ -353,7 +332,7 @@ static NSString *PassCellIdentifier = @"PassCellIdentifier";
 }
 #pragma mark ---- UITableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+//    [tableView deselectRoxwAtIndexPath:indexPath animated:NO];
     if (indexPath.section == 0) {
         [self pickImage];
     }else if (indexPath.section == 2 && [tableView numberOfSections] == 4) {
@@ -560,52 +539,6 @@ static NSString *PassCellIdentifier = @"PassCellIdentifier";
 }
 
 
-
-
-//-(void)WH_onWorkexp{
-//    if([self hideKeyboard])
-//        return;
-//
-//    WH_selectValue_WHVC* vc = [WH_selectValue_WHVC alloc];
-//    vc.values = g_constant.workexp_name;
-//    vc.selNumber = resume.workexpId;
-//    vc.numbers   = g_constant.workexp_value;
-//    vc.delegate  = self;
-//    vc.didSelect = @selector(WH_onSelWorkExp:);
-//    vc.quickSelect = YES;
-//    vc = [vc init];
-////    [g_window addSubview:vc.view];
-//    [g_navigation pushViewController:vc animated:YES];
-//}
-
-//-(void)WH_onDiploma{
-//    if([self hideKeyboard])
-//        return;
-//
-//    WH_selectValue_WHVC* vc = [WH_selectValue_WHVC alloc];
-//    vc.values = g_constant.diploma_name;
-//    vc.selNumber = resume.diplomaId;
-//    vc.numbers   = g_constant.diploma_value;
-//    vc.delegate  = self;
-//    vc.didSelect = @selector(WH_onSelDiploma:);
-//    vc.quickSelect = YES;
-//    vc = [vc init];
-////    [g_window addSubview:vc.view];
-//    [g_navigation pushViewController:vc animated:YES];
-//}
-//
-
-//
-//-(void)WH_onSelDiploma:(WH_selectValue_WHVC*)sender{
-//    resume.diplomaId = sender.selNumber;
-//    _dip.text = sender.selValue;
-//}
-//
-//-(void)WH_onSelWorkExp:(WH_selectValue_WHVC*)sender{
-//    resume.workexpId = sender.selNumber;
-//    _workexp.text = sender.selValue;
-//}
-
 #pragma mark ----- 图片选择
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
@@ -626,67 +559,7 @@ static NSString *PassCellIdentifier = @"PassCellIdentifier";
         [basicInfoTable reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
     };
     [g_navigation pushViewController:settingHeadVC animated:YES];
-    return;
-//    WH_JXActionSheet_WHVC *actionVC = [[WH_JXActionSheet_WHVC alloc] initWithImages:@[] names:@[Localized(@"JX_ChoosePhoto"),Localized(@"JX_TakePhoto")]];
-//    actionVC.delegate = self;
-//    [self presentViewController:actionVC animated:NO completion:nil];
-//
-//    UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
-//    ipc.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
-//    ipc.delegate = self;
-//    ipc.allowsEditing = YES;
-//    ipc.modalPresentationStyle = UIModalPresentationFullScreen;
-////    [g_window addSubview:ipc.view];
-//    if (IS_PAD) {
-//        UIPopoverController *pop =  [[UIPopoverController alloc] initWithContentViewController:ipc];
-//        [pop presentPopoverFromRect:CGRectMake((self.view.frame.size.width - 320) / 2, 0, 300, 300) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-//    }else {
-//        [self presentViewController:ipc animated:YES completion:nil];
-//    }
-    
-    CGFloat viewH = 191;
-    if (THE_DEVICE_HAVE_HEAD) {
-        viewH = 191+24;
-    }
-    
-    WH_SetGroupHeads_WHView *setGroupHeadsview = [[WH_SetGroupHeads_WHView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, viewH)];
-    [setGroupHeadsview showInWindowWithMode:CustomAnimationModeShare inView:nil bgAlpha:0.5 needEffectView:NO];
-    
-    __weak typeof(setGroupHeadsview) weakShare = setGroupHeadsview;
-    __weak typeof(self) weakSelf = self;
-    [setGroupHeadsview setWh_selectActionBlock:^(NSInteger buttonTag) {
-        if (buttonTag == 2) {
-            //取消
-            [weakShare hideView];
-        }else if (buttonTag == 0) {
-            //拍摄照片
-            WH_JXCamera_WHVC *vc = [WH_JXCamera_WHVC alloc];
-            vc.cameraDelegate = weakSelf;
-            vc.isPhoto = YES;
-            vc = [vc init];
-            vc.modalPresentationStyle = UIModalPresentationFullScreen;
-            [weakSelf presentViewController:vc animated:YES completion:nil];
-            [weakShare hideView];
-        }else {
-            //选择照片
-            UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
-            ipc.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
-            ipc.delegate = weakSelf;
-            ipc.allowsEditing = YES;
-            //选择图片模式
-            ipc.modalPresentationStyle = UIModalPresentationCurrentContext;
-            //    [g_window addSubview:ipc.view];
-            if (IS_PAD) {
-                UIPopoverController *pop =  [[UIPopoverController alloc] initWithContentViewController:ipc];
-                [pop presentPopoverFromRect:CGRectMake((weakSelf.view.frame.size.width - 320) / 2, 0, 300, 300) inView:weakSelf.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-            }else {
-                [weakSelf presentViewController:ipc animated:YES completion:nil];
-            }
-            
-            [weakShare hideView];
-            
-        }
-    }];
+
 }
 
 - (void)actionSheet:(WH_JXActionSheet_WHVC *)actionSheet didButtonWithIndex:(NSInteger)index {

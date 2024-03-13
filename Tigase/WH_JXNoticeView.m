@@ -31,15 +31,14 @@
         self.layer.masksToBounds = YES;
         self.backgroundColor = [UIColor whiteColor];
         
-        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(12, 0, frame.size.width - 24, frame.size.height)];
+        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(15, 0, frame.size.width - 30, frame.size.height)];
         bgView.layer.masksToBounds = YES;
-        bgView.layer.cornerRadius = 8.0f;
-        bgView.layer.borderColor = HEXCOLOR(0x999999).CGColor;
-        bgView.layer.borderWidth = 1.0f;
+        bgView.layer.cornerRadius = 18.0f;
+        bgView.backgroundColor = HEXCOLOR(0xF3FFF8);
         [self addSubview:bgView];
         
         UIImageView *noticeImagw = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"notice_icon"]];
-        noticeImagw.frame = CGRectMake(10, 10, 20, 20);
+        noticeImagw.frame = CGRectMake(10, 10, 16, 16);
         [bgView addSubview:noticeImagw];
         
         self.dataArray = [NSMutableArray array];
@@ -61,17 +60,16 @@
 }
 
 -(void)creatUI{
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, JX_SCREEN_WIDTH - 64, self.frame.size.height)];
-//    label.textColor = HEXCOLOR(0x179cfb);
-    label.textColor = HEXCOLOR(0x666666);
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, JX_SCREEN_WIDTH - 54, self.frame.size.height)];
+    label.textColor = HEXCOLOR(0x797979);
     label.text = @"欢迎加入猎火大家庭";
-    label.font = [UIFont boldSystemFontOfSize:14];
+    label.font = [UIFont systemFontOfSize:13];
     [self addSubview:label];
     self.noticeLab = label;
     
-    _secNoticeLab = [[UILabel alloc] initWithFrame:CGRectMake(50, 40, JX_SCREEN_WIDTH - 64, self.frame.size.height)];
-    _secNoticeLab.textColor = HEXCOLOR(0x666666);
-    _secNoticeLab.font = [UIFont boldSystemFontOfSize:14];
+    _secNoticeLab = [[UILabel alloc] initWithFrame:CGRectMake(50, 36, JX_SCREEN_WIDTH - 54, self.frame.size.height)];
+    _secNoticeLab.textColor = HEXCOLOR(0x797979);
+    _secNoticeLab.font = [UIFont systemFontOfSize:13];
     [self addSubview:self.secNoticeLab];
     
     _timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(moveLabel:) userInfo:nil repeats:YES];
@@ -92,11 +90,11 @@
         
         self.secNoticeLab.text = currentStr;
         
-        self.secNoticeLab.frame = CGRectMake(50, 40, self.secNoticeLab.frame.size.width, self.secNoticeLab.frame.size.height);
+        self.secNoticeLab.frame = CGRectMake(50, 36, self.secNoticeLab.frame.size.width, self.secNoticeLab.frame.size.height);
         
         [UIView animateWithDuration:1.0 animations:^{
             //消失
-            self.noticeLab.frame = CGRectMake(self.noticeLab.frame.origin.x, -40, self.noticeLab.frame.size.width, self.noticeLab.frame.size.height);
+            self.noticeLab.frame = CGRectMake(self.noticeLab.frame.origin.x, -36, self.noticeLab.frame.size.width, self.noticeLab.frame.size.height);
             
             //出现
             self.secNoticeLab.frame = CGRectMake(50, 0, self.secNoticeLab.frame.size.width, self.secNoticeLab.frame.size.height);
@@ -106,16 +104,16 @@
             if(self.dataArray.count<=self.currentIndex){
                 self.currentIndex = 0;
             }
-            self.noticeLab.frame = CGRectMake(self.noticeLab.frame.origin.x, 40, self.noticeLab.frame.size.width, self.noticeLab.frame.size.height);
+            self.noticeLab.frame = CGRectMake(self.noticeLab.frame.origin.x, 36, self.noticeLab.frame.size.width, self.noticeLab.frame.size.height);
         }];
     }else{
         self.noticeLab.text = currentStr;
         
-        self.noticeLab.frame = CGRectMake(50, 40, self.noticeLab.frame.size.width, self.noticeLab.frame.size.height);
+        self.noticeLab.frame = CGRectMake(50, 36, self.noticeLab.frame.size.width, self.noticeLab.frame.size.height);
         
         [UIView animateWithDuration:1.0 animations:^{
             //消失
-            self.secNoticeLab.frame = CGRectMake(self.secNoticeLab.frame.origin.x, -40, self.secNoticeLab.frame.size.width, self.secNoticeLab.frame.size.height);
+            self.secNoticeLab.frame = CGRectMake(self.secNoticeLab.frame.origin.x, -36, self.secNoticeLab.frame.size.width, self.secNoticeLab.frame.size.height);
             
             //出现
             self.noticeLab.frame = CGRectMake(50, 0, self.noticeLab.frame.size.width, self.noticeLab.frame.size.height);
@@ -125,7 +123,7 @@
             if(self.dataArray.count<=self.currentIndex){
                 self.currentIndex = 0;
             }
-            self.secNoticeLab.frame = CGRectMake(self.secNoticeLab.frame.origin.x, 40, self.secNoticeLab.frame.size.width, self.secNoticeLab.frame.size.height);
+            self.secNoticeLab.frame = CGRectMake(self.secNoticeLab.frame.origin.x, 36, self.secNoticeLab.frame.size.width, self.secNoticeLab.frame.size.height);
         }];
     }
 

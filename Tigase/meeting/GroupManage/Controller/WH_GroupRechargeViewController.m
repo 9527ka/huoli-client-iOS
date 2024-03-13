@@ -46,7 +46,7 @@
     [super viewDidLoad];
 
     //跑马灯的view
-    _noticeView = [[WH_JXNoticeView alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP + 12, JX_SCREEN_WIDTH, 40)];
+    _noticeView = [[WH_JXNoticeView alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP + 12, JX_SCREEN_WIDTH, 36)];
     [self.view addSubview:self.noticeView];
         
     self.dataArray = [NSMutableArray array];

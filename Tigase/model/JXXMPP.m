@@ -2483,7 +2483,6 @@ static JXXMPP *sharedManager;
     g_mainVC = nil;
 //        [self.view removeFromSuperview];
 //        self.view = nil;
-    loginVC.isPushEntering = YES;
     g_navigation.rootViewController = loginVC;
         
     #if TAR_IM

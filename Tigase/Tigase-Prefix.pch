@@ -13,7 +13,7 @@
 #define IS_OPEN_SecondChannel 0//消息补偿第二通道是否开启  1:开启  0:不开启
 
 #define PACKGE_IS_SHOW_VIDEOMEETING 0 //聊天界面是否显示视频会议 0:不显示 1:显示  打企业包改为0
-#define APP_Startup_ShowAdvertisingView 1 //是否显示启动图广告页 0:不显示 1:显示  打企业包改为0
+#define APP_Startup_ShowAdvertisingView 0 //是否显示启动图广告页 0:不显示 1:显示  打企业包改为0
 #define PrivacySetting_ShowOnlyTwoCell 1 //隐私设置是否只显示两行 0:显示多行 1:仅显示两行 上线包默认为显示两行
 #define IS_OPEN_LOGREPORT 1 //0:关闭异常上报,  1是开启异常上报(正常出包关闭,有需要的开启)
 #define BUGLY_APPID @"82b58a4c86"//腾讯bugly相关(登录bugly创建项目获取相关id)
@@ -417,7 +417,7 @@
 #define HEAD_SIZE 36.0f//头像大小
 
 #pragma mark - ************** 头像 1 圆形  0方形 **********
-#define MainHeadType 0
+#define MainHeadType 1
 
 #define stretch 20//拉伸
 

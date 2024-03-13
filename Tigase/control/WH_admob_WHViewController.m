@@ -93,7 +93,7 @@
     p.textAlignment   = NSTextAlignmentCenter;
     p.textColor       = [UIColor blackColor];
     p.text = self.title;
-    p.font = pingFangMediumFontWithSize(17);
+    p.font = pingFangSemiBoldFontWithSize(17);
     p.userInteractionEnabled = YES;
     p.didTouch = @selector(WH_actionTitle:);
     p.wh_delegate = self;
@@ -131,7 +131,8 @@
     p.backgroundColor = [UIColor clearColor];
     p.textAlignment   = NSTextAlignmentCenter;
     p.textColor       = g_factory.navigatorTitleColor;
-    p.font = g_factory.navigatorTitleFont;
+//    p.font = g_factory.navigatorTitleFont;
+    p.font = pingFangSemiBoldFontWithSize(17);
     p.text = self.title;
     p.userInteractionEnabled = YES;
     p.didTouch = @selector(WH_actionTitle:);
@@ -144,8 +145,9 @@
     
     if(wh_isGotoBack){
         UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(NAV_INSETS-6, JX_SCREEN_TOP - 38-6, NAV_BTN_SIZE+12, NAV_BTN_SIZE+12)];
-//        [btn setBackgroundImage:[UIImage imageNamed:@"title_back"] forState:UIControlStateNormal];
-        [btn setImage:[UIImage imageNamed:@"title_back"] forState:UIControlStateNormal];
+//        [btn setImage:[UIImage imageNamed:@"title_back"] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
+        
         
         [btn addTarget:self action:@selector(actionQuit) forControlEvents:UIControlEventTouchUpInside];
         btn.tag = 2357;

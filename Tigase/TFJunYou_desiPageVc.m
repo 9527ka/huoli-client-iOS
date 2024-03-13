@@ -23,21 +23,14 @@
 
 @interface TFJunYou_desiPageVc ()<UIScrollViewDelegate,JXSelectMenuViewDelegate,WH_JXScanQR_WHViewControllerDelegate>
 
-/** 标签栏底部的红色指示器 */
-@property (nonatomic, weak) UIView *indicatorView;
 /** 当前选中的按钮 */
 @property (nonatomic, weak) UIButton *selectedButton;
-@property (nonatomic, weak) UIButton *button_n;
-@property (weak, nonatomic) UIView *sliderView;
+@property (strong, nonatomic) UIView *sliderView;
 @property (strong, nonatomic) MASConstraint *sliderViewCenterX;
-@property (weak, nonatomic) UIButton *refreshButton;
-@property (weak, nonatomic) UIButton *homeButton;
 @property (strong, nonatomic) UIButton *moreBtn;
 
 @property (strong, nonatomic) UIButton *groupBtn;
 @property (strong, nonatomic) UIButton *searchBtn;
-
-@property (strong, nonatomic) UILabel *msgNumberBtn ;
 
 @property (strong, nonatomic)WH_JXNoticeView *noticeView;
 
@@ -58,7 +51,6 @@
   
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [g_notify addObserver:self selector:@selector(msgNumberBtnClick:) name:@"msgNumberBtnClickNa" object:nil];
     
     if(g_App.isShowRedPacket.intValue == 1 && !g_myself.isTestAccount){
         [self.noticeView receiveData];
@@ -66,12 +58,6 @@
     
 }
 
-- (void)msgNumberBtnClick:(NSNotification *)note{
-    NSString *countNum = note.object;
-    if ([countNum intValue]>0) {
-        _msgNumberBtn.text = [NSString stringWithFormat:@"%@（%@）",@"消息",countNum];;
-    }
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -79,29 +65,25 @@
     self.wh_heightHeader = JX_SCREEN_TOP;
     self.wh_heightFooter = 0;
     [self createHeadAndFoot];
-        
-    UILabel *msgNumberBtn = [[UILabel alloc] initWithFrame:CGRectMake(g_factory.globelEdgeInset+6, JX_SCREEN_TOP - 34-BTN_RANG_UP, JX_SCREEN_WIDTH-120, 24+BTN_RANG_UP*2)];
-    msgNumberBtn.textColor = RGB(51, 51, 51);
-    msgNumberBtn.font = [UIFont systemFontOfSize:26 weight:UIFontWeightBold];
-    msgNumberBtn.text = Localized(@"WaHu_JXMain_WaHuViewController_Message");
-    [self.wh_tableHeader addSubview:msgNumberBtn];
-    _msgNumberBtn = msgNumberBtn;
-    
-    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH - NAV_INSETS - 24-BTN_RANG_UP*2, JX_SCREEN_TOP - 34-BTN_RANG_UP, 24+BTN_RANG_UP*2, 24+BTN_RANG_UP*2)];
+
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH - NAV_INSETS - 24-BTN_RANG_UP*2, JX_SCREEN_TOP - 44, 34, 34)];
     [btn setImage:[UIImage imageNamed:@"add_friend"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(onMore1:) forControlEvents:UIControlEventTouchUpInside];
     [self.wh_tableHeader addSubview:btn];
     [btn addTarget:self action:@selector(onMore1:) forControlEvents:UIControlEventTouchUpInside];
+    self.moreBtn = btn;
     
-    self.groupBtn = [[UIButton alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH - NAV_INSETS - 24-BTN_RANG_UP*2-CGRectGetWidth(btn.frame)-4, JX_SCREEN_TOP - 34-BTN_RANG_UP, 24+BTN_RANG_UP*2, 24+BTN_RANG_UP*2)];
+    self.searchBtn = [[UIButton alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH - NAV_INSETS - 24-BTN_RANG_UP*2-CGRectGetWidth(btn.frame)-4, JX_SCREEN_TOP - 44, 34, 34)];
+    [self.searchBtn setImage:[UIImage imageNamed:@"msg_search"] forState:UIControlStateNormal];
+    [self.searchBtn addTarget:self action:@selector(onMore3:) forControlEvents:UIControlEventTouchUpInside];
+    [self.wh_tableHeader addSubview:self.searchBtn];
+    
+    self.groupBtn = [[UIButton alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH - NAV_INSETS - 24-BTN_RANG_UP*2-CGRectGetWidth(btn.frame)*2-8, JX_SCREEN_TOP - 44, 34, 34)];
     [self.groupBtn setImage:[UIImage imageNamed:@"group_add"] forState:UIControlStateNormal];
     [self.groupBtn addTarget:self action:@selector(onMore2:) forControlEvents:UIControlEventTouchUpInside];
     [self.wh_tableHeader addSubview:self.groupBtn];
     
-    self.searchBtn = [[UIButton alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH - NAV_INSETS - 24-BTN_RANG_UP*2-CGRectGetWidth(btn.frame)*2-8, JX_SCREEN_TOP - 34-BTN_RANG_UP, 24+BTN_RANG_UP*2, 24+BTN_RANG_UP*2)];
-    [self.searchBtn setImage:[UIImage imageNamed:@"msg_search"] forState:UIControlStateNormal];
-    [self.searchBtn addTarget:self action:@selector(onMore3:) forControlEvents:UIControlEventTouchUpInside];
-    [self.wh_tableHeader addSubview:self.searchBtn];
+   
 
     [self setupNavBar];
     [self setupContentView];
@@ -116,9 +98,6 @@
 
 - (void)onMore2:(UIButton *)btn{
     [self onNewRoom];
-    return;
-    WH_AddFriend_WHController *vc = [[WH_AddFriend_WHController alloc] init];
-    [g_navigation pushViewController:vc animated:YES];
 }
 - (void)onMore1:(UIButton *)btn{
     
@@ -193,36 +172,11 @@
 - (void)needVerify:(WH_JXMessageObject *)msg {
     
 }
-
-- (void) moreListActionWithIndex:(NSInteger)index {
-    
-    switch (index) {
-        case 0:
-            [self onNewRoom];
-            break;
-        case 1:
-            [self onSearch];
-            break;
-        case 2:
-            [self showScanViewController];
-            break;
-        case 3:
-            [self onNear];
-            break;
-        default:
-            break;
-    }
-}
-
 -(void)searchPublicNumber{
     
 }
 
 -(void)showScanViewController{
-//    button.enabled = NO;
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        button.enabled = YES;
-//    });
     
     AVAuthorizationStatus authStatus =  [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
     if (authStatus == AVAuthorizationStatusRestricted || authStatus ==AVAuthorizationStatusDenied)
@@ -233,7 +187,6 @@
     
     WH_JXScanQR_WHViewController * scanVC = [[WH_JXScanQR_WHViewController alloc] init];
     scanVC.delegate = self;
-//    [g_window addSubview:scanVC.view];
     [g_navigation pushViewController:scanVC animated:YES];
 }
 
@@ -326,9 +279,10 @@
     
     float topHeight = (g_App.isShowRedPacket.intValue == 1 && !g_myself.isTestAccount)?50:10;
     
+    topHeight = 8;
+    
     //模拟多端登录
 //    topHeight += 50;
-    
     UIScrollView *contentView = [[UIScrollView alloc] init];
     contentView.backgroundColor = [UIColor whiteColor];
     contentView.frame = CGRectMake(0, JX_SCREEN_TOP + topHeight, self.view.bounds.size.width, self.view.bounds.size.height-JX_SCREEN_TOP - topHeight);
@@ -340,7 +294,7 @@
     contentView.bounces=NO;
     contentView.scrollEnabled = NO;
     
-    NSArray *lastUrl = @[@"消息",@"群组"];
+    NSArray *lastUrl = @[@"全部",@"群组"];
     contentView.contentSize = CGSizeMake(contentView.xmg_width * lastUrl.count, 0);
     [self.view addSubview:contentView];
     self.contentView = contentView;
@@ -366,43 +320,46 @@
  
  
 - (void)setupTitlesView {
-    UIView *backView = [[UIView alloc] init];
-    backView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    backView.frame = CGRectMake(0, JX_SCREEN_TOP, self.view.frame.size.width, 40);
-    backView.backgroundColor = [UIColor whiteColor];
-    backView.userInteractionEnabled=YES;
-    [self.view addSubview:backView];
-  
+   
     UIView *titlesView = [[UIView alloc] init];
     titlesView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    CGFloat top = THE_DEVICE_HAVE_HEAD ? 20 : 33;
-    titlesView.frame = CGRectMake(0, 0, JX_SCREEN_WIDTH/2, 40);
+//    CGFloat top = THE_DEVICE_HAVE_HEAD ? 20 : 33;
+    titlesView.frame = CGRectMake(0,  JX_SCREEN_TOP- 44, JX_SCREEN_WIDTH/2, 40);
     titlesView.userInteractionEnabled = YES;
-    [backView addSubview:titlesView];
+    [self.wh_tableHeader addSubview:titlesView];
+    [self.wh_tableHeader addSubview:self.sliderView];
     self.titlesView = titlesView;
 
-    NSArray *lastUrl = @[Localized(@"WaHu_JXSearchUser_WaHuVC_All"),Localized(@"GROUP")];
+    NSArray *lastUrl = @[@"全部",@"群组"];
     for (int i=0;i<lastUrl.count; i++) {
         XMGTitleButton *button = [[XMGTitleButton alloc]init];
         [button setTitle:lastUrl[i] forState:UIControlStateNormal];
         button.tag = i;
         [titlesView addSubview:button];
-        button.frame = CGRectMake(i*(60+20)+g_factory.globelEdgeInset, 5, 60, 30);
+        button.frame = CGRectMake(i*(60+8)+g_factory.globelEdgeInset, 0, 60, 36);
         if (i==0) {
             button.enabled = NO;
+            button.titleLabel.font = [UIFont boldSystemFontOfSize:22];
             _selectedButton = button;
+            // 添加约束
+            [self.sliderView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(button);
+                make.width.mas_equalTo(8);
+                make.height.mas_equalTo(4);
+                make.top.equalTo(button.mas_bottom);
+            }];
         }
         [button addTarget:self action:@selector(titleClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     
-    float loginTop = JX_SCREEN_TOP + 40;
+    float loginTop = JX_SCREEN_TOP;
     
     if(g_App.isShowRedPacket.intValue == 1 && !g_myself.isTestAccount){
         //跑马灯的view
-        _noticeView = [[WH_JXNoticeView alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP + 40, JX_SCREEN_WIDTH, 40)];
+        _noticeView = [[WH_JXNoticeView alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP, JX_SCREEN_WIDTH, 36)];
         [self.view addSubview:self.noticeView];
         
-        loginTop = JX_SCREEN_TOP + 90;
+        loginTop = JX_SCREEN_TOP + 40;
     }
     //多端登录
     _loginNameLab = [[UILabel alloc] initWithFrame:CGRectMake(0, loginTop, JX_SCREEN_WIDTH, 40)];
@@ -413,60 +370,21 @@
     _loginNameLab.hidden = YES;
     [self.view addSubview:self.loginNameLab];
 }
- 
-- (void)onFreshRight{
-    if (self.selectedButton.tag==0) {
-        [g_notify postNotificationName:@"shuaxin1" object:nil];
-    } else {
-        [g_notify postNotificationName:@"shuaxin2" object:nil];
-    }
-}
-
-- (void)onFreshLeft{
-    if (self.selectedButton.tag==0) {
-        [g_notify postNotificationName:@"shouye1" object:nil];
-    } else {
-        [g_notify postNotificationName:@"shouye2" object:nil];
-    }
-}
-
-- (XMGTitleButton *)setupTitleButton:(NSString *)title {
-    XMGTitleButton *button = [XMGTitleButton buttonWithType:UIButtonTypeCustom];
-    [button setTitle:title forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(titleClick:) forControlEvents:UIControlEventTouchUpInside];
- 
-    [self.titlesView addSubview:button];
-    self.topButton=button;
- 
-    [button mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(self.titlesView.xmg_width/2);
-        make.top.mas_equalTo(JX_SCREEN_HEIGHT>=812?0:0);
-        NSUInteger index = self.titlesView.subviews.count - 1;
-        if (index == 0) {
-            make.left.mas_equalTo(self.titlesView);
-        } else {
-            make.left.mas_equalTo(self.titlesView.xmg_width/2);
-            
-        }
-    }];
-     
-   
-    return button;
-}
- 
 - (void)titleClick:(UIButton *)button {
+    self.selectedButton.titleLabel.font = [UIFont boldSystemFontOfSize:17];
     self.selectedButton.enabled = YES;
     button.enabled = NO;
     self.selectedButton = button;
-    
-    // 消除约束
-    [self.sliderViewCenterX uninstall];
-    self.sliderViewCenterX = nil;
-    
+    self.selectedButton.titleLabel.font = [UIFont boldSystemFontOfSize:22];
     // 添加约束
-    [self.sliderView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.sliderView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(button);
+        make.width.mas_equalTo(8);
+        make.height.mas_equalTo(4);
+        make.top.equalTo(button.mas_bottom);
         self.sliderViewCenterX = make.centerX.equalTo(button);
     }];
+
     [UIView animateWithDuration:0.25 animations:^{
         [self.sliderView layoutIfNeeded];
     }];
@@ -526,6 +444,16 @@
      
      [self switchController:a];
    
+}
+
+-(UIView *)sliderView{
+    if(!_sliderView){
+        _sliderView = [[UIView alloc] init];
+        _sliderView.backgroundColor = HEXCOLOR(0x2BAF67);
+        _sliderView.layer.masksToBounds = YES;
+        _sliderView.layer.cornerRadius = 2.0f;
+    }
+    return _sliderView;
 }
 
   

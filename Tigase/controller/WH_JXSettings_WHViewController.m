@@ -931,7 +931,6 @@ typedef enum : NSUInteger {
     g_mainVC = nil;
     [self.view removeFromSuperview];
     self.view = nil;
-    vc.isPushEntering = YES;
     g_navigation.rootViewController = vc;
     [_wait stop];
 #if TAR_IM

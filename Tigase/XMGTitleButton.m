@@ -12,13 +12,9 @@
 - (nonnull instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        [self setTitleColor:RGB(151, 151, 151) forState:UIControlStateNormal];
-        [self setTitleColor:RGB(51, 51, 51) forState:UIControlStateDisabled];
-        self.titleLabel.font = [UIFont systemFontOfSize:16 weight:UIFontWeightBold]; 
-       // [self setBackgroundImage:[UIImage imageNamed:@"first-icon3"] forState:UIControlStateNormal];
-       // [self setBackgroundImage:[UIImage imageNamed:@"homePage"] forState:UIControlStateDisabled];
-        self.layer.cornerRadius = 18;
-        self.layer.masksToBounds = YES;
+        [self setTitleColor:HEXCOLOR(0x161819) forState:UIControlStateNormal];
+        [self setTitleColor:HEXCOLOR(0x2BAF67) forState:UIControlStateDisabled];
+        self.titleLabel.font = [UIFont boldSystemFontOfSize:17];
     }
     return self;
 }

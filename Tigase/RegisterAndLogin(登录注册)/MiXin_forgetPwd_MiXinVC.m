@@ -533,7 +533,6 @@
    g_mainVC = nil;
    [self.view removeFromSuperview];
    self.view = nil;
-    loginVC.isPushEntering = YES;
    g_navigation.rootViewController = loginVC;
    
    

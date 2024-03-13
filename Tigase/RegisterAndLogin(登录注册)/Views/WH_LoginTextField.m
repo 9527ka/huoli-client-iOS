@@ -128,9 +128,9 @@
 }
 - (UIButton *)openSecureButton {
     if (!_openSecureButton) {
-        _openSecureButton = [[UIButton alloc] initWithFrame:CGRectMake(0, self.width-40, 40, self.height)];
-        [_openSecureButton setImage:[UIImage imageNamed:@"hide_pass"] forState:UIControlStateNormal];
-        [_openSecureButton setImage:[UIImage imageNamed:@"show_pass"] forState:UIControlStateSelected];
+        _openSecureButton = [[UIButton alloc] initWithFrame:CGRectMake(0, self.width-40, 52, self.height)];
+        [_openSecureButton setImage:[UIImage imageNamed:@"pass_lock"] forState:UIControlStateNormal];
+        [_openSecureButton setImage:[UIImage imageNamed:@"pass_look"] forState:UIControlStateSelected];
         [_openSecureButton addTarget:self action:@selector(openSecure:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _openSecureButton;

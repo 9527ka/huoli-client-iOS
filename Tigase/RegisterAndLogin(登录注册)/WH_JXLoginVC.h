@@ -2,7 +2,7 @@
 //  WH_JXLoginVC.h
 //  Tigase
 //
-//  Created by 1111 on 2024/2/19.
+//  Created by 1111 on 2024/3/12.
 //  Copyright © 2024 Reese. All rights reserved.
 //
 
@@ -10,14 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WH_JXLoginVC : WH_admob_WHViewController
+@interface WH_JXLoginVC : UIViewController
 
-@property (nonatomic ,strong) UIButton *pointBtn;
-@property (nonatomic ,strong) UILabel *pointLabel; //节点
-
-@property (nonatomic ,assign) Boolean isInitialization; //是否为初始化
-
-@property (nonatomic ,assign) Boolean isPushEntering ;//是否是push进入的
+@property(nonatomic,assign)BOOL isShow;
 
 
 @end
