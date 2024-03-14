@@ -47,7 +47,7 @@
         [self addSubview:self.label];
         
         //图标
-        UIImageView *markImg = [[UIImageView alloc] initWithFrame:CGRectMake(Cell_Width - 19, (Cell_Height - 12)/2, 7, 12)];
+        UIImageView *markImg = [[UIImageView alloc] initWithFrame:CGRectMake(Cell_Width - 26, (Cell_Height - 12)/2, 14, 14)];
         [markImg setImage:[UIImage imageNamed:@"WH_Back"]];
         [self addSubview:markImg];
     }

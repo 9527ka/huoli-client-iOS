@@ -751,6 +751,8 @@
 		33872AE72B9FF99D004CF3C7 /* WH_JXLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33872AE52B9FF99D004CF3C7 /* WH_JXLoginVC.xib */; };
 		33872AEB2BA0286C004CF3C7 /* WH_RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33872AE92BA0286C004CF3C7 /* WH_RegisterViewController.m */; };
 		33872AEC2BA0286C004CF3C7 /* WH_RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33872AEA2BA0286C004CF3C7 /* WH_RegisterViewController.xib */; };
+		33872AF02BA18AC9004CF3C7 /* WH_JXFriendNew_WHCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33872AEE2BA18AC9004CF3C7 /* WH_JXFriendNew_WHCell.m */; };
+		33872AF12BA18AC9004CF3C7 /* WH_JXFriendNew_WHCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33872AEF2BA18AC9004CF3C7 /* WH_JXFriendNew_WHCell.xib */; };
 		33946A7B2B21A4C30002A8D6 /* WH_RechargeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33946A792B21A4C30002A8D6 /* WH_RechargeVC.m */; };
 		33946A7C2B21A4C30002A8D6 /* WH_RechargeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33946A7A2B21A4C30002A8D6 /* WH_RechargeVC.xib */; };
 		33946A832B21A79A0002A8D6 /* WH_RechargeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33946A812B21A79A0002A8D6 /* WH_RechargeCell.m */; };
@@ -1571,7 +1573,6 @@
 		CC6D87201939E51A00AE1EBA /* WH_JXWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6D871F1939E51A00AE1EBA /* WH_JXWaitingView.m */; };
 		CC6E15DF19791A84006ADA8A /* WH_webpage_WHVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6E15DE19791A84006ADA8A /* WH_webpage_WHVC.m */; };
 		CC6E166F19794906006ADA8A /* WH_JX_WH2Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6E163919794906006ADA8A /* WH_JX_WH2Cell.m */; };
-		CC6E167019794906006ADA8A /* WH_JXFriend_WHCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6E163B19794906006ADA8A /* WH_JXFriend_WHCell.m */; };
 		CC6E167419794906006ADA8A /* WH_JXFriend_WHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6E164419794906006ADA8A /* WH_JXFriend_WHViewController.m */; };
 		CC6E167719794906006ADA8A /* WH_JXMain_WHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6E164A19794906006ADA8A /* WH_JXMain_WHViewController.m */; };
 		CC6E167819794906006ADA8A /* WH_JXMsg_WHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6E164C19794906006ADA8A /* WH_JXMsg_WHViewController.m */; };
@@ -3195,6 +3196,9 @@
 		33872AE82BA0286C004CF3C7 /* WH_RegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_RegisterViewController.h; sourceTree = "<group>"; };
 		33872AE92BA0286C004CF3C7 /* WH_RegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_RegisterViewController.m; sourceTree = "<group>"; };
 		33872AEA2BA0286C004CF3C7 /* WH_RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_RegisterViewController.xib; sourceTree = "<group>"; };
+		33872AED2BA18AC9004CF3C7 /* WH_JXFriendNew_WHCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXFriendNew_WHCell.h; sourceTree = "<group>"; };
+		33872AEE2BA18AC9004CF3C7 /* WH_JXFriendNew_WHCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXFriendNew_WHCell.m; sourceTree = "<group>"; };
+		33872AEF2BA18AC9004CF3C7 /* WH_JXFriendNew_WHCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXFriendNew_WHCell.xib; sourceTree = "<group>"; };
 		33946A782B21A4C30002A8D6 /* WH_RechargeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_RechargeVC.h; sourceTree = "<group>"; };
 		33946A792B21A4C30002A8D6 /* WH_RechargeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_RechargeVC.m; sourceTree = "<group>"; };
 		33946A7A2B21A4C30002A8D6 /* WH_RechargeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_RechargeVC.xib; sourceTree = "<group>"; };
@@ -4575,8 +4579,6 @@
 		CC6E15DE19791A84006ADA8A /* WH_webpage_WHVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WH_webpage_WHVC.m; sourceTree = "<group>"; };
 		CC6E163819794906006ADA8A /* WH_JX_WH2Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WH_JX_WH2Cell.h; sourceTree = "<group>"; };
 		CC6E163919794906006ADA8A /* WH_JX_WH2Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WH_JX_WH2Cell.m; sourceTree = "<group>"; };
-		CC6E163A19794906006ADA8A /* WH_JXFriend_WHCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WH_JXFriend_WHCell.h; sourceTree = "<group>"; };
-		CC6E163B19794906006ADA8A /* WH_JXFriend_WHCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WH_JXFriend_WHCell.m; sourceTree = "<group>"; };
 		CC6E164319794906006ADA8A /* WH_JXFriend_WHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WH_JXFriend_WHViewController.h; sourceTree = "<group>"; };
 		CC6E164419794906006ADA8A /* WH_JXFriend_WHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WH_JXFriend_WHViewController.m; sourceTree = "<group>"; };
 		CC6E164919794906006ADA8A /* WH_JXMain_WHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WH_JXMain_WHViewController.h; sourceTree = "<group>"; };
@@ -9779,8 +9781,9 @@
 				CC6E163919794906006ADA8A /* WH_JX_WH2Cell.m */,
 				CC6E18D6197959CE006ADA8A /* WH_JXMedia_WHCell.h */,
 				CC6E18D7197959CE006ADA8A /* WH_JXMedia_WHCell.m */,
-				CC6E163A19794906006ADA8A /* WH_JXFriend_WHCell.h */,
-				CC6E163B19794906006ADA8A /* WH_JXFriend_WHCell.m */,
+				33872AED2BA18AC9004CF3C7 /* WH_JXFriendNew_WHCell.h */,
+				33872AEE2BA18AC9004CF3C7 /* WH_JXFriendNew_WHCell.m */,
+				33872AEF2BA18AC9004CF3C7 /* WH_JXFriendNew_WHCell.xib */,
 				18747E771D7E69BB00593B1D /* WH_JXRecordTB_WHCell.h */,
 				18747E781D7E69BB00593B1D /* WH_JXRecordTB_WHCell.m */,
 				18747E791D7E69BB00593B1D /* WH_JXRecordTB_WHCell.xib */,
@@ -11146,6 +11149,7 @@
 				CC3016AC1951BABF0059BADA /* f007.png in Resources */,
 				CC30174B1951BABF0059BADA /* f086@2x.png in Resources */,
 				CC3016981951BABF0059BADA /* AlbumTriangleB.png in Resources */,
+				33872AF12BA18AC9004CF3C7 /* WH_JXFriendNew_WHCell.xib in Resources */,
 				33BEF31A2B4E94270078B540 /* WH_JXChooseAccountCell.xib in Resources */,
 				334FB9EE2B1425C000230991 /* userInfo.plist in Resources */,
 				63E1E9AD1F442927004548C5 /* tranAudio@2x.png in Resources */,
@@ -12592,6 +12596,7 @@
 				0F304DA12153AD0D001EC77E /* XMPPBookmarksStorageElement.m in Sources */,
 				CC8FCA7F1E4B0A210058686C /* MixerHostAudio.m in Sources */,
 				0F304DAB2153AD0D001EC77E /* XMPPHTTPFileUpload.m in Sources */,
+				33872AF02BA18AC9004CF3C7 /* WH_JXFriendNew_WHCell.m in Sources */,
 				0FA2D6111FB05CCC00D51BB9 /* GPUImageLocalBinaryPatternFilter.m in Sources */,
 				0FA2D6B71FB05CCD00D51BB9 /* GPUImageContext.m in Sources */,
 				DE5C6966232666D400321406 /* MiXin_InputCoinNum_MiXinCell.m in Sources */,
@@ -12776,7 +12781,6 @@
 				0F304DCE2153AD0E001EC77E /* XMPPvCardTempEmail.m in Sources */,
 				33872AEB2BA0286C004CF3C7 /* WH_RegisterViewController.m in Sources */,
 				63DD4F5621314DB800DC45F8 /* RITLViewExtension.m in Sources */,
-				CC6E167019794906006ADA8A /* WH_JXFriend_WHCell.m in Sources */,
 				0F304E292153AD0E001EC77E /* NSData+XMPP.m in Sources */,
 				18B5FDCF22AF952200ECA300 /* WH_PrintManager.m in Sources */,
 				0F8F58EE1F96F595004B1EEA /* NSImage+WebCache.m in Sources */,

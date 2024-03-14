@@ -47,13 +47,6 @@
 }
 
 -(void)buildTop{
-    //刷新好友列表
-    //    UIButton * getFriendBtn = [[UIButton alloc]initWithFrame:CGRectMake(JX_SCREEN_WIDTH-35, JX_SCREEN_TOP - 34, 30, 30)];
-    //    getFriendBtn.custom_acceptEventInterval = .25f;
-    //    [getFriendBtn addTarget:self action:@selector(getFriend) forControlEvents:UIControlEventTouchUpInside];
-    ////    [getFriendBtn setImage:[UIImage imageNamed:@"synchro_friends"] forState:UIControlStateNormal];
-    //    [getFriendBtn setBackgroundImage:[UIImage imageNamed:@"synchro_friends"] forState:UIControlStateNormal];
-    //    [self.wh_tableHeader addSubview:getFriendBtn];
     
     _addressSwitch = [[WH_SegmentSwitch alloc] initWithFrame:CGRectMake(92, JX_SCREEN_TOP - 8 - 28, 192, 28) titles:@[@"全部",@"群组",@"新朋友"] slideColor:HEXCOLOR(0x0093FF)];
     //[self.wh_tableHeader addSubview:_addressSwitch];//隐藏切换按钮
@@ -99,7 +92,7 @@
     [btn addTarget:self action:@selector(onMore:) forControlEvents:UIControlEventTouchUpInside];
     [self.wh_tableHeader addSubview:btn];
     
-    self.moreBtn = [UIFactory WH_create_WHButtonWithImage:@"WH_addressbook_add"
+    self.moreBtn = [UIFactory WH_create_WHButtonWithImage:@"add_friend"
                                                       highlight:nil
                                                          target:self
                                                        selector:@selector(onMore:)];

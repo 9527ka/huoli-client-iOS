@@ -21,8 +21,8 @@
         _bgView = [UIView new];
         [self.contentView addSubview:_bgView];
         [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.offset(10);
-            make.right.offset(-10);
+            make.left.offset(15);
+            make.right.offset(-15);
             make.top.bottom.offset(0);
         }];
         _bgView.backgroundColor = [UIColor whiteColor];
@@ -54,7 +54,7 @@
         }
         _bgRoundType = bgRoundType;
         
-        CGRect frame = CGRectMake(0, 0, JX_SCREEN_WIDTH-INSETS*2, 56.f);
+        CGRect frame = CGRectMake(0, 0, JX_SCREEN_WIDTH-30, 56.f);
         UIRectCorner rectCorner = bgRoundType == WHSettingCellBgRoundTypeTop ? UIRectCornerTopLeft | UIRectCornerTopRight : bgRoundType == WHSettingCellBgRoundTypeBottom ? UIRectCornerBottomLeft | UIRectCornerBottomRight : UIRectCornerAllCorners;
         UIBezierPath *roundPath = [UIBezierPath bezierPathWithRoundedRect:frame byRoundingCorners:rectCorner cornerRadii:CGSizeMake(10, 10)];
         CGSize cornerRadii = CGSizeZero;

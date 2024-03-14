@@ -117,8 +117,8 @@
     [phoneBgView addSubview:nextImagV];
     [nextImagV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(phoneBgView.mas_right).offset(-12);
-        make.width.mas_equalTo(7);
-        make.height.mas_equalTo(12);
+        make.width.mas_equalTo(14);
+        make.height.mas_equalTo(14);
         make.centerY.mas_equalTo(phoneV.mas_centerY);
     }];
     _phoneLb = [UILabel new];

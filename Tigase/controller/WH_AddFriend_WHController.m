@@ -70,9 +70,9 @@
     NSString *str = @"";
     if ([g_config.regeditPhoneOrName intValue] == 1) {
         //用户名登录
-        str = Localized(@"WaHu_UserName_WaHu");
+        str = @"请输入用户名";
     }else{
-        str = @"手机号";
+        str = @"请输入手机号";
     }
     _items = @[
                @[@{@"icon":@"icon_search",
@@ -148,7 +148,7 @@
     }];
 //    titleLabel.text = [NSString stringWithFormat:@"我的通讯号：%@",@"17348888"];
     titleLabel.text = [NSString stringWithFormat:@"%@：%@",Localized(@"New_My_Account"),self.user.account?:@""];
-    titleLabel.textColor = HEXCOLOR(0x8C9AB8);
+    titleLabel.textColor = HEXCOLOR(0x797979);
     titleLabel.font = sysFontWithSize(12);
     
     UIImageView *qr = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"WH_addressbook_qrcode"]];
@@ -183,6 +183,9 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.section == 0){
+        return 36;
+    }
     return 56.f;
 }
 
@@ -198,6 +201,7 @@
         cell.titleLabel.text = nil;
         cell.textField.placeholder = item[@"title"];
         cell.textField.returnKeyType = UIReturnKeySearch;
+        
         __weak typeof(self) weakSelf = self;
         cell.onTextFieldReturnKeyPress = ^(WH_AddFriend_WHCell * _Nonnull cell, UITextField * _Nonnull textField) {
             //按下搜索按钮
@@ -206,6 +210,7 @@
     } else {
         cell.titleLabel.text = item[@"title"];
     }
+    
     
     return cell;
 }

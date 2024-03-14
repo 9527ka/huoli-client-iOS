@@ -514,7 +514,7 @@ typedef enum : NSUInteger {
     
     if(click){
         UIImageView* iv;
-        iv = [[UIImageView alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH - 2*g_factory.globelEdgeInset - 19, (frame.size.height-12)/2, 7, 12)];
+        iv = [[UIImageView alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH - 2*g_factory.globelEdgeInset - 21, (frame.size.height-12)/2, 14, 14)];
         iv.image = [UIImage imageNamed:@"WH_Back"];
         [btn addSubview:iv];
     }

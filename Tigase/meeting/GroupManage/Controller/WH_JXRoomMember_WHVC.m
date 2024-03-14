@@ -752,7 +752,7 @@
         btn.frame = CGRectMake(btn.frame.origin.x -20, btn.frame.origin.y, btn.frame.size.width, btn.frame.size.height);
         
         UIImageView* iv;
-        iv = [[UIImageView alloc] initWithFrame:CGRectMake(parent.frame.size.width - 19, (HEIGHT-12)/2.f, 7, 12)];
+        iv = [[UIImageView alloc] initWithFrame:CGRectMake(parent.frame.size.width - 21, (HEIGHT-12)/2.f, 14, 14)];
         iv.image = [UIImage imageNamed:@"WH_Back"];
         [btn addSubview:iv];
     }

@@ -374,7 +374,9 @@
 #define g_theme [WH_SkinManage sharedInstance]
 #define ThemeImage(str) [[WH_SkinManage sharedInstance] themeImage:str]    //str为原始图片名
 #define ThemeImageName(str) [[WH_SkinManage sharedInstance] themeImageName:str]    //str为原始图片名
-#define THEMECOLOR [WH_SkinManage sharedInstance].themeColor
+//#define THEMECOLOR [WH_SkinManage sharedInstance].themeColor
+
+#define THEMECOLOR HEXCOLOR(0x2BAF67)
 
 #define docFilePath [NSString stringWithFormat:@"%@/Documents/",NSHomeDirectory()]
 #define dataFilePath [NSString stringWithFormat:@"%@/Library/Caches/",NSHomeDirectory()]

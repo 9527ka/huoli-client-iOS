@@ -206,7 +206,7 @@
     _wh_city.text = [NSString stringWithFormat:@"%@ : %@",Localized(@"New_area"),@"--"];
     [headView addSubview:_wh_city];
     
-    UIImageView *nexImg = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetWidth(headView.frame) - 29, (CGRectGetHeight(headView.frame) - 12)/2, 7, 12)];
+    UIImageView *nexImg = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetWidth(headView.frame) - 31, (CGRectGetHeight(headView.frame) - 12)/2, 14, 14)];
     [nexImg setImage:[UIImage imageNamed:@"WH_Back"]];
     [headView addSubview:nexImg];
     
@@ -230,7 +230,7 @@
     [pyqLabel setFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 15]];
     [pyqBtn addSubview:pyqLabel];
     
-    UIImageView *nexImg2 = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetWidth(pyqBtn.frame) - 29, (CGRectGetHeight(pyqBtn.frame) - 12)/2, 7, 12)];
+    UIImageView *nexImg2 = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetWidth(pyqBtn.frame) - 31, (CGRectGetHeight(pyqBtn.frame) - 12)/2, 14, 14)];
     [nexImg2 setImage:[UIImage imageNamed:@"WH_Back"]];
     [markAndTagView addSubview:nexImg2];
     
@@ -256,7 +256,7 @@
             [pLabel setFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 15]];
             [pBtn addSubview:pLabel];
             
-            UIImageView *nexImg3 = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetWidth(pBtn.frame) - 29, (CGRectGetHeight(pBtn.frame) - 12)/2, 7, 12)];
+            UIImageView *nexImg3 = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetWidth(pBtn.frame) - 31, (CGRectGetHeight(pBtn.frame) - 12)/2, 14, 14)];
             [nexImg3 setImage:[UIImage imageNamed:@"WH_Back"]];
             [pBtn addSubview:nexImg3];
         }else{

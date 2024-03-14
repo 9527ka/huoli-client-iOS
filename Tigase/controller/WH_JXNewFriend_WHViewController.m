@@ -10,14 +10,14 @@
 #import "AppDelegate.h"
 #import "JXLabel.h"
 #import "WH_JXImageView.h"
-#import "WH_JXFriend_WHCell.h"
+#import "WH_JXFriendNew_WHCell.h"
 #import "WH_JXRoomPool.h"
 #import "WH_JXFriendObject.h"
 #import "UIFactory.h"
 #import "WH_JXInput_WHVC.h"
 #import "WH_JXUserInfo_WHVC.h"
 
-@interface WH_JXNewFriend_WHViewController ()<WH_JXFriend_WHCellDelegate>
+@interface WH_JXNewFriend_WHViewController ()
 
 @end
 
@@ -47,15 +47,18 @@
 
 - (void)customView{
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP, JX_SCREEN_WIDTH, 44.f)];
-    headerView.backgroundColor = [UIColor whiteColor];
+    headerView.backgroundColor = g_factory.globalBgColor;
     
     //搜索条
     [self createSeekTextField:headerView isFriend:NO];
+    self.seekTextField.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:headerView];
     self.tableView.tableHeaderView = headerView;
     
     _table.backgroundColor = g_factory.globalBgColor;
+    
+    [_table registerNib:[UINib nibWithNibName:NSStringFromClass([WH_JXFriendNew_WHCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([WH_JXFriendNew_WHCell class])];
 }
 
 - (void)dealloc {
@@ -103,34 +106,39 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	WH_JXFriend_WHCell *cell=nil;
-    NSString* cellName = [NSString stringWithFormat:@"msg_%d_%ld",_refreshCount,indexPath.row];
-    cell = [tableView dequeueReusableCellWithIdentifier:cellName];
-    if(cell==nil){
+//	WH_JXFriendNew_WHCell *cell=nil;
+//    NSString* cellName = [NSString stringWithFormat:@"msg_%d_%ld",_refreshCount,indexPath.row];
+//    cell = [tableView dequeueReusableCellWithIdentifier:cellName];
+    
+    WH_JXFriendNew_WHCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([WH_JXFriendNew_WHCell class])];
+    
+//    if(cell==nil){
         WH_JXFriendObject *user = self.seekTextField.text.length > 0 ? self.searchArray[indexPath.row] : _array[indexPath.row];
-        cell = [WH_JXFriend_WHCell alloc];
-        [_table WH_addToPool:cell];
+//        [_table WH_addToPool:cell];
         cell.tag   = indexPath.row;
-        cell.delegate = self;
-        cell.subtitle = user.userId;
-        cell.bottomTitle = [TimeUtil formatDate:user.timeCreate format:@"MM-dd HH:mm"];
+        cell.target = self;
         cell.user        = user;
-        cell.target      = self;
-        cell.status = @"已通过";
-        cell.title = user.remarkName.length > 0 ? user.remarkName : user.userNickname;
-        cell = [cell initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName];
-        user = nil;
+        cell.remarkLab.text = [user getLastContent];
+//        cell.status = @"已通过";
+        cell.nameLab.text = user.remarkName.length > 0 ? user.remarkName : user.userNickname;
+    [g_server WH_getHeadImageSmallWIthUserId:user.userId userName:user.userNickname imageView:cell.headImage];
+//        user = nil;
         if (self.seekTextField.text.length){
-            NSMutableAttributedString *lbAtt = [[NSMutableAttributedString alloc] initWithString:cell.title attributes:@{NSForegroundColorAttributeName:HEXCOLOR(0x3A404C),NSFontAttributeName:cell.lbTitle.font}];
-            NSRange keyRange = [cell.title rangeOfString:self.seekTextField.text options:NSCaseInsensitiveSearch];
-            [lbAtt setAttributes:@{NSForegroundColorAttributeName:HEXCOLOR(0xED6350),NSFontAttributeName:cell.lbTitle.font} range:keyRange];
-            [cell.lbTitle setText:nil];
-            cell.lbTitle.attributedText = lbAtt;
+            NSMutableAttributedString *lbAtt = [[NSMutableAttributedString alloc] initWithString:cell.nameLab.text attributes:@{NSForegroundColorAttributeName:HEXCOLOR(0x3A404C),NSFontAttributeName:cell.nameLab.font}];
+            NSRange keyRange = [cell.nameLab.text rangeOfString:self.seekTextField.text options:NSCaseInsensitiveSearch];
+            [lbAtt setAttributes:@{NSForegroundColorAttributeName:HEXCOLOR(0xED6350),NSFontAttributeName:cell.nameLab.font} range:keyRange];
+            [cell.nameLab setText:nil];
+            cell.nameLab.attributedText = lbAtt;
         } else {
-            cell.lbTitle.attributedText = nil;
-            [cell.lbTitle setText:cell.title];
+            cell.nameLab.attributedText = nil;
+            cell.nameLab.text = user.remarkName.length > 0 ? user.remarkName : user.userNickname;
         }
-    }
+    [cell update];
+    __weak typeof (self)weakSelf = self;
+    cell.lookUserInfo = ^{
+        [weakSelf lookUserInfo:user.userId];
+    };
+//    }
     return cell;
 }
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -187,10 +195,8 @@
     //[g_navigation pushViewController:sendView animated:YES];
 }
 
-- (void)friendCell:(WH_JXFriend_WHCell *)friendCell headImageAction:(NSString *)userId {
-    
-//    [g_server getUser:userId toView:self];
-    
+- (void)lookUserInfo:(NSString *)userId {
+        
     WH_JXUserInfo_WHVC* vc = [WH_JXUserInfo_WHVC alloc];
     vc.wh_userId       = userId;
     vc.wh_fromAddType = 6;
@@ -206,9 +212,9 @@
     [_table reloadData];
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 64;
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return 135;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -229,7 +235,7 @@
     WH_JXMessageObject *msg     = (WH_JXMessageObject *)notifacation.object;
     if(msg==nil)
         return;
-    WH_JXFriend_WHCell* cell = [poolCell objectForKey:msg.messageId];
+    WH_JXFriendNew_WHCell* cell = [poolCell objectForKey:msg.messageId];
     if(cell){
 //        [g_App showAlert:Localized(@"JXAlert_SendFilad")];
         [JXMyTools showTipView:Localized(@"JXAlert_SendFilad")];
@@ -252,7 +258,7 @@
         if([friend.userId isEqualToString:user.userId]){
             [friend loadFromObject:user];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-            WH_JXFriend_WHCell* cell = (WH_JXFriend_WHCell*)[_table cellForRowAtIndexPath:indexPath];
+            WH_JXFriendNew_WHCell* cell = (WH_JXFriendNew_WHCell*)[_table cellForRowAtIndexPath:indexPath];
             [cell update];
             cell = nil;
             return;
@@ -264,7 +270,7 @@
 
 -(void)onSayHello:(UIButton*)sender{//打招呼
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:sender.tag inSection:0];
-    _cell = (WH_JXFriend_WHCell*)[_table cellForRowAtIndexPath:indexPath];
+    _cell = (WH_JXFriendNew_WHCell*)[_table cellForRowAtIndexPath:indexPath];
 
     WH_JXInput_WHVC* vc = [WH_JXInput_WHVC alloc];
     vc.delegate = self;
@@ -283,7 +289,7 @@
 
 -(void)onFeedback:(UIButton*)sender{//回话
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:sender.tag inSection:0];
-    _cell = (WH_JXFriend_WHCell*)[_table cellForRowAtIndexPath:indexPath];
+    _cell = (WH_JXFriendNew_WHCell*)[_table cellForRowAtIndexPath:indexPath];
     
     WH_JXInput_WHVC* vc = [WH_JXInput_WHVC alloc];
     vc.delegate = self;
@@ -301,7 +307,7 @@
 
 -(void)onSeeHim:(UIButton*)sender{//关注他
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:sender.tag inSection:0];
-    WH_JXFriend_WHCell* cell = (WH_JXFriend_WHCell*)[_table cellForRowAtIndexPath:indexPath];
+    WH_JXFriendNew_WHCell* cell = (WH_JXFriendNew_WHCell*)[_table cellForRowAtIndexPath:indexPath];
     NSString* messageId = [cell.user doSendMsg:XMPP_TYPE_NEWSEE content:nil];
     [poolCell setObject:cell forKey:messageId];
     [_wait start:nil];
@@ -309,7 +315,7 @@
 
 -(void)WH_clickAddFriend:(UIButton*)sender{//加好友
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:sender.tag inSection:0];
-    _cell = (WH_JXFriend_WHCell*)[_table cellForRowAtIndexPath:indexPath];
+    _cell = (WH_JXFriendNew_WHCell*)[_table cellForRowAtIndexPath:indexPath];
     _user = _cell.user;
     [g_server WH_addAttentionWithUserId:_user.userId fromAddType:0 toView:self];
 }
@@ -396,7 +402,7 @@
         [msg notifyNewMsg];
     }
     
-    WH_JXFriend_WHCell* cell = [poolCell objectForKey:msg.messageId];
+    WH_JXFriendNew_WHCell* cell = [poolCell objectForKey:msg.messageId];
     if(cell){
         [cell.user loadFromMessageObj:msg];
         [cell update];

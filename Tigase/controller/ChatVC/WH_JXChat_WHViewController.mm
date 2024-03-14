@@ -1187,8 +1187,9 @@
     //        [line release];
     
     //＋
-    self.shareMore = [UIFactory WH_create_WHButtonWithImage:@"WH_input_more_normal" highlight:@"WH_input_more_normal" target:self selector:@selector(shareMore:)];
+    self.shareMore = [UIFactory WH_create_WHButtonWithImage:@"more_chat" highlight:@"more_chat" target:self selector:@selector(shareMore:)];
     self.shareMore.frame = CGRectMake(JX_SCREEN_WIDTH - 42, 8+2, 32, 32);
+    self.shareMore.contentMode = UIViewContentModeScaleAspectFill;
     [inputBar addSubview:self.shareMore];
     CGFloat firstX;
     if (_menuList.count > 0) {
@@ -1210,14 +1211,14 @@
         inputBar.frame = CGRectMake(inputBar.frame.origin.x, 0, inputBar.frame.size.width, inputBar.frame.size.height);
     }
     
-    UIButton *btn = [UIFactory WH_create_WHButtonWithImage:@"WH_input_ptt_normal" selected:@"WH_new_keyboard" target:self selector:@selector(recordSwitch:)];
+    UIButton *btn = [UIFactory WH_create_WHButtonWithImage:@"yuyin_chat" selected:@"WH_new_keyboard" target:self selector:@selector(recordSwitch:)];
     btn.frame = CGRectMake(firstX, 8+2, 32, 32);
     btn.selected = NO;
     [inputBar addSubview:btn];
     _recordBtnLeft = btn;
     
     //eomoj
-    btn = [UIFactory WH_create_WHButtonWithImage:@"im_input_expression_normal" selected:@"im_input_keyboard_normal" target:self selector:@selector(actionFace:)];
+    btn = [UIFactory WH_create_WHButtonWithImage:@"biaoqing_chat" selected:@"biaoqing_chat" target:self selector:@selector(actionFace:)];
     btn.frame = CGRectMake(JX_SCREEN_WIDTH -82, 8+2, 32, 32);
     btn.selected = NO;
     [inputBar addSubview:btn];

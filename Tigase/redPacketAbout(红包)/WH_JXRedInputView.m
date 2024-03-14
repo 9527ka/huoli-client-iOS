@@ -104,7 +104,7 @@
             _wh_canClaimView.frame = CGRectMake(INSETS, _canClaimY, self.frame.size.width-INSETS*2, RowHeight);
             _wh_canclaimBtn.frame = CGRectMake(CGRectGetMaxX(self.wh_canClaimTitle.frame) + 10, 0, CGRectGetWidth(_wh_canClaimView.frame)- CGRectGetMaxX(self.wh_canClaimTitle.frame) - 10, RowHeight);
             _wh_canclaimBtn.tag = _type;
-            _wh_canClaimMark.frame = CGRectMake(CGRectGetWidth(_wh_canclaimBtn.frame) - 19, (CGRectGetHeight(_wh_canclaimBtn.frame) - 12)*0.5, 7, 12);
+            _wh_canClaimMark.frame = CGRectMake(CGRectGetWidth(_wh_canclaimBtn.frame) - 19, (CGRectGetHeight(_wh_canclaimBtn.frame) - 14)*0.5, 14, 14);
             _wh_canClaimPeoples.frame = CGRectMake(0, 0, CGRectGetWidth(_wh_canclaimBtn.frame) - 29, CGRectGetHeight(_wh_canclaimBtn.frame));
             
             _receiveNoticeLabel.frame = CGRectMake(25, CGRectGetMaxY(_wh_canClaimView.frame) + 8, self.frame.size.width - 50, 20);

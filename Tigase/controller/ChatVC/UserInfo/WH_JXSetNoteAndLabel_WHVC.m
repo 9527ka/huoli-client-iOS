@@ -132,7 +132,7 @@
 //    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onLabel)];
 //    [_labContLab addGestureRecognizer:tap];
     
-    UIImageView *imgV =[[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetWidth(btn.frame) - 19, (CGRectGetHeight(btn.frame) - 12)/2, 7, 12)];
+    UIImageView *imgV =[[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetWidth(btn.frame) - 19, (CGRectGetHeight(btn.frame) - 14)/2, 14, 14)];
     imgV.image = [UIImage imageNamed:@"WH_Back"];
     [btn addSubview:imgV];
     

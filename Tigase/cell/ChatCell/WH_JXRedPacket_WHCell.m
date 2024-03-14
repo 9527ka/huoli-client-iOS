@@ -77,8 +77,8 @@
     [_imageBackground addSubview:_toUserLab];
     
     _line = [[UILabel alloc] initWithFrame:CGRectMake(4, self.bounds.size.height - 12, 120, 0.3)];
-    _line.alpha = 0.7;
-    _line.backgroundColor= [UIColor whiteColor];
+    _line.alpha = 1.0f;
+    _line.backgroundColor= HEXCOLOR(0xFFAD58);
     [_imageBackground addSubview:_line];
     
     //
@@ -180,7 +180,7 @@
     _headImageView.image = [UIImage imageNamed: self.room.category == 1?@"red_diamound_icon":@"WH_hongbao_top"];
     //专属的用WH_hongbao_top
     if(self.room.category != 1 && [self.msg.type intValue] != kWCMessageTypeRedPacketExclusive){
-        _headImageView.image = [UIImage imageNamed: @"WH_hongbao_top_icon"];
+        _headImageView.image = [UIImage imageNamed: [self.msg.fileSize intValue] == 2?@"hongbao_receive_icon":@"WH_hongbao_top_icon"];
     }
     
     //专属红包更改红包颜色

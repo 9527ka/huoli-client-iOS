@@ -76,13 +76,7 @@
             self.wh_isGotoBack   = YES;
             self.wh_heightFooter = 0;
         }
-//        self.view.frame = g_window.bounds;
-//        [self createHeadAndFoot];
-//        [self buildTop];
-//        CGRect frame = self.tableView.frame;
-//        frame.origin.y += 40;
-//        frame.size.height -= 40;
-//        self.tableView.frame = frame;
+
         [self customView];
 
         _selMenu = 0;
@@ -104,8 +98,9 @@
         
         self.wh_isShowHeaderPull = YES;
         
-        _table.backgroundColor = g_factory.globalBgColor;
-        _table.sectionIndexColor = HEXCOLOR(0xAEAFB3);
+        _table.backgroundColor = [UIColor whiteColor];
+        _table.sectionIndexColor = HEXCOLOR(0xBABABA);
+//        _table.rowHeight = 55.0f;
         
     }
     return self;
@@ -242,13 +237,6 @@
 }
 
 -(void)buildTop{
-    //刷新好友列表
-//    UIButton * getFriendBtn = [[UIButton alloc]initWithFrame:CGRectMake(JX_SCREEN_WIDTH-35, JX_SCREEN_TOP - 34, 30, 30)];
-//    getFriendBtn.custom_acceptEventInterval = .25f;
-//    [getFriendBtn addTarget:self action:@selector(getFriend) forControlEvents:UIControlEventTouchUpInside];
-////    [getFriendBtn setImage:[UIImage imageNamed:@"synchro_friends"] forState:UIControlStateNormal];
-//    [getFriendBtn setBackgroundImage:[UIImage imageNamed:@"synchro_friends"] forState:UIControlStateNormal];
-//    [self.wh_tableHeader addSubview:getFriendBtn];
     
     WH_SegmentSwitch *addressSwitch = [[WH_SegmentSwitch alloc] initWithFrame:CGRectZero];
     [self.wh_tableHeader addSubview:addressSwitch];
@@ -286,294 +274,58 @@
 }
 
 - (void)customView {
-    //顶部筛选控件
-//    _topSiftView = [[WH_JXTopSiftJobView alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP, JX_SCREEN_WIDTH, 40)];
-//    _topSiftView.delegate = self;
-//    _topSiftView.isShowMoreParaBtn = NO;
-//    _topSiftView.dataArray = [[NSArray alloc] initWithObjects:Localized(@"WaHu_JXInput_WHVC_FriendList"),Localized(@"JX_BlackList"), nil];
-//    //    _topSiftView.searchForType = SearchForPos;
-//    [self.view addSubview:_topSiftView];
-    
+
     //搜索输入框
-    
-    backView = [[UIView alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP, JX_SCREEN_WIDTH, 44+121 + 48)];
+    backView = [[UIView alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP, JX_SCREEN_WIDTH, 96)];
     backView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:backView];
     self.tableView.tableHeaderView = backView;
-    //    [seekImgView release];
-    
-//    UIButton *cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(backView.frame.size.width-5-45, 5, 45, 30)];
-//    [cancelBtn setTitle:Localized(@"JX_Cencal") forState:UIControlStateNormal];
-//    [cancelBtn setTitleColor:THEMECOLOR forState:UIControlStateNormal];
-//    [cancelBtn addTarget:self action:@selector(WH_cancelBtnAction) forControlEvents:UIControlEventTouchUpInside];
-//    cancelBtn.titleLabel.font = sysFontWithSize(14.0);
-//    [backView addSubview:cancelBtn];
-    
-    
-//    self.seekTextField = [[UITextField alloc] initWithFrame:CGRectMake(13, 12, backView.frame.size.width - 26, 30)];
-//    self.seekTextField.placeholder = [NSString stringWithFormat:@"%@",Localized(@"JX_SearchFriends")];
-//    self.seekTextField.textColor = HEXCOLOR(0x969696);
-//    [self.seekTextField setFont:sysFontWithSize(17)];
-//    self.seekTextField.layer.cornerRadius = 5;
-//    self.seekTextField.layer.masksToBounds = YES;
-//    self.seekTextField.layer.borderWidth = 0.5;
-//    self.seekTextField.layer.borderColor = HEXCOLOR(0xE9E9E9).CGColor;
-//    self.seekTextField.backgroundColor = HEXCOLOR(0xF2F3F6);
-//    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_search"]];
-//    UIView *leftView = [[UIView alloc ]initWithFrame:CGRectMake(0, 0, 30, 30)];
-//    //    imageView.center = CGPointMake(leftView.frame.size.width/2, leftView.frame.size.height/2);
-//    imageView.center = leftView.center;
-//    [leftView addSubview:imageView];
-//    self.seekTextField.leftView = leftView;
-//    self.seekTextField.leftViewMode = UITextFieldViewModeAlways;
-//    self.seekTextField.borderStyle = UITextBorderStyleNone;
-//    self.seekTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-//    self.seekTextField.delegate = self;
-//    self.seekTextField.returnKeyType = UIReturnKeyGoogle;
-//    [backView addSubview:self.seekTextField];
-//    [self.seekTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-    
+        
     [self createSeekTextField:backView isFriend:YES];
     
     
-//    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.seekTextField.frame) + 7.f, JX_SCREEN_WIDTH, g_factory.cardBorderWithd)];
-//    lineView.backgroundColor = g_factory.inputBorderColor;
-//    [backView addSubview:lineView];
     
-//    int h = 0;
-//    WH_JXImageView* iv;
-//    iv = [self WH_createMiXinButton:Localized(@"JXNewFriendVC_NewFirend") drawTop:NO drawBottom:YES icon:@"im_10001" click:@selector(newFriendAction:) superView:backView];
-//    iv.frame = CGRectMake(0, CGRectGetMaxY(lineView.frame), JX_SCREEN_WIDTH, HEIGHT);
-//    h = iv.frame.size.height + iv.frame.origin.y;
-    
-    _menuView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.seekTextField.frame)+9.f, JX_SCREEN_WIDTH, 242.f + 48)];
+    _menuView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.seekTextField.frame)+20.f, JX_SCREEN_WIDTH, 70)];
     [backView addSubview:_menuView];
-    
-//    int inset = 0;
-    
-//    int n = 0;
-//    int m = 0;
-//    int X = 0;
-//    int Y = inset;
-    
-    /*UIButton *button;
-    // 新的朋友
-    button = [self WH_create_WHButtonWithFrame:CGRectMake(X, Y, JX_SCREEN_WIDTH/4, 0) title:Localized(@"JXNewFriendVC_NewFirend") icon:ThemeImageName(@"xinpengyou") action:@selector(newFriendAction:)];
-    [_menuView addSubview:button];
-    
-    // 图片在button中的左右间隙
-    int  leftInset = (button.frame.size.width - IMAGE_HEIGHT)/2;
-    
-    self.friendNewMsgNum = [[UILabel alloc] initWithFrame:CGRectMake(button.frame.size.width-leftInset - 10, 20-5, 20, 20)];
-    self.friendNewMsgNum.backgroundColor = [UIColor redColor];
-    self.friendNewMsgNum.font = sysFontWithSize(12);
-    self.friendNewMsgNum.textAlignment = NSTextAlignmentCenter;
-    self.friendNewMsgNum.layer.cornerRadius = self.friendNewMsgNum.frame.size.width / 2;
-    self.friendNewMsgNum.layer.masksToBounds = YES;
-    self.friendNewMsgNum.textColor = [UIColor whiteColor];
-    self.friendNewMsgNum.hidden = YES;
-    self.friendNewMsgNum.text = @"99";
-    [button addSubview:self.friendNewMsgNum];
-    
-//    iv = [self WH_createMiXinButton:Localized(@"JX_ManyPerChat") drawTop:NO drawBottom:YES icon:@"function_icon_join_group_apply" click:@selector(myGroupAction:) superView:backView];
-//    iv.frame = CGRectMake(0, h, JX_SCREEN_WIDTH, HEIGHT);
-//    h += iv.frame.size.height;
-    
-    
-    // 公众号
-    n = (n + 1) >= 4 ? 0 : n + 1;
-    m += 1;
-    X = JX_SCREEN_WIDTH/4 * (n >= 4 ? 0 : n);
-    Y = m >=4 ? button.frame.size.height+inset : inset;
-    button = [self WH_create_WHButtonWithFrame:CGRectMake(X, Y, JX_SCREEN_WIDTH/4, 0) title:Localized(@"JX_PublicNumber") icon:ThemeImageName(@"gongzhonghao") action:@selector(publicNumberAction:)];
-    [_menuView addSubview:button];
-    
-    // 我的设备
-    BOOL isMultipleLogin = [g_myself.multipleDevices intValue] > 0 ? YES : NO;
-    if (isMultipleLogin) {
-        n = (n + 1) >= 4 ? 0 : n + 1;
-        m += 1;
-        X = JX_SCREEN_WIDTH/4 * (n >= 4 ? 0 : n);
-        Y = m >=4 ? button.frame.size.height+inset : inset;
-        button = [self WH_create_WHButtonWithFrame:CGRectMake(X, Y, JX_SCREEN_WIDTH/4, 0) title:Localized(@"JX_MyDevices") icon:ThemeImageName(@"wodeshebei") action:@selector(myDeviceAction:)];
-        [_menuView addSubview:button];
-    }
-    
-    // 标签
-    n = (n + 1) >= 4 ? 0 : n + 1;
-    m += 1;
-    X = JX_SCREEN_WIDTH/4 * (n >= 4 ? 0 : n);
-    Y = m >=4 ? button.frame.size.height+inset : inset;
-    button = [self WH_create_WHButtonWithFrame:CGRectMake(X, Y, JX_SCREEN_WIDTH/4, 0) title:Localized(@"JX_Label") icon:ThemeImageName(@"biaoqian") action:@selector(labelAction:)];
-    [_menuView addSubview:button];
-    
-    // 我的同事
-    n = (n + 1) >= 4 ? 0 : n + 1;
-    m += 1;
-    X = JX_SCREEN_WIDTH/4 * (n >= 4 ? 0 : n);
-    Y = m >=4 ? button.frame.size.height+inset : inset;
-    button = [self WH_create_WHButtonWithFrame:CGRectMake(X, Y, JX_SCREEN_WIDTH/4, 0) title:Localized(@"OrganizVC_Organiz") icon:ThemeImageName(@"wodetongshi") action:@selector(myColleaguesAction:)];
-    [_menuView addSubview:button];
-    
-    // 群组
-    n = (n + 1) >= 4 ? 0 : n + 1;
-    m += 1;
-    X = JX_SCREEN_WIDTH/4 * (n >= 4 ? 0 : n);
-    Y = m >=4 ? button.frame.size.height+inset : inset;
-    button = [self WH_create_WHButtonWithFrame:CGRectMake(X, Y, JX_SCREEN_WIDTH/4, 0) title:Localized(@"JX_ManyPerChat") icon:ThemeImageName(@"qunzu") action:@selector(myGroupAction:)];
-    [_menuView addSubview:button];
-    
-    // 手机联系人
-    n = (n + 1) >= 4 ? 0 : n + 1;
-    m += 1;
-    X = JX_SCREEN_WIDTH/4 * (n >= 4 ? 0 : n);
-    Y = m >=4 ? button.frame.size.height+inset : inset;
-    button = [self WH_create_WHButtonWithFrame:CGRectMake(X, Y, JX_SCREEN_WIDTH/4, 0) title:Localized(@"JX_MobilePhoneContacts") icon:ThemeImageName(@"shoujilianxiren") action:@selector(addressBookAction:)];
-    [_menuView addSubview:button];
-    
-    self.abNewMsgNum = [[UILabel alloc] initWithFrame:CGRectMake(button.frame.size.width-leftInset - 10, 20-5, 20, 20)];
-    self.abNewMsgNum.backgroundColor = [UIColor redColor];
-    self.abNewMsgNum.font = sysFontWithSize(12);
-    self.abNewMsgNum.textAlignment = NSTextAlignmentCenter;
-    self.abNewMsgNum.layer.cornerRadius = self.abNewMsgNum.frame.size.width / 2;
-    self.abNewMsgNum.layer.masksToBounds = YES;
-    self.abNewMsgNum.textColor = [UIColor whiteColor];
-    self.abNewMsgNum.hidden = YES;
-    self.abNewMsgNum.text = @"99";
-    [button addSubview:self.abNewMsgNum];
-    
 
-    // 黑名单
-    n = (n + 1) >= 4 ? 0 : n + 1;
-    m += 1;
-    X = JX_SCREEN_WIDTH/4 * (n >= 4 ? 0 : n);
-    Y = m >=4 ? button.frame.size.height+inset : inset;
-    button = [self WH_create_WHButtonWithFrame:CGRectMake(X, Y, JX_SCREEN_WIDTH/4, 0) title:Localized(@"JX_BlackList") icon:ThemeImageName(@"heimingdan") action:@selector(blackFriendAction:)];
-    [_menuView addSubview:button];
-
-    */
-
-    
-
-//    iv = [self WH_createMiXinButton:Localized(@"JX_Label") drawTop:NO drawBottom:YES icon:@"label" click:@selector(labelAction:) superView:backView];
-//    iv.frame = CGRectMake(0, h, JX_SCREEN_WIDTH, HEIGHT);
-//    h += iv.frame.size.height;
-//
-//    iv = [self WH_createMiXinButton:Localized(@"JX_PublicNumber") drawTop:NO drawBottom:YES icon:@"im_10000" click:@selector(publicNumberAction:) superView:backView];
-//    iv.frame = CGRectMake(0, h, JX_SCREEN_WIDTH, HEIGHT);
-//    h += iv.frame.size.height;
-    
-//    BOOL isMultipleLogin = [[g_default objectForKey:kISMultipleLogin] boolValue];
-//    BOOL isMultipleLogin = [g_myself.multipleDevices intValue] > 0 ? YES : NO;
-//    if (isMultipleLogin) {
-//        iv = [self WH_createMiXinButton:Localized(@"JX_MyDevices") drawTop:NO drawBottom:YES icon:@"feb" click:@selector(myDeviceAction:) superView:backView];
-//        iv.frame = CGRectMake(0, h, JX_SCREEN_WIDTH, HEIGHT);
-//        h += iv.frame.size.height;
-//    }
-    
-//    iv = [self WH_createMiXinButton:Localized(@"JX_BlackList") drawTop:NO drawBottom:YES icon:@"im_black" click:@selector(blackFriendAction:) superView:backView];
-//    iv.frame = CGRectMake(0, h, JX_SCREEN_WIDTH, HEIGHT);
-//    h += iv.frame.size.height;
-//
-//    iv = [self WH_createMiXinButton:Localized(@"OrganizVC_Organiz") drawTop:NO drawBottom:YES icon:@"im_colleague" click:@selector(myColleaguesAction:) superView:backView];
-//    iv.frame = CGRectMake(0, h, JX_SCREEN_WIDTH, HEIGHT);
-//    h += iv.frame.size.height;
-//
-//    iv = [self WH_createMiXinButton:Localized(@"JX_MobilePhoneContacts") drawTop:NO drawBottom:YES icon:@"sk_ic_pc" click:@selector(addressBookAction:) superView:backView];
-//    iv.frame = CGRectMake(0, h, JX_SCREEN_WIDTH, HEIGHT);
-//    h += iv.frame.size.height;
-    
-//    self.abNewMsgNum = [[UILabel alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH - 35, (HEIGHT - 15) / 2, 15, 15)];
-//    self.abNewMsgNum.backgroundColor = [UIColor redColor];
-//    self.abNewMsgNum.font = [UIFont systemFontOfSize:11.0];
-//    self.abNewMsgNum.textAlignment = NSTextAlignmentCenter;
-//    self.abNewMsgNum.layer.cornerRadius = self.abNewMsgNum.frame.size.width / 2;
-//    self.abNewMsgNum.layer.masksToBounds = YES;
-//    self.abNewMsgNum.textColor = [UIColor whiteColor];
-//    self.abNewMsgNum.text = @"99";
-//    [iv addSubview:self.abNewMsgNum];
-    
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        WH_JXMsgAndUserObject* newobj = [[WH_JXMsgAndUserObject alloc]init];
-//        newobj.user = [[WH_JXUserObject sharedUserInstance] getUserById:FRIEND_CENTER_USERID];
-//        [self showNewMsgCount:[newobj.user.msgsNew integerValue]];
-//
-//    });
-//    _btnHeight = button.frame.size.height;
-    
-//    NSArray *btnInfos = @[@{@"title":@"我的同事",@"image":@"WH_addressbook_new_friend"},
-//                          @{@"title":@"我的设备",@"image":@"WH_addressbook_my_device"},
-//                          @{@"title":@"黑名单",@"image":@"WH_addressbook_blacklist"},
-//                          @{@"title":@"标签",@"image":@"WH_addressbook_label"}];
-//
-//    CGFloat btnEdgeInset = 28.f;
-//    CGFloat btnW = 60.f;
-//    CGFloat btnH = 42+8+20;
-//    CGFloat btnY = 26.f;
-//    CGFloat btnHInterval = (JX_SCREEN_WIDTH - btnEdgeInset*2 - btnInfos.count * btnW) / (btnInfos.count - 1);
-//    UIButton *button = nil;
-//    for (int i = 0; i < btnInfos.count; i++) {
-//        button = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [_menuView addSubview:button];
-//        button.frame = CGRectMake(btnEdgeInset+(btnW+btnHInterval)*i, btnY, btnW, btnH);
-//        [button setImage:[UIImage imageNamed:btnInfos[i][@"image"]] forState:UIControlStateNormal];
-//        [button setTitle:btnInfos[i][@"title"] forState:UIControlStateNormal];
-//        [button setTitleColor:HEXCOLOR(0x222222) forState:UIControlStateNormal];
-//        button.titleLabel.font = sysFontWithSize(14);
-//        [button addTarget:self action:@selector(clickFuncButton:) forControlEvents:UIControlEventTouchUpInside];
-//        button.tag = i+10;
-//        [button layoutButtonWithEdgeInsetsStyle:LLButtonStyleTextBottom imageTitleSpace:8.f];
-//    }
-//    Localized(@"WaHu_LifeCircle_WaHu")
     //获取官方客服的信息
-    NSString *officialCSUid = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"officialCSUid"]];
+//    NSString *officialCSUid = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"officialCSUid"]];
     
-    WH_JXUserObject *user = [[WH_JXUserObject sharedUserInstance] getUserById:officialCSUid];
+//    WH_JXUserObject *user = [[WH_JXUserObject sharedUserInstance] getUserById:officialCSUid];
     
-    NSArray *buttonInfoArray = @[@{@"title":Localized(@"JXNewFriendVC_NewFirend"),@"image":@"WH_addressbook_new_friend"},
-                          @{@"title":Localized(@"JX_ManyPerChat"),@"image":@"WH_addressbook_group"},
-                                 @{@"title":Localized(@"JX_Label"),@"image":@"WH_addressbook_label"},@{@"title":user.name.length > 0?user.name:@"官方客服",@"image":@"WH_addressbook_newFriend"}
+    NSArray *buttonInfoArray = @[@"新的朋友",@"群组",@"标签",@"官方客服"];
+    NSArray *colorArr = @[HEXCOLOR(0x2BAF67),HEXCOLOR(0xF39030),HEXCOLOR(0x4678FE),HEXCOLOR(0xFF5F5F)];
+    
+//    NSArray *buttonInfoArray = @[@{@"title":Localized(@"JXNewFriendVC_NewFirend"),@"image":@"WH_addressbook_new_friend"},
+//                          @{@"title":Localized(@"JX_ManyPerChat"),@"image":@"WH_addressbook_group"},
+//                                 @{@"title":Localized(@"JX_Label"),@"image":@"WH_addressbook_label"},@{@"title":user.name.length > 0?user.name:@"官方客服",@"image":@"WH_addressbook_newFriend"}
 //                                 ,
 //                          @{@"title":@"我的同事",@"image":@"WH_addressbook_colleague"}
-    ];
-    CGFloat buttonSpace = 7.5f;
-    CGFloat buttonWidth = 48.f;
-    CGFloat buttonHeight = 48;
-    CGFloat buttonY = 9.f;
-    CGFloat buttonLeft = 12;
+//    ];
+    CGFloat buttonWidth = (JX_SCREEN_WIDTH - 15*5)/4;
+    CGFloat buttonHeight = 53;
+    CGFloat buttonY = 0.f;
+    CGFloat buttonLeft = 15;
     UIButton *button = nil;
     for (int i = 0; i < buttonInfoArray.count; i++) {
         button = [UIButton buttonWithType:UIButtonTypeCustom];
         [_menuView addSubview:button];
-        button.frame = CGRectMake(buttonLeft, buttonY + (buttonSpace + buttonHeight) * i, buttonWidth, buttonHeight);
-        [button setImage:[UIImage imageNamed:buttonInfoArray[i][@"image"]] forState:UIControlStateNormal];
-        [button layoutButtonWithEdgeInsetsStyle:LLButtonStyleTextRight imageTitleSpace:5.f];
+        button.frame = CGRectMake(buttonLeft + i*(buttonWidth + 15), buttonY, buttonWidth, buttonHeight);
+        [button setTitle:buttonInfoArray[i] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        button.titleLabel.font = [UIFont systemFontOfSize:14];
         
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(button.frame) + 5, CGRectGetMinY(button.frame), 100, buttonHeight)];
-        titleLabel.textColor = HEXCOLOR(0x222222);
-        titleLabel.text = buttonInfoArray[i][@"title"];
-        titleLabel.font = sysFontWithSize(14);
-        [_menuView addSubview:titleLabel];
-        
-        if (i == 0) {
-            UIButton *numberButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            numberButton.frame = CGRectMake(JX_SCREEN_WIDTH - buttonLeft - 20, CGRectGetMinY(button.frame) + (buttonHeight - 20) / 2, 20, 20);
-            numberButton.layer.cornerRadius = 10;
-            numberButton.layer.masksToBounds = YES;
-            numberButton.backgroundColor = HEXCOLOR(0xED6350);
-            numberButton.titleLabel.font = sysFontWithSize(13);
-            [numberButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [numberButton addTarget:self action:@selector(clickFuncButton:) forControlEvents:UIControlEventTouchUpInside];
-            numberButton.hidden = YES;
-            self.friendNewNumberButton = numberButton;
-            [_menuView addSubview:numberButton];
-        }
-        
-        UIButton *coverButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        coverButton.frame = CGRectMake(buttonLeft, CGRectGetMinY(button.frame), JX_SCREEN_WIDTH - buttonLeft * 2, buttonHeight);
-        [coverButton addTarget:self action:@selector(clickFuncButton:) forControlEvents:UIControlEventTouchUpInside];
-        coverButton.tag = i+10;
-        [_menuView addSubview:coverButton];
+        UIColor *color = colorArr[i];
+        button.backgroundColor = color;
+        button.layer.cornerRadius = 15.0f;
+        button.layer.shadowColor = [UIColor grayColor].CGColor;
+        button.layer.shadowOffset = CGSizeMake(0, 0);
+        button.layer.shadowOpacity = 0.5;
+//        [button layoutButtonWithEdgeInsetsStyle:LLButtonStyleTextRight imageTitleSpace:5.f];
+    
+        [button addTarget:self action:@selector(clickFuncButton:) forControlEvents:UIControlEventTouchUpInside];
+        button.tag = i+10;
+        [_menuView addSubview:button];
         
     }
     
@@ -622,11 +374,11 @@
 - (void)showMenuView { // 显示菜单栏
     _menuView.hidden = NO;
     CGRect backFrame = backView.frame;
-    backFrame.size.height = 44+242;
+    backFrame.size.height = 96;
     backView.frame = backFrame;
     
     CGRect menuFrame = _menuView.frame;
-    menuFrame.size.height = 242.f;
+    menuFrame.size.height = 55;
     _menuView.frame = menuFrame;
     self.tableView.tableHeaderView = backView;
 }
@@ -971,7 +723,7 @@
         make.left.offset(10);
         make.centerY.offset(0);
     }];
-    titleLbl.textColor = HEXCOLOR(0x8C9AB8);
+    titleLbl.textColor = HEXCOLOR(0x161819);
     titleLbl.font = pingFangMediumFontWithSize(16);
     
     NSString *title = nil;

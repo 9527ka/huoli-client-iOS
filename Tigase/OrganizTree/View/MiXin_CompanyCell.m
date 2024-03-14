@@ -21,7 +21,7 @@
         _name = [self createLab:CGRectMake(80, 22, JX_SCREEN_WIDTH-130, 46) font:sysFontWithSize(16) color:HEXCOLOR(0x333333) text:@""];
         [self.contentView addSubview:_name];
         
-        UIImageView *arrow = [[UIImageView alloc]initWithFrame:CGRectMake(_name.right, 39, 7, 12)];
+        UIImageView *arrow = [[UIImageView alloc]initWithFrame:CGRectMake(_name.right, 39, 14, 14)];
         arrow.image = [UIImage imageNamed:@"WH_Back"];
         [self.contentView addSubview:arrow];
     }

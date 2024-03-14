@@ -23,16 +23,17 @@
 - (void)createSeekTextField:(UIView *)superView isFriend:(BOOL)isFriend {
     _seekTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 7, JX_SCREEN_WIDTH - 10*2, 30.f)];
     _seekTextField.placeholder = [NSString stringWithFormat:@"%@", Localized(@"New_search_for_contacts")];
-    _seekTextField.backgroundColor = g_factory.inputBackgroundColor;
+//    _seekTextField.backgroundColor = g_factory.inputBackgroundColor;
+    _seekTextField.backgroundColor = HEXCOLOR(0xF3F3F3);
     if (@available(iOS 10, *)) {
-        _seekTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@", Localized(@"New_search_for_contacts")] attributes:@{NSForegroundColorAttributeName:g_factory.inputDefaultTextColor}];
+        _seekTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@", Localized(@"New_search_for_contacts")] attributes:@{NSForegroundColorAttributeName:HEXCOLOR(0xBABABA)}];
     } else {
-        [_seekTextField setValue:g_factory.inputDefaultTextColor forKeyPath:@"_placeholderLabel.textColor"];
+        [_seekTextField setValue:HEXCOLOR(0xBABABA) forKeyPath:@"_placeholderLabel.textColor"];
     }
     [_seekTextField setFont:g_factory.inputDefaultTextFont];
     _seekTextField.textColor = HEXCOLOR(0x333333);
-    _seekTextField.layer.borderWidth = 0.5;
-    _seekTextField.layer.borderColor = g_factory.inputBorderColor.CGColor;
+//    _seekTextField.layer.borderWidth = 0.5;
+//    _seekTextField.layer.borderColor = g_factory.inputBorderColor.CGColor;
     _seekTextField.layer.cornerRadius = CGRectGetHeight(_seekTextField.frame) / 2.f;
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_search"]];
     UIView *leftView = [[UIView alloc ]initWithFrame:CGRectMake(0, 0, 30, 30)];
@@ -67,9 +68,11 @@
     //上下分割线
     UIView *topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(superView.frame), g_factory.cardBorderWithd)];
     topLine.backgroundColor = g_factory.inputBorderColor;
+    topLine.hidden = YES;
     [superView addSubview:topLine];
     UIView *btmLine = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_seekTextField.frame) + 7.f, CGRectGetWidth(superView.frame), g_factory.cardBorderWithd)];
     btmLine.backgroundColor = g_factory.inputBorderColor;
+    btmLine.hidden = YES;
     [superView addSubview:btmLine];
 
     _coverView = [[UIView alloc] init];

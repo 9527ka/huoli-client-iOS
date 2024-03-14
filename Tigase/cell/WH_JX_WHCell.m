@@ -24,7 +24,7 @@
         //内容
         UIFont* f0 = [UIFont systemFontOfSize:14];
         //名称
-        UIFont * f1 = [UIFont fontWithName:@"PingFangSC-Medium" size: 17];
+//        UIFont * f1 = [UIFont fontWithName:@"PingFangSC-Medium" size: 17];
         //时间
         UIFont* timeFont = [UIFont systemFontOfSize:13];
         
@@ -33,52 +33,53 @@
         v.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
         self.selectedBackgroundView = v;
 
-        CGFloat lineW = .5f;
+//        CGFloat lineW = .5f;
         
-        self.lineView = [[UIView alloc]initWithFrame:CGRectMake(SEPSRATOR_WIDTH,n-0.5,JX_SCREEN_WIDTH,0.5)];
-        self.lineView.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
-        [self addSubview:self.lineView];
-        [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.bottom.right.offset(0);
-            make.height.offset(lineW);
-        }];
+//        self.lineView = [[UIView alloc]initWithFrame:CGRectMake(SEPSRATOR_WIDTH,n-0.5,JX_SCREEN_WIDTH,0.5)];
+//        self.lineView.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
+//        [self addSubview:self.lineView];
+//        [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.bottom.right.offset(0);
+//            make.height.offset(lineW);
+//        }];
         
         
         _headImageView = [[WH_JXImageView alloc]init];
         _headImageView.userInteractionEnabled = NO;
+        _headImageView.contentMode = UIViewContentModeScaleAspectFill;
         _headImageView.tag = index;
         _headImageView.wh_delegate = self;
         _headImageView.didTouch = @selector(WH_headImageDidTouch);
-        _headImageView.frame = CGRectMake(16,12,48,48);
+        _headImageView.frame = CGRectMake(15,7.5,48,48);
         [_headImageView headRadiusWithAngle:_headImageView.frame.size.width *0.5];
 //        _headImageView.layer.borderWidth = 0.5;
 //        _headImageView.layer.borderColor = [UIColor darkGrayColor].CGColor;
         [self.contentView addSubview:self.headImageView];
         
-        _topLine = [UIView new];
-        [self addSubview:_topLine];
-        [_topLine mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.top.offset(0);
-            make.height.offset(lineW);
-        }];
-        _topLine.backgroundColor = self.lineView.backgroundColor;
-        _topLine.hidden = YES;
+//        _topLine = [UIView new];
+//        [self addSubview:_topLine];
+//        [_topLine mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.right.top.offset(0);
+//            make.height.offset(lineW);
+//        }];
+//        _topLine.backgroundColor = self.lineView.backgroundColor;
+//        _topLine.hidden = YES;
         
-        _verticalLine = [UIView new];
-        [self addSubview:_verticalLine];
-        [_verticalLine mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(_headImageView.mas_right).offset(10);
-            make.top.bottom.offset(0);
-            make.width.offset(lineW);
-        }];
-        _verticalLine.backgroundColor = self.lineView.backgroundColor;
+//        _verticalLine = [UIView new];
+//        [self addSubview:_verticalLine];
+//        [_verticalLine mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.equalTo(_headImageView.mas_right).offset(10);
+//            make.top.bottom.offset(0);
+//            make.width.offset(lineW);
+//        }];
+//        _verticalLine.backgroundColor = self.lineView.backgroundColor;
         
         [g_notify addObserver:self selector:@selector(headImageNotification:) name:kGroupHeadImageModifyNotifaction object:nil];
 
         
         //昵称Label
         JXLabel* lb;
-        lb = [[JXLabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headImageView.frame)+20, 14, JX_SCREEN_WIDTH - 115 -CGRectGetMaxX(_headImageView.frame)-20, 24)];
+        lb = [[JXLabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headImageView.frame)+10, 14, JX_SCREEN_WIDTH - 115 -CGRectGetMaxX(_headImageView.frame)-20, 24)];
         lb.textColor = HEXCOLOR(0x2C2F36);
         lb.font = [UIFont fontWithName:@"PingFangSC-Regular" size: 16];
         lb.userInteractionEnabled = NO;
@@ -89,7 +90,7 @@
 //        lb.didTouch = self.didTouch;
         [self.contentView addSubview:lb];
         [lb mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(_verticalLine.mas_right).offset(10);
+            make.left.equalTo(_headImageView.mas_right).offset(10);
             make.top.bottom.offset(0);
             make.width.offset(JX_SCREEN_WIDTH - 100 -CGRectGetMaxX(_headImageView.frame)-14);
         }];
@@ -497,7 +498,7 @@
     _isSmall = isSmall;
     if (!isSmall) {
         
-        _headImageView.frame = CGRectMake(16,12,48,48);
+        _headImageView.frame = CGRectMake(15,7.5,48,48);
         [_headImageView headRadiusWithAngle:_headImageView.frame.size.width*0.5];
         self.lbTitle.frame = CGRectMake(CGRectGetMaxX(_headImageView.frame)+12, 14, JX_SCREEN_WIDTH - 100 -CGRectGetMaxX(_headImageView.frame)-12, 24);
         self.lineView.frame = CGRectMake(CGRectGetMaxX(_headImageView.frame)+14,64-0.5,JX_SCREEN_WIDTH,0.5);

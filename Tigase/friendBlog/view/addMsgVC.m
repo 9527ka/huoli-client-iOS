@@ -371,7 +371,7 @@ typedef enum {
 //        _locLabel.frame = CGRectMake(CGRectGetMaxX(locImg.frame)+10, 8, JX_SCREEN_WIDTH-CGRectGetMaxX(locImg.frame)-10-50, 30);
 //        [_locBtn addSubview:_locLabel];
         
-        UIImageView * arrowView = [[UIImageView alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH-INSETS-20-10-3, 19, 7, 12)];
+        UIImageView * arrowView = [[UIImageView alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH-INSETS-40, 19, 14, 14)];
         arrowView.image = [UIImage imageNamed:@"WH_Back"];
         [_locBtn addSubview:arrowView];
 
@@ -402,7 +402,7 @@ typedef enum {
         locImg.frame = CGRectMake(20, 15, 20, 20);
         [_canSeeBtn addSubview:locImg];
         
-        UIImageView * arrowView = [[UIImageView alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH-20-20-3, 19, 7, 12)];
+        UIImageView * arrowView = [[UIImageView alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH-50, 19, 14, 14)];
         arrowView.image = [UIImage imageNamed:@"WH_Back"];
         [_canSeeBtn addSubview:arrowView];
         
@@ -438,7 +438,7 @@ typedef enum {
         locImg.frame = CGRectMake(20, 15, 20, 20);
         [_remindWhoBtn addSubview:locImg];
         
-        UIImageView * arrowView = [[UIImageView alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH-INSETS-20-10-3, 19, 7, 12)];
+        UIImageView * arrowView = [[UIImageView alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH-INSETS-40, 19, 14, 14)];
         arrowView.image = [UIImage imageNamed:@"WH_Back"];
         [_remindWhoBtn addSubview:arrowView];
 

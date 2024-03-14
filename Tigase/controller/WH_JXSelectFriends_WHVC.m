@@ -84,12 +84,12 @@
         _finishBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         [_finishBtn setTitle:Localized(@"JX_Confirm") forState:UIControlStateNormal];
         [_finishBtn setTitle:Localized(@"JX_Confirm") forState:UIControlStateHighlighted];
-        [_finishBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_finishBtn setTitleColor:HEXCOLOR(0x2BAF67) forState:UIControlStateNormal];
         _finishBtn.frame = CGRectMake(JX_SCREEN_WIDTH - 43 - 10, JX_SCREEN_TOP - 8 - 28, 43, 28);
         [_finishBtn addTarget:self action:@selector(onAdd:) forControlEvents:UIControlEventTouchUpInside];
         _finishBtn.layer.cornerRadius = CGRectGetHeight(_finishBtn.frame) / 2.f;
         _finishBtn.layer.masksToBounds = YES;
-        _finishBtn.backgroundColor = HEXCOLOR(0x0093FF);
+//        _finishBtn.backgroundColor = HEXCOLOR(0x0093FF);
         _finishBtn.titleLabel.font = sysFontWithSize(14);
         [self.wh_tableHeader addSubview:_finishBtn];
     }
@@ -111,7 +111,7 @@
     self.seekTextField.placeholder = [NSString stringWithFormat:@"%@",Localized(@"JX_EnterKeyword")];
     self.tableView.tableHeaderView = header;
     
-    _table.backgroundColor = g_factory.globalBgColor;
+    _table.backgroundColor = [UIColor whiteColor];
 }
 
 -(void)getDataArrayByType{
@@ -307,7 +307,7 @@
         make.left.offset(10);
         make.centerY.offset(0);
     }];
-    titleLbl.textColor = HEXCOLOR(0x8C9AB8);
+    titleLbl.textColor = HEXCOLOR(0x161819);
     titleLbl.font = pingFangMediumFontWithSize(16);
     
     NSString *title = nil;

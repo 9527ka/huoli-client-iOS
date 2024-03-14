@@ -46,6 +46,8 @@
         
         UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, h)];
         [topView setBackgroundColor:HEXCOLOR(0xffffff)];
+        topView.layer.masksToBounds = YES;
+        topView.layer.cornerRadius = 10.0f;
         [view addSubview:topView];
         
         _sel = [[JXLabel alloc] initWithFrame:CGRectMake(h, 0, topView.frame.size.width-h*2, h)];
@@ -55,13 +57,24 @@
         _sel.wh_delegate = self;
         [_sel setBackgroundColor:HEXCOLOR(0xffffff)];
         _sel.didTouch = @selector(onClose);
+        _sel.hidden = YES;
         [topView addSubview:_sel];
         
-        WH_JXImageView* iv = [[WH_JXImageView alloc]initWithFrame:CGRectMake(10, 5, 30, 30)];
-        iv.image = [UIImage imageNamed:@"title_back"];
-        iv.wh_delegate = self;
-        iv.didTouch = @selector(onClose);
-        [topView addSubview:iv];
+//        WH_JXImageView* iv = [[WH_JXImageView alloc]initWithFrame:CGRectMake(10, 14, 18, 18)];
+//        iv.image = [UIImage imageNamed:@"icon_back"];
+//        iv.wh_delegate = self;
+//        iv.didTouch = @selector(onClose);
+//        [topView addSubview:iv];
+        
+        
+        UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [closeBtn setTitle:@"取消" forState:UIControlStateNormal];
+        [closeBtn setTitleColor:HEXCOLOR(0xBABABA) forState:UIControlStateNormal];
+        closeBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+        closeBtn.frame = CGRectMake(10, 0, h, h);
+        [closeBtn addTarget:self action:@selector(onClose) forControlEvents:UIControlEventTouchUpInside];
+        [topView addSubview:closeBtn];
+        
         
         UIButton *selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [selectBtn setBackgroundColor:HEXCOLOR(0xffffff)];
@@ -69,7 +82,7 @@
         [topView addSubview:selectBtn];
         [selectBtn addTarget:self action:@selector(onSelect) forControlEvents:UIControlEventTouchUpInside];
         
-        UILabel *btnTitle = [UIFactory WH_create_WHLabelWith:CGRectMake(0, 0, selectBtn.frame.size.width, CGRectGetHeight(selectBtn.frame)) text:Localized(@"JX_Confirm") font:sysFontWithSize(14) textColor:HEXCOLOR(0x0093FF) backgroundColor:view.backgroundColor];
+        UILabel *btnTitle = [UIFactory WH_create_WHLabelWith:CGRectMake(0, 0, selectBtn.frame.size.width, CGRectGetHeight(selectBtn.frame)) text:Localized(@"JX_Confirm") font:sysFontWithSize(14) textColor:THEMECOLOR backgroundColor:view.backgroundColor];
         [selectBtn addSubview:btnTitle];
         
         

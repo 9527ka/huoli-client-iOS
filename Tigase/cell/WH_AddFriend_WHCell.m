@@ -20,6 +20,16 @@
 }
 
 - (void)setupUI{
+    
+    _bgView = [UIView new];
+    [self.contentView addSubview:_bgView];
+    [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(15);
+        make.right.offset(-15);
+        make.top.bottom.offset(0);
+    }];
+    _bgView.backgroundColor = [UIColor whiteColor];
+    
     _iconImageView = [UIImageView new];
     [self.bgView addSubview:_iconImageView];
     [_iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -61,9 +71,9 @@
     _textField = [[UITextField alloc] init];
     [self.bgView addSubview:_textField];
     if (@available(iOS 10, *)) {
-           _textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"" attributes:@{NSForegroundColorAttributeName:HEXCOLOR(0x8F9CBB)}];
+           _textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"" attributes:@{NSForegroundColorAttributeName:HEXCOLOR(0xBABABA)}];
        } else {
-           [_textField setValue:HEXCOLOR(0x8F9CBB) forKeyPath:@"_placeholderLabel.textColor"];
+           [_textField setValue:HEXCOLOR(0xBABABA) forKeyPath:@"_placeholderLabel.textColor"];
        }
     _textField.font = sysFontWithSize(15);
     [_textField mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -104,6 +114,7 @@
         } else if(type == WHSettingCellTypeIconWithTextField) {
             _accessoryImageView.hidden = YES;
             _textField.hidden = NO;
+                        
         } else if(type == WHSettingCellTypeTitleWithContent){
             _accessoryImageView.hidden = YES;
             _textField.hidden = YES;
@@ -140,6 +151,38 @@
                 make.bottom.equalTo(_contentLabel.mas_top);
             }];
         }
+    }
+}
+
+- (void)setBgRoundType:(WHSettingCellBgRoundType)bgRoundType{
+    if (_bgRoundType != bgRoundType) {
+        if (_bgRoundType != 0) {
+            //移除mask
+            _bgView.layer.mask = nil;
+        }
+        _bgRoundType = bgRoundType;
+        
+        CGRect frame = CGRectMake(0, 0, JX_SCREEN_WIDTH-30, bgRoundType == WHSettingCellBgRoundTypeAll?36:56.f);
+        UIRectCorner rectCorner = bgRoundType == WHSettingCellBgRoundTypeTop ? UIRectCornerTopLeft | UIRectCornerTopRight : bgRoundType == WHSettingCellBgRoundTypeBottom ? UIRectCornerBottomLeft | UIRectCornerBottomRight : UIRectCornerAllCorners;
+        
+        float round = bgRoundType == WHSettingCellBgRoundTypeAll?18.0f:10;
+        
+        UIBezierPath *roundPath = [UIBezierPath bezierPathWithRoundedRect:frame byRoundingCorners:rectCorner cornerRadii:CGSizeMake(round, round)];
+        CGSize cornerRadii = CGSizeZero;
+        CGFloat lineWidth = .0f;
+        if (bgRoundType == WHSettingCellBgRoundTypeNone) {
+            cornerRadii = CGSizeZero;
+            lineWidth = g_factory.cardBorderWithd;
+        } else {
+            CAShapeLayer *roundLayer = [[CAShapeLayer alloc] init];
+            roundLayer.frame = frame;
+            roundLayer.path = roundPath.CGPath;
+            _bgView.layer.mask = roundLayer;
+            
+            cornerRadii = CGSizeMake(round, round);
+            lineWidth = g_factory.cardBorderWithd*2;
+        }
+        
     }
 }
 

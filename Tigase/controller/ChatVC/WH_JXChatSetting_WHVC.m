@@ -779,7 +779,7 @@
     
     if(click){
         UIImageView* iv;
-        iv = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetWidth(view.frame) - 19, (HEIGHT-12)/2, 7, 12)];
+        iv = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetWidth(view.frame) - 21, (HEIGHT-12)/2, 14, 14)];
         iv.image = [UIImage imageNamed:@"WH_Back"];
         [btn addSubview:iv];
     }

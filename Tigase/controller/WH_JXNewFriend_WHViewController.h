@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class WH_JXFriendObject;
-@class WH_JXFriend_WHCell;
+@class WH_JXFriendNew_WHCell;
 
 @interface WH_JXNewFriend_WHViewController: WH_AddressbookSuper_WHController<UITextFieldDelegate>{
     NSMutableArray* _array;
@@ -17,7 +17,7 @@
     WH_JXFriendObject *_user;
     NSMutableDictionary* poolCell;
     int _friendStatus;
-    WH_JXFriend_WHCell* _cell;
+    WH_JXFriendNew_WHCell* _cell;
 }
 
 

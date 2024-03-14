@@ -101,7 +101,7 @@
         
         
         UIImageView* iv;
-        iv = [[UIImageView alloc] initWithFrame:CGRectMake(self.tableView.frame.size.width - 19, (55 - 12)/2, 7, 12)];
+        iv = [[UIImageView alloc] initWithFrame:CGRectMake(self.tableView.frame.size.width - 21, (55 - 12)/2, 14, 14)];
         iv.image = [UIImage imageNamed:@"WH_Back"];
         [cell.contentView addSubview:iv];
         

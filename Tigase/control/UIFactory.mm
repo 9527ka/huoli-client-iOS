@@ -64,7 +64,9 @@ NSString *kStyle2Dir;
     self = [super init];
     
     //卡片/按钮相关
-    self.cardBorderColor = HEXCOLOR(0xDBE0E7); //卡片/按钮 边框颜色
+//    self.cardBorderColor = HEXCOLOR(0xDBE0E7); //卡片/按钮 边框颜色
+    self.cardBorderColor = HEXCOLOR(0xEEEEEE);
+
     self.cardBackgroundColor = HEXCOLOR(0xFFFFFF); //卡片/按钮 背景颜色
     self.cardCornerRadius = 10.0f; //卡片/按钮 倒角
     self.cardBorderWithd = 0.5f;
@@ -74,7 +76,9 @@ NSString *kStyle2Dir;
     self.promptTextColor = HEXCOLOR(0xFFFFFF); //提示性标签前景色(文案颜色)
     
     //全局相关
-    self.globalBgColor = HEXCOLOR(0xF5F7FA); //全局背景底色
+//    self.globalBgColor = HEXCOLOR(0xF5F7FA); //全局背景底色
+    self.globalBgColor = HEXCOLOR(0xF8F8F8);
+
     self.globelEdgeInset = 10.0f; //全局界面距离屏幕左右距离
     self.navigatorTitleColor = HEXCOLOR(0x333333);
     self.badgeWidthHeight = 17.0f;

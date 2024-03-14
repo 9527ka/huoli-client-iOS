@@ -262,7 +262,7 @@
     if(wh_isGotoBack){
         self.wh_gotoBackBtn = [[UIButton alloc] initWithFrame:CGRectMake(g_factory.globelEdgeInset-6, JX_SCREEN_TOP - 36 - 6, NAV_BTN_SIZE+12, NAV_BTN_SIZE+12)];
 //        [self.wh_gotoBackBtn setBackgroundImage:[UIImage imageNamed:@"title_back"] forState:UIControlStateNormal];
-        [self.wh_gotoBackBtn setImage:[UIImage imageNamed:(self.isClose)?@"WH_Close_Blue":@"title_back"] forState:UIControlStateNormal];
+        [self.wh_gotoBackBtn setImage:[UIImage imageNamed:(self.isClose)?@"WH_Close_Blue":@"icon_back"] forState:UIControlStateNormal];
         
         [self.wh_gotoBackBtn addTarget:self action:@selector(actionQuit) forControlEvents:UIControlEventTouchUpInside];
         [self.wh_gotoBackBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

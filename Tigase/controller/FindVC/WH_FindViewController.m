@@ -634,7 +634,7 @@
     [supView addSubview:label];
     
     //图标
-    UIImageView *markImg = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.wh_tableView.frame) - 19, (55 - 12)/2, 7, 12)];
+    UIImageView *markImg = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.wh_tableView.frame) - 21, (55 - 12)/2, 14, 14)];
     [markImg setImage:[UIImage imageNamed:@"WH_Back"]];
     [supView addSubview:markImg];
 }
@@ -659,7 +659,7 @@
     [supView addSubview:label];
     
     //图标
-    UIImageView *markImg = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.wh_tableView.frame) - 19, (55 - 12)/2, 7, 12)];
+    UIImageView *markImg = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.wh_tableView.frame) - 21, (55 - 12)/2, 14, 14)];
     [markImg setImage:[UIImage imageNamed:@"WH_Back"]];
     [supView addSubview:markImg];
 }

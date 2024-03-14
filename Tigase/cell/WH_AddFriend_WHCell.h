@@ -19,7 +19,8 @@ typedef NS_ENUM(NSUInteger, WHSettingCellType) {
     WHSettingCellTypeTitleWithRightContent, // title and content
 };
 
-@interface WH_AddFriend_WHCell : WH_CardStyle_WHCell <UITextFieldDelegate>
+//WH_CardStyle_WHCell
+@interface WH_AddFriend_WHCell : UITableViewCell <UITextFieldDelegate>
 
 @property (nonatomic, assign) WHSettingCellType type;
 
@@ -30,6 +31,10 @@ typedef NS_ENUM(NSUInteger, WHSettingCellType) {
 @property (nonatomic, strong) UIImageView *accessoryImageView;
 
 @property (nonatomic, assign) CGFloat verticalEdge;
+
+@property (nonatomic, strong) UIView *bgView;
+
+@property (nonatomic, assign) WHSettingCellBgRoundType bgRoundType;
 
 @property (nonatomic, copy) void (^onTextFieldReturnKeyPress)(WH_AddFriend_WHCell *cell,UITextField *textField);
 

@@ -417,7 +417,7 @@
     [button addSubview:label];
     
     if (next) {
-        UIImageView *nextImg = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetWidth(button.frame) - 19, (CGRectGetHeight(button.frame) - 12)/2, 7, 12)];
+        UIImageView *nextImg = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetWidth(button.frame) - 21, (CGRectGetHeight(button.frame) - 12)/2, 14, 14)];
         [nextImg setImage:[UIImage imageNamed:@"WH_Back"]];
         [button addSubview:nextImg];
     }

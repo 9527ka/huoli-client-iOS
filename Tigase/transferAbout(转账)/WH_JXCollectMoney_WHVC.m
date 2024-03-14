@@ -188,7 +188,7 @@
     [sLabel setFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 16]];
     [scanView addSubview:sLabel];
     
-    UIImageView *mImgView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetWidth(scanView.frame) - 19, (CGRectGetHeight(scanView.frame) - 12)/2, 7, 12)];
+    UIImageView *mImgView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetWidth(scanView.frame) - 19, (CGRectGetHeight(scanView.frame) - 14)/2, 14, 14)];
     [mImgView setImage:[UIImage imageNamed:@"WH_Back"]];
     [scanView addSubview:mImgView];
     

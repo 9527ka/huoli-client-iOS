@@ -5,18 +5,18 @@
       "scale" : "1x"
     },
     {
+      "filename" : "lianxiren@2x.png",
       "idiom" : "universal",
-      "filename" : "WH_ab_button_normal@2x.png",
       "scale" : "2x"
     },
     {
+      "filename" : "lianxiren@3x.png",
       "idiom" : "universal",
-      "filename" : "WH_ab_button_normal@3x.png",
       "scale" : "3x"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }

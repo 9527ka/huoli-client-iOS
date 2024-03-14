@@ -173,8 +173,8 @@
         if (self.head) {
             [self.head removeFromSuperview];
         }
-        self.head = [[WH_JXImageView alloc]initWithFrame:CGRectMake(self.wh_cTableView.frame.size.width - 27 - 40, 20, 40, 40)];
-        [self.head headRadiusWithAngle:40 * 0.5];
+        self.head = [[WH_JXImageView alloc]initWithFrame:CGRectMake(self.wh_cTableView.frame.size.width - 27 - 44, 20, 44, 44)];
+        [self.head headRadiusWithAngle:44 * 0.5];
         self.head.layer.borderWidth = 4.f;
         self.head.layer.borderColor = [UIColor whiteColor].CGColor;
         self.head.didTouch = @selector(pickImage);
@@ -191,7 +191,7 @@
         s = self.user.userId;
         [g_server WH_getHeadImageLargeWithUserId:s userName:self.user.userNickname imageView:_head];
         
-        UIImageView *markView = [[UIImageView alloc] initWithFrame:CGRectMake(self.wh_cTableView.frame.size.width - 19, (80 - 12)/2, 7, 12)];
+        UIImageView *markView = [[UIImageView alloc] initWithFrame:CGRectMake(self.wh_cTableView.frame.size.width - 18, (80 - 12)/2, 14, 14)];
         [markView setImage:[UIImage imageNamed:@"WH_Back"]];
         [btn addSubview:markView];
         
@@ -228,7 +228,7 @@
                 self.wh_sex.userInteractionEnabled = YES;
                 //样式
                 //        _sex.segmentedControlStyle= UISegmentedControlStyleBar;
-                self.wh_sex.tintColor = THEMECOLOR;
+                self.wh_sex.tintColor = HEXCOLOR(0x2BAF67);
                 self.wh_sex.layer.cornerRadius = 3.f;
                 self.wh_sex.layer.borderWidth = 1.f;
                 self.wh_sex.layer.borderColor = [THEMECOLOR CGColor];
@@ -252,7 +252,7 @@
                 self.wh_city = [self createLabelWithWidth:self.wh_cTableView.frame.size.width - 90 -22 text:city?:@""];
                 [btn addSubview:self.wh_city];
                 
-                UIImageView *markImg = [[UIImageView alloc] initWithFrame:CGRectMake(self.wh_cTableView.frame.size.width - 19, (55 - 12)/2, 7, 12)];
+                UIImageView *markImg = [[UIImageView alloc] initWithFrame:CGRectMake(self.wh_cTableView.frame.size.width - 18, (55 - 12)/2, 14, 14)];
                 [markImg setImage:[UIImage imageNamed:@"WH_Back"]];
                 [btn addSubview:markImg];
             }else if ([currentTitleString isEqualToString:Localized(@"JX_MyQRImage")]) {//我的二维码
@@ -261,7 +261,7 @@
                 [qrImg setImage:[UIImage imageNamed:@"WH_addressbook_qrcode"]];
                 [btn addSubview:qrImg];
                 
-                UIImageView *markView = [[UIImageView alloc] initWithFrame:CGRectMake(self.wh_cTableView.frame.size.width - 19, (55 - 12)/2, 7, 12)];
+                UIImageView *markView = [[UIImageView alloc] initWithFrame:CGRectMake(self.wh_cTableView.frame.size.width - 18, (55 - 12)/2, 14, 14)];
                 [markView setImage:[UIImage imageNamed:@"WH_Back"]];
                 [btn addSubview:markView];
             }
@@ -309,7 +309,7 @@
                 }else{
                     [btn addSubview:[self createLabelWithWidth:self.wh_cTableView.frame.size.width - 90 -22 text:self.user.account?:@""]];
                     
-                    UIImageView *markImg = [[UIImageView alloc] initWithFrame:CGRectMake(self.wh_cTableView.frame.size.width - 19, (55 - 12)/2, 7, 12)];
+                    UIImageView *markImg = [[UIImageView alloc] initWithFrame:CGRectMake(self.wh_cTableView.frame.size.width - 18, (55 - 12)/2, 14, 14)];
                     [markImg setImage:[UIImage imageNamed:@"WH_Back"]];
                     [btn addSubview:markImg];
                 }
@@ -321,15 +321,15 @@
         }
     }else{
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setFrame:CGRectMake(0, 8, self.wh_cTableView.frame.size.width, 44)];
-        [btn setBackgroundColor:HEXCOLOR(0x0093FF)];
+        [btn setFrame:CGRectMake(27, 8, JX_SCREEN_WIDTH - 74, 48)];
+        [btn setBackgroundColor:HEXCOLOR(0x2BAF67)];
         btn.tag = 1001;
         
         [btn setTitle:[nameArray objectAtIndex:indexPath.row] forState:UIControlStateNormal];
         [btn setTitleColor:HEXCOLOR(0xffffff) forState:UIControlStateNormal];
         [btn.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 16]];
         btn.layer.masksToBounds = YES;
-        btn.layer.cornerRadius = g_factory.cardCornerRadius;
+        btn.layer.cornerRadius = 24;
         [cell addSubview:btn];
         [btn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
