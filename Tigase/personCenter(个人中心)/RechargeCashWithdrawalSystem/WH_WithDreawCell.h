@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet UILabel *detaileLab;
 
+@property (weak, nonatomic) IBOutlet UIView *noticeBgView;
 
 @property (nonatomic,copy) void(^certainBlock)(NSString *amountStr,NSString *orderNoStr);
 

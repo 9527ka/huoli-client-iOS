@@ -545,7 +545,6 @@
 		12A955DC28A136E6008D7F12 /* UIView+LK.m in Sources */ = {isa = PBXBuildFile; fileRef = 12A955D328A136E6008D7F12 /* UIView+LK.m */; };
 		12A955DD28A136E6008D7F12 /* WKWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12A955D428A136E6008D7F12 /* WKWebViewViewController.m */; };
 		12A955E028A13713008D7F12 /* WH_JXMsgGroup_WHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12A955DE28A13712008D7F12 /* WH_JXMsgGroup_WHViewController.m */; };
-		12A955E228A137C2008D7F12 /* loginreisterplay.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 12A955E128A137C1008D7F12 /* loginreisterplay.mp4 */; };
 		12CBF94128A103C0001BA2D1 /* apple-app-site-association in Resources */ = {isa = PBXBuildFile; fileRef = 12CBF94028A103C0001BA2D1 /* apple-app-site-association */; };
 		1803628D1D8265CC00A07836 /* 口令红包.png in Resources */ = {isa = PBXBuildFile; fileRef = 1803628C1D8265CC00A07836 /* 口令红包.png */; };
 		1812A8A722F29322005BBD23 /* WH_Recharge_WHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812A8A622F29322005BBD23 /* WH_Recharge_WHViewController.m */; };
@@ -2893,7 +2892,6 @@
 		12A955D428A136E6008D7F12 /* WKWebViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKWebViewViewController.m; sourceTree = "<group>"; };
 		12A955DE28A13712008D7F12 /* WH_JXMsgGroup_WHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WH_JXMsgGroup_WHViewController.m; sourceTree = "<group>"; };
 		12A955DF28A13713008D7F12 /* WH_JXMsgGroup_WHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WH_JXMsgGroup_WHViewController.h; sourceTree = "<group>"; };
-		12A955E128A137C1008D7F12 /* loginreisterplay.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = loginreisterplay.mp4; sourceTree = "<group>"; };
 		12CBF94028A103C0001BA2D1 /* apple-app-site-association */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "apple-app-site-association"; sourceTree = "<group>"; };
 		1803628C1D8265CC00A07836 /* 口令红包.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "口令红包.png"; sourceTree = "<group>"; };
 		1812A8A522F29322005BBD23 /* WH_Recharge_WHViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_Recharge_WHViewController.h; sourceTree = "<group>"; };
@@ -10586,7 +10584,6 @@
 		CCE23E8C18FFB8EA00A3CB5A /* Tigase */ = {
 			isa = PBXGroup;
 			children = (
-				12A955E128A137C1008D7F12 /* loginreisterplay.mp4 */,
 				12CBF94028A103C0001BA2D1 /* apple-app-site-association */,
 				4CABBBD8293F06F700C17F42 /* ShortVideo */,
 				1815357222EFE6DC0038CFC4 /* Sound */,
@@ -11379,7 +11376,6 @@
 				CC3016B41951BABF0059BADA /* f011.png in Resources */,
 				CC3017461951BABF0059BADA /* f084.png in Resources */,
 				18ABD6AF1D07FDAE000F43FC /* navBarBackground@2x.png in Resources */,
-				12A955E228A137C2008D7F12 /* loginreisterplay.mp4 in Resources */,
 				6330B4671ED30C240021BAA6 /* InfoPlist.strings in Resources */,
 				CC3016D51951BABF0059BADA /* f027@2x.png in Resources */,
 				33BEF3102B4E76620078B540 /* WH_JXOrderCertainVC.xib in Resources */,

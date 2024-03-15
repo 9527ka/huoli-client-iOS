@@ -11,6 +11,8 @@
 
 @interface WH_RechargeCell()<UITextFieldDelegate>
 
+@property(nonatomic,strong)UIButton *selectBtn;
+
 @end
 
 @implementation WH_RechargeCell
@@ -24,12 +26,15 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showKeyBord:) name:UIKeyboardWillShowNotification object:nil];
     self.orderNoField.delegate = self;
     //添加圆角以及阴影
-    self.bgTopView.layer.cornerRadius = self.bgBottomView.layer.cornerRadius = 8.0f;
-    self.bgTopView.layer.shadowColor = self.bgBottomView.layer.shadowColor = [UIColor grayColor].CGColor;
-    self.bgTopView.layer.shadowOffset = self.bgBottomView.layer.shadowOffset = CGSizeMake(0, 0);
-    self.bgTopView.layer.shadowOpacity = self.bgBottomView.layer.shadowOpacity = 0.5;
-    self.numCopyBtn.layer.cornerRadius = 16.0f;
-    self.certainBtn.layer.cornerRadius = 8.0f;
+    self.treadBgView.layer.cornerRadius = self.bgTopView.layer.cornerRadius = self.bgBottomView.layer.cornerRadius = self.noticeBgView.layer.cornerRadius = 6.0f;
+    
+    
+    
+//    self.bgTopView.layer.shadowColor = self.bgBottomView.layer.shadowColor = [UIColor grayColor].CGColor;
+//    self.bgTopView.layer.shadowOffset = self.bgBottomView.layer.shadowOffset = CGSizeMake(0, 0);
+//    self.bgTopView.layer.shadowOpacity = self.bgBottomView.layer.shadowOpacity = 0.5;
+    self.numCopyBtn.layer.cornerRadius = 19.0f;
+    self.certainBtn.layer.cornerRadius = 24.0f;
     
     self.uploadImage.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseImageAction)];
@@ -37,14 +42,28 @@
     
 
     NSArray *tagArray = @[@(10),@(50),@(100),@(300),@(500),@(1000),@(5000),@(10000)];
-    for (NSNumber *tag in tagArray) {
-        UIButton *countBtn = (UIButton *)[self.bgTopView viewWithTag:tag.intValue];
-        countBtn.layer.cornerRadius = 13.0f;
-        countBtn.layer.borderColor = [UIColor systemBlueColor].CGColor;
-        countBtn.layer.borderWidth = 0.8f;
-        countBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+    
+    float wide = (JX_SCREEN_WIDTH - 80 - 24)/4 + 8;
+    float height = 38.0f;
+    
+    for (int i = 0; i < tagArray.count; i++) {
+        NSNumber *tag = tagArray[i];
+        UIButton *countBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        countBtn.frame = CGRectMake(20 + i%4*wide, i/4*(height + 15), wide - 8, height);
+        countBtn.layer.cornerRadius = 6.0f;
+        countBtn.layer.masksToBounds = YES;
+        countBtn.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+        [countBtn setTitleColor:HEXCOLOR(0x161819) forState:UIControlStateNormal];
+        [countBtn setTitleColor:HEXCOLOR(0xffffff) forState:UIControlStateSelected];
+        countBtn.backgroundColor = HEXCOLOR(0xF3F3F3);
+        [countBtn setTitle:[NSString stringWithFormat:@"%@",tag] forState:UIControlStateNormal];
+        countBtn.tag = tag.intValue;
+        [countBtn addTarget:self action:@selector(countAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.buttonBgView addSubview:countBtn];
     }
-    self.numCopyBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+    
+    
+    self.numCopyBtn.titleLabel.font = [UIFont systemFontOfSize:18];
     
     [self.monyField addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
     
@@ -83,16 +102,20 @@
         self.chooseImageBlock();
     }
 }
-- (IBAction)countAction:(UIButton *)sender {
+- (void)countAction:(UIButton *)sender {
     [self endEditing:YES];
-    sender.titleLabel.font = [UIFont systemFontOfSize:12];
+    self.selectBtn.backgroundColor = HEXCOLOR(0xF3F3F3);
+    self.selectBtn.selected = NO;
+    self.selectBtn = sender;
+    self.selectBtn.selected = YES;
+    self.selectBtn.backgroundColor = THEMECOLOR;
+    
     NSString *countStr = [NSString stringWithFormat:@"%ld",sender.tag];
     self.monyField.text = countStr;
 }
 //复制
 - (IBAction)copyAction:(id)sender {
     [self endEditing:YES];
-    self.numCopyBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     UIPasteboard *pastBoard = [UIPasteboard generalPasteboard];
     pastBoard.string = self.addressLab.text;
     [g_server showMsg:@"复制成功"];

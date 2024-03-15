@@ -28,12 +28,12 @@
     self.orderNoField.delegate = self;
     
     //添加圆角以及阴影
-    self.bgTopView.layer.cornerRadius = self.bgBottomView.layer.cornerRadius = 8.0f;
-    self.bgTopView.layer.shadowColor = self.bgBottomView.layer.shadowColor = [UIColor grayColor].CGColor;
-    self.bgTopView.layer.shadowOffset = self.bgBottomView.layer.shadowOffset = CGSizeMake(0, 0);
-    self.bgTopView.layer.shadowOpacity = self.bgBottomView.layer.shadowOpacity = 0.5;
-    self.certainBtn.layer.cornerRadius = 8.0f;
-    self.allBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+    self.noticeBgView.layer.cornerRadius =  self.bgTopView.layer.cornerRadius = self.bgBottomView.layer.cornerRadius = 8.0f;
+//    self.bgTopView.layer.shadowColor = self.bgBottomView.layer.shadowColor = [UIColor grayColor].CGColor;
+//    self.bgTopView.layer.shadowOffset = self.bgBottomView.layer.shadowOffset = CGSizeMake(0, 0);
+//    self.bgTopView.layer.shadowOpacity = self.bgBottomView.layer.shadowOpacity = 0.5;
+    self.certainBtn.layer.cornerRadius = 24.0f;
+    self.allBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
 //    self.monyCountLab.text = [NSString stringWithFormat:@"余额HOTC%.2f = USDT%.2f",g_App.myMoney,g_App.myMoney];
     [self.monyField addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
     if(g_App.usdtUrl.length > 0){
@@ -43,7 +43,22 @@
     self.monyField.placeholder = [NSString stringWithFormat:@"请输入至少%@的HOTC金额",g_config.minTransferAmount];
     
     
-    self.detaileLab.text = [NSString stringWithFormat:@"友情提示\n\n1.每次提币金额在%@~%@HOTC之间。\n\n2.提现手续费为%@%@。\n\n3.提现时间为0-24小时。",g_config.minTransferAmount,g_config.maxTransferAmount,g_config.transferRate,@"%"];
+    NSString *contentStr = [NSString stringWithFormat:@"友情提示\n1.每次提币金额在%@~%@HOTC之间。\n2.提现手续费为%@%@。\n3.提现时间为0-24小时。\n4.此处为USDT加密货币提现（什么是加密货币提现？）",g_config.minTransferAmount,g_config.maxTransferAmount,g_config.transferRate,@"%"];
+    
+    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:contentStr];
+    [attributedText addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14.0f]  range:NSMakeRange(0, 4)];
+    [attributedText addAttribute:NSForegroundColorAttributeName value:HEXCOLOR(0x161819) range:NSMakeRange(0, 4)];
+    [attributedText addAttribute:NSForegroundColorAttributeName value:THEMECOLOR range:NSMakeRange(contentStr.length - 12, 12)];
+    
+    //段落格式
+    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+    paragraph.lineSpacing = 6;//行间距
+    /// 添加段落设置
+    [attributedText addAttribute:NSParagraphStyleAttributeName
+    value:paragraph range:NSMakeRange(0, contentStr.length)];
+    
+    
+    self.detaileLab.attributedText = attributedText;
     
     self.monyCountLab.text = [NSString stringWithFormat:@"USDT 1 = HOTC %@",g_App.rate];
     

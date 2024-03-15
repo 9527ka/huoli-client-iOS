@@ -42,13 +42,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = Localized(@"JX_Wallet");
+    self.title = @"我的钱包";
     self.wh_heightHeader = JX_SCREEN_TOP;
     self.wh_heightFooter = 0;
     self.wh_isGotoBack = YES;
     [self createHeadAndFoot];
     
-    [self.wh_tableBody setBackgroundColor:g_factory.globalBgColor];
+    [self.wh_tableBody setBackgroundColor:[UIColor whiteColor]];
     
     [self.wh_tableHeader addSubview:[self createHeadButton]];
     
@@ -75,33 +75,30 @@
     if ([g_config.hmWithdrawStatus integerValue] == 1) {
         viewHieght = viewHieght + 44 + 12;
     }
-    UIView *cView = [[UIView alloc] initWithFrame:CGRectMake(g_factory.globelEdgeInset, 12, JX_SCREEN_WIDTH - 2*g_factory.globelEdgeInset, viewHieght)];
+    UIView *cView = [[UIView alloc] initWithFrame:CGRectMake(g_factory.globelEdgeInset, 0, JX_SCREEN_WIDTH - 2*g_factory.globelEdgeInset, viewHieght)];
     [cView setBackgroundColor:HEXCOLOR(0xffffff)];
     [self.wh_tableBody addSubview:cView];
-    cView.layer.masksToBounds = YES;
-    cView.layer.cornerRadius = g_factory.cardCornerRadius;
-    cView.layer.borderColor = g_factory.cardBorderColor.CGColor;
-    cView.layer.borderWidth = g_factory.cardBorderWithd;
+   
     
     //icon
-    UIImageView *jbImg = [[UIImageView alloc] initWithFrame:CGRectMake((cView.frame.size.width - 72)/2, 24, 72, 72)];
-    [jbImg setImage:[UIImage imageNamed:@"WH_YuE"]];
+    UIImageView *jbImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, JX_SCREEN_WIDTH - 40, 126)];
+    [jbImg setImage:[UIImage imageNamed:@"my_account_bg"]];
     [cView addSubview:jbImg];
     
     //我的余额
-    UILabel *mLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, jbImg.frame.origin.y + jbImg.frame.size.height + 12, cView.frame.size.width, 20)];
+    UILabel *mLabel = [[UILabel alloc] initWithFrame:CGRectMake(36, 28, cView.frame.size.width, 20)];
     [mLabel setText:Localized(@"MY_BALANCE")];
-    [mLabel setTextColor:HEXCOLOR(0x3A404C)];
+    [mLabel setTextColor:[UIColor whiteColor]];
     [mLabel setFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 14]];
-    [mLabel setTextAlignment:NSTextAlignmentCenter];
-    [cView addSubview:mLabel];
+    [mLabel setTextAlignment:NSTextAlignmentLeft];
+    [jbImg addSubview:mLabel];
     
-    self.wh_moneyLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, mLabel.frame.origin.y + mLabel.frame.size.height, cView.frame.size.width, 40)];
+    self.wh_moneyLabel = [[UILabel alloc] initWithFrame:CGRectMake(36, 58, cView.frame.size.width, 42)];
     [self.wh_moneyLabel setText:@""];
-    [self.wh_moneyLabel setTextColor:HEXCOLOR(0x3A404C)];
+    [self.wh_moneyLabel setTextColor:HEXCOLOR(0xffffff)];
     [self.wh_moneyLabel setFont:[UIFont fontWithName:@"PingFangSC-Semibold" size: 30]];
-    [cView addSubview:self.wh_moneyLabel];
-    [self.wh_moneyLabel setTextAlignment:NSTextAlignmentCenter];
+    [jbImg addSubview:self.wh_moneyLabel];
+    [self.wh_moneyLabel setTextAlignment:NSTextAlignmentLeft];
     
     NSArray *array = @[@"USDT充值" ,@"USDT提现"];;
     if ([g_config.hmPayStatus integerValue] == 1 && [g_config.hmWithdrawStatus integerValue] != 1) {
@@ -120,19 +117,19 @@
     for (int i = 0; i < titleArr.count; i++) {
         NSString *titleStr = [titleArr objectAtIndex:i];
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setFrame:CGRectMake(15, (CGRectGetMaxY(self.wh_moneyLabel.frame) + 20) + i*(12 + 44), cView.frame.size.width - 30, 44)];
+        [btn setFrame:CGRectMake(17, (CGRectGetMaxY(jbImg.frame) + 30) + i*(20 + 48), cView.frame.size.width - 34, 48)];
         [btn setTag:i];
         [btn setTitle:[titleArr objectAtIndex:i] forState:UIControlStateNormal];
-        [btn setTitleColor:i == titleArr.count - 1?HEXCOLOR(0xffffff):HEXCOLOR(0x8C9AB8) forState:UIControlStateNormal];
-        [btn setTitleColor:i == titleArr.count - 1?HEXCOLOR(0xffffff):HEXCOLOR(0x8C9AB8) forState:UIControlStateHighlighted];
-        [btn setBackgroundColor:([titleStr isEqualToString:@"C2C交易（推荐）"])?HEXCOLOR(0x0093FF):HEXCOLOR(0xffffff)];
+        [btn setTitleColor:i == titleArr.count - 1?HEXCOLOR(0xffffff):HEXCOLOR(0x797979) forState:UIControlStateNormal];
+        [btn setTitleColor:i == titleArr.count - 1?HEXCOLOR(0xffffff):HEXCOLOR(0x797979) forState:UIControlStateHighlighted];
+        [btn setBackgroundColor:([titleStr isEqualToString:@"C2C交易（推荐）"])?THEMECOLOR:HEXCOLOR(0xffffff)];
         btn.layer.masksToBounds = YES;
-        btn.layer.cornerRadius = g_factory.cardCornerRadius;
+        btn.layer.cornerRadius = 24.0f;
         if (![titleStr isEqualToString:@"C2C交易（推荐）"]) {
-            btn.layer.borderColor = g_factory.cardBorderColor.CGColor;
+            btn.layer.borderColor = HEXCOLOR(0xEEEEEE).CGColor;
             btn.layer.borderWidth = g_factory.cardBorderWithd;
         }
-        [btn.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 16]];
+        [btn.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 17]];
         [cView addSubview:btn];
         [btn addTarget:self action:@selector(buttonClickMethod:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -145,9 +142,9 @@
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn setFrame:CGRectMake(JX_SCREEN_WIDTH - 72, JX_SCREEN_TOP - 33, 62, 21)];
     [btn setTitle:Localized(@"JX_Bill") forState:UIControlStateNormal];
-    [btn setTitleColor:HEXCOLOR(0x333333) forState:UIControlStateNormal];
-    [btn setTitleColor:HEXCOLOR(0x333333) forState:UIControlStateHighlighted];
-    [btn.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 15]];
+    [btn setTitleColor:HEXCOLOR(0x161819) forState:UIControlStateNormal];
+    [btn setTitleColor:HEXCOLOR(0x161819) forState:UIControlStateHighlighted];
+    [btn.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 14]];
     [btn addTarget:self action:@selector(recordMethod) forControlEvents:UIControlEventTouchUpInside];
     return btn;
 }

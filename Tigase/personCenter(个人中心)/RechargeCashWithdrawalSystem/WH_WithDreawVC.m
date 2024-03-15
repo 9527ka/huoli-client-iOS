@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.estimatedRowHeight = 584;
+    self.tableView.estimatedRowHeight = 684;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"WH_WithDreawCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WH_WithDreawCell"];

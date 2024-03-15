@@ -12,6 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WH_RechargeCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIView *buttonBgView;
 @property (weak, nonatomic) IBOutlet UIView *bgTopView;
 @property (weak, nonatomic) IBOutlet UIView *bgBottomView;
 @property (weak, nonatomic) IBOutlet UITextField *monyField;//充值金额
@@ -24,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) void(^chooseImageBlock)(void);
 @property (nonatomic,copy) void(^certainBlock)(NSString *amountStr,NSString *orderNoStr);
 @property (weak, nonatomic) IBOutlet UILabel *rateLab;
+@property (weak, nonatomic) IBOutlet UIView *treadBgView;
+@property (weak, nonatomic) IBOutlet UIView *noticeBgView;
 
 -(void)reSetRate;
 
