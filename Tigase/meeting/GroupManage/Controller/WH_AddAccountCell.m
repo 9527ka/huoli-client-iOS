@@ -13,15 +13,25 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    self.payTypeBgView.layer.cornerRadius = 4.0f;
-    self.payTypeBgView.layer.borderColor = [UIColor systemGray5Color].CGColor;
-    self.payTypeBgView.layer.borderWidth = 0.6f;
+    self.payTypeBgView.layer.cornerRadius = 6.0f;
+    self.rightNowTitle.layer.cornerRadius = 4.0f;
+    self.uploadBtn.layer.cornerRadius = 6.0f;
     
-    self.uploadBtn.layer.cornerRadius = 4.0f;
-    self.uploadBtn.layer.borderColor = [UIColor systemGray5Color].CGColor;
-    self.uploadBtn.layer.borderWidth = 0.6f;
+    self.nameField.layer.cornerRadius = 6.0f;
+    self.accountField.layer.cornerRadius = 6.0f;
+    self.phoneField.layer.cornerRadius = 6.0f;
+    self.bankField.layer.cornerRadius = 6.0f;
     
-    self.saveBtn.layer.cornerRadius = 22.0f;
+    self.nameField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20 , 46)];
+    self.nameField.leftViewMode = UITextFieldViewModeAlways;
+    self.accountField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20 , 46)];
+    self.accountField.leftViewMode = UITextFieldViewModeAlways;
+    self.phoneField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20 , 46)];
+    self.phoneField.leftViewMode = UITextFieldViewModeAlways;
+    self.bankField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20 , 46)];
+    self.bankField.leftViewMode = UITextFieldViewModeAlways;
+    
+    self.saveBtn.layer.cornerRadius = 24.0f;
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(endEditingAction)];
     [self.contentView addGestureRecognizer:tap];

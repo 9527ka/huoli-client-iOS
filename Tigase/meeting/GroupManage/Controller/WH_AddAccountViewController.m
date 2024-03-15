@@ -16,6 +16,7 @@
 #import "WH_JXVerifyPay_WHVC.h"
 #import "BindTelephoneChecker.h"
 #import "OBSHanderTool.h"
+#import "NSString+ContainStr.h"
 
 @interface WH_AddAccountViewController ()<UITableViewDataSource, UITableViewDelegate>{
     ATMHud* _wait;
@@ -102,10 +103,13 @@
     }
     cell.payTitleLab.text = [self payTitleLabStr];
     cell.line.backgroundColor = [self lineColorStr];
-    cell.nameTitle.text = self.type == 2?@"银行卡姓名（必填）":@"姓名（选填）";
+    cell.nameTitle.text = self.type == 2?@"银行卡姓名（必填*）":@"姓名";
+    cell.nameTitle.attributedText = [NSString changeSpecialWordColor:HEXCOLOR(0xFF5150) AllContent: cell.nameTitle.text SpcWord:@"（必填*）" font:12];
     cell.nameField.placeholder = self.type == 2?@"请输入银行卡姓名":@"请输入真实姓名";
     cell.payAccountLab.text = [self accountStr];
+    cell.payAccountLab.attributedText = [NSString changeSpecialWordColor:HEXCOLOR(0xFF5150) AllContent: cell.payAccountLab.text SpcWord:@"（必填*）" font:12];
     cell.phoneTitle.text = [self phoneStr];
+    cell.phoneTitle.attributedText = [NSString changeSpecialWordColor:HEXCOLOR(0xFF5150) AllContent: cell.phoneTitle.text SpcWord:@"（必填*）" font:12];
     cell.rightNowTitle.hidden = self.type == 2?YES:NO;
     
     if(cell.nameField.text.length == 0&&self.name.length > 0){
@@ -132,7 +136,7 @@
 -(NSString *)phoneStr{
     NSString *phoneStr = @"手机号码（选填）";
     if(!self.room){
-        phoneStr = @"手机号码（必填）";
+        phoneStr = @"手机号码（必填*）";
 //        if (self.type == 2){
 //            phoneStr = @"开户银行（必填）";
 //        }
@@ -164,11 +168,11 @@
 -(NSString *)accountStr{
     NSString *accountStr = @"账号";
     if(self.type == 0){
-        accountStr = @"微信账号（必填）";
+        accountStr = @"微信账号（必填*）";
     }else if (self.type == 1){
-        accountStr = @"支付宝账号（必填）";
+        accountStr = @"支付宝账号（必填*）";
     }else if (self.type == 2){
-        accountStr = @"银行卡号（必填）";
+        accountStr = @"银行卡号（必填*）";
     }
     return accountStr;
 }

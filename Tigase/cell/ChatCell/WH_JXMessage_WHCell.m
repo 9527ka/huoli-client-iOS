@@ -60,9 +60,9 @@
 //    }else {
     _messageConent.userInteractionEnabled = YES;
     if (self.msg.isMySend) {
-        _messageConent.textColor = HEXCOLOR(0x4776C6);
+        _messageConent.textColor = [UIColor whiteColor];
     } else {
-        _messageConent.textColor = HEXCOLOR(0x3A404C);
+        _messageConent.textColor = HEXCOLOR(0x161819);
     }
     _messageConent.text = self.msg.translatedText.length?self.msg.translatedText:self.msg.content;
     _timeIndexLabel.hidden = YES;
@@ -232,7 +232,7 @@
         bubbleX = JX_SCREEN_WIDTH - INSETS - HEAD_SIZE - CHAT_WIDTH_ICON - bubbleW;
         bubbleY = INSETS;
         self.bubbleBg.frame=CGRectMake(bubbleX, bubbleY, bubbleW, bubbleH);
-        [_messageConent setFrame:CGRectMake(INSETS + 2, INSETS, n+5, textSize.height)];
+        [_messageConent setFrame:CGRectMake(INSETS + 6, INSETS, n+5, textSize.height)];
         _timeIndexLabel.frame = CGRectMake(self.bubbleBg.frame.origin.x - 30, self.bubbleBg.frame.origin.y, 20, 20);
         
         //            _messageConent.textAlignment = NSTextAlignmentRight;
@@ -245,7 +245,7 @@
         bubbleX = CHAT_WIDTH_ICON + CGRectGetMaxX(self.headImage.frame);
         bubbleY = INSETS2(self.msg.isGroup);
         self.bubbleBg.frame = CGRectMake(bubbleX, bubbleY, bubbleW, bubbleH);
-        [_messageConent setFrame:CGRectMake(INSETS + 8, INSETS, n+5, textSize.height)];
+        [_messageConent setFrame:CGRectMake(INSETS + 4, INSETS, n+5, textSize.height)];
         _timeIndexLabel.frame = CGRectMake(CGRectGetMaxX(self.bubbleBg.frame) + 10, self.bubbleBg.frame.origin.y, 20, 20);
         //            _messageConent.textAlignment = NSTextAlignmentLeft;
     }

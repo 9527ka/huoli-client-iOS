@@ -20,4 +20,7 @@
 
 //判断是否包含中文
 + (BOOL)isHasChineseWithStr:(NSString *)strFrom ;
+
++ (NSMutableAttributedString *)changeSpecialWordColor:(id)spcColor AllContent:(NSString *)allWord SpcWord:(NSString *)spcWord font:(CGFloat)size;
+
 @end

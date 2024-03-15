@@ -64,5 +64,20 @@
     
     return NO;
 }
++ (NSMutableAttributedString *)changeSpecialWordColor:(id)spcColor AllContent:(NSString *)allWord SpcWord:(NSString *)spcWord font:(CGFloat)size{
+    NSString *allContent = allWord;
+    NSMutableAttributedString *contentStr = [[NSMutableAttributedString alloc]initWithString:allContent];
+    //找出特定字符在整个字符串中的位置
+    NSRange redRange = NSMakeRange([[contentStr string] rangeOfString:spcWord].location, [[contentStr string] rangeOfString:spcWord].length);
+    //修改特定字符的颜色
+//    [contentStr addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:spcColor]  range:redRange];
+    
+    [contentStr addAttribute:NSForegroundColorAttributeName value:spcColor  range:redRange];
+    
+    //修改特定字符的字体大小
+    [contentStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:size] range:redRange];
+    
+    return contentStr;
+}
 
 @end

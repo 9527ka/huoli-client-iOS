@@ -55,37 +55,37 @@
         
         if (self.isPayType) {//添加账号类型
             NSString *name = [array objectAtIndex:i];
-            UIColor *lineColor;
+            NSString *imageName = @"";
             BOOL isNow = NO;
             if([name containsString:@"支付宝"]){
-                lineColor = HEXCOLOR(0x4174f2);
+                imageName = @"pay_type_2";
                 isNow = YES;
             }else if ([name containsString:@"微信"]){
-                lineColor = HEXCOLOR(0x2ead65);
+                imageName = @"pay_type_1";
                 isNow = YES;
             }else if ([name containsString:@"银行卡"]){
-                lineColor = HEXCOLOR(0xf7984a);
+                imageName = @"pay_type_3";
             }
             
-            //创建竖线
-            UILabel *line = [[UILabel alloc] initWithFrame:CGRectMake(18, (buttonHeight - 12)/2, 3, 12)];
-            line.backgroundColor = lineColor;
-            [btn addSubview:line];
             
-            UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, name.length *20, buttonHeight)];
+            UIImageView *iconimage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
+            iconimage.frame = CGRectMake(20, (buttonHeight - 18)/2, 18, 18);
+            [btn addSubview:iconimage];
+            
+            UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(46, 0, name.length *20, buttonHeight)];
             titleLab.font = [UIFont boldSystemFontOfSize:14];
             titleLab.text = name;
             [btn addSubview:titleLab];
             
             if(isNow){
-                UILabel *rightLab = [[UILabel alloc] initWithFrame:CGRectMake(58 + name.length*10, (buttonHeight - 24)/2, 72, 24)];
+                UILabel *rightLab = [[UILabel alloc] initWithFrame:CGRectMake(70 + name.length*10, (buttonHeight - 18)/2, 54, 18)];
                 rightLab.backgroundColor = HEXCOLOR(0xe9fcf0);
                 rightLab.layer.masksToBounds = YES;
-                rightLab.layer.cornerRadius = 12.0f;
+                rightLab.layer.cornerRadius = 4.0f;
                 rightLab.text = @"即时付款";
                 rightLab.textAlignment = NSTextAlignmentCenter;
                 rightLab.textColor = HEXCOLOR(0x31bd65);
-                rightLab.font = [UIFont boldSystemFontOfSize:12];
+                rightLab.font = [UIFont systemFontOfSize:11];
                 [btn addSubview:rightLab];
             }
             

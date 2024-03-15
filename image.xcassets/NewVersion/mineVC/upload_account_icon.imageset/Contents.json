@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "upload_account_icon.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "绿.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
