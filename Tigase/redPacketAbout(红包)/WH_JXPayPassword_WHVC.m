@@ -72,8 +72,8 @@
 
 - (void)WH_setupViews {
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(g_factory.globelEdgeInset, JX_SCREEN_TOP - 36, 28, 28)];
-    [btn setImage:[UIImage imageNamed:@"title_back"] forState:UIControlStateNormal];
-    [btn setImage:[UIImage imageNamed:@"title_back"] forState:UIControlStateHighlighted];
+    [btn setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateHighlighted];
 //    [btn setTitle:Localized(@"JX_Cencal") forState:UIControlStateNormal];
 //    btn.titleLabel.font = sysFontWithSize(16);
 //    btn.custom_acceptEventInterval = 1.f;

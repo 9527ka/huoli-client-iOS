@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -31,7 +29,7 @@
                         <constraint firstAttribute="height" constant="30" id="zNP-mz-T4a"/>
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" image="title_back"/>
+                    <state key="normal" image="icon_back"/>
                     <connections>
                         <action selector="gobackAction:" destination="-1" eventType="touchUpInside" id="vu9-jZ-r75"/>
                     </connections>
@@ -230,7 +228,7 @@
     </objects>
     <resources>
         <image name="WH_YuE" width="74.666664123535156" height="74.666664123535156"/>
-        <image name="title_back" width="28" height="28"/>
+        <image name="icon_back" width="128" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

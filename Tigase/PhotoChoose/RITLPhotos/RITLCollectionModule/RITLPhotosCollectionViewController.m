@@ -140,7 +140,7 @@ static NSString *const reuseIdentifier = @"photo";
     [self.navigationItem.rightBarButtonItem setTintColor:HEXCOLOR(0x0093FF)];
     
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(g_factory.globelEdgeInset, JX_SCREEN_TOP - 36, 28, 28)];
-    [btn setBackgroundImage:[UIImage imageNamed:@"title_back"] forState:UIControlStateNormal];
+    [btn setBackgroundImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(actionQuit) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.leftBarButtonItem = barBtn;

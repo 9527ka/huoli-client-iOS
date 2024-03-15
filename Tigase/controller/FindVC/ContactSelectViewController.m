@@ -55,7 +55,7 @@
            make.width.mas_equalTo(JX_SCREEN_WIDTH);
            make.height.mas_equalTo(JX_SCREEN_TOP);
        }];
-    UIButton *back = [JXXMPP createButtonWithFrame:CGRectMake(10, JX_SCREEN_TOP - 38, 28, 28) image:[UIImage imageNamed:@"title_back"]];
+    UIButton *back = [JXXMPP createButtonWithFrame:CGRectMake(10, JX_SCREEN_TOP - 38, 28, 28) image:[UIImage imageNamed:@"icon_back"]];
     [back addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [topView addSubview:back];
     

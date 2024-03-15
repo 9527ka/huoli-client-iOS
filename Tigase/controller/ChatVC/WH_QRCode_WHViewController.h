@@ -7,6 +7,7 @@
 //  群二维码
 
 #import <UIKit/UIKit.h>
+#import "WH_admob_WHViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,9 +16,8 @@ typedef NS_OPTIONS(NSUInteger, QRType) {
     QR_GroupType =   2,
 };
 
-@interface WH_QRCode_WHViewController : UIViewController
+@interface WH_QRCode_WHViewController : WH_admob_WHViewController
 
-@property (nonatomic ,strong) UIView *wh_baseView;
 @property (nonatomic ,strong) UIView *wh_contentView;
 
 @property (nonatomic, copy) NSString * wh_userId;

@@ -5451,8 +5451,8 @@
     if (self.isSelectMore) {
         self.isSelectMore = NO;
         self.selectMoreView.hidden = YES;
-//        [self.wh_gotoBackBtn setBackgroundImage:[UIImage imageNamed:@"title_back"] forState:UIControlStateNormal];
-        [self.wh_gotoBackBtn setImage:[UIImage imageNamed:@"title_back"] forState:UIControlStateNormal];
+//        [self.wh_gotoBackBtn setBackgroundImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
+        [self.wh_gotoBackBtn setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
         [self.wh_gotoBackBtn setTitle:nil forState:UIControlStateNormal];
         [_selectMoreArr removeAllObjects];
         [self.tableView reloadData];

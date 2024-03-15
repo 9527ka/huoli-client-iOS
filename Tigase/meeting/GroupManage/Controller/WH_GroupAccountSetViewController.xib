@@ -36,13 +36,13 @@
                         <constraint firstAttribute="width" constant="30" id="ubs-r2-Z2U"/>
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" image="title_back"/>
+                    <state key="normal" image="icon_back"/>
                     <connections>
                         <action selector="didTapBack" destination="-1" eventType="touchUpInside" id="7hh-zB-SF5"/>
                     </connections>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="54" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ozw-ae-ch4">
-                    <rect key="frame" x="10" y="103" width="383" height="715"/>
+                    <rect key="frame" x="20" y="103" width="353" height="655"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <inset key="separatorInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                     <connections>
@@ -60,15 +60,19 @@
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂无数据" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nFg-Lg-Bce">
                     <rect key="frame" x="168" y="497.66666666666669" width="57.333333333333343" height="17.000000000000057"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" systemColor="systemGray2Color"/>
+                    <color key="textColor" red="0.47450980392156861" green="0.47450980392156861" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KNl-X4-zhf">
-                    <rect key="frame" x="291" y="66.666666666666671" width="86" height="29"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KNl-X4-zhf">
+                    <rect key="frame" x="37" y="758" width="319" height="48"/>
+                    <color key="backgroundColor" red="0.16862745100000001" green="0.68627450980000004" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="H1k-uD-dkm"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="添加收款账号">
-                        <color key="titleColor" systemColor="linkColor"/>
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <connections>
                         <action selector="addAcountAction:" destination="-1" eventType="touchUpInside" id="XN7-HF-Vzv"/>
@@ -78,35 +82,30 @@
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="ozw-ae-ch4" secondAttribute="bottom" id="81f-b2-p2Y"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="ozw-ae-ch4" secondAttribute="bottom" constant="60" id="81f-b2-p2Y"/>
                 <constraint firstItem="ozw-ae-ch4" firstAttribute="top" secondItem="bNn-F2-JfQ" secondAttribute="bottom" constant="7" id="A3V-KC-6bx"/>
+                <constraint firstItem="KNl-X4-zhf" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="37" id="BK3-df-RAq"/>
                 <constraint firstItem="yH8-Xj-YKa" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="CAg-RA-bUD"/>
                 <constraint firstItem="nFg-Lg-Bce" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Eww-vJ-DrD"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="KNl-X4-zhf" secondAttribute="trailing" constant="16" id="I1l-Dg-imm"/>
-                <constraint firstItem="ozw-ae-ch4" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="10" id="IMv-G7-Dhd"/>
-                <constraint firstAttribute="trailing" secondItem="ozw-ae-ch4" secondAttribute="trailing" id="K7z-X8-Lfq"/>
+                <constraint firstAttribute="trailing" secondItem="ozw-ae-ch4" secondAttribute="trailing" constant="20" id="K7z-X8-Lfq"/>
                 <constraint firstItem="A5c-xw-kep" firstAttribute="centerY" secondItem="bNn-F2-JfQ" secondAttribute="centerY" id="Pb4-Jt-zEE"/>
                 <constraint firstItem="bNn-F2-JfQ" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="7" id="avN-iG-iIE"/>
                 <constraint firstItem="bNn-F2-JfQ" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="7" id="hOA-3m-epP"/>
                 <constraint firstItem="A5c-xw-kep" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="jCB-d1-R6p"/>
-                <constraint firstItem="KNl-X4-zhf" firstAttribute="centerY" secondItem="A5c-xw-kep" secondAttribute="centerY" id="rJw-VH-HDm"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="KNl-X4-zhf" secondAttribute="bottom" constant="12" id="kBb-hy-1T3"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="KNl-X4-zhf" secondAttribute="trailing" constant="37" id="kxO-HJ-zSx"/>
                 <constraint firstItem="yH8-Xj-YKa" firstAttribute="top" secondItem="A5c-xw-kep" secondAttribute="bottom" constant="260" id="sMf-Qe-RqD"/>
                 <constraint firstItem="nFg-Lg-Bce" firstAttribute="top" secondItem="yH8-Xj-YKa" secondAttribute="bottom" constant="24" id="sUS-2j-myb"/>
+                <constraint firstItem="ozw-ae-ch4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="zN1-HS-QtD"/>
             </constraints>
             <point key="canvasLocation" x="18" y="-1"/>
         </view>
     </objects>
     <resources>
-        <image name="icon_not_found" width="147" height="147"/>
-        <image name="title_back" width="28" height="28"/>
-        <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
+        <image name="icon_back" width="20" height="20"/>
+        <image name="icon_not_found" width="208" height="120"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

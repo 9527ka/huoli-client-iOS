@@ -107,7 +107,7 @@
     _noDataLab = [[UILabel alloc] initWithFrame:CGRectMake((JX_SCREEN_WIDTH - 120)/2, (JX_SCREEN_HEIGHT - 120)/2 + 48, 120, 20)];
     _noDataLab.text = @"暂无数据";
     _noDataLab.textAlignment = NSTextAlignmentCenter;
-    _noDataLab.textColor = [UIColor systemGray2Color];
+    _noDataLab.textColor = HEXCOLOR(0x797979);
     _noDataLab.hidden = YES;
     [self.tableView addSubview:self.noDataLab];
 }

@@ -46,7 +46,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.addBtn.hidden = self.room.financialAccountCount > 1?YES:NO;
+    self.addBtn.layer.cornerRadius = 24.0f;
     
     self.addBtn.hidden = NO;
     
@@ -57,17 +57,23 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"WH_GroupAccountSetCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WH_GroupAccountSetCell"];
     
     _noticeLab = [[UILabel alloc] init];
+//    _noticeLab.backgroundColor = HEXCOLOR(0xF3FFF8);
+//    _noticeLab.layer.cornerRadius = 6.0f;
+//    _noticeLab.layer.masksToBounds = YES;
     _noticeLab.text = @"*请确保您设置的账户为本人实名账户，非本人实名账户付款会导致订单失败且账户冻结。\n\n*向买家仅展示已开启的收款账号。\n\n*买家将直接使用您选择的收款方式付款。交易时，请始终检查您的收款账户已确认您已收到全额付款。";
     _noticeLab.numberOfLines = 0;
-    _noticeLab.font = [UIFont systemFontOfSize:14];
-    _noticeLab.textColor = [UIColor grayColor];
-    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH, 300)];
+    _noticeLab.font = [UIFont systemFontOfSize:12];
+    _noticeLab.textColor = HEXCOLOR(0x797979);
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH - 40, 140)];
+    headView.backgroundColor = HEXCOLOR(0xF3FFF8);
+    headView.layer.cornerRadius = 6.0f;
+    headView.layer.masksToBounds = YES;
     [headView addSubview:self.noticeLab];
     
     [self.noticeLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(headView).offset(16);
-        make.right.equalTo(headView).offset(-16);
-        make.top.equalTo(headView).offset(46);
+        make.left.equalTo(headView).offset(20);
+        make.right.equalTo(headView).offset(-20);
+        make.top.equalTo(headView).offset(20);
     }];
     self.tableView.tableFooterView = headView;
     
@@ -110,22 +116,23 @@
         NSString *type = [NSString stringWithFormat:@"%@",dic[@"type"]];
         
         NSString *typeStr = @"";
-        UIColor *lineColor = HEXCOLOR(0xf7984a);
+        NSString *typeImage = @"";
         if(type.intValue == 1){//1.微信  2.支付宝  3银行卡
-            lineColor = HEXCOLOR(0x23B525);
+            typeImage = @"pay_type_1";
             typeStr = @"微信支付";
         }else if (type.intValue == 2){
-            lineColor = HEXCOLOR(0x4174f2);
+            typeImage = @"pay_type_2";
             typeStr = @"支付宝";
         }else if (type.intValue == 3){
-            lineColor = HEXCOLOR(0xf7984a);
+            typeImage = @"pay_type_3";
             typeStr = @"银行卡";
             cell.rightPayLab.hidden = YES;
         }
-        cell.lineLab.backgroundColor = lineColor;
         
         cell.paytypeLab.text = typeStr;
+        cell.unitLab.text = [NSString stringWithFormat:@"%@账号：",typeStr];
         cell.nameLab.text = [NSString stringWithFormat:@"%@ %@",dic[@"accountName"],dic[@"accountNo"]];
+        cell.typeImage.image = [UIImage imageNamed:typeImage];
         
     }
     return cell;

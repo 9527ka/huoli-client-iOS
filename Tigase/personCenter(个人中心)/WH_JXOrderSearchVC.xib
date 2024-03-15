@@ -30,7 +30,7 @@
                         <constraint firstAttribute="height" constant="30" id="a5h-4i-AzC"/>
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" image="title_back"/>
+                    <state key="normal" image="icon_back"/>
                     <connections>
                         <action selector="didTapBack" destination="-1" eventType="touchUpInside" id="XNU-BI-7lf"/>
                     </connections>
@@ -55,7 +55,7 @@
                     <rect key="frame" x="167" y="497" width="57.333333333333329" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" systemColor="systemGray2Color"/>
+                    <color key="textColor" red="0.47450980390000003" green="0.47450980390000003" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入群主昵称、订单id搜索" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="guy-XS-wSh">
@@ -90,13 +90,10 @@
         </view>
     </objects>
     <resources>
-        <image name="icon_not_found" width="147" height="147"/>
-        <image name="title_back" width="28" height="28"/>
+        <image name="icon_back" width="20" height="20"/>
+        <image name="icon_not_found" width="208" height="120"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

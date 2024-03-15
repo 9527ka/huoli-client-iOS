@@ -145,7 +145,7 @@
     
     if(wh_isGotoBack){
         UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(NAV_INSETS-6, JX_SCREEN_TOP - 38-6, NAV_BTN_SIZE+12, NAV_BTN_SIZE+12)];
-//        [btn setImage:[UIImage imageNamed:@"title_back"] forState:UIControlStateNormal];
+//        [btn setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
         [btn setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
         
         

@@ -13,13 +13,16 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    self.unitLab.layer.cornerRadius = 4.0f;
-    self.rightPayLab.layer.cornerRadius = 9.0f;
+    self.bgView.layer.cornerRadius = 6.0f;
+    self.bgView.layer.borderWidth = 1.0f;
+    self.bgView.layer.borderColor = THEMECOLOR.CGColor;
+    
+    self.rightPayLab.layer.cornerRadius = 4.0f;
     
     UIImage *image = [UIImage imageNamed:@"blog_delete"];
     image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [self.deleteBtn setImage:image forState:UIControlStateNormal];
-    self.deleteBtn.tintColor = [UIColor redColor];
+    self.deleteBtn.tintColor = HEXCOLOR(0x797979);
     
     //添加长按手势
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressAction:)];

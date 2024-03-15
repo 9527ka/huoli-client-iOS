@@ -152,7 +152,7 @@
     [customHeadView addSubview:p];
     
     
-    UIButton *back = [JXXMPP createButtonWithFrame:CGRectMake(10, JX_SCREEN_TOP - 38, 28, 28) image:[UIImage imageNamed:@"title_back"]];
+    UIButton *back = [JXXMPP createButtonWithFrame:CGRectMake(10, JX_SCREEN_TOP - 38, 28, 28) image:[UIImage imageNamed:@"icon_back"]];
     [back addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [customHeadView addSubview:back];    
 }

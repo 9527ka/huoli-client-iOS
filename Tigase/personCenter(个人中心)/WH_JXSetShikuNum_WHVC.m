@@ -24,49 +24,63 @@
     // Do any additional setup after loading the view.
     
     self.wh_isGotoBack   = YES;
-    self.title = [NSString stringWithFormat:@"%@%@",Localized(@"WaHu_JXSetting_WaHuVC_Set"),Localized(@"JX_Communication")];
+    self.title = @"设置账号";
     
     self.wh_heightFooter = 0;
     self.wh_heightHeader = JX_SCREEN_TOP;
-    //self.view.frame = CGRectMake(0, 0, JX_SCREEN_WIDTH, JX_SCREEN_HEIGHT);
     [self createHeadAndFoot];
-    self.wh_tableBody.backgroundColor = HEXCOLOR(0xf0eff4);
+    self.wh_tableBody.backgroundColor = [UIColor whiteColor];
     self.wh_tableBody.scrollEnabled = YES;
     
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 100, 100)];
+    
+    
+    UILabel *tip = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH, 44)];
+    tip.backgroundColor = HEXCOLOR(0xF3FFF8);
+    tip.font = [UIFont systemFontOfSize:12.0];
+    tip.textColor = THEMECOLOR;
+    tip.text = [NSString stringWithFormat:@"%@ %@",@" ",Localized(@"JX_CommunicationOnlySetOne")];
+    [self.wh_tableBody addSubview:tip];
+    
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((JX_SCREEN_WIDTH - 62)/2, CGRectGetMaxY(tip.frame) + 40, 62, 62)];
     imageView.layer.cornerRadius = imageView.frame.size.width / 2;
     imageView.layer.masksToBounds = YES;
     [self.wh_tableBody addSubview:imageView];
     [g_server WH_getHeadImageLargeWithUserId:g_myself.userId userName:g_myself.userNickname imageView:imageView];
     [self.wh_tableBody addSubview:imageView];
     
-    UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(imageView.frame) + 20, imageView.frame.origin.y, 200, imageView.frame.size.height)];
-    name.font = [UIFont systemFontOfSize:18.0];
-    name.text = g_myself.userNickname;
+    UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(imageView.frame) + 20, JX_SCREEN_WIDTH - 40, 20)];
+    name.font = [UIFont systemFontOfSize:14.0];
+    name.textColor = HEXCOLOR(0x161819);
+    name.textAlignment = NSTextAlignmentCenter;
+    name.text = [NSString stringWithFormat:@"当前账号：%@",g_myself.userNickname];
     [self.wh_tableBody addSubview:name];
     
-    _textField = [[UITextField alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(imageView.frame) + 50, JX_SCREEN_WIDTH - 40, 50)];
+    _textField = [[UITextField alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(name.frame) + 20, JX_SCREEN_WIDTH - 40, 50)];
+    _textField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 50)];
+    _textField.leftViewMode = UITextFieldViewModeAlways;
     _textField.delegate = self;
+    _textField.backgroundColor = HEXCOLOR(0xF3F3F3);
+    _textField.layer.masksToBounds = YES;
+    _textField.layer.cornerRadius = 6.0f;
+    _textField.placeholder = @"请输入账号ID";
+    _textField.clearButtonMode = UITextFieldViewModeWhileEditing;
     [_textField becomeFirstResponder];
+    _textField.tintColor = THEMECOLOR;
     _textField.keyboardType = UIKeyboardTypeASCIICapable;
     [self.wh_tableBody addSubview:_textField];
     
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(_textField.frame.origin.x, CGRectGetMaxY(_textField.frame), _textField.frame.size.width, 2.0)];
-    line.backgroundColor = THEMECOLOR;
-    [self.wh_tableBody addSubview:line];
     
-    UILabel *tip = [[UILabel alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(line.frame), line.frame.size.width, 60)];
-    tip.font = [UIFont systemFontOfSize:15.0];
-    tip.textColor = [UIColor lightGrayColor];
-    tip.text = Localized(@"JX_CommunicationOnlySetOne");
-    [self.wh_tableBody addSubview:tip];
     
-    UIButton* _btn = [UIFactory WH_create_WHCommonButton:Localized(@"JX_Confirm") target:self action:@selector(onConfirm)];
-
-    _btn.layer.cornerRadius = 5;
+    UIButton* _btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_btn addTarget:self action:@selector(onConfirm) forControlEvents:UIControlEventTouchUpInside];
+    [_btn setTitle:Localized(@"JX_Confirm") forState:UIControlStateNormal];
+    _btn.layer.cornerRadius = 24;
+    _btn.backgroundColor = THEMECOLOR;
     _btn.clipsToBounds = YES;
     _btn.custom_acceptEventInterval = 1.0f;
-    _btn.frame = CGRectMake(INSETS, CGRectGetMaxY(tip.frame) + 20, WIDTH, HEIGHT);
+    _btn.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+    _btn.frame = CGRectMake(37, CGRectGetMaxY(_textField.frame) + 110, JX_SCREEN_WIDTH - 74, 48);
     [self.wh_tableBody addSubview:_btn];
     
     

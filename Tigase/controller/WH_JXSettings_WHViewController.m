@@ -463,13 +463,13 @@ typedef enum : NSUInteger {
     [wh_tableHeader addSubview:p];
     
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(NAV_INSETS-6, JX_SCREEN_TOP - 38-6, NAV_BTN_SIZE+12, NAV_BTN_SIZE+12)];
-//    [btn setBackgroundImage:[UIImage imageNamed:@"title_back"] forState:UIControlStateNormal];
+//    [btn setBackgroundImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(actionQuitSet) forControlEvents:UIControlEventTouchUpInside];
 //    btn.showsTouchWhenHighlighted = YES;
     [wh_tableHeader addSubview:btn];
     
     UIImageView *btnImg = [[UIImageView alloc] initWithFrame:CGRectMake(6, 6, NAV_BTN_SIZE, NAV_BTN_SIZE)];
-    [btnImg setImage:[UIImage imageNamed:@"title_back"]];
+    [btnImg setImage:[UIImage imageNamed:@"icon_back"]];
     [btn addSubview:btnImg];
 
     [self.view addSubview:wh_tableHeader];

@@ -72,7 +72,7 @@ static JXNavigation *navigation;
     [self.wh_tableHeader addSubview:p];
     
 //    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(NAV_INSETS, JX_SCREEN_TOP - 38, NAV_BTN_SIZE, NAV_BTN_SIZE)];
-//    [btn setBackgroundImage:[UIImage imageNamed:@"title_back"] forState:UIControlStateNormal];
+//    [btn setBackgroundImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
 //    [btn addTarget:self action:@selector(actionQuit) forControlEvents:UIControlEventTouchUpInside];
 //    [self.wh_tableHeader addSubview:btn];
     

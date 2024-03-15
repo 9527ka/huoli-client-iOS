@@ -192,7 +192,7 @@
         self.titleL.hidden = NO;
         customHeadView.backgroundColor = [UIColor whiteColor];
         self.bar_bgImageV.hidden = YES;
-        [backBtn setImage:[UIImage imageNamed:@"title_back"] forState:UIControlStateNormal];
+        [backBtn setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
     }
     
 }
@@ -853,7 +853,7 @@
         return;
     }
     
-    //newicon_nav_whiteback  title_back newicon_nav_whiteback newicon_nav_shawder
+    //newicon_nav_whiteback  icon_back newicon_nav_whiteback newicon_nav_shawder
     if (self.tableView.contentOffset.y < self.view.height*0.3+20) {
         //        [self.view_bar setHidden:NO];
         [self.bar_bgImageV setHidden:NO];
@@ -871,7 +871,7 @@
         
         self.view_bar.backgroundColor=[UIColor whiteColor];
         
-        [self.bar_leftBtn setImage:[UIImage imageNamed:@"title_back"] forState:UIControlStateNormal];
+        [self.bar_leftBtn setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
         [self.bar_rightBtn setImage:[UIImage imageNamed:@"newicon_nav_blueCamera"]
                            forState:UIControlStateNormal];
         [self.bar_searchBtn setImage:[UIImage imageNamed:@"蓝色放大镜"] forState:UIControlStateNormal];

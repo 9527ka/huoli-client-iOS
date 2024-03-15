@@ -36,7 +36,7 @@
     [self createMain];
     
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(8, JX_SCREEN_TOP - 38, 31, 31)];
-    [btn setBackgroundImage:[UIImage imageNamed:@"title_back"] forState:UIControlStateNormal];
+    [btn setBackgroundImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(actionQuitt) forControlEvents:UIControlEventTouchUpInside];
     [self.wh_tableHeader addSubview:btn];
 }
