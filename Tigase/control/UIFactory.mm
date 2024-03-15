@@ -79,7 +79,7 @@ NSString *kStyle2Dir;
 //    self.globalBgColor = HEXCOLOR(0xF5F7FA); //全局背景底色
     self.globalBgColor = HEXCOLOR(0xF8F8F8);
 
-    self.globelEdgeInset = 10.0f; //全局界面距离屏幕左右距离
+    self.globelEdgeInset = 20.0f; //全局界面距离屏幕左右距离
     self.navigatorTitleColor = HEXCOLOR(0x333333);
     self.badgeWidthHeight = 17.0f;
     self.badgeBgColor = HEXCOLOR(0xFF5651);

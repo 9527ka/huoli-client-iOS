@@ -30,19 +30,12 @@
         self.wh_heightHeader = JX_SCREEN_TOP;
         //self.view.frame = CGRectMake(0, 0, JX_SCREEN_WIDTH, JX_SCREEN_HEIGHT);
         [self createHeadAndFoot];
-        self.wh_tableBody.backgroundColor = g_factory.globalBgColor;
+        self.wh_tableBody.backgroundColor = [UIColor whiteColor];
         self.wh_tableBody.scrollEnabled = YES;
 //        int h = 0;
         
-        if (THE_APP_OUR) {
-            //右侧分享按钮
-            UIButton *shareBtn = [[UIButton alloc] initWithFrame:CGRectMake(self_width-31-8, JX_SCREEN_TOP - 38, 31, 31)];
-            [shareBtn setImage:[UIImage imageNamed:@"ic_share"] forState:UIControlStateNormal];
-            [shareBtn addTarget:self action:@selector(shareBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-            [self.wh_tableHeader addSubview:shareBtn];
-        }
         
-        CGFloat logoImageViewWH = 70;
+        CGFloat logoImageViewWH = 80;
         WH_JXImageView* iv;
         iv = [[WH_JXImageView alloc]initWithFrame:CGRectMake((JX_SCREEN_WIDTH-logoImageViewWH)/2, 50, logoImageViewWH, logoImageViewWH)];
         iv.center = CGPointMake(JX_SCREEN_WIDTH/2, iv.center.y);
@@ -57,36 +50,21 @@
         
         UILabel* p = [self WH_createLabel:self.wh_tableBody default:[NSString stringWithFormat:@"%@",APP_NAME]];
         p.frame = CGRectMake(0, iv.frame.origin.y+iv.frame.size.height+20, JX_SCREEN_WIDTH, 31);
+        p.textColor = THEMECOLOR;
         p.textAlignment = NSTextAlignmentCenter;
-        p.font = sysBoldFontWithSize(20);
+        p.font = sysBoldFontWithSize(18);
         
         
 
         UILabel* p2 = [self WH_createLabel:self.wh_tableBody default:[NSString stringWithFormat:@"Version: %@-%@",versionStr,buildStr]];
         p2.frame = CGRectMake(0, p.frame.origin.y+p.frame.size.height+5, JX_SCREEN_WIDTH, 23);
+        p2.textColor = THEMECOLOR;
         p2.textAlignment = NSTextAlignmentCenter;
-        p2.font = sysFontWithSize(14);
-        p2.textColor = HEXCOLOR(0x333333);
-        
-        
-        if (THE_APP_OUR) {
-            p = [self WH_createLabel:self.view default:g_config.companyName];
-            p.frame = CGRectMake(0, JX_SCREEN_HEIGHT-40, JX_SCREEN_WIDTH, 20);
-            p.font = sysFontWithSize(13);
-            p.textColor = [UIColor grayColor];
-            p.textAlignment = NSTextAlignmentCenter;
-            
-            p = [self WH_createLabel:self.view default:g_config.copyright];
-            p.frame = CGRectMake(0, JX_SCREEN_HEIGHT-20, JX_SCREEN_WIDTH, 20);
-            p.font = sysFontWithSize(13);
-            p.textColor = [UIColor grayColor];
-            p.textAlignment = NSTextAlignmentCenter;
-        }
-
+        p2.font = sysBoldFontWithSize(14);
         
         //如果是上架版本
         if (IS_APP_STORE_VERSION) {
-            iv = [self WH_createMiXinButton:@"去评分" superView:self.wh_tableBody drawTop:YES drawBottom:YES icon:nil click:@selector(clickGrade)];
+            iv = [self WH_createMiXinButton:@"去评分" superView:self.wh_tableBody drawTop:NO drawBottom:YES icon:nil click:@selector(clickGrade)];
             iv.frame = CGRectMake(0, CGRectGetMaxY(p2.frame)+25, JX_SCREEN_WIDTH, HEIGHT);
             CGFloat nowHeight = CGRectGetMaxY(iv.frame);
             
@@ -115,16 +93,16 @@
             
             agreView.backgroundColor = self.wh_tableBody.backgroundColor;
             //设置添加链接部分文字的颜色，即“《XXX隐私政策》”
-            agreView.linkTextAttributes = @{NSForegroundColorAttributeName:HEXCOLOR(0x0093FF)};
+            agreView.linkTextAttributes = @{NSForegroundColorAttributeName:THEMECOLOR};
             [self.wh_tableBody addSubview:agreView];
             
             
-            NSString *rangeStr1 = [NSString stringWithFormat:@"《%@》",@"Tigase个人账号使用规范"];
-            NSString *rangeStr2 = [NSString stringWithFormat:@"《%@》",@"Tigase社交圈使用规范"];
+            NSString *rangeStr1 = [NSString stringWithFormat:@"《%@》",@"个人账号使用规范"];
+            NSString *rangeStr2 = [NSString stringWithFormat:@"《%@》",@"社交圈使用规范"];
             NSString *protocolStr = [NSString stringWithFormat:@"%@ 和 %@", rangeStr1, rangeStr2];
             NSRange privacyRange1 = [protocolStr rangeOfString:rangeStr1];
             NSRange privacyRange2 = [protocolStr rangeOfString:rangeStr2];
-            NSMutableAttributedString *privacyMutableAttrStr = [[NSMutableAttributedString alloc] initWithString:protocolStr attributes:@{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Regular" size: 11],NSForegroundColorAttributeName:HEXCOLOR(0x969696)}];
+            NSMutableAttributedString *privacyMutableAttrStr = [[NSMutableAttributedString alloc] initWithString:protocolStr attributes:@{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Regular" size: 11],NSForegroundColorAttributeName:HEXCOLOR(0xBABABA)}];
             
             //给需要 点击事件的部分添加链接
             [privacyMutableAttrStr addAttribute:NSLinkAttributeName value:@"privacy1://" range:privacyRange1];
@@ -136,9 +114,9 @@
             
             //@"Tigase 版权所有"
             UILabel *banquanL = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(agreView.frame), JX_SCREEN_WIDTH, 20)];
-            banquanL.text = @"Tigase 版权所有";
+            banquanL.text = @"Tigase版权所有";
             banquanL.font = sysFontWithSize(12);
-            banquanL.textColor = HEXCOLOR(0x999999);
+            banquanL.textColor = HEXCOLOR(0xBABABA);
             banquanL.textAlignment = NSTextAlignmentCenter;
             [self.wh_tableBody addSubview:banquanL];
         }else{
@@ -213,9 +191,9 @@
     
     JXLabel* p = [[JXLabel alloc] initWithFrame:CGRectMake(30+3, 0, JX_SCREEN_WIDTH-100, HEIGHT)];
     p.text = title;
-    p.font = sysBoldFontWithSize(15);
+    p.font = sysFontWithSize(14);
     p.backgroundColor = [UIColor clearColor];
-    p.textColor = [UIColor blackColor];
+    p.textColor = HEXCOLOR(0x161819);
     p.wh_delegate = self;
     p.didTouch = click;
     [btn addSubview:p];
@@ -229,21 +207,21 @@
     
     if(drawTop){
         UIView* line = [[UIView alloc] initWithFrame:CGRectMake(30,0,JX_SCREEN_WIDTH-60,0.3)];
-        line.backgroundColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
+        line.backgroundColor = HEXCOLOR(0xEEEEEE);
         [btn addSubview:line];
         //        [line release];
     }
     
     if(drawBottom){
         UIView* line = [[UIView alloc] initWithFrame:CGRectMake(30,HEIGHT-1,JX_SCREEN_WIDTH-60,0.3)];
-        line.backgroundColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
+        line.backgroundColor = HEXCOLOR(0xEEEEEE);
         [btn addSubview:line];
         //        [line release];
     }
     
     if(click){
         UIImageView* iv;
-        iv = [[UIImageView alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH-30-20-3, (HEIGHT-20)/2, 20, 20)];
+        iv = [[UIImageView alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH-30-14-3, (HEIGHT-14)/2, 14, 14)];
         iv.image = [UIImage imageNamed:@"set_list_next"];
         [btn addSubview:iv];
         //        [iv release];

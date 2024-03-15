@@ -79,7 +79,7 @@
                  @"title":str,
                  @"content":@"",
                  @"type":@(WHSettingCellTypeIconWithTextField),
-                 @"bgRoundType":@(WHSettingCellBgRoundTypeAll),
+                 @"bgRoundType":@(WHSettingCellBgRoundTypeFour),
                  }],
                @[@{@"icon":@"WH_addressbook_phone_contact",
                    @"title":Localized(@"New_Mobile_contacts"),

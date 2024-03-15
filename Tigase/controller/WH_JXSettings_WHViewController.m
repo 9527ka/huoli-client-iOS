@@ -527,8 +527,8 @@ typedef enum : NSUInteger {
     [supView addSubview:headView];
     headView.layer.masksToBounds = YES;
     headView.layer.cornerRadius = g_factory.cardCornerRadius;
-    headView.layer.borderColor = g_factory.cardBorderColor.CGColor;
-    headView.layer.borderWidth = g_factory.cardBorderWithd;
+//    headView.layer.borderColor = g_factory.cardBorderColor.CGColor;
+//    headView.layer.borderWidth = g_factory.cardBorderWithd;
     
     return headView;
     
@@ -650,11 +650,11 @@ typedef enum : NSUInteger {
         }
         
         if (indexPath.row == 0) {
-            UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH - 2*g_factory.globelEdgeInset, HEIGHT)];
+            UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(-1, -1, JX_SCREEN_WIDTH - g_factory.globelEdgeInset + 2, HEIGHT + 1)];
             [imgView setImage:[UIImage imageNamed:@"kuai_shang"]];
             [cell addSubview:imgView];
         }else if(indexPath.row == number - 1){
-            UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH - 2*g_factory.globelEdgeInset, HEIGHT)];
+            UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(-1, 0, JX_SCREEN_WIDTH - g_factory.globelEdgeInset + 2, HEIGHT + 1)];
             [imgView setImage:[UIImage imageNamed:@"kuai_xia"]];
             [cell addSubview:imgView];
         }
@@ -690,8 +690,8 @@ typedef enum : NSUInteger {
     }
     
     if (indexPath.row > 0 && indexPath.row < number - 1) {
-        cell.layer.borderColor = g_factory.cardBorderColor.CGColor;
-        cell.layer.borderWidth = g_factory.cardBorderWithd;
+//        cell.layer.borderColor = g_factory.cardBorderColor.CGColor;
+//        cell.layer.borderWidth = g_factory.cardBorderWithd;
         
         [cell.contentView setBackgroundColor:HEXCOLOR(0xffffff)];
         [cell setBackgroundColor:HEXCOLOR(0xffffff)];

@@ -15,6 +15,7 @@ typedef NS_ENUM(NSUInteger, WHSettingCellBgRoundType) {
     WHSettingCellBgRoundTypeAll, //top and bottom round
     WHSettingCellBgRoundTypeTop, // top round
     WHSettingCellBgRoundTypeBottom, //bottom round
+    WHSettingCellBgRoundTypeFour, //专门为添加好友圆角设计的
 };
 
 @interface WH_CardStyle_WHCell : UITableViewCell

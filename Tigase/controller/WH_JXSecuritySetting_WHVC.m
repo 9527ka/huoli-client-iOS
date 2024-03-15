@@ -288,7 +288,7 @@
     if(click)
         btn.didTouch = click;
     else
-        btn.didTouch = @selector(hideKeyboard);
+//        btn.didTouch = @selector(hideKeyboard);
     btn.wh_delegate = self;
     [superView addSubview:btn];
     //    [btn release];

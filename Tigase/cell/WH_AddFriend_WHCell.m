@@ -162,10 +162,10 @@
         }
         _bgRoundType = bgRoundType;
         
-        CGRect frame = CGRectMake(0, 0, JX_SCREEN_WIDTH-30, bgRoundType == WHSettingCellBgRoundTypeAll?36:56.f);
+        CGRect frame = CGRectMake(0, 0, JX_SCREEN_WIDTH-30, bgRoundType == WHSettingCellBgRoundTypeFour?36:56.f);
         UIRectCorner rectCorner = bgRoundType == WHSettingCellBgRoundTypeTop ? UIRectCornerTopLeft | UIRectCornerTopRight : bgRoundType == WHSettingCellBgRoundTypeBottom ? UIRectCornerBottomLeft | UIRectCornerBottomRight : UIRectCornerAllCorners;
         
-        float round = bgRoundType == WHSettingCellBgRoundTypeAll?18.0f:10;
+        float round = bgRoundType == WHSettingCellBgRoundTypeFour?18.0f:10;
         
         UIBezierPath *roundPath = [UIBezierPath bezierPathWithRoundedRect:frame byRoundingCorners:rectCorner cornerRadii:CGSizeMake(round, round)];
         CGSize cornerRadii = CGSizeZero;

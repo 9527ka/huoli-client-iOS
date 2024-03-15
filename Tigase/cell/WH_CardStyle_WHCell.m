@@ -72,7 +72,9 @@
             lineWidth = g_factory.cardBorderWithd*2;
         }
         
-        BOOL drawBorderAll = _bgRoundType == WHSettingCellBgRoundTypeTop || _bgRoundType == WHSettingCellBgRoundTypeAll;
+        BOOL drawBorderAll = _bgRoundType == WHSettingCellBgRoundTypeTop || _bgRoundType == WHSettingCellBgRoundTypeAll || _bgRoundType == WHSettingCellBgRoundTypeFour;
+        
+        
         
         CAShapeLayer *roundLineLayer = [[CAShapeLayer alloc] init];
         roundLineLayer.frame = drawBorderAll ? frame : CGRectMake(0, -g_factory.cardBorderWithd, CGRectGetWidth(frame), CGRectGetHeight(frame)+g_factory.cardBorderWithd);

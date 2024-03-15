@@ -198,13 +198,13 @@
         btn = [UIFactory WH_create_WHLogOutButton:Localized(@"WaHu_JXSetting_WaHuVC_LogOut") target:self action:@selector(onLogout)];
         [btn setBackgroundImage:nil forState:UIControlStateHighlighted];
         btn.custom_acceptEventInterval = 1.f;
-        btn.frame = CGRectMake(g_factory.globelEdgeInset,h, w, 44);
+        btn.frame = CGRectMake(37,h + 30, JX_SCREEN_WIDTH - 74, 48);
         [btn setBackgroundImage:nil forState:UIControlStateNormal];
-        btn.backgroundColor = HEXCOLOR(0xED6350);
+        btn.backgroundColor = HEXCOLOR(0xFF5150);
         [btn setTitleColor:HEXCOLOR(0xffffff) forState:UIControlStateNormal];
         [btn.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 16]];
         btn.layer.masksToBounds = YES;
-        btn.layer.cornerRadius = g_factory.cardCornerRadius;
+        btn.layer.cornerRadius = 24.0f;
         [self.wh_tableBody addSubview:btn];
         
         if (self.wh_tableBody.frame.size.height < (h + INSETS+HEIGHT)) {
@@ -579,19 +579,7 @@
     [self.view removeFromSuperview];
     self.view = nil;
     g_navigation.rootViewController = vc;
-//    g_navigation.lastVC = nil;
-//    [g_navigation.subViews removeAllObjects];
-//    [g_navigation pushViewController:vc];
-//    g_App.window.rootViewController = vc;
-//    [g_App.window makeKeyAndVisible];
-    
-//     WH_JXLoginVC* vc = [ WH_JXLoginVC alloc];
-//    vc.isAutoLogin = NO;
-//    vc.isSwitchUser= NO;
-//    vc = [vc init];
-//    [g_window addSubview:vc.view];
-//    [self actionQuit];
-    //    [_wait performSelector:@selector(stop) withObject:nil afterDelay:1];
+
     [_wait stop];
 #if TAR_IM
 #ifdef Meeting_Version
@@ -701,8 +689,8 @@
     [clearView setBackgroundColor:HEXCOLOR(0xffffff)];
     clearView.layer.masksToBounds = YES;
     clearView.layer.cornerRadius = g_factory.cardCornerRadius;
-    clearView.layer.borderColor = g_factory.cardBorderColor.CGColor;
-    clearView.layer.borderWidth = g_factory.cardBorderWithd;
+//    clearView.layer.borderColor = g_factory.cardBorderColor.CGColor;
+//    clearView.layer.borderWidth = g_factory.cardBorderWithd;
     [self.wh_tableBody addSubview:clearView];
     return clearView;
 }
@@ -735,14 +723,14 @@
     
     if(drawTop){
         UIView* line = [[UIView alloc] initWithFrame:CGRectMake(0,0,JX_SCREEN_WIDTH - 2*g_factory.globelEdgeInset,g_factory.cardBorderWithd)];
-        line.backgroundColor = g_factory.globalBgColor;
+        line.backgroundColor = HEXCOLOR(0xEEEEEE);
         [btn addSubview:line];
 //        [line release];
     }
     
     if(drawBottom){
         UIView* line = [[UIView alloc] initWithFrame:CGRectMake(0,HEIGHT-g_factory.cardBorderWithd,JX_SCREEN_WIDTH - 2*g_factory.globelEdgeInset,g_factory.cardBorderWithd)];
-        line.backgroundColor = g_factory.globalBgColor;
+        line.backgroundColor = HEXCOLOR(0xEEEEEE);
         [btn addSubview:line];
 //        [line release];
     }
