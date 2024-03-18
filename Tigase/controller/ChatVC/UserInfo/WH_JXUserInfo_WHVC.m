@@ -12,8 +12,6 @@
 #import "WH_selectProvince_WHVC.h"
 #import "ImageResize.h"
 #import "WH_JXChat_WHViewController.h"
-#import "JXLocationVC.h"
-#import "JXMapData.h"
 #import "WH_JXInputValue_WHVC.h"
 #import "FMDatabase.h"
 #import "userWeiboVC.h"
@@ -1051,42 +1049,7 @@
         return;
     }
     
-    JXMapData * mapData = [[JXMapData alloc] init];
-    mapData.latitude = [NSString stringWithFormat:@"%f",_longitude];
-    mapData.longitude = [NSString stringWithFormat:@"%f",_latitude];
-    NSArray * locations = @[mapData];
-    BOOL isShowGoo = [g_myself.isUseGoogleMap intValue] > 0 ? YES : NO;
-    if (isShowGoo) {
-        _gooMap = [JXGoogleMapVC alloc] ;
-        _gooMap.locations = [NSMutableArray arrayWithArray:locations];
-        _gooMap.locationType = JXGooLocationTypeShowStaticLocation;
-        _gooMap = [_gooMap init];
-        [g_navigation pushViewController:_gooMap animated:YES];
-    }else {
-        JXLocationVC * vc = [JXLocationVC alloc];
-        vc.locations = [NSMutableArray arrayWithArray:locations];
-        vc.locationType = JXLocationTypeShowStaticLocation;
-        vc = [vc init];
-        [g_navigation pushViewController:vc animated:YES];
-    }
-    
-//    JXLocationVC* vc = [JXLocationVC alloc];
-//    vc.isSend = NO;
-//    vc.locationType = JXLocationTypeShowStaticLocation;
-//    NSMutableArray * locationsArray = [[NSMutableArray alloc]init];
-//
-//    JXMapData* p = [[JXMapData alloc]init];
-//    p.latitude = [NSString stringWithFormat:@"%f",_latitude];
-//    p.longitude = [NSString stringWithFormat:@"%f",_longitude];
-//    p.title = _name.text;
-//    p.subtitle = _city.text;
-//    [locationsArray addObject:p];
-//    vc.locations = locationsArray;
-//
-//    vc = [vc init];
-////    [g_window addSubview:vc.view];
-//    [g_navigation pushViewController:vc animated:YES];
-
+   
 }
 -(void)reportUserView{
     WH_JXReportUser_WHVC * reportVC = [[WH_JXReportUser_WHVC alloc] init];

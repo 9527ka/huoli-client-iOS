@@ -9,8 +9,7 @@
 #import "WH_QRCode_WHViewController.h"
 
 #import "WH_QRImage.h"
-#import "WH_JXShareModel.h"
-#import "WH_JXShareManager.h"
+
 
 @interface WH_QRCode_WHViewController ()
 @property (nonatomic, strong) UIImageView *groupHeadImg;
@@ -157,22 +156,7 @@
         UIImageWriteToSavedPhotosAlbum(self.wh_qrImageView.image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
     }else{
         //发给微信好友
-        WH_JXShareModel *shareModel = [[WH_JXShareModel alloc] init];
-        shareModel.shareTo = 0;
-        
-        NSMutableString *qrStr = [NSMutableString stringWithFormat:@"%@appQCCodeShare?roomId=%@" ,g_config.apiUrl ,self.wh_userId];
-        [qrStr appendFormat:@"&userId=%@&nickName=%@" ,MY_USER_ID ,[self.groupRoom getNickNameInRoom]];
-        
-        //        UIImage * qrImage = [WH_QRImage qrImageForString:qrStr imageSize:255 logoImage:nil logoImageSize:63];
-        UIImage * qrImage = self.groupHeadImg.image;
-        
-        shareModel.shareImage = qrImage; //群头像
-        
-        shareModel.shareContent = [NSString stringWithFormat:@"\"%@\"邀请你加入群聊%@，进入可查看详情。",g_myself.userNickname,self.wh_nickName];//内容 群说明
-        shareModel.shareTitle = @"邀请你加入群聊";//标题 群名称//self.wh_nickName
-        shareModel.shareUrl = qrStr;//链接
-        
-        [[WH_JXShareManager defaultManager] shareWith:shareModel delegate:self];
+       
     }
 }
 

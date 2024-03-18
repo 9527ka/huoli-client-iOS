@@ -17,8 +17,6 @@
 #import "addMsgVC.h"
 #import "WH_JXReportUser_WHVC.h"
 #import "WH_JXWebviewProgress.h"
-#import "WH_JXShareManager.h"
-#import "WH_JXShareModel.h"
 #import "WH_JXVerifyPay_WHVC.h"
 #import "WH_JXPayPassword_WHVC.h"
 #import "WH_JXSkPay_WHVC.h"
@@ -229,8 +227,6 @@
                 [webView loadRequest:p];
             }
         }
-        
-        //NSLog(@"webUrl=%@",p);
     }
 }
 
@@ -367,26 +363,6 @@
 }
 
 - (void)didShareBtnClick:(NSInteger)shareTo{
-    //    NSString *userId = [NSString stringWithFormat:@"%lld",[[_dataDict objectForKey:@"userId"] longLongValue]-1];
-    //    NSString *userId = [NSString stringWithFormat:@"%lld",[[_dataDict objectForKey:@"userId"] longLongValue]];
-    
-    WH_JXShareModel *shareModel = [[WH_JXShareModel alloc] init];
-    shareModel.shareTo = shareTo;
-    //分享标题
-    shareModel.shareTitle = self.titleStr;
-    
-    //分享内容
-    shareModel.shareContent = self.subTitle;
-    //    //分享链接
-    //    shareModel.shareUrl = [NSString stringWithFormat:@"%@%@?userId=%lld&language=%@",g_config.shareUrl,act_ShareBoss,[[_dataDict objectForKey:@"userId"] longLongValue],[JXMyTools getCurrentSysLanguage]];
-    //分享链接
-    shareModel.shareUrl = self.url;
-    
-    //分享头像
-    
-    //        shareModel.shareImageUrl = self.images.firstObject;
-    shareModel.shareImage = self.firstImage;
-    [[WH_JXShareManager defaultManager] shareWith:shareModel delegate:self];
     
 }
 

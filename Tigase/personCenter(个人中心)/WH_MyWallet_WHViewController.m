@@ -11,18 +11,12 @@
 #import "WH_JXPayPassword_WHVC.h"
 
 #import "WH_JXRecordCode_WHVC.h"
-#import "WH_JXRecharge_WHViewController.h"
-#import "WH_JXCashWithDraw_WHViewController.h"
 #import "JX_NewWithdrawViewController.h"
 
-#import "WH_Recharge_WHViewController.h"
 
-
-#import "WH_NewRecharge_WHViewController.h"
 #import "MiXin_WithdrawCoin_MiXinVC.h"
 #import "WH_H5Transaction_JXViewController.h"
 
-#import "WH_WithdrawalToBackground_WHViewController.h"
 #import "BindTelephoneChecker.h"
 
 #import "WH_JXChat_WHViewController.h"
@@ -198,12 +192,7 @@
             WH_RechargeVC *rechargeVC = [[WH_RechargeVC alloc] init];
             [g_navigation pushViewController:rechargeVC animated:YES];
             
-//            WH_Recharge_WHViewController *rechargeVC = [[WH_Recharge_WHViewController alloc] init];
-//            [g_navigation pushViewController:rechargeVC animated:YES];
-            
-            
-            //            WH_NewRecharge_WHViewController *rechargeVC = [[WH_NewRecharge_WHViewController alloc] init];
-            //            [g_navigation pushViewController:rechargeVC animated:YES];
+
         }
         
     } else if ([actionTitle isEqualToString:@"H5充值"]) {
@@ -246,9 +235,6 @@
                     WH_WithDreawVC *tranVC = [[WH_WithDreawVC alloc] init];
                     [g_navigation pushViewController:tranVC animated:YES];
                     
-//                    WH_WithdrawalToBackground_WHViewController *withdrawalBGVC = [[WH_WithdrawalToBackground_WHViewController alloc] init];
-//                    [g_navigation pushViewController:withdrawalBGVC animated:YES];
-                    
                     
                 }else {//没有支付密码
                     [BindTelephoneChecker checkBindPhoneWithViewController:self entertype:JXEnterTypeDefault];
@@ -258,8 +244,6 @@
                 WH_WithDreawVC *tranVC = [[WH_WithDreawVC alloc] init];
                 [g_navigation pushViewController:tranVC animated:YES];
                 
-//                WH_JXCashWithDraw_WHViewController *cashWithVC = [[WH_JXCashWithDraw_WHViewController alloc] init];
-//                [g_navigation pushViewController:cashWithVC animated:YES];
             }
         }
     }else if ([actionTitle isEqualToString:Localized(@"H5提现")]) {

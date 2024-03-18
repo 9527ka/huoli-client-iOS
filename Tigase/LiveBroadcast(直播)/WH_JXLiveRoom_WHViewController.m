@@ -910,9 +910,7 @@
 }
 
 -(void)rechargeButtonAction{
-    WH_JXRecharge_WHViewController * rechargeVC = [[WH_JXRecharge_WHViewController alloc]init];
-    rechargeVC.rechargeDelegate = self;
-//    [g_window addSubview:rechargeVC.view];
+    WH_RechargeVC * rechargeVC = [[WH_RechargeVC alloc]init];
     [g_navigation pushViewController:rechargeVC animated:YES];
 }
 

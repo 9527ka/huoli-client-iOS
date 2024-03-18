@@ -9,7 +9,6 @@
 #import <CoreData/CoreData.h>
 #import <AVFoundation/AVFoundation.h>
 #import "WH_JXTableViewController.h"
-#import "JXLocationVC.h"
 
 
 @class WH_JXEmoji;
@@ -67,7 +66,6 @@
 @property (nonatomic,strong) NSString* roomJid;//相当于RoomJid
 @property (nonatomic,strong) NSString* roomId;
 @property (nonatomic,strong) WH_JXBaseChat_WHCell* selCell;
-@property (nonatomic,strong) JXLocationVC * locationVC;
 @property (nonatomic, strong) NSMutableArray *array;
 
 //@property (nonatomic, strong) WH_JXMessageObject *relayMsg;

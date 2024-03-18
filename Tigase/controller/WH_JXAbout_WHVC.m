@@ -8,7 +8,6 @@
 
 #import "WH_JXAbout_WHVC.h"
 #import "WH_JXShareList_WHVC.h"
-#import "WH_JXShareManager.h"
 #import "WH_webpage_WHVC.h"
 #import "WH_ComplaintViewController.h"
 #define HEIGHT 55
@@ -316,26 +315,7 @@
 
 #pragma mark JXShareSelectView delegate
 - (void)didShareBtnClick:(UIButton *)shareBtn{
-    //    NSString *userId = [NSString stringWithFormat:@"%lld",[[_dataDict objectForKey:@"userId"] longLongValue]-1];
-//    NSString *userId = [NSString stringWithFormat:@"%lld",[[_dataDict objectForKey:@"userId"] longLongValue]];
     
-    WH_JXShareModel *shareModel = [[WH_JXShareModel alloc] init];
-    shareModel.shareTo = shareBtn.tag;
-    //分享标题
-    shareModel.shareTitle = APP_NAME;
-    
-    //分享内容
-    shareModel.shareContent = @"微信？快手？ZOOM?\n轻轻松松实现它！";
-    //    //分享链接
-    //    shareModel.shareUrl = [NSString stringWithFormat:@"%@%@?userId=%lld&language=%@",g_config.shareUrl,act_ShareBoss,[[_dataDict objectForKey:@"userId"] longLongValue],[JXMyTools getCurrentSysLanguage]];
-    //分享链接
-    shareModel.shareUrl = g_config.website;
-    
-    //分享头像
-
-//    shareModel.shareImageUrl = url;
-    shareModel.shareImage = [UIImage imageNamed:@"appLogo"];
-    [[WH_JXShareManager defaultManager] shareWith:shareModel delegate:self];
     
 }
 

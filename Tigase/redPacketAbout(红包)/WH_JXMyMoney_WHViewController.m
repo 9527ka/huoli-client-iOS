@@ -8,8 +8,8 @@
 
 #import "WH_JXMyMoney_WHViewController.h"
 #import "UIImage+WH_Color.h"
-#import "WH_JXCashWithDraw_WHViewController.h"
-#import "WH_JXRecharge_WHViewController.h"
+#import "WH_WithDreawVC.h"
+#import "WH_RechargeVC.h"
 #import "WH_JXRecordCode_WHVC.h"
 #import "WH_JXMoneyMenu_WHViewController.h"
 #import "WH_JXRecordCode_WHVC.h"
@@ -247,9 +247,7 @@
     _rechargeBtn.enabled = NO;
     [self performSelector:@selector(WH_delayButtonReset) withObject:nil afterDelay:0.5];
     
-    WH_JXRecharge_WHViewController * rechargeVC = [[WH_JXRecharge_WHViewController alloc] init];
-    
-//    [g_window addSubview:rechargeVC.view];
+    WH_RechargeVC * rechargeVC = [[WH_RechargeVC alloc] init];
     [g_navigation pushViewController:rechargeVC animated:YES];
 }
 -(void)WH_withdrawalsBtnAction:(UIButton *)button{
@@ -259,8 +257,7 @@
     _withdrawalsBtn.enabled = NO;
     [self performSelector:@selector(WH_delayButtonReset) withObject:nil afterDelay:0.5];
     
-    WH_JXCashWithDraw_WHViewController * cashWithVC = [[WH_JXCashWithDraw_WHViewController alloc] init];
-//    [g_window addSubview:cashWithVC.view];
+    WH_WithDreawVC * cashWithVC = [[WH_WithDreawVC alloc] init];
     [g_navigation pushViewController:cashWithVC animated:YES];
 }
 

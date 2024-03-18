@@ -45,7 +45,6 @@
 #import "WH_JXShareFileObject.h"
 #import "WH_JXFileDetail_WHViewController.h"
 
-#import "JXMapData.h"
 #import "WH_JXSendRedPacket_WHViewController.h"
 
 #import "WH_JXredPacketDetail_WHVC.h"
@@ -95,7 +94,6 @@
 #import "WH_WeiboViewControlle.h"
 #import "ObjUrlData.h"
 #import "JXSynTask.h"
-#import "JXGoogleMapVC.h"
 #import "RITLPhotosViewController.h"
 #import "RITLPhotosDataManager.h"
 #import "WH_JXActionSheet_WHVC.h"
@@ -194,9 +192,6 @@
 @property (nonatomic, strong) ATMHud *chatWait;
 @property (nonatomic, assign) int sendIndex;
 
-@property (nonatomic, strong) JXLocationVC *locVC;
-@property (nonatomic, strong) JXGoogleMapVC *gooMap;
-
 @property (nonatomic, assign) int isBeenBlack;
 @property (nonatomic, assign) int friendStatus;
 
@@ -237,7 +232,6 @@
 
 @property (nonatomic, strong) NSDictionary *dataDict;
 @property (nonatomic, assign) BOOL isMapMsg; // 发送的是不是地图消息
-@property (nonatomic, strong) JXMapData *mapData;
 
 @property (nonatomic, strong) NSString *objToMsg;// 回复谁的消息，存json数据
 @property (nonatomic, strong) NSString *hisReplyMsg; // 回复历史水印
@@ -486,32 +480,6 @@
     if (recording) {
         return;
     }
-    WH_JXMessageObject *msg = notification.object;
-    double location_x = [msg.location_x doubleValue];
-    double location_y = [msg.location_y doubleValue];
-    
-    JXMapData * mapData = [[JXMapData alloc] init];
-    mapData.latitude = [NSString stringWithFormat:@"%f",location_x];
-    mapData.longitude = [NSString stringWithFormat:@"%f",location_y];
-    NSArray * locations = @[mapData];
-    mapData.title = msg.objectId;
-    BOOL isShowGoo = [g_myself.isUseGoogleMap intValue] > 0 ? YES : NO;
-    if (isShowGoo) {
-        _gooMap = [JXGoogleMapVC alloc] ;
-        _gooMap.locations = [NSMutableArray arrayWithArray:locations];
-        _gooMap.locationType = JXGooLocationTypeShowStaticLocation;
-        _gooMap.placeNames = msg.objectId;
-        _gooMap = [_gooMap init];
-        [g_navigation pushViewController:_gooMap animated:YES];
-    }else {
-        JXLocationVC * vc = [JXLocationVC alloc];
-        vc.placeNames = msg.objectId;
-        vc.locations = [NSMutableArray arrayWithArray:locations];
-        vc.locationType = JXLocationTypeShowStaticLocation;
-        vc = [vc init];
-        [g_navigation pushViewController:vc animated:YES];
-    }
-
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -713,7 +681,6 @@
         _moreView.wh_onVideo  = @selector(pickVideo);
         _moreView.onCard  = @selector(onCard);
         _moreView.onFile  = @selector(onFile);
-        _moreView.onLocation  = @selector(onLocation);
         _moreView.onCamera = @selector(onCamera);
         _moreView.onShake = @selector(WH_onShake);
         _moreView.onCollection = @selector(onCollection);
@@ -2065,7 +2032,6 @@
 //    [_voice release];
 //    _poolSend = nil;
 
-    _locationVC = nil;
     self.chatPerson = nil;
 //    [super dealloc];
     
@@ -5267,12 +5233,7 @@
 
 //聊天位置被点击
 -(void)onDidLocation:(WH_JXMessageObject*)msg{
-    JXLocationVC* vc = [JXLocationVC alloc];
-    vc.longitude = [msg.location_y doubleValue];
-    vc.latitude = [msg.location_x doubleValue];
-    vc.locationType = JXLocationTypeShowStaticLocation;
-    vc = [vc init];
-    [g_navigation pushViewController:vc animated:YES];
+   
 }
 
 //cell里的图片，被点击后的处理事件
@@ -7201,135 +7162,8 @@
     return NO;
 }
 
--(void)onLocation{
-    
-    [self hideKeyboard:YES];
-    if([self showDisableSay])
-        return;
-    if([self sendMsgCheck]){
-        return;
-    }
-
-    if (g_server.latitude <= 0 && g_server.longitude <= 0) {
-        g_server.latitude  = 22.6;
-        g_server.longitude = 114.04;
-    }
-    
-    BOOL isShowGoo = [g_myself.isUseGoogleMap intValue] > 0 ? YES : NO;
-    if (isShowGoo) {
-        _gooMap = [JXGoogleMapVC alloc];
-        _gooMap.isSend = YES;
-        _gooMap.delegate  = self;
-        _gooMap.locationType = JXGooLocationTypeCurrentLocation;
-        _gooMap.didSelect = @selector(onSelLocation:);
-        
-        _gooMap = [_gooMap init];
-        [g_navigation pushViewController:_gooMap animated:YES];
-    } else {
-        _locVC = [JXLocationVC alloc];
-        _locVC.isSend = YES;
-        _locVC.locationType = JXLocationTypeCurrentLocation;
-        _locVC.delegate  = self;
-        _locVC.didSelect = @selector(onSelLocation:);
-        
-        _locVC = [_locVC init];
-        
-        [g_navigation pushViewController:_locVC animated:YES];
-    }
-
-}
-
-
--(void)onSelLocation:(JXMapData*)location{
-    //上传图片
-    if (location.imageUrl) {
-        self.isMapMsg = YES;
-        self.mapData = location;
-        /*直接上传服务器,改为上传obs*/
-//        [g_server uploadFile:location.imageUrl validTime:self.chatPerson.chatRecordTimeOut messageId:nil toView:self];
-        [OBSHanderTool handleUploadFile:location.imageUrl validTime:self.chatPerson.chatRecordTimeOut messageId:@"" toView:self success:^(int code, NSString * _Nonnull fileUrl, NSString * _Nonnull fileName) {
-            if (code == 1) {
-                //请求
-                NSMutableDictionary* p = [NSMutableDictionary dictionary];
-                [p setValue:fileUrl forKey:@"oUrl"];
-                [p setValue:fileName forKey:@"oFileName"];
-                [p setValue:@"1" forKey:@"status"];
-                if (self.isMapMsg) {
-                    [self sendMapMsgWithDict:p];
-                }else {
-                    [self WH_doSendAfterUpload:p];
-                }
-                p = nil;
-            }
-        } failed:^(NSError * _Nonnull error) {
-            
-        }];
-    }
-}
-
-
 - (void)sendMapMsgWithDict:(NSDictionary *)dict {
-    NSString *userId = self.userIds[self.groupMessagesIndex];
-    NSString *userName = self.userNames[self.groupMessagesIndex];
-    
-    WH_JXMessageObject *msg=[[WH_JXMessageObject alloc]init];
-    msg.timeSend     = [NSDate date];
-    msg.fromUserId   = MY_USER_ID;
-    msg.fromUserName = MY_USER_NAME;
-    if([self.roomJid length]>0){
-        msg.toUserId = self.roomJid;
-        msg.isGroup = YES;
-        msg.fromUserName = _userNickName;
-    }
-    else{
-        if (self.isGroupMessages) {
-            msg.toUserId = userId;
-        }else {
-            msg.toUserId     = chatPerson.userId;
-        }
-        msg.isGroup = NO;
-    }
-    msg.location_x   = [NSNumber numberWithDouble:[self.mapData.latitude  doubleValue]];
-    msg.location_y   = [NSNumber numberWithDouble:[self.mapData.longitude doubleValue]];
-    msg.type         = [NSNumber numberWithInt:kWCMessageTypeLocation];
-    msg.isSend       = [NSNumber numberWithInt:transfer_status_ing];
-    msg.isRead       = [NSNumber numberWithBool:NO];
-//    msg.isUpload     = [NSNumber numberWithBool:NO];
-    //    msg.content = [NSString stringWithFormat:@"%@",location.subtitle];
-    msg.objectId     = [NSString stringWithFormat:@"%@",self.mapData.subtitle];
 
-    msg.isReadDel    = [NSNumber numberWithInt:NO];
-    
-    //上传图片
-    //    if (location.imageUrl) {
-    //        [g_server uploadFile:location.imageUrl toView:self];
-    //        msg.fileName = location.imageUrl;
-    //    }else{
-    msg.content = [dict objectForKey:@"oUrl"];
-    //    BOOL isShowGoo = [g_myself.isUseGoogleMap intValue] > 0 ? YES : NO;
-    //    if (isShowGoo) {
-    //        msg.content = [[NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/staticmap?center=%@,%@&size=640x480&markers=color:blue%7Clabel:S%7C62.107733,-145.541936&zoom=15",location.latitude, location.longitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    //    } else {
-    //        msg.content = [NSString stringWithFormat:@"http://api.map.baidu.com/staticimage?width=640&height=480&center=%@,%@&zoom=15",location.longitude, location.latitude];
-    //    }
-    msg.fileName = msg.content;
-    [g_xmpp sendMessage:msg roomName:self.roomJid];//发送消息
-//    }
-    [msg insert:self.roomJid];
-    [self WH_show_WHOneMsg:msg];
-    
-    if (self.isGroupMessages) {
-        self.groupMessagesIndex ++;
-        if (self.groupMessagesIndex < self.userIds.count) {
-            [self onSelLocation:self.mapData];
-        }else if (self.userIds){
-            self.groupMessagesIndex = 0;
-            [g_App showAlert:Localized(@"JX_SendComplete")];
-            return;
-        }
-        return;
-    }
-    self.isMapMsg = NO;
 }
 
 -(void)onCard{

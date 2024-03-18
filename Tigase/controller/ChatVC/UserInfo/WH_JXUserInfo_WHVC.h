@@ -8,7 +8,6 @@
 
 #import "WH_admob_WHViewController.h"
 #import "WH_JX_SelectMenuView.h"
-#import "JXGoogleMapVC.h"
 
 @class DMScaleTransition;
 
@@ -49,7 +48,6 @@
     BOOL _deleleMode;
     NSMutableArray * _titleArr;
     DMScaleTransition *_scaleTransition;
-    JXGoogleMapVC *_gooMap;
 }
 
 @property (nonatomic,strong) WH_JXUserObject* wh_user;

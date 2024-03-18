@@ -12,9 +12,8 @@
 #import "UICountingLabel.h"
 #import "WeekSignatureModel.h"
 
-#import "WH_JXCashWithDraw_WHViewController.h"
 #import "JX_NewWithdrawViewController.h"
-#import "WH_WithdrawalToBackground_WHViewController.h"
+#import "WH_WithDreawVC.h"
 
 #define PocketViewTag   1000
 #define PocketImgViewTag    6
@@ -227,19 +226,21 @@
 
 #pragma mark 提现
 - (IBAction)withDrawBtn:(id)sender {
+    
+    WH_WithDreawVC *tranVC = [[WH_WithDreawVC alloc] init];
+    [g_navigation pushViewController:tranVC animated:YES];
+    
     //提现界面
-    if ([g_config.isWithdrawToAdmin intValue] == 1) {
-        //提现到后台审核
-//        JX_NewWithdrawViewController *wvVC = [[JX_NewWithdrawViewController alloc] init];
-//        [g_navigation pushViewController:wvVC animated:YES];
-        
-        WH_WithdrawalToBackground_WHViewController *withdrawalBGVC = [[WH_WithdrawalToBackground_WHViewController alloc] init];
-        [g_navigation pushViewController:withdrawalBGVC animated:YES];
-        
-    } else {
-        WH_JXCashWithDraw_WHViewController * cashWithVC = [[WH_JXCashWithDraw_WHViewController alloc] init];
-        [g_navigation pushViewController:cashWithVC animated:YES];
-    }
+//    if ([g_config.isWithdrawToAdmin intValue] == 1) {
+//        //提现到后台审核
+//
+//        WH_WithDreawVC *tranVC = [[WH_WithDreawVC alloc] init];
+//        [g_navigation pushViewController:tranVC animated:YES];
+//
+//    } else {
+//        WH_JXCashWithDraw_WHViewController * cashWithVC = [[WH_JXCashWithDraw_WHViewController alloc] init];
+//        [g_navigation pushViewController:cashWithVC animated:YES];
+//    }
     
 }
 

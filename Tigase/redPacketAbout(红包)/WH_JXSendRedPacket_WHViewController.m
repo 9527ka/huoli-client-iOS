@@ -9,7 +9,6 @@
 #import "WH_JXSendRedPacket_WHViewController.h"
 #import "WH_JXTopSiftJobView.h"
 #import "WH_JXRedInputView.h"
-#import "WH_JXRecharge_WHViewController.h"
 #import "WH_JXVerifyPay_WHVC.h"
 #import "WH_JXPayPassword_WHVC.h"
 #import "WH_SegmentSwitch.h"
@@ -20,7 +19,7 @@
 
 //#define TopHeight 40
 
-@interface WH_JXSendRedPacket_WHViewController ()<UITextFieldDelegate,UIScrollViewDelegate,RechargeDelegate>
+@interface WH_JXSendRedPacket_WHViewController ()<UITextFieldDelegate,UIScrollViewDelegate>
 @property (nonatomic, strong) WH_JXTopSiftJobView * topSiftView;
 
 @property (nonatomic, strong) WH_JXRedInputView * luckyView;
@@ -502,11 +501,6 @@
 
 //跳转充值界面
 -(void)rechargeButtonAction{
-//    WH_JXRecharge_WHViewController * rechargeVC = [[WH_JXRecharge_WHViewController alloc]init];
-//    rechargeVC.rechargeDelegate = self;
-//    rechargeVC.isQuitAfterSuccess = YES;
-////    [g_window addSubview:rechargeVC.view];
-//    [g_navigation pushViewController:rechargeVC animated:YES];
     
     if ([g_config.aliPayStatus integerValue] != 1 && [g_config.wechatPayStatus integerValue] != 1 && [g_config.yunPayStatus integerValue] != 1) {
         //aliPayStatus;  //支付宝充值状态 1:开启 2：关闭 wechatWithdrawStatus; //微信提现状态1：开启 2：关闭
@@ -518,11 +512,7 @@
         WH_RechargeVC *rechargeVC = [[WH_RechargeVC alloc] init];
         [g_navigation pushViewController:rechargeVC animated:YES];
         
-//        WH_Recharge_WHViewController *rechargeVC = [[WH_Recharge_WHViewController alloc] init];
-//        [g_navigation pushViewController:rechargeVC animated:YES];
-        
-        //            WH_NewRecharge_WHViewController *rechargeVC = [[WH_NewRecharge_WHViewController alloc] init];
-        //            [g_navigation pushViewController:rechargeVC animated:YES];
+
     }
     
 }

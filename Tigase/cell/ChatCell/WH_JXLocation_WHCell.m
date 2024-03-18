@@ -7,8 +7,6 @@
 //
 
 #import "WH_JXLocation_WHCell.h"
-#import "JXLocationVC.h"
-//#import "JXClickSendedLocationVC.h"
 
 
 @implementation WH_JXLocation_WHCell

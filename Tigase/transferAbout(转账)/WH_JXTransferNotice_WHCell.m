@@ -36,75 +36,82 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.backgroundColor = [UIColor clearColor];
-        _baseView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, JX_SCREEN_WIDTH-20, 200)];
+        _baseView = [[UIView alloc] initWithFrame:CGRectMake(20, 10, JX_SCREEN_WIDTH-40, 200)];
         _baseView.backgroundColor = [UIColor whiteColor];
-        _baseView.layer.masksToBounds = YES;
+//
         _baseView.layer.cornerRadius = g_factory.cardCornerRadius;
-        _baseView.layer.borderColor = g_factory.cardBorderColor.CGColor;
-        _baseView.layer.borderWidth = g_factory.cardBorderWithd;
+        
+        _baseView.layer.shadowColor = HEXCOLOR(0xE2E2E2).CGColor;
+        _baseView.layer.shadowOffset = CGSizeMake(0, 0);
+        _baseView.layer.shadowOpacity = 0.5;
         [self.contentView addSubview:_baseView];
         
-        _title = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 200, 20)];
-        _title.textColor = HEXCOLOR(0x8F9CBB);
-        _title.font = [UIFont fontWithName:@"PingFangSC" size:14];
+        _title = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, 200, 20)];
+        _title.textColor = HEXCOLOR(0x161819);
+        _title.font = [UIFont systemFontOfSize:14];
         [_baseView addSubview:_title];
         
         //收款金额
-        _moneyTit = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_title.frame)+10, _baseView.frame.size.width, 18)];
+        _moneyTit = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_title.frame)+20, _baseView.frame.size.width, 18)];
         _moneyTit.text = Localized(@"JX_GetMoney");
         _moneyTit.textAlignment = NSTextAlignmentCenter;
-        _moneyTit.textColor = [UIColor lightGrayColor];
-        _moneyTit.font = [UIFont fontWithName:@"PingFangSC" size:14];
+        _moneyTit.textColor = HEXCOLOR(0xBABABA);
+        _moneyTit.font = [UIFont systemFontOfSize:12];
         [_baseView addSubview:_moneyTit];
         
         _moneyLab = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_moneyTit.frame)+10, _baseView.frame.size.width, 43)];
         _moneyLab.textAlignment = NSTextAlignmentCenter;
-        _moneyLab.font = [UIFont boldSystemFontOfSize:36];
+        _moneyLab.font = [UIFont boldSystemFontOfSize:25];
         [_baseView addSubview:_moneyLab];
 
         //第一行
-        _payTit = [[UILabel alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(_moneyLab.frame)+20, 80, 18)];
-        _payTit.textColor = [UIColor lightGrayColor];
-        _payTit.font = [UIFont fontWithName:@"PingFangSC" size:14];
+        _payTit = [[UILabel alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(_moneyLab.frame)+20, 80, 18)];
+        _payTit.textColor = HEXCOLOR(0x797979);
+        _payTit.font = [UIFont systemFontOfSize:12];
         [_baseView addSubview:_payTit];
         
-        _nameLab = [[UILabel alloc] initWithFrame:CGRectMake(90, _payTit.frame.origin.y, _baseView.frame.size.width-70, 18)];
-        _nameLab.textColor = [UIColor lightGrayColor];
+        _nameLab = [[UILabel alloc] initWithFrame:CGRectMake(70, _payTit.frame.origin.y, _baseView.frame.size.width-90, 18)];
+        _nameLab.textColor = HEXCOLOR(0x797979);
+        _nameLab.font = [UIFont systemFontOfSize:12];
+        _nameLab.textAlignment = NSTextAlignmentRight;
         [_baseView addSubview:_nameLab];
         
         //第二行
-        _noteTit = [[UILabel alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(_payTit.frame)+10, 80, 18)];
-        _noteTit.textColor = [UIColor lightGrayColor];
-        _noteTit.font = [UIFont fontWithName:@"PingFangSC" size:14];
+        _noteTit = [[UILabel alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(_payTit.frame)+8, 80, 18)];
+        _noteTit.textColor = HEXCOLOR(0x797979);
+        _noteTit.font = [UIFont systemFontOfSize:12];
         [_baseView addSubview:_noteTit];
         
-        _noteLab = [[UILabel alloc] initWithFrame:CGRectMake(90, CGRectGetMaxY(_payTit.frame)+10, _baseView.frame.size.width-70-30, 18)];
-        _noteLab.font = [UIFont fontWithName:@"PingFangSC" size:14];
-        _noteLab.textColor = [UIColor lightGrayColor];
+        _noteLab = [[UILabel alloc] initWithFrame:CGRectMake(70, CGRectGetMaxY(_payTit.frame)+8, _baseView.frame.size.width-70-20, 18)];
+        _noteLab.font = [UIFont systemFontOfSize:12];
+        _noteLab.textColor = HEXCOLOR(0x797979);
+        _noteLab.textAlignment = NSTextAlignmentRight;
         [_baseView addSubview:_noteLab];
         
         //第三行
-        _backLab = [[UILabel alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(_noteTit.frame)+10, 80, 18)];
+        _backLab = [[UILabel alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(_noteTit.frame)+8, 80, 18)];
         _backLab.text = Localized(@"JX_ReturnTheTime");
-        _backLab.textColor = [UIColor lightGrayColor];
-        _backLab.font = [UIFont fontWithName:@"PingFangSC" size:14];
+        _backLab.font = [UIFont systemFontOfSize:12];
+        _backLab.textColor = HEXCOLOR(0x797979);
         [_baseView addSubview:_backLab];
         
-        _backTime = [[UILabel alloc] initWithFrame:CGRectMake(90, _backLab.frame.origin.y, _baseView.frame.size.width-70, 18)];
-        _backTime.textColor = [UIColor lightGrayColor];
-        _backTime.font = [UIFont fontWithName:@"PingFangSC" size:14];
+        _backTime = [[UILabel alloc] initWithFrame:CGRectMake(70, _backLab.frame.origin.y, _baseView.frame.size.width-90, 18)];
+        _backTime.font = [UIFont systemFontOfSize:12];
+        _backTime.textColor = HEXCOLOR(0x797979);
+        _backTime.textAlignment = NSTextAlignmentRight;
         [_baseView addSubview:_backTime];
         
         //第四行
-        _sendLab = [[UILabel alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(_backLab.frame)+10, 80, 18)];
+        _sendLab = [[UILabel alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(_backLab.frame)+8, 80, 18)];
         _sendLab.text = Localized(@"JX_TransferTime");
-        _sendLab.textColor = [UIColor lightGrayColor];
-        _sendLab.font = [UIFont fontWithName:@"PingFangSC" size:14];
+        _sendLab.font = [UIFont systemFontOfSize:12];
+        _sendLab.textColor = HEXCOLOR(0x797979);
         [_baseView addSubview:_sendLab];
         
-        _sendTime = [[UILabel alloc] initWithFrame:CGRectMake(90, _sendLab.frame.origin.y, _baseView.frame.size.width-70, 18)];
-        _sendTime.textColor = [UIColor lightGrayColor];
-        _sendTime.font = [UIFont fontWithName:@"PingFangSC" size:14];
+        _sendTime = [[UILabel alloc] initWithFrame:CGRectMake(70, _sendLab.frame.origin.y, _baseView.frame.size.width-90, 18)];
+        _sendTime.font = [UIFont systemFontOfSize:12];
+        _sendTime.textColor = HEXCOLOR(0x797979);
+        _sendTime.textAlignment = NSTextAlignmentRight;
         [_baseView addSubview:_sendTime];
     }
     return self;
@@ -179,8 +186,8 @@
         
         
         _moneyLab.text = [NSString stringWithFormat:@"HOTC%.2f",model.money];
-        _baseView.frame = CGRectMake(10, 10, JX_SCREEN_WIDTH-20, 236);
-        _nameLab.textColor = [UIColor lightGrayColor];
+        _baseView.frame = CGRectMake(20, 10, JX_SCREEN_WIDTH-40, 236);
+        _nameLab.textColor = HEXCOLOR(0x797979);
         _nameLab.text = model.userName;
         
         [self hideTime:NO];
@@ -201,7 +208,7 @@
         }
         [self hideTime:YES];
         _moneyLab.text = [NSString stringWithFormat:@"HOTC%.2f",model.amount];
-        _baseView.frame = CGRectMake(10, 10, JX_SCREEN_WIDTH-20, 200);
+        _baseView.frame = CGRectMake(20, 10, JX_SCREEN_WIDTH-40, 200);
         _noteTit.text = @"备注内容:";
         
         _noteLab.numberOfLines = 0;
@@ -222,8 +229,8 @@
         _moneyLab.text = [NSString stringWithFormat:@"HOTC%.2f",model.money];
         _backTime.text = model.outTime;
         _sendTime.text = model.createTime;
-        _baseView.frame = CGRectMake(10, 10, JX_SCREEN_WIDTH-20, 200+56);
-        _nameLab.textColor = [UIColor lightGrayColor];
+        _baseView.frame = CGRectMake(20, 10, JX_SCREEN_WIDTH-40, 200+56);
+        _nameLab.textColor = HEXCOLOR(0x797979);
         _backLab.text = Localized(@"JX_ReturnTheTime");
         _sendLab.text = Localized(@"JX_TransferTime");
     }else {
@@ -247,13 +254,15 @@
         }
         [self hideTime:YES];
         _moneyLab.text = [NSString stringWithFormat:@"HOTC%.2f",model.money];
-        _baseView.frame = CGRectMake(10, 10, JX_SCREEN_WIDTH-20, 200);
-        _nameLab.textColor = [UIColor lightGrayColor];
+        _baseView.frame = CGRectMake(20, 10, JX_SCREEN_WIDTH-40, 200);
+        _nameLab.textColor = HEXCOLOR(0x797979);
     }
     _title.text = [self getTitle:[msg.type intValue]];
     if ([msg.type intValue] != kWCMessageTypeBankCardTrans && [msg.type intValue] != kWCMessageTypeH5PaymentReturn){
         _noteLab.text = [self getNote:msg];
     }
+    
+    
 }
 
 #pragma mark - 根据字符串计算label高度
@@ -299,10 +308,12 @@
 
 
 - (NSString *)getTitle:(int)type {
-    NSString *string;
+    NSString *string = @"消息通知";
     // 过期退还
     if (type == kWCMessageTypeTransferBack) {
         string = Localized(@"JX_RefundNoticeOfOverdueTransfer");
+    }else if(type == kWCMessageTypeRedPacketReturn){
+        string = @"退回通知";
     }
     // 支付通知
     else if (type == kWCMessageTypePaymentOut || type == kWCMessageTypeReceiptOut) {

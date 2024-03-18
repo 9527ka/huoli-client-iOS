@@ -28,11 +28,11 @@
 #import "WH_AnimOperationManager.h"
 
 #import "WH_JXUserInfo_WHVC.h"
-#import "WH_JXRecharge_WHViewController.h"
+#import "WH_RechargeVC.h"
 
 #define BARRAGE_PRICE 1.0
 
-@interface WH_JXLiveRoom_WHViewController : WH_admob_WHViewController<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextViewDelegate,JXLiveMemDetailDelegate,UIGestureRecognizerDelegate,RechargeDelegate>{
+@interface WH_JXLiveRoom_WHViewController : WH_admob_WHViewController<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextViewDelegate,JXLiveMemDetailDelegate,UIGestureRecognizerDelegate>{
     BOOL _selected; //cell点击延时,防止多次快速点击
     BOOL _stopSlide; //是否停止自动刷新到最后一行
     BOOL _editing;  //是否正在输入,键盘弹出

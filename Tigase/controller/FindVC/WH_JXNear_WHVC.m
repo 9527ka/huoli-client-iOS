@@ -24,8 +24,6 @@
 #import "MJRefresh.h"
 #import "WH_JXNear_WHCell.h"
 #import "WH_JXTopSiftJobView.h"
-#import "WH_JXLocMap_WHVC.h"
-#import "WH_JXGooMap_WHVC.h"
 
 #import "WH_AddFriend_WHController.h"
 
@@ -314,45 +312,7 @@
 }
 
 -(void)createMap{
-//    NSString *countryCode = [[NSUserDefaults standardUserDefaults] objectForKey:kISOcountryCode];
-//    if ([countryCode isEqualToString:@"CN"] || !countryCode) {
-    
-//        if (!_mapVC) {
-//            _mapVC = [[WH_JXLocMap_WHVC alloc]initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH, self.wh_tableBody.frame.size.height) andType:2];
-//            [self.view addSubview:_mapVC.view];
-//        }
-//        _mapVC.view.frame = self.wh_tableBody.frame;
-//        _mapVC.view.hidden = NO;
-        
-//    }else {
-//    BOOL isShowGoo = [g_default boolForKey:kUseGoogleMap];
-    BOOL isShowGoo = [g_myself.isUseGoogleMap intValue] > 0 ? YES : NO;
-    if (!isShowGoo) {
-        if (!_wh_mapVC) {
-            _wh_mapVC = [[WH_JXLocMap_WHVC alloc]initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH, self.wh_tableBody.frame.size.height) andType:2];
-            [self.view addSubview:_wh_mapVC.view];
-        }
-        _wh_mapVC.search = _wh_search;
-        _wh_mapVC.view.frame = self.wh_tableBody.frame;
-        _wh_mapVC.view.hidden = NO;
-        [_wh_mapVC getDataByCurrentLocation];
-    } else {
-        if (!_wh_goomapVC) {
-            _wh_goomapVC = [[WH_JXGooMap_WHVC alloc] initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH, self.wh_tableBody.frame.size.height) andType:2];
-            [self.view addSubview:_wh_goomapVC.view];
-        }
-        _wh_goomapVC.search = _wh_search;
-        _wh_goomapVC.view.frame = self.wh_tableBody.frame;
-        _wh_goomapVC.view.hidden = NO;
-        [_wh_goomapVC getDataByCurrentLocation];
-    }
-    
 
-    
-        //AppStore上线ipv6被拒,先隐藏google地图
-//        [self checkAfterScroll:0];
-//        [_topSiftView resetAllParaBtn];
-//    }
 }
 -(void)WH_getServerData{
     [_wait start];
@@ -574,8 +534,7 @@
             [_collectionView reloadData];
             [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
         }
-        _wh_mapVC.view.hidden = YES;
-        _wh_goomapVC.view.hidden = YES;
+       
     }else if (offsetX == 1){
         _selMenu = 1;
         [self changeToMap];

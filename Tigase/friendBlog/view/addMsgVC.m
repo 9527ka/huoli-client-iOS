@@ -21,8 +21,6 @@
 #import "WH_JXMediaObject.h"
 #import "LXActionSheet.h"
 #import "WH_myMedia_WHVC.h"
-#import "JXLocationVC.h"
-#import "JXMapData.h"
 #import "WhoCanSeeViewController.h"
 #import "WH_JXSelFriend_WHVC.h"
 #import "WH_JXSelectFriends_WHVC.h"
@@ -86,7 +84,6 @@ typedef enum {
 @property (nonatomic, assign) NSInteger currentLableIndex;
 
 
-@property (nonatomic, strong) JXLocationVC *locationVC;
 @property (nonatomic, strong) UIButton *finishBtn;
 @end
 
@@ -1194,14 +1191,7 @@ typedef enum {
 }
 
 -(void)locBtnAction:(UIButton *)button{
-    _locationVC = [JXLocationVC alloc];
-    _locationVC.isSend = YES;
-    _locationVC.locationType = JXLocationTypeCurrentLocation;
-    _locationVC.delegate  = self;
-    _locationVC.didSelect = @selector(onSelLocation:);
-    _locationVC = [_locationVC init];
-//    [g_window addSubview:_locationVC.view];
-    [g_navigation pushViewController:_locationVC animated:YES];
+   
 }
 -(void)whoCanSeeBtnAction:(UIButton *)button{
     WhoCanSeeViewController * whoVC = [[WhoCanSeeViewController alloc] init];
@@ -1617,40 +1607,6 @@ typedef enum {
     [self showVideos];
     file = nil;
 }
-
-
--(void)onSelLocation:(JXMapData*)location{
-    
-    _coor = (CLLocationCoordinate2D){[location.latitude doubleValue],[location.longitude doubleValue]};
-    
-    if (location.title.length > 0) {
-        _locStr = [NSString stringWithFormat:@"%@ %@",location.title,location.subtitle];
-    }else{
-        _locStr = location.subtitle;
-    }
-//    _locLabel.text = _locStr;
-    [self.locBtn setTitle:_locStr forState:UIControlStateSelected];
-    self.locBtn.selected = YES;
-}
-
-//-(void)newAudio:(recordAudioVC *)sender
-//{
-//    if( ![[NSFileManager defaultManager] fileExistsAtPath:sender.outputFileName] )
-//        return;
-//    NSString* file = sender.outputFileName;
-//
-//    WH_JXMediaObject* p = [[WH_JXMediaObject alloc]init];
-//    p.userId = g_myself.userId;
-//    p.fileName = file;
-//    p.isVideo = [NSNumber numberWithBool:NO];
-//    p.timeLen = [NSNumber numberWithInt:sender.timeLen];
-//    [p insert];
-////    [p release];
-//
-//    audioFile = [file copy];
-//    [self showAudios];
-//    file = nil;
-//}
 
 -(UIButton*)WH_createMiXinButton:(NSString*)title icon:(NSString*)icon action:(SEL)action parent:(UIView*)parent{
     UIButton* btn = [UIFactory WH_create_WHButtonWithImage:icon

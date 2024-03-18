@@ -12,7 +12,7 @@
 #import "WH_JXTextField.h"
 #import "WH_JXUserObject.h"
 #import "WH_JXSendRedPacket_WHViewController.h"
-#import "WH_JXCashWithDraw_WHViewController.h"
+#import "WH_WithDreawVC.h"
 #import "WH_JXTransfer_WHViewController.h"
 #import "WH_JXInputMoney_WHVC.h"
 #import "WH_webpage_WHVC.h"
@@ -318,7 +318,7 @@
         [g_navigation popToViewController:[WH_MyWallet_WHViewController class] animated:YES];
     }
     else if (self.enterType == JXEnterTypeWithdrawal){
-        [g_navigation popToViewController:[WH_JXCashWithDraw_WHViewController class] animated:YES];
+        [g_navigation popToViewController:[WH_WithDreawVC class] animated:YES];
     }
     else if (self.enterType == JXEnterTypeTransfer){
         [g_navigation popToViewController:[WH_JXTransfer_WHViewController class] animated:YES];

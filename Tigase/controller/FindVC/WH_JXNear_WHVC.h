@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class WH_SearchData;
-@class WH_JXLocMap_WHVC;
-@class WH_JXGooMap_WHVC;
+
 @interface WH_JXNear_WHVC: WH_admob_WHViewController{
     NSMutableArray* _array;
     int _refreshCount;
@@ -26,8 +25,6 @@
 @property (nonatomic,assign)int wh_page;
 @property (nonatomic,assign)BOOL wh_isSearch;
 
-@property (nonatomic,strong) WH_JXLocMap_WHVC *wh_mapVC;
-@property (nonatomic,strong) WH_JXGooMap_WHVC *wh_goomapVC;
 
 -(void)onSearch;
 -(void)WH_getServerData;

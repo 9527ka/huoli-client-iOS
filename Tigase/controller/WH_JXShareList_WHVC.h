@@ -9,8 +9,6 @@
 #import "WH_admob_WHViewController.h"
 #import <UIKit/UIKit.h>
 
-#import "WH_JXShareModel.h"
-
 @protocol ShareListDelegate <NSObject>
 
 - (void)didShareBtnClick:(UIButton *)shareBtn;

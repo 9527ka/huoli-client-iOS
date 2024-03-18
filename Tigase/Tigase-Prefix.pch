@@ -587,7 +587,6 @@
 #import "UIImageView+WebCache.h"
 #import "JXMyTools.h"
 #import "WH_SkinManage.h"
-#import "MXWechatConfig.h"
 #import "UIControl+WH_Custom.h"
 #import "WH_JXHttpRequet.h"
 #import "WH_JXNetwork.h"

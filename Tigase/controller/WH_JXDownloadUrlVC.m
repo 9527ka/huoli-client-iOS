@@ -22,15 +22,15 @@
     [super viewDidLoad];
    
     self.iOSBgView.layer.cornerRadius = g_factory.cardCornerRadius;
-    self.iOSBgView.layer.borderColor = g_factory.cardBorderColor.CGColor;
-    self.iOSBgView.layer.borderWidth = g_factory.cardBorderWithd;
+//    self.iOSBgView.layer.borderColor = g_factory.cardBorderColor.CGColor;
+//    self.iOSBgView.layer.borderWidth = g_factory.cardBorderWithd;
     
     self.androdBgView.layer.cornerRadius = g_factory.cardCornerRadius;
-    self.androdBgView.layer.borderColor = g_factory.cardBorderColor.CGColor;
-    self.androdBgView.layer.borderWidth = g_factory.cardBorderWithd;
+//    self.androdBgView.layer.borderColor = g_factory.cardBorderColor.CGColor;
+//    self.androdBgView.layer.borderWidth = g_factory.cardBorderWithd;
     
-    self.download1Btn.layer.cornerRadius = g_factory.cardCornerRadius;
-    self.download2Btn.layer.cornerRadius = g_factory.cardCornerRadius;
+    self.download1Btn.layer.cornerRadius = 24.0f;
+    self.download2Btn.layer.cornerRadius = 24.0f;
     
 }
 - (IBAction)backAction:(id)sender {

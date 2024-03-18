@@ -30,7 +30,7 @@
     [self WH_createHeadAndFoot];
     self.wh_isShowFooterPull = NO;
     self.wh_isShowHeaderPull = NO;
-    _table.backgroundColor = HEXCOLOR(0xefeff4);
+    _table.backgroundColor = [UIColor whiteColor];
     [self getData];
 }
 

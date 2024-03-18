@@ -7,8 +7,7 @@
 //
 
 #import "WH_JXAccountBinding_WHVC.h"
-#import "WXApi.h"
-#import "JX_QQ_manager.h"
+
 #import "WH_ChangeTheBoundPhoneNumber_WHViewController.h"
 #import "WH_JXUserObject+GetCurrentUser.h"
 
@@ -16,7 +15,7 @@
 #define MY_INSET  0  // 每行左右间隙
 #define TOP_ADD_HEIGHT  400  // 顶部添加的高度，防止下拉顶部空白
 
-@interface WH_JXAccountBinding_WHVC () <UIAlertViewDelegate,WXApiDelegate,WXApiManagerDelegate>
+@interface WH_JXAccountBinding_WHVC () <UIAlertViewDelegate>
 @property (nonatomic, strong) UISwitch *wxBindStatus;
 @property (nonatomic, strong) UISwitch *wxBindQQStatus;
 @property (nonatomic, strong) UISwitch *BindAlipayStatus;
@@ -25,7 +24,6 @@
 
 @implementation WH_JXAccountBinding_WHVC
 {
-    JX_QQ_manager *qqManager;
     UILabel *_phoneLb;
     UIView *_bottomBgView;
     UISwitch *_selectedSwitch;//点击的switch
@@ -41,8 +39,6 @@
     [self WH_getServerData];
     
     [self WH_setupViews];
-    // 微信登录回调
-    [WXApiManager sharedManager].delegate = self;
     
 #ifdef IS_SHOW_BINDTELEPHONE
 //    [g_server getUser:MY_USER_ID toView:self];
@@ -51,7 +47,7 @@
     
 #endif
     
-    [g_notify addObserver:self selector:@selector(authRespNotification:) name:kWxSendAuthResp_WHNotification object:nil];
+//    [g_notify addObserver:self selector:@selector(authRespNotification:) name:kWxSendAuthResp_WHNotification object:nil];
     
     //WH_ChangeTheBoundPhoneNumber_Notification
     [g_notify addObserver:self selector:@selector(wh_changeTheBoundPhoneNumberNotification) name:@"WH_ChangeTheBoundPhoneNumber_Notification" object:nil];
@@ -245,16 +241,9 @@
         }
         if (alertView.tag == 1002) {
             if ([self.isWXBinding intValue] == 0) {
-                SendAuthReq* req = [[SendAuthReq alloc] init];
-                req.scope = @"snsapi_userinfo"; // @"post_timeline,sns"
-                req.state = @"login";
-                req.openID = @"";
-                [WXApi sendAuthReq:req
-                    viewController:self
-                          delegate:[WXApiManager sharedManager] completion:nil];
+               
             }else if ([self.isWXBinding intValue] == 1) {
                 //绑定扣扣
-                [self qqLoginMethod];
             }
         }
         if (alertView.tag == 100) {
@@ -280,50 +269,6 @@
         
     }
 }
-
-
-- (void)qqLoginMethod {
-    qqManager = [[JX_QQ_manager alloc] init];
-    [qqManager QQ_login];
-    __weak typeof(self)weakSelf = self;
-    qqManager.loginCallBack = ^(TencentOAuth * _Nonnull tecentOauth) {
-        //NSLog(@"openId : %@", tecentOauth.openId);
-        __strong typeof(weakSelf)strongSelf = weakSelf;
-        g_server.openId = tecentOauth.openId;
-        
-//        WH_JXUserObject *user = [[WH_JXUserObject alloc] init];
-//        if ([g_default objectForKey:kMY_USER_PASSWORD]) {
-//            user.password = [g_default objectForKey:kMY_USER_PASSWORD];
-//        }
-//        NSString *areaCode = [g_default objectForKey:kMY_USER_AREACODE];
-//        user.areaCode = areaCode.length > 0 ? areaCode : @"86";
-//        if ([g_default objectForKey:kMY_USER_LoginName]) {
-//            user.telephone = [g_default objectForKey:kMY_USER_LoginName];
-//        }
-        g_server.openId = tecentOauth.openId;
-        //        [g_server thirdLogin:user type:1 openId:g_server.openId isLogin:YES toView:strongSelf];
-        
-        
-        [g_server WH_otherBindUserInfoWithOpenId:tecentOauth.openId otherToken:tecentOauth.accessToken otherType:@"1" toView:strongSelf];
-        
-    };
-}
-
-
-
-//微信授权返回
-- (void)authRespNotification:(NSNotification *)notif {
-    SendAuthResp *response = notif.object;
-    NSString *strMsg = [NSString stringWithFormat:@"Auth结果 code:%@,state:%@,errcode:%d", response.code, response.state, response.errCode];
-    //NSLog(@"-------%@",strMsg);
-    //绑定第三方账号
-    //    [g_server getWxOpenId:response.code toView:self];
-    [g_server WH_otherBindUserInfoWithOpenId:response.code otherToken:nil otherType:@"2" toView:self];
-    
-}
-
-
-
 
 #pragma mark - 请求成功回调
 -(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{

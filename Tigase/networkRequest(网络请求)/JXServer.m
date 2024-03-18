@@ -13,7 +13,6 @@
 #import "WH_JXImageView.h"
 #import "WH_VersionManageTool.h"
 //#import "MobClick.h"
-#import "md5.h"
 #import "WeiboReplyData.h"
 #import "WH_JXLoginVC.h"
 #import "WH_webpage_WHVC.h"

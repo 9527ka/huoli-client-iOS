@@ -7,26 +7,17 @@
 #import "WH_JXGroup_WHViewController.h"
 #import "WH_JXLoginVC.h"
 #import "BPush.h"
-#import <UMShare/UMShare.h>
-#import <UMCommon/UMCommon.h>
-#import "UMSocialWechatHandler.h"
-#import "JXShareManage.h"
-//#import <AlipaySDK/AlipaySDK.h>
-#import <BaiduMapAPI_Map/BMKMapComponent.h>
 #if Meeting_Version
 #if !TARGET_IPHONE_SIMULATOR
 #import <JitsiMeet/JitsiMeet.h>
 #endif
 #endif
 #ifdef USE_GOOGLEMAP
-#import <GoogleMaps/GoogleMaps.h>
 #endif
-#import <AlipaySDK/AlipaySDK.h>
 #import "WH_NumLock_WHViewController.h"
 #import <Bugly/Bugly.h>
 #import "WH_JXLoginVC.h"
 #import "WH_AdvertisingViewController.h"
-#import "JX_QQ_manager.h"
 #import "WH_JXMsg_WHViewController.h"
 #import <WebKit/WebKit.h>
 #import "AppDelegate+ShareSDK.h"
@@ -49,7 +40,6 @@
 #endif
 #endif
 
-static  BMKMapManager* _baiduMapManager;
 static  WH_webpage_WHVC *webVC;
 
 - (void)dealloc
@@ -491,25 +481,20 @@ static  WH_webpage_WHVC *webVC;
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-    [[JXShareManage sharedManager] handleOpenURL:url delegate:nil];
     
-    return  [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+    return YES;
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    if (YES == [TencentOAuth CanHandleOpenURL:url])
-    {
-        return [TencentOAuth HandleOpenURL:url];
-    }
+   
 #if Meeting_Version
 #if !TARGET_IPHONE_SIMULATOR
 //    [JitsiMeetView application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 #endif
 #endif
-    [[JXShareManage sharedManager] handleOpenURL:url delegate:nil];
     
-    return [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+    return YES;
 }
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler{
    
@@ -517,7 +502,7 @@ static  WH_webpage_WHVC *webVC;
 //          // NSURL *url = userActivity.webpageURL;
 //          // TODO 根据需求进行处理
 //       }
-     return  [WXApi handleOpenUniversalLink:userActivity delegate:[WXApiManager sharedManager]];
+     return YES;
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
@@ -525,89 +510,6 @@ static  WH_webpage_WHVC *webVC;
         return YES;
 }
 
-
-//// NOTE: 9.0以后使用新API接口
-//- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
-//{
-//
-//    if (YES == [TencentOAuth CanHandleOpenURL:url])
-//    {
-//        [QQApiInterface handleOpenURL:url delegate:(id<QQApiInterfaceDelegate>)[JX_QQ_manager class]];
-//        return [TencentOAuth HandleOpenURL:url];
-//    }
-//
-//    #if Meeting_Version
-//    #if !TARGET_IPHONE_SIMULATOR
-//
-//        [[JitsiMeet sharedInstance] application:app openURL:url options:options];
-//
-//    #endif
-//    #endif
-//
-//
-//    if ([url.host isEqualToString:@"safepay"]) {
-//        // 授权跳转支付宝钱包进行支付，处理支付结果
-//        [[AlipaySDK defaultService] processAuth_V2Result:url standbyCallback:^(NSDictionary *resultDic) {
-//            //NSLog(@"result = %@",resultDic);
-//            // 解析 auth code
-//            NSString *result = resultDic[@"result"];
-//            NSString *authCode = nil;
-//            if (result.length>0) {
-//                NSArray *resultArr = [result componentsSeparatedByString:@"&"];
-//                for (NSString *subResult in resultArr) {
-//                    if (subResult.length > 10 && [subResult hasPrefix:@"auth_code="]) {
-//                        authCode = [subResult substringFromIndex:10];
-//                        break;
-//                    }
-//                }
-//            }
-//            //NSLog(@"授权结果 authCode = %@", authCode?:@"");
-//        }];
-//        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-//            //安装支付宝客户端回调
-//            //NSLog(@"支付宝客户端支付结果result = %@",resultDic);
-//            [g_notify postNotificationName:@"kAlipayPaymentCallbackNotification" object:resultDic];
-////            if (resultDic && [resultDic objectForKey:@"resultStatus"] && ([[resultDic objectForKey:@"resultStatus"] intValue] == 9000)) {
-////                //支付成功
-////            } else {
-////                // 支付失败
-////            }
-//        }];
-//    }
-//    NSString *urlString = [url.absoluteString stringByRemovingPercentEncoding];
-//    if ([urlString containsString:@"BLN"]) {
-//        [self handleBLNShareWithUrl:url];
-//    }
-//    //wahu
-//    //返回APP处理
-//    if ([url.host containsString:@"wahu"]) {
-//
-//        NSString *urlDescStr = url.description;
-//        //NSLog(@"==================urlDescStr:%@" ,urlDescStr);
-//        if (urlDescStr.length > 0) {
-//            NSArray *array = [urlDescStr componentsSeparatedByString:@"?"];
-//            if (array.count > 1) {
-//                NSString *descStr = [array objectAtIndex:1];
-//                NSArray *array2 = [descStr componentsSeparatedByString:@"&"];
-//                NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-//                for (int i = 0; i < array2.count; i++) {
-//                    NSString *str2 = [array2 objectAtIndex:i];
-//                    NSArray *array3 = [str2 componentsSeparatedByString:@"="];
-//                    [dict setObject:(array3.count > 1)?[array3 objectAtIndex:1]:@"" forKey:(array3.count > 0)?[array3 objectAtIndex:0]:@""];
-//                }
-//
-//                [g_default setObject:dict forKey:@"shareInfo"];
-//                [g_default synchronize];
-//
-//            }
-//        }
-//
-//    }
-//
-//    [[JXShareManage sharedManager] handleOpenURL:url delegate:nil];
-//
-//    return [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
-//}
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
@@ -620,30 +522,17 @@ static  WH_webpage_WHVC *webVC;
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     
-//    if(g_server.isLogin) {
-//        [g_server outTime:nil];
-//        g_xmpp.isCloseStream = YES;
-//        g_xmpp.isReconnect = NO;
-//        [g_xmpp logout];
-//    }
+
 }
 
 - (void) showAlert: (NSString *) message
 {
-//    UIAlertView *av = [[UIAlertView alloc] initWithTitle:APP_NAME message:message delegate:self cancelButtonTitle:Localized(@"JX_Confirm") otherButtonTitles:nil, nil];
-//
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//
-//        [av show];
-//    });
-	
+
     [GKMessageTool showText:message];
     
-//    [av release];
 }
 
-- (UIAlertView *) showAlert: (NSString *) message delegate:(id)delegate
-{
+- (UIAlertView *) showAlert: (NSString *) message delegate:(id)delegate{
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:APP_NAME message:message delegate:delegate cancelButtonTitle:Localized(@"JX_Cencal") otherButtonTitles:Localized(@"JX_Confirm"), nil];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -700,21 +589,6 @@ static  WH_webpage_WHVC *webVC;
 -(void)endCall{
     if (_uuid) {
         
-        //        self.isShowCall = NO;
-//        CXEndCallAction * endAction = [[CXEndCallAction alloc] initWithCallUUID:_uuid];
-//        CXTransaction * trans = [[CXTransaction alloc] initWithAction:endAction];
-//
-//        CXCallController * callVC = [[CXCallController alloc] initWithQueue:dispatch_get_main_queue()];
-//        [callVC requestTransaction:trans completion:^(NSError * _Nullable error) {
-//            if (error) {
-//                //                //NSLog(@"%@",error.description);
-//                [self.provider reportCallWithUUID:_uuid endedAtDate:nil reason:CXCallEndedReasonUnanswered];
-//            }
-//            if ([UIApplication sharedApplication].applicationState == UIApplicationStateBackground) {
-//                [self applicationDidEnterBackground:[UIApplication sharedApplication]];
-//            }
-//            _uuid = nil;
-//        }];
     }
     
     if ([UIApplication sharedApplication].applicationState == UIApplicationStateBackground) {
@@ -764,36 +638,13 @@ static  WH_webpage_WHVC *webVC;
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 }
 
-//// 此方法是 用户点击了通知，应用在前台 或者开启后台并且应用在后台 时调起
-//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
-//{
-//    completionHandler(UIBackgroundFetchResultNewData);
-//    // 打印到日志 textView 中
-////    //NSLog(@"********** iOS7.0之后 background **********");
-//    // 应用在前台 或者后台开启状态下，不跳转页面，让用户选择。
-//    if (application.applicationState == UIApplicationStateActive || application.applicationState == UIApplicationStateBackground) {
-////        //NSLog(@"acitve or background");
-////        [self showAlert:userInfo[@"aps"][@"alert"]];
-//    }
-//    else//杀死状态下，直接跳转到跳转页面。
-//    {
-//    }
-//}
-
-
 // 在 iOS8 系统中，还需要添加这个方法。通过新的 API 注册推送服务
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
 {
     [application registerForRemoteNotifications];
 }
 
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
-{
-    //NSLog(@"deviceToken:%@",deviceToken);
-//    NSString *token = [NSString stringWithFormat:@"%@",deviceToken];
-//    NSString * token = [[[[deviceToken description] stringByReplacingOccurrencesOfString:@"<" withString:@""] stringByReplacingOccurrencesOfString:@">" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""];
-//    //apnsToken 需要提交给服务器
-//    [g_default setObject:token forKey:@"apnsToken"];
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
     
     if (@available(iOS 13.0, *)) {
         NSMutableString *deviceTokenString = [NSMutableString string];
