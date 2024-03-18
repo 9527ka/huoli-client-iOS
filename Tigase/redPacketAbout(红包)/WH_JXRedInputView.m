@@ -7,6 +7,7 @@
 //
 
 #import "WH_JXRedInputView.h"
+#import "NSString+ContainStr.h"
 
 #define RowHeight 55
 #define RowMargin 12
@@ -118,7 +119,7 @@
     _wh_moneyUnit.frame = CGRectMake(CGRectGetWidth(_wh_moneyView.frame)-15-45, 0, 50, RowHeight);
     _wh_moneyTextField.frame = CGRectMake(CGRectGetMaxX(_wh_moneyTitle.frame), 0, CGRectGetMinX(_wh_moneyUnit.frame)-8.f-CGRectGetMaxX(_wh_moneyTitle.frame), RowHeight);
     
-    _wh_sendButton.frame = CGRectMake(CGRectGetMinX(_wh_moneyView.frame), sendBtnY, CGRectGetWidth(_wh_moneyView.frame), 40);
+    _wh_sendButton.frame = CGRectMake(37, sendBtnY, CGRectGetWidth(_wh_moneyView.frame) - 74, 48);
     _wh_sendButton.tag = _type;
     
     _wh_noticeTitle.frame = CGRectMake(25, noticeTitleY, CGRectGetWidth(_wh_moneyView.frame), 20);
@@ -145,11 +146,14 @@
         _wh_canClaimPeoples.text = (self.type == 4) ? @"请选择" : @"群内所有人";
     }
     
-    [_wh_sendButton setTitle:self.isDiamond ? @"发送钻石" : Localized(@"JXRed_send") forState:UIControlStateNormal];//@"塞钱进红包"
-    [_wh_sendButton setTitle:self.isDiamond ? @"发送钻石" : Localized(@"JXRed_send") forState:UIControlStateHighlighted];
+//    [_wh_sendButton setTitle:self.isDiamond ? @"发送钻石" : Localized(@"JXRed_send") forState:UIControlStateNormal];//@"塞钱进红包"
+//    [_wh_sendButton setTitle:self.isDiamond ? @"发送钻石" : Localized(@"JXRed_send") forState:UIControlStateHighlighted];
     _wh_moneyTextField.placeholder = self.isDiamond ? @"输入钻石数量" : Localized(@"JXRed_inputAmount");//@"输入金额";//
     _wh_countTextField.placeholder = self.isDiamond ? @"请输入钻石个数" : Localized(@"JXRed_inputNumPackets");//@"请输入红包个数";//
     _wh_totalMoneyTitle.text = self.isDiamond ? @"钻石0.00" : @"HOTC0.00";
+    
+    _wh_totalMoneyTitle.attributedText = [NSString changeSpecialWordColor:HEXCOLOR(0x161819) AllContent:_wh_totalMoneyTitle.text SpcWord:self.isDiamond ? @"钻石" :@"HOTC" font:14];
+    
     _wh_promptTitle.text = self.isDiamond ? @"未领取的钻石，将于24小时后退回您的账号" : Localized(@"New_unclaimed_red");
     switch (_type) {
         case 1:{
@@ -183,6 +187,7 @@
 }
 
 -(void)customSubViews{
+    self.backgroundColor = g_factory.globalBgColor;
     if(_isRoom){
         [self addSubview:self.wh_countView];
         
@@ -205,7 +210,7 @@
     if (!_wh_totalMoneyTitle) {
         _wh_totalMoneyTitle = [UILabel new];
         _wh_totalMoneyTitle.textColor = HEXCOLOR(0x3A404C);
-        _wh_totalMoneyTitle.font = [UIFont systemFontOfSize:40];
+        _wh_totalMoneyTitle.font = [UIFont systemFontOfSize:50];
         _wh_totalMoneyTitle.textAlignment = NSTextAlignmentCenter;
     }
     return _wh_totalMoneyTitle;
@@ -220,8 +225,8 @@
         [_wh_countView addSubview:self.wh_countUnit];
         _wh_countView.layer.cornerRadius = g_factory.cardCornerRadius;
         _wh_countView.layer.masksToBounds = YES;
-        _wh_countView.layer.borderWidth = g_factory.cardBorderWithd;
-        _wh_countView.layer.borderColor = g_factory.cardBorderColor.CGColor;
+//        _wh_countView.layer.borderWidth = g_factory.cardBorderWithd;
+//        _wh_countView.layer.borderColor = g_factory.cardBorderColor.CGColor;
     }
     return _wh_countView;
 }
@@ -234,8 +239,8 @@
         [_wh_canClaimView addSubview:self.wh_canclaimBtn];
         _wh_canClaimView.layer.cornerRadius = g_factory.cardCornerRadius;
         _wh_canClaimView.layer.masksToBounds = YES;
-        _wh_canClaimView.layer.borderWidth = g_factory.cardBorderWithd;
-        _wh_canClaimView.layer.borderColor = g_factory.cardBorderColor.CGColor;
+//        _wh_canClaimView.layer.borderWidth = g_factory.cardBorderWithd;
+//        _wh_canClaimView.layer.borderColor = g_factory.cardBorderColor.CGColor;
     }
     return _wh_canClaimView;
 }
@@ -261,8 +266,8 @@
     if (!_wh_canClaimPeoples) {
         _wh_canClaimPeoples = [[UILabel alloc] init];
         [_wh_canClaimPeoples setBackgroundColor:[UIColor whiteColor]];
-        [_wh_canClaimPeoples setTextColor:HEXCOLOR(0x969696)];
-        [_wh_canClaimPeoples setFont:sysFontWithSize(15)];
+        [_wh_canClaimPeoples setTextColor:HEXCOLOR(0xBABABA)];
+        [_wh_canClaimPeoples setFont:sysFontWithSize(14)];
         [_wh_canClaimPeoples setTextAlignment:NSTextAlignmentRight];
         _wh_canClaimPeoples.alpha = 0.5;
     }
@@ -273,7 +278,7 @@
     if (!_receiveNoticeLabel) {
         _receiveNoticeLabel = [[UILabel alloc] init];
         _receiveNoticeLabel.font = sysFontWithSize(14);
-        _receiveNoticeLabel.textColor = HEXCOLOR(0x969696);
+        _receiveNoticeLabel.textColor = HEXCOLOR(0xBABABA);
     }
     return _receiveNoticeLabel;
 }
@@ -281,8 +286,8 @@
 - (UILabel *)wh_canClaimTitle {
     if (!_wh_canClaimTitle) {
         _wh_canClaimTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 80, RowHeight)];
-        _wh_canClaimTitle.font = sysFontWithSize(16);
-        _wh_canClaimTitle.textColor = HEXCOLOR(0x333333);
+        _wh_canClaimTitle.font = sysFontWithSize(14);
+        _wh_canClaimTitle.textColor = HEXCOLOR(0x161819);
     }
     return _wh_canClaimTitle;
 }
@@ -293,8 +298,8 @@
         _wh_moneyView.backgroundColor = [UIColor whiteColor];
         _wh_moneyView.layer.cornerRadius = g_factory.cardCornerRadius;
         _wh_moneyView.layer.masksToBounds = YES;
-        _wh_moneyView.layer.borderColor = g_factory.cardBorderColor.CGColor;
-        _wh_moneyView.layer.borderWidth = g_factory.cardBorderWithd;
+//        _wh_moneyView.layer.borderColor = g_factory.cardBorderColor.CGColor;
+//        _wh_moneyView.layer.borderWidth = g_factory.cardBorderWithd;
         [_wh_moneyView addSubview:self.wh_moneyTitle];
         [_wh_moneyView addSubview:self.wh_moneyTextField];
         [_wh_moneyView addSubview:self.wh_moneyUnit];
@@ -308,8 +313,8 @@
         _wh_greetView.backgroundColor = [UIColor whiteColor];
         _wh_greetView.layer.cornerRadius = g_factory.cardCornerRadius;
         _wh_greetView.layer.masksToBounds = YES;
-        _wh_greetView.layer.borderColor = g_factory.cardBorderColor.CGColor;
-        _wh_greetView.layer.borderWidth = g_factory.cardBorderWithd;
+//        _wh_greetView.layer.borderColor = g_factory.cardBorderColor.CGColor;
+//        _wh_greetView.layer.borderWidth = g_factory.cardBorderWithd;
         [_wh_greetView addSubview:self.wh_greetTitle];
         [_wh_greetView addSubview:self.wh_greetTextField];
     }
@@ -320,11 +325,12 @@
     if (!_wh_sendButton) {
         _wh_sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
 //        [_sendButton setBackgroundImage:[g_theme themeTintImage:@"feaBtn_backImg_sel"] forState:UIControlStateNormal];
-        _wh_sendButton.backgroundColor = HEXCOLOR(0xED6350);
-        _wh_sendButton.layer.cornerRadius = g_factory.cardCornerRadius;
+        _wh_sendButton.backgroundColor = THEMECOLOR;
+        _wh_sendButton.layer.cornerRadius = 24.0f;
         _wh_sendButton.layer.masksToBounds = YES;
         [_wh_sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_wh_sendButton.titleLabel setFont:sysFontWithSize(16)];
+        [_wh_sendButton setTitle:@"塞钱进红包" forState:UIControlStateNormal];
+        [_wh_sendButton.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
         
     }
     return _wh_sendButton;
@@ -334,7 +340,7 @@
     if (!_wh_noticeTitle) {
         _wh_noticeTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, -20, 200, 20)];
         _wh_noticeTitle.font = sysFontWithSize(14);
-        _wh_noticeTitle.textColor = HEXCOLOR(0x969696);
+        _wh_noticeTitle.textColor = HEXCOLOR(0xBABABA);
     }
     return _wh_noticeTitle;
 }
@@ -342,9 +348,10 @@
 - (UILabel *)wh_promptTitle{
     if (!_wh_promptTitle) {
         _wh_promptTitle = [UILabel new];
-        _wh_promptTitle.font = sysFontWithSize(16);
-        _wh_promptTitle.textColor = HEXCOLOR(0x969696);
+        _wh_promptTitle.font = sysFontWithSize(14);
+        _wh_promptTitle.textColor = HEXCOLOR(0xBABABA);
         _wh_promptTitle.textAlignment = NSTextAlignmentCenter;
+        _wh_promptTitle.hidden = YES;
     }
     return _wh_promptTitle;
 }
@@ -352,8 +359,8 @@
 -(UILabel *)wh_countTitle{
     if (!_wh_countTitle) {
         _wh_countTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 80, RowHeight)];
-        _wh_countTitle.font = sysFontWithSize(16);
-        _wh_countTitle.textColor = HEXCOLOR(0x333333);
+        _wh_countTitle.font = sysFontWithSize(14);
+        _wh_countTitle.textColor = HEXCOLOR(0x161819);
 //        _countTitle.text = @"红包个数";
     }
     return _wh_countTitle;
@@ -361,8 +368,8 @@
 -(UILabel *)wh_moneyTitle{
     if (!_wh_moneyTitle) {
         _wh_moneyTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 80, RowHeight)];
-        _wh_moneyTitle.font = sysFontWithSize(16);
-        _wh_moneyTitle.textColor = HEXCOLOR(0x333333);
+        _wh_moneyTitle.font = sysFontWithSize(14);
+        _wh_moneyTitle.textColor = HEXCOLOR(0x161819);
 //        _moneyTitle.text = @"总金额";
     }
     return _wh_moneyTitle;
@@ -370,8 +377,8 @@
 -(UILabel *)wh_greetTitle{
     if (!_wh_greetTitle) {
         _wh_greetTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 80, RowHeight)];
-        _wh_greetTitle.font = sysFontWithSize(16);
-        _wh_greetTitle.textColor = HEXCOLOR(0x333333);
+        _wh_greetTitle.font = sysFontWithSize(14);
+        _wh_greetTitle.textColor = HEXCOLOR(0x161819);
     }
     return _wh_greetTitle;
 }
@@ -390,15 +397,15 @@
 }
 -(UITextField *)wh_moneyTextField{
     if (!_wh_moneyTextField) {
-        _wh_moneyTextField = [UIFactory WH_create_WHTextFieldWith:CGRectZero delegate:self returnKeyType:UIReturnKeyNext secureTextEntry:NO placeholder:nil font:sysFontWithSize(16)];
+        _wh_moneyTextField = [UIFactory WH_create_WHTextFieldWith:CGRectZero delegate:self returnKeyType:UIReturnKeyNext secureTextEntry:NO placeholder:nil font:sysFontWithSize(14)];
         _wh_moneyTextField.clearButtonMode = UITextFieldViewModeNever;
         _wh_moneyTextField.textAlignment = NSTextAlignmentRight;
         _wh_moneyTextField.borderStyle = UITextBorderStyleNone;
         _wh_moneyTextField.keyboardType = UIKeyboardTypeDecimalPad;
         if (@available(iOS 10, *)) {
-            _wh_moneyTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"" attributes:@{NSForegroundColorAttributeName:HEXCOLOR(0x969696)}];
+            _wh_moneyTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"" attributes:@{NSForegroundColorAttributeName:HEXCOLOR(0xBABABA)}];
         } else {
-            [_wh_moneyTextField setValue:HEXCOLOR(0x969696) forKeyPath:@"_placeholderLabel.textColor"];
+            [_wh_moneyTextField setValue:HEXCOLOR(0xBABABA) forKeyPath:@"_placeholderLabel.textColor"];
         }
         [_wh_moneyTextField addTarget:self action:@selector(textFieldEditChanged:) forControlEvents:UIControlEventEditingChanged];
     }
@@ -406,14 +413,14 @@
 }
 -(UITextField *)wh_greetTextField{
     if (!_wh_greetTextField) {
-        _wh_greetTextField = [UIFactory WH_create_WHTextFieldWith:CGRectZero delegate:self returnKeyType:UIReturnKeyNext secureTextEntry:NO placeholder:nil font:sysFontWithSize(16)];
+        _wh_greetTextField = [UIFactory WH_create_WHTextFieldWith:CGRectZero delegate:self returnKeyType:UIReturnKeyNext secureTextEntry:NO placeholder:nil font:sysFontWithSize(14)];
         _wh_greetTextField.textAlignment = NSTextAlignmentRight;
         _wh_greetTextField.borderStyle = UITextBorderStyleNone;
         _wh_greetTextField.keyboardType = UIKeyboardTypeDefault;
         if (@available(iOS 10, *)) {
-            _wh_greetTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"" attributes:@{NSForegroundColorAttributeName:HEXCOLOR(0x969696)}];
+            _wh_greetTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"" attributes:@{NSForegroundColorAttributeName:HEXCOLOR(0xBABABA)}];
         } else {
-            [_wh_greetTextField setValue:HEXCOLOR(0x969696) forKeyPath:@"_placeholderLabel.textColor"];
+            [_wh_greetTextField setValue:HEXCOLOR(0xBABABA) forKeyPath:@"_placeholderLabel.textColor"];
         }
     }
     return _wh_greetTextField;
@@ -423,8 +430,8 @@
 -(UILabel *)wh_countUnit{
     if (!_wh_countUnit) {
         _wh_countUnit = [[UILabel alloc] initWithFrame:CGRectZero];
-        _wh_countUnit.font = sysFontWithSize(15);
-        _wh_countUnit.textColor = [UIColor blackColor];
+        _wh_countUnit.font = sysFontWithSize(14);
+        _wh_countUnit.textColor = HEXCOLOR(0x797979);
         _wh_countUnit.textAlignment = NSTextAlignmentCenter;
     }
     return _wh_countUnit;
@@ -432,8 +439,8 @@
 -(UILabel *)wh_moneyUnit{
     if (!_wh_moneyUnit) {
         _wh_moneyUnit = [[UILabel alloc] initWithFrame:CGRectZero];
-        _wh_moneyUnit.font = sysFontWithSize(16);
-        _wh_moneyUnit.textColor = HEXCOLOR(0x3A404C);
+        _wh_moneyUnit.font = sysFontWithSize(14);
+        _wh_moneyUnit.textColor = HEXCOLOR(0x797979);
         _wh_moneyUnit.textAlignment = NSTextAlignmentCenter;
     }
     return _wh_moneyUnit;
@@ -444,6 +451,8 @@
     } else {
         _wh_totalMoneyTitle.text = [NSString stringWithFormat:@"HOTC%.2f",textField.text.doubleValue];
     }
+    //富文本
+    _wh_totalMoneyTitle.attributedText = [NSString changeSpecialWordColor:HEXCOLOR(0x161819) AllContent:_wh_totalMoneyTitle.text SpcWord:self.isDiamond ? @"钻石" :@"HOTC" font:14];
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string  {
     NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];

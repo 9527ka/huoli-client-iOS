@@ -168,6 +168,7 @@
 }
 
 - (IBAction)forgetPasswordAction:(id)sender {
+    [self.view endEditing:YES];
     if (currentLoginType == 1) {
         WH_ForgetPwdForUserViewController *pwsVC = [[WH_ForgetPwdForUserViewController alloc] init];
         pwsVC.forgetStep = 1;
@@ -180,10 +181,12 @@
     [g_navigation pushViewController:vc animated:YES];
 }
 - (IBAction)regiestAction:(id)sender {
+    [self.view endEditing:YES];
     WH_RegisterViewController *vc = [[WH_RegisterViewController alloc] init];
     [g_navigation pushViewController:vc animated:YES];
 }
 - (IBAction)loginAction:(id)sender {
+    [self.view endEditing:YES];
     if(self.accountField.text.length == 0){
         [GKMessageTool showTips:@"请输入账号"];
         return;
