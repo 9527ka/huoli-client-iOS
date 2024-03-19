@@ -120,7 +120,7 @@
     }else if(value.type == weibo_dataType_image){
         [self addImagesWithFiles:0];
         
-        self.wh_nameAndTimeLabel.frame = CGRectMake(20, self.wh_imageContent.frame.origin.y + self.wh_imageContent.frame.size.height + 8, Table_Width , 40);
+        self.wh_nameAndTimeLabel.frame = CGRectMake(20, self.wh_imageContent.frame.origin.y + self.wh_imageContent.frame.size.height + 20, Table_Width , 40);
         self.wh_delBtn.frame = CGRectMake(Table_Width - 20 - 40, self.wh_imageContent.frame.origin.y + self.wh_imageContent.frame.size.height + 8, 40, 40);
     }else {
         if (value.audios.count > 0) {
