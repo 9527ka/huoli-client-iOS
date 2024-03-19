@@ -3884,7 +3884,7 @@
 
 #pragma mark - 发送图片
 - (void)photosViewController:(UIViewController *)viewController datas:(NSArray <id> *)datas; {
-    
+   
     for (int i = 0; i < datas.count; i++) {
         BOOL isGif = [datas[i] isKindOfClass:[NSData class]];
         
@@ -3923,6 +3923,7 @@
 
 #pragma mark - 发送视频
 - (void)photosViewController:(UIViewController *)viewController media:(WH_JXMediaObject *)media {
+
     if (self.isGroupMessages) {
         for (NSInteger i = 0; i < self.userIds.count; i ++) {
             NSString *userId = self.userIds[i];
