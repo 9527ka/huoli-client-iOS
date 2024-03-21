@@ -295,7 +295,8 @@
             
             break;
         case GKDYVideoPlayerStatusPrepared:   // 准备播放
-            
+            [self.wh_currentPlayView stopLoading];
+            [self.wh_currentPlayView hidePlayBtn];
             break;
         case GKDYVideoPlayerStatusLoading: {     // 加载中
             [self.wh_currentPlayView startLoading];
@@ -313,7 +314,8 @@
         }
             break;
         case GKDYVideoPlayerStatusEnded:   // 停止
-            
+            [self.wh_currentPlayView startLoading];
+            [self.wh_currentPlayView hidePlayBtn];
             break;
         case GKDYVideoPlayerStatusError:   // 错误
             

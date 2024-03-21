@@ -15,6 +15,7 @@
 #import "WH_JXUserInfo_WHVC.h"
 #import "WH_JXReportUser_WHVC.h"
 #import "NSString+ContainStr.h"
+#import "JX_WHNoDataView.h"
 
 #define commentY 200
 
@@ -68,6 +69,8 @@
 @property (nonatomic, strong) UITextField *commentTextField;
 //@property(nonatomic,strong)WH_WeiboCell* selectWH_WeiboCell;
 @property(nonatomic,strong)WeiboReplyData * replyDataTemp;
+@property(nonatomic,strong)JX_WHNoDataView *noDataView;
+
 
 /**
  输入条
@@ -237,6 +240,11 @@
     [_commentView addSubview:_commentNum];
 //    _commentTable.tableHeaderView = _commentNum;
     
+    _noDataView = [[JX_WHNoDataView alloc] initWithFrame:CGRectMake(0, 160, JX_SCREEN_WIDTH, 180)];
+    [_commentView addSubview:_noDataView];
+    
+    
+    
     [self inputView];
 }
 
@@ -370,6 +378,7 @@
 - (void)setWh_model:(WH_GKDYVideoModel *)model {
     _wh_model = model;
     
+    self.noDataView.hidden = model.replys.count > 0?YES:NO;
     self.sliderView.value = 0;
     
     [self.wh_coverImgView sd_setImageWithURL:[NSURL URLWithString:model.thumbnail_url]];
@@ -601,6 +610,7 @@
         _sliderView.sliderHeight = ADAPTATIONRATIO * 2.0f;
         _sliderView.maximumTrackTintColor = [UIColor grayColor];
         _sliderView.minimumTrackTintColor = [UIColor whiteColor];
+        _sliderView.hidden = YES;
     }
     return _sliderView;
 }
@@ -789,6 +799,8 @@
         self.commentNum.text = [NSString stringWithFormat:Localized(@"JX_%ldComments"),self.wh_model.replys.count];
 
         self.replyDataTemp = [[WeiboReplyData alloc] init];
+        
+        self.noDataView.hidden = YES;
         
     }else if ([aDownload.action isEqualToString:wh_act_CommentDel]){
         

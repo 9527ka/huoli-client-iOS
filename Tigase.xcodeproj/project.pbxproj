@@ -733,6 +733,7 @@
 		333824FC2B367C5900AC4B06 /* WH_JXAppealAddCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 333824FA2B367C5900AC4B06 /* WH_JXAppealAddCell.m */; };
 		333824FD2B367C5900AC4B06 /* WH_JXAppealAddCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 333824FB2B367C5900AC4B06 /* WH_JXAppealAddCell.xib */; };
 		333825002B36E48900AC4B06 /* WH_JXAppealModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 333824FF2B36E48900AC4B06 /* WH_JXAppealModel.m */; };
+		333B93492BAC21F800450220 /* JX_WHNoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 333B93482BAC21F800450220 /* JX_WHNoDataView.m */; };
 		334FB9EC2B14241600230991 /* serverList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 334FB9EB2B14241600230991 /* serverList.plist */; };
 		334FB9EE2B1425C000230991 /* userInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 334FB9ED2B1425C000230991 /* userInfo.plist */; };
 		337455322B6CC5BC0080154C /* WH_JXChatTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 337455312B6CC5BC0080154C /* WH_JXChatTool.m */; };
@@ -3099,6 +3100,8 @@
 		333824FB2B367C5900AC4B06 /* WH_JXAppealAddCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXAppealAddCell.xib; sourceTree = "<group>"; };
 		333824FE2B36E48900AC4B06 /* WH_JXAppealModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXAppealModel.h; sourceTree = "<group>"; };
 		333824FF2B36E48900AC4B06 /* WH_JXAppealModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXAppealModel.m; sourceTree = "<group>"; };
+		333B93472BAC21F800450220 /* JX_WHNoDataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JX_WHNoDataView.h; sourceTree = "<group>"; };
+		333B93482BAC21F800450220 /* JX_WHNoDataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JX_WHNoDataView.m; sourceTree = "<group>"; };
 		334FB9EB2B14241600230991 /* serverList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = serverList.plist; sourceTree = "<group>"; };
 		334FB9ED2B1425C000230991 /* userInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = userInfo.plist; sourceTree = "<group>"; };
 		337455302B6CC5BC0080154C /* WH_JXChatTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXChatTool.h; sourceTree = "<group>"; };
@@ -7111,6 +7114,8 @@
 				4CABBBFF293F06F700C17F42 /* JXSelectMusicCell.m */,
 				4CABBBFE293F06F700C17F42 /* JXSmallVideoCell.h */,
 				4CABBBF9293F06F700C17F42 /* JXSmallVideoCell.m */,
+				333B93472BAC21F800450220 /* JX_WHNoDataView.h */,
+				333B93482BAC21F800450220 /* JX_WHNoDataView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -11411,6 +11416,7 @@
 				1851A3312307A32200BA24A1 /* WWEmotManagerCell.m in Sources */,
 				63269F0D1E9CC68D00FB13C2 /* WH_JXNear_WHCell.m in Sources */,
 				0F304DD22153AD0E001EC77E /* XMPPTime.m in Sources */,
+				333B93492BAC21F800450220 /* JX_WHNoDataView.m in Sources */,
 				0FA2D58F1FB05CCC00D51BB9 /* GPUImageBrightnessFilter.m in Sources */,
 				0F8EF3CE1F6A79F100EC3C63 /* WH_Favorites_WHVC.m in Sources */,
 				63DD4F3C21314DB800DC45F8 /* UINavigationController+RITLExtension.m in Sources */,
