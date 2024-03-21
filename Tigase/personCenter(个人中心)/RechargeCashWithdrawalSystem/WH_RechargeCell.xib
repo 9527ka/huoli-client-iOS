@@ -282,7 +282,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="recharge_upload" width="290" height="149.33332824707031"/>
+        <image name="recharge_upload" width="295" height="144"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

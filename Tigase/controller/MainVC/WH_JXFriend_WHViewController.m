@@ -198,9 +198,9 @@
     
     NSInteger num = friendNewMsgNum + abUread.count;
     if (num <= 0) {
-        [g_mainVC.tb wh_setBadge:1 title:@"0"];
+        [g_mainVC.tb wh_setBadge:2 title:@"0"];
     }else {
-        [g_mainVC.tb wh_setBadge:1 title:[NSString stringWithFormat:@"%ld", num]];
+        [g_mainVC.tb wh_setBadge:2 title:[NSString stringWithFormat:@"%ld", num]];
     }
 }
 
@@ -224,7 +224,7 @@
     }
     
     self.friendNewNumberButton.hidden = YES;
-    [g_mainVC.tb wh_setBadge:1 title:@"0"];
+    [g_mainVC.tb wh_setBadge:2 title:@"0"];
 }
 
 -(void)newRequest:(NSNotification *)notifacation

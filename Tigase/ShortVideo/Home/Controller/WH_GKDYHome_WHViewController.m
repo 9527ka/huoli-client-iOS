@@ -67,6 +67,7 @@
     UIImageView *imgV = [[UIImageView alloc] initWithFrame:CGRectMake(10, 18, 31, 31)];
     imgV.image = [UIImage imageNamed:@"WH_WhiteBack_WHIcon"];
     [_exitBtn addSubview:imgV];
+    _exitBtn.hidden = YES;
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP - 64 + 30, JX_SCREEN_WIDTH, 20)];
     titleLabel.text = self.wh_titleStr;
@@ -81,19 +82,12 @@
     [shotBtn setImage:[UIImage imageNamed:@"WH_TakeAPicture_WHIcon"] forState:UIControlStateNormal];
     [shotBtn setTitle:@"拍摄" forState:UIControlStateNormal];
     shotBtn.titleLabel.font =  [UIFont fontWithName:@"PingFangSC-Semibold" size: 15];
+    shotBtn.hidden = YES;
     [shotBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [shotBtn layoutButtonWithEdgeInsetsStyle:LLButtonStyleTextRight imageTitleSpace:8];
     [shotBtn addTarget:self action:@selector(clickShotBtn:) forControlEvents:UIControlEventTouchUpInside];
     
-//    UIButton *addBtn = [[UIButton alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH - 100, JX_SCREEN_TOP - 64 + 10, 100, 100)];
-//
-//    [addBtn addTarget:self action:@selector(addVideoAction:) forControlEvents:UIControlEventTouchUpInside];
-//
-//    [self.view addSubview:addBtn];
-//    [self.view bringSubviewToFront:addBtn];
-//    imgV = [[UIImageView alloc] initWithFrame:CGRectMake(addBtn.frame.size.width - 36, 20, 20, 20)];
-//    imgV.image = [UIImage imageNamed:@"ic_add"];
-//    [addBtn addSubview:imgV];
+
     
     [g_notify addObserver:self selector:@selector(postVideoNotification) name:@"WaHu_PostVideo_Success" object:nil];
 }
@@ -134,6 +128,8 @@
 //    [g_navigation pushViewController:vc animated:YES];
     
     WH_JXRecordVideo_WHVC *vc = [[WH_JXRecordVideo_WHVC alloc] init];
+//    vc.modalPresentationStyle = UIModalPresentationFullScreen;
+//    [self presentViewController:vc animated:YES completion:nil];
     [g_navigation pushViewController:vc animated:YES];
 }
 

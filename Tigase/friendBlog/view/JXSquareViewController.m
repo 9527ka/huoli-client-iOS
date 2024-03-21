@@ -126,7 +126,7 @@ typedef NS_ENUM(NSInteger, JXSquareType) {
     }
 
     self.weiboNewMsgNum.text = newMsgNum;
-    [g_mainVC.tb wh_setBadge:g_mainVC.tb.wh_items.count == 5 ? 3 : 2 title:newMsgNum];
+//    [g_mainVC.tb wh_setBadge:g_mainVC.tb.wh_items.count == 5 ? 3 : 2 title:newMsgNum];
     self.weiboNewMsgNum.hidden = _remindArray.count <= 0;
 }
 

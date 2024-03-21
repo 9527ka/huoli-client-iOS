@@ -18,19 +18,20 @@
     __weak MatchParser * _match;
 }
 //@property(nonatomic,copy) NSString * files;
-@property(nonatomic,strong) NSString * replyId;
-@property(nonatomic,strong) NSString * messageId;
-@property(nonatomic,strong) NSString * body;
-@property(nonatomic,strong) NSString * userId;
-@property(nonatomic,strong) NSString * userNickName;
-@property(nonatomic,strong) NSString * toUserId;
-@property(nonatomic,strong) NSString * toNickName;
-@property(nonatomic,strong) NSString * toBody;
-@property(nonatomic,strong) NSString * giftId;
-@property(nonatomic,strong) NSString * giftName;
-@property(nonatomic,strong) NSString * giftCount;
-@property(nonatomic,strong) NSString * giftPrice;
-@property(assign) NSTimeInterval createTime;
+@property(nonatomic,copy) NSString * replyId;
+@property(nonatomic,copy) NSString * messageId;
+@property(nonatomic,copy) NSString * body;
+@property(nonatomic,copy) NSString * userId;
+@property(nonatomic,copy) NSString * userNickName;
+@property(nonatomic,copy) NSString * toUserId;
+@property(nonatomic,copy) NSString * toNickName;
+@property(nonatomic,copy) NSString * toBody;
+@property(nonatomic,copy) NSString * giftId;
+@property(nonatomic,copy) NSString * giftName;
+@property(nonatomic,copy) NSString * giftCount;
+@property(nonatomic,copy) NSString * giftPrice;
+@property(nonatomic,copy) NSString * publishTime;
+@property(nonatomic,assign) NSTimeInterval createTime;
 
 @property(nonatomic) int height2;
 @property(nonatomic) int height;

@@ -50,6 +50,40 @@
     [self addSubview:_lbTitle];
     [self addSubview:_lbBage];
 }
+- (void)textShow{
+    _icon    = [[UIImageView alloc] initWithFrame:CGRectMake((self.frame.size.width-ICON_SIZE)/2, 4, ICON_SIZE, ICON_SIZE)];
+    _icon.hidden = YES;
+    _lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 16, self.frame.size.width, 16)];
+    _lbBage  = [[WH_JXBadgeView alloc] initWithFrame:CGRectMake(_icon.frame.origin.x+ICON_SIZE, 4, g_factory.badgeWidthHeight, g_factory.badgeWidthHeight)];
+
+    if ([wh_iconName hasPrefix:@"http://"]||[wh_iconName hasPrefix:@"https://"]) {
+        [_icon sd_setImageWithURL:[NSURL URLWithString:wh_iconName] placeholderImage:[UIImage imageNamed:@"guangchangmoren"]];
+    }else {
+        _icon.image = [UIImage imageNamed:wh_iconName];
+    }
+
+    _icon.userInteractionEnabled = NO;
+    
+    _lbTitle.text = wh_text;
+    _lbTitle.font = pingFangMediumFontWithSize(14);
+    _lbTitle.textAlignment = NSTextAlignmentCenter;
+    _lbTitle.userInteractionEnabled = NO;
+    
+    _lbBage.wh_badgeString  = wh_bage;
+    _lbBage.userInteractionEnabled = YES;
+    _lbBage.wh_didDragout = self.wh_onDragout;
+    _lbBage.wh_delegate = self.wh_delegate;
+    _lbBage.tag = self.tag;
+    
+    if(wh_backgroundImageName)
+        [self setBackgroundImage:[UIImage imageNamed:wh_backgroundImageName] forState:UIControlStateNormal];
+    if(wh_selectedBackgroundImageName)
+        [self setBackgroundImage:[UIImage imageNamed:wh_selectedBackgroundImageName] forState:UIControlStateSelected];
+    
+    [self addSubview:_icon];
+    [self addSubview:_lbTitle];
+    [self addSubview:_lbBage];
+}
 
 
 -(void)dealloc{

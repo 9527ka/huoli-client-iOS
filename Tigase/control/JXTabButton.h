@@ -37,5 +37,6 @@
 @property (nonatomic, weak) NSObject* wh_delegate;
 
 - (void)show;
+- (void)textShow;
 
 @end

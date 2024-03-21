@@ -188,7 +188,7 @@
     }
     
     self.wh_weiboNewMsgNum.text = newMsgNum;
-    [g_mainVC.tb wh_setBadge:g_mainVC.tb.wh_items.count == 5 ? 3 : 2 title:newMsgNum];
+//    [g_mainVC.tb wh_setBadge:g_mainVC.tb.wh_items.count == 5 ? 3 : 2 title:newMsgNum];
     self.wh_weiboNewMsgNum.hidden = _wh_remindArray.count <= 0;
     
 }

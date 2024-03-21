@@ -38,9 +38,9 @@
 - (UILabel *)label {
     if (!_label) {
         _label = [[UILabel alloc]initWithFrame:CGRectMake(4, 4, JX_SCREEN_WIDTH - 80, 27)];
-        _label.font = [UIFont systemFontOfSize:13];
+        _label.font = [UIFont systemFontOfSize:14];
         _label.numberOfLines = 0;
-        _label.textColor = HEXCOLOR(0x576B94);
+        _label.textColor = HEXCOLOR(0x161819);
 //        _label.textColor = [UIColor whiteColor];
         _label.backgroundColor = [UIColor clearColor];
         [self.contentView addSubview:_label];
@@ -51,7 +51,7 @@
     if(!_timeLab){
         _timeLab = [[UILabel alloc] initWithFrame:CGRectMake(60, 40, JX_SCREEN_WIDTH - 100, 20)];
         _timeLab.font = [UIFont systemFontOfSize:12];
-        _timeLab.textColor = HEXCOLOR(0x999999);
+        _timeLab.textColor = HEXCOLOR(0xBABABA);
         _timeLab.backgroundColor = [UIColor clearColor];
         [self.contentView addSubview:_timeLab];
     }

@@ -23,6 +23,10 @@
 @property (nonatomic, assign) NSInteger wh_selected;
 @property (nonatomic, assign) BOOL      wh_isTabMenu;
 @property (nonatomic, strong) NSString *wh_backgroundImageName;
+@property (nonatomic,strong) UIButton *publishBtn;
+
+@property(nonatomic,copy)void(^publishBlock)(void);
+
 
 -(void)wh_unSelectAll;
 -(void)wh_selectOne:(int)n;

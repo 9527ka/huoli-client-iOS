@@ -121,10 +121,10 @@
         k = JX_SCREEN_WIDTH-n-INSETS;
     
     if (self.msg.isMySend) {
-        self.bubbleBg.frame=CGRectMake(JX_SCREEN_WIDTH-HEAD_SIZE-INSETS*4-k+CHAT_WIDTH_ICON+10, INSETS, INSETS+k, n+INSETS-4);
+        self.bubbleBg.frame=CGRectMake(JX_SCREEN_WIDTH-HEAD_SIZE-INSETS*4-k+CHAT_WIDTH_ICON, INSETS, INSETS+k, n+INSETS-4);
         _chatImage.frame = self.bubbleBg.bounds;
     }else{
-        self.bubbleBg.frame=CGRectMake(CGRectGetMaxX(self.headImage.frame) + INSETS-CHAT_WIDTH_ICON, INSETS2(self.msg.isGroup), k+INSETS, n+INSETS-4);
+        self.bubbleBg.frame=CGRectMake(CGRectGetMaxX(self.headImage.frame) + INSETS-CHAT_WIDTH_ICON + 10, INSETS2(self.msg.isGroup), k+INSETS, n+INSETS-4);
         _chatImage.frame = self.bubbleBg.bounds;
     }
     

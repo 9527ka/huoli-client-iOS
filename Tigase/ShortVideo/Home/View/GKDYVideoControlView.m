@@ -14,6 +14,7 @@
 #import "WH_JXRelay_WHVC.h"
 #import "WH_JXUserInfo_WHVC.h"
 #import "WH_JXReportUser_WHVC.h"
+#import "NSString+ContainStr.h"
 
 #define commentY 200
 
@@ -176,34 +177,51 @@
     btn.backgroundColor = [UIColor clearColor];
     [_commentBackView addSubview:btn];
     
-    CGFloat commentRadiu = 10.f;
+    CGFloat commentRadiu = 8.f;
     _commentView = [[UIView alloc] initWithFrame:CGRectMake(0, _commentBackView.frame.size.height, JX_SCREEN_WIDTH, _commentBackView.frame.size.height - commentY + commentRadiu)];
 //    _commentView.backgroundColor = HEXCOLOR(0x393a3f);
-    _commentView.backgroundColor = HEXCOLOR(0x2A292A);
+    _commentView.backgroundColor = [UIColor whiteColor];
     _commentView.layer.cornerRadius = commentRadiu;
     _commentView.layer.masksToBounds = YES;
     [_commentBackView addSubview:_commentView];
     
+    
+    //关闭按钮
+    UIButton *closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(_commentBackView.frame.size.width - 44, 0, 44, 44)];
+    [closeBtn addTarget:self action:@selector(commentHiden) forControlEvents:UIControlEventTouchUpInside];
+    [closeBtn setImage:[UIImage imageNamed:@"WH_CallenderClose"] forState:UIControlStateNormal];
+    [_commentView addSubview:closeBtn];
+    
     CGFloat btmHeight = 49.f + (THE_DEVICE_HAVE_HEAD ? 34.f : 0.f);
-    UIButton *bottomView = [[UIButton alloc] initWithFrame:CGRectMake(0, _commentView.frame.size.height - btmHeight, _commentView.frame.size.width, btmHeight)];
-    bottomView.backgroundColor = HEXCOLOR(0x010002);
-    [bottomView addTarget:self action:@selector(commentButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *bottomView = [UIButton buttonWithType:UIButtonTypeCustom];
+    bottomView.backgroundColor = [UIColor whiteColor];
+    bottomView.frame = CGRectMake(0, _commentView.frame.size.height - btmHeight, _commentView.frame.size.width, btmHeight);
+    [bottomView addTarget:self action:@selector(commentButtonAction) forControlEvents:UIControlEventTouchUpInside];
     [_commentView addSubview:bottomView];
     
-    _commentTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 0, bottomView.frame.size.width, 49.f)];
-    _commentTextField.placeholder = Localized(@"JX_LoveToComment");
-    _commentTextField.textColor = [UIColor whiteColor];
+    //Localized(@"JX_LoveToComment")
+    NSString *placeHolder = @"留下你的精彩评论";
+    
+    _commentTextField = [[UITextField alloc] initWithFrame:CGRectMake(12, 7, bottomView.frame.size.width - 24, 38.f)];
+    _commentTextField.placeholder = placeHolder;
+    _commentTextField.textColor = HEXCOLOR(0x161819);
     _commentTextField.userInteractionEnabled = NO;
-    _commentTextField.font = sysFontWithSize(16);
+    _commentTextField.layer.masksToBounds = YES;
+    _commentTextField.layer.cornerRadius = 19.0f;
+    _commentTextField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 16, 38)];
+    _commentTextField.leftViewMode = UITextFieldViewModeAlways;
+    _commentTextField.font = sysFontWithSize(14);
     if (@available(iOS 10, *)) {
-        _commentTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@", Localized(@"JX_LoveToComment")] attributes:@{NSForegroundColorAttributeName:HEXCOLOR(0x999999)}];
+        _commentTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeHolder attributes:@{NSForegroundColorAttributeName:HEXCOLOR(0x797979)}];
     } else {
-        [_commentTextField setValue:HEXCOLOR(0x999999) forKeyPath:@"_placeholderLabel.textColor"];
+        [_commentTextField setValue:HEXCOLOR(0x797979) forKeyPath:@"_placeholderLabel.textColor"];
     }
-    _commentTextField.backgroundColor = HEXCOLOR(0x010002);
+    _commentTextField.backgroundColor = HEXCOLOR(0xF3F3F3);
     [bottomView addSubview:_commentTextField];
     
-    _commentTable = [[UITableView alloc]initWithFrame:CGRectMake(0,0,JX_SCREEN_WIDTH,_commentView.frame.size.height - bottomView.frame.size.height)];
+    
+    
+    _commentTable = [[UITableView alloc]initWithFrame:CGRectMake(0,44,JX_SCREEN_WIDTH,_commentView.frame.size.height - bottomView.frame.size.height - 44)];
     _commentTable.dataSource = self;
     _commentTable.delegate   = self;
     _commentTable.tag        = self.tag;
@@ -211,13 +229,13 @@
     _commentTable.separatorStyle  = UITableViewCellSeparatorStyleNone;
     [_commentView addSubview:_commentTable];
     
-    _commentNum = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, _commentTable.frame.size.width, 30)];
+    _commentNum = [[UILabel alloc] initWithFrame:CGRectMake(0, 4, _commentTable.frame.size.width, 30)];
     _commentNum.textAlignment = NSTextAlignmentCenter;
-    _commentNum.textColor = [UIColor whiteColor];
+    _commentNum.textColor = HEXCOLOR(0x161819);
     _commentNum.font = sysFontWithSize(16);
     self.commentNum.text = [NSString stringWithFormat:Localized(@"JX_%ldComments"),self.wh_model.replys.count];
-    [_commentTable addSubview:_commentNum];
-    _commentTable.tableHeaderView = _commentNum;
+    [_commentView addSubview:_commentNum];
+//    _commentTable.tableHeaderView = _commentNum;
     
     [self inputView];
 }
@@ -226,35 +244,36 @@
     //输入条,副键盘
     if (!_inputView) {
         _inputView = [[UIView alloc] init];
-        //        _inputView.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
-        _inputView.frame = CGRectMake(0, JX_SCREEN_HEIGHT+10, JX_SCREEN_WIDTH, 44);
+        _inputView.frame = CGRectMake(0, JX_SCREEN_HEIGHT+10, JX_SCREEN_WIDTH, 49);
         
-        UIBlurEffect * blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+        UIBlurEffect * blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
         UIVisualEffectView * effectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
         effectView.frame = CGRectMake(0, 0, _inputView.frame.size.width, _inputView.frame.size.height);
         [_inputView addSubview:effectView];
         
-        _chatTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, 5, JX_SCREEN_WIDTH-10-15, 44-5)];
-        _chatTextView.backgroundColor = [UIColor clearColor];
-        //        _chatTextView.placeHolder = @"和大家说点什么";
-        //        _chatTextView.placeHolder = @"开启大喇叭,1钻石/条";
+        _chatTextView = [[UITextView alloc] initWithFrame:CGRectMake(12, 7, JX_SCREEN_WIDTH-24, 44-5)];
+        _chatTextView.backgroundColor = HEXCOLOR(0xF3F3F3);
+        _chatTextView.layer.masksToBounds = YES;
+        _chatTextView.layer.cornerRadius = 18.5f;
         _chatTextView.font = sysFontWithSize(14);
-        _chatTextView.textColor = [UIColor whiteColor];
+        _chatTextView.textColor = HEXCOLOR(0x161819);
         _chatTextView.clearsOnInsertion = YES;
         
         _chatTextView.delegate = self;
         _chatTextView.returnKeyType = UIReturnKeySend;
+        _chatTextView.tintColor = THEMECOLOR;
         [_inputView addSubview:_chatTextView];
         
         _chatTextView.inputAccessoryView = _inputView;
         
         _placeHolder = [[UILabel alloc] init];
         _placeHolder.frame = CGRectMake(4, 4, CGRectGetWidth(_chatTextView.frame), 22);
-        _placeHolder.textColor = [UIColor colorWithWhite:0.7 alpha:1];
+        _placeHolder.textColor = HEXCOLOR(0x797979);
+        _placeHolder.font = [UIFont systemFontOfSize:14];
         _placeHolder.textAlignment = NSTextAlignmentLeft;
         
         [_chatTextView addSubview:_placeHolder];
-        _placeHolder.text = Localized(@"JX_LoveToComment");
+        _placeHolder.text = @"留下你的精彩评论";
 
     }
     return _inputView;
@@ -280,10 +299,8 @@
 }
 -(void)textViewDidChange:(UITextView *)textView{
     if (textView.text.length <= 0) {
-        //        self.placeHolder = _placeHolderStr;
         _placeHolder.hidden = NO;
     }else {
-        //        self.placeHolder = nil;
         _placeHolder.hidden = YES;
     }
 }
@@ -301,12 +318,13 @@
 }
 
 #pragma mark - button事件
--(void)commentButtonAction:(UIButton *)button{
+-(void)commentButtonAction{
     
     self.replyDataTemp.toUserId  = nil;
     self.replyDataTemp.toNickName  = nil;
     
-    _placeHolder.text = Localized(@"JX_LoveToComment");
+    _placeHolder.text = @"留下你的精彩评论";
+    _placeHolder.hidden = _chatTextView.text.length > 0?YES:NO;
     [g_window addSubview:self.inputView];
     [_chatTextView becomeFirstResponder];
 }
@@ -342,7 +360,7 @@
     [UIView animateWithDuration:0.5 animations:^{
         _commentView.frame = CGRectMake(0, _commentBackView.frame.size.height, _commentView.frame.size.width, _commentView.frame.size.height);
     } completion:^(BOOL finished) {
-        
+                
         _commentBackView.hidden = YES;
         [_commentBackView removeFromSuperview];
         _commentBackView = nil;
@@ -609,8 +627,8 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WeiboReplyData * data=[self.wh_model.replys objectAtIndex:indexPath.row];
-    CGFloat height = [JXXMPP getLabelHeightWithContent:[self getLabelText:data] andLabelWidth:JX_SCREEN_WIDTH - 80 andLabelFontSize:13];
-    return height+46 + 0;
+    CGFloat height = [JXXMPP getLabelHeightWithContent:[self getLabelText:data] andLabelWidth:JX_SCREEN_WIDTH - 80 andLabelFontSize:14];
+    return height+46 + 24;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSInteger n = [self.wh_model.replys count];
@@ -637,16 +655,16 @@
         return cell;
     
     if (!cell.icon) {
-        cell.icon = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 40, 40)];
-        cell.icon.layer.cornerRadius = 40 / 2;
+        cell.icon = [[UIImageView alloc] initWithFrame:CGRectMake(15, 0, 36, 36)];
+        cell.icon.layer.cornerRadius = 18.0f;
         cell.icon.layer.masksToBounds = YES;
         [cell addSubview:cell.icon];
     }
     
     if (!cell.name) {
-        cell.name = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(cell.icon.frame) + 10, 0, JX_SCREEN_WIDTH - CGRectGetMaxX(cell.icon.frame) - 10, 15)];
-        cell.name.textColor = HEXCOLOR(0x999999);
-        cell.name.font = sysFontWithSize(13);
+        cell.name = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(cell.icon.frame) + 8, 0, JX_SCREEN_WIDTH - CGRectGetMaxX(cell.icon.frame) - 10, 15)];
+        cell.name.textColor = HEXCOLOR(0xBABABA);
+        cell.name.font = sysFontWithSize(12);
         [cell addSubview:cell.name];
     }
     
@@ -659,7 +677,7 @@
 //    cell.label.backgroundColor = [UIColor clearColor];
     WeiboReplyData * data=[self.wh_model.replys objectAtIndex:indexPath.row];
     [g_server WH_getHeadImageSmallWIthUserId:data.userId userName:data.userNickName imageView:cell.icon];
-    cell.name.text = [NSString stringWithFormat:@"@%@",data.userNickName];
+    cell.name.text = [NSString stringWithFormat:@"%@",data.userNickName];
 
     //    __weak WH_HBCoreLabel * wlabel=cell.label;
 //    MatchParser * match=[data getMatch:^(MatchParser *parser, id data) {
@@ -675,10 +693,10 @@
     
 //    cell.label.wh_match=match;
     cell.label.text =  [self getLabelText:data];
-    [JXXMPP getAttributeTextWithLabel:cell.label textString:data.body color:[UIColor whiteColor]];
-    CGFloat height = [JXXMPP getLabelHeightWithContent:[self getLabelText:data] andLabelWidth:JX_SCREEN_WIDTH - 80 andLabelFontSize:13];
+    [JXXMPP getAttributeTextWithLabel:cell.label textString:data.body color:HEXCOLOR(0x161819)];
+    CGFloat height = [JXXMPP getLabelHeightWithContent:[self getLabelText:data] andLabelWidth:JX_SCREEN_WIDTH - 80 andLabelFontSize:14];
     cell.label.userInteractionEnabled=NO;
-    CGRect frame=cell.label.frame;
+    CGRect frame = cell.label.frame;
     cell.backgroundColor=[UIColor clearColor];
     frame.size.height= height + 3;
     frame.origin.x = CGRectGetMaxX(cell.icon.frame) + 10;
@@ -686,10 +704,13 @@
     cell.label.frame=frame;
     
     
-//    CGRect timeFrame = cell.timeLab.frame;
-//    timeFrame.origin.y = cell.frame.size.height - 24;
-//    cell.timeLab.frame = timeFrame;
-//    cell.timeLab.text = @"刚刚";//data.createTime
+    CGRect timeFrame = cell.timeLab.frame;
+    timeFrame.origin.y = CGRectGetMaxY(cell.label.frame) + 4;
+    cell.timeLab.frame = timeFrame;
+    
+   NSString *timeStr = [NSString stringWithFormat:@"%@ 回复",data.publishTime];
+    
+    cell.timeLab.attributedText = [NSString changeSpecialWordColor:HEXCOLOR(0x797979) AllContent:timeStr SpcWord:@"回复" font:12];
     
     //    }
     //设置回复被点击后颜色不变
@@ -746,7 +767,7 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [self endChatEdit];
+//    [self endChatEdit];
 }
 
 #pragma mark ------------------数据成功返回----------------------
@@ -759,7 +780,7 @@
         self.replyDataTemp.textColor = [UIColor whiteColor];
         self.replyDataTemp.font = sysFontWithSize(15);
         [self.replyDataTemp setMatch];
-//        [self.wh_model.replys addObject:self.replyDataTemp];
+        self.replyDataTemp.publishTime = @"刚刚";
         [self.wh_model.replys insertObject:self.replyDataTemp atIndex:0];
         [self.commentTable reloadData];
         [self.commentTable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.wh_model.replys.count - 1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];

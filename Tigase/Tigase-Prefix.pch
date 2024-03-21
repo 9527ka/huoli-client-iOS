@@ -43,7 +43,7 @@
 #define IS_SHOW_SEARCH 0 //是否显示朋友圈搜索
 #define IS_SHOW_IntegratingRobot 0 //是否显示群聊机器人
 
-#define IS_OPEN_CUSTOM_TAB 1 //是否打开自定义tab
+#define IS_OPEN_CUSTOM_TAB 0 //是否打开自定义tab
 #define IS_OPEN_CUSTOM_MENU 1 //是否打开自定义菜单
 
 //#define IS_SHOW_NEWReadDelete 1  //打开阅后即焚新功能 注释则不打开

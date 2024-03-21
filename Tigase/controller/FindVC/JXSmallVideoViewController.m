@@ -112,6 +112,8 @@
 - (void)addVideoAction:(UIButton *)btn{
     
     WH_JXRecordVideo_WHVC *vc = [[WH_JXRecordVideo_WHVC alloc] init];
+//    vc.modalPresentationStyle = UIModalPresentationFullScreen;
+//    [self presentViewController:vc animated:YES completion:nil];
     [g_navigation pushViewController:vc animated:YES];
 }
 

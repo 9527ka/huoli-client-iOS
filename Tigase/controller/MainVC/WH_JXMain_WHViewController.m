@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "WH_JXNewFriend_WHViewController.h"
 #import "WH_JXFriendObject.h"
+#import "WH_JXRecordVideo_WHVC.h"
 #ifdef Live_Version
 //#import "WH_JXLive_WHViewController.h"
 #endif
@@ -31,6 +32,7 @@
 #import "WH_WKWebView_JXViewController.h"
 
 #import "TFJunYou_desiPageVc.h"
+#import "WH_GKDYHome_WHViewController.h"
 
 @implementation WH_JXMain_WHViewController
 @synthesize tb=_tb;
@@ -76,7 +78,8 @@
 #ifdef IS_SHOW_MENU
 //        _squareVC = [[JXSquareViewController alloc] init];
         
-        self.findVC = [[WH_FindViewController alloc] init];///发现
+        self.homeVC = [[WH_GKDYHome_WHViewController alloc] init];
+//        self.findVC = [[WH_FindViewController alloc] init];///发现
 #else
         _weiboVC = [WeiboViewControlle alloc];
         _weiboVC.user = g_myself;
@@ -200,43 +203,38 @@
 }
 
 -(void)buildTop{
-    _tb = [WH_JXTabMenuView alloc];
-#ifdef IS_OPEN_CUSTOM_TAB
-    NSDictionary *tabBarConfig = g_config.tabBarConfigList;
     
-    NSString *tabBarImg = @"tabBarName";
-    NSString *tabBarName = @"";
-    NSString *tabBarImg1 = @"tabBarName";
-        
-    NSString *selectImgName = tabBarImg1;
-
-        
-        _tb.wh_items = [NSArray arrayWithObjects:Localized(@"WaHu_JXMain_WaHuViewController_Message"),Localized(@"JX_MailList"),tabBarName,Localized(@"WaHu_JXMain_WaHuViewController_Find"),Localized(@"JX_My"),nil];
-        _tb.wh_imagesNormal = [NSArray arrayWithObjects:@"xiaoximoren",@"tongxunlumoren",tabBarImg,@"guangchangmoren",@"wodemoren",nil];
-        _tb.wh_imagesSelect = [NSArray arrayWithObjects:@"xiaoxixuanzhong",@"tongxunluxuanzhong",selectImgName,@"guangchangxuanzhong",@"wodexuanzhong",nil];
-//    } else {
-//        _tb.wh_items = [NSArray arrayWithObjects:Localized(@"WaHu_JXMain_WaHuViewController_Message"),Localized(@"JX_MailList"),Localized(@"WaHu_JXMain_WaHuViewController_Find"),Localized(@"JX_My"),nil];
-//        _tb.wh_imagesNormal = [NSArray arrayWithObjects:@"xiaoximoren",@"tongxunlumoren",@"guangchangmoren",@"wodemoren",nil];
-//        _tb.wh_imagesSelect = [NSArray arrayWithObjects:@"xiaoxixuanzhong",@"tongxunluxuanzhong",@"guangchangxuanzhong",@"wodexuanzhong",nil];
-//    }
-#else
-    _tb.items = [NSArray arrayWithObjects:Localized(@"WaHu_JXMain_WaHuViewController_Message"),Localized(@"JX_MailList"),Localized(@"WaHu_JXMain_WaHuViewController_Find"),Localized(@"JX_My"),nil];
-    _tb.imagesNormal = [NSArray arrayWithObjects:@"xiaoximoren",@"tongxunlumoren",@"guangchangmoren",@"wodemoren",nil];
-    _tb.imagesSelect = [NSArray arrayWithObjects:@"xiaoxixuanzhong",@"tongxunluxuanzhong",@"guangchangxuanzhong",@"wodexuanzhong",nil];
-#endif
+    _tb = [WH_JXTabMenuView alloc];
+    //新界面不展示图片了
+    _tb.wh_items = [NSArray arrayWithObjects:@"首页",@"消息",@"朋友",@"我的",nil];
     
     _tb.wh_delegate  = self;
-    _tb.wh_onDragout = @selector(wh_onDragout:);
+//    _tb.wh_onDragout = @selector(wh_onDragout:);
     [_tb setWh_backgroundImageName:@"MessageListCellBkg"];
     _tb.wh_onClick  = @selector(actionSegment:);
     _tb = [_tb initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH, JX_SCREEN_BOTTOM)];
+    __weak typeof (&*self)weakSelf = self;
+    _tb.publishBlock = ^{
+        [weakSelf publishAction];
+    };
     [_bottomView addSubview:_tb];
     
     
-    NSMutableArray *remindArray = [[JXBlogRemind sharedInstance] doFetchUnread];
-    [_tb wh_setBadge:_tb.wh_items.count == 5 ? 3 : 2 title:[NSString stringWithFormat:@"%lu",(unsigned long)remindArray.count]];
+//    NSMutableArray *remindArray = [[JXBlogRemind sharedInstance] doFetchUnread];
+//    [_tb wh_setBadge:_tb.wh_items.count == 5 ? 3 : 2 title:[NSString stringWithFormat:@"%lu",(unsigned long)remindArray.count]];
 }
-
+//发布的点击事件
+-(void)publishAction{
+    if ([[AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo] count] <= 0) {
+        [g_App showAlert:@"未检测到摄像头"];
+        return;
+    }
+    
+    WH_JXRecordVideo_WHVC *vc = [[WH_JXRecordVideo_WHVC alloc] init];
+//    vc.modalPresentationStyle = UIModalPresentationFullScreen;
+//    [self presentViewController:vc animated:NO completion:nil];
+    [g_navigation pushViewController:vc animated:NO];
+}
 
 -(void)actionSegment:(UIButton*)sender{
     [self doSelected:(int)sender.tag];
@@ -245,112 +243,33 @@
 -(void)doSelected:(int)n{
     [_selectVC.view removeFromSuperview];
     
-//#ifdef IS_OPEN_CUSTOM_TAB
-//    NSDictionary *tabBarConfig = g_config.tabBarConfigList;
-//    NSString *tabBarName = [tabBarConfig objectForKey:@"tabBarName"]?:@"";
-//    if (tabBarConfig && tabBarName.length > 0 && ![tabBarName isKindOfClass:[NSNull class]]) {
-        //有自定义tab
-        [self hasCustomTabSelectedHandle:n];
-//    }
-//    else {
-//        [self noCustomTabSelectedHandler:n];
-//    }
-//#else
-//    [self noCustomTabSelectedHandler:n];
-//#endif
+    [self noCustomTabSelectedHandler:n];
     
     [_tb wh_selectOne:n];
     [_mainView addSubview:_selectVC.view];
 }
 
-#pragma mark 有自定义底部导航
-- (void)hasCustomTabSelectedHandle:(int)n {
-    
-    if (self.selTabBarIndex == n && n == 2) {
-        //重复点击tabBar网站
-        [self.customTabVC.webView reload];
-        return;
-    }
 
-    switch (n){
-        case 0:
-            _selectVC = _desipageVc;
-            //_selectVC = _msgVc;
-            break;
-        case 1:
-            _selectVC = _addressbookVC;
-            break;
-        case 2:
-            //自定义菜单
-//            _selectVC = self.customTabVC;
-            _selectVC = self.wkWebViewVC;
-            break;
-        case 3:
-            //发现
-#ifdef IS_SHOW_MENU
-            _selectVC = _findVC;
-#else
-            _selectVC = _weiboVC;
-#endif
-            break;
-            
-        case 4:
-            //我的
-            _selectVC = _mineVC;
-            break;
-    }
-    
-    self.selTabBarIndex = n;
-
-}
 
 //无自定义tab
 - (void)noCustomTabSelectedHandler:(int)n{
     switch (n){
         case 0:
-            _selectVC = _desipageVc;
-           // _selectVC = _msgVc;
+            _selectVC = _homeVC;
+            
             break;
         case 1:
-            _selectVC = _addressbookVC;
-            break;
-        case 2:
-#ifdef IS_SHOW_MENU
-            //            _selectVC = _squareVC;
-            _selectVC = _findVC;
-#else
-            _selectVC = _weiboVC;
-#endif
-            break;
-        case 3:
-            _selectVC = _mineVC;
-            break;
-    }
-}
-
-//有自定义tab
-- (void)haveCustomTabSelectedHandler:(int)n{
-    switch (n){
-        case 0:
             _selectVC = _desipageVc;
-            //_selectVC = _msgVc;
-            break;
-        case 1:
-            _selectVC = _addressbookVC;
             break;
         case 2:
-//            _selectVC = _customTabVC;
-            _selectVC = self.wkWebViewVC;
+            _selectVC = _addressbookVC;
+//#ifdef IS_SHOW_MENU
+//            _selectVC = _findVC;
+//#else
+//            _selectVC = _weiboVC;
+//#endif
             break;
         case 3:
-#ifdef IS_SHOW_MENU
-            //            _selectVC = _squareVC;
-            _selectVC = _findVC;
-#else
-            _selectVC = _weiboVC;
-#endif
-            break;
-        case 4:
             _selectVC = _mineVC;
             break;
     }

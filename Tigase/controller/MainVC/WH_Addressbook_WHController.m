@@ -84,7 +84,7 @@
 //            [friendVC showNewMsgCount:0];
             
             [weakSelf.addressSwitch WH_setRedDotWithSegmentIndex:2 isHidden:YES];
-            [g_mainVC.tb wh_setBadge:1 title:@"0"];
+            [g_mainVC.tb wh_setBadge:2 title:@"0"];
         }
     };
     

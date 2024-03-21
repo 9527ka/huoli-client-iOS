@@ -35,6 +35,8 @@
 
 @class WH_WKWebView_JXViewController;
 @class TFJunYou_desiPageVc;
+@class WH_GKDYHome_WHViewController;
+
 
 
 @interface WH_JXMain_WHViewController : UIViewController<UIAlertViewDelegate>{
@@ -61,6 +63,9 @@
 @property (assign) BOOL IS_HR_MODE;
 
 @property (nonatomic ,strong) WH_FindViewController *findVC;
+@property (nonatomic ,strong) WH_GKDYHome_WHViewController *homeVC;
+
+
 @property (nonatomic ,strong) WH_MineViewController *mineVC;
 
 @property (strong, nonatomic) WH_PSMy_WHViewController* psMyviewVC;

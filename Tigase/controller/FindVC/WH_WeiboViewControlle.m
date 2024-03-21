@@ -124,7 +124,7 @@
             [self createTableHeadShowRemind];
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [g_mainVC.tb wh_setBadge:g_mainVC.tb.wh_items.count == 5 ? 3 : 2 title:[NSString stringWithFormat:@"%ld",_remindArray.count]];
+//                [g_mainVC.tb wh_setBadge:g_mainVC.tb.wh_items.count == 5 ? 3 : 2 title:[NSString stringWithFormat:@"%ld",_remindArray.count]];
             });
             
         }else {
