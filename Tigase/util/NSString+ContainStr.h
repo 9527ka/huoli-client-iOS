@@ -23,4 +23,6 @@
 
 + (NSMutableAttributedString *)changeSpecialWordColor:(id)spcColor AllContent:(NSString *)allWord SpcWord:(NSString *)spcWord font:(CGFloat)size;
 
+- (NSURL *)urlScheme:(NSString *)scheme;
+
 @end

@@ -734,6 +734,9 @@
 		333824FD2B367C5900AC4B06 /* WH_JXAppealAddCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 333824FB2B367C5900AC4B06 /* WH_JXAppealAddCell.xib */; };
 		333825002B36E48900AC4B06 /* WH_JXAppealModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 333824FF2B36E48900AC4B06 /* WH_JXAppealModel.m */; };
 		333B93492BAC21F800450220 /* JX_WHNoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 333B93482BAC21F800450220 /* JX_WHNoDataView.m */; };
+		333B93512BAD2A7A00450220 /* AVPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 333B934E2BAD2A7900450220 /* AVPlayerManager.m */; };
+		333B93522BAD2A7A00450220 /* WebCacheHelpler.m in Sources */ = {isa = PBXBuildFile; fileRef = 333B934F2BAD2A7900450220 /* WebCacheHelpler.m */; };
+		333B93532BAD2A7A00450220 /* QYAVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 333B93502BAD2A7900450220 /* QYAVPlayerView.m */; };
 		334FB9EC2B14241600230991 /* serverList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 334FB9EB2B14241600230991 /* serverList.plist */; };
 		334FB9EE2B1425C000230991 /* userInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 334FB9ED2B1425C000230991 /* userInfo.plist */; };
 		337455322B6CC5BC0080154C /* WH_JXChatTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 337455312B6CC5BC0080154C /* WH_JXChatTool.m */; };
@@ -3102,6 +3105,12 @@
 		333824FF2B36E48900AC4B06 /* WH_JXAppealModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXAppealModel.m; sourceTree = "<group>"; };
 		333B93472BAC21F800450220 /* JX_WHNoDataView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JX_WHNoDataView.h; sourceTree = "<group>"; };
 		333B93482BAC21F800450220 /* JX_WHNoDataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JX_WHNoDataView.m; sourceTree = "<group>"; };
+		333B934B2BAD2A7900450220 /* AVPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVPlayerManager.h; sourceTree = "<group>"; };
+		333B934C2BAD2A7900450220 /* QYAVPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYAVPlayerView.h; sourceTree = "<group>"; };
+		333B934D2BAD2A7900450220 /* WebCacheHelpler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebCacheHelpler.h; sourceTree = "<group>"; };
+		333B934E2BAD2A7900450220 /* AVPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVPlayerManager.m; sourceTree = "<group>"; };
+		333B934F2BAD2A7900450220 /* WebCacheHelpler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebCacheHelpler.m; sourceTree = "<group>"; };
+		333B93502BAD2A7900450220 /* QYAVPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYAVPlayerView.m; sourceTree = "<group>"; };
 		334FB9EB2B14241600230991 /* serverList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = serverList.plist; sourceTree = "<group>"; };
 		334FB9ED2B1425C000230991 /* userInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = userInfo.plist; sourceTree = "<group>"; };
 		337455302B6CC5BC0080154C /* WH_JXChatTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXChatTool.h; sourceTree = "<group>"; };
@@ -6950,6 +6959,19 @@
 			path = OrderDetaileVC;
 			sourceTree = "<group>";
 		};
+		333B934A2BAD2A7900450220 /* AVPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				333B934B2BAD2A7900450220 /* AVPlayerManager.h */,
+				333B934E2BAD2A7900450220 /* AVPlayerManager.m */,
+				333B934C2BAD2A7900450220 /* QYAVPlayerView.h */,
+				333B93502BAD2A7900450220 /* QYAVPlayerView.m */,
+				333B934D2BAD2A7900450220 /* WebCacheHelpler.h */,
+				333B934F2BAD2A7900450220 /* WebCacheHelpler.m */,
+			);
+			path = AVPlayer;
+			sourceTree = "<group>";
+		};
 		33A6EC6E2B5F8A10002321DB /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -7123,6 +7145,7 @@
 		4CABBC00293F06F700C17F42 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				333B934A2BAD2A7900450220 /* AVPlayer */,
 				4CABBC01293F06F700C17F42 /* GKNetworking */,
 				4CABBC04293F06F700C17F42 /* GKDYVideoPlayer */,
 				4CABBC07293F06F700C17F42 /* GKSliderView */,
@@ -11168,6 +11191,7 @@
 				0FA2D6091FB05CCC00D51BB9 /* GPUImageLevelsFilter.m in Sources */,
 				CCC02C541A80CDF3004E32B5 /* WH_JXNear_WHVC.m in Sources */,
 				0FA2D5FB1FB05CCC00D51BB9 /* GPUImageHueFilter.m in Sources */,
+				333B93512BAD2A7A00450220 /* AVPlayerManager.m in Sources */,
 				63DD4F7021314DB800DC45F8 /* RITLPhotosBrowseImageCell.m in Sources */,
 				63DD4F5521314DB800DC45F8 /* RITLDictionaryProxy.m in Sources */,
 				63F4E43F21C0AE7800C61204 /* WH_KKMosaicView.m in Sources */,
@@ -11410,6 +11434,7 @@
 				63DD4F6221314DB800DC45F8 /* NSString+RITLPhotos.m in Sources */,
 				6346691B1EC405F700BE6112 /* RATreeNodeItem+Private.m in Sources */,
 				0F304D972153AD0D001EC77E /* XMPPPresence.m in Sources */,
+				333B93532BAD2A7A00450220 /* QYAVPlayerView.m in Sources */,
 				0FCE24E91FF33D7F0098713E /* JSONKit.m in Sources */,
 				33BDEC612B43D4C200C6A697 /* WH_JXBuyAndPayListVC.m in Sources */,
 				6317CCB51FB9798500CEF9EF /* LFLiveStreamInfo.m in Sources */,
@@ -11991,6 +12016,7 @@
 				0F304E282153AD0E001EC77E /* NSXMLElement+XMPP.m in Sources */,
 				6322E87B1F136968003AB149 /* UIImageView+WH_FileType.m in Sources */,
 				DEDF17CF232792B80062CDF2 /* MiXin_DepartMentViewController.m in Sources */,
+				333B93522BAD2A7A00450220 /* WebCacheHelpler.m in Sources */,
 				6336AA821E52F11B00F831D8 /* WH_ImageSelector_WHCollectionCell.m in Sources */,
 				0FD206771F209B21003AB8D1 /* WH_JXSystemImage2_WHCell.m in Sources */,
 				6317CCA91FB9798500CEF9EF /* LFAudioCapture.m in Sources */,

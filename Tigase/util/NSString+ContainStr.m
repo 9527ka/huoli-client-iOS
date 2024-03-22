@@ -79,5 +79,10 @@
     
     return contentStr;
 }
+- (NSURL *)urlScheme:(NSString *)scheme {
+    NSURLComponents *components = [[NSURLComponents alloc] initWithURL:[NSURL URLWithString:self] resolvingAgainstBaseURL:NO];
+    components.scheme = scheme;
+    return [components URL];
+}
 
 @end
