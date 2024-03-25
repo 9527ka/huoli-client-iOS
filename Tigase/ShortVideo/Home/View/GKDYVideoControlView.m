@@ -112,7 +112,7 @@
         
         [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self).offset(ADAPTATIONRATIO * 30.0f);
-            make.bottom.equalTo(self.sliderView).offset(-ADAPTATIONRATIO * 30.0f);
+            make.bottom.equalTo(self.sliderView).offset(-ADAPTATIONRATIO * 16.0f - JX_SCREEN_BOTTOM);
             make.width.mas_equalTo(ADAPTATIONRATIO * 504.0f);
         }];
         
@@ -123,31 +123,31 @@
         
         [self.reportBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self).offset(-ADAPTATIONRATIO * 20.0f);
-            make.bottom.equalTo(self.nameLabel.mas_top).offset(-ADAPTATIONRATIO * 30.0f);
+            make.bottom.equalTo(self.nameLabel.mas_top).offset(-ADAPTATIONRATIO * 16.0f);
             make.height.mas_equalTo(ADAPTATIONRATIO * 110.0f);
         }];
         
         [self.shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.reportBtn);
-            make.bottom.equalTo(self.reportBtn.mas_top).offset(-ADAPTATIONRATIO * 50.0f);
+            make.bottom.equalTo(self.reportBtn.mas_top).offset(-ADAPTATIONRATIO * 16.0f);
             make.height.mas_equalTo(ADAPTATIONRATIO * 110.0f);
         }];
         
         [self.commentBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.shareBtn);
-            make.bottom.equalTo(self.shareBtn.mas_top).offset(-ADAPTATIONRATIO * 45.0f);
+            make.bottom.equalTo(self.shareBtn.mas_top).offset(-ADAPTATIONRATIO * 16.0f);
             make.height.mas_equalTo(ADAPTATIONRATIO * 110.0f);
         }];
         
         [self.praiseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.shareBtn);
-            make.bottom.equalTo(self.commentBtn.mas_top).offset(-ADAPTATIONRATIO * 45.0f);
+            make.bottom.equalTo(self.commentBtn.mas_top).offset(-ADAPTATIONRATIO * 16.0f);
             make.height.mas_equalTo(ADAPTATIONRATIO * 110.0f);
         }];
         
         [self.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.reportBtn);
-            make.bottom.equalTo(self.praiseBtn.mas_top).offset(-ADAPTATIONRATIO * 70.0f);
+            make.bottom.equalTo(self.praiseBtn.mas_top).offset(-ADAPTATIONRATIO * 50.0f);
             make.width.height.mas_equalTo(ADAPTATIONRATIO * 100.0f);
         }];
         
@@ -241,7 +241,12 @@
 //    _commentTable.tableHeaderView = _commentNum;
     
     _noDataView = [[JX_WHNoDataView alloc] initWithFrame:CGRectMake(0, 160, JX_SCREEN_WIDTH, 180)];
-    [_commentView addSubview:_noDataView];
+    _noDataView.hidden = self.wh_model.replys.count > 0?YES:NO;
+    __weak typeof (&*self)weakSelf = self;
+    _noDataView.commentBlock = ^{
+        [weakSelf commentButtonAction];
+    };
+    [_commentView addSubview:self.noDataView];
     
     
     
@@ -400,7 +405,7 @@
     
     self.praiseBtn.selected = model.isPraise;
     self.commentNum.text = [NSString stringWithFormat:Localized(@"JX_%ldComments"),self.wh_model.replys.count];
-    
+        
     [self.commentTable reloadData];
 }
 

@@ -15,7 +15,7 @@ target 'Tigase' do
 pod 'YYModel'
 pod 'IQKeyboardManager'
 pod 'MJExtension'
-
+pod 'ZFPlayer'
 
 
 

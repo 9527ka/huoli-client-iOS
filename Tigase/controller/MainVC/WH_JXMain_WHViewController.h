@@ -36,6 +36,7 @@
 @class WH_WKWebView_JXViewController;
 @class TFJunYou_desiPageVc;
 @class WH_GKDYHome_WHViewController;
+@class WH_Player_WHVC;
 
 
 
@@ -63,7 +64,7 @@
 @property (assign) BOOL IS_HR_MODE;
 
 @property (nonatomic ,strong) WH_FindViewController *findVC;
-@property (nonatomic ,strong) WH_GKDYHome_WHViewController *homeVC;
+@property (nonatomic ,strong) WH_Player_WHVC *homeVC;
 
 
 @property (nonatomic ,strong) WH_MineViewController *mineVC;

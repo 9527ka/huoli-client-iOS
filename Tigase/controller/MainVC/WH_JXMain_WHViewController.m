@@ -32,7 +32,7 @@
 #import "WH_WKWebView_JXViewController.h"
 
 #import "TFJunYou_desiPageVc.h"
-#import "WH_GKDYHome_WHViewController.h"
+#import "WH_Player_WHVC.h"
 
 @implementation WH_JXMain_WHViewController
 @synthesize tb=_tb;
@@ -78,7 +78,7 @@
 #ifdef IS_SHOW_MENU
 //        _squareVC = [[JXSquareViewController alloc] init];
         
-        self.homeVC = [[WH_GKDYHome_WHViewController alloc] init];
+        self.homeVC = [[WH_Player_WHVC alloc] init];
 //        self.findVC = [[WH_FindViewController alloc] init];///发现
 #else
         _weiboVC = [WeiboViewControlle alloc];
