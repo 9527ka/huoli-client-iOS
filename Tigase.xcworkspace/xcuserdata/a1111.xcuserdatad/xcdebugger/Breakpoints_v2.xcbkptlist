@@ -408,8 +408,8 @@
             filePath = "Tigase/meeting/GroupManage/Controller/WH_JXRoomMember_WHVC.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2584"
-            endingLineNumber = "2584"
+            startingLineNumber = "2617"
+            endingLineNumber = "2617"
             landmarkName = "-onDisableSay:"
             landmarkType = "7">
          </BreakpointContent>
@@ -424,8 +424,8 @@
             filePath = "Tigase/meeting/GroupManage/Controller/WH_JXRoomMember_WHVC.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2599"
-            endingLineNumber = "2599"
+            startingLineNumber = "2632"
+            endingLineNumber = "2632"
             landmarkName = "WH_JXRoomMember_WHVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -440,8 +440,8 @@
             filePath = "Tigase/meeting/GroupManage/Controller/WH_JXRoomMember_WHVC.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2572"
-            endingLineNumber = "2572"
+            startingLineNumber = "2605"
+            endingLineNumber = "2605"
             landmarkName = "-onDisableSay:"
             landmarkType = "7">
          </BreakpointContent>
@@ -584,8 +584,8 @@
             filePath = "Tigase/meeting/GroupManage/Controller/WH_JXRoomMember_WHVC.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2742"
-            endingLineNumber = "2742"
+            startingLineNumber = "2775"
+            endingLineNumber = "2775"
             landmarkName = "-specifyAdministrator"
             landmarkType = "7">
          </BreakpointContent>
@@ -635,38 +635,6 @@
             startingLineNumber = "257"
             endingLineNumber = "257"
             landmarkName = "-WH_createCustomView"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F0C04EF9-CB84-46FF-803D-C54F3A27A9F6"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tigase/personCenter(&#x4e2a;&#x4eba;&#x4e2d;&#x5fc3;)/WH_MyWallet_WHViewController.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
-            landmarkName = "-buttonClickMethod:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "5D798DDE-A60C-41ED-AA7A-F72BEA54FD13"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tigase/personCenter(&#x4e2a;&#x4eba;&#x4e2d;&#x5fc3;)/WH_MyWallet_WHViewController.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
-            landmarkName = "-buttonClickMethod:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -888,8 +856,8 @@
             filePath = "Tigase/personCenter(&#x4e2a;&#x4eba;&#x4e2d;&#x5fc3;)/WH_MyWallet_WHViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
             landmarkName = "-lianxikehu"
             landmarkType = "7">
          </BreakpointContent>
@@ -2712,8 +2680,8 @@
             filePath = "Tigase/meeting/GroupManage/Controller/WH_JXRoomMember_WHVC.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1527"
-            endingLineNumber = "1527"
+            startingLineNumber = "1528"
+            endingLineNumber = "1528"
             landmarkName = "-createImagesWithHeight:"
             landmarkType = "7">
          </BreakpointContent>

@@ -634,7 +634,7 @@
         
         [self redrawView];
         
-        [self.seeAllBtn setTitle:[NSString stringWithFormat:@"%@(%ld)",Localized(@"New_view_all_group"),self.wh_room.members.count] forState:UIControlStateNormal];//self.userSize
+//        [self.seeAllBtn setTitle:[NSString stringWithFormat:@"%@(%ld)",Localized(@"New_view_all_group"),self.wh_room.members.count] forState:UIControlStateNormal];//self.userSize
         //        }
         
         //        [self setDeleteMode:YES];
@@ -1519,16 +1519,24 @@
     float widthInset = (screenWidth-37*5)/6;
     
     float x = widthInset;
-    int y = 16;
+    int y = 46;
     //收起状态显示两行10个+两个系统图标
-    unsigned long maxShow = ([wh_room.members count]>8 && _unfoldMode) ? 8 : [wh_room.members count];
+//    unsigned long maxShow = ([wh_room.members count]>8 && _unfoldMode) ? 8 : [wh_room.members count];
+    unsigned long maxShow = ([wh_room.members count]>3 && _unfoldMode) ? 3 : [wh_room.members count];
     
     /// 获取当前登录用户
     memberData *loginMember = [self getCurrentLoginMerber];
     /// 当前登录用户是不是管理者
     BOOL isManger = [self isManger:loginMember];
     
+    //创建标题
+    UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(15, 15, 100, 20)];
+    titleLab.text = @"群聊成员";
+    titleLab.font = [UIFont systemFontOfSize:14];
+    [_heads addSubview:titleLab];
+    
     for(int i=0;i<maxShow+2;i++){
+        y+=59;
         //用于判断创建是头像还是系统图标
         long n ;
         memberData* user = nil;
@@ -1549,17 +1557,18 @@
         if(p){
             
             if(x +37 >= JX_SCREEN_WIDTH){
-                y += 72+10;
+//                y += 72+10;
+//                y+=59;
                 x = widthInset;
             }
             
-            p.frame = CGRectMake(x, y, 37, 37);
+            p.frame = CGRectMake(15, i*59 + 46, 44, 44);
             if (n != 0 && n != -1) {
                 [g_server WH_getHeadImageSmallWIthUserId:[NSString stringWithFormat:@"%ld",n] userName:user.userNickName imageView:p];
             }
             x = x+37+widthInset;
             if(n>0){
-                JXLabel* b = [[JXLabel alloc]initWithFrame:CGRectMake( p.frame.origin.x-5, p.frame.origin.y+p.frame.size.height+3, 37+10, 15)];
+                JXLabel* b = [[JXLabel alloc]initWithFrame:CGRectMake(70, p.frame.origin.y, 37+10, p.frame.size.height)];
                 
                 NSString *name = [NSString string];
                 WH_JXUserObject *allUser = [[WH_JXUserObject alloc] init];
@@ -1587,12 +1596,35 @@
                 }
 
                 b.text = name;
-                b.font = sysFontWithSize(12);
-                b.textColor = HEXCOLOR(0x555555);
-                b.textAlignment = NSTextAlignmentCenter;
+                b.font = sysFontWithSize(16);
+                b.textColor = HEXCOLOR(0x161819);
+                b.textAlignment = NSTextAlignmentLeft;
                 [_heads addSubview:b];
+                [b mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.equalTo(p.mas_right).offset(10);
+                    make.centerY.equalTo(p);
+                }];
 //                [b release];
                 [_names addObject:b];
+                
+                //判断当前是不是管理员
+                if(user.role.intValue == 1 || user.role.intValue == 2){//1创建者,2管理员,3成员,4隐身人,5监控人6,群助手
+                    UILabel *roleLab = [[UILabel alloc] init];
+                    roleLab.text = user.role.intValue == 1?@"群主":@"管理员";
+                    roleLab.textColor = [UIColor whiteColor];
+                    roleLab.textAlignment = NSTextAlignmentCenter;
+                    roleLab.backgroundColor = user.role.intValue == 1?THEMECOLOR:HEXCOLOR(0xFFD111);
+                    roleLab.layer.cornerRadius = 9.0f;
+                    roleLab.layer.masksToBounds = YES;
+                    roleLab.font = [UIFont systemFontOfSize:12];
+                    [_heads addSubview:roleLab];
+                    [roleLab mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.width.mas_equalTo(58);
+                        make.height.mas_equalTo(18);
+                        make.left.equalTo(b.mas_right).offset(12);
+                        make.centerY.equalTo(b);
+                    }];
+                }
             }
         }
 
@@ -1620,19 +1652,20 @@
     }
     //换行后添加高度
     int n = y;
-    if(x > widthInset)
-        n += 72+10;
+//    if(x > widthInset)
+//        n += 72+10;
     
     if (isShow) {
         //创建公告
         self.seeAllBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.seeAllBtn.frame = CGRectMake(0, n, _heads.frame.size.width, 30);
-        [self.seeAllBtn setTitle:[NSString stringWithFormat:@"%@(%ld)",Localized(@"New_view_all_group"),(self.membersNum > 0)?self.membersNum:self.wh_room.members.count] forState:UIControlStateNormal];//self.userSize
-        [self.seeAllBtn setTitleColor:HEXCOLOR(0x969696) forState:UIControlStateNormal];
+        self.seeAllBtn.frame = CGRectMake(_heads.frame.size.width - 120, 8, 120, 30);
+//        [self.seeAllBtn setTitle:[NSString stringWithFormat:@"%@(%ld)",Localized(@"New_view_all_group"),(self.membersNum > 0)?self.membersNum:self.wh_room.members.count] forState:UIControlStateNormal];//self.userSize
+        [self.seeAllBtn setTitle:@"查看更多群成员 >" forState:UIControlStateNormal];//self.userSize
+        [self.seeAllBtn setTitleColor:HEXCOLOR(0x9E9E9E) forState:UIControlStateNormal];
         [self.seeAllBtn addTarget:self action:@selector(onShowMembers) forControlEvents:UIControlEventTouchUpInside];
-        self.seeAllBtn.titleLabel.font = sysFontWithSize(14);
+        self.seeAllBtn.titleLabel.font = sysFontWithSize(12);
         [_heads addSubview:self.seeAllBtn];
-        n+=40;//收起箭头
+//        n+=40;//收起箭头
     }
     
     
@@ -1698,7 +1731,7 @@
     WH_JXImageView* p = [[WH_JXImageView alloc]init];
     p.didTouch = @selector(onImage:);
     p.wh_delegate = self;
-    [p headRadiusWithAngle:18.5];
+    [p headRadiusWithAngle:22];
     p.tag = index;
     switch (userId) {
         case 0:

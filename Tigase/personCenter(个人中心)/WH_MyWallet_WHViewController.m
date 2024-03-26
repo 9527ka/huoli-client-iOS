@@ -75,7 +75,7 @@
    
     
     //icon
-    UIImageView *jbImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, JX_SCREEN_WIDTH - 40, 126)];
+    UIImageView *jbImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, JX_SCREEN_WIDTH - 40, 192)];
     [jbImg setImage:[UIImage imageNamed:@"my_account_bg"]];
     [cView addSubview:jbImg];
     
@@ -94,42 +94,79 @@
     [jbImg addSubview:self.wh_moneyLabel];
     [self.wh_moneyLabel setTextAlignment:NSTextAlignmentLeft];
     
-    NSArray *array = @[@"USDT充值" ,@"USDT提现"];;
-    if ([g_config.hmPayStatus integerValue] == 1 && [g_config.hmWithdrawStatus integerValue] != 1) {
-        array = @[@"USDT充值" ,@"H5充值",@"USDT提现"];
-    }
-    if ([g_config.hmPayStatus integerValue] != 2 && [g_config.hmWithdrawStatus integerValue] == 1) {
-        array = @[@"USDT充值" ,@"USDT提现" ,@"H5提现"];
-    }
-    if ([g_config.hmPayStatus integerValue] == 1 && [g_config.hmWithdrawStatus integerValue] == 1) {
-        array = @[@"USDT充值" ,@"H5充值",@"USDT提现",@"H5提现"];
-    }
-    NSMutableArray *titleArr = [NSMutableArray arrayWithArray:array];
-    [titleArr addObject:@"联系客服充值"];
-    [titleArr addObject:@"C2C交易（推荐）"];
+    //创建半透明背景
+    UIView *aaView = [[UIView alloc] initWithFrame:CGRectMake(0, jbImg.frame.size.height - 69, jbImg.frame.size.width, 69)];
+    aaView.backgroundColor = [UIColor whiteColor];
+    aaView.alpha = 0.37;
+    [jbImg addSubview:aaView];
     
-    for (int i = 0; i < titleArr.count; i++) {
-        NSString *titleStr = [titleArr objectAtIndex:i];
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setFrame:CGRectMake(17, (CGRectGetMaxY(jbImg.frame) + 30) + i*(20 + 48), cView.frame.size.width - 34, 48)];
-        [btn setTag:i];
-        [btn setTitle:[titleArr objectAtIndex:i] forState:UIControlStateNormal];
-        [btn setTitleColor:i == titleArr.count - 1?HEXCOLOR(0xffffff):HEXCOLOR(0x797979) forState:UIControlStateNormal];
-        [btn setTitleColor:i == titleArr.count - 1?HEXCOLOR(0xffffff):HEXCOLOR(0x797979) forState:UIControlStateHighlighted];
-        [btn setBackgroundColor:([titleStr isEqualToString:@"C2C交易（推荐）"])?THEMECOLOR:HEXCOLOR(0xffffff)];
-        btn.layer.masksToBounds = YES;
-        btn.layer.cornerRadius = 24.0f;
-        if (![titleStr isEqualToString:@"C2C交易（推荐）"]) {
-            btn.layer.borderColor = HEXCOLOR(0xEEEEEE).CGColor;
-            btn.layer.borderWidth = g_factory.cardBorderWithd;
-        }
-        [btn.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 17]];
-        [cView addSubview:btn];
-        [btn addTarget:self action:@selector(buttonClickMethod:) forControlEvents:UIControlEventTouchUpInside];
-    }
+    //创建充值以及提现的按钮
+    UIButton *rechargeBtn = [self creatButtonWithTitle:@"充值" icon:@"mine_recharge_icon"];
+    [rechargeBtn addTarget:self action:@selector(recargeAction) forControlEvents:UIControlEventTouchUpInside];
+    [jbImg addSubview:rechargeBtn];
+    [rechargeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.bottom.equalTo(aaView);
+        make.width.mas_equalTo(aaView.frame.size.width/2);
+    }];
+    
+    UIButton *withDrawBtn = [self creatButtonWithTitle:@"提现" icon:@"mine_withraw_icon"];
+    [withDrawBtn addTarget:self action:@selector(withDrawBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    [jbImg addSubview:withDrawBtn];
+    [withDrawBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.right.bottom.equalTo(aaView);
+        make.width.mas_equalTo(aaView.frame.size.width/2);
+    }];
+    
+    //创建分割线
+    UILabel *line = [[UILabel alloc] init];
+    line.backgroundColor = [UIColor whiteColor];
+    [jbImg addSubview:line];
+    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(0.5);
+        make.height.mas_equalTo(34);
+        make.left.equalTo(rechargeBtn.mas_right);
+        make.top.equalTo(aaView).offset(17);
+    }];
+    
+        
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setFrame:CGRectMake(37, JX_SCREEN_HEIGHT - 136, JX_SCREEN_WIDTH - 74, 48)];
+    [btn setTitle:@"联系客服充值" forState:UIControlStateNormal];
+    [btn setTitleColor:HEXCOLOR(0x797979) forState:UIControlStateNormal];
+    [btn setTitleColor:HEXCOLOR(0x797979) forState:UIControlStateHighlighted];
+    [btn setBackgroundColor:HEXCOLOR(0xffffff)];
+    btn.layer.masksToBounds = YES;
+    btn.layer.cornerRadius = 24.0f;
+    btn.layer.borderColor = HEXCOLOR(0xEEEEEE).CGColor;
+    btn.layer.borderWidth = g_factory.cardBorderWithd;
+    [btn.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 17]];
+    [self.view addSubview:btn];
+    [btn addTarget:self action:@selector(lianxikehu) forControlEvents:UIControlEventTouchUpInside];
     
     //获取余额
     [g_server WH_getUserMoenyToView:self];
+}
+
+-(UIButton *)creatButtonWithTitle:(NSString *)title icon:(NSString *)icon{
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImageView *imageIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:icon]];
+    [btn addSubview:imageIcon];
+    [imageIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(btn);
+        make.top.equalTo(btn).offset(16);
+    }];
+    UILabel *titleLab = [[UILabel alloc] init];
+    titleLab.text = title;
+    titleLab.font = [UIFont systemFontOfSize:14];
+    titleLab.textColor = [UIColor whiteColor];
+    titleLab.textAlignment = NSTextAlignmentCenter;
+    [btn addSubview:titleLab];
+    [titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(imageIcon.mas_bottom).offset(4);
+        make.centerX.equalTo(imageIcon);
+    }];
+    
+    return btn;
 }
 
 - (UIButton *)createHeadButton {
@@ -174,89 +211,48 @@
     sendView = [sendView init];
     [g_navigation pushViewController:sendView animated:YES];
 }
-- (void)buttonClickMethod:(UIButton *)button {
-    
-    /*@[@"USDT充值" ,@"H5充值",@"USDT提现"] */
-    NSString *actionTitle = [button titleForState:UIControlStateNormal];
-    if ([actionTitle isEqualToString:@"USDT充值"]) {
+-(void)recargeAction{
+    if ([g_config.aliPayStatus integerValue] != 1 && [g_config.wechatPayStatus integerValue] != 1 && [g_config.yunPayStatus integerValue] != 1) {
+        //aliPayStatus;  //支付宝充值状态 1:开启 2：关闭 wechatWithdrawStatus; //微信提现状态1：开启 2：关闭
+        [GKMessageTool showText:Localized(@"New_not_open_temporarily")];
+        [self lianxikehu];
+       
+        return;
         
-        if ([g_config.aliPayStatus integerValue] != 1 && [g_config.wechatPayStatus integerValue] != 1 && [g_config.yunPayStatus integerValue] != 1) {
-            //aliPayStatus;  //支付宝充值状态 1:开启 2：关闭 wechatWithdrawStatus; //微信提现状态1：开启 2：关闭
-            [GKMessageTool showText:Localized(@"New_not_open_temporarily")];
-            [self lianxikehu];
-           
-            return;
-            
-        }else {
-            
-            WH_RechargeVC *rechargeVC = [[WH_RechargeVC alloc] init];
-            [g_navigation pushViewController:rechargeVC animated:YES];
-            
+    }else {
+        
+        WH_RechargeVC *rechargeVC = [[WH_RechargeVC alloc] init];
+        [g_navigation pushViewController:rechargeVC animated:YES];
+        
 
-        }
-        
-    } else if ([actionTitle isEqualToString:@"H5充值"]) {
-        
-//        NSString *str = [NSString stringWithFormat:@"http://ht.icloudpay.us/mobile/chongzhi/wahucz?accessToken=%@" ,g_server.access_token];
-//        WH_webpage_WHVC *webVC = [WH_webpage_WHVC alloc];
-//        webVC.isGoBack= YES;
-//        webVC.isSend = YES;
-//        webVC.title = @"";
-//        webVC.url = str;
-//        webVC = [webVC init];
-//        [g_navigation.navigationView addSubview:webVC.view];
-        
-        WH_H5Transaction_JXViewController *tranVC = [[WH_H5Transaction_JXViewController alloc] init];
-        tranVC.transactionType = 1;
-        [g_navigation pushViewController:tranVC animated:YES];
-        
-    } else if ([actionTitle isEqualToString:@"USDT提现"]) {
-        //        MiXin_WithdrawCoin_MiXinVC *vc = [[MiXin_WithdrawCoin_MiXinVC alloc] init];
-        //        [g_navigation pushViewController:vc animated:YES];
-        //        return;
-        
-        /**
-         * aliWithdrawStatus  支付宝提现状态 1:开启 2：关闭
-         * wechatWithdrawStatus 微信提现状态1：开启 2：关闭
-         * isWithdrawToAdmin 是否提现到后台 1：开启
-         */
-        
-        if ([g_config.aliWithdrawStatus integerValue] != 1 && [g_config.wechatWithdrawStatus integerValue] != 1 && [g_config.isWithdrawToAdmin integerValue] != 1) {
-            [GKMessageTool showText:Localized(@"New_temporarily_closed")];
-            return;
-        }else {
+    }
+}
+-(void)withDrawBtnAction{
+    if ([g_config.aliWithdrawStatus integerValue] != 1 && [g_config.wechatWithdrawStatus integerValue] != 1 && [g_config.isWithdrawToAdmin integerValue] != 1) {
+        [GKMessageTool showText:Localized(@"New_temporarily_closed")];
+        return;
+    }else {
+        //提现到后台审核
+        //先判断是否绑定了手机号
+        if ([g_config.isWithdrawToAdmin intValue] == 1) {//提现
             //提现到后台审核
-            //先判断是否绑定了手机号
-            if ([g_config.isWithdrawToAdmin intValue] == 1) {//提现
-                //提现到后台审核
-                g_myself.isPayPassword = [g_default objectForKey:PayPasswordKey];
-                if ([g_myself.isPayPassword boolValue]) {
-                    
-                    WH_WithDreawVC *tranVC = [[WH_WithDreawVC alloc] init];
-                    [g_navigation pushViewController:tranVC animated:YES];
-                    
-                    
-                }else {//没有支付密码
-                    [BindTelephoneChecker checkBindPhoneWithViewController:self entertype:JXEnterTypeDefault];
-                }
-            } else {
-                 
+            g_myself.isPayPassword = [g_default objectForKey:PayPasswordKey];
+            if ([g_myself.isPayPassword boolValue]) {
+                
                 WH_WithDreawVC *tranVC = [[WH_WithDreawVC alloc] init];
                 [g_navigation pushViewController:tranVC animated:YES];
                 
+                
+            }else {//没有支付密码
+                [BindTelephoneChecker checkBindPhoneWithViewController:self entertype:JXEnterTypeDefault];
             }
+        } else {
+             
+            WH_WithDreawVC *tranVC = [[WH_WithDreawVC alloc] init];
+            [g_navigation pushViewController:tranVC animated:YES];
+            
         }
-    }else if ([actionTitle isEqualToString:Localized(@"H5提现")]) {
-        WH_H5Transaction_JXViewController *tranVC = [[WH_H5Transaction_JXViewController alloc] init];
-        tranVC.transactionType = 2;
-        [g_navigation pushViewController:tranVC animated:YES];
-    }else if ([actionTitle isEqualToString:@"联系客服充值"]){
-        [self lianxikehu];
-    }else if ([actionTitle isEqualToString:@"C2C交易（推荐）"]) {
-        WH_JXBuyAndPayListVC *vc = [[WH_JXBuyAndPayListVC alloc] init];
-        [g_navigation pushViewController:vc animated:YES];
     }
-
 }
 //未设置支付密码，设置支付密码
 - (void)setPaypassForFirstTime {
