@@ -9,6 +9,7 @@
 #import "WH_RegisterViewController.h"
 #import "WH_webpage_WHVC.h"
 #import "WH_PSRegisterBaseVC.h"
+#import "WH_CodeLoginVC.h"
 
 @interface WH_RegisterViewController (){
     ATMHud *_wait;
@@ -73,6 +74,11 @@
     //返回上一级
     UIViewController *goVC = [g_navigation.subViews objectAtIndex:(g_navigation.subViews.count >= 2 ? (g_navigation.subViews.count - 2):0)];
     [g_navigation popToViewController:[goVC class] animated:YES];
+}
+- (IBAction)phoneRegiestAction:(id)sender {
+    WH_CodeLoginVC *vc = [[WH_CodeLoginVC alloc] init];
+    vc.type = 1;
+    [g_navigation pushViewController:vc animated:YES];
 }
 
 - (IBAction)regiestAction:(id)sender {

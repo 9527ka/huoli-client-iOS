@@ -11,6 +11,7 @@
 #import "WH_RegisterViewController.h"
 #import "MiXin_forgetPwd_MiXinVC.h"
 #import "WH_ForgetPwdForUserViewController.h"
+#import "WH_CodeLoginVC.h"
 
 @interface WH_JXLoginVC ()<JXLocationDelegate, UITextFieldDelegate>{
     BOOL isRegistSuccess; //!< 是否注册成功
@@ -185,6 +186,12 @@
     WH_RegisterViewController *vc = [[WH_RegisterViewController alloc] init];
     [g_navigation pushViewController:vc animated:YES];
 }
+- (IBAction)codeLoginAction:(id)sender {
+    WH_CodeLoginVC *vc = [[WH_CodeLoginVC alloc] init];
+    vc.type = 0;
+    [g_navigation pushViewController:vc animated:YES];
+}
+
 - (IBAction)loginAction:(id)sender {
     [self.view endEditing:YES];
     if(self.accountField.text.length == 0){

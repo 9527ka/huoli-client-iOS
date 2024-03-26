@@ -167,8 +167,23 @@
                         <constraint firstItem="1y3-Cs-mwx" firstAttribute="leading" secondItem="58k-e9-wlK" secondAttribute="trailing" constant="10" id="oya-6G-WDO"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYd-fi-d2q">
+                    <rect key="frame" x="276" y="507" width="80" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="L6f-IE-bax"/>
+                        <constraint firstAttribute="width" constant="80" id="fyw-nL-KtL"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="手机号注册">
+                        <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="phoneRegiestAction:" destination="-1" eventType="touchUpInside" id="u14-VH-5MC"/>
+                    </connections>
+                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XoM-1t-ryY">
-                    <rect key="frame" x="37" y="549" width="319" height="48"/>
+                    <rect key="frame" x="37" y="579" width="319" height="48"/>
                     <color key="backgroundColor" red="0.16862745100000001" green="0.68627450980000004" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="X3N-XK-ney"/>
@@ -181,7 +196,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yoQ-ep-A7e">
-                    <rect key="frame" x="139" y="627" width="115" height="29"/>
+                    <rect key="frame" x="139" y="657" width="115" height="29"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="已有账号，去登录">
@@ -242,8 +257,9 @@
                 <constraint firstItem="dxR-k8-pgA" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="37" id="Oh9-zQ-OiP"/>
                 <constraint firstItem="YxA-yb-SuT" firstAttribute="leading" secondItem="dxR-k8-pgA" secondAttribute="leading" id="Qhe-sy-Pdy"/>
                 <constraint firstItem="YxA-yb-SuT" firstAttribute="top" secondItem="dxR-k8-pgA" secondAttribute="bottom" constant="25" id="UaM-X0-AOd"/>
+                <constraint firstItem="eYd-fi-d2q" firstAttribute="top" secondItem="W0g-NH-d95" secondAttribute="bottom" constant="8" id="Waw-FJ-wtP"/>
                 <constraint firstAttribute="bottom" secondItem="N8W-Sd-8wd" secondAttribute="bottom" id="adn-NH-65u"/>
-                <constraint firstItem="XoM-1t-ryY" firstAttribute="top" secondItem="W0g-NH-d95" secondAttribute="bottom" constant="50" id="bFc-sB-j3y"/>
+                <constraint firstItem="XoM-1t-ryY" firstAttribute="top" secondItem="W0g-NH-d95" secondAttribute="bottom" constant="80" id="bFc-sB-j3y"/>
                 <constraint firstItem="EKN-CL-eUv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bxX-2y-MSk"/>
                 <constraint firstItem="GvT-su-57t" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dDy-hy-MdG"/>
                 <constraint firstItem="EKN-CL-eUv" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="80" id="esb-L1-ZmQ"/>
@@ -251,6 +267,7 @@
                 <constraint firstItem="W0g-NH-d95" firstAttribute="top" secondItem="YxA-yb-SuT" secondAttribute="bottom" constant="25" id="lgS-NO-z89"/>
                 <constraint firstItem="XoM-1t-ryY" firstAttribute="leading" secondItem="dxR-k8-pgA" secondAttribute="leading" id="o9g-Jw-TLT"/>
                 <constraint firstItem="gNb-Tp-S5l" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="r4c-o8-2Jw"/>
+                <constraint firstItem="W0g-NH-d95" firstAttribute="trailing" secondItem="eYd-fi-d2q" secondAttribute="trailing" id="rsh-gZ-8Ah"/>
                 <constraint firstItem="yoQ-ep-A7e" firstAttribute="top" secondItem="XoM-1t-ryY" secondAttribute="bottom" constant="30" id="tLr-0t-CN8"/>
                 <constraint firstItem="hIT-Lm-aiP" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="tzh-50-icr"/>
                 <constraint firstItem="XoM-1t-ryY" firstAttribute="trailing" secondItem="dxR-k8-pgA" secondAttribute="trailing" id="yuV-JB-czE"/>

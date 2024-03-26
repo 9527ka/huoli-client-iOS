@@ -814,6 +814,8 @@
 		33BEF42A2B5A11400078B540 /* WH_JXAgentVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BEF4282B5A11400078B540 /* WH_JXAgentVC.xib */; };
 		33BEF42E2B5A1AA10078B540 /* WH_JXAgentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BEF42C2B5A1AA10078B540 /* WH_JXAgentCell.m */; };
 		33BEF42F2B5A1AA10078B540 /* WH_JXAgentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BEF42D2B5A1AA10078B540 /* WH_JXAgentCell.xib */; };
+		33CB6D952BB2C39B000D58DE /* WH_CodeLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CB6D932BB2C39B000D58DE /* WH_CodeLoginVC.m */; };
+		33CB6D962BB2C39B000D58DE /* WH_CodeLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CB6D942BB2C39B000D58DE /* WH_CodeLoginVC.xib */; };
 		33CD3C682B64F682001BFBFF /* WH_JXRedPacketSecVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CD3C662B64F682001BFBFF /* WH_JXRedPacketSecVC.m */; };
 		33CD3C692B64F682001BFBFF /* WH_JXRedPacketSecVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CD3C672B64F682001BFBFF /* WH_JXRedPacketSecVC.xib */; };
 		33CD3C6D2B64F999001BFBFF /* WH_JXRedPacketSecCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CD3C6B2B64F999001BFBFF /* WH_JXRedPacketSecCell.m */; };
@@ -3256,6 +3258,9 @@
 		33BEF42B2B5A1AA10078B540 /* WH_JXAgentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXAgentCell.h; sourceTree = "<group>"; };
 		33BEF42C2B5A1AA10078B540 /* WH_JXAgentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXAgentCell.m; sourceTree = "<group>"; };
 		33BEF42D2B5A1AA10078B540 /* WH_JXAgentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXAgentCell.xib; sourceTree = "<group>"; };
+		33CB6D922BB2C39B000D58DE /* WH_CodeLoginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_CodeLoginVC.h; sourceTree = "<group>"; };
+		33CB6D932BB2C39B000D58DE /* WH_CodeLoginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_CodeLoginVC.m; sourceTree = "<group>"; };
+		33CB6D942BB2C39B000D58DE /* WH_CodeLoginVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_CodeLoginVC.xib; sourceTree = "<group>"; };
 		33CD3C652B64F682001BFBFF /* WH_JXRedPacketSecVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXRedPacketSecVC.h; sourceTree = "<group>"; };
 		33CD3C662B64F682001BFBFF /* WH_JXRedPacketSecVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXRedPacketSecVC.m; sourceTree = "<group>"; };
 		33CD3C672B64F682001BFBFF /* WH_JXRedPacketSecVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXRedPacketSecVC.xib; sourceTree = "<group>"; };
@@ -8728,6 +8733,9 @@
 				33872AE82BA0286C004CF3C7 /* WH_RegisterViewController.h */,
 				33872AE92BA0286C004CF3C7 /* WH_RegisterViewController.m */,
 				33872AEA2BA0286C004CF3C7 /* WH_RegisterViewController.xib */,
+				33CB6D922BB2C39B000D58DE /* WH_CodeLoginVC.h */,
+				33CB6D932BB2C39B000D58DE /* WH_CodeLoginVC.m */,
+				33CB6D942BB2C39B000D58DE /* WH_CodeLoginVC.xib */,
 				B203A84923238E93001B2575 /* WH_PSRegisterBaseVC.h */,
 				B203A84A23238E93001B2575 /* WH_PSRegisterBaseVC.m */,
 				B22AA2122339B62400906412 /* WH_PublicNumberLogin_WHVC.h */,
@@ -10809,6 +10817,7 @@
 				CC3016D91951BABF0059BADA /* f029@2x.png in Resources */,
 				0F995F4522618EE700FD93E9 /* prohibit.png in Resources */,
 				CC3016DF1951BABF0059BADA /* f032@2x.png in Resources */,
+				33CB6D962BB2C39B000D58DE /* WH_CodeLoginVC.xib in Resources */,
 				CC3016DB1951BABF0059BADA /* f030@2x.png in Resources */,
 				33946AAB2B26E4DC0002A8D6 /* WH_AddAccountCell.xib in Resources */,
 				0F1F9D2D204E85800037AF27 /* ic_password_hide@2x.png in Resources */,
@@ -12063,6 +12072,7 @@
 				CC1D1915195432CA0029F7FD /* LXActionSheet.m in Sources */,
 				634668E81EC4057D00BE6112 /* WH_DepartObject.m in Sources */,
 				33E5916D2B16E6B900E578A3 /* View+MASAdditions.m in Sources */,
+				33CB6D952BB2C39B000D58DE /* WH_CodeLoginVC.m in Sources */,
 				B22AA20F2339B60C00906412 /* WH_JXGroupMessagesSelectFriend_WHVC.m in Sources */,
 				DE5C696A232666D400321406 /* MiXin_TitleWithContent_MiXinCell.m in Sources */,
 				6317CCB91FB9798500CEF9EF /* LFStreamRtmpSocket.m in Sources */,
