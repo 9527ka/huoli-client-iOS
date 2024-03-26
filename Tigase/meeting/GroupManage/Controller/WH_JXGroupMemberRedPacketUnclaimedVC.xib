@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WH_JXGroupMemberRedPacketUnclaimedVC">
             <connections>
+                <outlet property="backBtn" destination="vBs-EN-x2w" id="d4T-9U-lTc"/>
                 <outlet property="nodataImage" destination="H5h-mP-oBM" id="o5J-Ao-M8R"/>
                 <outlet property="nodataLab" destination="tzK-Cf-u7U" id="hDW-TJ-SV3"/>
                 <outlet property="tableView" destination="dy3-7p-BvN" id="GPb-mx-cPq"/>
@@ -41,9 +42,10 @@
                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="dy3-7p-BvN">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="dy3-7p-BvN">
                     <rect key="frame" x="0.0" y="103" width="393" height="715"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Bq1-mM-Pgw"/>
                         <outlet property="delegate" destination="-1" id="MEQ-XO-sKu"/>

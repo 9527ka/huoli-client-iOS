@@ -239,13 +239,17 @@
         int index = [height intValue]/[screenHeight intValue];
         JX_WHVideoPlayCell *currentCell = (JX_WHVideoPlayCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0]];
         currentCell.playImageBtn.hidden = YES;
-        
-        
+                
         WH_GKDYVideoModel *videoModel = self.dataArray[indexPath.item];
         [self.player playTheIndexPath:indexPath assetURL:[NSURL URLWithString:videoModel.video_url?videoModel.video_url:@""]];
+        
+        
+//        NSString *playUrl = @"https://huoli-1324081351.cos.ap-hongkong.myqcloud.com/videos/short/01/1.mp4";
+//        [self.player playTheIndexPath:indexPath assetURL:[NSURL URLWithString:playUrl]];
         [self.controlView showTitle:@""
                      coverURLString:videoModel.thumbnail_url
                      fullScreenMode:ZFFullScreenModePortrait];
+        
     }
 }
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {

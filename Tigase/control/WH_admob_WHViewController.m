@@ -114,17 +114,17 @@
 
 -(void)createHeaderView{
     wh_tableHeader = [[UIView alloc]initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH, wh_heightHeader)];
-    UIImageView* iv = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH, wh_heightHeader)];
+//    UIImageView* iv = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH, wh_heightHeader)];
     
-    iv.backgroundColor = g_factory.navigatorBgColor;
+    wh_tableHeader.backgroundColor = g_factory.navigatorBgColor;
 //    [g_theme setViewGradientWithView:iv gradientDirection:JXSkinGradientDirectionTopToBottom];
 //    if (g_theme.themeIndex == 0) {
 //        iv.image = [[UIImage imageNamed:@"navBarBackground"] imageWithTintColor:HEXCOLOR(0x00ceb3)];
 //    }else {
 //        iv.image = [g_theme themeTintImage:@"navBarBackground"];//[UIImage imageNamed:@"navBarBackground"];
 //    }
-    iv.userInteractionEnabled = YES;
-    [wh_tableHeader addSubview:iv];
+//    iv.userInteractionEnabled = YES;
+//    [wh_tableHeader addSubview:iv];
 //    [iv release];
     
     JXLabel* p = [[JXLabel alloc]initWithFrame:CGRectMake(60, JX_SCREEN_TOP - 32, JX_SCREEN_WIDTH-60*2, 20)];

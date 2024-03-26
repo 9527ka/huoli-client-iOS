@@ -9,6 +9,7 @@
 #import "WH_JXredPacketDetail_WHVC.h"
 #import "WH_JXRPacketList_WHCell.h"
 #import "WH_JXRedPacketList_WHVC.h"
+#import "WH_MyWallet_WHViewController.h"
 
 @interface WH_JXredPacketDetail_WHVC () <UITextViewDelegate>
 @property (nonatomic, strong) UILabel *replyLab;
@@ -83,6 +84,8 @@
         self.title = @"钻石";
     }
     
+    self.title = @"";
+    
     [self WH_createHeadAndFoot];
     
     self.replyContent = [NSString string];
@@ -116,26 +119,22 @@
 
 -(void)WH_createCustomView{
     
-    _wh_headImgV = [[UIImageView alloc] initWithFrame:CGRectMake(0, -20, JX_SCREEN_WIDTH, 150)];
+    _wh_headImgV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH, 100)];
     _wh_headImgV.image = [UIImage imageNamed:@"WH_redPacket_top_bg"];
     _wh_headImgV.userInteractionEnabled = YES;
     _wh_headImgV.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_wh_headImgV];
     
-    UIButton *closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP - 22, 44, 44)];
-    [closeBtn setImage:[UIImage imageNamed:@"WH_redPacket_back"] forState:UIControlStateNormal];
+    UIButton *closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP - 50, 44, 44)];
+    [closeBtn setImage:[UIImage imageNamed:@"goback"] forState:UIControlStateNormal];
     [closeBtn addTarget:self action:@selector(WH_closeBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [_wh_headImgV addSubview:closeBtn];
     
-    UIButton *listBtn = [[UIButton alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH - 10 - 70, JX_SCREEN_TOP - 12, 70, 28)];
-    [listBtn setTitle:self.category.intValue == 1?@"钻石记录":Localized(@"JX_RedPacketRecord") forState:UIControlStateNormal];
-    [listBtn setTitleColor:HEXCOLOR(0xFFE2B1) forState:UIControlStateNormal];
+    UIButton *listBtn = [[UIButton alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH - 10 - 90, JX_SCREEN_TOP - 44, 90, 28)];
+    [listBtn setTitle:self.category.intValue == 1?@"钻石记录":@"随机券记录" forState:UIControlStateNormal];
+    [listBtn setTitleColor:HEXCOLOR(0xBCA478) forState:UIControlStateNormal];
     listBtn.titleLabel.font = sysFontWithSize(14);
     [listBtn addTarget:self action:@selector(listBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-    listBtn.layer.borderColor = HEXCOLOR(0xFFE2B1).CGColor;
-    listBtn.layer.borderWidth = g_factory.cardBorderWithd;
-    listBtn.layer.cornerRadius = CGRectGetHeight(listBtn.frame) / 2.f;
-    listBtn.layer.masksToBounds = YES;
     
     NSString *roomJId = @"";
     if(_wh_dataDict[@"data"][@"packet"][@"roomJid"]){
@@ -144,45 +143,49 @@
     listBtn.hidden = roomJId.length > 0?NO:YES;
     [_wh_headImgV addSubview:listBtn];
     
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP - 12, JX_SCREEN_WIDTH, 20)];
-    title.textAlignment = NSTextAlignmentCenter;
     
-    title.text = self.category.intValue == 1?@"钻石":Localized(@"JX_ShikuRedPacket");
-    title.textColor = HEXCOLOR(0xFFE2B1);
-    title.font = sysFontWithSize(18);
-    [_wh_headImgV addSubview:title];
-    
-    
-    _wh_contentView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_wh_headImgV.frame), JX_SCREEN_WIDTH, self.money.length > 0 ? 210 - 38 : 112)];//去掉回复的位置 38
+    _wh_contentView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_wh_headImgV.frame), JX_SCREEN_WIDTH, self.money.length > 0 ? 148 : 112)];//去掉回复的位置 38
     _wh_contentView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_wh_contentView];
     
-    _wh_headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, -25, 50, 50)];
+    _wh_fromUserLabel = [UIFactory WH_create_WHLabelWith:CGRectMake(0, 8, _wh_contentView.frame.size.width, 21) text:Localized(@"JX_IsRedEnvelopes")];
+    _wh_fromUserLabel.textColor = HEXCOLOR(0x333333);
+    _wh_fromUserLabel.textAlignment = NSTextAlignmentCenter;
+    _wh_fromUserLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 16];
+    [_wh_contentView addSubview:_wh_fromUserLabel];
+    
+    [self.wh_fromUserLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.wh_contentView).offset(12);
+        make.centerX.equalTo(self.wh_contentView);
+    }];
+    
+    _wh_headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 12, 22, 22)];
     _wh_headerImageView.center = CGPointMake(_wh_headImgV.frame.size.width / 2, _wh_headerImageView.center.y);
     _wh_headerImageView.image = [UIImage imageNamed:@"avatar_normal"];
     _wh_headerImageView.userInteractionEnabled = YES;
     [_wh_contentView addSubview:_wh_headerImageView];
+    
+    [self.wh_headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.wh_fromUserLabel);
+        make.right.equalTo(self.wh_fromUserLabel.mas_left).offset(-4);
+        make.width.height.mas_equalTo(22);
+    }];
     
 //    _totalMoneyLabel = [UIFactory WH_create_WHLabelWith:CGRectMake(CGRectGetMaxX(_headerImageView.frame) +8, CGRectGetMinY(_headerImageView.frame), 130, 27) text:@"共100.01元"];
 //    _totalMoneyLabel.textColor = [UIColor yellowColor];
 //    _totalMoneyLabel.font = sysFontWithSize(20);
 //    [_headImgV addSubview:_totalMoneyLabel];
     
-    _wh_fromUserLabel = [UIFactory WH_create_WHLabelWith:CGRectMake(0, CGRectGetMaxY(_wh_headerImageView.frame) + 12, _wh_contentView.frame.size.width, 21) text:Localized(@"JX_IsRedEnvelopes")];
-    _wh_fromUserLabel.textColor = HEXCOLOR(0x3A404C);
-    _wh_fromUserLabel.textAlignment = NSTextAlignmentCenter;
-    _wh_fromUserLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 15];
-    [_wh_contentView addSubview:_wh_fromUserLabel];
     
-    _wh_greetLabel = [UIFactory WH_create_WHLabelWith:CGRectMake(0, CGRectGetMaxY(_wh_fromUserLabel.frame) + 8, _wh_contentView.frame.size.width, 17) text:Localized(@"JX_KungHeiFatChoi")];
-    _wh_greetLabel.textColor = HEXCOLOR(0x3A404C);
+    _wh_greetLabel = [UIFactory WH_create_WHLabelWith:CGRectMake(0, CGRectGetMaxY(_wh_fromUserLabel.frame) + 6, _wh_contentView.frame.size.width, 17) text:Localized(@"JX_KungHeiFatChoi")];
+    _wh_greetLabel.textColor = HEXCOLOR(0x9E9E9E);
     _wh_greetLabel.textAlignment = NSTextAlignmentCenter;
-    _wh_greetLabel.font = sysFontWithSize(12);
+    _wh_greetLabel.font = sysFontWithSize(14);
     [_wh_contentView addSubview:_wh_greetLabel];
     
     if (self.money.length > 0) {
-        NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:self.money attributes:@{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Medium" size: 40],NSForegroundColorAttributeName:HEXCOLOR(0x3A404C)}];
-//        [attStr addAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Medium" size: 40],NSForegroundColorAttributeName:HEXCOLOR(0x3A404C)} range:NSMakeRange(0, self.money.length-1)];
+        NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"￥%@",self.money] attributes:@{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Medium" size: 50],NSForegroundColorAttributeName:HEXCOLOR(0xBCA478 )}];
+        [attStr addAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Medium" size: 14],NSForegroundColorAttributeName:HEXCOLOR(0xBCA478)} range:NSMakeRange(0, 1)];
         UILabel *moneyLab = [[UILabel alloc] init];
         moneyLab.attributedText = attStr;
         moneyLab.textAlignment = NSTextAlignmentCenter;
@@ -193,14 +196,16 @@
         //创建图片
         if(self.category.intValue != 1){
             [moneyLab mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(_wh_contentView).offset(CGRectGetMaxY(_wh_greetLabel.frame) + 10);
-                make.centerX.equalTo(self.view).offset(-23);
+                make.top.equalTo(_wh_contentView).offset(CGRectGetMaxY(_wh_greetLabel.frame) + 6);
+//                make.centerX.equalTo(self.view).offset(-23);
+                make.centerX.equalTo(self.view);
                 make.height.mas_equalTo(60);
             }];
             
             UIImage *image = [UIImage imageNamed:@"unit_icon"];
             image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             UIImageView *unitImage = [[UIImageView alloc] initWithImage:image];
+            unitImage.hidden = YES;
             unitImage.tintColor = [UIColor blackColor];
             [_wh_contentView addSubview:unitImage];
 
@@ -212,7 +217,7 @@
             }];
         }else{
             [moneyLab mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(_wh_contentView).offset(CGRectGetMaxY(_wh_greetLabel.frame) + 10);
+                make.top.equalTo(_wh_contentView).offset(CGRectGetMaxY(_wh_greetLabel.frame) + 6);
                 make.centerX.equalTo(self.view);
                 make.height.mas_equalTo(60);
             }];
@@ -226,6 +231,19 @@
         _replyLab.font = sysFontWithSize(11);
         _replyLab.hidden = YES;
         [_wh_contentView addSubview:_replyLab];
+        
+        //创建存入零钱的按钮
+        UIButton *walletBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [walletBtn setTitle:@"收到的券已存入余额 >" forState:UIControlStateNormal];
+        [walletBtn setTitleColor:HEXCOLOR(0xBCA478) forState:UIControlStateNormal];
+        walletBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        [walletBtn addTarget:self action:@selector(walletBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_wh_contentView addSubview:walletBtn];
+        [walletBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self.wh_contentView);
+            make.top.equalTo(moneyLab.mas_bottom);
+            make.height.mas_equalTo(24);
+        }];
     }
 
     
@@ -233,23 +251,26 @@
     [_replyLab addGestureRecognizer:tap];
 
 
-    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH, 41)];
-    headView.backgroundColor = g_factory.globalBgColor;
-    _wh_showNumLabel = [UIFactory WH_create_WHLabelWith:CGRectMake(10, 12, JX_SCREEN_WIDTH - 10, 17) text:Localized(@"JX_ ReceiveRed")];
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH, 44)];
+    headView.backgroundColor = [UIColor whiteColor];
+    _wh_showNumLabel = [UIFactory WH_create_WHLabelWith:CGRectMake(15, 18, JX_SCREEN_WIDTH - 10, 17) text:Localized(@"JX_ ReceiveRed")];
     _wh_showNumLabel.textColor = HEXCOLOR(0x969696);
     _wh_showNumLabel.font = sysFontWithSize(12);
     _wh_showNumLabel.numberOfLines = 2;
     [headView addSubview:_wh_showNumLabel];
     
-//    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 30 - 1, JX_SCREEN_WIDTH, 1)];
-//    lineView.backgroundColor = HEXCOLOR(0xdcdcdc);
-//    [headView addSubview:lineView];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH, 10)];
+    lineView.backgroundColor = HEXCOLOR(0xF6F6F6);
+    [headView addSubview:lineView];
     
     self.tableView.tableHeaderView = headView;
     
     [self WH_setupReplayView];
 }
-
+-(void)walletBtnAction:(UIButton *)sender{
+    WH_MyWallet_WHViewController *moneyVC = [[WH_MyWallet_WHViewController alloc] init];
+    [g_navigation pushViewController:moneyVC animated:YES];
+}
 - (void)WH_setupReplayView {
     int height = 44;
     self.bigView = [[UIView alloc] initWithFrame:self.view.bounds];
@@ -438,7 +459,7 @@
 - (void)WH_setViewData{
     [g_server WH_getHeadImageSmallWIthUserId:_wh_packetObj.userId userName:_wh_packetObj.userName imageView:_wh_headerImageView];
     _wh_totalMoneyLabel.text = [NSString stringWithFormat:@"%@%.2f%@",Localized(@"WaHu_JXredPacketDetail_WaHuVC_All"),_wh_packetObj.money,self.category.intValue == 1?@"钻石":@"HOTC"];
-    _wh_fromUserLabel.text = [NSString stringWithFormat:@"%@%@", _wh_packetObj.userName,self.category.intValue == 1?@"的钻石":Localized(@"JX_WhoIsRedEnvelopes")];
+    _wh_fromUserLabel.text = [NSString stringWithFormat:@"%@%@", _wh_packetObj.userName,self.category.intValue == 1?@"发出的钻石":@"发出的随机券"];
     _wh_greetLabel.text = _wh_packetObj.greetings;
     NSString * isCanOpen = nil;
     NSString *over = [NSString stringWithFormat:@"%.2f",_wh_packetObj.over];
@@ -530,9 +551,12 @@
     //金额
     NSString *moneyStr = [NSString stringWithFormat:@"%.2f %@",memberObj.money,self.category.intValue == 1?@"钻石":@"HOTC"];
     
-    cell.moneyLabel.text = [NSString stringWithFormat:@"%.2f %@",memberObj.money,self.category.intValue == 1?@"钻石":@""];
-    cell.hotImage.hidden = self.category.intValue == 1?YES:NO;
-    cell.moneyRightConstaint.constant = self.category.intValue == 1?10:36;
+    cell.moneyLabel.text = moneyStr;
+//    cell.hotImage.hidden = self.category.intValue == 1?YES:NO;
+//    cell.moneyRightConstaint.constant = self.category.intValue == 1?10:36;
+    
+    cell.hotImage.hidden = YES;
+    cell.moneyRightConstaint.constant = 10;
     
     //富文本
 //    NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
@@ -561,7 +585,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60;
+    return 59;
 }
 
 

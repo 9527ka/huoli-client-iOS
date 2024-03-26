@@ -8,6 +8,7 @@
 
 #import "JX_WHVideoPlayCell.h"
 #import "GKDYVideoControlView.h"
+#import "UIButton+WebCache.h"
 
 @interface JX_WHVideoPlayCell()
 
@@ -103,6 +104,7 @@
 -(void)setWh_model:(WH_GKDYVideoModel *)wh_model{
     _wh_model = wh_model;
     self.infoView.wh_model = wh_model;
+    [self.videoBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:wh_model.thumbnail_url] forState:UIControlStateNormal];
 }
 
 @end

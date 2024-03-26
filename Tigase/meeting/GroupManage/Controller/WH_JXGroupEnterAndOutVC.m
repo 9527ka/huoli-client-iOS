@@ -30,6 +30,10 @@
 @property (nonatomic, strong) NSMutableArray *dataSource;
 @property (weak, nonatomic) IBOutlet UILabel *nodataLab;
 @property (weak, nonatomic) IBOutlet UIImageView *nodataImage;
+@property (weak, nonatomic) IBOutlet UIButton *comBtn;
+@property (weak, nonatomic) IBOutlet UIButton *goBtn;
+
+@property (nonatomic,strong)UIButton *selectBtn;
 
 @end
 
@@ -39,6 +43,28 @@
     [super viewDidLoad];
     self.dataSource = [NSMutableArray array];
     [self.tableView registerNib:[UINib nibWithNibName:@"WH_JXGroupEnterAndOutCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WH_JXGroupEnterAndOutCell"];
+    
+    self.comBtn.layer.cornerRadius = 17.0f;
+    self.goBtn.layer.cornerRadius = 17.0f;
+    [self.comBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [self.goBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    
+    self.selectBtn = self.comBtn;
+    self.selectBtn.selected = YES;
+    self.selectBtn.backgroundColor = HEXCOLOR(0x2BAF67);
+    
+    self.tableView.rowHeight = 97.0f;
+    
+    //渐变色
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.colors = @[(__bridge id)HEXCOLOR(0xE8FFF2).CGColor, (__bridge id)HEXCOLOR(0xFFFFFF).CGColor];
+    gradientLayer.locations = @[@0.3, @0.5, @1.0];
+    gradientLayer.startPoint = CGPointMake(0, 0);
+    gradientLayer.endPoint = CGPointMake(0, 1.0);
+    gradientLayer.frame = CGRectMake(0, JX_SCREEN_TOP + 100, JX_SCREEN_WIDTH, 380);
+    [self.view.layer addSublayer:gradientLayer];
+    
+    [self.view bringSubviewToFront:self.tableView];
     
     [self setTableHeaderAndFotter];
     
@@ -74,18 +100,36 @@
     [g_navigation WH_dismiss_WHViewController:self animated:YES];
 }
 
-- (IBAction)didTapSegmented:(UISegmentedControl *)sender {
-    if (sender.selectedSegmentIndex == 0) {
-        self.memberLabel.text = @"被邀请人";
-        self.timeLabel.text = @"邀请时间";
-        self.operatorLabel.text = @"邀请人";
-    } else {
-        self.memberLabel.text = @"出群人";
-        self.timeLabel.text = @"操作时间";
-        self.operatorLabel.text = @"执行人";
-    }
+- (IBAction)didTapTypeAction:(UIButton *)sender {
+    self.selectBtn.selected = NO;
+    self.selectBtn.backgroundColor = [UIColor whiteColor];
+    
+    self.selectBtn = self.goBtn;
+    self.selectBtn.selected = YES;
+    self.selectBtn.backgroundColor = HEXCOLOR(0x2BAF67);
+    
+    self.memberLabel.text = @"出群人";
+    self.timeLabel.text = @"操作时间";
+    self.operatorLabel.text = @"执行人";
     self.page = 0;
-    self.selIndex = sender.selectedSegmentIndex;
+    self.selIndex = 1;
+
+    [self WH_getServerData];
+}
+- (IBAction)comAction:(id)sender {
+    
+    self.selectBtn.selected = NO;
+    self.selectBtn.backgroundColor = [UIColor whiteColor];
+    
+    self.selectBtn = self.comBtn;
+    self.selectBtn.selected = YES;
+    self.selectBtn.backgroundColor = HEXCOLOR(0x2BAF67);
+    
+    self.memberLabel.text = @"被邀请人";
+    self.timeLabel.text = @"邀请时间";
+    self.operatorLabel.text = @"邀请人";
+    self.page = 0;
+    self.selIndex = 0;
 
     [self WH_getServerData];
 }

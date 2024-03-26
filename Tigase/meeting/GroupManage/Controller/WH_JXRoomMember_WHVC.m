@@ -47,7 +47,7 @@
 
 #import "WH_DeleteRoomMembers_ViewController.h"
 #import "WH_JXGroupDiamondVC.h"
-#import "WH_JXGroupRedPacketVC.h"
+#import "WH_JXGroupRedPacketTotalVC.h"
 #import "WH_JXGroupMemberRedPacketVC.h"
 #import "WH_JXGroupMemberRedPacketUnclaimedVC.h"
 #import "WH_JXGroupEnterAndOutVC.h"
@@ -1853,7 +1853,7 @@
 
 // MARK: -- 群红包
 - (void)groupRedPacketAction {
-    WH_JXGroupRedPacketVC *vc = [[WH_JXGroupRedPacketVC alloc] init];
+    WH_JXGroupRedPacketTotalVC *vc = [[WH_JXGroupRedPacketTotalVC alloc] init];
     vc.room = self.wh_room;
     [g_navigation pushViewController:vc animated:YES];
 }

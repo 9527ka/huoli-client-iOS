@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *nodataImage;
 @property (weak, nonatomic) IBOutlet UILabel *nodataLab;
 @property (weak, nonatomic) IBOutlet UILabel *titleLab;
+@property (weak, nonatomic) IBOutlet UIButton *backBtn;
 
 
 @end
@@ -42,6 +43,23 @@
     _wait = [ATMHud sharedInstance];
     _isLoading = YES;
     self.dataArray = [[NSMutableArray alloc] init];
+    
+    //渐变色
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.colors = @[(__bridge id)HEXCOLOR(0xFFF6E8).CGColor, (__bridge id)HEXCOLOR(0xFFFFFF).CGColor];
+    gradientLayer.locations = @[@0.3, @0.5, @1.0];
+    gradientLayer.startPoint = CGPointMake(0, 0);
+    gradientLayer.endPoint = CGPointMake(0, 1.0);
+    gradientLayer.frame = CGRectMake(0, 0, JX_SCREEN_WIDTH, JX_SCREEN_TOP + JX_SCREEN_HEIGHT - 100);
+    [self.view.layer addSublayer:gradientLayer];
+    
+    
+    [self.view bringSubviewToFront:self.tableView];
+    [self.view bringSubviewToFront:self.titleLab];
+    [self.view bringSubviewToFront:self.backBtn];
+    [self.view bringSubviewToFront:self.nodataLab];
+    [self.view bringSubviewToFront:self.nodataImage];
+    self.tableView.rowHeight = 125;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"WH_JXGroupMemberRedPacketUnclaimedCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WH_JXGroupMemberRedPacketUnclaimedCell"];
     //设置刷新的头部以及加载

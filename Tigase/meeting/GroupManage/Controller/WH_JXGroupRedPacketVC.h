@@ -14,6 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic,strong) WH_RoomData *room;
 
+@property (nonatomic,copy)NSString *startTime;//yyyy-MM-dd HH:mm:ss
+@property (nonatomic,copy)NSString *endTime;//yyyy-MM-dd HH:mm:ss
+@property (nonatomic,assign)NSInteger type;//红包类型：0:全部 1：普通红包 2：拼手气红包 3:口令红包
+@property (nonatomic, assign) NSInteger selIndex;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -58,8 +58,25 @@
         self.wh_heightFooter = 0;
         self.wh_heightHeader = JX_SCREEN_TOP;
         [self createHeadAndFoot];
-        self.wh_tableBody.backgroundColor = g_factory.globalBgColor;
+        
+        self.view.backgroundColor = g_factory.globalBgColor;
+        self.wh_tableHeader.backgroundColor = self.wh_tableBody.backgroundColor = [UIColor clearColor];
         self.wh_tableBody.scrollEnabled = YES;
+        
+        
+        //渐变色
+        CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+        gradientLayer.colors = @[(__bridge id)HEXCOLOR(0xEDFFF5).CGColor, (__bridge id)HEXCOLOR(0xF8F8F8).CGColor];
+        gradientLayer.locations = @[@0.3, @0.5, @1.0];
+        gradientLayer.startPoint = CGPointMake(0, 0);
+        gradientLayer.endPoint = CGPointMake(0, 1.0);
+        gradientLayer.frame = CGRectMake(0, 0, JX_SCREEN_WIDTH, JX_SCREEN_HEIGHT - 100);
+        [self.view.layer addSublayer:gradientLayer];
+        
+        [self.view bringSubviewToFront:self.wh_tableBody];
+        [self.view bringSubviewToFront:self.wh_tableHeader];
+        
+        
         
         if([self.wh_userId isKindOfClass:[NSNumber class]])
             self.wh_userId = [(NSNumber*)self.wh_userId stringValue];
@@ -92,56 +109,62 @@
     [g_server WH_delHeadImageWithUserId:self.wh_userId];
     
     int Head_height = 126;
-    self.wh_headView = [[UIView alloc] initWithFrame:CGRectMake(g_factory.globelEdgeInset, TopSpace, JX_SCREEN_WIDTH - 2*(g_factory.globelEdgeInset), Head_height)];
+    self.wh_headView = [[UIView alloc] initWithFrame:CGRectMake(g_factory.globelEdgeInset, 53, JX_SCREEN_WIDTH - 2*(g_factory.globelEdgeInset), Head_height)];
     self.wh_headView.backgroundColor = [UIColor whiteColor];
     [self.wh_tableBody addSubview:self.wh_headView];
     self.wh_headView.layer.cornerRadius = g_factory.cardCornerRadius;
     self.wh_headView.layer.masksToBounds = YES;
-    self.wh_headView.layer.borderColor = g_factory.cardBorderColor.CGColor ;
-    self.wh_headView.layer.borderWidth = g_factory.cardBorderWithd;
+//    self.wh_headView.layer.borderColor = g_factory.cardBorderColor.CGColor ;
+//    self.wh_headView.layer.borderWidth = g_factory.cardBorderWithd;
     
-    _head = [[WH_JXImageView alloc]initWithFrame:CGRectMake(INSETS*2, INSETS*2, 45, 45)];
+    _head = [[WH_JXImageView alloc]initWithFrame:CGRectMake((JX_SCREEN_WIDTH - 56)/2, 15, 56, 56)];
     [_head headRadiusWithAngle:_head.frame.size.width* 0.5];
     _head.didTouch = @selector(WH_on_WHHeadImage);
     _head.wh_delegate = self;
     _head.image = [UIImage imageNamed:@"avatar_normal"];
-    [self.wh_headView addSubview:_head];
+    [self.wh_tableBody addSubview:_head];
     [g_server WH_getHeadImageLargeWithUserId:self.wh_userId userName:self.wh_user.userNickname imageView:_head];
 
     // 名字
     _remarkName = [[UILabel alloc] init];
-    _remarkName.frame = CGRectMake(CGRectGetMaxX(_head.frame)+INSETS*2, INSETS*2, 70, 20);
-    _remarkName.textColor = HEXCOLOR(0x3A404C);
-    _remarkName.font = [UIFont fontWithName:@"PingFangSC-Regular" size: 15];
+    _remarkName.frame = CGRectMake(0, 34, self.wh_headView.frame.size.width, 20);
+    _remarkName.textColor = HEXCOLOR(0x161819);
+    _remarkName.font = [UIFont systemFontOfSize:14];
+    _remarkName.textAlignment = NSTextAlignmentCenter;
     [self.wh_headView addSubview:_remarkName];
     
     _sex = [[UIImageView alloc] init];
-    _sex.frame = CGRectMake(CGRectGetMaxX(_remarkName.frame)+3, INSETS*2+3, 14, 14);
+    _sex.frame = CGRectMake(_head.frame.origin.x + 42, _head.frame.origin.y + 8, 14, 14);
     _sex.image = [UIImage imageNamed:@"basic_famale"];
-    [self.wh_headView addSubview:_sex];
+//    [self.wh_headView addSubview:_sex];
+    [self.wh_tableBody addSubview:_sex];
 
     // 昵称
     _name = [[UILabel alloc] init];
-    _name.textColor = HEXCOLOR(0x969696);
-    _name.font = [UIFont fontWithName:@"PingFangSC-Regular" size: 12];
+    _name.textColor = HEXCOLOR(0xBABABA);
+    _name.font = [UIFont systemFontOfSize:12];
+    _name.textAlignment = NSTextAlignmentCenter;
     _name.text = [NSString stringWithFormat:@"%@ : %@",Localized(@"JX_NickName"),@"--"];
     [self.wh_headView addSubview:_name];
     
     //通讯号
     _account = [[UILabel alloc] init];
-    _account.textColor = HEXCOLOR(0x969696);
-    _account.font = [UIFont fontWithName:@"PingFangSC-Regular" size: 12];
+    _account.textColor = HEXCOLOR(0xBABABA);
+    _account.font = [UIFont systemFontOfSize:12];
     _account.text = [NSString stringWithFormat:@"%@ : %@",Localized(@"JX_Communication"),@"--"];
+    _account.textAlignment = NSTextAlignmentCenter;
     [self.wh_headView addSubview:_account];
     
     // 地区
     _city = [[UILabel alloc] init];
-    _city.textColor = HEXCOLOR(0x969696);
-    _city.font = [UIFont fontWithName:@"PingFangSC-Regular" size: 12];
+    _city.textColor = HEXCOLOR(0xBABABA);
+    _city.font = [UIFont systemFontOfSize:12];
     _city.text = [NSString stringWithFormat:@"%@ : %@",Localized(@"New_area"),@"--"];
+    _city.textAlignment = NSTextAlignmentCenter;
     [self.wh_headView addSubview:_city];
 
-    self.cViewOrginY = CGRectGetHeight(self.wh_headView.frame) + self.wh_headView.frame.origin.y;
+//    self.cViewOrginY = CGRectGetHeight(self.wh_headView.frame) + self.wh_headView.frame.origin.y;
+    self.cViewOrginY = 184;
     
     if ([self.wh_userId intValue] != [MY_USER_ID intValue]) {
         //标签
@@ -153,11 +176,11 @@
         [self.wh_markAndTagView setBackgroundColor:HEXCOLOR(0xffffff)];
         self.wh_markAndTagView.layer.cornerRadius = g_factory.cardCornerRadius;
         self.wh_markAndTagView.layer.masksToBounds = YES;
-        self.wh_markAndTagView.layer.borderWidth = g_factory.cardBorderWithd;
-        self.wh_markAndTagView.layer.borderColor = g_factory.cardBorderColor.CGColor;
+//        self.wh_markAndTagView.layer.borderWidth = g_factory.cardBorderWithd;
+//        self.wh_markAndTagView.layer.borderColor = g_factory.cardBorderColor.CGColor;
         
         //JX_SetNotesAndLabels
-        iv = [self WH_createMiXinButton:Localized(@"JX_SetNotesAndLabels") drawTop:YES drawBottom:YES must:NO click:@selector(onRemark) superView:self.wh_markAndTagView];
+        iv = [self WH_createMiXinButton:Localized(@"JX_SetNotesAndLabels") drawTop:NO drawBottom:NO must:NO click:@selector(onRemark) superView:self.wh_markAndTagView];
         iv.frame = CGRectMake(0, 0, CGRectGetWidth(self.wh_markAndTagView.frame), HEIGHT);
 
 //        self.cViewOrginY += self.wh_markAndTagView.frame.size.height ;
@@ -169,8 +192,8 @@
     [self.wh_tableBody addSubview:self.wh_cView];
     self.wh_cView.layer.cornerRadius = g_factory.cardCornerRadius;
     self.wh_cView.layer.masksToBounds = YES;
-    self.wh_cView.layer.borderColor = g_factory.cardBorderColor.CGColor ;
-    self.wh_cView.layer.borderWidth = g_factory.cardBorderWithd;
+//    self.wh_cView.layer.borderColor = g_factory.cardBorderColor.CGColor ;
+//    self.wh_cView.layer.borderWidth = g_factory.cardBorderWithd;
     
     // 生活圈
     iv = [self WH_createMiXinButton:Localized(@"JX_LifeCircle") drawTop:NO drawBottom:YES must:NO click:@selector(onMyBlog) superView:self.wh_cView];
@@ -264,10 +287,16 @@
     if (!self.wh_isJustShow) {
         //NSLog(@"g_constant.isAddFriend == %@", g_constant.isAddFriend);
         if(([self.wh_userId intValue] != [MY_USER_ID intValue]) || [g_constant.isAddFriend integerValue] == 1 || [self.wh_user.friends count] > 0){
-            _btn = [UIFactory WH_create_WHCommonButton:Localized(@"JX_AddFriend") target:self action:@selector(WH_actionWithAddFriendAction:)];
-            _btn.frame = CGRectMake(g_factory.globelEdgeInset, CGRectGetHeight(self.wh_cView.frame) + self.wh_cView.frame.origin.y + TopSpace, JX_SCREEN_WIDTH - 2*(g_factory.globelEdgeInset), 44);
+            _btn = [UIButton buttonWithType:UIButtonTypeCustom];
+            [_btn setTitle:Localized(@"JX_AddFriend") forState:UIControlStateNormal];
+            [_btn addTarget:self action:@selector(WH_actionWithAddFriendAction:) forControlEvents:UIControlEventTouchUpInside];
+            [_btn setTitleColor:HEXCOLOR(0xffffff) forState:UIControlStateNormal];
+            [_btn.titleLabel setFont:sysFontWithSize(16)];
+//            [UIFactory WH_create_WHCommonButton:Localized(@"JX_AddFriend") target:self action:@selector(WH_actionWithAddFriendAction:)];
+            _btn.frame = CGRectMake(g_factory.globelEdgeInset, CGRectGetHeight(self.wh_cView.frame) + self.wh_cView.frame.origin.y + TopSpace, JX_SCREEN_WIDTH - 2*(g_factory.globelEdgeInset), 48);
             _btn.layer.masksToBounds = YES;
-            _btn.layer.cornerRadius = g_factory.cardCornerRadius;
+            _btn.layer.cornerRadius = 24;
+            _btn.backgroundColor = THEMECOLOR;
             [self.wh_tableBody addSubview:_btn];
 //            [_baseView addSubview:_btn];
             [self showAddFriend];
@@ -421,11 +450,11 @@
 
     _remarkName.text = wh_user.remarkName.length > 0 ? wh_user.remarkName : wh_user.userNickname;
     CGSize sizeN = [_remarkName.text sizeWithAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:16]}];
-    _remarkName.frame = CGRectMake(CGRectGetMaxX(_head.frame)+INSETS*2, INSETS*2, sizeN.width, 20);
+    _remarkName.frame = CGRectMake(0, _remarkName.frame.origin.y, self.wh_headView.frame.size.width, 20);
     
     CGFloat viewHieght = CGRectGetHeight(self.wh_headView.frame);
     
-    _sex.frame = CGRectMake(CGRectGetMaxX(_remarkName.frame)+3, INSETS*2+3, 14, 14);
+//    _sex.frame = CGRectMake(CGRectGetMaxX(_remarkName.frame)+3, INSETS*2+3, 14, 14);
     if ([wh_user.sex intValue] == 0) {// 女
         _sex.image = [UIImage imageNamed:@"basic_famale"];
     }else {// 男
@@ -434,29 +463,29 @@
     
     if (wh_user.remarkName.length > 0) {
         _name.hidden = NO;
-        _name.frame = CGRectMake(CGRectGetMinX(_remarkName.frame), CGRectGetMaxY(_remarkName.frame)+3, 200, 20);
-        _account.frame = CGRectMake(CGRectGetMinX(_remarkName.frame), CGRectGetMaxY(_name.frame)+3, 200, 20);
+        _name.frame = CGRectMake(0, CGRectGetMaxY(_remarkName.frame)+3, self.wh_headView.frame.size.width, 20);
+        _account.frame = CGRectMake(0, CGRectGetMaxY(_name.frame)+3, self.wh_headView.frame.size.width, 20);
         
         _name.text = [NSString stringWithFormat:@"%@ : %@",Localized(@"JX_NickName"),wh_user.userNickname];
     }else {
         _name.hidden = YES;
 //        [self.headView setHeight:CGRectGetHeight(self.headView.frame) - 20];
         
-        [self.wh_headView setFrame:CGRectMake(g_factory.globelEdgeInset, TopSpace, JX_SCREEN_WIDTH - 2*(g_factory.globelEdgeInset), viewHieght - 20)];
+        [self.wh_headView setFrame:CGRectMake(g_factory.globelEdgeInset, 43, JX_SCREEN_WIDTH - 2*(g_factory.globelEdgeInset), viewHieght - 20)];
         
-        _account.frame = CGRectMake(CGRectGetMinX(_remarkName.frame), CGRectGetMaxY(_remarkName.frame)+3, 200, 20);
+        _account.frame = CGRectMake(0, CGRectGetMaxY(_remarkName.frame)+3, self.wh_headView.frame.size.width, 20);
     }
     if (wh_user.account.length > 0) {
         _account.hidden = NO;
-        _city.frame = CGRectMake(CGRectGetMinX(_remarkName.frame), CGRectGetMaxY(_account.frame)+3, 200, 20);
+        _city.frame = CGRectMake(0, CGRectGetMaxY(_account.frame)+3, self.wh_headView.frame.size.width, 20);
         _account.text = [NSString stringWithFormat:@"%@ : %@",Localized(@"JX_Communication"),wh_user.account.length > 0 ? wh_user.account : @"--"];
     }else {
         _account.hidden = YES;
 //        [self.headView setHeight:CGRectGetHeight(self.headView.frame) - 20];
         
-        [self.wh_headView setFrame:CGRectMake(g_factory.globelEdgeInset, TopSpace, JX_SCREEN_WIDTH - 2*(g_factory.globelEdgeInset), viewHieght - 20)];
+        [self.wh_headView setFrame:CGRectMake(g_factory.globelEdgeInset, 43, JX_SCREEN_WIDTH - 2*(g_factory.globelEdgeInset), viewHieght - 20)];
         
-        _city.frame = CGRectMake(CGRectGetMinX(_remarkName.frame), wh_user.remarkName.length > 0 ? CGRectGetMaxY(_name.frame)+3 :CGRectGetMaxY(_remarkName.frame)+3, 200, 20);
+        _city.frame = CGRectMake(0, wh_user.remarkName.length > 0 ? CGRectGetMaxY(_name.frame)+3 :CGRectGetMaxY(_remarkName.frame)+3, self.wh_headView.frame.size.width, 20);
     }
     
     if ([g_config.isOpenPositionService intValue] == 0) {
@@ -470,7 +499,7 @@
     CGFloat vHeight = CGRectGetMaxY(self.wh_headView.frame);
 //
     if ([self.wh_userId intValue] != [MY_USER_ID intValue]) {
-        [self.wh_markAndTagView setFrame:CGRectMake(g_factory.globelEdgeInset, CGRectGetHeight(self.wh_headView.frame) + TopSpace + TopSpace, JX_SCREEN_WIDTH - 2*(g_factory.globelEdgeInset), HEIGHT)];
+        [self.wh_markAndTagView setFrame:CGRectMake(g_factory.globelEdgeInset, CGRectGetHeight(self.wh_headView.frame) + 43 + TopSpace, JX_SCREEN_WIDTH - 2*(g_factory.globelEdgeInset), HEIGHT)];
 
         vHeight = CGRectGetMaxY(self.wh_markAndTagView.frame);
         
@@ -790,22 +819,22 @@
     
     JXLabel* p = [[JXLabel alloc] initWithFrame:CGRectMake(20, 0, 130, HEIGHT)];
     p.text = title;
-    p.font = sysFontWithSize(15);
+    p.font = sysFontWithSize(14);
     p.backgroundColor = [UIColor clearColor];
-    p.textColor = [UIColor blackColor];
+    p.textColor = HEXCOLOR(0x161819);
     [btn addSubview:p];
     if (@selector(onRemark) == click) {
         _labelLab = p;
     }
     if(drawTop){
-        UIView* line = [[UIView alloc] initWithFrame:CGRectMake(0,0,JX_SCREEN_WIDTH,0.3)];
-        line.backgroundColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
+        UIView* line = [[UIView alloc] initWithFrame:CGRectMake(0,0,JX_SCREEN_WIDTH,0.5)];
+        line.backgroundColor = HEXCOLOR(0xEEEEEE);
         [btn addSubview:line];
     }
     
     if(drawBottom){
-        UIView* line = [[UIView alloc]initWithFrame:CGRectMake(0,HEIGHT-0.5,JX_SCREEN_WIDTH,0.3)];
-        line.backgroundColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
+        UIView* line = [[UIView alloc]initWithFrame:CGRectMake(0,HEIGHT-0.5,JX_SCREEN_WIDTH,0.5)];
+        line.backgroundColor = HEXCOLOR(0xEEEEEE);
         [btn addSubview:line];
     }
     

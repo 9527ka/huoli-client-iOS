@@ -759,6 +759,10 @@
 		333B93492BAC21F800450220 /* JX_WHNoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 333B93482BAC21F800450220 /* JX_WHNoDataView.m */; };
 		334FB9EC2B14241600230991 /* serverList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 334FB9EB2B14241600230991 /* serverList.plist */; };
 		334FB9EE2B1425C000230991 /* userInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 334FB9ED2B1425C000230991 /* userInfo.plist */; };
+		336B7DCA2BB180AE00699E10 /* WH_JXGroupMemberEarningCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 336B7DC82BB180AE00699E10 /* WH_JXGroupMemberEarningCell.m */; };
+		336B7DCB2BB180AE00699E10 /* WH_JXGroupMemberEarningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 336B7DC92BB180AE00699E10 /* WH_JXGroupMemberEarningCell.xib */; };
+		336B7DCF2BB27A0B00699E10 /* WH_JXGroupRedPacketTotalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 336B7DCD2BB27A0B00699E10 /* WH_JXGroupRedPacketTotalVC.m */; };
+		336B7DD02BB27A0B00699E10 /* WH_JXGroupRedPacketTotalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 336B7DCE2BB27A0B00699E10 /* WH_JXGroupRedPacketTotalVC.xib */; };
 		337455322B6CC5BC0080154C /* WH_JXChatTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 337455312B6CC5BC0080154C /* WH_JXChatTool.m */; };
 		33872AE62B9FF99D004CF3C7 /* WH_JXLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33872AE42B9FF99D004CF3C7 /* WH_JXLoginVC.m */; };
 		33872AE72B9FF99D004CF3C7 /* WH_JXLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33872AE52B9FF99D004CF3C7 /* WH_JXLoginVC.xib */; };
@@ -3167,6 +3171,12 @@
 		333B93482BAC21F800450220 /* JX_WHNoDataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JX_WHNoDataView.m; sourceTree = "<group>"; };
 		334FB9EB2B14241600230991 /* serverList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = serverList.plist; sourceTree = "<group>"; };
 		334FB9ED2B1425C000230991 /* userInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = userInfo.plist; sourceTree = "<group>"; };
+		336B7DC72BB180AE00699E10 /* WH_JXGroupMemberEarningCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXGroupMemberEarningCell.h; sourceTree = "<group>"; };
+		336B7DC82BB180AE00699E10 /* WH_JXGroupMemberEarningCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXGroupMemberEarningCell.m; sourceTree = "<group>"; };
+		336B7DC92BB180AE00699E10 /* WH_JXGroupMemberEarningCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXGroupMemberEarningCell.xib; sourceTree = "<group>"; };
+		336B7DCC2BB27A0B00699E10 /* WH_JXGroupRedPacketTotalVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXGroupRedPacketTotalVC.h; sourceTree = "<group>"; };
+		336B7DCD2BB27A0B00699E10 /* WH_JXGroupRedPacketTotalVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXGroupRedPacketTotalVC.m; sourceTree = "<group>"; };
+		336B7DCE2BB27A0B00699E10 /* WH_JXGroupRedPacketTotalVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXGroupRedPacketTotalVC.xib; sourceTree = "<group>"; };
 		337455302B6CC5BC0080154C /* WH_JXChatTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXChatTool.h; sourceTree = "<group>"; };
 		337455312B6CC5BC0080154C /* WH_JXChatTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXChatTool.m; sourceTree = "<group>"; };
 		33872AE32B9FF99D004CF3C7 /* WH_JXLoginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXLoginVC.h; sourceTree = "<group>"; };
@@ -8596,6 +8606,9 @@
 				0FB836A32A27773600B2BEF8 /* WH_JXGroupDiamondCell.h */,
 				0FB836A42A27773600B2BEF8 /* WH_JXGroupDiamondCell.m */,
 				0FB836A52A27773600B2BEF8 /* WH_JXGroupDiamondCell.xib */,
+				336B7DCC2BB27A0B00699E10 /* WH_JXGroupRedPacketTotalVC.h */,
+				336B7DCD2BB27A0B00699E10 /* WH_JXGroupRedPacketTotalVC.m */,
+				336B7DCE2BB27A0B00699E10 /* WH_JXGroupRedPacketTotalVC.xib */,
 				0F77DCDE2A30B9C900CF8D54 /* WH_JXGroupRedPacketVC.h */,
 				0F77DCDF2A30B9C900CF8D54 /* WH_JXGroupRedPacketVC.m */,
 				0F77DCE02A30B9C900CF8D54 /* WH_JXGroupRedPacketVC.xib */,
@@ -8671,6 +8684,9 @@
 				332DB1B12B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.h */,
 				332DB1B22B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.m */,
 				332DB1B32B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.xib */,
+				336B7DC72BB180AE00699E10 /* WH_JXGroupMemberEarningCell.h */,
+				336B7DC82BB180AE00699E10 /* WH_JXGroupMemberEarningCell.m */,
+				336B7DC92BB180AE00699E10 /* WH_JXGroupMemberEarningCell.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -10730,6 +10746,7 @@
 				0F77DCE72A30C12B00CF8D54 /* WH_JXGroupRedPacketCell.xib in Resources */,
 				CC3016CE1951BABF0059BADA /* f024.png in Resources */,
 				1851A36B2307B09400BA24A1 /* sysNoti@2x.png in Resources */,
+				336B7DCB2BB180AE00699E10 /* WH_JXGroupMemberEarningCell.xib in Resources */,
 				63B8092D218305D600AAD49B /* image.xcassets in Resources */,
 				DEE708B822D5CD2E005FE40C /* newicon_publishImage@3x.png in Resources */,
 				18C8DC1B1D0E643300BD8386 /* WH_FileList_WHCell.xib in Resources */,
@@ -10763,6 +10780,7 @@
 				DB1ACEC32921369700A27F20 /* en_send@3x.png in Resources */,
 				CC3016C01951BABF0059BADA /* f017.png in Resources */,
 				0FCC71871F69414C0026859D /* pub_microphone_volume@2x.png in Resources */,
+				336B7DD02BB27A0B00699E10 /* WH_JXGroupRedPacketTotalVC.xib in Resources */,
 				CC3017411951BABF0059BADA /* f081@2x.png in Resources */,
 				63DD4F7121314DB800DC45F8 /* RITLPhotos.bundle in Resources */,
 				E41DD99B22E9ABA2007F156B /* questionMark@3x.png in Resources */,
@@ -11516,6 +11534,7 @@
 				0F11158A2A594A4F00EF041B /* WH_JXGroupEnterAndOutVC.m in Sources */,
 				0F304DE12153AD0E001EC77E /* XMPPRoom.xcdatamodeld in Sources */,
 				CC875A4119361892007D2DA1 /* WH_JXConnection.m in Sources */,
+				336B7DCA2BB180AE00699E10 /* WH_JXGroupMemberEarningCell.m in Sources */,
 				1843126522CB4AFD0029CBAF /* UIButton+WH_Button.m in Sources */,
 				0F304DC72153AD0E001EC77E /* XMPPvCardTempAdr.m in Sources */,
 				0F304DEA2153AD0E001EC77E /* XMPPMessageArchiving.xcdatamodeld in Sources */,
@@ -11757,6 +11776,7 @@
 				0F304E222153AD0E001EC77E /* XMPPTimer.m in Sources */,
 				33BEF30B2B4E6DE30078B540 /* WH_JXNoticeModel.m in Sources */,
 				63DD4F6121314DB800DC45F8 /* RITLPhotosBottomView.m in Sources */,
+				336B7DCF2BB27A0B00699E10 /* WH_JXGroupRedPacketTotalVC.m in Sources */,
 				0F304E392153AD0E001EC77E /* DDAbstractDatabaseLogger.m in Sources */,
 				63710B5A1FB97A1400C69611 /* WH_JXLive_WHViewController.m in Sources */,
 				63710B4C1FB97A1400C69611 /* WH_BulletGroupView.m in Sources */,

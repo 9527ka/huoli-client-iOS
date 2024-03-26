@@ -7,7 +7,7 @@
 //
 
 #import "WH_JXGroupMemberEarningVC.h"
-#import "WH_JXGroupMemberRedPacketCell.h"
+#import "WH_JXGroupMemberEarningCell.h"
 #import "MJRefreshFooterView.h"
 #import "MJRefreshHeaderView.h"
 
@@ -41,6 +41,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.startDateBtn.layer.cornerRadius = self.endDateBtn.layer.cornerRadius = 14.0f;
+    
     self.dataSource = [NSMutableArray array];
     //设置展示样式
     self.datePicker.datePickerMode = UIDatePickerModeDateAndTime;
@@ -56,7 +58,22 @@
     self.endTime = endTimeStr;
     
     [self.endDateBtn setTitle:[NSDate date].xmppDateString forState:UIControlStateNormal];
-    [self.tableView registerNib:[UINib nibWithNibName:@"WH_JXGroupMemberRedPacketCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WH_JXGroupMemberRedPacketCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"WH_JXGroupMemberEarningCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WH_JXGroupMemberEarningCell"];
+    
+    
+    
+    //渐变色
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.colors = @[(__bridge id)HEXCOLOR(0xFFF6E8).CGColor, (__bridge id)HEXCOLOR(0xFFFFFF).CGColor];
+    gradientLayer.locations = @[@0.3, @0.5, @1.0];
+    gradientLayer.startPoint = CGPointMake(0, 0);
+    gradientLayer.endPoint = CGPointMake(0, 1.0);
+    gradientLayer.frame = CGRectMake(0, JX_SCREEN_TOP + 60, JX_SCREEN_WIDTH, JX_SCREEN_HEIGHT);
+    [self.view.layer addSublayer:gradientLayer];
+    
+    [self.view bringSubviewToFront:self.tableView];
+    
+    self.tableView.rowHeight = 125.0f;
     
     //设置刷新的头部以及加载
     [self setTableHeaderAndFotter];
@@ -139,7 +156,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    WH_JXGroupMemberRedPacketCell *cell = (WH_JXGroupMemberRedPacketCell *)[tableView dequeueReusableCellWithIdentifier:@"WH_JXGroupMemberRedPacketCell" forIndexPath:indexPath];
+    WH_JXGroupMemberEarningCell *cell = (WH_JXGroupMemberEarningCell *)[tableView dequeueReusableCellWithIdentifier:@"WH_JXGroupMemberEarningCell" forIndexPath:indexPath];
     if(self.dataSource.count > indexPath.row){
         NSDictionary *dic = self.dataSource[indexPath.row];
         [g_server WH_getHeadImageSmallWIthUserId:[NSString stringWithFormat:@"%@",dic[@"userId"]] userName:[NSString stringWithFormat:@"%@",dic[@"userName"]] imageView:cell.avatarImage];
@@ -147,18 +164,20 @@
         cell.nicknameLabel.text = [NSString stringWithFormat:@"%@", dic[@"userName"]];
         
         cell.moneyLabel.text = [NSString stringWithFormat:@"%.2f%@",[NSString stringWithFormat:@"%@",dic[@"diff"]].doubleValue,self.room.category == 1?@"钻石":@""];
-        cell.hotcIcon.hidden = self.room.category == 1?YES:NO;
-        cell.moneyRightConstaint.constant = self.room.category == 1?15.0f:38.0f;
+        cell.receiveLab.text = [NSString stringWithFormat:@"%.2f",[NSString stringWithFormat:@"%@",dic[@"receiveAmount"]].doubleValue];
+        cell.sendLab.text = [NSString stringWithFormat:@"%.2f",[NSString stringWithFormat:@"%@",dic[@"sendAmount"]].doubleValue];
+//        cell.hotcIcon.hidden = self.room.category == 1?YES:NO;
+//        cell.moneyRightConstaint.constant = self.room.category == 1?15.0f:38.0f;
     }
 
-    if (indexPath.row < 3) {
-        cell.medalIcon.hidden = NO;
-        cell.medalIcon.image = [UIImage imageNamed:@[@"gold_medal", @"silver_medal", @"bronze_medal"][indexPath.row]];
-        cell.numberLabel.text = @"";
-    } else {
-        cell.medalIcon.hidden = YES;
-        cell.numberLabel.text = [NSString stringWithFormat:@"%ld", indexPath.row + 1];
-    }
+//    if (indexPath.row < 3) {
+//        cell.medalIcon.hidden = NO;
+//        cell.medalIcon.image = [UIImage imageNamed:@[@"gold_medal", @"silver_medal", @"bronze_medal"][indexPath.row]];
+//        cell.numberLabel.text = @"";
+//    } else {
+//        cell.medalIcon.hidden = YES;
+//        cell.numberLabel.text = [NSString stringWithFormat:@"%ld", indexPath.row + 1];
+//    }
     return cell;
 }
 #pragma mark - 请求成功回调
