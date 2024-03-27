@@ -10,6 +10,7 @@
 #import "WH_LoginTextField.h"
 #import "DMDropDownMenu.h"
 #import "WH_InputPwdViewController.h"
+#import "WH_PhoneForgetPwdVC.h"
 
 @interface WH_ForgetPwdForUserViewController () <UITextFieldDelegate, DMDropDownMenuDelegate, JXServerResult>
 {
@@ -59,6 +60,17 @@
         [self customLayerCornerStyleWithGlobalParams:userField.layer];
         [self.view addSubview:userField];
         buttonOriginY = userField.bottom + 20;
+        
+        //创建验证码找回密码  104
+        UIButton *findBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [findBtn setTitle:@"验证码找回密码" forState:UIControlStateNormal];
+        [findBtn setTitleColor:THEMECOLOR forState:UIControlStateNormal];
+        findBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        findBtn.frame = CGRectMake(0, 114 + JX_SCREEN_TOP, JX_SCREEN_WIDTH, 30);
+        [findBtn addTarget:self action:@selector(phoneFindPwsAction) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:findBtn];
+        
+         
     }else {
         
         UILabel *desLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, buttonOriginY+12, JX_SCREEN_WIDTH-2*40, 20)];
@@ -128,6 +140,21 @@
     confirmButton.layer.masksToBounds = YES;
     [confirmButton addTarget:self action:@selector(nextStep) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:confirmButton];
+    
+    
+    
+    if (self.forgetStep == 1) {
+        
+        //创建验证码找回密码  104
+        UIButton *findBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [findBtn setTitle:@"验证码找回密码" forState:UIControlStateNormal];
+        [findBtn setTitleColor:THEMECOLOR forState:UIControlStateNormal];
+        findBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        findBtn.frame = CGRectMake(0, 114 + buttonOriginY, JX_SCREEN_WIDTH, 30);
+        [findBtn addTarget:self action:@selector(phoneFindPwsAction) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:findBtn];
+         
+    }
 }
 
 - (void)customLayerCornerStyleWithGlobalParams:(CALayer *)layer {
@@ -137,7 +164,10 @@
     layer.masksToBounds = YES;
 }
 
-
+-(void)phoneFindPwsAction{
+    WH_PhoneForgetPwdVC *vc = [[WH_PhoneForgetPwdVC alloc] init];
+    [g_navigation pushViewController:vc animated:YES];
+}
 
 
 #pragma mark --- UITextField Delegate

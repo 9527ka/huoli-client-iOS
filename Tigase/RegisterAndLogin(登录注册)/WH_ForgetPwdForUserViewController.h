@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic, strong) NSDictionary *questionDic;
 @property (nonatomic, strong) NSArray *questions;
+
 @end
 
 NS_ASSUME_NONNULL_END

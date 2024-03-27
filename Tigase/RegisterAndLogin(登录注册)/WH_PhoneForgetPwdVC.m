@@ -1,60 +1,49 @@
 //
-//  WH_CodeLoginVC.m
+//  WH_PhoneForgetPwdVC.m
 //  Tigase
 //
-//  Created by 1111 on 2024/3/26.
+//  Created by 1111 on 2024/3/27.
 //  Copyright © 2024 Reese. All rights reserved.
 //
 
-#import "WH_CodeLoginVC.h"
-#import "WH_RegisterViewController.h"
-#import "MiXin_forgetPwd_MiXinVC.h"
-#import "WH_ForgetPwdForUserViewController.h"
-#import "WH_JXLoginVC.h"
+#import "WH_PhoneForgetPwdVC.h"
 
-@interface WH_CodeLoginVC (){
+@interface WH_PhoneForgetPwdVC (){
     ATMHud *_wait;
 }
-
-@property (weak, nonatomic) IBOutlet UIImageView *logoImage;
-@property (weak, nonatomic) IBOutlet UILabel *nameLab;
 @property (weak, nonatomic) IBOutlet UITextField *phoneField;
 @property (weak, nonatomic) IBOutlet UITextField *codeField;
 @property (weak, nonatomic) IBOutlet UIButton *codeBtn;
 @property (weak, nonatomic) IBOutlet UIView *accountBgView;
 @property (weak, nonatomic) IBOutlet UIView *passWordBgView;
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
-@property (weak, nonatomic) IBOutlet UIButton *regiestBtn;
 @property (weak, nonatomic) IBOutlet UIButton *forgetBtn;
-@property (weak, nonatomic) IBOutlet UIButton *typeLoginBtn;
 
 @end
 
-@implementation WH_CodeLoginVC
+@implementation WH_PhoneForgetPwdVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     _wait = [ATMHud sharedInstance];
-    [g_server getSetting:self];
+
     [self makeUI];
-    
 }
 -(void)makeUI{
-    self.logoImage.layer.cornerRadius = 16.0f;
-    self.accountBgView.layer.cornerRadius = 24.0f;
-    self.passWordBgView.layer.cornerRadius = 24.0f;
+    self.accountBgView.layer.cornerRadius = 6.0f;
+    self.passWordBgView.layer.cornerRadius = 6.0f;
     self.loginBtn.layer.cornerRadius = 24.0f;
-    [self.typeLoginBtn setTitle:self.type == 0?@"账号密码登录":@"账号密码注册" forState:UIControlStateNormal];
-    self.forgetBtn.hidden = self.type == 1?YES:NO;
-    [self.regiestBtn setTitle:self.type == 0?@"注册账号":@"已有账号，去登录" forState:UIControlStateNormal];
 
+}
+- (IBAction)gobackAction:(id)sender {
+    [g_navigation WH_dismiss_WHViewController:self animated:YES];
 }
 - (IBAction)codeAction:(id)sender {
     if(self.phoneField.text.length != 11){
         [g_server showMsg:@"请输入正确格式的手机号码"];
         return;
     }
+    
     self.codeBtn.userInteractionEnabled = NO;
        //同时创建计时器 开始倒计时
         [self createTimer];
@@ -118,40 +107,6 @@
     dispatch_resume(timer);
 }
 
-- (IBAction)forgetPasswordAction:(id)sender {
-    [self.view endEditing:YES];
-//    if (currentLoginType == 1) {
-        WH_ForgetPwdForUserViewController *pwsVC = [[WH_ForgetPwdForUserViewController alloc] init];
-        pwsVC.forgetStep = 1;
-        [g_navigation pushViewController:pwsVC animated:YES];
-//        return;
-//    }
-//    MiXin_forgetPwd_MiXinVC* vc = [[MiXin_forgetPwd_MiXinVC alloc] init];
-//    vc.isModify = NO;
-//    vc.forgetType = currentLoginType;
-//    [g_navigation pushViewController:vc animated:YES];
-}
-- (IBAction)regiestAction:(id)sender {
-    [self.view endEditing:YES];
-    if(self.type == 0){//注册
-        WH_RegisterViewController *vc = [[WH_RegisterViewController alloc] init];
-        [g_navigation pushViewController:vc animated:YES];
-        
-    }else{//登录
-        WH_JXLoginVC* vc = [ WH_JXLoginVC alloc];
-        [g_navigation pushViewController:vc animated:YES];
-    }
-   
-}
-- (IBAction)otherLoginAction:(id)sender {
-    [self.view endEditing:YES];
-    if(self.type == 0){//账号密码登录
-        [g_navigation WH_dismiss_WHViewController:self animated:YES];
-    }else{//账号密码注册
-        WH_RegisterViewController *vc = [[WH_RegisterViewController alloc] init];
-        [g_navigation pushViewController:vc animated:YES];
-    }
-}
 
 - (IBAction)loginAction:(id)sender {
     [self.view endEditing:YES];
@@ -159,26 +114,11 @@
         [GKMessageTool showTips:@"手机号码格式不正确"];
         return;
     }
-
+    
     if(self.codeField.text.length != 6){
         [GKMessageTool showTips:@"验证码格式不正确"];
         return;
     }
-//    userObject.areaCode = g_myself.areaCode.length > 0?g_myself.areaCode:@"86";
-//    userObject.password = [g_server WH_getMD5StringWithStr:self.codeField.text];
-//    userObject.phone = self.phoneField.text;
-//    userObject.telephone = self.phoneField.text;
-//    userObject.account = self.phoneField.text;
-//
-//    [_wait start];
-//    [[JXServer sharedServer] login:userObject loginType:currentLoginType toView:self];
-}
--(void)actionQuit{
-    [_wait stop];
-    [g_server stopConnection:self];
-    [g_window endEditing:YES];
-    [g_notify removeObserver:self];
-    
 }
 #pragma mark ------ 网络请求
 -(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{
@@ -257,5 +197,6 @@
      
     [_wait start];
 }
+
 
 @end

@@ -816,6 +816,8 @@
 		33BEF42F2B5A1AA10078B540 /* WH_JXAgentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BEF42D2B5A1AA10078B540 /* WH_JXAgentCell.xib */; };
 		33CB6D952BB2C39B000D58DE /* WH_CodeLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CB6D932BB2C39B000D58DE /* WH_CodeLoginVC.m */; };
 		33CB6D962BB2C39B000D58DE /* WH_CodeLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CB6D942BB2C39B000D58DE /* WH_CodeLoginVC.xib */; };
+		33CB6D9A2BB3C259000D58DE /* WH_PhoneForgetPwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CB6D982BB3C259000D58DE /* WH_PhoneForgetPwdVC.m */; };
+		33CB6D9B2BB3C25A000D58DE /* WH_PhoneForgetPwdVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CB6D992BB3C259000D58DE /* WH_PhoneForgetPwdVC.xib */; };
 		33CD3C682B64F682001BFBFF /* WH_JXRedPacketSecVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CD3C662B64F682001BFBFF /* WH_JXRedPacketSecVC.m */; };
 		33CD3C692B64F682001BFBFF /* WH_JXRedPacketSecVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CD3C672B64F682001BFBFF /* WH_JXRedPacketSecVC.xib */; };
 		33CD3C6D2B64F999001BFBFF /* WH_JXRedPacketSecCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CD3C6B2B64F999001BFBFF /* WH_JXRedPacketSecCell.m */; };
@@ -3261,6 +3263,9 @@
 		33CB6D922BB2C39B000D58DE /* WH_CodeLoginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_CodeLoginVC.h; sourceTree = "<group>"; };
 		33CB6D932BB2C39B000D58DE /* WH_CodeLoginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_CodeLoginVC.m; sourceTree = "<group>"; };
 		33CB6D942BB2C39B000D58DE /* WH_CodeLoginVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_CodeLoginVC.xib; sourceTree = "<group>"; };
+		33CB6D972BB3C259000D58DE /* WH_PhoneForgetPwdVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_PhoneForgetPwdVC.h; sourceTree = "<group>"; };
+		33CB6D982BB3C259000D58DE /* WH_PhoneForgetPwdVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_PhoneForgetPwdVC.m; sourceTree = "<group>"; };
+		33CB6D992BB3C259000D58DE /* WH_PhoneForgetPwdVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_PhoneForgetPwdVC.xib; sourceTree = "<group>"; };
 		33CD3C652B64F682001BFBFF /* WH_JXRedPacketSecVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXRedPacketSecVC.h; sourceTree = "<group>"; };
 		33CD3C662B64F682001BFBFF /* WH_JXRedPacketSecVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXRedPacketSecVC.m; sourceTree = "<group>"; };
 		33CD3C672B64F682001BFBFF /* WH_JXRedPacketSecVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXRedPacketSecVC.xib; sourceTree = "<group>"; };
@@ -8723,6 +8728,9 @@
 				CCB8E753194E989700CD71CC /* WH_forgetPwd_WHVC.m */,
 				B203A83F23238E84001B2575 /* WH_ForgetPwdForUserViewController.h */,
 				B203A83E23238E84001B2575 /* WH_ForgetPwdForUserViewController.m */,
+				33CB6D972BB3C259000D58DE /* WH_PhoneForgetPwdVC.h */,
+				33CB6D982BB3C259000D58DE /* WH_PhoneForgetPwdVC.m */,
+				33CB6D992BB3C259000D58DE /* WH_PhoneForgetPwdVC.xib */,
 				CC04E64E194709DC0075B250 /* WH_inputPhone_WHVC.h */,
 				CC04E64F194709DC0075B250 /* WH_inputPhone_WHVC.m */,
 				B203A84723238E93001B2575 /* WH_InputPwdViewController.h */,
@@ -10483,6 +10491,7 @@
 				CC3016C31951BABF0059BADA /* f018@2x.png in Resources */,
 				CC30170F1951BABF0059BADA /* f056@2x.png in Resources */,
 				1830593F22C5E91D00A7A1B2 /* WH_file_dir@2x.png in Resources */,
+				33CB6D9B2BB3C25A000D58DE /* WH_PhoneForgetPwdVC.xib in Resources */,
 				1851A36E2307B09400BA24A1 /* biaoqing_emjio@2x.png in Resources */,
 				CC3017091951BABF0059BADA /* f053@2x.png in Resources */,
 				886923B91F67FAA300824159 /* ic_selected_done_2@2x.png in Resources */,
@@ -12184,6 +12193,7 @@
 				126D6637285228EE000BEF41 /* NSMutableString+AvoidCrash.m in Sources */,
 				CCC88B981E4C526F00180080 /* QBPopupMenuItemView.m in Sources */,
 				0F304E262153AD0E001EC77E /* GCDMulticastDelegate.m in Sources */,
+				33CB6D9A2BB3C259000D58DE /* WH_PhoneForgetPwdVC.m in Sources */,
 				6377510F22321DA9005C14ED /* WH_JXTransferNotice_WHVC.m in Sources */,
 				CC8FCA671E4B01CE0058686C /* WH_JXRecordCode_WHVC.m in Sources */,
 				B203A84123238E85001B2575 /* WH_ForgetPwdForUserViewController.m in Sources */,
