@@ -26,7 +26,7 @@
 #import "JXBlogRemind.h"
 
 #import "WH_FindViewController.h"
-#import "WH_MineViewController.h"
+#import "WH_MineVC.h"
 #import "WH_webpage_WHVC.h"
 
 #import "WH_WKWebView_JXViewController.h"
@@ -89,7 +89,7 @@
         _msgVc = [[WH_JXMsg_WHViewController alloc] init];
         _addressbookVC = [[WH_Addressbook_WHController alloc] init];
         
-        _mineVC = [[WH_MineViewController alloc] init];
+        _mineVC = [[WH_MineVC alloc] init];
         _desipageVc = [[TFJunYou_desiPageVc alloc]init];
 #ifdef IS_OPEN_CUSTOM_TAB
         NSDictionary *tabBarConfig = g_config.tabBarConfigList;

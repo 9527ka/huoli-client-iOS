@@ -13,7 +13,9 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    self.avatarImage.layer.cornerRadius = 5;
+    self.avatarImage.layer.cornerRadius = 21;
+    self.avatarImage.layer.borderColor = HEXCOLOR(0xF6D2A0).CGColor;
+    self.avatarImage.layer.borderWidth = 0.5f;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

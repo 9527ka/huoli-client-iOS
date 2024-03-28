@@ -12,13 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WH_JXGroupMemberRedPacketCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *medalIcon;
-@property (weak, nonatomic) IBOutlet UILabel *numberLabel;
+
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImage;
 @property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *hotcIcon;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *moneyRightConstaint;
+@property (weak, nonatomic) IBOutlet UILabel *sendMoneyLab;
+
+@property (weak, nonatomic) IBOutlet UILabel *receiveMoneyLab;
 
 @end
 

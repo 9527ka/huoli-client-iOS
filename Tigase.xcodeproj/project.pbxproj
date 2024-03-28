@@ -818,6 +818,17 @@
 		33CB6D962BB2C39B000D58DE /* WH_CodeLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CB6D942BB2C39B000D58DE /* WH_CodeLoginVC.xib */; };
 		33CB6D9A2BB3C259000D58DE /* WH_PhoneForgetPwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CB6D982BB3C259000D58DE /* WH_PhoneForgetPwdVC.m */; };
 		33CB6D9B2BB3C25A000D58DE /* WH_PhoneForgetPwdVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CB6D992BB3C259000D58DE /* WH_PhoneForgetPwdVC.xib */; };
+		33CB6D9F2BB3E604000D58DE /* WH_MineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CB6D9D2BB3E604000D58DE /* WH_MineVC.m */; };
+		33CB6DA02BB3E604000D58DE /* WH_MineVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CB6D9E2BB3E604000D58DE /* WH_MineVC.xib */; };
+		33CB6DA82BB3EA01000D58DE /* SwipeLeftInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CB6DA22BB3EA01000D58DE /* SwipeLeftInteractiveTransition.m */; };
+		33CB6DA92BB3EA01000D58DE /* ScalePresentAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CB6DA42BB3EA01000D58DE /* ScalePresentAnimation.m */; };
+		33CB6DAA2BB3EA01000D58DE /* ScaleDismissAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CB6DA72BB3EA01000D58DE /* ScaleDismissAnimation.m */; };
+		33CB6DAD2BB3EBA4000D58DE /* HoverViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CB6DAC2BB3EBA3000D58DE /* HoverViewFlowLayout.m */; };
+		33CB6DB02BB3ECAB000D58DE /* LoadMoreControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CB6DAF2BB3ECA9000D58DE /* LoadMoreControl.m */; };
+		33CB6DB52BB3ED28000D58DE /* SlideTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CB6DB12BB3ED26000D58DE /* SlideTabBar.m */; };
+		33CB6DB62BB3ED28000D58DE /* UserInfoHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CB6DB42BB3ED27000D58DE /* UserInfoHeader.m */; };
+		33CB6DBE2BB3EF5A000D58DE /* WH_MineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CB6DBC2BB3EF5A000D58DE /* WH_MineCell.m */; };
+		33CB6DBF2BB3EF5A000D58DE /* WH_MineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CB6DBD2BB3EF5A000D58DE /* WH_MineCell.xib */; };
 		33CD3C682B64F682001BFBFF /* WH_JXRedPacketSecVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CD3C662B64F682001BFBFF /* WH_JXRedPacketSecVC.m */; };
 		33CD3C692B64F682001BFBFF /* WH_JXRedPacketSecVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CD3C672B64F682001BFBFF /* WH_JXRedPacketSecVC.xib */; };
 		33CD3C6D2B64F999001BFBFF /* WH_JXRedPacketSecCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CD3C6B2B64F999001BFBFF /* WH_JXRedPacketSecCell.m */; };
@@ -3266,6 +3277,26 @@
 		33CB6D972BB3C259000D58DE /* WH_PhoneForgetPwdVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_PhoneForgetPwdVC.h; sourceTree = "<group>"; };
 		33CB6D982BB3C259000D58DE /* WH_PhoneForgetPwdVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_PhoneForgetPwdVC.m; sourceTree = "<group>"; };
 		33CB6D992BB3C259000D58DE /* WH_PhoneForgetPwdVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_PhoneForgetPwdVC.xib; sourceTree = "<group>"; };
+		33CB6D9C2BB3E604000D58DE /* WH_MineVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_MineVC.h; sourceTree = "<group>"; };
+		33CB6D9D2BB3E604000D58DE /* WH_MineVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_MineVC.m; sourceTree = "<group>"; };
+		33CB6D9E2BB3E604000D58DE /* WH_MineVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_MineVC.xib; sourceTree = "<group>"; };
+		33CB6DA22BB3EA01000D58DE /* SwipeLeftInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeLeftInteractiveTransition.m; sourceTree = "<group>"; };
+		33CB6DA32BB3EA01000D58DE /* ScaleDismissAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleDismissAnimation.h; sourceTree = "<group>"; };
+		33CB6DA42BB3EA01000D58DE /* ScalePresentAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScalePresentAnimation.m; sourceTree = "<group>"; };
+		33CB6DA52BB3EA01000D58DE /* SwipeLeftInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeLeftInteractiveTransition.h; sourceTree = "<group>"; };
+		33CB6DA62BB3EA01000D58DE /* ScalePresentAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScalePresentAnimation.h; sourceTree = "<group>"; };
+		33CB6DA72BB3EA01000D58DE /* ScaleDismissAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScaleDismissAnimation.m; sourceTree = "<group>"; };
+		33CB6DAB2BB3EBA3000D58DE /* HoverViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoverViewFlowLayout.h; sourceTree = "<group>"; };
+		33CB6DAC2BB3EBA3000D58DE /* HoverViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HoverViewFlowLayout.m; sourceTree = "<group>"; };
+		33CB6DAE2BB3ECA8000D58DE /* LoadMoreControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreControl.h; sourceTree = "<group>"; };
+		33CB6DAF2BB3ECA9000D58DE /* LoadMoreControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadMoreControl.m; sourceTree = "<group>"; };
+		33CB6DB12BB3ED26000D58DE /* SlideTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideTabBar.m; sourceTree = "<group>"; };
+		33CB6DB22BB3ED26000D58DE /* SlideTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideTabBar.h; sourceTree = "<group>"; };
+		33CB6DB32BB3ED27000D58DE /* UserInfoHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoHeader.h; sourceTree = "<group>"; };
+		33CB6DB42BB3ED27000D58DE /* UserInfoHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoHeader.m; sourceTree = "<group>"; };
+		33CB6DBB2BB3EF5A000D58DE /* WH_MineCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_MineCell.h; sourceTree = "<group>"; };
+		33CB6DBC2BB3EF5A000D58DE /* WH_MineCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_MineCell.m; sourceTree = "<group>"; };
+		33CB6DBD2BB3EF5A000D58DE /* WH_MineCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_MineCell.xib; sourceTree = "<group>"; };
 		33CD3C652B64F682001BFBFF /* WH_JXRedPacketSecVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXRedPacketSecVC.h; sourceTree = "<group>"; };
 		33CD3C662B64F682001BFBFF /* WH_JXRedPacketSecVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXRedPacketSecVC.m; sourceTree = "<group>"; };
 		33CD3C672B64F682001BFBFF /* WH_JXRedPacketSecVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXRedPacketSecVC.xib; sourceTree = "<group>"; };
@@ -7135,6 +7166,19 @@
 			path = C2COrderVC;
 			sourceTree = "<group>";
 		};
+		33CB6DA12BB3EA01000D58DE /* TransitionAnim */ = {
+			isa = PBXGroup;
+			children = (
+				33CB6DA22BB3EA01000D58DE /* SwipeLeftInteractiveTransition.m */,
+				33CB6DA32BB3EA01000D58DE /* ScaleDismissAnimation.h */,
+				33CB6DA42BB3EA01000D58DE /* ScalePresentAnimation.m */,
+				33CB6DA52BB3EA01000D58DE /* SwipeLeftInteractiveTransition.h */,
+				33CB6DA62BB3EA01000D58DE /* ScalePresentAnimation.h */,
+				33CB6DA72BB3EA01000D58DE /* ScaleDismissAnimation.m */,
+			);
+			path = TransitionAnim;
+			sourceTree = "<group>";
+		};
 		33E5914B2B16E6B900E578A3 /* Masonry */ = {
 			isa = PBXGroup;
 			children = (
@@ -10139,6 +10183,7 @@
 		CCFFAE011A0C644500C5BF97 /* personCenter(个人中心) */ = {
 			isa = PBXGroup;
 			children = (
+				33CB6DA12BB3EA01000D58DE /* TransitionAnim */,
 				33BDEC5D2B43D47000C6A697 /* C2COrderVC */,
 				18F9D17C24231B0F00878AFF /* WithdrawListModel */,
 				B24FF8CC23409F9300AD89A9 /* AccountUtil */,
@@ -10152,6 +10197,20 @@
 				0F199DCD225F20EB003973B1 /* WH_JXSetShikuNum_WHVC.m */,
 				18D62C2722C45C5500D65E8B /* WH_MineViewController.h */,
 				18D62C2822C45C5500D65E8B /* WH_MineViewController.m */,
+				33CB6D9C2BB3E604000D58DE /* WH_MineVC.h */,
+				33CB6D9D2BB3E604000D58DE /* WH_MineVC.m */,
+				33CB6D9E2BB3E604000D58DE /* WH_MineVC.xib */,
+				33CB6DBB2BB3EF5A000D58DE /* WH_MineCell.h */,
+				33CB6DBC2BB3EF5A000D58DE /* WH_MineCell.m */,
+				33CB6DBD2BB3EF5A000D58DE /* WH_MineCell.xib */,
+				33CB6DAB2BB3EBA3000D58DE /* HoverViewFlowLayout.h */,
+				33CB6DAC2BB3EBA3000D58DE /* HoverViewFlowLayout.m */,
+				33CB6DAE2BB3ECA8000D58DE /* LoadMoreControl.h */,
+				33CB6DAF2BB3ECA9000D58DE /* LoadMoreControl.m */,
+				33CB6DB22BB3ED26000D58DE /* SlideTabBar.h */,
+				33CB6DB12BB3ED26000D58DE /* SlideTabBar.m */,
+				33CB6DB32BB3ED27000D58DE /* UserInfoHeader.h */,
+				33CB6DB42BB3ED27000D58DE /* UserInfoHeader.m */,
 				18F8D2C322CE0BA700B87B79 /* WH_PersonalData_WHViewController.h */,
 				18F8D2C422CE0BA700B87B79 /* WH_PersonalData_WHViewController.m */,
 				18A0A11B22CF01FB0061B2B4 /* WH_MyWallet_WHViewController.h */,
@@ -10579,6 +10638,7 @@
 				18ABD6B11D07FDAE000F43FC /* noread@2x.png in Resources */,
 				63E1E9A61F442927004548C5 /* closeCamera2@2x.png in Resources */,
 				CC3016DA1951BABF0059BADA /* f030.png in Resources */,
+				33CB6DA02BB3E604000D58DE /* WH_MineVC.xib in Resources */,
 				1851A37C2307B09400BA24A1 /* biaoqing_add@3x.png in Resources */,
 				18ABD68C1D07FDAE000F43FC /* add_picture@2x.png in Resources */,
 				33946A9C2B26BD420002A8D6 /* WH_GroupAccountSetCell.xib in Resources */,
@@ -10884,6 +10944,7 @@
 				CC3016D81951BABF0059BADA /* f029.png in Resources */,
 				CC3016E01951BABF0059BADA /* f033.png in Resources */,
 				CC30174F1951BABF0059BADA /* f088@2x.png in Resources */,
+				33CB6DBF2BB3EF5A000D58DE /* WH_MineCell.xib in Resources */,
 				63E1E9A81F442927004548C5 /* mute1@2x.png in Resources */,
 				DB1ACECF292136C700A27F20 /* arc_read@2x.png in Resources */,
 				CC30175F1951BABF0059BADA /* f096@2x.png in Resources */,
@@ -11059,6 +11120,7 @@
 				63F4E43921C0AE7800C61204 /* WH_KKCutTool.m in Sources */,
 				0FA2D6711FB05CCD00D51BB9 /* GPUImageSketchFilter.m in Sources */,
 				CC6E167719794906006ADA8A /* WH_JXMain_WHViewController.m in Sources */,
+				33CB6DAA2BB3EA01000D58DE /* ScaleDismissAnimation.m in Sources */,
 				63DD4F4321314DB800DC45F8 /* RITLImagePickerController.m in Sources */,
 				4CABBC57293F06F800C17F42 /* GKDYVideoView.m in Sources */,
 				63DD4F7321314DB800DC45F8 /* RITLPhotosCollectionViewController.m in Sources */,
@@ -11075,6 +11137,7 @@
 				0F304DE62153AD0E001EC77E /* NSXMLElement+XEP_0335.m in Sources */,
 				630617F11FBD4C4100BFC616 /* SPAlertController.m in Sources */,
 				634669191EC405F700BE6112 /* WH_RATreeNodeController.m in Sources */,
+				33CB6DA82BB3EA01000D58DE /* SwipeLeftInteractiveTransition.m in Sources */,
 				DE5C697F232676B500321406 /* WH_AddBankCard_WHView.m in Sources */,
 				33E591702B16E6B900E578A3 /* MASViewAttribute.m in Sources */,
 				0F304DAD2153AD0D001EC77E /* NSXMLElement+XEP_0352.m in Sources */,
@@ -11091,6 +11154,7 @@
 				63DD4F4A21314DB800DC45F8 /* RITLTitleButton.m in Sources */,
 				0FA0D8001F5ABD350017D522 /* WH_JXReadList_WHCell.m in Sources */,
 				0F304E092153AD0E001EC77E /* NSXMLElement+OMEMO.m in Sources */,
+				33CB6DB02BB3ECAB000D58DE /* LoadMoreControl.m in Sources */,
 				0F304DA22153AD0D001EC77E /* XMPPRegistration.m in Sources */,
 				CC6E167419794906006ADA8A /* WH_JXFriend_WHViewController.m in Sources */,
 				0F304E0D2153AD0E001EC77E /* XMPPCapabilities.m in Sources */,
@@ -11798,6 +11862,7 @@
 				0F304E392153AD0E001EC77E /* DDAbstractDatabaseLogger.m in Sources */,
 				63710B5A1FB97A1400C69611 /* WH_JXLive_WHViewController.m in Sources */,
 				63710B4C1FB97A1400C69611 /* WH_BulletGroupView.m in Sources */,
+				33CB6DB62BB3ED28000D58DE /* UserInfoHeader.m in Sources */,
 				0F304E2F2153AD0E001EC77E /* XMPPDeprecatedPlainAuthentication.m in Sources */,
 				0F304DA42153AD0D001EC77E /* XMPPMessage+XEP_0280.m in Sources */,
 				186874AB22C36D30000D5428 /* WH_FindTableViewCell.m in Sources */,
@@ -11823,6 +11888,7 @@
 				63DD4F3B21314DB800DC45F8 /* UIImage+RITLExtension.m in Sources */,
 				DE5C696B232666D400321406 /* MiXin_ConfirmWithdraw_MiXinVC.m in Sources */,
 				18D62C2922C45C5500D65E8B /* WH_MineViewController.m in Sources */,
+				33CB6DA92BB3EA01000D58DE /* ScalePresentAnimation.m in Sources */,
 				DE040C8622C1109600153BFA /* WH_JX_WHCell.m in Sources */,
 				0FB2081B20C546BD009AD1ED /* WH_JXPublicNumber_WHVC.m in Sources */,
 				0F304DA52153AD0D001EC77E /* XMPPLastActivity.m in Sources */,
@@ -11972,6 +12038,7 @@
 				63DD4F5221314DB800DC45F8 /* RITLDownLoaderFileManager.m in Sources */,
 				0F304E122153AD0E001EC77E /* XMPPRoomLight.m in Sources */,
 				185BF85522DD7E140010A509 /* WH_SelectNode_WHView.m in Sources */,
+				33CB6DB52BB3ED28000D58DE /* SlideTabBar.m in Sources */,
 				DE5E40D122F034B200D98B8F /* WH_ForgetPayPsw_WHVC.m in Sources */,
 				333824E82B3441BD00AC4B06 /* WH_JXOrderSearchVC.m in Sources */,
 				18A0A12322CF5B270061B2B4 /* WH_Collect_WHViewController.m in Sources */,
@@ -12100,6 +12167,7 @@
 				0FAB271C2A356C1B00EDFE8D /* WH_JXGroupMemberRedPacketVC.m in Sources */,
 				CCC88CAE1E4C5AB300180080 /* DMSlideTransition.m in Sources */,
 				CCEBFFF5196ED83800BC2E0E /* userWeiboVC.m in Sources */,
+				33CB6DBE2BB3EF5A000D58DE /* WH_MineCell.m in Sources */,
 				0F304DD12153AD0E001EC77E /* XMPPAutoTime.m in Sources */,
 				0F86DE1D1F99AE8700B4FC8D /* WH_JXCourseList_WHCell.m in Sources */,
 				63B5446C2155F8CE00B79A25 /* WH_JXPayPassword_WHVC.m in Sources */,
@@ -12133,6 +12201,7 @@
 				0FA2D6891FB05CCD00D51BB9 /* GPUImageTextureInput.m in Sources */,
 				CCB8E754194E989700CD71CC /* WH_forgetPwd_WHVC.m in Sources */,
 				DE3779A722CCA0B900639244 /* WH_CustomActionSheetView.m in Sources */,
+				33CB6DAD2BB3EBA4000D58DE /* HoverViewFlowLayout.m in Sources */,
 				CC6E16A419794B5A006ADA8A /* QBImagePickerGroupCell.m in Sources */,
 				CC8FD3661E4B399F0058686C /* WH_SCGIFImageView.m in Sources */,
 				CCEBFFEF196EB63800BC2E0E /* ATMHudView.m in Sources */,
@@ -12161,6 +12230,7 @@
 				0FA2D6511FB05CCD00D51BB9 /* GPUImagePosterizeFilter.m in Sources */,
 				6317CCA81FB9798500CEF9EF /* DMHeartFlyView.m in Sources */,
 				332DB1BB2B8EDC1A00B4D6D4 /* WH_JXChatDefaultBgCell.m in Sources */,
+				33CB6D9F2BB3E604000D58DE /* WH_MineVC.m in Sources */,
 				CCC88D061E4C772200180080 /* WH_JXSettings_WHCell.m in Sources */,
 				CC1D191E1954527F0029F7FD /* addMsgVC.m in Sources */,
 				B203A84F23238E94001B2575 /* WH_PSRegisterBaseVC.m in Sources */,

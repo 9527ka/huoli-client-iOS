@@ -7,6 +7,7 @@
 //
 
 #import "WH_JXRedPacket_WHCell.h"
+#import "NSString+ContainStr.h"
 
 @interface WH_JXRedPacket_WHCell ()
 
@@ -20,6 +21,8 @@
 @property (nonatomic, strong) UILabel *line;
 
 @property (nonatomic, strong) UILabel *toUserLab;
+
+@property (nonatomic, strong) UILabel *sendTimeLab;
 
 @end
 
@@ -46,14 +49,16 @@
     _headImageView.frame = CGRectMake(12,11, 35, 41);
     _headImageView.image = [UIImage imageNamed:@"WH_hongbao_top"];//图片
     _headImageView.userInteractionEnabled = NO;
+    _headImageView.hidden = YES;
     [_imageBackground addSubview:_headImageView];
     
     _nameLabel = [[UILabel alloc]init];
     _nameLabel.frame = CGRectMake(CGRectGetMaxX(_headImageView.frame) + 10,22, 160, 23);
-    _nameLabel.font = sysFontWithSize(16);
+    _nameLabel.font = sysFontWithSize(10);
     _nameLabel.textColor = [UIColor whiteColor];
     _nameLabel.numberOfLines = 0;
     _nameLabel.userInteractionEnabled = NO;
+    _nameLabel.textAlignment = NSTextAlignmentCenter;
     [_imageBackground addSubview:_nameLabel];
 
     _checkLabel = [[UILabel alloc] init];
@@ -65,16 +70,22 @@
     
     _title = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(_headImageView.frame)+1.0f, 10, 120, 30)];
     _title.text = Localized(@"JX_BusinessCard");
-    _title.font = sysFontWithSize(12);
-    _title.textColor = HEXCOLOR(0x8C9AB8);
+    _title.font = sysFontWithSize(10);
+    _title.textAlignment = NSTextAlignmentCenter;
     [_imageBackground addSubview:_title];
     
     _toUserLab = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.size.width - 172, 10, 100, 30)];
-    _toUserLab.font = sysFontWithSize(12);
+    _toUserLab.font = [UIFont boldSystemFontOfSize:30];
     _toUserLab.textColor = [UIColor whiteColor];
 //    _toUserLab.hidden = YES;
     _toUserLab.textAlignment = NSTextAlignmentRight;
     [_imageBackground addSubview:_toUserLab];
+    
+    _sendTimeLab = [[UILabel alloc] init];
+    _sendTimeLab.font = sysFontWithSize(8);
+    _sendTimeLab.textColor = [UIColor whiteColor];
+    _sendTimeLab.textAlignment = NSTextAlignmentCenter;
+    [_imageBackground addSubview:_sendTimeLab];
     
     _line = [[UILabel alloc] initWithFrame:CGRectMake(4, self.bounds.size.height - 12, 120, 0.3)];
     _line.alpha = 1.0f;
@@ -103,32 +114,44 @@
 
     CGFloat bubbleX = .0f;
     CGFloat bubbleY = .0f;
-    CGFloat bubbleW = 220.0f;
+    CGFloat bubbleW = 232.0f;
     CGFloat bubbleH = .0f;
     
-    if(JX_SCREEN_WIDTH > 375.0){
-        bubbleW = 220 + (JX_SCREEN_WIDTH/375.0f)*24;
-    }
+    float wide = (JX_SCREEN_WIDTH/375.0f)*232.0;
+    float height = (JX_SCREEN_WIDTH/375.0f)*95.0;
     
+    if(JX_SCREEN_WIDTH > 375.0){
+        bubbleW = wide;
+    }
     if(self.msg.isMySend) {//屏幕375 等比缩放
 //        bubbleW = 220.0f;
         bubbleX = JX_SCREEN_WIDTH - INSETS - HEAD_SIZE - CHAT_WIDTH_ICON - bubbleW;
         bubbleY = INSETS;
-        bubbleH = 87.0f;
+        bubbleH = height;
     } else {
 //        bubbleW = 220.0f;
         bubbleX = CGRectGetMaxX(self.headImage.frame) + CHAT_WIDTH_ICON;
         bubbleY = INSETS2(self.msg.isGroup);
-        bubbleH = 87.0f;
+        bubbleH = height;
     }
     
     self.bubbleBg.frame = CGRectMake(bubbleX, bubbleY, bubbleW, bubbleH);
     _imageBackground.frame = self.bubbleBg.bounds;
-    _title.frame = CGRectMake(CGRectGetMinX(_headImageView.frame) + 1.0f, _imageBackground.frame.size.height - (4+17), 120, 17);
     
-    _toUserLab.frame = CGRectMake(_imageBackground.bounds.size.width - 108, _imageBackground.frame.size.height - (4+17), 100, 17);
+    
+    if(self.msg.isMySend){
+        _title.frame = CGRectMake(_imageBackground.frame.size.width - 70, 11, 60, 15);
+        _nameLabel.frame = CGRectMake(_imageBackground.frame.size.width - 70, 26, 60, 15);
+    }else{
+        _title.frame = CGRectMake(8, 11, 60, 15);
+        _nameLabel.frame = CGRectMake(8, 26, 60, 15);
+    }
+    _sendTimeLab.frame = CGRectMake((_imageBackground.bounds.size.width - 108)/2, _imageBackground.frame.size.height - 24, 108, 15);
+    _toUserLab.frame = CGRectMake((_imageBackground.bounds.size.width - 108)/2 - 18, (_imageBackground.frame.size.height - 44)/2 - 6, 108, 44);
+    
     
     _line.frame = CGRectMake(8, _imageBackground.frame.size.height - (8+17), 200, 0.3);
+    _line.hidden = YES;
     
     
     if (self.msg.isShowTime) {
@@ -140,38 +163,43 @@
 //    [self setMaskLayer:_imageBackground];
 //    self.toUserLab.hidden = ([self.msg.type intValue] == kWCMessageTypeRedPacketExclusive)?NO:YES;
 //    self.toUserLab.text = [NSString stringWithFormat:@"仅 %@ 可领",self.msg.toUserNames];
-    self.toUserLab.text = [NSString stringWithFormat:@"金额：%.2f",self.msg.amount.doubleValue];
     
+    NSString *amountStr = [NSString stringWithFormat:@"￥%.2f",self.msg.amount.doubleValue];
+    
+    self.toUserLab.attributedText = [NSString changeSpecialWordColor:[UIColor whiteColor] AllContent:amountStr SpcWord:@"￥" font:14];
+    
+    self.sendTimeLab.text = @"2024-03-15 15:30:23";
         
     //服务端返回的数据类型错乱，强行改
     self.msg.fileName = [NSString stringWithFormat:@"%@",self.msg.fileName];
     if ([self.msg.fileName isEqualToString:@"3"]) {
         _nameLabel.text = [NSString stringWithFormat:@"%@%@",Localized(@"JX_Message"),self.msg.content];
         
-        NSString *title = Localized(@"JX_MesGift");//口令红包
+        NSString *title = @"口令券";//口令红包
         if([self.msg.type intValue] == kWCMessageTypeRedPacketExclusive){
-            title = self.room.category == 1?@"专属钻石":@"专属红包";
+            title = @"专属券";
         }else{
-            title = self.room.category == 1?@"口令钻石":@"口令红包";
+            title = @"口令券";
         }
         
         _title.text = title;
     }else{
 //        NSArray *gree
         _nameLabel.text = self.msg.content;
-        NSString *title = Localized(@"JXredPacket");//红包
+        NSString *title = @"优惠券";//红包
         if([self.msg.type intValue] == kWCMessageTypeRedPacketExclusive){
-            title = self.room.category == 1?@"专属钻石":@"专属红包";
+//            title = self.room.category == 1?@"专属钻石":@"专属红包";
+            title = @"专属券";
             
             NSString *name = self.msg.toUserNames;
             if(self.msg.toUserNames.length > 4){
                 name = [name substringToIndex:4];
                 name = [NSString stringWithFormat:@"%@...",name];
             }
-            
-            title = [NSString stringWithFormat:@"仅 %@ 可领",name];
+            self.sendTimeLab.text = [NSString stringWithFormat:@"仅 %@ 可领",name];
         }else{
-            title = self.room.category == 1?@"手气钻石":@"手气红包";
+//            title = self.room.category == 1?@"手气钻石":@"手气红包";
+            title = @"手气券";
         }
         _title.text = title;
     }
@@ -183,11 +211,14 @@
         _headImageView.image = [UIImage imageNamed: [self.msg.fileSize intValue] == 2?@"hongbao_receive_icon":@"WH_hongbao_top_icon"];
     }
     
+    _imageBackground.image = [UIImage imageNamed:self.msg.isMySend?@"hong_mySend_bg":@"hong_otherSend_bg"];
+    
     //专属红包更改红包颜色
     //    if([self.msg.type intValue] == kWCMessageTypeRedPacketExclusive){
-    UIImage *image = [[UIImage imageNamed:@"WH_hongbao_background"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
-    _imageBackground.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    [_imageBackground setTintColor:self.room.category==1?HEXCOLOR(0x179cfb):HEXCOLOR(0xfa9e3b)];
+//
+//    UIImage *image = [[UIImage imageNamed:@"WH_hongbao_background"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+//    _imageBackground.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+//    [_imageBackground setTintColor:self.room.category==1?HEXCOLOR(0x179cfb):HEXCOLOR(0xfa9e3b)];
     //    }
 //    _title.textColor = [self.msg.type intValue] == kWCMessageTypeRedPacketExclusive?[UIColor whiteColor]:HEXCOLOR(0x8C9AB8);
     
@@ -200,6 +231,7 @@
         
         _imageBackground.alpha = 1;
     }
+    
 
 }
 
@@ -231,17 +263,21 @@
         }
         
         float n = 0;
+        float wide = (JX_SCREEN_WIDTH/375.0f)*232.0;
+//        float height = wide*95.0;
+        float height = JX_SCREEN_WIDTH/3;
+        
         if (msg.isGroup && !msg.isMySend) {
             if (msg.isShowTime) {
-                n = JX_SCREEN_WIDTH/3 + 10 + 40 - 10;
+                n = height + 40;
             }else {
-                n = JX_SCREEN_WIDTH/3 + 10;
+                n = height + 10;
             }
         }else {
             if (msg.isShowTime) {
-                n = JX_SCREEN_WIDTH/3 + 40;
+                n = height + 40;
             }else {
-                n = JX_SCREEN_WIDTH/3;
+                n = height;
             }
         }
         n-=20;

@@ -76,6 +76,7 @@
     
     //icon
     UIImageView *jbImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, JX_SCREEN_WIDTH - 40, 192)];
+    jbImg.userInteractionEnabled = YES;
     [jbImg setImage:[UIImage imageNamed:@"my_account_bg"]];
     [cView addSubview:jbImg];
     

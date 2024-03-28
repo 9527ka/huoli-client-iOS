@@ -72,6 +72,7 @@
     [self.view.layer addSublayer:gradientLayer];
     
     [self.view bringSubviewToFront:self.tableView];
+    [self.view bringSubviewToFront:self.dateContentView];
     
     self.tableView.rowHeight = 125.0f;
     

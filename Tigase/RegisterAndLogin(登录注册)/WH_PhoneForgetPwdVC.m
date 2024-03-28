@@ -134,49 +134,6 @@
 //        });
 //        return;
 //    }
-//
-//    if( [aDownload.action isEqualToString:wh_act_UserLogin]){//所有登录类型
-//        [g_default setObject:[dict objectForKey:@"payPassword"] forKey:PayPasswordKey];//登录成功时,保存一下支付密码的设置状态
-//        if (isRegistSuccess) {
-//            [g_App showMainUI];
-//            [self actionQuit];
-//
-//            return;
-//        }
-//        [g_default setBool:NO forKey:kTHIRD_LOGIN_AUTO];
-//        [g_default setBool:YES forKey:kIsAutoLogin];
-//        [g_default setObject:currentLoginType == 0 ? userObject.telephone : userObject.account forKey:kMY_USER_LoginName];
-//        [g_server doLoginOK:dict user:userObject];
-//
-//
-////        if([aDownload.action isEqualToString:wh_act_UserLogin]) {
-//            [g_default setBool:NO forKey:WH_ThirdPartyLogins];
-//            g_config.lastLoginType = [NSNumber numberWithInteger:currentLoginType];
-//
-//            g_myself.password = [[g_server WH_getMD5StringWithStr:self.codeField.text] copy];
-//            [[WH_JXUserObject sharedUserInstance] getCurrentUser];
-//            [WH_JXUserObject sharedUserInstance].complete = ^(HttpRequestStatus status, NSDictionary * _Nullable userInfo, NSError * _Nullable error) {
-//                [g_App showMainUI];
-//                [self actionQuit];
-//                [lunchImageView removeFromSuperview];
-//            };
-////        }
-//        return;
-//    }
-//    if([aDownload.action isEqualToString:wh_act_UserLoginAuto]){
-//        [lunchImageView removeFromSuperview];
-//        [g_server doLoginOK:dict user:nil];
-//        NSString *passwordsalt = [NSString stringWithFormat:@"%@",[dict objectForKey:@"salt"]];
-//        if (passwordsalt.length) {
-//            [g_default setObject:passwordsalt forKey:kMY_USER_PASSWORDSalt];
-//            [g_default synchronize];
-//        }
-//
-//        [g_App showMainUI];
-//        [self actionQuit];
-//        [_wait stop];
-//    }
-   
 }
 
 #pragma mark - 请求失败回调

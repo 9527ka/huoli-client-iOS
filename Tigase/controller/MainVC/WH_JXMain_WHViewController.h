@@ -24,7 +24,7 @@
 @class JXSquareViewController;
 
 @class WH_FindViewController;
-@class WH_MineViewController;
+@class WH_MineVC;
 @class WH_Friend_WHViewController;
 
 @class WH_webpage_WHVC;
@@ -67,7 +67,7 @@
 @property (nonatomic ,strong) WH_Player_WHVC *homeVC;
 
 
-@property (nonatomic ,strong) WH_MineViewController *mineVC;
+@property (nonatomic ,strong) WH_MineVC *mineVC;
 
 @property (strong, nonatomic) WH_PSMy_WHViewController* psMyviewVC;
 

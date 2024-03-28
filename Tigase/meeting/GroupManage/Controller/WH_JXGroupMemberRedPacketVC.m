@@ -20,14 +20,15 @@
 }
 @property (weak, nonatomic) IBOutlet UILabel *titleLab;
 
-@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
-@property (weak, nonatomic) IBOutlet UIButton *typeBtn;
+@property (strong, nonatomic) UIButton *selectBtn;
 @property (weak, nonatomic) IBOutlet UIButton *startDateBtn;
 @property (weak, nonatomic) IBOutlet UIButton *endDateBtn;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (weak, nonatomic) IBOutlet UIView *dateContentView;
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (weak, nonatomic) IBOutlet UIImageView *bgImage;
+@property (weak, nonatomic) IBOutlet UIView *timeBgView;
 
 @property (nonatomic, strong) NSMutableArray *dataSource;
 
@@ -49,14 +50,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.titleLab.text = self.room.category == 1?@"群成员钻石红包列表":@"群成员红包列表";
-    [self.segmentedControl setTitle:self.room.category == 1?@"发出的钻石":@"发出的红包" forSegmentAtIndex:0];
-    [self.segmentedControl setTitle:self.room.category == 1?@"抢到的钻石":@"抢到的红包" forSegmentAtIndex:1];
+    
+    [self creatUI];
+    
+    //设置刷新的头部以及加载
+    [self setTableHeaderAndFotter];
+    [self WH_getServerData];
+    
+}
+-(void)creatUI{
+    self.startDateBtn.layer.cornerRadius = 14.0f;
+    self.endDateBtn.layer.cornerRadius = 14.0f;
+    
+    self.timeBgView.layer.cornerRadius = 10.0f;
+    self.timeBgView.layer.borderColor = HEXCOLOR(0xF6D2A0).CGColor;
+    self.timeBgView.layer.borderWidth = 0.5f;
+    
     self.dataSource = [NSMutableArray array];
     //设置展示样式
     self.datePicker.datePickerMode = UIDatePickerModeDateAndTime;
     
     [self.datePicker setMaximumDate:[NSDate date]];
     self.type = 0;
+    self.selectBtn = (UIButton *)[self.view viewWithTag:801];
+    self.selectBtn.selected = YES;
+    
     //开始时间
     NSString *startTimeStr = [NSString stringWithFormat:@"%@ 00:00:00",[NSDate date].xmppDateString];
     self.startTime = startTimeStr;
@@ -68,11 +86,7 @@
     
     [self.endDateBtn setTitle:[NSDate date].xmppDateString forState:UIControlStateNormal];
     [self.tableView registerNib:[UINib nibWithNibName:@"WH_JXGroupMemberRedPacketCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WH_JXGroupMemberRedPacketCell"];
-    
-    //设置刷新的头部以及加载
-    [self setTableHeaderAndFotter];
-    [self WH_getServerData];
-    
+    self.tableView.rowHeight = 100.0f;
 }
 //设置刷新以及加载
 -(void)setTableHeaderAndFotter{
@@ -111,36 +125,19 @@
     vc.room = self.room;
     [g_navigation pushViewController:vc animated:YES];
 }
-
-- (IBAction)didTapSegmented:(UISegmentedControl *)sender {
-    self.page = 0;
-    self.selIndex = sender.selectedSegmentIndex;
-
-    [self WH_getServerData];
-}
-
-- (IBAction)didTapType {
-    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    NSArray *typeArray = @[@"全部", self.room.category == 1?@"手气钻石":@"手气红包", self.room.category == 1?@"口令钻石":@"口令红包", self.room.category == 1?@"专属钻石":@"专属红包"];
+//801+
+- (IBAction)didTapTypeAction:(UIButton *)sender {
+    self.selectBtn.selected = NO;
+    self.selectBtn = sender;
+    self.selectBtn.selected = YES;
+    self.bgImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"group_red_lisBg_%ld",sender.tag - 800]];
     ////红包类型：0:全部 1：普通红包 2：拼手气红包 3:口令红包
-    NSArray *tagArray = @[@(0),@(2),@(3),@(1)];
-    
-    for (int i = 0; i < typeArray.count; i++) {
-        NSString *type = typeArray[i];
-        NSNumber *chooseType = tagArray[i];
-        [actionSheet addAction:[UIAlertAction actionWithTitle:type style:[type isEqualToString:self.typeBtn.currentTitle] ? UIAlertActionStyleDestructive : UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [self.typeBtn setTitle:type forState:UIControlStateNormal];
-            self.type = chooseType.integerValue;
-            self.page = 0;
-            //刷新接口
-            [self WH_getServerData];
-        }]];
-    }
-    
-    [actionSheet addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
-    }]];
-    [self presentViewController:actionSheet animated:YES completion:NULL];
+    NSArray *tagArray = @[@(0),@(2),@(1)];
+    NSNumber *chooseType = tagArray[sender.tag - 801];
+    self.type = chooseType.integerValue;
+    self.page = 0;
+    //刷新接口
+    [self WH_getServerData];
 }
 
 - (IBAction)didTapStartDate {
@@ -195,18 +192,7 @@
         [g_server WH_getHeadImageSmallWIthUserId:[NSString stringWithFormat:@"%@",dic[@"userId"]] userName:[NSString stringWithFormat:@"%@",dic[@"userName"]] imageView:cell.avatarImage];
         
         cell.nicknameLabel.text = [NSString stringWithFormat:@"%@", dic[@"userName"]];
-        cell.moneyLabel.text = [NSString stringWithFormat:@"%.2f%@",[NSString stringWithFormat:@"%@",dic[@"money"]].doubleValue,self.room.category == 1?@"钻石":@""];
-        cell.hotcIcon.hidden = self.room.category == 1?YES:NO;
-        cell.moneyRightConstaint.constant = self.room.category == 1?15.0f:38.0f;
-    }
-
-    if (indexPath.row < 3) {
-        cell.medalIcon.hidden = NO;
-        cell.medalIcon.image = [UIImage imageNamed:@[@"gold_medal", @"silver_medal", @"bronze_medal"][indexPath.row]];
-        cell.numberLabel.text = @"";
-    } else {
-        cell.medalIcon.hidden = YES;
-        cell.numberLabel.text = [NSString stringWithFormat:@"%ld", indexPath.row + 1];
+        cell.receiveMoneyLab.text = [NSString stringWithFormat:@"￥%.2f",[NSString stringWithFormat:@"%@",dic[@"money"]].doubleValue];
     }
     return cell;
 }
