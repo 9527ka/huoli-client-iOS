@@ -34,7 +34,7 @@
 
 @property (nonatomic,copy)NSString *startTime;//yyyy-MM-dd HH:mm:ss
 @property (nonatomic,copy)NSString *endTime;//yyyy-MM-dd HH:mm:ss
-@property (nonatomic,assign)NSInteger type;//红包类型：0:全部 1：普通红包 2：拼手气红包 3:口令红包
+@property (nonatomic,assign)NSInteger type;//优惠券类型：0:全部 1：普通优惠券 2：拼手气优惠券 3:口令优惠券
 
 @property (nonatomic,assign)NSInteger page;
 
@@ -49,7 +49,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.titleLab.text = self.room.category == 1?@"群成员钻石红包列表":@"群成员红包列表";
+    self.titleLab.text = self.room.category == 1?@"群成员钻石优惠券列表":@"群成员优惠券列表";
     
     [self creatUI];
     
@@ -131,7 +131,7 @@
     self.selectBtn = sender;
     self.selectBtn.selected = YES;
     self.bgImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"group_red_lisBg_%ld",sender.tag - 800]];
-    ////红包类型：0:全部 1：普通红包 2：拼手气红包 3:口令红包
+    ////优惠券类型：0:全部 1：普通优惠券 2：拼手气优惠券 3:口令优惠券
     NSArray *tagArray = @[@(0),@(2),@(1)];
     NSNumber *chooseType = tagArray[sender.tag - 801];
     self.type = chooseType.integerValue;

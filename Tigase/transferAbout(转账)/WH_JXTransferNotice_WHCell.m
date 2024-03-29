@@ -178,7 +178,7 @@
             _moneyTit.text = @"提现金额";
             model.userName = g_myself.userNickname;
         }else if ([msg.type intValue] == kWCMessageTypeRedPacketReturn){
-            lastContet = @"红包退回";
+            lastContet = @"优惠券退回";
             _payTit.text = @"接收者";
             _noteTit.text = @"退款类型";
             _moneyTit.text = @"退款金额";
@@ -388,7 +388,7 @@
     }else if ([msg.type intValue] == kWCMessageTypeWirawRefuse){
         string = @"取款拒绝";
     }else if ([msg.type intValue] == kWCMessageTypeRedPacketReturn){
-        string = @"红包退回";
+        string = @"优惠券退回";
     }
     return string;
 }

@@ -39,9 +39,9 @@
     [super viewDidLoad];
     _wait = [ATMHud sharedInstance];
     if (self.type == 0) {
-        self.titleLabel.text = @"群红包设置";
-        self.fortuneLabel.text = @"手气红包金额";
-        self.exclusiveLabel.text = @"专属红包金额";
+        self.titleLabel.text = @"群优惠券设置";
+        self.fortuneLabel.text = @"手气优惠券金额";
+        self.exclusiveLabel.text = @"专属优惠券金额";
         self.greenBgView.hidden = NO;
     } else {
         self.titleLabel.text = @"群钻石设置";
@@ -50,9 +50,9 @@
     }
     [self saveData];
 }
--(void)saveData{//群红包设置
+-(void)saveData{//群优惠券设置
     if (self.type == 0) {
-        self.titleLabel.text = @"群红包设置";
+        self.titleLabel.text = @"群优惠券设置";
         self.fortuneNumLabel.text = [NSString stringWithFormat:@"%ld",self.room.luckyRecPacketMax];
         self.exclusiveNumLabel.text = [NSString stringWithFormat:@"%ld",self.room.exclusiveRedPacketMax];
         
@@ -115,7 +115,7 @@
 - (void)editType:(NSInteger)editType {
     self.editType = editType;
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"修改%@%@金额", ((editType == 0) ? @"手气" : @"专属"), ((self.type == 0) ? @"红包" : @"钻石")] message:[NSString stringWithFormat:@"当前金额:%@", (editType == 0) ? [NSString stringWithFormat:@"%ld",self.room.luckyRecPacketMax] : [NSString stringWithFormat:@"%ld",self.room.exclusiveRedPacketMax]] preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"修改%@%@金额", ((editType == 0) ? @"手气" : @"专属"), ((self.type == 0) ? @"券" : @"钻石")] message:[NSString stringWithFormat:@"当前金额:%@", (editType == 0) ? [NSString stringWithFormat:@"%ld",self.room.luckyRecPacketMax] : [NSString stringWithFormat:@"%ld",self.room.exclusiveRedPacketMax]] preferredStyle:UIAlertControllerStyleAlert];
     [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         [textField setPlaceholder:@"请输入金额数量"];
         [textField setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];

@@ -1023,21 +1023,21 @@
     self.redPacketView.layer.borderColor = g_factory.cardBorderColor.CGColor;
     self.redPacketView.layer.borderWidth = g_factory.cardBorderWithd;
     [self.wh_tableBody addSubview:self.redPacketView];
-    self.wh_iv = [self WH_createMiXinButton:self.wh_room.category == 1?@"群钻石":@"群红包" drawTop:NO drawBottom:NO must:NO click:@selector(groupRedPacketAction) ParentView:self.redPacketView];
+    self.wh_iv = [self WH_createMiXinButton:self.wh_room.category == 1?@"群钻石":@"群优惠券" drawTop:NO drawBottom:NO must:NO click:@selector(groupRedPacketAction) ParentView:self.redPacketView];
     self.wh_iv.frame = CGRectMake(0, 0, self.redPacketView.frame.size.width, HEIGHT);
     membHeight+=self.wh_iv.frame.size.height;
     if ([data.role intValue] == 1 || [data.role intValue] == 2) {
         self.redPacketView.height = HEIGHT * 3;
-        self.wh_iv = [self WH_createMiXinButton:self.wh_room.category == 1?@"群成员钻石红包列表":@"群成员红包列表" drawTop:YES drawBottom:NO must:NO click:@selector(groupMemberRedPacketListAction) ParentView:self.redPacketView];
+        self.wh_iv = [self WH_createMiXinButton:self.wh_room.category == 1?@"群成员钻石优惠券列表":@"群成员优惠券列表" drawTop:YES drawBottom:NO must:NO click:@selector(groupMemberRedPacketListAction) ParentView:self.redPacketView];
         self.wh_iv.frame = CGRectMake(0, HEIGHT, self.redPacketView.frame.size.width, HEIGHT);
         membHeight+=self.wh_iv.frame.size.height;
         
-        self.wh_iv = [self WH_createMiXinButton:self.wh_room.category == 1?@"清除群成员钻石信息":@"清除群成员红包信息" drawTop:YES drawBottom:NO must:NO click:@selector(groupMemberRedPacketClearAction) ParentView:self.redPacketView];
+        self.wh_iv = [self WH_createMiXinButton:self.wh_room.category == 1?@"清除群成员钻石信息":@"清除群成员优惠券信息" drawTop:YES drawBottom:NO must:NO click:@selector(groupMemberRedPacketClearAction) ParentView:self.redPacketView];
         self.wh_iv.frame = CGRectMake(0, HEIGHT*2, self.redPacketView.frame.size.width, HEIGHT);
         membHeight+=self.wh_iv.frame.size.height;
     }
     if ([data.role intValue] == 1 || [data.role intValue] == 2 || self.wh_room.showAllValidRedPacket) {//群主开启了也可以使用
-        self.wh_iv = [self WH_createMiXinButton:self.wh_room.category == 1?@"长时间未领取钻石红包":@"长时间未领取红包" drawTop:YES drawBottom:NO must:NO click:@selector(groupMemberRedPacketUnclaimedAction) ParentView:self.redPacketView];
+        self.wh_iv = [self WH_createMiXinButton:self.wh_room.category == 1?@"长时间未领取钻石优惠券":@"长时间未领取优惠券" drawTop:YES drawBottom:NO must:NO click:@selector(groupMemberRedPacketUnclaimedAction) ParentView:self.redPacketView];
         self.wh_iv.frame = CGRectMake(0, self.redPacketView.height, self.redPacketView.frame.size.width, HEIGHT);
         self.redPacketView.height += HEIGHT;
         membHeight+=self.wh_iv.frame.size.height;
@@ -1882,22 +1882,22 @@
     [g_server WH_ClearGroupChatHistoryWithRoomId:self.wh_room.roomId toView:self];
 }
 
-// MARK: -- 群红包
+// MARK: -- 群优惠券
 - (void)groupRedPacketAction {
     WH_JXGroupRedPacketTotalVC *vc = [[WH_JXGroupRedPacketTotalVC alloc] init];
     vc.room = self.wh_room;
     [g_navigation pushViewController:vc animated:YES];
 }
 
-// MARK: -- 群成员红包列表
+// MARK: -- 群成员优惠券列表
 - (void)groupMemberRedPacketListAction {
     WH_JXGroupMemberRedPacketVC *vc = [[WH_JXGroupMemberRedPacketVC alloc] init];
     vc.room = self.wh_room;
     [g_navigation pushViewController:vc animated:YES];
 }
-// MARK: -- 清除群成员红包列表
+// MARK: -- 清除群成员优惠券列表
 - (void)groupMemberRedPacketClearAction {
-    [UIAlertController showAlertViewWithTitle:@"清除信息" message:self.wh_room.category == 1?@"确定删除群成员发送钻石和领取钻石的数据么":@"确定删除群成员发送红包和领取红包的数据么" controller:self block:^(NSInteger buttonIndex) {
+    [UIAlertController showAlertViewWithTitle:@"清除信息" message:self.wh_room.category == 1?@"确定删除群成员发送钻石和领取钻石的数据么":@"确定删除群成员发送优惠券和领取优惠券的数据么" controller:self block:^(NSInteger buttonIndex) {
         if (buttonIndex==1) {//删除
             [g_server WH_clearRedRecordWithId:self.wh_room.roomId toView:self];
         }
@@ -1905,7 +1905,7 @@
 }
 
 
-// MARK: -- 长时间未领取红包
+// MARK: -- 长时间未领取优惠券
 - (void)groupMemberRedPacketUnclaimedAction {
     WH_JXGroupMemberRedPacketUnclaimedVC *vc = [[WH_JXGroupMemberRedPacketUnclaimedVC alloc] init];
     vc.room = self.wh_room;

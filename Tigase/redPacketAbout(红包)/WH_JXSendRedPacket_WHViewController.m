@@ -27,7 +27,7 @@
 @property (nonatomic, strong) WH_JXRedInputView * nomalView;
 @property (nonatomic, strong) WH_JXRedInputView * orderView;
 @property (nonatomic, strong) WH_JXRedInputView * exclusiveDiamondView;
-@property (nonatomic, strong) WH_JXRedInputView * exclusiveView;//专属红包
+@property (nonatomic, strong) WH_JXRedInputView * exclusiveView;//专属券
 @property (nonatomic, strong) WH_JXVerifyPay_WHVC * verVC;
 
 
@@ -49,7 +49,7 @@
         self.wh_isGotoBack = YES;
         self.wh_heightHeader = JX_SCREEN_TOP;
         self.wh_heightFooter = 0;
-        self.title = @"发红包";
+        self.title = @"发优惠券";
     }
     return self;
 }
@@ -69,7 +69,7 @@
     [self buildTopView];
     
     if(_isRoom){
-        [self.wh_tableBody addSubview:self.luckyView];//手气红包
+        [self.wh_tableBody addSubview:self.luckyView];//手气券
         [_luckyView.wh_sendButton addTarget:self action:@selector(WH_sendRedPacketWithMoneyNum:) forControlEvents:UIControlEventTouchUpInside];
         [_luckyView.wh_canclaimBtn addTarget:self action:@selector(wh_canCalimRedPacketPeopleNum:) forControlEvents:UIControlEventTouchUpInside];
         [_luckyView.wh_moneyTextField becomeFirstResponder];
@@ -82,11 +82,11 @@
     [self.wh_tableBody addSubview:self.orderView];//口令
     
     if(_isRoom){
-        //专属红包
-        [self.wh_tableBody addSubview:self.exclusiveView];//手气红包
+        //专属券
+        [self.wh_tableBody addSubview:self.exclusiveView];//手气券
         [_exclusiveView.wh_sendButton addTarget:self action:@selector(WH_sendRedPacketWithMoneyNum:) forControlEvents:UIControlEventTouchUpInside];
         [_exclusiveView.wh_canclaimBtn addTarget:self action:@selector(wh_canCalimRedPacketPeopleNum:) forControlEvents:UIControlEventTouchUpInside];
-    }else{//不是群聊才有普通红包
+    }else{//不是群聊才有普通券
         [self.wh_tableBody addSubview:self.nomalView];//普通
     }
    
@@ -96,26 +96,26 @@
     [_orderView.wh_sendButton addTarget:self action:@selector(WH_sendRedPacketWithMoneyNum:) forControlEvents:UIControlEventTouchUpInside];
     [_orderView.wh_canclaimBtn addTarget:self action:@selector(wh_canCalimRedPacketPeopleNum:) forControlEvents:UIControlEventTouchUpInside];
     
-    //判断是不是专属红包，是的话直接选中专属模块并赋值
-    if(self.selectIds.count > 0){//专属红包
+    //判断是不是专属券，是的话直接选中专属模块并赋值
+    if(self.selectIds.count > 0){//专属券
         [self exclusiveData];
     }else{
         if(_isRoom){
-            [self.typeBtn setTitle:@"手气红包" forState:UIControlStateNormal];
+            [self.typeBtn setTitle:@"手气券" forState:UIControlStateNormal];
             [self.luckyView.wh_moneyTextField becomeFirstResponder];
             [self.wh_tableBody bringSubviewToFront:self.luckyView];
         }else{
-            [self.typeBtn setTitle:@"普通红包" forState:UIControlStateNormal];
+            [self.typeBtn setTitle:@"普通券" forState:UIControlStateNormal];
             [self.nomalView.wh_moneyTextField becomeFirstResponder];
             [self.wh_tableBody bringSubviewToFront:self.nomalView];
         }
     }
 }
-//专属红包赋值
+//专属券赋值
 -(void)exclusiveData{
     
     self.indexInt = 4;
-    [self.typeBtn setTitle:_isDiamond?@"专属钻石":@"专属红包" forState:UIControlStateNormal];
+    [self.typeBtn setTitle:_isDiamond?@"专属钻石":@"专属券" forState:UIControlStateNormal];
     [self performSelector:@selector(setExclusiveData) withObject:nil afterDelay:0.2];
     
 }
@@ -210,7 +210,7 @@
     
 }
 
-#pragma mark 选择能领取红包的人
+#pragma mark 选择能领取券的人
 - (void)wh_canCalimRedPacketPeopleNum:(UIButton *)button {
 //    //NSLog(@"button.tag:%li" ,(long)button.tag);
     WH_SelectReceiveRedPacket_ViewController *selectVC = [[WH_SelectReceiveRedPacket_ViewController alloc] init];
@@ -262,7 +262,7 @@
 }
 
 -(void)WH_sendRedPacketWithMoneyNum:(UIButton *)button{
-    //1是普通红包，2是手气红包，3是口令红包
+    //1是普通券，2是手气券，3是口令券
     if (button.tag == 1) {
         _moneyText = _nomalView.wh_moneyTextField.text;
         _countText = _nomalView.wh_countTextField.text;
@@ -275,7 +275,7 @@
         _moneyText = _orderView.wh_moneyTextField.text;
         _countText = _orderView.wh_countTextField.text;
         _greetText = _orderView.wh_greetTextField.text;//口令
-    } else if(button.tag == 4){//专属红包
+    } else if(button.tag == 4){//专属券
         //判断是否有指定人
         if(_selectIds.count == 0){
             [g_server showMsg:@"请选择指定领取人"];
@@ -414,7 +414,7 @@
         }
         
         [self WH_dismiss_WHVerifyPayVC];  // 销毁支付密码界面
-        //成功创建红包，发送一条含红包Id的消息
+        //成功创建券，发送一条含券Id的消息
         if (self.selectIds.count > 0) {
             if (_delegate && [_delegate respondsToSelector:@selector(sendReceiveRedPacketDelegate:)]) {
                 [_delegate performSelector:@selector(sendReceiveRedPacketDelegate:) withObject:muDict];
@@ -539,7 +539,7 @@
         _typeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_typeBtn setTitleColor:HEXCOLOR(0xFF5050) forState:UIControlStateNormal];
         _typeBtn.frame = CGRectMake(4, 4, 96, 40);
-        [_typeBtn setTitle:@"手气红包" forState:UIControlStateNormal];
+        [_typeBtn setTitle:@"手气券" forState:UIControlStateNormal];
         _typeBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         [_typeBtn addTarget:self action:@selector(chooseTypeAction:) forControlEvents:UIControlEventTouchUpInside];
         UIImageView *iconImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"red_down_arrow"]];
@@ -551,14 +551,17 @@
 -(void)chooseTypeAction:(UIButton *)sender{
     [self endEdit:nil];
     
-    CGFloat viewH = 191;
+    CGFloat viewH = 127;
     if (THE_DEVICE_HAVE_HEAD) {
-        viewH = 191+24;
+        viewH = 127+24;
     }
     
-    NSArray *titles = _isDiamond ? @[@"手气钻石", @"专属钻石", @"口令钻石"] :(_isRoom?@[@"手气红包",@"口令红包",@"专属红包"]: @[@"普通红包",@"口令红包"]);
+    NSArray *titles = _isDiamond ? @[@"手气钻石", @"专属钻石"] :(_isRoom?@[@"手气券",@"专属券"]: @[@"普通券"]);
+    if(titles.count == 1){
+        viewH -= 64;
+    }
     
-    WH_SetGroupHeads_WHView *setGroupHeadsview = [[WH_SetGroupHeads_WHView alloc] initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH, _isRoom?viewH:viewH - 44) titleArray:titles istype:NO];
+    WH_SetGroupHeads_WHView *setGroupHeadsview = [[WH_SetGroupHeads_WHView alloc] initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH, _isRoom?viewH:viewH) titleArray:titles istype:NO];
 
     [setGroupHeadsview showInWindowWithMode:CustomAnimationModeShare inView:nil bgAlpha:0.5 needEffectView:NO];
     
@@ -569,9 +572,7 @@
             if(buttonTag == 0){//手气
                 [weakSelf.wh_tableBody bringSubviewToFront:weakSelf.luckyView];
                 
-            }else if (buttonTag == 1){//口令
-                [weakSelf.wh_tableBody bringSubviewToFront:weakSelf.orderView];
-            }else if (buttonTag == 2){//专属
+            }else if (buttonTag == 1){//专属
                 if(_isDiamond){
                     [weakSelf.wh_tableBody bringSubviewToFront:weakSelf.exclusiveDiamondView];
                 }else{

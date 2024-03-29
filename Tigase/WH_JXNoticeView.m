@@ -62,7 +62,7 @@
 -(void)creatUI{
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, JX_SCREEN_WIDTH - 54, self.frame.size.height)];
     label.textColor = HEXCOLOR(0x797979);
-    label.text = @"欢迎加入猎火大家庭";
+    label.text = @"欢迎加入悦介大家庭";
     label.font = [UIFont systemFontOfSize:13];
     [self addSubview:label];
     self.noticeLab = label;

@@ -169,15 +169,15 @@
         button = [self WH_create_WHButtonWithImage:@"WH_ab_button_normal" highlight:@"WH_ab_button_normal" target:delegate selector:self.onAddressBook title:Localized(@"JX_SelectImageContact")];
         button.frame = CGRectMake(X, Y, SELECTIMAGE_WIDTH, h);
         
-        if(self.wh_isGroup && [g_App.isShowRedPacket intValue] == 1 && !g_myself.isTestAccount && !self.wh_isGroupDiamound){
-            // 急速红包
-            n = (n + 1) >= 4 ? 0 : n + 1;
-            m += 1;
-            X = m >8 ? SELECTIMAGE_WIDTH *n + (n+1)*inset+JX_SCREEN_WIDTH : SELECTIMAGE_WIDTH *n + (n+1)*inset;
-            Y = m > 4 && m <=8 ? h+margeY*2 : margeY;//WH_awarda_a_bonus_normal
-            button = [self WH_create_WHButtonWithImage:@"WH_fast_a_bonus_use" highlight:@"WH_fast_a_bonus_use" target:delegate selector:self.onFastRedPacket title:@"极速红包"];//WH_fast_a_bonus_normal
-            button.frame = CGRectMake(X, Y, SELECTIMAGE_WIDTH, h);
-        }
+//        if(self.wh_isGroup && [g_App.isShowRedPacket intValue] == 1 && !g_myself.isTestAccount && !self.wh_isGroupDiamound){
+//            // 急速红包
+//            n = (n + 1) >= 4 ? 0 : n + 1;
+//            m += 1;
+//            X = m >8 ? SELECTIMAGE_WIDTH *n + (n+1)*inset+JX_SCREEN_WIDTH : SELECTIMAGE_WIDTH *n + (n+1)*inset;
+//            Y = m > 4 && m <=8 ? h+margeY*2 : margeY;//WH_awarda_a_bonus_normal
+//            button = [self WH_create_WHButtonWithImage:@"WH_fast_a_bonus_use" highlight:@"WH_fast_a_bonus_use" target:delegate selector:self.onFastRedPacket title:@"极速券"];//WH_fast_a_bonus_normal
+//            button.frame = CGRectMake(X, Y, SELECTIMAGE_WIDTH, h);
+//        }
 
         if (m > 8) {
             self.wh_scrollView.contentSize = CGSizeMake(JX_SCREEN_WIDTH * 2, 0);

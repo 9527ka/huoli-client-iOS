@@ -1,6 +1,6 @@
 /* Localized versions of Info.plist keys */
 
-CFBundleDisplayName = "猎火"; // APP名字
+CFBundleDisplayName = "悦介"; // APP名字
 
 
 NSCalendarsUsageDescription = "需要日曆信息進行簽到，是否允許訪問日曆？";

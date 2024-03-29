@@ -41,13 +41,13 @@
     [super viewDidLoad];
     
     _wait = [ATMHud sharedInstance];
-    //红包类型：0:全部 1：普通红包 2：拼手气红包 3:口令红包
+    //券类型：0:全部 1：普通券 2：拼手气券 3:口令券
     if(self.type == 0){
-        self.titleLab.text = @"全部红包";
+        self.titleLab.text = @"全部券";
     }else if (self.type == 1){
-        self.titleLab.text = @"手气红包";
+        self.titleLab.text = @"手气券";
     }else if (self.type == 2){
-        self.titleLab.text = @"专属红包";
+        self.titleLab.text = @"专属券";
     }
     
     
@@ -126,13 +126,13 @@
     if(self.dataSource.count > indexPath.row){
         NSDictionary *dic = self.dataSource[indexPath.row];
         
-        //红包类型 1.普通红包   2.拼手气   3.口令
-        NSString *type = self.room.category == 1?@"专属钻石":@"专属红包";
+        //券类型 1.普通券   2.拼手气   3.口令
+        NSString *type = self.room.category == 1?@"专属钻石":@"专属券";
         NSNumber *redType = [NSNumber numberWithInteger:[NSString stringWithFormat:@"%@",dic[@"type"]].integerValue];
         if(redType.intValue == 2){
-            type = self.room.category == 1?@"手气钻石":@"手气红包";
+            type = self.room.category == 1?@"手气钻石":@"手气券";
         }else if (redType.intValue == 3){
-            type = self.room.category == 1?@"口令钻石":@"口令红包";
+            type = self.room.category == 1?@"口令钻石":@"口令券";
         }
         cell.typeLabel.text = type;
         
@@ -141,13 +141,13 @@
         //时间
         cell.timeLabel.text = [self getTimeFrom:time.doubleValue];
         
-        //抢到的红包金额
+        //抢到的券金额
         NSString *monyStr = [NSString stringWithFormat:@"￥%@",self.selIndex > 0?dic[@"money"]:dic[@"money"]];
         
         cell.moneyLabel.attributedText = [NSString changeSpecialWordColor:HEXCOLOR(0xFF5150) AllContent:monyStr SpcWord:@"￥" font:12];
         
         NSString *receiveCount = [NSString stringWithFormat:@"%@",dic[@"receiveCount"]];//已领个数
-        NSString *count = [NSString stringWithFormat:@"%@",dic[@"count"]];//红包个数
+        NSString *count = [NSString stringWithFormat:@"%@",dic[@"count"]];//券个数
         
         cell.stateLabel.text = self.selIndex > 0?@"":[NSString stringWithFormat:@"已领%@/%@",receiveCount,count];
         
@@ -181,10 +181,10 @@
         NSString *startTimeStr = [self.startTime componentsSeparatedByString:@" "].firstObject;
         //结束时间
         NSString *endTimeStr = [self.endTime componentsSeparatedByString:@" "].firstObject;;
-    //2024-03-01至2024-03-12共发出2个红包
+    //2024-03-01至2024-03-12共发出2个券
         
-        NSString *countStr = [NSString stringWithFormat:@"%@至%@共%@%@个红包",startTimeStr,endTimeStr,self.selIndex == 0?@"发出":@"抢到",dict[@"total"]];
-        NSString *total = [NSString stringWithFormat:@"%@个红包",dict[@"total"]];
+        NSString *countStr = [NSString stringWithFormat:@"%@至%@共%@%@个券",startTimeStr,endTimeStr,self.selIndex == 0?@"发出":@"抢到",dict[@"total"]];
+        NSString *total = [NSString stringWithFormat:@"%@个券",dict[@"total"]];
         
         NSMutableAttributedString *contentStr = [[NSMutableAttributedString alloc]initWithString:countStr];
         
@@ -193,7 +193,7 @@
         //修改特定字符的字体大小
         [contentStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(countStr.length - total.length , total.length - 3)];
         
-        //红包个数
+        //券个数
         self.numberLabel.attributedText = contentStr;
         
         //金额

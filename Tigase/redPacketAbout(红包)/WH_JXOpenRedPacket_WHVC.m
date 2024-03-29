@@ -99,7 +99,7 @@
     
     [self WH_shakeToShow:_wh_centerRedPView];
     
-    //解析数据,获取红包详情
+    //解析数据,获取券详情
     _wh_packetObj = [WH_JXPacketObject getPacketObject:_wh_dataDict];
     _wh_packetListArray = [WH_JXGetPacketList getPackList:_wh_dataDict];
     
@@ -116,7 +116,7 @@
     [g_server WH_getHeadImageSmallWIthUserId:_wh_packetObj.userId userName:_wh_packetObj.userName imageView:_wh_headerImageView];
     _wh_fromUserLabel.text = _wh_packetObj.userName;
     _wh_greetLabel.text = _wh_packetObj.greetings;
-//    //1是普通红包，2是手气红包
+//    //1是普通券，2是手气券
 //    if (_packetObj.type == 1) {
 //        _moneyLabel.text = [NSString stringWithFormat:@"%ld",_packetObj.money];
 //    }else if (_packetObj.type == 2){

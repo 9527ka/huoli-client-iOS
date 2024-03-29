@@ -4,7 +4,7 @@
 //
 //  Created by luan on 2023/6/11.
 //  Copyright © 2023 Reese. All rights reserved.
-//长时间未领取红包列表
+//长时间未领取优惠券列表
 
 #import "WH_JXGroupMemberRedPacketUnclaimedVC.h"
 #import "WH_JXGroupMemberRedPacketUnclaimedCell.h"
@@ -38,7 +38,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.titleLab.text = self.room.category == 1?@"长时间未领取钻石红包":@"长时间未领取红包";
+    self.titleLab.text = self.room.category == 1?@"长时间未领取钻石优惠券":@"长时间未领取优惠券";
     self.page = 0;
     _wait = [ATMHud sharedInstance];
     _isLoading = YES;
@@ -110,7 +110,7 @@
         }
         
         [self.tableView reloadData];
-    }else if ([aDownload.action isEqualToString:wh_act_getRedPacket]){//红包详情
+    }else if ([aDownload.action isEqualToString:wh_act_getRedPacket]){//优惠券详情
         //        if ([dict[@"packet"][@"type"] intValue] != 3) {
         NSString *userId = [NSString stringWithFormat:@"%@",[[dict objectForKey:@"packet"] objectForKey:@"userId"]];
         if (self.room.roomJid.length > 0) {
@@ -145,7 +145,7 @@
         }
     }
 }
-#pragma mark 抢红包
+#pragma mark 抢优惠券
 - (void)WH_showRedPacket:(NSDictionary *)dict {
     [_wait stop];
     RedPacketView *redPacketView = [[RedPacketView alloc] initWithRedPacketInfo:dict];
@@ -188,7 +188,7 @@
             
             [self goToRedDetaile:dict];
             
-        }else {//红包被抢完
+        }else {//优惠券被抢完
             [self goToRedDetaile:dict];
         }
     };
@@ -205,7 +205,7 @@
 -(int) WH_didServerResult_WHFailed:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict{
     [_wait stop];
     
-    if ([aDownload.action isEqualToString:wh_act_getRedPacket]){//红包详情
+    if ([aDownload.action isEqualToString:wh_act_getRedPacket]){//优惠券详情
         //        if ([dict[@"packet"][@"type"] intValue] != 3) {
         NSString *userId = [NSString stringWithFormat:@"%@",[[dict objectForKey:@"packet"] objectForKey:@"userId"]];
         if (self.room.roomJid.length > 0) {
@@ -259,13 +259,13 @@
         NSString *time = [NSString stringWithFormat:@"%@",dic[@"sendTime"]];
         //时间
         cell.timeLabel.text = [self getTimeFrom:time.doubleValue];
-        //红包类型 1.普通红包   2.拼手气   3.口令
-        NSString *type = self.room.category == 1?@"专属钻石":@"专属红包";
+        //优惠券类型 1.普通优惠券   2.拼手气   3.口令
+        NSString *type = self.room.category == 1?@"专属钻石":@"专属券";
         NSNumber *redType = [NSNumber numberWithInteger:[NSString stringWithFormat:@"%@",dic[@"type"]].integerValue];
         if(redType.intValue == 2){
-            type = self.room.category == 1?@"手气钻石":@"手气红包";
+            type = self.room.category == 1?@"手气钻石":@"手气券";
         }else if (redType.intValue == 3){
-            type = self.room.category == 1?@"口令钻石":@"口令红包";
+            type = self.room.category == 1?@"口令钻石":@"口令券";
         }
         cell.typeLabel.text = type;
         NSString *receiveCount = [NSString stringWithFormat:@"%@",dic[@"receiveCount"]];
@@ -289,7 +289,7 @@
             self.isDidRedPacketRemind = YES;
         }
 //        else{
-            //获取红包详情
+            //获取优惠券详情
             [g_server WH_getRedPacketWithMsg:[NSString stringWithFormat:@"%@",dic[@"redPacketId"]] toView:self];
 //        }
         
@@ -309,7 +309,7 @@
         
     return dateString;
 }
-//改变红包对应消息的不可获取
+//改变优惠券对应消息的不可获取
 -(void)changeMessageRedPacketStatus:(NSString*)redPacketId{
     NSString* myUserId = MY_USER_ID;
     if([myUserId length]<=0){

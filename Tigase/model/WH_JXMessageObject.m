@@ -504,10 +504,10 @@ static WH_JXMessageObject *shared;
 //            self.content = [NSString stringWithFormat:@"%@%@",self.fromUserName,@"转账过期，金额已退回零钱"];
 //            self.isShowRemind = YES;
         }
-        if([self.type intValue]==kWCMessageTypeRedPacketReceive){// 红包被领取
+        if([self.type intValue]==kWCMessageTypeRedPacketReceive){// 优惠券被领取
             self.type = [NSNumber numberWithInt:kWCMessageTypeRemind];
             self.isShowRemind = YES;
-            if(self.objectId){//群聊红包
+            if(self.objectId){//群聊优惠券
                 self.toUserId = [NSString stringWithFormat:@"%@",self.objectId];
                 room = [NSString stringWithFormat:@"%@",self.objectId];
                 self.isGroup = YES;
@@ -520,12 +520,12 @@ static WH_JXMessageObject *shared;
             }
             self.content = [NSString stringWithFormat:@"%@%@%@",self.fromUserName,Localized(@"JXRed_whoGet"),overStr];
         }
-        if([self.type intValue]==kWCMessageTypeRedPacketReturn){// 红包退回
+        if([self.type intValue]==kWCMessageTypeRedPacketReturn){// 优惠券退回
             
             if(![self.fromUserId isEqualToString:WAHU_TRANSFER]){
                 self.type = [NSNumber numberWithInt:kWCMessageTypeRemind];
                 self.isShowRemind = YES;
-                if(self.objectId){//群聊红包
+                if(self.objectId){//群聊优惠券
                     self.toUserId = self.objectId;
                     room = self.objectId;
                     self.isGroup = YES;
@@ -739,13 +739,13 @@ static WH_JXMessageObject *shared;
             s = [NSString stringWithFormat:@"[%@]",Localized(@"JX_RED")];
             break;
         case kWCMessageTypeRedPacketExclusive:
-            s = @"[专属红包]";
+            s = @"[专属券]";
             break;
         case kWCMessageTypeTransfer:
             s = [NSString stringWithFormat:@"[%@]",Localized(@"JX_Transfer")];
             break;
         case kWCMessageTypeRedPacketReturn:
-            s = @"红包过期，金额已退回零钱";
+            s = @"优惠券过期，金额已退回零钱";
             break;
             
         case kWCMessageTypeActivePay: //激活群
@@ -760,8 +760,8 @@ static WH_JXMessageObject *shared;
         case kWCMessageTypeWirawRefuse://取款拒绝
             s = @"[取款拒绝]";
             break;
-//        case kWCMessageTypeRedPacketReturn://红包退回
-//            s = @"[红包退回]";
+//        case kWCMessageTypeRedPacketReturn://优惠券退回
+//            s = @"[优惠券退回]";
 //            break;
         default:
             s = self.content;
@@ -810,13 +810,13 @@ static WH_JXMessageObject *shared;
             s = [NSString stringWithFormat:@"[%@]",Localized(@"JX_RED")];
             break;
         case kWCMessageTypeRedPacketExclusive:
-            s = @"[专属红包]";
+            s = @"[专属券]";
             break;
         case kWCMessageTypeTransfer:
             s = [NSString stringWithFormat:@"[%@]%@",Localized(@"JX_Transfer"),self.isMySend ? Localized(@"JX_WaitForYourFriend'sConfirmation") : @""];
             break;
         case kWCMessageTypeRedPacketReturn:
-            s = @"红包过期，金额已退回零钱";
+            s = @"优惠券过期，金额已退回零钱";
             break;
         case kWCMessageTypeTransferReceive:
             s = [NSString stringWithFormat:@"[%@]%@",Localized(@"JX_Transfer"),Localized(@"JX_TheFriendHasConfirmedTheCharge")];

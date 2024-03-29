@@ -1242,7 +1242,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "9112"
             endingLineNumber = "9112"
-            landmarkName = "-sendEntering"
+            landmarkName = "-WH_onDidSystemImage1:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1466,7 +1466,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "8556"
             endingLineNumber = "8556"
-            landmarkName = "-shareBackBtnAction"
+            landmarkName = "-isNoAllowedOpearitionOnJinYanStatus"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1530,7 +1530,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "7696"
             endingLineNumber = "7696"
-            landmarkName = "-WH_longGesHeadImageNotification:"
+            landmarkName = "-onDisableSay:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1594,7 +1594,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "7480"
             endingLineNumber = "7480"
-            landmarkName = "-sendRedPacketDelegate:"
+            landmarkName = "-sendReceiveRedPacketDelegate:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1754,7 +1754,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "7788"
             endingLineNumber = "7788"
-            landmarkName = "-WH_onDidRedPacket:"
+            landmarkName = "-WH_showRedPacket:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1866,7 +1866,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "7443"
             endingLineNumber = "7443"
-            landmarkName = "-transferToUser:"
+            landmarkName = "-sendRedPacketDelegate:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2154,7 +2154,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "7463"
             endingLineNumber = "7463"
-            landmarkName = "-transferToUser:"
+            landmarkName = "-sendRedPacketDelegate:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2650,7 +2650,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "9336"
             endingLineNumber = "9336"
-            landmarkName = "-onDidShare:"
+            landmarkName = "-onDidRemind:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2858,7 +2858,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "7498"
             endingLineNumber = "7498"
-            landmarkName = "-sendRedPacketDelegate:"
+            landmarkName = "-sendReceiveRedPacketDelegate:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

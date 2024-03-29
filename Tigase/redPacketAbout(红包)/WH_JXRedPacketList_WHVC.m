@@ -118,7 +118,7 @@
 }
 
 -(WH_JXRPacketList_WHCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    //领取过红包的用户，使用WH_JXRPacketList_WHCell展示
+    //领取过券的用户，使用WH_JXRPacketList_WHCell展示
     NSString * cellName = @"RPacketListCell";
     WH_JXRPacketList_WHCell * cell = [tableView dequeueReusableCellWithIdentifier:cellName];
     if(cell==nil){
@@ -130,13 +130,13 @@
     //用户名
     cell.nameLabel.text = dict[@"sendName"];
     if(_selIndex == 0) {
-        //红包类型 1.普通红包   2.拼手气   3.口令
-        NSString *type = self.isDiamound?@"专属钻石":@"专属红包";
+        //券类型 1.普通券   2.拼手气   3.口令
+        NSString *type = self.isDiamound?@"专属钻石":@"专属券";
         NSNumber *redType = [NSNumber numberWithInteger:[NSString stringWithFormat:@"%@",dict[@"type"]].integerValue];
         if(redType.intValue == 2){
-            type = self.isDiamound?@"手气钻石":@"手气红包";
+            type = self.isDiamound?@"手气钻石":@"手气券";
         }else if (redType.intValue == 3){
-            type = self.isDiamound?@"口令钻石":@"口令红包";
+            type = self.isDiamound?@"口令钻石":@"口令券";
         }
 
         cell.nameLabel.text = type;

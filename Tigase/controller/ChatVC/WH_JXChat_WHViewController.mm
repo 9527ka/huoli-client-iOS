@@ -341,7 +341,7 @@
     [g_notify addObserver:self selector:@selector(cardCellClick:) name:kCellShowCardNotifaction object:nil];
     [g_notify addObserver:self selector:@selector(locationCellClick:) name:kCellLocationNotifaction object:nil];
     [g_notify addObserver:self selector:@selector(WH_onDidImage:) name:kCellImageNotifaction object:nil];//照片
-    [g_notify addObserver:self selector:@selector(WH_onDidRedPacket:) name:kcellRedPacketDidTouchNotifaction object:nil];//普通红包点击
+    [g_notify addObserver:self selector:@selector(WH_onDidRedPacket:) name:kcellRedPacketDidTouchNotifaction object:nil];//普通券点击
     [g_notify addObserver:self selector:@selector(WH_onDidTransfer:) name:kcellTransferDidTouchNotifaction object:nil];//转账点击
     [g_notify addObserver:self selector:@selector(WH_onDidHeadImage:) name:kCellHeadImageNotification object:nil];//点击头像
     [g_notify addObserver:self selector:@selector(WH_longGesHeadImageNotification:) name:kCellLongGesHeadImageNotification object:nil];//长按头像
@@ -1874,7 +1874,7 @@
         NSMutableArray *tempArr = [NSMutableArray arrayWithArray:p];
         for (int i = 0; i < p.count; i++) {
             WH_JXMessageObject *msg = p[i];
-            //不是我的并且我不是群管理专属红包去掉
+            //不是我的并且我不是群管理专属券去掉
             if ([msg.type intValue] == kWCMessageTypeRedPacketExclusive && !isManger && ![msg.toUserIds isEqualToString:MY_USER_ID] && ![msg.fromUserId isEqualToString:MY_USER_ID]) {
                 [tempArr removeObject:msg];
             }else{
@@ -1888,7 +1888,7 @@
         
         self.isGetServerMsg = !bPull;
         
-        //获取口令红包记录
+        //获取口令券记录
         [_orderRedPacketArray addObjectsFromArray:[self fetchRedPacketListWithType:3]];
         
         b = p.count>0?YES:NO;
@@ -2250,7 +2250,7 @@
         }
     }
          
-    //检查是否有口令红包
+    //检查是否有口令券
     WH_JXMessageObject * msg = nil;
     for (NSInteger i = _orderRedPacketArray.count-1; i >= 0; i--) {
         msg = _orderRedPacketArray[i];
@@ -2258,9 +2258,9 @@
             if (self.roomJid.length > 0 || ![msg.fromUserId isEqualToString:MY_USER_ID]) {
                 //关闭键盘
                 [self.view endEditing:YES];
-                //获取红包请求
+                //获取券请求
                 [g_server WH_getRedPacketWithMsg:msg.objectId toView:self];
-                break; //找到一个口令红包请求直接break循环,防止多个相同口令红包弹出
+                break; //找到一个口令券请求直接break循环,防止多个相同口令券弹出
             }
         }
     }
@@ -3197,7 +3197,7 @@
     }
     return cell;
 }
-//红包
+//券
 - (WH_JXBaseChat_WHCell *)WH_creat_WHRedPacketCell:(WH_JXMessageObject *)msg indexPath:(NSIndexPath *)indexPath{
     NSString * identifier = @"WH_JXRedPacket_WHCell";
     WH_JXRedPacket_WHCell *cell=[_table dequeueReusableCellWithIdentifier:identifier];
@@ -3399,7 +3399,7 @@
     
     BOOL isManger = [WH_JXChatTool isManagrData:self.roomJid];
     
-    //不是我的并且我不熟群管理专属红包去掉
+    //不是我的并且我不熟群管理专属券去掉
     if ([msg.type intValue] == kWCMessageTypeRedPacketExclusive && ![msg.toUserIds isEqualToString:MY_USER_ID] && !isManger && self.roomJid.length > 0 && ![msg.fromUserId isEqualToString:MY_USER_ID] ) {
 
     }else{
@@ -5785,7 +5785,7 @@
                 }
                 if ([msg.type intValue] == kWCMessageTypeRedPacketExclusive ) {
                     msg.type = [NSNumber numberWithInt:kWCMessageTypeText];
-                    msg.content = [NSString stringWithFormat:@"[%@]", @"专属红包"];
+                    msg.content = [NSString stringWithFormat:@"[%@]", @"专属券"];
                 }
                 if ([msg.type intValue] == kWCMessageTypeTransfer) {
                     msg.type = [NSNumber numberWithInt:kWCMessageTypeText];
@@ -5815,7 +5815,7 @@
         
         self.title = [NSString stringWithFormat:@"%@(%ld)", self.chatPerson.userNickname, array1.count];
     }
-    //获取红包信息
+    //获取券信息
     if ([aDownload.action isEqualToString:wh_act_getRedPacket]) {
         self.noClick = NO;
         NSString *userId = [NSString stringWithFormat:@"%@",[[dict objectForKey:@"packet"] objectForKey:@"userId"]];
@@ -5893,7 +5893,7 @@
                     WH_JXMessageObject *msg = [[WH_JXMessageObject alloc] init];
                     [msg fromGroupXmlDict:msgDic];
                    
-                    //不是我的并且我不是群管理专属红包去掉
+                    //不是我的并且我不是群管理专属券去掉
                     if ([msg.type intValue] == kWCMessageTypeRedPacketExclusive && !isManger && ![msg.toUserIds isEqualToString:MY_USER_ID] && ![msg.fromUserId isEqualToString:MY_USER_ID]) {
                         [tempArr removeObject:msgDic];
                     }
@@ -6106,7 +6106,7 @@
     [self WH_doUploadError:aDownload];
     [_wait stop];
     
-    //自己查看红包或者红包已领完，resultCode ＝0
+    //自己查看券或者券已领完，resultCode ＝0
     if ([aDownload.action isEqualToString:wh_act_getRedPacket]) {
         self.noClick = NO;
         [self changeMessageRedPacketStatus:dict[@"data"][@"packet"][@"id"]];
@@ -6482,7 +6482,7 @@
                         }
                             break;
                         case kWCMessageTypeRedPacketExclusive:
-                            msg.content = [NSString stringWithFormat:@"[%@]" ,@"专属红包"];
+                            msg.content = [NSString stringWithFormat:@"[%@]" ,@"专属券"];
                             break;
                         case kWCMessageTypeTransfer:{
                             msg.type = [NSNumber numberWithInt:kWCMessageTypeText];
@@ -7251,7 +7251,7 @@
         }];
     }
 }
-//发红包
+//发券
 -(void)sendRedPacket:(NSDictionary*)redPacketDict withGreet:(NSString *)greet
 {
     [self hideKeyboard:NO];
@@ -7342,7 +7342,7 @@
     
     
 }
-#pragma mark 群聊发专属红包
+#pragma mark 群聊发专属券
 - (void)sendExclusiveGiftToRoom:(memberData *)member{
     [self hideKeyboard:YES];
     if([self showDisableSay])
@@ -7359,14 +7359,14 @@
     sendGiftVC.room = self.room;
     NSArray * memberArray = [memberData fetchAllMembers:_room.roomId];
     sendGiftVC.memberCount = [NSString stringWithFormat:@"%lu" ,(unsigned long)memberArray.count];
-    //专属红包指定参数
+    //专属券指定参数
     sendGiftVC.selectNames = [NSMutableArray arrayWithArray:@[[NSString stringWithFormat:@"%@",member.userNickName]]];
     sendGiftVC.selectIds = [NSMutableArray arrayWithArray:@[[NSString stringWithFormat:@"%ld",member.userId]]];
     
     [g_navigation pushViewController:sendGiftVC animated:YES];
     
 }
-#pragma mark 群聊发红包
+#pragma mark 群聊发券
 - (void)sendGiftToRoom{
     [self hideKeyboard:YES];
     if([self showDisableSay])
@@ -7404,7 +7404,7 @@
     sendDiamondVC.memberCount = [NSString stringWithFormat:@"%lu" ,(unsigned long)memberArray.count];
     [g_navigation pushViewController:sendDiamondVC animated:YES];
 }
-#pragma mark - 群里发急速红包
+#pragma mark - 群里发急速券
 - (void)sendFastRedPacket {
 
 }
@@ -7437,7 +7437,7 @@
 
 }
 
-#pragma mark 发红包代理 极速红包
+#pragma mark 发券代理 极速券
 -(void)sendRedPacketDelegate:(NSDictionary *)redpacketDict{
     [self hideKeyboard:NO];
     if ([redpacketDict[@"id"] length]>0) {
@@ -7474,7 +7474,7 @@
     [g_server WH_getUserMoenyToView:self];
 }
 
-#pragma mark 发指定红包代理
+#pragma mark 发指定券代理
 - (void)sendReceiveRedPacketDelegate:(NSDictionary *)redpacketDict {
     [self hideKeyboard:NO];
     if ([redpacketDict[@"id"] length]>0) {
@@ -7631,13 +7631,13 @@
 //            [GKMessageTool showText:@"禁言状态下不能@群成员！"];
 //            return;
 //        }else{
-            //弹框 专属红包、@他发言、对他禁言、取消
+            //弹框 专属券、@他发言、对他禁言、取消
             UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
             
             memberData * myMem = [self.room getMember:MY_USER_ID];
             memberData * member = [self.room getMember:msg.fromUserId];
         
-        NSString *redStr = self.room.category == 1?@"专属钻石":@"专属红包";
+        NSString *redStr = self.room.category == 1?@"专属钻石":@"专属券";
         
             NSArray *typeArray = (_isAdmin || [myMem.role integerValue] == 1 || [myMem.role integerValue] == 2)? @[redStr, @"@Ta发言", member.talkTime > 0?@"不禁言":@"对Ta禁言"]:@[redStr, @"@Ta发言"];
             for (NSString *type in typeArray) {
@@ -7731,7 +7731,7 @@
     [g_navigation pushViewController:detailVC animated:YES];
 }
 
-#pragma mark------红包点击
+#pragma mark------券点击
 -(void)WH_onDidRedPacket:(NSNotification*)notification{
     if (recording) {
         return;
@@ -7781,7 +7781,7 @@
     [aView.layer addAnimation:animation forKey:nil];
 }
 
-#pragma mark 抢红包
+#pragma mark 抢券
 - (void)WH_showRedPacket:(NSDictionary *)dict {
     [_wait stop];
     RedPacketView *redPacketView = [[RedPacketView alloc] initWithRedPacketInfo:dict];
@@ -7823,7 +7823,7 @@
             
             [self goToRedDetaile:dict];
             
-        }else {//红包被抢完
+        }else {//券被抢完
             
             [self changeMessageRedPacketStatus:dict[@"packet"][@"id"]];
             [self changeMessageArrFileSize:dict[@"packet"][@"id"]];
@@ -8129,7 +8129,7 @@
     }
 }
 
-//获取口令红包聊天记录
+//获取口令券聊天记录
 -(NSMutableArray*)fetchRedPacketListWithType:(int)rpType
 {
     NSString* myUserId = MY_USER_ID;
@@ -8163,7 +8163,7 @@
     return  messageList;
 }
 
-//改变红包对应消息的不可获取
+//改变券对应消息的不可获取
 -(void)changeMessageRedPacketStatus:(NSString*)redPacketId{
     NSString* myUserId = MY_USER_ID;
     if([myUserId length]<=0){
@@ -8179,7 +8179,7 @@
 
     db = nil;
 }
-//改变红包消息不可获取
+//改变券消息不可获取
 - (void)changeMessageArrFileSize:(NSString *)redPackerId{
     for (NSInteger i = _array.count - 1; i >= 0; i --) {
         WH_JXMessageObject *msg = _array[i];
@@ -8387,7 +8387,7 @@
             }
             if ([msg.type intValue] == kWCMessageTypeRedPacketExclusive) {
                 msg.type = [NSNumber numberWithInt:kWCMessageTypeText];
-                msg.content = [NSString stringWithFormat:@"[%@]", @"专属红包"];
+                msg.content = [NSString stringWithFormat:@"[%@]", @"专属券"];
             }
             if ([msg.type intValue] == kWCMessageTypeTransfer) {
                 msg.type = [NSNumber numberWithInt:kWCMessageTypeText];

@@ -1,6 +1,6 @@
 /* Localized versions of Info.plist keys */
 
-CFBundleDisplayName = "猎火"; // APP名字
+CFBundleDisplayName = "悦介"; // APP名字
 
 NSCalendarsUsageDescription = "يلزم معلومات تقويمية لتوقيع، هل يسمح بالوصول إلى التقويم؟";
 NSCameraUsageDescription = "تحتاج إلى مسح رمز مزدوج أو التقاط صورة لتوصيل الجهاز المربوط، هل يسمح بتشغيل الكاميرا؟";
