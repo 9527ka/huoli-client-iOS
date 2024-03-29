@@ -85,15 +85,7 @@
         [userDefaults synchronize];
     }
 }
-+(WH_FastRedModel *)receiveFastRed{
-    WH_FastRedModel *model;
-    NSDictionary *result = [[NSUserDefaults standardUserDefaults] objectForKey:@"FastRed"];
-    
-    if (result && [result isKindOfClass:[NSDictionary class]]) {
-        model = [WH_FastRedModel mj_objectWithKeyValues:result];
-    }
-    return model;
-}
+
 
 
 -(id)init{

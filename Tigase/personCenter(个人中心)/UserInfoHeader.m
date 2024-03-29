@@ -162,10 +162,10 @@
         make.top.left.equalTo(functionView).offset(20);
     }];
     
-    NSArray *titleArr = @[@"我的订单",@"安全设置",@"隐私设置",@"其他设置"];
-    NSArray *iconArr = @[@"order_mine_icon",@"safy_mine_icon",@"yssz_mine_icon",@"set_mine_icon"];
+    NSArray *titleArr = @[@"安全设置",@"隐私设置",@"其他设置"];
+    NSArray *iconArr = @[@"safy_mine_icon",@"yssz_mine_icon",@"set_mine_icon"];
     
-    NSArray *tagArr = @[@(FunctionType_Order),@(FunctionType_Safe),@(FunctionType_Prive),@(FunctionType_Other)];
+    NSArray *tagArr = @[@(FunctionType_Safe),@(FunctionType_Prive),@(FunctionType_Other)];
     
     float wide = (JX_SCREEN_WIDTH - 40)/tagArr.count;
     

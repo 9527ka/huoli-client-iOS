@@ -23,7 +23,6 @@
 #import "WH_webpage_WHVC.h"
 #import "WH_RechargeVC.h"
 #import "WH_WithDreawVC.h"
-#import "WH_JXBuyAndPayListVC.h"
 
 #define View_Height (IS_SHOW_BLACK_HOURSE_DEAL)?(384 + 66 + 44):(384 + 44)
 

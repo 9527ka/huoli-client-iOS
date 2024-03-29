@@ -28,7 +28,8 @@
     self = [super initWithFrame:[UIScreen mainScreen].bounds];
     if (self) {
         packetDic = infoDic;
-        self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.5f];
+        self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.3f];
+//        self.backgroundColor = [UIColor clearColor];
         [self loadSubViews];
         [self loadFirstViewContent];
     }
@@ -42,12 +43,13 @@
     
 //    CGFloat h = JX_SCREEN_HEIGHT - JX_SCREEN_TOP - JX_SCREEN_BOTTOM - 30-50;
 //w: 15    h:435
-    CGFloat h = 465.0f;
+    CGFloat h = 279.0f + 32;
     
-    packetScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(28, (JX_SCREEN_HEIGHT - h)/2, JX_SCREEN_WIDTH-28*2, h)];
+    packetScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(60, (JX_SCREEN_HEIGHT - h)/2, JX_SCREEN_WIDTH-60*2, h)];
     packetScrollView.contentSize = CGSizeMake(JX_SCREEN_WIDTH-28*2, h);
     packetScrollView.pagingEnabled = YES;
     packetScrollView.scrollEnabled = NO;
+    packetScrollView.backgroundColor = [UIColor clearColor];
     [self addSubview:packetScrollView];
     
     redPocketView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, packetScrollView.width, h)];
@@ -55,10 +57,15 @@
     redPocketView.userInteractionEnabled = YES;
     [packetScrollView addSubview:redPocketView];
     
-    closeButton = [[UIButton alloc] initWithFrame:CGRectMake(packetScrollView.left + 16, packetScrollView.top + 16, 28, 28)];
+    closeButton = [[UIButton alloc] initWithFrame:CGRectMake((JX_SCREEN_WIDTH-120 - 28)/2, packetScrollView.bottom + 28, 28, 28)];
     [closeButton setImage:[UIImage imageNamed:@"WH_redPacket_close"] forState:UIControlStateNormal];
     [closeButton addTarget:self action:@selector(closeRedPacket) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:closeButton];
+    [closeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(redPocketView);
+        make.top.equalTo(redPocketView.mas_bottom).offset(28);
+        make.height.width.mas_equalTo(28);
+    }];
     
     
 }
@@ -68,46 +75,36 @@
     NSString *userId = packetDic[@"packet"][@"userId"];//[NSString stringWithFormat:@"%@",[[dict objectForKey:@"packet"] objectForKey:@"userId"]];
 //    CGSize size = [[NSString stringWithFormat:@"%@%@",userName,Localized(@"JX_FromRedPacket")] boundingRectWithSize:CGSizeMake(CGRectGetWidth(redPocketView.bounds) - 70, 50) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:sysFontWithSize(18)} context:nil].size;
     //头像
-    CGFloat iconWH = 50.f;
-    UIImageView *icon = [[UIImageView alloc] initWithFrame:CGRectMake((CGRectGetWidth(redPocketView.frame) - iconWH) / 2.f, 40, iconWH, iconWH)];
+    CGFloat iconWH = 40.f;
+    UIImageView *icon = [[UIImageView alloc] initWithFrame:CGRectMake((CGRectGetWidth(redPocketView.frame) - iconWH) / 2.f, 35, iconWH, iconWH)];
     icon.layer.masksToBounds = YES;
     icon.layer.cornerRadius = icon.frame.size.width/2;
     [redPocketView addSubview:icon];
     [g_server WH_getHeadImageSmallWIthUserId:userId userName:userName imageView:icon];
     //昵称
-    UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(10, icon.bottom + 8, redPocketView.width - 10 * 2, 25)];
-    name.font = pingFangRegularFontWithSize(18);
-    //    name.text = [NSString stringWithFormat:@"%@%@",userName,Localized(@"JX_FromRedPacket")];
+    UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(10, icon.bottom + 5, redPocketView.width - 10 * 2, 20)];
+    name.font = pingFangRegularFontWithSize(14);
     name.text = userName;
     name.textAlignment = NSTextAlignmentCenter;
-    name.textColor = HEXCOLOR(0xFFE2B1);
+    name.textColor = HEXCOLOR(0xFFFFFF);
     [redPocketView addSubview:name];
     
-    
-    //提示
-    UILabel *prompt = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(name.frame), CGRectGetMaxY(name.frame)+8, CGRectGetWidth(name.frame), 20)];
-    prompt.textColor = HEXCOLOR(0xFFE2B1);
-    prompt.font = pingFangRegularFontWithSize(14);
-    prompt.text = Localized(@"New_sent_you_red_envelope");
-    [redPocketView addSubview:prompt];
-    prompt.textAlignment = NSTextAlignmentCenter;
-    
     //祝福语
-    tintLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(name.frame), CGRectGetMaxY(prompt.frame)+24, CGRectGetWidth(name.frame), 31)];
+    tintLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(name.frame), CGRectGetMaxY(name.frame)+22, CGRectGetWidth(name.frame), 31)];
     tintLabel.text = greetings;
-    tintLabel.font = pingFangRegularFontWithSize(22);
+    tintLabel.font = pingFangRegularFontWithSize(16);
     tintLabel.textAlignment = NSTextAlignmentCenter;
-    tintLabel.textColor = HEXCOLOR(0xFFE2B1);
+    tintLabel.textColor = HEXCOLOR(0xFFFFFF);
     [redPocketView addSubview:tintLabel];
     
 //    CGFloat b = (redPocketView.height / JX_SCREEN_HEIGHT) * (redPocketView.height-88);
-    CGFloat b = redPocketView.height - 108 - 102;
-    UIButton *openButton = [[UIButton alloc] initWithFrame:CGRectMake((redPocketView.width-102)/2, b, 102, 102)];
+    CGFloat b = redPocketView.height - 52 - 80;
+    UIButton *openButton = [[UIButton alloc] initWithFrame:CGRectMake((redPocketView.width-80)/2, b, 80, 80)];
     [openButton setImage:[UIImage imageNamed:@"WH_redPacket_open"] forState:UIControlStateNormal];
     [openButton addTarget:self action:@selector(openRedPacket:) forControlEvents:UIControlEventTouchUpInside];
     [redPocketView addSubview:openButton];
     
-    checkDetailsLabel = [[UILabel alloc] initWithFrame:CGRectMake((redPocketView.width-140)/2, redPocketView.height-18-40, 140, 18)];
+    checkDetailsLabel = [[UILabel alloc] initWithFrame:CGRectMake((redPocketView.width-140)/2, redPocketView.height-18-24, 140, 18)];
     checkDetailsLabel.textAlignment = NSTextAlignmentCenter;
     checkDetailsLabel.userInteractionEnabled = YES;
     checkDetailsLabel.textColor = HEXCOLOR(0xFFE2B1);
@@ -245,7 +242,7 @@
     [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(1.0, 1.0, 1.0)]];
     animation.values = values;
     [packetScrollView.layer addAnimation:animation forKey:nil];
-    [closeButton.layer addAnimation:animation forKey:nil];
+//    [closeButton.layer addAnimation:animation forKey:nil];
 }
 
 #pragma mark ---- Button Action
@@ -307,38 +304,7 @@
     redPacketDetailVC.isGroup = self.isGroup;
     [g_navigation pushViewController:redPacketDetailVC animated:YES];
 }
-#pragma mark ----- Update RedPacket Status
-////改变红包对应消息的不可获取
-//-(void)changeMessageRedPacketStatus:(NSString*)redPacketId{
-//    NSString* myUserId = MY_USER_ID;
-//    if([myUserId length]<=0){
-//        return;
-//    }
-//    FMDatabase* db = [[JXXMPP sharedInstance] openUserDb:myUserId];
-//
-//    NSString * sufStr = self.roomJid ? self.roomJid : self.chatPerson.userId;
-//
-//    NSString * sql = [NSString stringWithFormat:@"update msg_%@ set fileSize=2 where objectId=?",sufStr];
-//
-//    [db executeUpdate:sql,redPacketId];
-//
-//    db = nil;
-//}
-////改变红包消息不可获取
-//- (void)changeMessageArrFileSize:(NSString *)redPackerId{
-//    for (NSInteger i = _array.count - 1; i >= 0; i --) {
-//        WH_JXMessageObject *msg = _array[i];
-//        if ([msg.objectId isEqualToString:redPackerId]) {
-//            msg.fileSize = [NSNumber numberWithInt:2];
-//            [self.tableView WH_reloadRow:(int)i section:0];
-//        }
-//    }
-//    for (WH_JXMessageObject * msg in _orderRedPacketArray) {
-//        if ([msg.objectId isEqualToString:redPackerId]) {
-//            msg.fileSize = [NSNumber numberWithInt:2];
-//        }
-//    }
-//}
+
 #pragma mark ------ UITextField Delegate
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     if (textField.tag == 22) {

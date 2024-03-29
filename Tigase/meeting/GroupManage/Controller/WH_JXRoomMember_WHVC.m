@@ -51,8 +51,6 @@
 #import "WH_JXGroupMemberRedPacketVC.h"
 #import "WH_JXGroupMemberRedPacketUnclaimedVC.h"
 #import "WH_JXGroupEnterAndOutVC.h"
-#import "WH_GroupRechargeViewController.h"
-#import "WH_JXBuyPayViewController.h"
 #import "WH_JXRoomDiamoundRechargeVC.h"
 #import "OBSHanderTool.h"
 #import "WH_JXSetChatBackground_WHVC.h"
@@ -355,38 +353,38 @@
     
     if( [aDownload.action isEqualToString:wh_processing_order] ){
         
-        if(dict){//有待支付订单
-            NSString *jid = [NSString stringWithFormat:@"%@",dict[@"jid"]];
-            if([jid isEqualToString:self.wh_room.roomJid]){
-                //payType": 1,                        //支付方式,1微信,2支付宝
-                NSString *payType = [NSString stringWithFormat:@"%@",dict[@"payType"]];
-                self.wh_room.type = payType.intValue == 1?1:0;
-                self.wh_room.count = [NSString stringWithFormat:@"%@",dict[@"payAmount"]];
-                
-                NSString *expiryTime = [NSString stringWithFormat:@"%@",dict[@"expiryTime"]];
-                
-                NSMutableDictionary *payTypeDic = [[NSMutableDictionary alloc] init];
-                [payTypeDic setObject:[NSString stringWithFormat:@"%@",dict[@"payeeAccount"]] forKey:@"accountNo"];
-                 [payTypeDic setObject:[NSString stringWithFormat:@"%@",dict[@"payeeName"]] forKey:@"accountName"];
-                  [payTypeDic setObject:[NSString stringWithFormat:@"%@",dict[@"payeeAccountImg"]] forKey:@"qrCode"];
-                [payTypeDic setObject:[NSString stringWithFormat:@"%@",dict[@"no"]] forKey:@"id"];
-                [payTypeDic setObject:[NSString stringWithFormat:@"%@",dict[@"status"]] forKey:@"status"];
-                
-                WH_JXBuyPayViewController *vc = [[WH_JXBuyPayViewController alloc] init];
-                vc.expiryTime = expiryTime;
-                vc.room = self.wh_room;
-                vc.payDic = payTypeDic;
-                [g_navigation pushViewController:vc animated:YES];
-                
-            }else{
-                [g_server showMsg:@"您还有未完成的群内充值订单"];
-            }
-            
-        }else{
-            WH_GroupRechargeViewController *vc = [[WH_GroupRechargeViewController alloc] init];
-            vc.room = self.wh_room;
-            [g_navigation pushViewController:vc animated:YES];
-        }
+//        if(dict){//有待支付订单
+//            NSString *jid = [NSString stringWithFormat:@"%@",dict[@"jid"]];
+//            if([jid isEqualToString:self.wh_room.roomJid]){
+//                //payType": 1,                        //支付方式,1微信,2支付宝
+//                NSString *payType = [NSString stringWithFormat:@"%@",dict[@"payType"]];
+//                self.wh_room.type = payType.intValue == 1?1:0;
+//                self.wh_room.count = [NSString stringWithFormat:@"%@",dict[@"payAmount"]];
+//
+//                NSString *expiryTime = [NSString stringWithFormat:@"%@",dict[@"expiryTime"]];
+//
+//                NSMutableDictionary *payTypeDic = [[NSMutableDictionary alloc] init];
+//                [payTypeDic setObject:[NSString stringWithFormat:@"%@",dict[@"payeeAccount"]] forKey:@"accountNo"];
+//                 [payTypeDic setObject:[NSString stringWithFormat:@"%@",dict[@"payeeName"]] forKey:@"accountName"];
+//                  [payTypeDic setObject:[NSString stringWithFormat:@"%@",dict[@"payeeAccountImg"]] forKey:@"qrCode"];
+//                [payTypeDic setObject:[NSString stringWithFormat:@"%@",dict[@"no"]] forKey:@"id"];
+//                [payTypeDic setObject:[NSString stringWithFormat:@"%@",dict[@"status"]] forKey:@"status"];
+//
+//                WH_JXBuyPayViewController *vc = [[WH_JXBuyPayViewController alloc] init];
+//                vc.expiryTime = expiryTime;
+//                vc.room = self.wh_room;
+//                vc.payDic = payTypeDic;
+//                [g_navigation pushViewController:vc animated:YES];
+//
+//            }else{
+//                [g_server showMsg:@"您还有未完成的群内充值订单"];
+//            }
+//
+//        }else{
+//            WH_GroupRechargeViewController *vc = [[WH_GroupRechargeViewController alloc] init];
+//            vc.room = self.wh_room;
+//            [g_navigation pushViewController:vc animated:YES];
+//        }
             
     }
     
@@ -1045,12 +1043,12 @@
         membHeight+=self.wh_iv.frame.size.height;
     }
     //只有不是群主才能购买
-    if([data.role intValue] != 1 && self.wh_room.financialAccountCount > 0 && self.wh_room.category != 1){
-        self.wh_iv = [self WH_createMiXinButton:@"群内充值" drawTop:YES drawBottom:NO must:NO click:@selector(groupRechargAction) ParentView:self.redPacketView];
-        self.wh_iv.frame = CGRectMake(0, self.redPacketView.height, self.redPacketView.frame.size.width, HEIGHT);
-        self.redPacketView.height += HEIGHT;
-        membHeight+=self.wh_iv.frame.size.height;
-    }
+//    if([data.role intValue] != 1 && self.wh_room.financialAccountCount > 0 && self.wh_room.category != 1){
+//        self.wh_iv = [self WH_createMiXinButton:@"群内充值" drawTop:YES drawBottom:NO must:NO click:@selector(groupRechargAction) ParentView:self.redPacketView];
+//        self.wh_iv.frame = CGRectMake(0, self.redPacketView.height, self.redPacketView.frame.size.width, HEIGHT);
+//        self.redPacketView.height += HEIGHT;
+//        membHeight+=self.wh_iv.frame.size.height;
+//    }
     membHeight+=topBottomMargin;
     
     [self.topDiamondView removeFromSuperview];
@@ -1283,7 +1281,7 @@
 #pragma mark 群内充值
 -(void)groupRechargAction{
     //获取当前是否有待支付的订单
-    [g_server WH_Processing_order:self];
+//    [g_server WH_Processing_order:self];
 }
 
 - (void)settingRoomIcon {

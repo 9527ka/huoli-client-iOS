@@ -145,7 +145,7 @@
                             <action selector="certainAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="D5r-gq-3yb"/>
                         </connections>
                     </button>
-                    <button opaque="NO" tag="400" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T8t-BM-3XX">
+                    <button hidden="YES" opaque="NO" tag="400" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T8t-BM-3XX">
                         <rect key="frame" x="0.0" y="399" width="320" height="44"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="35U-nf-nbS"/>

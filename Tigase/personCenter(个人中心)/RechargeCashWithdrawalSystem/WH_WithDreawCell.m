@@ -8,7 +8,6 @@
 
 #import "WH_WithDreawCell.h"
 #import "WH_webpage_WHVC.h"
-#import "WH_JXBuyAndPayListVC.h"
 
 @interface WH_WithDreawCell()<UITextFieldDelegate>
 
@@ -144,8 +143,8 @@
 //400+
 - (IBAction)lookUrlDetaileAction:(UIButton *)sender {
     if(sender.tag == 400){//跳转C2C交易的出售列表
-        WH_JXBuyAndPayListVC *vc = [[WH_JXBuyAndPayListVC alloc] init];
-        [g_navigation pushViewController:vc animated:YES];
+//        WH_JXBuyAndPayListVC *vc = [[WH_JXBuyAndPayListVC alloc] init];
+//        [g_navigation pushViewController:vc animated:YES];
     }else{//什么是加密货币提现？
     
         WH_webpage_WHVC *webVC = [WH_webpage_WHVC alloc];

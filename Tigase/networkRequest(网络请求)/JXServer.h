@@ -10,7 +10,6 @@
 #import "ATMHud.h"
 #import <AddressBook/AddressBook.h>
 #import "JXAddressBook.h"
-#import "WH_FastRedModel.h"
 
 
 
@@ -517,7 +516,6 @@
 /// *缓存极速红包配置项
 /// @param dic 数据字典
 +(void)setFastRedWithDic:(NSDictionary *)dic;
-+(WH_FastRedModel *)receiveFastRed;
 
 //签到详情
 - (void)requestSignInDetailsWithRoomId:(NSString *)roomId toView:(id)toView;

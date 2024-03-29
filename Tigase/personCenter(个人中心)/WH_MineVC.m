@@ -21,7 +21,6 @@
 #import "WH_JXImageScroll_WHVC.h"
 #import "DMScaleTransition.h"
 #import "WH_PersonalData_WHViewController.h"
-#import "WH_JXOrderListVC.h"
 
 #define kUserInfoHeaderHeight          433
 #define kSlideTabBarHeight             57
@@ -379,9 +378,7 @@ NSString * const kWH_MineCell  = @"WH_MineCell";
         [g_navigation pushViewController:vc animated:YES];
     }else if (type == FunctionType_Order){
         
-        //我的订单
-        WH_JXOrderListVC *orderVC = [[WH_JXOrderListVC alloc] init];
-        [g_navigation pushViewController:orderVC animated:YES];
+       
         
     }else if (type == FunctionType_Editor){
         

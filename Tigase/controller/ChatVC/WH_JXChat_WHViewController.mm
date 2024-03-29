@@ -124,16 +124,11 @@
 #import "WH_JXCommonService.h"
 #import "MISFloatingBall.h"
 #import "WH_webpage_WHVC.h"
-#import "WH_PayOrderCell.h"
-#import "WH_JXCertainOrderVC.h"
-#import "WH_JXOrderDetaileVC.h"
-#import "WH_JXBuyPayViewController.h"
+
 
 #import "IQKeyboardManager.h"
 #import "WH_JXRoomDiamoundRechargeVC.h"
 #import "UIAlertController+category.h"
-#import "WH_JXFastRedSetVC.h"
-#import "WH_JXFastRedView.h"
 #import "WH_JXChatTool.h"
 
 
@@ -2689,11 +2684,11 @@
         return [self WH_creat_WHReadDelCell:msg indexPath:indexPath];
     }
     
-    if ([msg.type intValue] == kRoomRemind_REQUEST_NOTIFICATION ||[msg.type intValue] == kRoomRemind_REQUEST_PAID ||[msg.type intValue] == kRoomRemind_REQUEST_CONFIRMED ||[msg.type intValue] == kRoomRemind_REQUEST_CANCELLED ||[msg.type intValue] == kRoomRemind_REQUEST_REFUND ||[msg.type intValue] == kRoomRemind_REQUEST_COMPLAINING ||[msg.type intValue] == kRoomRemind_REQUEST_COMPLAINING_END || [msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_REFUND ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_PAID ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_CONFIRMED) {//下单模块
-        
-        return [self WH_creat_PayOrderCell:msg indexPath:indexPath];
-        
-    }
+//    if ([msg.type intValue] == kRoomRemind_REQUEST_NOTIFICATION ||[msg.type intValue] == kRoomRemind_REQUEST_PAID ||[msg.type intValue] == kRoomRemind_REQUEST_CONFIRMED ||[msg.type intValue] == kRoomRemind_REQUEST_CANCELLED ||[msg.type intValue] == kRoomRemind_REQUEST_REFUND ||[msg.type intValue] == kRoomRemind_REQUEST_COMPLAINING ||[msg.type intValue] == kRoomRemind_REQUEST_COMPLAINING_END || [msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_REFUND ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_PAID ||[msg.type intValue] == kRoomRemind_TYPE_SELL_TO_MERCHANT_CONFIRMED) {//下单模块
+//
+//        return [self WH_creat_PayOrderCell:msg indexPath:indexPath];
+//
+//    }
     
     if ([msg.isReadDel boolValue]) {
         g_myself.isOpenReadDel = msg.isReadDel;
@@ -3134,25 +3129,6 @@
     }
     return cell;
 }
-//购买HOTC订单消息
-- (WH_PayOrderCell *)WH_creat_PayOrderCell:(WH_JXMessageObject *)msg indexPath:(NSIndexPath *)indexPath{
-    WH_PayOrderCell *cell = (WH_PayOrderCell *)[_table dequeueReusableCellWithIdentifier:@"WH_PayOrderCell" forIndexPath:indexPath];
-    __weak typeof (self)weakSelf = self;
-    cell.certainBlock = ^(NSInteger tag, NSString * _Nonnull orderId) {//1确认 0详情  2,代理商确认
-        [weakSelf lookOrderDetaileWithId:orderId tag:tag];
-    };
-    cell.msg = msg;
-    return cell;
-}
-//查看订单详情
--(void)lookOrderDetaileWithId:(NSString *)orderId tag:(NSInteger)tag{
-    self.orderId = orderId;
-    self.tag = tag;
-    //查询订单详情
-    [g_server WH_orderDetaileWithId:orderId toView:self];
-    
-}
-
 //阅后即焚提示消息
 - (WH_ReadDelTimeCell *)WH_creat_WHReadDelCell:(WH_JXMessageObject *)msg indexPath:(NSIndexPath *)indexPath{
     NSString * identifier = @"WH_ReadDelTimeCell";
@@ -5566,55 +5542,7 @@
     }else{
         self.noClick = NO;
     }
-    NSString *orderDetaileUrl = [NSString stringWithFormat:@"%@%@",wh_order_detaile,self.orderId];
-    if( [aDownload.action isEqualToString:orderDetaileUrl] ){
-
-        //判断订单是否超时不能点击
-        // status,
-        //    0-订单初始化
-        //    １-买家己付款
-        //    ２-取消订单
-        //    ３-订单有争议,处理中
-        //    ４-订单支付完成,己确认
-        NSString *status = [NSString stringWithFormat:@"%@",dict[@"status"]];
-        
-        if (status.intValue == 0 && self.tag == 2){//代理商已经支付，需要确认通知出售方
-            NSMutableDictionary *payTypeDic = [NSMutableDictionary dictionary];
-            //获取过期时间
-            NSString *expiryTime = [NSString stringWithFormat:@"%@",dict[@"expiryTime"]];
-            [payTypeDic setObject:[NSString stringWithFormat:@"%@",dict[@"no"]] forKey:@"id"];
-            [payTypeDic setObject:@"0" forKey:@"status"];
-            
-            NSString *paymentCode = [NSString stringWithFormat:@"%@",dict[@"payeeAccountImg"]];
-            
-            [payTypeDic setObject:paymentCode forKey:@"qrCode"];
-            NSString *payType = [NSString stringWithFormat:@"%@",dict[@"payType"]];//1wx 2alipay
-            NSInteger type = payType.intValue == 1?1:0;
-            
-            [payTypeDic setObject:@(type) forKey:@"type"];
-            
-            NSString *payAmount = [NSString stringWithFormat:@"%@",dict[@"payAmount"]];
-            
-            [payTypeDic setObject:@(payAmount.floatValue) forKey:@"count"];
-            
-            WH_JXBuyPayViewController *vc = [[WH_JXBuyPayViewController alloc] init];
-            vc.expiryTime = expiryTime;
-            vc.payDic = payTypeDic;
-            [g_navigation pushViewController:vc animated:YES];
-            
-        }else if (status.intValue == 1) {//确认
-            WH_JXCertainOrderVC *orderVC = [[WH_JXCertainOrderVC alloc] init];
-            orderVC.dict = dict;
-            orderVC.orderId = self.orderId;
-            [g_navigation pushViewController:orderVC animated:YES];
-        }else{//详情
-            WH_JXOrderDetaileVC *orderVC = [[WH_JXOrderDetaileVC alloc] init];
-            orderVC.dict = dict;
-            orderVC.orderId = self.orderId;
-            [g_navigation pushViewController:orderVC animated:YES];
-            
-        }
-    }else if ([aDownload.action isEqualToString:act_delectRoomMsg]) {
+   if ([aDownload.action isEqualToString:act_delectRoomMsg]) {
         
         //双向撤回
         WH_JXMessageObject *msg = [[WH_JXMessageObject alloc] init];
@@ -7478,32 +7406,7 @@
 }
 #pragma mark - 群里发急速红包
 - (void)sendFastRedPacket {
-//    [g_server showMsg:@"开发中~"];
-//    return;
-    
-    WH_FastRedModel *model = [JXServer receiveFastRed];
-    if(!model){
-        //判断是否设置过急速红包
-        WH_JXFastRedSetVC *vc = [[WH_JXFastRedSetVC alloc] init];
-        [g_navigation pushViewController:vc animated:YES];
-    }else{
-        //判断时间间隔
-        WH_FastRedModel *model = [JXServer receiveFastRed];
-        
-        BOOL isCanSend = [WH_FastRedModel isCanWithEndTime:model.time];
-        if (isCanSend) {
-            WH_JXFastRedView *view = [[WH_JXFastRedView alloc] init];
-            view.room = self.room;
-            view.delegate = self;
-            [self.view addSubview:view];
-        }else{
-            [g_server showMsg:[NSString stringWithFormat:@"两次红包发送需间隔%@秒",model.timeInter]];
-        }
-        
-        
-    }
 
-    
 }
 #pragma mark - 转账delegate
 - (void)transferToUser:(NSDictionary *)dict {

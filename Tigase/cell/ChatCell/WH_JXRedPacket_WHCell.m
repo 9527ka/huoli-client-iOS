@@ -75,10 +75,10 @@
     [_imageBackground addSubview:_title];
     
     _toUserLab = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.size.width - 172, 10, 100, 30)];
-    _toUserLab.font = [UIFont boldSystemFontOfSize:30];
+    _toUserLab.font = [UIFont boldSystemFontOfSize:20];
     _toUserLab.textColor = [UIColor whiteColor];
 //    _toUserLab.hidden = YES;
-    _toUserLab.textAlignment = NSTextAlignmentRight;
+    _toUserLab.textAlignment = NSTextAlignmentCenter;
     [_imageBackground addSubview:_toUserLab];
     
     _sendTimeLab = [[UILabel alloc] init];
@@ -147,12 +147,11 @@
         _nameLabel.frame = CGRectMake(8, 26, 60, 15);
     }
     _sendTimeLab.frame = CGRectMake((_imageBackground.bounds.size.width - 108)/2, _imageBackground.frame.size.height - 24, 108, 15);
-    _toUserLab.frame = CGRectMake((_imageBackground.bounds.size.width - 108)/2 - 18, (_imageBackground.frame.size.height - 44)/2 - 6, 108, 44);
+    _toUserLab.frame = CGRectMake((_imageBackground.bounds.size.width - 108)/2 - 8, (_imageBackground.frame.size.height - 44)/2 - 6, 108, 44);
     
     
     _line.frame = CGRectMake(8, _imageBackground.frame.size.height - (8+17), 200, 0.3);
     _line.hidden = YES;
-    
     
     if (self.msg.isShowTime) {
         CGRect frame = self.bubbleBg.frame;
@@ -168,7 +167,13 @@
     
     self.toUserLab.attributedText = [NSString changeSpecialWordColor:[UIColor whiteColor] AllContent:amountStr SpcWord:@"￥" font:14];
     
-    self.sendTimeLab.text = @"2024-03-15 15:30:23";
+    //日期
+    NSDate * date = self.msg.timeSend;
+        
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+
+    self.sendTimeLab.text = [dateFormatter stringFromDate:date];
         
     //服务端返回的数据类型错乱，强行改
     self.msg.fileName = [NSString stringWithFormat:@"%@",self.msg.fileName];

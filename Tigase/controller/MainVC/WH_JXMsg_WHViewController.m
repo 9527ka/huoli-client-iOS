@@ -1159,7 +1159,8 @@
         if([current_chat_userId isEqualToString:s] || msg.isMySend || !showNumber){//假如是我发送的，或正在这个界面，或不显示数量时
             if([current_chat_userId isEqualToString:s])//正在聊天时，置0;是我发送的消息时，不变化数量
                 newobj.user.msgsNew = [NSNumber numberWithInt:0];
-        }else
+        }
+        else
             if([s isEqualToString:FRIEND_CENTER_USERID])//假如是朋友验证消息，总为1
                 return;
 //                newobj.user.msgsNew = [NSNumber numberWithInt:1];
@@ -1171,44 +1172,16 @@
                 }
             }
         
-        //如果user为空的话创建一下插入数据库
-        WH_JXUserObject *newUser = [[WH_JXUserObject alloc] init];
-
-        NSString *officialCSUid = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"officialCSUid"]];
-        
-        if([newobj.message.fromUserId isEqualToString:MY_USER_ID] && [newobj.message.toUserId isEqualToString:officialCSUid]){//我联系的客服
-            newUser.userId = newobj.message.toUserId;
-            newUser.userNickname = Localized(@"New_online_service");
-            newUser.remarkName = Localized(@"New_online_service");
-        }else{
-            newUser.userId = newobj.message.fromUserId;
-            newUser.userNickname = [newobj.message.fromUserId isEqualToString:WAHU_TRANSFER]?@"支付公众号":newobj.message.fromUserName;
-            newUser.remarkName = newUser.userNickname;
-        }
-       
-        newUser.timeCreate = newobj.message.timeReceive;
-        newUser.content = newobj.message.content;
-        newUser.companyId = @(0);
-        newUser.timeSend = newobj.message.timeSend;
-        newUser.roomFlag = @(0);
-        newUser.status = @(0);
-        newobj.user = newUser;
-        
-//        if (newobj.user) {
-        
-        if (newobj.user && newobj.message.fromId.length > 5) {
-            //访问数据库是否存在改好友，没有则写入数据库
-            [newobj.user insertFriend];
+        if (newobj.user) {
             [_wh_array insertObject:newobj atIndex:_topNum];
             
             NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
             [indexPaths addObject:indexPath];
             
-//            [_table beginUpdates];
+            [_table beginUpdates];
             [_table insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
-//            [_table endUpdates];
-            [_table reloadData];
+            [_table endUpdates];
             [_table WH_gotoFirstRow:YES];
         }
         
