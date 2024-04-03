@@ -14,6 +14,12 @@
                 <outlet property="dateContentView" destination="I2d-5F-bs4" id="Ihg-Q1-q0u"/>
                 <outlet property="datePicker" destination="qRA-Vl-oR9" id="IJz-zy-TOD"/>
                 <outlet property="endDateBtn" destination="ypt-0B-QUc" id="K0M-ry-Yq3"/>
+                <outlet property="receiveAllMoneyLab" destination="scp-xw-ak8" id="oHh-5E-IdV"/>
+                <outlet property="receiveExclusiveMoneyLab" destination="WDi-bc-0MG" id="Tk4-PY-B62"/>
+                <outlet property="receiveLuckMoneyLab" destination="dRj-k1-qaP" id="5OH-ah-tp0"/>
+                <outlet property="sendAllMoneyLab" destination="LDz-GB-X77" id="zCz-KD-yTU"/>
+                <outlet property="sendExclusiveMoneyLab" destination="hfc-iW-CWl" id="F7R-HE-fFl"/>
+                <outlet property="sendLuckMoneyLab" destination="e8S-JN-wDt" id="b7j-YJ-NAe"/>
                 <outlet property="startDateBtn" destination="Hun-OU-zLH" id="T2A-ad-vHY"/>
                 <outlet property="timeBgView" destination="7ys-6q-U6Q" id="oLI-q2-HE8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -203,7 +209,7 @@
                                     <color key="textColor" red="1" green="0.35686274509999999" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" tag="601" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bup-bK-xfi">
+                                <button opaque="NO" tag="602" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bup-bK-xfi">
                                     <rect key="frame" x="300" y="12" width="60" height="26"/>
                                     <color key="backgroundColor" red="1" green="0.35686274509999999" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
@@ -266,7 +272,7 @@
                                     <color key="textColor" red="1" green="0.35686274509999999" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" tag="602" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5yc-Fg-IR5">
+                                <button opaque="NO" tag="601" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5yc-Fg-IR5">
                                     <rect key="frame" x="300" y="12" width="60" height="26"/>
                                     <color key="backgroundColor" red="1" green="0.35686274509999999" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
@@ -414,7 +420,7 @@
                                     <color key="textColor" red="1" green="0.35686274509999999" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" tag="701" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bmp-cD-ixG">
+                                <button opaque="NO" tag="702" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bmp-cD-ixG">
                                     <rect key="frame" x="300" y="11.999999999999943" width="60" height="26"/>
                                     <color key="backgroundColor" red="1" green="0.35686274509999999" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
@@ -477,7 +483,7 @@
                                     <color key="textColor" red="1" green="0.35686274509999999" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" tag="702" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uum-1s-zNF">
+                                <button opaque="NO" tag="701" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uum-1s-zNF">
                                     <rect key="frame" x="300" y="12" width="60" height="26"/>
                                     <color key="backgroundColor" red="1" green="0.35686274509999999" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>

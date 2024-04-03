@@ -94,7 +94,7 @@
     cashTitle.font = sysFontWithSize(16);
     [baseView addSubview:cashTitle];
     
-    UILabel * rmbLabel = [UIFactory WH_create_WHLabelWith:CGRectMake(CGRectGetWidth(baseView.frame) - 15 - 42, 0, 52, CGRectGetHeight(baseView.frame)) text:@"HOTC"];
+    UILabel * rmbLabel = [UIFactory WH_create_WHLabelWith:CGRectMake(CGRectGetWidth(baseView.frame) - 15 - 42, 0, 52, CGRectGetHeight(baseView.frame)) text:@"元"];
     rmbLabel.font = sysFontWithSize(16);
     rmbLabel.textColor = HEXCOLOR(0x3A404C);
     rmbLabel.textAlignment = NSTextAlignmentLeft;
@@ -153,7 +153,7 @@
    _moneyLabel.textColor = HEXCOLOR(0x3A404C);
    _moneyLabel.font = [UIFont systemFontOfSize:40];
    _moneyLabel.textAlignment = NSTextAlignmentCenter;
-   _moneyLabel.text = @"HOTC 0.00";
+   _moneyLabel.text = @"￥ 0.00";
    [self.wh_tableBody addSubview:_moneyLabel];
    
     _transferBtn = [UIFactory WH_create_WHButtonWithRect:CGRectZero title:Localized(@"JX_Transfer") titleFont:sysFontWithSize(17) titleColor:[UIColor whiteColor] normal:nil selected:nil selector:@selector(transferBtnAction:) target:self];
@@ -293,7 +293,7 @@
 - (void)textFieldDidChange:(UITextField *)textField {
    if (textField == _countTextField) {
       @try{
-         _moneyLabel.text = [NSString stringWithFormat:@"HOTC%.2f",[textField.text doubleValue]];
+         _moneyLabel.text = [NSString stringWithFormat:@"￥%.2f",[textField.text doubleValue]];
       } @catch(NSException *e){}
       if ([textField.text doubleValue] > 0) {
          _transferBtn.enabled = YES;

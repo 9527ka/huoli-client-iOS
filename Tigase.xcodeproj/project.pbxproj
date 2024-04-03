@@ -6964,8 +6964,8 @@
 		331AD0912BAD6FE3008A9113 /* AVPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				331AD0922BAD6FE3008A9113 /* ZFAVPlayerManager.m */,
 				331AD0932BAD6FE3008A9113 /* ZFAVPlayerManager.h */,
+				331AD0922BAD6FE3008A9113 /* ZFAVPlayerManager.m */,
 			);
 			path = AVPlayer;
 			sourceTree = "<group>";

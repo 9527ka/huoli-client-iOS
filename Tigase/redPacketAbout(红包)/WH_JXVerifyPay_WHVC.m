@@ -93,7 +93,7 @@
     if (self.type == JXVerifyTypeSendDiamond) {
         self.RMBLab.text = [NSString stringWithFormat:@"钻石%.2f",[self.wh_RMB doubleValue]];
     } else {
-        self.RMBLab.text = [NSString stringWithFormat:@"HOTC%.2f",[self.wh_RMB doubleValue]];
+        self.RMBLab.text = [NSString stringWithFormat:@"￥%.2f",[self.wh_RMB doubleValue]];
     }
     [self.baseView addSubview:self.RMBLab];
     

@@ -450,7 +450,7 @@
     _wh_returnMoneyLabel = [[UILabel alloc]initWithFrame:headerView.frame];
     
     _wh_returnMoneyLabel.font = pingFangRegularFontWithSize(12);
-    _wh_returnMoneyLabel.text = [NSString stringWithFormat:@"%@(%.2f%@)%@",Localized(@"WaHu_JXredPacketDetail_WaHuVC_ReturnMoney1"),_wh_packetObj.over,self.category.intValue==1?@"钻石":@"HOTC",Localized(@"WaHu_JXredPacketDetail_WaHuVC_ReturnMoney2")];
+    _wh_returnMoneyLabel.text = [NSString stringWithFormat:@"%@(%.2f%@)%@",Localized(@"WaHu_JXredPacketDetail_WaHuVC_ReturnMoney1"),_wh_packetObj.over,self.category.intValue==1?@"钻石":@"元",Localized(@"WaHu_JXredPacketDetail_WaHuVC_ReturnMoney2")];
     _wh_returnMoneyLabel.textAlignment = NSTextAlignmentCenter;
     _wh_returnMoneyLabel.center = headerView.center;
     [headerView addSubview:_wh_returnMoneyLabel];
@@ -458,7 +458,7 @@
 //填写界面上的数据
 - (void)WH_setViewData{
     [g_server WH_getHeadImageSmallWIthUserId:_wh_packetObj.userId userName:_wh_packetObj.userName imageView:_wh_headerImageView];
-    _wh_totalMoneyLabel.text = [NSString stringWithFormat:@"%@%.2f%@",Localized(@"WaHu_JXredPacketDetail_WaHuVC_All"),_wh_packetObj.money,self.category.intValue == 1?@"钻石":@"HOTC"];
+    _wh_totalMoneyLabel.text = [NSString stringWithFormat:@"%@%.2f%@",Localized(@"WaHu_JXredPacketDetail_WaHuVC_All"),_wh_packetObj.money,self.category.intValue == 1?@"钻石":@"元"];
     _wh_fromUserLabel.text = [NSString stringWithFormat:@"%@%@", _wh_packetObj.userName,self.category.intValue == 1?@"发出的钻石":@"发出的随机券"];
     _wh_greetLabel.text = _wh_packetObj.greetings;
     NSString * isCanOpen = nil;
@@ -498,12 +498,12 @@
     }
     
     if (IS_SHOW_EXCLUSIVEREDPACKET) {
-        _wh_showNumLabel.text = [NSString stringWithFormat:@"已领取%lu/%ld个，共%.2f/%.2f%@，%@" ,(unsigned long)[_wh_OpenMember count] ,_wh_packetObj.count ,(_isGroup)?_wh_packetObj.money - _wh_packetObj.over:_wh_packetObj.money ,_wh_packetObj.money,self.category.intValue == 1?@"钻石":@"HOTC",isCanOpen];
+        _wh_showNumLabel.text = [NSString stringWithFormat:@"已领取%lu/%ld个，共%.2f/%.2f%@，%@" ,(unsigned long)[_wh_OpenMember count] ,_wh_packetObj.count ,(_isGroup)?_wh_packetObj.money - _wh_packetObj.over:_wh_packetObj.money ,_wh_packetObj.money,self.category.intValue == 1?@"钻石":@"元",isCanOpen];
     }else{
         if (_wh_packetObj.over < 0.01) {
             _wh_showNumLabel.text = [NSString stringWithFormat:@"%@%ld/%ld,%@",Localized(@"WaHu_JXredPacketDetail_WaHuVC_Drawed"),[_wh_OpenMember count],_wh_packetObj.count,isCanOpen];
         }else{
-            _wh_showNumLabel.text = [NSString stringWithFormat:@"%@%ld/%ld, %@%.2f%@,%@",Localized(@"WaHu_JXredPacketDetail_WaHuVC_Drawed"),[_wh_OpenMember count],_wh_packetObj.count,Localized(@"WaHu_JXredPacketDetail_WaHuVC_Rest"),_wh_packetObj.over,self.category.intValue == 1?@"钻石":@"HOTC",isCanOpen];
+            _wh_showNumLabel.text = [NSString stringWithFormat:@"%@%ld/%ld, %@%.2f%@,%@",Localized(@"WaHu_JXredPacketDetail_WaHuVC_Drawed"),[_wh_OpenMember count],_wh_packetObj.count,Localized(@"WaHu_JXredPacketDetail_WaHuVC_Rest"),_wh_packetObj.over,self.category.intValue == 1?@"钻石":@"元",isCanOpen];
         }
     }
 }
@@ -549,7 +549,7 @@
 //    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8*60*60]];//中国专用
     cell.timeLabel.text = [dateFormatter stringFromDate:date];
     //金额
-    NSString *moneyStr = [NSString stringWithFormat:@"%.2f %@",memberObj.money,self.category.intValue == 1?@"钻石":@"HOTC"];
+    NSString *moneyStr = [NSString stringWithFormat:@"%.2f %@",memberObj.money,self.category.intValue == 1?@"钻石":@"元"];
     
     cell.moneyLabel.text = moneyStr;
 //    cell.hotImage.hidden = self.category.intValue == 1?YES:NO;

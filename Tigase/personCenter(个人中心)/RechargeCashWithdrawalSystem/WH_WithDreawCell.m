@@ -39,10 +39,10 @@
         self.orderNoField.text = g_App.usdtUrl;
     }
     
-    self.monyField.placeholder = [NSString stringWithFormat:@"请输入至少%@的HOTC金额",g_config.minTransferAmount];
+    self.monyField.placeholder = [NSString stringWithFormat:@"请输入至少%@元",g_config.minTransferAmount];
     
     
-    NSString *contentStr = [NSString stringWithFormat:@"友情提示\n1.每次提币金额在%@~%@HOTC之间。\n2.提现手续费为%@%@。\n3.提现时间为0-24小时。\n4.此处为USDT加密货币提现（什么是加密货币提现？）",g_config.minTransferAmount,g_config.maxTransferAmount,g_config.transferRate,@"%"];
+    NSString *contentStr = [NSString stringWithFormat:@"友情提示\n1.每次提币金额在%@~%@元之间。\n2.提现手续费为%@%@。\n3.提现时间为0-24小时。\n4.此处为USDT加密货币提现（什么是加密货币提现？）",g_config.minTransferAmount,g_config.maxTransferAmount,g_config.transferRate,@"%"];
     
     NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:contentStr];
     [attributedText addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14.0f]  range:NSMakeRange(0, 4)];
@@ -59,7 +59,7 @@
     
     self.detaileLab.attributedText = attributedText;
     
-    self.monyCountLab.text = [NSString stringWithFormat:@"USDT 1 = HOTC %@",g_App.rate];
+    self.monyCountLab.text = [NSString stringWithFormat:@"USDT 1 = ￥ %@",g_App.rate];
     
 }
 -(void)showKeyBord:(NSNotification *)notifi{
@@ -86,7 +86,7 @@
 -(void)changeUsDTCount{
     //服务费
     NSString *transferRateStr = [NSString stringWithFormat:@"%.2f",g_config.transferRate.floatValue/100*self.monyField.text.doubleValue];
-    self.transferRateLab.text = [NSString stringWithFormat:@"服务费：%@HOTC",transferRateStr];
+    self.transferRateLab.text = [NSString stringWithFormat:@"服务费：%@元",transferRateStr];
     //实际到账
     float count = self.monyField.text.doubleValue - transferRateStr.floatValue;
     NSString *trealStr = [NSString stringWithFormat:@"%.2f",count/g_App.rate.floatValue];
@@ -109,11 +109,11 @@
 - (IBAction)certainAction:(id)sender {
     [self endEditing:YES];
     if(self.monyField.text.length == 0 || self.monyField.text.floatValue < g_config.minTransferAmount.floatValue){
-        [g_server showMsg:[NSString stringWithFormat:@"请输入至少%@的HOTC金额",g_config.minTransferAmount]];
+        [g_server showMsg:[NSString stringWithFormat:@"请输入至少%@元金额",g_config.minTransferAmount]];
         return;
     }
     if(self.monyField.text.floatValue > g_config.maxTransferAmount.floatValue){
-        [g_server showMsg:[NSString stringWithFormat:@"请输入%@以内的HOTC金额",g_config.maxTransferAmount]];
+        [g_server showMsg:[NSString stringWithFormat:@"请输入%@以内金额",g_config.maxTransferAmount]];
         return;
     }
     if(self.orderNoField.text.length == 0){
@@ -137,7 +137,7 @@
 //        self.monyCountLab.text = [NSString stringWithFormat:@"余额HOTC%.2f = USDT%.2f",g_App.myMoney,g_App.myMoney/g_App.rate.doubleValue];
 //    }
     
-    self.monyCountLab.text = [NSString stringWithFormat:@"USDT 1 = HOTC %@",g_App.rate];
+    self.monyCountLab.text = [NSString stringWithFormat:@"USDT 1 = ￥ %@",g_App.rate];
     
 }
 //400+

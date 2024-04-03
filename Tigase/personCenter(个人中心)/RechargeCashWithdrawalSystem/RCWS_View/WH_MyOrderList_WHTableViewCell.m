@@ -106,7 +106,7 @@
         _model = model;
         _paNun.text = [NSString stringWithFormat:@"%@WA币",_model.zfje];
         NSArray *titles = @[@"支付金额：" ,@"支付宝收款账号：" ,@"订单号："];
-        NSArray *texts = @[[NSString stringWithFormat:@"%@HOTC",_model.zfje?:@""],_model.skzh?:@"",_model.ordernum?:@""];
+        NSArray *texts = @[[NSString stringWithFormat:@"%@元",_model.zfje?:@""],_model.skzh?:@"",_model.ordernum?:@""];
         int i = 0;
         for (UILabel *label in _labels) {
             label.text = [NSString stringWithFormat:@"%@%@",titles[i],texts[i++]];

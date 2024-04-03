@@ -37,6 +37,7 @@
 @class TFJunYou_desiPageVc;
 @class WH_GKDYHome_WHViewController;
 @class WH_Player_WHVC;
+@class WH_GKDYPlayer_WHViewController;
 
 
 
@@ -65,6 +66,7 @@
 
 @property (nonatomic ,strong) WH_FindViewController *findVC;
 @property (nonatomic ,strong) WH_Player_WHVC *homeVC;
+//@property (nonatomic ,strong) WH_GKDYPlayer_WHViewController *homeVC;
 
 
 @property (nonatomic ,strong) WH_MineVC *mineVC;

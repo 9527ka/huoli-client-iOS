@@ -162,7 +162,7 @@
     
     NSString *addStr = (startMoney == 0.00 && endMoney == 0.00)?@"":iconStr;
     
-    cell.moneyLabel.text = [NSString stringWithFormat:@"%@%@ %@",addStr,cellModel[@"money"],@"HOTC"];
+    cell.moneyLabel.text = [NSString stringWithFormat:@"%@%@ %@",addStr,cellModel[@"money"],@"元"];
     //是否退款
     cell.refundLabel.text = @"";
     

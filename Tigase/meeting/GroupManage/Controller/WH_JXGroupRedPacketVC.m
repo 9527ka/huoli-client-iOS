@@ -45,9 +45,9 @@
     if(self.type == 0){
         self.titleLab.text = @"全部券";
     }else if (self.type == 1){
-        self.titleLab.text = @"手气券";
-    }else if (self.type == 2){
         self.titleLab.text = @"专属券";
+    }else if (self.type == 2){
+        self.titleLab.text = @"手气券";
     }
     
     
@@ -58,7 +58,7 @@
     self.avatarImage.layer.cornerRadius = 22;
     
     
-    self.nickNameLabel.text = g_myself.userNickname;
+    self.nickNameLabel.text = g_myself.userNickname;//
     [g_server WH_getHeadImageSmallWIthUserId:g_myself.userId userName:g_myself.userNickname imageView:self.avatarImage];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"WH_JXGroupRedPacketCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WH_JXGroupRedPacketCell"];
@@ -84,6 +84,8 @@
     [self.view bringSubviewToFront:self.numberLabel];
     [self.view bringSubviewToFront:self.moneyLabel];
     [self.view bringSubviewToFront:self.backBtn];
+    [self.view bringSubviewToFront:self.nickNameLabel];
+    
     
     
 }
@@ -128,7 +130,7 @@
         
         //券类型 1.普通券   2.拼手气   3.口令
         NSString *type = self.room.category == 1?@"专属钻石":@"专属券";
-        NSNumber *redType = [NSNumber numberWithInteger:[NSString stringWithFormat:@"%@",dic[@"type"]].integerValue];
+        NSNumber *redType = [NSNumber numberWithInteger:[NSString stringWithFormat:@"%@",self.selIndex == 1?dic[@"redPacketType"]:dic[@"type"]].integerValue];
         if(redType.intValue == 2){
             type = self.room.category == 1?@"手气钻石":@"手气券";
         }else if (redType.intValue == 3){

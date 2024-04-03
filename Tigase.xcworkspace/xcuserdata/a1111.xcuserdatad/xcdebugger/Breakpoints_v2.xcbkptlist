@@ -74,7 +74,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1795"
             endingLineNumber = "1795"
-            landmarkName = "-uploadFileData:key:toView:"
+            landmarkName = "-WH_uploadHeadImageWithUserId:image:toView:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -456,8 +456,8 @@
             filePath = "Tigase/meeting/GroupManage/Controller/WH_JXGroupRedPacketVC.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
             landmarkName = "-WH_didServerResult_WHSucces:dict:array:"
             landmarkType = "7">
          </BreakpointContent>
@@ -474,7 +474,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1006"
             endingLineNumber = "1006"
-            landmarkName = "-login:loginType:toView:"
+            landmarkName = "-login:toView:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -872,8 +872,8 @@
             filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/JXServer.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4842"
-            endingLineNumber = "4842"
+            startingLineNumber = "4857"
+            endingLineNumber = "4857"
             landmarkName = "-secretEncryption:payPassword:"
             landmarkType = "7">
          </BreakpointContent>
@@ -888,8 +888,8 @@
             filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/JXServer.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4845"
-            endingLineNumber = "4845"
+            startingLineNumber = "4860"
+            endingLineNumber = "4860"
             landmarkName = "-secretEncryption:payPassword:"
             landmarkType = "7">
          </BreakpointContent>
@@ -904,8 +904,8 @@
             filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/JXServer.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4821"
-            endingLineNumber = "4821"
+            startingLineNumber = "4836"
+            endingLineNumber = "4836"
             landmarkName = "-WH_AddUserAccountWithName:accountNo:payPassword:type:roomJid:qrCode:addId:telNumber:toView:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1544,10 +1544,10 @@
             filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/JXServer.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4999"
-            endingLineNumber = "4999"
-            landmarkName = "JXServer"
-            landmarkType = "3">
+            startingLineNumber = "5014"
+            endingLineNumber = "5014"
+            landmarkName = "-WH_TradeApplyBuyWithAmount:payAmount:payType:merchant:paymentCode:isBuy:toView:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1944,8 +1944,8 @@
             filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/JXServer.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4759"
-            endingLineNumber = "4759"
+            startingLineNumber = "4774"
+            endingLineNumber = "4774"
             landmarkName = "-WH_WithdrawWithAmount:usdtUrl:payPassword:targetAmount:serviceCharge:toView:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1960,8 +1960,8 @@
             filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/JXServer.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4775"
-            endingLineNumber = "4775"
+            startingLineNumber = "4790"
+            endingLineNumber = "4790"
             landmarkName = "-secretEncryption:amount:time:payPassword:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1976,8 +1976,8 @@
             filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/JXServer.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4780"
-            endingLineNumber = "4780"
+            startingLineNumber = "4795"
+            endingLineNumber = "4795"
             landmarkName = "-secretEncryption:amount:time:payPassword:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1992,8 +1992,8 @@
             filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/JXServer.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4782"
-            endingLineNumber = "4782"
+            startingLineNumber = "4797"
+            endingLineNumber = "4797"
             landmarkName = "-secretEncryption:amount:time:payPassword:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2008,8 +2008,8 @@
             filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/JXServer.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4756"
-            endingLineNumber = "4756"
+            startingLineNumber = "4771"
+            endingLineNumber = "4771"
             landmarkName = "-WH_WithdrawWithAmount:usdtUrl:payPassword:targetAmount:serviceCharge:toView:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2728,8 +2728,8 @@
             filePath = "Tigase/networkRequest(&#x7f51;&#x7edc;&#x8bf7;&#x6c42;)/JXServer.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2507"
-            endingLineNumber = "2507"
+            startingLineNumber = "2522"
+            endingLineNumber = "2522"
             landmarkName = "-WH_addMessage:type:data:flag:visible:lookArray:coor:location:remindArray:lable:isAllowComment:toView:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3576,8 +3576,8 @@
             filePath = "Tigase/controller/MainVC/WH_JXMain_WHViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "373"
-            endingLineNumber = "373"
+            startingLineNumber = "376"
+            endingLineNumber = "376"
             landmarkName = "-WH_didServerResult_WHSucces:dict:array:"
             landmarkType = "7">
          </BreakpointContent>
@@ -4198,8 +4198,8 @@
             filePath = "Tigase/ShortVideo/Home/Controller/WH_Player_WHVC.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "327"
-            endingLineNumber = "327"
+            startingLineNumber = "324"
+            endingLineNumber = "324"
             landmarkName = "-tapGesture:"
             landmarkType = "7">
          </BreakpointContent>
@@ -4217,6 +4217,182 @@
             startingLineNumber = "37"
             endingLineNumber = "37"
             landmarkName = "-viewDidLoad"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4AA60ACC-EAE1-4A6A-99C6-8C10E2380DC0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tigase/3rd/PlayerClasses/ControlView/ZFPlayerControlView.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "749"
+            endingLineNumber = "749"
+            landmarkName = "-activity"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "69107C63-8DB5-4A82-9A25-DC6D103A8AFB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tigase/3rd/PlayerClasses/ControlView/ZFPlayerControlView.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "-layoutSubviews"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C85ED79C-E4DB-44FA-B89D-31E917EFB33F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tigase/3rd/PlayerClasses/ControlView/ZFPlayerControlView.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "460"
+            endingLineNumber = "460"
+            landmarkName = "-videoPlayer:playStateChanged:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A9C3F80D-8BA3-40A3-A7BF-9528750C3A95"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tigase/3rd/PlayerClasses/ControlView/ZFPlayerControlView.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "462"
+            endingLineNumber = "462"
+            landmarkName = "-videoPlayer:playStateChanged:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A21EEF32-5B2C-4AC2-A864-642C95C7C54C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tigase/3rd/PlayerClasses/ControlView/ZFPlayerControlView.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "468"
+            endingLineNumber = "468"
+            landmarkName = "-videoPlayer:playStateChanged:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9D5D1C76-0473-48DC-93CF-691178727996"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tigase/3rd/PlayerClasses/ControlView/ZFPlayerControlView.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "472"
+            endingLineNumber = "472"
+            landmarkName = "-videoPlayer:playStateChanged:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "15CAFEA6-24D0-4E5D-A1AF-34EA4A9AB1B7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tigase/3rd/PlayerClasses/ControlView/ZFPlayerControlView.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "492"
+            endingLineNumber = "492"
+            landmarkName = "-videoPlayer:loadStateChanged:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9C806F7B-9BEF-4DB6-A977-1DA0DE2C05F8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tigase/3rd/PlayerClasses/ControlView/ZFPlayerControlView.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "494"
+            endingLineNumber = "494"
+            landmarkName = "-videoPlayer:loadStateChanged:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5DB36D62-0D1C-4D14-BF98-3D99126889F0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tigase/3rd/PlayerClasses/ControlView/ZFPlayerControlView.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "496"
+            endingLineNumber = "496"
+            landmarkName = "-videoPlayer:loadStateChanged:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A0BF6045-DC92-4E35-A0D8-2C6B859A5DE3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tigase/ShortVideo/Home/Controller/WH_Player_WHVC.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "246"
+            endingLineNumber = "246"
+            landmarkName = "-playTheVideoAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9EA68BEE-12F7-449C-B52E-ACDFFD852535"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tigase/meeting/GroupManage/Controller/WH_JXGroupRedPacketVC.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

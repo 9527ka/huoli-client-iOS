@@ -855,7 +855,7 @@
         
         NSString *money = [NSString stringWithFormat:@"%@",dic[@"money"]];
         
-        lastContet = ![dict.message.fromUserId isEqualToString:WAHU_TRANSFER]?[NSString stringWithFormat:@"HOTC购买，金额：￥%.2f，状态：付款中",money.doubleValue]:@"[下单通知]";
+        lastContet = ![dict.message.fromUserId isEqualToString:WAHU_TRANSFER]?[NSString stringWithFormat:@"金额：￥%.2f，状态：付款中",money.doubleValue]:@"[下单通知]";
     
     }else if ([dict.message.type intValue] == 4001){
         lastContet = @"[订单已支付]";

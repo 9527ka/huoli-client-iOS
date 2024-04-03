@@ -25,6 +25,16 @@
 @property (nonatomic, assign) NSInteger selIndex;
 @property (weak, nonatomic) IBOutlet UIView *timeBgView;
 
+@property (weak, nonatomic) IBOutlet UILabel *sendAllMoneyLab;
+@property (weak, nonatomic) IBOutlet UILabel *sendLuckMoneyLab;
+@property (weak, nonatomic) IBOutlet UILabel *sendExclusiveMoneyLab;
+
+@property (weak, nonatomic) IBOutlet UILabel *receiveAllMoneyLab;
+@property (weak, nonatomic) IBOutlet UILabel *receiveLuckMoneyLab;
+@property (weak, nonatomic) IBOutlet UILabel *receiveExclusiveMoneyLab;
+
+
+
 @end
 
 @implementation WH_JXGroupRedPacketTotalVC
@@ -63,11 +73,12 @@
         UIButton *btn = (UIButton *)[self.view viewWithTag:i];
         btn.layer.cornerRadius = 13.0f;
     }
+    
+    [self WH_getServerData];
 }
 
 - (void) WH_getServerData {
-    
-    [g_server WH_redPacketGetAndSendRedReceiveListIndex:_selIndex startTime:self.startTime endTime:self.endTime type:self.type roomJId:self.room.roomJid pageIndex:0 toView:self];
+    [g_server WH_redPacketTotalWithRoomJId:self.room.roomJid startTime:self.startTime endTime:self.endTime toView:self];
 }
 //发出的红包 600+
 - (IBAction)sendLookAction:(UIButton *)sender {
@@ -135,7 +146,47 @@
 -(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{
     [_wait stop];
     
+    if([aDownload.action isEqualToString:wh_act_redPacketSummary_outline]){
+        //遍历数组
+        float sendTotal = 0.00;
+        float receiveTotal = 0.00;
+        for (NSDictionary *dic in array1) {
+            NSString *type = [NSString stringWithFormat:@"%@",dic[@"type"]];
+            if(type.intValue == 1){//专属红包
+                NSString *sendAmount = [NSString stringWithFormat:@"%@",dic[@"sendAmount"]];
+                self.sendExclusiveMoneyLab.text = [NSString stringWithFormat:@"￥%.2f",sendAmount.floatValue];
+                sendTotal += sendAmount.floatValue;
+                
+                NSString *receiveAmount = [NSString stringWithFormat:@"%@",dic[@"receiveAmount"]];
+                self.receiveExclusiveMoneyLab.text = [NSString stringWithFormat:@"￥%.2f",receiveAmount.floatValue];
+                receiveTotal+=receiveAmount.floatValue;
+                
+            }else if (type.intValue == 2){//手气红包
+                
+                NSString *sendAmount = [NSString stringWithFormat:@"%@",dic[@"sendAmount"]];
+                self.sendLuckMoneyLab.text = [NSString stringWithFormat:@"￥%.2f",sendAmount.floatValue];
+                sendTotal += sendAmount.floatValue;
+                
+                NSString *receiveAmount = [NSString stringWithFormat:@"%@",dic[@"receiveAmount"]];
+                self.receiveLuckMoneyLab.text = [NSString stringWithFormat:@"￥%.2f",receiveAmount.floatValue];
+                receiveTotal+=receiveAmount.floatValue;
+                
+            }
+        }
+        
+        self.sendAllMoneyLab.text = [NSString stringWithFormat:@"￥%.2f",sendTotal];
+        self.receiveAllMoneyLab.text = [NSString stringWithFormat:@"￥%.2f",receiveTotal];
+        
+//        "diff": -40,
+//              "receiveAmount": 0,    //接收总金额
+//              "receiveCount": 0,     //抢包次数
+//              "sendAmount": 40,   //发送总金额
+//              "sendCount": 11,    //红包个数
+//              "type": 3,    //1-专属红包,2-手气红包,3-口令红包
+//              "userId": 0
     }
+    
+}
 #pragma mark - 请求失败回调
 -(int) WH_didServerResult_WHFailed:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict{
     [_wait stop];

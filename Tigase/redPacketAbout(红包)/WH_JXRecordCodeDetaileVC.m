@@ -40,7 +40,7 @@
     
     NSString *addStr = (startMoney == 0.00 && endMoney == 0.00)?@"":iconStr;
     
-    self.moneyLab.text = [NSString stringWithFormat:@"%@%.2f HOTC",addStr,self.model.money.floatValue];
+    self.moneyLab.text = [NSString stringWithFormat:@"%@%.2f 元",addStr,self.model.money.floatValue];
     
     self.orderStatueLab.text = self.model.desc;
     

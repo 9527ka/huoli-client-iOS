@@ -165,7 +165,7 @@ typedef NS_ENUM(NSInteger, JXTransferDeatilType) {
     
     //金额
     _moneyLabel.frame = CGRectMake(0, CGRectGetMaxY(_hintLab.frame)+18, JX_SCREEN_WIDTH, 30);
-    _moneyLabel.text = [NSString stringWithFormat:@"HOTC%.2f",self.model.money];
+    _moneyLabel.text = [NSString stringWithFormat:@"￥%.2f",self.model.money];
     
     // 1天内朋友未确认，将退还给你 ||  已退款到零钱，
     CGSize oneDaySize = [oneDayStr sizeWithAttributes:@{NSFontAttributeName:sysFontWithSize(14)}];

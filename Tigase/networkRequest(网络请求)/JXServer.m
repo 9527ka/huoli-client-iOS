@@ -2038,6 +2038,21 @@
 
     [p go];
 }
+// 获得群红包的统计
+- (void)WH_redPacketTotalWithRoomJId:(NSString *)roomJId startTime:(NSString *)startTime endTime:(NSString *)endTime toView:(id)toView{
+    WH_JXConnection *p = [self addTask:wh_act_redPacketSummary_outline param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    if(startTime.length > 0){
+        [p setPostValue:startTime forKey:@"startTime"];
+    }
+    if(endTime.length > 0){
+        [p setPostValue:endTime forKey:@"endTime"];
+    }
+    [p setPostValue:roomJId forKey:@"roomJId"];
+
+    [p go];
+}
+
 
 // 获得群接收与发送的红包
 - (void)WH_redPacketGetAndSendRedReceiveListIndex:(NSInteger)index startTime:(NSString *)startTime endTime:(NSString *)endTime type:(NSInteger)type roomJId:(NSString *)roomJId pageIndex:(NSInteger)pageIndex toView:(id)toView {

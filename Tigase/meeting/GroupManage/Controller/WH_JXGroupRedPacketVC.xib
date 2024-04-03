@@ -53,28 +53,31 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昵称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQe-3H-gri">
-                    <rect key="frame" x="182.33333333333334" y="167.66666666666666" width="28.666666666666657" height="17"/>
+                    <rect key="frame" x="182.33333333333334" y="167.66666666666666" width="28.666666666666657" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="18" id="g06-hx-RVw"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HYe-ry-Z1I">
-                    <rect key="frame" x="161.33333333333334" y="209.66666666666666" width="70.666666666666657" height="25.333333333333343"/>
+                    <rect key="frame" x="161.33333333333334" y="210.66666666666666" width="70.666666666666657" height="25.333333333333343"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                     <color key="textColor" red="1" green="0.31764705882352939" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="共0个券" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ryt-Yp-uj6">
-                    <rect key="frame" x="170.66666666666666" y="188.66666666666666" width="51.666666666666657" height="17"/>
+                    <rect key="frame" x="170.66666666666666" y="189.66666666666666" width="51.666666666666657" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.46666666666666667" green="0.46666666666666667" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YFL-v3-syV">
-                    <rect key="frame" x="0.0" y="261" width="393" height="591"/>
+                    <rect key="frame" x="0.0" y="262" width="393" height="590"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="8eu-sz-OYV">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="557"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="556"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="fF3-JJ-kET"/>

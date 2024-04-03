@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @property(nonatomic,copy)NSString *level;//等级
-@property(nonatomic,copy)NSString *subPrice;//HOTC数量
+@property(nonatomic,copy)NSString *subPrice;//￥数量
 @property(nonatomic,copy)NSString *quotaValue;//额度
 @property(nonatomic,copy)NSString *name;//青铜
 

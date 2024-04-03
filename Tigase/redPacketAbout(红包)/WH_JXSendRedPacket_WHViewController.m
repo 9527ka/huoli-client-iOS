@@ -359,7 +359,7 @@
         }
     }else{
 //        [g_App showAlert:Localized(@"JX_InputMoneyCount")];
-        [g_App showAlert:[NSString stringWithFormat:@"请输入0~%.2fHOTC" ,[maxSendMoney doubleValue]]];
+        [g_App showAlert:[NSString stringWithFormat:@"请输入0~%.2f元" ,[maxSendMoney doubleValue]]];
     }
     
 }

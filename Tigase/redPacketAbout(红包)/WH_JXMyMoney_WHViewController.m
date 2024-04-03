@@ -116,7 +116,7 @@
 
 -(UILabel *)balanceLabel{
     if (!_balanceLabel) {
-        NSString * moneyStr = [NSString stringWithFormat:@"HOTC%.2f",g_App.myMoney];
+        NSString * moneyStr = [NSString stringWithFormat:@"￥%.2f",g_App.myMoney];
         _balanceLabel = [UIFactory WH_create_WHLabelWith:CGRectZero text:moneyStr font:sysFontWithSize(28) textColor:[UIColor blackColor] backgroundColor:nil];
         _balanceLabel.textAlignment = NSTextAlignmentCenter;
         _balanceLabel.frame = CGRectMake(0, CGRectGetMaxY(_myMoneyLabel.frame)+5, JX_SCREEN_WIDTH, 30);
@@ -179,7 +179,7 @@
 
 
 -(void)updateBalanceLabel{
-    NSString * moneyStr = [NSString stringWithFormat:@"HOTC%.2f",g_App.myMoney];
+    NSString * moneyStr = [NSString stringWithFormat:@"￥%.2f",g_App.myMoney];
     self.balanceLabel.text = moneyStr;
     CGFloat Width = [self.balanceLabel.text sizeWithAttributes:@{NSFontAttributeName:self.balanceLabel.font}].width;
     CGRect frame = self.balanceLabel.frame;
@@ -275,7 +275,7 @@
 }
 
 -(void)WH_doRefresh:(NSNotification *)notifacation{
-    _balanceLabel.text = [NSString stringWithFormat:@"HOTC%.2f",g_App.myMoney];
+    _balanceLabel.text = [NSString stringWithFormat:@"￥%.2f",g_App.myMoney];
 }
 //服务端返回数据
 #pragma mark - 请求成功回调
@@ -284,7 +284,7 @@
 
     if ([aDownload.action isEqualToString:wh_act_getUserMoeny]) {
         g_App.myMoney = [dict[@"balance"] doubleValue];
-        NSString * moneyStr = [NSString stringWithFormat:@"HOTC%.2f",g_App.myMoney];
+        NSString * moneyStr = [NSString stringWithFormat:@"￥%.2f",g_App.myMoney];
         _balanceLabel.text = moneyStr;
     }
 }

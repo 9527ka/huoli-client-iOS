@@ -185,7 +185,7 @@
         }
         
         
-        _moneyLab.text = [NSString stringWithFormat:@"HOTC%.2f",model.money];
+        _moneyLab.text = [NSString stringWithFormat:@"￥%.2f",model.money];
         _baseView.frame = CGRectMake(20, 10, JX_SCREEN_WIDTH-40, 236);
         _nameLab.textColor = HEXCOLOR(0x797979);
         _nameLab.text = model.userName;
@@ -207,7 +207,7 @@
             _nameLab.text = @"订单超时";
         }
         [self hideTime:YES];
-        _moneyLab.text = [NSString stringWithFormat:@"HOTC%.2f",model.amount];
+        _moneyLab.text = [NSString stringWithFormat:@"￥%.2f",model.amount];
         _baseView.frame = CGRectMake(20, 10, JX_SCREEN_WIDTH-40, 200);
         _noteTit.text = @"备注内容:";
         
@@ -226,7 +226,7 @@
         _nameLab.text = Localized(@"JX_ReturnedToTheChange");
         _noteTit.text = Localized(@"JX_ReturnReason");
         [self hideTime:NO];
-        _moneyLab.text = [NSString stringWithFormat:@"HOTC%.2f",model.money];
+        _moneyLab.text = [NSString stringWithFormat:@"￥%.2f",model.money];
         _backTime.text = model.outTime;
         _sendTime.text = model.createTime;
         _baseView.frame = CGRectMake(20, 10, JX_SCREEN_WIDTH-40, 200+56);
@@ -253,7 +253,7 @@
             _nameLab.text = model.userName;
         }
         [self hideTime:YES];
-        _moneyLab.text = [NSString stringWithFormat:@"HOTC%.2f",model.money];
+        _moneyLab.text = [NSString stringWithFormat:@"￥%.2f",model.money];
         _baseView.frame = CGRectMake(20, 10, JX_SCREEN_WIDTH-40, 200);
         _nameLab.textColor = HEXCOLOR(0x797979);
     }

@@ -38,7 +38,7 @@
 #define WH_hide_error 0
 
 
-//#define BaseUrl @"http://192.168.1.88:8092/"   //开发环境
+#define BaseUrl @"http://192.168.1.88:8092/"   //开发环境
 //#define BaseUrl @"http://195.54.171.69:8092"   //测试环境
 //#define BaseUrl @"http://47.122.20.170:8092/"   //南京环境
 //#define BaseUrl @"http://8.217.169.145:8092"   //
@@ -51,7 +51,7 @@
 //#define BaseUrl @"http://115.29.214.184:8092/"   //线上环境
 //#define BaseUrl @"http://im.liehuo.shop/im/"   //线上环境
 
-#define BaseUrl @"http://im.liehuo.shop:8092/"   //线上环境
+//#define BaseUrl @"http://im.liehuo.shop:8092/"   //线上环境
 
 
  
@@ -224,6 +224,7 @@
 #define wh_act_openRedPacket @"redPacket/openRedPacket24"//领取红包
 
 //我的
+#define wh_act_redPacketSummary_outline @"redPacket/group/summary_outline"//群红包:按红包类型统计
 #define wh_act_redPacketGetSendRedPacketList @"redPacket/getSendRedPacketList"// 获取发送的红包
 #define wh_act_redPacketGetRedReceiveList @"redPacket/getRedReceiveList"   // 收到的红包
 
@@ -863,6 +864,8 @@
 - (void)WH_redPacketGetSendRedPacketListIndex:(NSInteger)index startTime:(NSString *)startTime endTime:(NSString *)endTime type:(NSInteger)type roomJId:(NSString *)roomJId toView:(id)toView;
 // 获得接收的红包
 - (void)WH_redPacketGetRedReceiveListIndex:(NSInteger)index startTime:(NSString *)startTime endTime:(NSString *)endTime type:(NSInteger)type roomJId:(NSString *)roomJId toView:(id)toView;
+// 获得群红包的统计
+- (void)WH_redPacketTotalWithRoomJId:(NSString *)roomJId startTime:(NSString *)startTime endTime:(NSString *)endTime toView:(id)toView;
 // 获得群接收与发送的红包
 - (void)WH_redPacketGetAndSendRedReceiveListIndex:(NSInteger)index startTime:(NSString *)startTime endTime:(NSString *)endTime type:(NSInteger)type roomJId:(NSString *)roomJId pageIndex:(NSInteger)pageIndex toView:(id)toView;
 // 红包回复

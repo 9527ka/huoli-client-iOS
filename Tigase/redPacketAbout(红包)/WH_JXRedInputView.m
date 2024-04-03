@@ -138,7 +138,7 @@
     _wh_countTitle.text = self.isDiamond ? @"钻石个数" : Localized(@"JXRed_numberPackets");// @"红包个数";//
     _wh_moneyTitle.text = self.isDiamond ? @"总数量" : Localized(@"JXRed_totalAmount");//@"总金额";//
     _wh_countUnit.text = self.isDiamond ? @"个" : Localized(@"JXRed_A");//@"个";//
-    _wh_moneyUnit.text = self.isDiamond ? @"钻石" : @"HOTC";//@"元";//
+    _wh_moneyUnit.text = self.isDiamond ? @"钻石" : @"元";//@"元";//
     
     if (self.type == 4) {
         _wh_canClaimTitle.text = @"谁可以领";
@@ -150,9 +150,9 @@
 //    [_wh_sendButton setTitle:self.isDiamond ? @"发送钻石" : Localized(@"JXRed_send") forState:UIControlStateHighlighted];
     _wh_moneyTextField.placeholder = self.isDiamond ? @"输入钻石数量" : Localized(@"JXRed_inputAmount");//@"输入金额";//
     _wh_countTextField.placeholder = self.isDiamond ? @"请输入钻石个数" : Localized(@"JXRed_inputNumPackets");//@"请输入红包个数";//
-    _wh_totalMoneyTitle.text = self.isDiamond ? @"钻石0.00" : @"HOTC0.00";
+    _wh_totalMoneyTitle.text = self.isDiamond ? @"钻石0.00" : @"￥0.00";
     
-    _wh_totalMoneyTitle.attributedText = [NSString changeSpecialWordColor:HEXCOLOR(0x161819) AllContent:_wh_totalMoneyTitle.text SpcWord:self.isDiamond ? @"钻石" :@"HOTC" font:14];
+    _wh_totalMoneyTitle.attributedText = [NSString changeSpecialWordColor:HEXCOLOR(0x161819) AllContent:_wh_totalMoneyTitle.text SpcWord:self.isDiamond ? @"钻石" :@"￥" font:14];
     
     _wh_promptTitle.text = self.isDiamond ? @"未领取的钻石，将于24小时后退回您的账号" : Localized(@"New_unclaimed_red");
     switch (_type) {
@@ -329,7 +329,7 @@
         _wh_sendButton.layer.cornerRadius = 24.0f;
         _wh_sendButton.layer.masksToBounds = YES;
         [_wh_sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_wh_sendButton setTitle:@"塞钱进红包" forState:UIControlStateNormal];
+        [_wh_sendButton setTitle:@"塞钱进优惠券" forState:UIControlStateNormal];
         [_wh_sendButton.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
         
     }
@@ -449,10 +449,10 @@
     if (self.isDiamond) {
         _wh_totalMoneyTitle.text = [NSString stringWithFormat:@"钻石%.2f",textField.text.doubleValue];
     } else {
-        _wh_totalMoneyTitle.text = [NSString stringWithFormat:@"HOTC%.2f",textField.text.doubleValue];
+        _wh_totalMoneyTitle.text = [NSString stringWithFormat:@"￥%.2f",textField.text.doubleValue];
     }
     //富文本
-    _wh_totalMoneyTitle.attributedText = [NSString changeSpecialWordColor:HEXCOLOR(0x161819) AllContent:_wh_totalMoneyTitle.text SpcWord:self.isDiamond ? @"钻石" :@"HOTC" font:14];
+    _wh_totalMoneyTitle.attributedText = [NSString changeSpecialWordColor:HEXCOLOR(0x161819) AllContent:_wh_totalMoneyTitle.text SpcWord:self.isDiamond ? @"钻石" :@"￥" font:14];
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string  {
     NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string];

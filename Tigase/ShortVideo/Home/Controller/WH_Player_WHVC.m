@@ -243,9 +243,6 @@
         WH_GKDYVideoModel *videoModel = self.dataArray[indexPath.item];
         [self.player playTheIndexPath:indexPath assetURL:[NSURL URLWithString:videoModel.video_url?videoModel.video_url:@""]];
         
-        
-//        NSString *playUrl = @"https://huoli-1324081351.cos.ap-hongkong.myqcloud.com/videos/short/01/1.mp4";
-//        [self.player playTheIndexPath:indexPath assetURL:[NSURL URLWithString:playUrl]];
         [self.controlView showTitle:@""
                      coverURLString:videoModel.thumbnail_url
                      fullScreenMode:ZFFullScreenModePortrait];

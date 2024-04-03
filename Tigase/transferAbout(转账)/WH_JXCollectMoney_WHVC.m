@@ -206,7 +206,7 @@
 - (void)updateViews {
     //金额
     CGSize mSize  = [self.money sizeWithAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Regular" size: 40]}];
-    _moneyLab.text = [NSString stringWithFormat:@"HOTC%.2f",[self.money doubleValue]];
+    _moneyLab.text = [NSString stringWithFormat:@"￥%.2f",[self.money doubleValue]];
     _moneyLab.frame = CGRectMake(0, CGRectGetMaxY(_qrCode.frame)+10, _baseView.frame.size.width, mSize.height);
     //说明
     CGSize dSize  = [self.desStr sizeWithAttributes:@{NSFontAttributeName:sysFontWithSize(14)}];

@@ -74,7 +74,7 @@
     
     UILabel *yuan = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.wh_moneyLabel.frame), self.wh_moneyLabel.frame.origin.y + 15, 17, 16)];
     yuan.textAlignment = NSTextAlignmentCenter;
-    yuan.text = @"HOTC";
+    yuan.text = @"元";
     yuan.textColor = [UIColor blackColor];
     yuan.font = [UIFont systemFontOfSize:13.0];
     [self.wh_centerRedPView addSubview:yuan];

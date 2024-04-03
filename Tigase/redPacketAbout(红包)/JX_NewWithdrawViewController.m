@@ -57,7 +57,7 @@
         [moneyView addSubview:cashTitle];
         [self.wh_contentView addSubview:moneyView];
         
-        UILabel * rmbLabel = [UIFactory WH_create_WHLabelWith:CGRectMake(drawMarginX, CGRectGetMaxY(cashTitle.frame), 35, drawHei) text:@"HOTC"];
+        UILabel * rmbLabel = [UIFactory WH_create_WHLabelWith:CGRectMake(drawMarginX, CGRectGetMaxY(cashTitle.frame), 35, drawHei) text:@"￥"];
         rmbLabel.font = sysBoldFontWithSize(28);
         rmbLabel.textAlignment = NSTextAlignmentLeft;
         [moneyView addSubview:rmbLabel];
@@ -77,7 +77,7 @@
         _balanceView.backgroundColor = [UIColor whiteColor];
         [self.wh_contentView addSubview:_balanceView];
         
-        NSString * moneyStr = [NSString stringWithFormat:@"%@HOTC%.2f",Localized(@"JXMoney_blance"),g_App.myMoney];
+        NSString * moneyStr = [NSString stringWithFormat:@"%@%.2f元",Localized(@"JXMoney_blance"),g_App.myMoney];
         UILabel *_balanceLabel = [UIFactory WH_create_WHLabelWith:CGRectZero text:moneyStr font:sysFontWithSize(14) textColor:[UIColor lightGrayColor] backgroundColor:nil];
         CGFloat blanceWidth = [moneyStr sizeWithAttributes:@{NSFontAttributeName:_balanceLabel.font}].width;
         _balanceLabel.frame = CGRectMake(drawMarginX, 0, blanceWidth, drawHei);

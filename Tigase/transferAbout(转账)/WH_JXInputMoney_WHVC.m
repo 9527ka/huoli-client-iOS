@@ -110,7 +110,7 @@
     [cashTitle setFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 14]];
     [baseView addSubview:cashTitle];
     
-    UILabel * rmbLabel = [UIFactory WH_create_WHLabelWith:CGRectMake(drawMarginX, CGRectGetMaxY(cashTitle.frame), 35, 35) text:@"HOTC"];
+    UILabel * rmbLabel = [UIFactory WH_create_WHLabelWith:CGRectMake(drawMarginX, CGRectGetMaxY(cashTitle.frame), 35, 35) text:@"元"];
     rmbLabel.font = sysBoldFontWithSize(28);
     rmbLabel.textAlignment = NSTextAlignmentLeft;
     [baseView addSubview:rmbLabel];

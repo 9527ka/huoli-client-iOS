@@ -124,7 +124,7 @@
 - (IBAction)certainAction:(id)sender {
     [self endEditing:YES];
     if(self.monyField.text.length == 0){
-        [g_server showMsg:@"请输入充值的HOTC金额"];
+        [g_server showMsg:@"请输入充值的金额"];
         return;
     }
     if(self.orderNoField.text.length == 0){
@@ -148,7 +148,7 @@
 }
 
 -(void)reSetRate{
-    self.rateLab.text = [NSString stringWithFormat:@"充值USDT 1 = HOTC %@",g_App.rate];
+    self.rateLab.text = [NSString stringWithFormat:@"充值USDT 1 = ￥ %@",g_App.rate];
     if(self.monyField.text.length > 0){
         
         self.monyCountLab.text = [NSString stringWithFormat:@"应付：USDT%.2f",self.monyField.text.doubleValue/g_App.rate.doubleValue];

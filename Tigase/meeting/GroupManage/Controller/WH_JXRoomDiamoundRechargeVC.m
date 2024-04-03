@@ -56,7 +56,7 @@
             UIButton *selectBtn = (UIButton *)[btn viewWithTag:666];
             selectBtn.selected = YES;
             self.selectBtn = selectBtn;
-            self.shouldPayTitle.text = [NSString stringWithFormat:@"应付：%@ HOTC",self.model.subPrice];
+            self.shouldPayTitle.text = [NSString stringWithFormat:@"应付：%@ 元",self.model.subPrice];
             
         }
     }
@@ -77,7 +77,7 @@
     self.selectBtn = selectBtn;
     
     self.model = self.titleArray[sender.tag - 300];
-    self.shouldPayTitle.text = [NSString stringWithFormat:@"应付：%@ HOTC",self.model.subPrice];
+    self.shouldPayTitle.text = [NSString stringWithFormat:@"应付：%@ 元",self.model.subPrice];
     self.noticeLab.text = [NSString stringWithFormat:self.model.level.intValue > self.wh_room.level?@"升级成功之后，时效为30天":@"续费成功之后，时效新增30天"];
 }
 

@@ -40,7 +40,7 @@
     UILabel *RMBLab = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(title.frame)+40, JX_SCREEN_WIDTH, 50)];
     RMBLab.textAlignment = NSTextAlignmentCenter;
     RMBLab.font = sysFontWithSize(46);
-    RMBLab.text = [NSString stringWithFormat:@"HOTC%.2f",[[self.payDic objectForKey:@"money"] doubleValue]];
+    RMBLab.text = [NSString stringWithFormat:@"￥%.2f",[[self.payDic objectForKey:@"money"] doubleValue]];
     [_contentView addSubview:RMBLab];
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(RMBLab.frame) + 40, 200, 30)];

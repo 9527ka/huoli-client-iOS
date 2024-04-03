@@ -56,7 +56,7 @@
     [mView addSubview:mLabel];
     
     UILabel *mqLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(mLabel.frame) + 25, 20, 42)];
-    [mqLabel setText:@"HOTC"];
+    [mqLabel setText:@"元"];
     [mqLabel setTextColor:HEXCOLOR(0x3A404C)];
     [mqLabel setFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 30]];
     [mView addSubview:mqLabel];

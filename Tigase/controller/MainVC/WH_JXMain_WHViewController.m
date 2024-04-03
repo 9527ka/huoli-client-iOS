@@ -33,6 +33,7 @@
 
 #import "TFJunYou_desiPageVc.h"
 #import "WH_Player_WHVC.h"
+#import "WH_GKDYPlayer_WHViewController.h"
 
 @implementation WH_JXMain_WHViewController
 @synthesize tb=_tb;
@@ -79,6 +80,8 @@
 //        _squareVC = [[JXSquareViewController alloc] init];
         
         self.homeVC = [[WH_Player_WHVC alloc] init];
+//        self.homeVC = [[WH_GKDYPlayer_WHViewController alloc] init];
+        
 //        self.findVC = [[WH_FindViewController alloc] init];///发现
 #else
         _weiboVC = [WeiboViewControlle alloc];

@@ -110,11 +110,13 @@
 }
 - (void) WH_getServerData {
     
-    if (_selIndex == 1) {
-        [g_server WH_redPacketGetRedReceiveListIndex:self.page startTime:self.startTime endTime:self.endTime type:self.type roomJId:self.room.roomJid toView:self];
-    }else {
-        [g_server WH_redPacketGetSendRedPacketListIndex:self.page startTime:self.startTime endTime:self.endTime type:self.type roomJId:self.room.roomJid toView:self];
-    }
+    [g_server WH_redPacketEarnListIndex:self.page startTime:self.startTime endTime:self.endTime type:self.type roomJId:self.room.roomJid toView:self];
+    
+//    if (_selIndex == 1) {
+//        [g_server WH_redPacketGetRedReceiveListIndex:self.page startTime:self.startTime endTime:self.endTime type:self.type roomJId:self.room.roomJid toView:self];
+//    }else {
+//        [g_server WH_redPacketGetSendRedPacketListIndex:self.page startTime:self.startTime endTime:self.endTime type:self.type roomJId:self.room.roomJid toView:self];
+//    }
 }
 
 - (IBAction)didTapBack {
@@ -192,7 +194,8 @@
         [g_server WH_getHeadImageSmallWIthUserId:[NSString stringWithFormat:@"%@",dic[@"userId"]] userName:[NSString stringWithFormat:@"%@",dic[@"userName"]] imageView:cell.avatarImage];
         
         cell.nicknameLabel.text = [NSString stringWithFormat:@"%@", dic[@"userName"]];
-        cell.receiveMoneyLab.text = [NSString stringWithFormat:@"￥%.2f",[NSString stringWithFormat:@"%@",dic[@"money"]].doubleValue];
+        cell.receiveMoneyLab.text = [NSString stringWithFormat:@"￥%.2f",[NSString stringWithFormat:@"%@",dic[@"receiveAmount"]].doubleValue];
+        cell.sendMoneyLab.text = [NSString stringWithFormat:@"￥%.2f",[NSString stringWithFormat:@"%@",dic[@"sendAmount"]].doubleValue];
     }
     return cell;
 }

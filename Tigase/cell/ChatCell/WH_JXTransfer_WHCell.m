@@ -97,7 +97,7 @@
     WH_JXUserObject *user = [[WH_JXUserObject alloc] init];
     user = [user getUserById:self.msg.toUserId];
     _nameLabel.text = self.msg.fileName.length > 0 ? self.msg.fileName : self.msg.isMySend ? [NSString stringWithFormat:@"%@%@",Localized(@"JX_TransferTo"),user.remarkName.length > 0 ? user.remarkName : user.userNickname] : Localized(@"JX_TransferToYou");
-    _moneyLabel.text = [NSString stringWithFormat:@"HOTC%@",self.msg.content];
+    _moneyLabel.text = [NSString stringWithFormat:@"￥%@",self.msg.content];
     
     if ([self.msg.fileSize integerValue] == 2) {
         _imageBackground.alpha = 0.7;

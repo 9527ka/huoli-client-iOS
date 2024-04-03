@@ -71,7 +71,7 @@
     self.originMoneyLab.text = [NSString stringWithFormat:@"￥%.2f",[NSString stringWithFormat:@"%@",self.dict[@"targetAmount"]].doubleValue];
     
     self.orderNoLab.text = [NSString stringWithFormat:@"%@",self.dict[@"no"]];
-    self.countLab.text = [NSString stringWithFormat:@"%@ HOTC",self.dict[@"payAmount"]];
+    self.countLab.text = [NSString stringWithFormat:@"%@ 元",self.dict[@"payAmount"]];
     //卖家昵称
     self.sellerNameLab.text = [NSString stringWithFormat:@"%@",self.dict[@"payeeNickName"]];
     self.buyerNameLab.text = [NSString stringWithFormat:@"%@",self.dict[@"payerName"]];
@@ -143,7 +143,7 @@
       
     }else if(status.intValue == 4){
         self.statueTitle.text = @"订单已完成";
-        self.detaileLab.text = [NSString stringWithFormat:@"您已成功交易%@HOTC",self.dict[@"payAmount"]];
+        self.detaileLab.text = [NSString stringWithFormat:@"您已成功交易%@元",self.dict[@"payAmount"]];
     }else if(status.intValue == 5){
         self.statueTitle.text = @"申诉已结束";
         self.detaileLab.text = @"申诉已结束";

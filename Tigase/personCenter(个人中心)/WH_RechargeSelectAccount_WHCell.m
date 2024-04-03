@@ -41,7 +41,7 @@
     wh_withdrawalToTitleLabel.textColor = HEXCOLOR(0x3A404C);
     wh_withdrawalToTitleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:17];
 //    wh_withdrawalToTitleLabel.text = Localized(@"JX_WithdrawalToWhere");
-        wh_withdrawalToTitleLabel.text = @"HOTC URL";
+        wh_withdrawalToTitleLabel.text = @"￥URL";
 
     [self.contentView addSubview:wh_withdrawalToTitleLabel];
     [wh_withdrawalToTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -116,7 +116,7 @@
     self.usdtTextField = [[UITextField alloc] initWithFrame:CGRectMake(20, 54.5, self.contentView.frame.size.width - 40, 54)];
     [self.usdtTextField setTextColor:HEXCOLOR(0x3A404C)];
     [self.usdtTextField setFont:sysBoldFontWithSize(14)];
-    [self.usdtTextField setPlaceholder:@"HOTC URL"];
+    [self.usdtTextField setPlaceholder:@"￥ URL"];
     [self.usdtTextField setBorderStyle:UITextBorderStyleNone];
     [self.usdtTextField setDelegate:self];
     [self.contentView addSubview:self.usdtTextField];

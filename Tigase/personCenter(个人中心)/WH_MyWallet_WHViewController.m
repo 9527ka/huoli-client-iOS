@@ -53,7 +53,7 @@
 }
 
 -(void)WH_doRefresh:(NSNotification *)notifacation{
-    self.wh_moneyLabel.text = [NSString stringWithFormat:@"HOTC%.2f",g_App.myMoney];
+    self.wh_moneyLabel.text = [NSString stringWithFormat:@"￥%.2f",g_App.myMoney];
     
     //获取用户余额
     [g_server WH_getUserMoenyToView:self];
@@ -189,7 +189,7 @@
         if([dict objectForKey:@"usdtUrl"]){
             g_App.usdtUrl = [NSString stringWithFormat:@"%@",[dict objectForKey:@"usdtUrl"]];
         }
-        NSString * moneyStr = [NSString stringWithFormat:@"HOTC%.2f",g_App.myMoney];
+        NSString * moneyStr = [NSString stringWithFormat:@"￥%.2f",g_App.myMoney];
         self.wh_moneyLabel.text = moneyStr;
     }
 }
