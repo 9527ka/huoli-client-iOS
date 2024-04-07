@@ -646,7 +646,7 @@ static JXXMPP *sharedManager;
                                     if ([content isKindOfClass:[NSDictionary class]]) {
                                         if ([content[@"noticeType"] intValue] == 1) {
                                             //强提醒公告
-                                            NSString *objectId = jsonObj[@"objectId"];
+                                            NSString *objectId = [NSString stringWithFormat:@"%@",jsonObj[@"objectId"]];
                                             NSNumber *isCloseStrongReminder = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%@_group_strong_reminder_%@",g_myself.userId,objectId]];
                                             BOOL isClose = [isCloseStrongReminder boolValue];
                                             if (!isClose) {
@@ -2124,7 +2124,7 @@ static JXXMPP *sharedManager;
                                     if ([content isKindOfClass:[NSDictionary class]]) {
                                         if ([content[@"noticeType"] intValue] == 1) {
                                             //强提醒公告
-                                            NSString *objectId = jsonObj[@"objectId"];
+                                            NSString *objectId = [NSString stringWithFormat:@"%@",jsonObj[@"objectId"]];
                                             NSNumber *isCloseStrongReminder = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%@_group_strong_reminder_%@",g_myself.userId,objectId]];
                                             BOOL isClose = [isCloseStrongReminder boolValue];
                                             if (!isClose) {

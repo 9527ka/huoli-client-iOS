@@ -201,7 +201,7 @@ static WH_JXMessageObject *shared;
     self.location_y = [p objectForKey:kMESSAGE_LOCATION_Y];
     self.timeLen = [p objectForKey:kMESSAGE_TIMELEN];
     self.fileSize = [p objectForKey:kMESSAGE_FILESIZE];
-    self.objectId = [p objectForKey:kMESSAGE_OBJECTID];
+    self.objectId = [NSString stringWithFormat:@"%@",[p objectForKey:kMESSAGE_OBJECTID]];
     
     //放入图片宽高
     //    self.location_x = [p objectForKey:KMESSAGE_imHeight];

@@ -7255,7 +7255,8 @@
 -(void)sendRedPacket:(NSDictionary*)redPacketDict withGreet:(NSString *)greet
 {
     [self hideKeyboard:NO];
-    if ([redPacketDict[@"id"] length]>0) {
+    NSString *packetID = [NSString stringWithFormat:@"%@",redPacketDict[@"id"]];
+    if ([packetID length]>0) {
         WH_JXMessageObject *msg=[[WH_JXMessageObject alloc] init];
         msg.timeSend     = [NSDate date];
         msg.fromUserId   = MY_USER_ID;
@@ -7275,7 +7276,7 @@
         msg.isRead       = [NSNumber numberWithBool:NO];
 //        msg.isUpload     = [NSNumber numberWithBool:NO];
         msg.fileName = redPacketDict[@"type"];
-        msg.objectId = redPacketDict[@"id"];
+        msg.objectId = packetID;
         msg.isReadDel    = [NSNumber numberWithInt:NO];
         
         [msg insert:self.roomJid];
@@ -7411,7 +7412,8 @@
 #pragma mark - 转账delegate
 - (void)transferToUser:(NSDictionary *)dict {
     [self hideKeyboard:NO];
-    if ([dict[@"id"] length]>0) {
+    NSString *packetID = [NSString stringWithFormat:@"%@",dict[@"id"]];
+    if ([packetID length]>0) {
         WH_JXMessageObject *msg=[[WH_JXMessageObject alloc] init];
         msg.timeSend     = [NSDate date];
         msg.fromUserId   = MY_USER_ID;
@@ -7424,7 +7426,7 @@
         msg.isRead       = [NSNumber numberWithBool:NO];
 //        msg.isUpload     = [NSNumber numberWithBool:NO];
         msg.fileName = dict[@"remark"];
-        msg.objectId = dict[@"id"];
+        msg.objectId = packetID;
         msg.isReadDel    = [NSNumber numberWithInt:NO];
         
         [msg insert:nil];
@@ -7440,7 +7442,10 @@
 #pragma mark 发券代理 极速券
 -(void)sendRedPacketDelegate:(NSDictionary *)redpacketDict{
     [self hideKeyboard:NO];
-    if ([redpacketDict[@"id"] length]>0) {
+    
+    NSString *packetId = [NSString stringWithFormat:@"%@",redpacketDict[@"id"]];
+    
+    if ([packetId length]>0) {
         WH_JXMessageObject *msg=[[WH_JXMessageObject alloc] init];
         msg.timeSend     = [NSDate date];
         msg.fromUserId   = MY_USER_ID;
@@ -7461,7 +7466,7 @@
         msg.isRead       = [NSNumber numberWithBool:NO];
 //        msg.isUpload     = [NSNumber numberWithBool:NO];
         msg.fileName = redpacketDict[@"type"];
-        msg.objectId = redpacketDict[@"id"];
+        msg.objectId = packetId;
         msg.isReadDel    = [NSNumber numberWithInt:NO];
         
         [msg insert:self.roomJid];
@@ -7477,7 +7482,10 @@
 #pragma mark 发指定券代理
 - (void)sendReceiveRedPacketDelegate:(NSDictionary *)redpacketDict {
     [self hideKeyboard:NO];
-    if ([redpacketDict[@"id"] length]>0) {
+    
+    NSString *packetId = [NSString stringWithFormat:@"%@",redpacketDict[@"id"]];
+    
+    if ([packetId length]>0) {
         WH_JXMessageObject *msg=[[WH_JXMessageObject alloc] init];
         msg.timeSend     = [NSDate date];
         msg.fromUserId   = MY_USER_ID;
@@ -7500,7 +7508,7 @@
         msg.isRead       = [NSNumber numberWithBool:NO];
         //        msg.isUpload     = [NSNumber numberWithBool:NO];
         msg.fileName = redpacketDict[@"type"];
-        msg.objectId = redpacketDict[@"id"];
+        msg.objectId = packetId;
         msg.isReadDel    = [NSNumber numberWithInt:NO];
         
         [msg insert:self.roomJid];
@@ -7792,8 +7800,11 @@
         if (success) {
             
             NSString *userId = [NSString stringWithFormat:@"%@",[[dict objectForKey:@"packet"] objectForKey:@"userId"]];
-            [self changeMessageRedPacketStatus:dict[@"packet"][@"id"]];
-            [self changeMessageArrFileSize:dict[@"packet"][@"id"]];
+            
+            NSString *packetId = [NSString stringWithFormat:@"%@",dict[@"packet"][@"id"]];
+            
+            [self changeMessageRedPacketStatus:packetId];
+            [self changeMessageArrFileSize:packetId];
             [self doEndEdit];
             if (self.roomJid.length > 0) {
                 WH_JXMessageObject *msg = [[WH_JXMessageObject alloc] init];
@@ -7801,7 +7812,7 @@
                 msg.timeSend = [NSDate date];
                 msg.toUserId = self.chatPerson.userId;
                 msg.fromUserId = MY_USER_ID;
-                msg.objectId = dict[@"packet"][@"id"];
+                msg.objectId = packetId;
                 NSString *userName = [NSString string];
                 NSString *overStr = [NSString string];
                 if ([userId intValue] == [MY_USER_ID intValue]) {

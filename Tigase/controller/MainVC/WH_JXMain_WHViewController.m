@@ -34,6 +34,7 @@
 #import "TFJunYou_desiPageVc.h"
 #import "WH_Player_WHVC.h"
 #import "WH_GKDYPlayer_WHViewController.h"
+#import "WHUploadCoverVC.h"
 
 @implementation WH_JXMain_WHViewController
 @synthesize tb=_tb;
@@ -228,14 +229,18 @@
 }
 //发布的点击事件
 -(void)publishAction{
+    
+//    WHUploadCoverVC *vc = [[WHUploadCoverVC alloc] init];
+//    [g_navigation pushViewController:vc animated:YES];
+    
+    
     if ([[AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo] count] <= 0) {
         [g_App showAlert:@"未检测到摄像头"];
         return;
     }
-    
+
     WH_JXRecordVideo_WHVC *vc = [[WH_JXRecordVideo_WHVC alloc] init];
-//    vc.modalPresentationStyle = UIModalPresentationFullScreen;
-//    [self presentViewController:vc animated:NO completion:nil];
+
     [g_navigation pushViewController:vc animated:NO];
 }
 

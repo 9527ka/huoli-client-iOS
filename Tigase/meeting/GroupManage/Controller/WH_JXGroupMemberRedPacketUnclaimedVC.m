@@ -160,14 +160,18 @@
             
             
             NSString *userId = [NSString stringWithFormat:@"%@",[[dict objectForKey:@"packet"] objectForKey:@"userId"]];
-            [self changeMessageRedPacketStatus:dict[@"packet"][@"id"]];
+            
+            NSString *packetId = [NSString stringWithFormat:@"%@",dict[@"packet"][@"id"]];
+            
+            
+            [self changeMessageRedPacketStatus:packetId];
             if (self.room.roomJid.length > 0) {
                 WH_JXMessageObject *msg = [[WH_JXMessageObject alloc] init];
                 msg.type = [NSNumber numberWithInt:kWCMessageTypeRemind];
                 msg.timeSend = [NSDate date];
                 msg.toUserId = [NSString stringWithFormat:@"%ld",self.room.userId];
                 msg.fromUserId = MY_USER_ID;
-                msg.objectId = dict[@"packet"][@"id"];
+                msg.objectId = packetId;
                 NSString *userName = [NSString string];
                 NSString *overStr = [NSString string];
                 if ([userId intValue] == [MY_USER_ID intValue]) {
@@ -177,7 +181,7 @@
                         overStr = Localized(@"JX_RedPacketOver");
                     }
                 }else {
-                    userName = dict[@"packet"][@"userName"];
+                    userName = [NSString stringWithFormat:@"%@",dict[@"packet"][@"userName"]];
                 }
                 NSString *getRedStr = [NSString stringWithFormat:Localized(@"JX_GetRedPacketFromFriend"),userName];
                 msg.content = [NSString stringWithFormat:@"%@%@",getRedStr,overStr];

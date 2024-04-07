@@ -736,6 +736,8 @@
 		331AD11D2BAD81D3008A9113 /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 331AD1152BAD81D3008A9113 /* MJRefreshBaseView.m */; };
 		331AD11E2BAD81D3008A9113 /* MJRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 331AD1172BAD81D3008A9113 /* MJRefreshFooterView.m */; };
 		331AD1212BAD824D008A9113 /* WH_Player_WHVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 331AD1202BAD824D008A9113 /* WH_Player_WHVC.m */; };
+		33234B372BBCF92B009A36B2 /* WHUploadCoverVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33234B352BBCF92B009A36B2 /* WHUploadCoverVC.m */; };
+		33234B382BBCF92B009A36B2 /* WHUploadCoverVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33234B362BBCF92B009A36B2 /* WHUploadCoverVC.xib */; };
 		332DB1B42B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 332DB1B22B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.m */; };
 		332DB1B52B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 332DB1B32B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.xib */; };
 		332DB1B82B8ED68E00B4D6D4 /* WH_JXChatDefaultBgVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 332DB1B72B8ED68E00B4D6D4 /* WH_JXChatDefaultBgVC.m */; };
@@ -3108,6 +3110,9 @@
 		331AD1192BAD81D3008A9113 /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
 		331AD11F2BAD824D008A9113 /* WH_Player_WHVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_Player_WHVC.h; sourceTree = "<group>"; };
 		331AD1202BAD824D008A9113 /* WH_Player_WHVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_Player_WHVC.m; sourceTree = "<group>"; };
+		33234B342BBCF92B009A36B2 /* WHUploadCoverVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WHUploadCoverVC.h; sourceTree = "<group>"; };
+		33234B352BBCF92B009A36B2 /* WHUploadCoverVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WHUploadCoverVC.m; sourceTree = "<group>"; };
+		33234B362BBCF92B009A36B2 /* WHUploadCoverVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WHUploadCoverVC.xib; sourceTree = "<group>"; };
 		332DB1B12B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXGroupMemberEarningVC.h; sourceTree = "<group>"; };
 		332DB1B22B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXGroupMemberEarningVC.m; sourceTree = "<group>"; };
 		332DB1B32B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXGroupMemberEarningVC.xib; sourceTree = "<group>"; };
@@ -6831,6 +6836,9 @@
 				182BD1A622CA2E8800357959 /* WH_Addressbook_WHController.m */,
 				DE5C692C2326042D00321406 /* WH_ChangeTheBoundPhoneNumber_WHViewController.h */,
 				DE5C692D2326042D00321406 /* WH_ChangeTheBoundPhoneNumber_WHViewController.m */,
+				33234B342BBCF92B009A36B2 /* WHUploadCoverVC.h */,
+				33234B352BBCF92B009A36B2 /* WHUploadCoverVC.m */,
+				33234B362BBCF92B009A36B2 /* WHUploadCoverVC.xib */,
 			);
 			path = MainVC;
 			sourceTree = "<group>";
@@ -10547,6 +10555,7 @@
 				332DB1B52B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.xib in Resources */,
 				CC3016E21951BABF0059BADA /* f034.png in Resources */,
 				CC3017191951BABF0059BADA /* f061@2x.png in Resources */,
+				33234B382BBCF92B009A36B2 /* WHUploadCoverVC.xib in Resources */,
 				CC3016B21951BABF0059BADA /* f010.png in Resources */,
 				18E9EA8E1D8640F3002E334F /* RDUp2.png in Resources */,
 				330F3B872B31867200E69B97 /* WH_PayOrderCell.xib in Resources */,
@@ -11597,6 +11606,7 @@
 				331AD0C22BAD7242008A9113 /* JX_WHVideoPlayCell.m in Sources */,
 				0FA000182100B02100CF1503 /* WH_JXSelectLabels_WHVC.m in Sources */,
 				6353D3EA2182B6BF00CFBEA7 /* WH_JXSelectFriends_WHVC.m in Sources */,
+				33234B372BBCF92B009A36B2 /* WHUploadCoverVC.m in Sources */,
 				CC3017791951BABF0059BADA /* HBHttpRequestCache.m in Sources */,
 				6353D3ED2182B6D500CFBEA7 /* WH_JXSelFriend_WHVC.m in Sources */,
 				B203A84D23238E94001B2575 /* WH_InputPwdViewController.m in Sources */,

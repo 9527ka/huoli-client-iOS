@@ -741,7 +741,7 @@ static WH_JXUserObject *sharedUser;
                     noticeMsg.fromUserId = dict[@"from"];
                     noticeMsg.fromUserName = dict[@"fromUserName"];
                     noticeMsg.isEncrypt = dict[@"isEncrypt"];
-                    noticeMsg.objectId = dict[@"jid"];
+                    noticeMsg.objectId = [NSString stringWithFormat:@"%@",dict[@"jid"]];
                     double timeSend = [dict[@"timeSend"] doubleValue];
                     if (timeSend > 0) {
                         noticeMsg.timeSend = [NSDate dateWithTimeIntervalSince1970:timeSend];

@@ -26,6 +26,8 @@
 + (NSString *)getAttachImgFilePath:(NSString *)ext;
 + (NSString *)getComImgFileName:(NSString *)ext;
 + (void)deleteComImg;
+// 获取视频第一帧
++ (UIImage*)getVideoFirstViewImage:(NSURL *)path;
 +(UIImage*) getFirstImageFromVideo:(NSString*)video;
 // 被裁剪后的第一帧图片
 +(void)getFirstImageFromVideo:(NSString*)video imageView:(UIImageView*)iv;

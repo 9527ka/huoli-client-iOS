@@ -100,9 +100,9 @@
             
             int collectType = [row[@"type"] intValue];
             NSTimeInterval createTime = [row[@"createTime"] doubleValue];
-            NSString * emojiId = row[@"emojiId"];
+            NSString * emojiId = [NSString stringWithFormat:@"%@",row[@"emojiId"]];
             
-            NSString *url = row[@"url"];
+            NSString *url = [NSString stringWithFormat:@"%@",row[@"url"]];
             NSString *fileLength = row[@"fileLength"];
             NSString *fileName = row[@"fileName"];
             NSString *fileSize = row[@"fileSize"];
