@@ -42,9 +42,8 @@
     _array = [NSMutableArray array];
     
     UIButton *doneBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    doneBtn.backgroundColor = HEXCOLOR(0x0093FF);
     [doneBtn setTitle:Localized(@"JX_Finish") forState:UIControlStateNormal];
-    [doneBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [doneBtn setTitleColor:THEMECOLOR forState:UIControlStateNormal];
     doneBtn.frame = CGRectMake(JX_SCREEN_WIDTH - 43 - 10, JX_SCREEN_TOP - 8 - 28, 43, 28);
     doneBtn.titleLabel.font = sysFontWithSize(14);
     [doneBtn addTarget:self action:@selector(WH_doneBtnAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -64,14 +63,14 @@
     labelNameBgView.backgroundColor = [UIColor whiteColor];
     labelNameBgView.layer.cornerRadius = g_factory.cardCornerRadius;
     labelNameBgView.layer.masksToBounds = YES;
-    labelNameBgView.layer.borderWidth = g_factory.cardBorderWithd;
-    labelNameBgView.layer.borderColor = g_factory.cardBorderColor.CGColor;
+//    labelNameBgView.layer.borderWidth = g_factory.cardBorderWithd;
+//    labelNameBgView.layer.borderColor = g_factory.cardBorderColor.CGColor;
     
     CGFloat labelNameW = 65;
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 17, labelNameW, 21)];
     label.text = Localized(@"JX_LabelName");
-    label.textColor = HEXCOLOR(0x3A404C);
-    label.font = sysFontWithSize(15);
+    label.textColor = HEXCOLOR(0x161819);
+    label.font = sysFontWithSize(14);
     [labelNameBgView addSubview:label];
     
 //    UIView *fieldView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(label.frame), JX_SCREEN_WIDTH, 50)];
@@ -79,9 +78,9 @@
 //    [view addSubview:fieldView];
     self.labelName = [[UITextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(label.frame)+12, 0, CGRectGetWidth(labelNameBgView.frame) - CGRectGetMaxX(label.frame) - 12*2, CGRectGetHeight(labelNameBgView.frame))];
     if (@available(iOS 10, *)) {
-        self.labelName.attributedPlaceholder = [[NSAttributedString alloc] initWithString:Localized(@"JX_LabelForExample") attributes:@{NSForegroundColorAttributeName:HEXCOLOR(0xBAC3D5)}];
+        self.labelName.attributedPlaceholder = [[NSAttributedString alloc] initWithString:Localized(@"JX_LabelForExample") attributes:@{NSForegroundColorAttributeName:HEXCOLOR(0xBABABA)}];
     } else {
-        [self.labelName setValue:HEXCOLOR(0xBAC3D5) forKeyPath:@"_placeholderLabel.textColor"];
+        [self.labelName setValue:HEXCOLOR(0xBABABA) forKeyPath:@"_placeholderLabel.textColor"];
     }
     self.labelName.textAlignment = NSTextAlignmentRight;
     self.labelName.font = sysFontWithSize(15);
@@ -112,17 +111,18 @@
 //    [btn addSubview:label];
 //    [view addSubview:btn];
     
-    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(INSETS, CGRectGetMaxY(labelNameBgView.frame)+12, JX_SCREEN_WIDTH - INSETS*2, 55)];
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(37, CGRectGetMaxY(labelNameBgView.frame)+70, JX_SCREEN_WIDTH - 74, 48)];
     [view addSubview:btn];
-    btn.layer.cornerRadius = g_factory.cardCornerRadius;
+    btn.layer.cornerRadius = 24;
     btn.layer.masksToBounds = YES;
-    btn.layer.borderWidth = g_factory.cardBorderWithd;
-    btn.layer.borderColor = g_factory.cardBorderColor.CGColor;
-    [btn setTitleColor:HEXCOLOR(0x8F9CBB) forState:UIControlStateNormal];
+//    btn.layer.borderWidth = g_factory.cardBorderWithd;
+//    btn.layer.borderColor = g_factory.cardBorderColor.CGColor;
+    [btn setTitleColor:HEXCOLOR(0xffffff) forState:UIControlStateNormal];
     [btn setTitle:Localized(@"JX_AddMembers") forState:UIControlStateNormal];
-    [btn setImage:[UIImage imageNamed:@"WH_label_add"] forState:UIControlStateNormal];
-    btn.titleLabel.font = sysFontWithSize(15);
-    btn.backgroundColor = [UIColor whiteColor];
+    [btn setImage:[[UIImage imageNamed:@"WH_label_add"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+    btn.tintColor = [UIColor whiteColor];
+    btn.titleLabel.font = sysFontWithSize(17);
+    btn.backgroundColor = THEMECOLOR;
     [btn addTarget:self action:@selector(addFriendAction) forControlEvents:UIControlEventTouchUpInside];
     
     [btn layoutButtonWithEdgeInsetsStyle:LLButtonStyleTextRight imageTitleSpace:12];

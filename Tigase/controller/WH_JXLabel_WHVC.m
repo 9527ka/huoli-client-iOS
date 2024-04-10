@@ -84,24 +84,32 @@
 
 - (void)customView {
     
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP, CGRectGetWidth(self.view.frame), HEIGHT)];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, JX_SCREEN_TOP, CGRectGetWidth(self.view.frame), HEIGHT*2)];
     
-    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(INSETS, 12, JX_SCREEN_WIDTH - INSETS*2, HEIGHT - 12*2)];
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(37, HEIGHT, JX_SCREEN_WIDTH - 74, 48)];
     [headerView addSubview:btn];
-    btn.layer.cornerRadius = g_factory.cardCornerRadius;
+    btn.layer.cornerRadius = 24;
     btn.layer.masksToBounds = YES;
-    btn.layer.borderWidth = g_factory.cardBorderWithd;
-    btn.layer.borderColor = g_factory.cardBorderColor.CGColor;
-    [btn setTitleColor:HEXCOLOR(0x8F9CBB) forState:UIControlStateNormal];
+    btn.backgroundColor = THEMECOLOR;
+//    btn.layer.borderWidth = g_factory.cardBorderWithd;
+//    btn.layer.borderColor = g_factory.cardBorderColor.CGColor;
+    [btn setTitleColor:HEXCOLOR(0xFFFFFF) forState:UIControlStateNormal];
     [btn setTitle:Localized(@"JX_NewLabel") forState:UIControlStateNormal];
-    [btn setImage:[UIImage imageNamed:@"WH_label_add"] forState:UIControlStateNormal];
-    btn.titleLabel.font = sysFontWithSize(15);
-    btn.backgroundColor = [UIColor whiteColor];
+   
+    UIImage *image =  [[UIImage imageNamed:@"WH_label_add"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [btn setImage:image forState:UIControlStateNormal];
+    btn.tintColor = [UIColor whiteColor];
+    btn.titleLabel.font = sysFontWithSize(17);
     [btn addTarget:self action:@selector(createLabelAction) forControlEvents:UIControlEventTouchUpInside];
     
     [btn layoutButtonWithEdgeInsetsStyle:LLButtonStyleTextRight imageTitleSpace:12];
     
-    self.tableView.tableHeaderView = headerView;
+    self.tableView.tableFooterView = headerView;
+    
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH, 20)];
+    bgView.backgroundColor = [UIColor clearColor];
+    self.tableView.tableHeaderView = bgView;
+    
 //    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 20, 20)];
 //    imageView.center = CGPointMake(imageView.center.x, HEIGHT / 2);
 //    imageView.image = [UIImage imageNamed:@"person_add_green"];
@@ -220,6 +228,7 @@
     
     WH_AddFriend_WHCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WH_AddFriend_WHCell"];
     cell.type = WHSettingCellTypeTitleWithContent;
+    cell.accessoryImageView.hidden = NO;
     NSInteger numOfRows = [self tableView:tableView numberOfRowsInSection:indexPath.section];
     if (numOfRows == 1) {
         cell.bgRoundType = WHSettingCellBgRoundTypeAll;

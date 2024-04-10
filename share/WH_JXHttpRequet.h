@@ -11,7 +11,9 @@
 
 #define wh_act_UploadFile @"upload/UploadServlet" //上传文件
 #define act_SendMsg    @"user/sendMsg" //发消息
-#define wh_act_MsgAdd @"b/circle/msg/add" //发送生活圈
+#define wh_act_MsgAdd @"series/short/publish" //发送生活圈 b/circle/msg/add
+
+
 
 @interface WH_JXHttpRequet : NSObject
 

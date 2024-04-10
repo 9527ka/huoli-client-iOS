@@ -713,6 +713,10 @@
 		330F3B8D2B32853200E69B97 /* WH_JXCertainOrderVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 330F3B8B2B32853200E69B97 /* WH_JXCertainOrderVC.xib */; };
 		330F3B912B32BF2500E69B97 /* WH_JXOrderDetaileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 330F3B8F2B32BF2500E69B97 /* WH_JXOrderDetaileVC.m */; };
 		330F3B922B32BF2500E69B97 /* WH_JXOrderDetaileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 330F3B902B32BF2500E69B97 /* WH_JXOrderDetaileVC.xib */; };
+		331675552BC2884D002B7334 /* WH_playListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 331675532BC2884D002B7334 /* WH_playListVC.m */; };
+		331675562BC2884D002B7334 /* WH_playListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 331675542BC2884D002B7334 /* WH_playListVC.xib */; };
+		3316755A2BC28E3E002B7334 /* WH_playListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 331675582BC28E3E002B7334 /* WH_playListCell.m */; };
+		3316755B2BC28E3E002B7334 /* WH_playListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 331675592BC28E3E002B7334 /* WH_playListCell.xib */; };
 		331AD0B02BAD6FE3008A9113 /* ZFIJKPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 331AD0902BAD6FE3008A9113 /* ZFIJKPlayerManager.m */; };
 		331AD0B12BAD6FE3008A9113 /* ZFAVPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 331AD0922BAD6FE3008A9113 /* ZFAVPlayerManager.m */; };
 		331AD0B22BAD6FE3008A9113 /* ZFUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 331AD0952BAD6FE3008A9113 /* ZFUtilities.m */; };
@@ -738,6 +742,8 @@
 		331AD1212BAD824D008A9113 /* WH_Player_WHVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 331AD1202BAD824D008A9113 /* WH_Player_WHVC.m */; };
 		33234B372BBCF92B009A36B2 /* WHUploadCoverVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33234B352BBCF92B009A36B2 /* WHUploadCoverVC.m */; };
 		33234B382BBCF92B009A36B2 /* WHUploadCoverVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33234B362BBCF92B009A36B2 /* WHUploadCoverVC.xib */; };
+		33234B3B2BC23A04009A36B2 /* WH_VideoMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33234B3A2BC23A04009A36B2 /* WH_VideoMainVC.m */; };
+		33234B3E2BC275F9009A36B2 /* CircleTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 33234B3C2BC275F7009A36B2 /* CircleTextView.m */; };
 		332DB1B42B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 332DB1B22B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.m */; };
 		332DB1B52B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 332DB1B32B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.xib */; };
 		332DB1B82B8ED68E00B4D6D4 /* WH_JXChatDefaultBgVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 332DB1B72B8ED68E00B4D6D4 /* WH_JXChatDefaultBgVC.m */; };
@@ -799,6 +805,137 @@
 		33CD3C6E2B64F999001BFBFF /* WH_JXRedPacketSecCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CD3C6C2B64F999001BFBFF /* WH_JXRedPacketSecCell.xib */; };
 		33CD3C712B650ED7001BFBFF /* WH_UserRedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CD3C702B650ED7001BFBFF /* WH_UserRedData.m */; };
 		33CEFB892B91CF6B0005B68D /* WH_JXRecordCodeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CEFB882B91CF6B0005B68D /* WH_JXRecordCodeModel.m */; };
+		33E3AF0B2BC3D3D600366D4E /* AwemeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AEF52BC3D3CB00366D4E /* AwemeListCell.m */; };
+		33E3AF0C2BC3D3D600366D4E /* AVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AEFA2BC3D3CC00366D4E /* AVPlayerView.m */; };
+		33E3AF0D2BC3D3D600366D4E /* AVPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AEFB2BC3D3CC00366D4E /* AVPlayerManager.m */; };
+		33E3AF122BC3D3D600366D4E /* AwemeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF032BC3D3D100366D4E /* AwemeListController.m */; };
+		33E3AF292BC3DCB200366D4E /* NSAttributedString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF172BC3DCB100366D4E /* NSAttributedString+Extension.m */; };
+		33E3AF2A2BC3DCB200366D4E /* NSNotification+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF1B2BC3DCB100366D4E /* NSNotification+Extension.m */; };
+		33E3AF2B2BC3DCB200366D4E /* NSTextAttachment+Emotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF1D2BC3DCB100366D4E /* NSTextAttachment+Emotion.m */; };
+		33E3AF2C2BC3DCB200366D4E /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF1E2BC3DCB100366D4E /* UIImage+Extension.m */; };
+		33E3AF2D2BC3DCB200366D4E /* CADisplayLink+Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF1F2BC3DCB100366D4E /* CADisplayLink+Tool.m */; };
+		33E3AF2E2BC3DCB200366D4E /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF222BC3DCB100366D4E /* NSDate+Extension.m */; };
+		33E3AF2F2BC3DCB200366D4E /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF242BC3DCB100366D4E /* NSString+Extension.m */; };
+		33E3AF302BC3DCB200366D4E /* UIWindow+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF252BC3DCB100366D4E /* UIWindow+Extension.m */; };
+		33E3AF342BC3DD1100366D4E /* WebCacheHelpler.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF322BC3DD0E00366D4E /* WebCacheHelpler.m */; };
+		33E3AF3C2BC3DD8300366D4E /* WebPImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF392BC3DD8300366D4E /* WebPImage.m */; };
+		33E3AF3D2BC3DD8300366D4E /* WebPImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF3A2BC3DD8300366D4E /* WebPImageView.m */; };
+		33E3AF3E2BC3DD8300366D4E /* WebPQueueManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF3B2BC3DD8300366D4E /* WebPQueueManager.m */; };
+		33E3AFEC2BC3E6E100366D4E /* muxread.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF462BC3E6DF00366D4E /* muxread.c */; };
+		33E3AFED2BC3E6E100366D4E /* muxinternal.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF472BC3E6DF00366D4E /* muxinternal.c */; };
+		33E3AFEE2BC3E6E100366D4E /* anim_encode.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF482BC3E6DF00366D4E /* anim_encode.c */; };
+		33E3AFEF2BC3E6E100366D4E /* muxedit.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF4A2BC3E6DF00366D4E /* muxedit.c */; };
+		33E3AFF02BC3E6E100366D4E /* bit_writer_utils.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF4D2BC3E6DF00366D4E /* bit_writer_utils.c */; };
+		33E3AFF12BC3E6E100366D4E /* thread_utils.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF4F2BC3E6DF00366D4E /* thread_utils.c */; };
+		33E3AFF22BC3E6E100366D4E /* rescaler_utils.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF532BC3E6DF00366D4E /* rescaler_utils.c */; };
+		33E3AFF32BC3E6E100366D4E /* huffman_utils.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF562BC3E6E000366D4E /* huffman_utils.c */; };
+		33E3AFF42BC3E6E100366D4E /* huffman_encode_utils.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF592BC3E6E000366D4E /* huffman_encode_utils.c */; };
+		33E3AFF52BC3E6E100366D4E /* quant_levels_utils.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF5C2BC3E6E000366D4E /* quant_levels_utils.c */; };
+		33E3AFF62BC3E6E100366D4E /* quant_levels_dec_utils.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF5D2BC3E6E000366D4E /* quant_levels_dec_utils.c */; };
+		33E3AFF72BC3E6E100366D4E /* bit_reader_utils.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF5E2BC3E6E000366D4E /* bit_reader_utils.c */; };
+		33E3AFF82BC3E6E100366D4E /* utils.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF602BC3E6E000366D4E /* utils.c */; };
+		33E3AFF92BC3E6E100366D4E /* color_cache_utils.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF642BC3E6E000366D4E /* color_cache_utils.c */; };
+		33E3AFFA2BC3E6E100366D4E /* filters_utils.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF652BC3E6E000366D4E /* filters_utils.c */; };
+		33E3AFFB2BC3E6E100366D4E /* random_utils.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF662BC3E6E000366D4E /* random_utils.c */; };
+		33E3AFFC2BC3E6E100366D4E /* iterator_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF702BC3E6E000366D4E /* iterator_enc.c */; };
+		33E3AFFD2BC3E6E100366D4E /* cost_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF722BC3E6E000366D4E /* cost_enc.c */; };
+		33E3AFFE2BC3E6E100366D4E /* alpha_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF732BC3E6E000366D4E /* alpha_enc.c */; };
+		33E3AFFF2BC3E6E100366D4E /* picture_psnr_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF752BC3E6E000366D4E /* picture_psnr_enc.c */; };
+		33E3B0002BC3E6E100366D4E /* token_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF762BC3E6E000366D4E /* token_enc.c */; };
+		33E3B0012BC3E6E100366D4E /* tree_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF782BC3E6E000366D4E /* tree_enc.c */; };
+		33E3B0022BC3E6E100366D4E /* delta_palettization_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF792BC3E6E000366D4E /* delta_palettization_enc.c */; };
+		33E3B0032BC3E6E200366D4E /* filter_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF7A2BC3E6E000366D4E /* filter_enc.c */; };
+		33E3B0042BC3E6E200366D4E /* picture_csp_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF7B2BC3E6E000366D4E /* picture_csp_enc.c */; };
+		33E3B0052BC3E6E200366D4E /* frame_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF7C2BC3E6E000366D4E /* frame_enc.c */; };
+		33E3B0062BC3E6E200366D4E /* syntax_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF7D2BC3E6E000366D4E /* syntax_enc.c */; };
+		33E3B0072BC3E6E200366D4E /* predictor_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF7F2BC3E6E000366D4E /* predictor_enc.c */; };
+		33E3B0082BC3E6E200366D4E /* config_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF802BC3E6E000366D4E /* config_enc.c */; };
+		33E3B0092BC3E6E200366D4E /* backward_references_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF812BC3E6E000366D4E /* backward_references_enc.c */; };
+		33E3B00A2BC3E6E200366D4E /* picture_tools_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF822BC3E6E000366D4E /* picture_tools_enc.c */; };
+		33E3B00B2BC3E6E200366D4E /* webp_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF832BC3E6E000366D4E /* webp_enc.c */; };
+		33E3B00C2BC3E6E200366D4E /* vp8l_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF842BC3E6E000366D4E /* vp8l_enc.c */; };
+		33E3B00D2BC3E6E200366D4E /* histogram_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF852BC3E6E000366D4E /* histogram_enc.c */; };
+		33E3B00E2BC3E6E200366D4E /* analysis_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF862BC3E6E000366D4E /* analysis_enc.c */; };
+		33E3B00F2BC3E6E200366D4E /* quant_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF892BC3E6E000366D4E /* quant_enc.c */; };
+		33E3B0102BC3E6E200366D4E /* near_lossless_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF8A2BC3E6E000366D4E /* near_lossless_enc.c */; };
+		33E3B0112BC3E6E200366D4E /* picture_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF8B2BC3E6E000366D4E /* picture_enc.c */; };
+		33E3B0122BC3E6E200366D4E /* backward_references_cost_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF8C2BC3E6E000366D4E /* backward_references_cost_enc.c */; };
+		33E3B0132BC3E6E200366D4E /* picture_rescale_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF8D2BC3E6E000366D4E /* picture_rescale_enc.c */; };
+		33E3B0142BC3E6E200366D4E /* demux.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF8F2BC3E6E000366D4E /* demux.c */; };
+		33E3B0152BC3E6E200366D4E /* anim_decode.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF902BC3E6E000366D4E /* anim_decode.c */; };
+		33E3B0162BC3E6E200366D4E /* io_dec.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF922BC3E6E000366D4E /* io_dec.c */; };
+		33E3B0172BC3E6E200366D4E /* frame_dec.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF932BC3E6E000366D4E /* frame_dec.c */; };
+		33E3B0182BC3E6E200366D4E /* tree_dec.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF942BC3E6E000366D4E /* tree_dec.c */; };
+		33E3B0192BC3E6E200366D4E /* alpha_dec.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF972BC3E6E000366D4E /* alpha_dec.c */; };
+		33E3B01A2BC3E6E200366D4E /* buffer_dec.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF992BC3E6E000366D4E /* buffer_dec.c */; };
+		33E3B01B2BC3E6E200366D4E /* quant_dec.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF9A2BC3E6E000366D4E /* quant_dec.c */; };
+		33E3B01C2BC3E6E200366D4E /* idec_dec.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF9C2BC3E6E000366D4E /* idec_dec.c */; };
+		33E3B01D2BC3E6E200366D4E /* webp_dec.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF9D2BC3E6E000366D4E /* webp_dec.c */; };
+		33E3B01E2BC3E6E200366D4E /* vp8l_dec.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AF9E2BC3E6E000366D4E /* vp8l_dec.c */; };
+		33E3B01F2BC3E6E200366D4E /* vp8_dec.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFA02BC3E6E000366D4E /* vp8_dec.c */; };
+		33E3B0202BC3E6E200366D4E /* upsampling.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFA32BC3E6E000366D4E /* upsampling.c */; };
+		33E3B0212BC3E6E200366D4E /* lossless_sse2.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFA42BC3E6E000366D4E /* lossless_sse2.c */; };
+		33E3B0222BC3E6E200366D4E /* lossless_enc_mips_dsp_r2.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFA62BC3E6E000366D4E /* lossless_enc_mips_dsp_r2.c */; };
+		33E3B0232BC3E6E200366D4E /* enc_msa.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFA72BC3E6E000366D4E /* enc_msa.c */; };
+		33E3B0242BC3E6E200366D4E /* filters_mips_dsp_r2.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFAA2BC3E6E000366D4E /* filters_mips_dsp_r2.c */; };
+		33E3B0252BC3E6E200366D4E /* rescaler.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFAB2BC3E6E000366D4E /* rescaler.c */; };
+		33E3B0262BC3E6E200366D4E /* dec_mips_dsp_r2.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFAC2BC3E6E000366D4E /* dec_mips_dsp_r2.c */; };
+		33E3B0272BC3E6E200366D4E /* rescaler_neon.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFAD2BC3E6E000366D4E /* rescaler_neon.c */; };
+		33E3B0282BC3E6E200366D4E /* cost_sse2.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFAE2BC3E6E000366D4E /* cost_sse2.c */; };
+		33E3B0292BC3E6E200366D4E /* enc_sse41.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFAF2BC3E6E000366D4E /* enc_sse41.c */; };
+		33E3B02A2BC3E6E200366D4E /* lossless_enc_sse41.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFB02BC3E6E000366D4E /* lossless_enc_sse41.c */; };
+		33E3B02B2BC3E6E200366D4E /* upsampling_neon.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFB12BC3E6E000366D4E /* upsampling_neon.c */; };
+		33E3B02C2BC3E6E200366D4E /* filters_sse2.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFB22BC3E6E000366D4E /* filters_sse2.c */; };
+		33E3B02D2BC3E6E200366D4E /* lossless_mips_dsp_r2.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFB32BC3E6E000366D4E /* lossless_mips_dsp_r2.c */; };
+		33E3B02E2BC3E6E200366D4E /* enc_mips_dsp_r2.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFB42BC3E6E000366D4E /* enc_mips_dsp_r2.c */; };
+		33E3B02F2BC3E6E200366D4E /* cpu.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFB52BC3E6E000366D4E /* cpu.c */; };
+		33E3B0302BC3E6E200366D4E /* yuv_neon.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFB62BC3E6E000366D4E /* yuv_neon.c */; };
+		33E3B0312BC3E6E200366D4E /* alpha_processing.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFB72BC3E6E000366D4E /* alpha_processing.c */; };
+		33E3B0322BC3E6E200366D4E /* enc_mips32.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFB92BC3E6E000366D4E /* enc_mips32.c */; };
+		33E3B0332BC3E6E200366D4E /* filters_neon.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFBA2BC3E6E000366D4E /* filters_neon.c */; };
+		33E3B0342BC3E6E200366D4E /* upsampling_sse2.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFBB2BC3E6E000366D4E /* upsampling_sse2.c */; };
+		33E3B0352BC3E6E200366D4E /* yuv_sse2.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFBC2BC3E6E000366D4E /* yuv_sse2.c */; };
+		33E3B0362BC3E6E300366D4E /* filters_msa.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFBD2BC3E6E000366D4E /* filters_msa.c */; };
+		33E3B0372BC3E6E300366D4E /* rescaler_msa.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFBF2BC3E6E000366D4E /* rescaler_msa.c */; };
+		33E3B0382BC3E6E300366D4E /* lossless_neon.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFC02BC3E6E000366D4E /* lossless_neon.c */; };
+		33E3B0392BC3E6E300366D4E /* lossless_enc_msa.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFC12BC3E6E000366D4E /* lossless_enc_msa.c */; };
+		33E3B03A2BC3E6E300366D4E /* filters.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFC22BC3E6E000366D4E /* filters.c */; };
+		33E3B03B2BC3E6E300366D4E /* alpha_processing_mips_dsp_r2.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFC32BC3E6E000366D4E /* alpha_processing_mips_dsp_r2.c */; };
+		33E3B03C2BC3E6E300366D4E /* rescaler_mips_dsp_r2.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFC42BC3E6E000366D4E /* rescaler_mips_dsp_r2.c */; };
+		33E3B03D2BC3E6E300366D4E /* ssim_sse2.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFC52BC3E6E000366D4E /* ssim_sse2.c */; };
+		33E3B03E2BC3E6E300366D4E /* rescaler_mips32.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFC62BC3E6E000366D4E /* rescaler_mips32.c */; };
+		33E3B03F2BC3E6E300366D4E /* dec_sse41.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFC72BC3E6E000366D4E /* dec_sse41.c */; };
+		33E3B0402BC3E6E300366D4E /* rescaler_sse2.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFC82BC3E6E000366D4E /* rescaler_sse2.c */; };
+		33E3B0412BC3E6E300366D4E /* lossless_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFC92BC3E6E000366D4E /* lossless_enc.c */; };
+		33E3B0422BC3E6E300366D4E /* yuv_mips_dsp_r2.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFCA2BC3E6E000366D4E /* yuv_mips_dsp_r2.c */; };
+		33E3B0432BC3E6E300366D4E /* alpha_processing_neon.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFCB2BC3E6E000366D4E /* alpha_processing_neon.c */; };
+		33E3B0442BC3E6E300366D4E /* dec.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFCC2BC3E6E000366D4E /* dec.c */; };
+		33E3B0452BC3E6E300366D4E /* lossless.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFCD2BC3E6E000366D4E /* lossless.c */; };
+		33E3B0462BC3E6E300366D4E /* ssim.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFCE2BC3E6E000366D4E /* ssim.c */; };
+		33E3B0472BC3E6E300366D4E /* upsampling_msa.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFCF2BC3E6E000366D4E /* upsampling_msa.c */; };
+		33E3B0482BC3E6E300366D4E /* lossless_enc_sse2.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFD02BC3E6E000366D4E /* lossless_enc_sse2.c */; };
+		33E3B0492BC3E6E300366D4E /* yuv.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFD12BC3E6E000366D4E /* yuv.c */; };
+		33E3B04A2BC3E6E300366D4E /* enc_neon.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFD22BC3E6E000366D4E /* enc_neon.c */; };
+		33E3B04B2BC3E6E300366D4E /* dec_sse2.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFD32BC3E6E000366D4E /* dec_sse2.c */; };
+		33E3B04C2BC3E6E300366D4E /* enc_avx2.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFD42BC3E6E000366D4E /* enc_avx2.c */; };
+		33E3B04D2BC3E6E300366D4E /* enc_sse2.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFD62BC3E6E000366D4E /* enc_sse2.c */; };
+		33E3B04E2BC3E6E300366D4E /* lossless_enc_neon.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFD72BC3E6E000366D4E /* lossless_enc_neon.c */; };
+		33E3B04F2BC3E6E300366D4E /* cost_mips32.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFD92BC3E6E000366D4E /* cost_mips32.c */; };
+		33E3B0502BC3E6E300366D4E /* alpha_processing_sse41.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFDA2BC3E6E000366D4E /* alpha_processing_sse41.c */; };
+		33E3B0512BC3E6E300366D4E /* dec_neon.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFDB2BC3E6E000366D4E /* dec_neon.c */; };
+		33E3B0522BC3E6E300366D4E /* cost.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFDC2BC3E6E000366D4E /* cost.c */; };
+		33E3B0532BC3E6E300366D4E /* dec_mips32.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFDD2BC3E6E000366D4E /* dec_mips32.c */; };
+		33E3B0542BC3E6E300366D4E /* cost_mips_dsp_r2.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFDE2BC3E6E000366D4E /* cost_mips_dsp_r2.c */; };
+		33E3B0552BC3E6E300366D4E /* alpha_processing_sse2.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFDF2BC3E6E000366D4E /* alpha_processing_sse2.c */; };
+		33E3B0562BC3E6E300366D4E /* dec_clip_tables.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFE02BC3E6E000366D4E /* dec_clip_tables.c */; };
+		33E3B0572BC3E6E300366D4E /* lossless_msa.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFE12BC3E6E000366D4E /* lossless_msa.c */; };
+		33E3B0582BC3E6E300366D4E /* enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFE22BC3E6E000366D4E /* enc.c */; };
+		33E3B0592BC3E6E300366D4E /* lossless_enc_mips32.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFE42BC3E6E000366D4E /* lossless_enc_mips32.c */; };
+		33E3B05A2BC3E6E300366D4E /* yuv_mips32.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFE52BC3E6E000366D4E /* yuv_mips32.c */; };
+		33E3B05B2BC3E6E300366D4E /* upsampling_mips_dsp_r2.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFE62BC3E6E000366D4E /* upsampling_mips_dsp_r2.c */; };
+		33E3B05C2BC3E6E300366D4E /* dec_msa.c in Sources */ = {isa = PBXBuildFile; fileRef = 33E3AFE72BC3E6E000366D4E /* dec_msa.c */; };
+		33E3B0602BC4E1D100366D4E /* WH_PopularVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E3B05E2BC4E1D100366D4E /* WH_PopularVideoVC.m */; };
+		33E3B0612BC4E1D100366D4E /* WH_PopularVideoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33E3B05F2BC4E1D100366D4E /* WH_PopularVideoVC.xib */; };
 		33E591672B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E5914E2B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		33E591682B16E6B900E578A3 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E591572B16E6B900E578A3 /* ViewController+MASAdditions.m */; };
 		33E591692B16E6B900E578A3 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E5915B2B16E6B900E578A3 /* MASCompositeConstraint.m */; };
@@ -3065,6 +3202,12 @@
 		330F3B8E2B32BF2500E69B97 /* WH_JXOrderDetaileVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXOrderDetaileVC.h; sourceTree = "<group>"; };
 		330F3B8F2B32BF2500E69B97 /* WH_JXOrderDetaileVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXOrderDetaileVC.m; sourceTree = "<group>"; };
 		330F3B902B32BF2500E69B97 /* WH_JXOrderDetaileVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXOrderDetaileVC.xib; sourceTree = "<group>"; };
+		331675522BC2884D002B7334 /* WH_playListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_playListVC.h; sourceTree = "<group>"; };
+		331675532BC2884D002B7334 /* WH_playListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_playListVC.m; sourceTree = "<group>"; };
+		331675542BC2884D002B7334 /* WH_playListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_playListVC.xib; sourceTree = "<group>"; };
+		331675572BC28E3E002B7334 /* WH_playListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_playListCell.h; sourceTree = "<group>"; };
+		331675582BC28E3E002B7334 /* WH_playListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_playListCell.m; sourceTree = "<group>"; };
+		331675592BC28E3E002B7334 /* WH_playListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_playListCell.xib; sourceTree = "<group>"; };
 		331AD08F2BAD6FE3008A9113 /* ZFIJKPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFIJKPlayerManager.h; sourceTree = "<group>"; };
 		331AD0902BAD6FE3008A9113 /* ZFIJKPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFIJKPlayerManager.m; sourceTree = "<group>"; };
 		331AD0922BAD6FE3008A9113 /* ZFAVPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFAVPlayerManager.m; sourceTree = "<group>"; };
@@ -3113,6 +3256,10 @@
 		33234B342BBCF92B009A36B2 /* WHUploadCoverVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WHUploadCoverVC.h; sourceTree = "<group>"; };
 		33234B352BBCF92B009A36B2 /* WHUploadCoverVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WHUploadCoverVC.m; sourceTree = "<group>"; };
 		33234B362BBCF92B009A36B2 /* WHUploadCoverVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WHUploadCoverVC.xib; sourceTree = "<group>"; };
+		33234B392BC23A04009A36B2 /* WH_VideoMainVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_VideoMainVC.h; sourceTree = "<group>"; };
+		33234B3A2BC23A04009A36B2 /* WH_VideoMainVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_VideoMainVC.m; sourceTree = "<group>"; };
+		33234B3C2BC275F7009A36B2 /* CircleTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleTextView.m; sourceTree = "<group>"; };
+		33234B3D2BC275F9009A36B2 /* CircleTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleTextView.h; sourceTree = "<group>"; };
 		332DB1B12B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXGroupMemberEarningVC.h; sourceTree = "<group>"; };
 		332DB1B22B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXGroupMemberEarningVC.m; sourceTree = "<group>"; };
 		332DB1B32B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXGroupMemberEarningVC.xib; sourceTree = "<group>"; };
@@ -3212,6 +3359,198 @@
 		33CD3C702B650ED7001BFBFF /* WH_UserRedData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_UserRedData.m; sourceTree = "<group>"; };
 		33CEFB872B91CF6B0005B68D /* WH_JXRecordCodeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXRecordCodeModel.h; sourceTree = "<group>"; };
 		33CEFB882B91CF6B0005B68D /* WH_JXRecordCodeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXRecordCodeModel.m; sourceTree = "<group>"; };
+		33E3AEF52BC3D3CB00366D4E /* AwemeListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AwemeListCell.m; sourceTree = "<group>"; };
+		33E3AEF72BC3D3CC00366D4E /* AwemeListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwemeListCell.h; sourceTree = "<group>"; };
+		33E3AEF92BC3D3CC00366D4E /* AVPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVPlayerManager.h; sourceTree = "<group>"; };
+		33E3AEFA2BC3D3CC00366D4E /* AVPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVPlayerView.m; sourceTree = "<group>"; };
+		33E3AEFB2BC3D3CC00366D4E /* AVPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVPlayerManager.m; sourceTree = "<group>"; };
+		33E3AEFC2BC3D3CC00366D4E /* AVPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVPlayerView.h; sourceTree = "<group>"; };
+		33E3AF032BC3D3D100366D4E /* AwemeListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AwemeListController.m; sourceTree = "<group>"; };
+		33E3AF062BC3D3D300366D4E /* AwemeListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwemeListController.h; sourceTree = "<group>"; };
+		33E3AF152BC3D57700366D4E /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		33E3AF172BC3DCB100366D4E /* NSAttributedString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Extension.m"; sourceTree = "<group>"; };
+		33E3AF192BC3DCB100366D4E /* UIWindow+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Extension.h"; sourceTree = "<group>"; };
+		33E3AF1A2BC3DCB100366D4E /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
+		33E3AF1B2BC3DCB100366D4E /* NSNotification+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotification+Extension.m"; sourceTree = "<group>"; };
+		33E3AF1C2BC3DCB100366D4E /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
+		33E3AF1D2BC3DCB100366D4E /* NSTextAttachment+Emotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextAttachment+Emotion.m"; sourceTree = "<group>"; };
+		33E3AF1E2BC3DCB100366D4E /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
+		33E3AF1F2BC3DCB100366D4E /* CADisplayLink+Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CADisplayLink+Tool.m"; sourceTree = "<group>"; };
+		33E3AF202BC3DCB100366D4E /* NSAttributedString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Extension.h"; sourceTree = "<group>"; };
+		33E3AF212BC3DCB100366D4E /* NSTextAttachment+Emotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextAttachment+Emotion.h"; sourceTree = "<group>"; };
+		33E3AF222BC3DCB100366D4E /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
+		33E3AF232BC3DCB100366D4E /* NSNotification+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotification+Extension.h"; sourceTree = "<group>"; };
+		33E3AF242BC3DCB100366D4E /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
+		33E3AF252BC3DCB100366D4E /* UIWindow+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+Extension.m"; sourceTree = "<group>"; };
+		33E3AF272BC3DCB100366D4E /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
+		33E3AF282BC3DCB100366D4E /* CADisplayLink+Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CADisplayLink+Tool.h"; sourceTree = "<group>"; };
+		33E3AF322BC3DD0E00366D4E /* WebCacheHelpler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebCacheHelpler.m; sourceTree = "<group>"; };
+		33E3AF332BC3DD1000366D4E /* WebCacheHelpler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebCacheHelpler.h; sourceTree = "<group>"; };
+		33E3AF362BC3DD8300366D4E /* WebPImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebPImage.h; sourceTree = "<group>"; };
+		33E3AF372BC3DD8300366D4E /* WebPImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebPImageView.h; sourceTree = "<group>"; };
+		33E3AF382BC3DD8300366D4E /* WebPQueueManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebPQueueManager.h; sourceTree = "<group>"; };
+		33E3AF392BC3DD8300366D4E /* WebPImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebPImage.m; sourceTree = "<group>"; };
+		33E3AF3A2BC3DD8300366D4E /* WebPImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebPImageView.m; sourceTree = "<group>"; };
+		33E3AF3B2BC3DD8300366D4E /* WebPQueueManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebPQueueManager.m; sourceTree = "<group>"; };
+		33E3AF462BC3E6DF00366D4E /* muxread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = muxread.c; sourceTree = "<group>"; };
+		33E3AF472BC3E6DF00366D4E /* muxinternal.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = muxinternal.c; sourceTree = "<group>"; };
+		33E3AF482BC3E6DF00366D4E /* anim_encode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = anim_encode.c; sourceTree = "<group>"; };
+		33E3AF492BC3E6DF00366D4E /* animi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = animi.h; sourceTree = "<group>"; };
+		33E3AF4A2BC3E6DF00366D4E /* muxedit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = muxedit.c; sourceTree = "<group>"; };
+		33E3AF4B2BC3E6DF00366D4E /* muxi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = muxi.h; sourceTree = "<group>"; };
+		33E3AF4D2BC3E6DF00366D4E /* bit_writer_utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bit_writer_utils.c; sourceTree = "<group>"; };
+		33E3AF4E2BC3E6DF00366D4E /* endian_inl_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = endian_inl_utils.h; sourceTree = "<group>"; };
+		33E3AF4F2BC3E6DF00366D4E /* thread_utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = thread_utils.c; sourceTree = "<group>"; };
+		33E3AF502BC3E6DF00366D4E /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
+		33E3AF512BC3E6DF00366D4E /* bit_reader_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bit_reader_utils.h; sourceTree = "<group>"; };
+		33E3AF522BC3E6DF00366D4E /* bit_reader_inl_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bit_reader_inl_utils.h; sourceTree = "<group>"; };
+		33E3AF532BC3E6DF00366D4E /* rescaler_utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rescaler_utils.c; sourceTree = "<group>"; };
+		33E3AF542BC3E6DF00366D4E /* quant_levels_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = quant_levels_utils.h; sourceTree = "<group>"; };
+		33E3AF552BC3E6E000366D4E /* quant_levels_dec_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = quant_levels_dec_utils.h; sourceTree = "<group>"; };
+		33E3AF562BC3E6E000366D4E /* huffman_utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = huffman_utils.c; sourceTree = "<group>"; };
+		33E3AF572BC3E6E000366D4E /* color_cache_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = color_cache_utils.h; sourceTree = "<group>"; };
+		33E3AF582BC3E6E000366D4E /* filters_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filters_utils.h; sourceTree = "<group>"; };
+		33E3AF592BC3E6E000366D4E /* huffman_encode_utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = huffman_encode_utils.c; sourceTree = "<group>"; };
+		33E3AF5A2BC3E6E000366D4E /* random_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = random_utils.h; sourceTree = "<group>"; };
+		33E3AF5B2BC3E6E000366D4E /* rescaler_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rescaler_utils.h; sourceTree = "<group>"; };
+		33E3AF5C2BC3E6E000366D4E /* quant_levels_utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = quant_levels_utils.c; sourceTree = "<group>"; };
+		33E3AF5D2BC3E6E000366D4E /* quant_levels_dec_utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = quant_levels_dec_utils.c; sourceTree = "<group>"; };
+		33E3AF5E2BC3E6E000366D4E /* bit_reader_utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bit_reader_utils.c; sourceTree = "<group>"; };
+		33E3AF5F2BC3E6E000366D4E /* thread_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thread_utils.h; sourceTree = "<group>"; };
+		33E3AF602BC3E6E000366D4E /* utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utils.c; sourceTree = "<group>"; };
+		33E3AF612BC3E6E000366D4E /* bit_writer_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bit_writer_utils.h; sourceTree = "<group>"; };
+		33E3AF622BC3E6E000366D4E /* huffman_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = huffman_utils.h; sourceTree = "<group>"; };
+		33E3AF632BC3E6E000366D4E /* huffman_encode_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = huffman_encode_utils.h; sourceTree = "<group>"; };
+		33E3AF642BC3E6E000366D4E /* color_cache_utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = color_cache_utils.c; sourceTree = "<group>"; };
+		33E3AF652BC3E6E000366D4E /* filters_utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = filters_utils.c; sourceTree = "<group>"; };
+		33E3AF662BC3E6E000366D4E /* random_utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = random_utils.c; sourceTree = "<group>"; };
+		33E3AF682BC3E6E000366D4E /* format_constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = format_constants.h; sourceTree = "<group>"; };
+		33E3AF692BC3E6E000366D4E /* mux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mux.h; sourceTree = "<group>"; };
+		33E3AF6A2BC3E6E000366D4E /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
+		33E3AF6B2BC3E6E000366D4E /* demux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = demux.h; sourceTree = "<group>"; };
+		33E3AF6C2BC3E6E000366D4E /* mux_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mux_types.h; sourceTree = "<group>"; };
+		33E3AF6D2BC3E6E000366D4E /* encode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = encode.h; sourceTree = "<group>"; };
+		33E3AF6E2BC3E6E000366D4E /* decode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = decode.h; sourceTree = "<group>"; };
+		33E3AF702BC3E6E000366D4E /* iterator_enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iterator_enc.c; sourceTree = "<group>"; };
+		33E3AF712BC3E6E000366D4E /* backward_references_enc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = backward_references_enc.h; sourceTree = "<group>"; };
+		33E3AF722BC3E6E000366D4E /* cost_enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cost_enc.c; sourceTree = "<group>"; };
+		33E3AF732BC3E6E000366D4E /* alpha_enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = alpha_enc.c; sourceTree = "<group>"; };
+		33E3AF742BC3E6E000366D4E /* histogram_enc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = histogram_enc.h; sourceTree = "<group>"; };
+		33E3AF752BC3E6E000366D4E /* picture_psnr_enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = picture_psnr_enc.c; sourceTree = "<group>"; };
+		33E3AF762BC3E6E000366D4E /* token_enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = token_enc.c; sourceTree = "<group>"; };
+		33E3AF772BC3E6E000366D4E /* vp8i_enc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vp8i_enc.h; sourceTree = "<group>"; };
+		33E3AF782BC3E6E000366D4E /* tree_enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tree_enc.c; sourceTree = "<group>"; };
+		33E3AF792BC3E6E000366D4E /* delta_palettization_enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = delta_palettization_enc.c; sourceTree = "<group>"; };
+		33E3AF7A2BC3E6E000366D4E /* filter_enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = filter_enc.c; sourceTree = "<group>"; };
+		33E3AF7B2BC3E6E000366D4E /* picture_csp_enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = picture_csp_enc.c; sourceTree = "<group>"; };
+		33E3AF7C2BC3E6E000366D4E /* frame_enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = frame_enc.c; sourceTree = "<group>"; };
+		33E3AF7D2BC3E6E000366D4E /* syntax_enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = syntax_enc.c; sourceTree = "<group>"; };
+		33E3AF7E2BC3E6E000366D4E /* cost_enc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cost_enc.h; sourceTree = "<group>"; };
+		33E3AF7F2BC3E6E000366D4E /* predictor_enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = predictor_enc.c; sourceTree = "<group>"; };
+		33E3AF802BC3E6E000366D4E /* config_enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = config_enc.c; sourceTree = "<group>"; };
+		33E3AF812BC3E6E000366D4E /* backward_references_enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = backward_references_enc.c; sourceTree = "<group>"; };
+		33E3AF822BC3E6E000366D4E /* picture_tools_enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = picture_tools_enc.c; sourceTree = "<group>"; };
+		33E3AF832BC3E6E000366D4E /* webp_enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = webp_enc.c; sourceTree = "<group>"; };
+		33E3AF842BC3E6E000366D4E /* vp8l_enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vp8l_enc.c; sourceTree = "<group>"; };
+		33E3AF852BC3E6E000366D4E /* histogram_enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = histogram_enc.c; sourceTree = "<group>"; };
+		33E3AF862BC3E6E000366D4E /* analysis_enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = analysis_enc.c; sourceTree = "<group>"; };
+		33E3AF872BC3E6E000366D4E /* vp8li_enc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vp8li_enc.h; sourceTree = "<group>"; };
+		33E3AF882BC3E6E000366D4E /* delta_palettization_enc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = delta_palettization_enc.h; sourceTree = "<group>"; };
+		33E3AF892BC3E6E000366D4E /* quant_enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = quant_enc.c; sourceTree = "<group>"; };
+		33E3AF8A2BC3E6E000366D4E /* near_lossless_enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = near_lossless_enc.c; sourceTree = "<group>"; };
+		33E3AF8B2BC3E6E000366D4E /* picture_enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = picture_enc.c; sourceTree = "<group>"; };
+		33E3AF8C2BC3E6E000366D4E /* backward_references_cost_enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = backward_references_cost_enc.c; sourceTree = "<group>"; };
+		33E3AF8D2BC3E6E000366D4E /* picture_rescale_enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = picture_rescale_enc.c; sourceTree = "<group>"; };
+		33E3AF8F2BC3E6E000366D4E /* demux.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = demux.c; sourceTree = "<group>"; };
+		33E3AF902BC3E6E000366D4E /* anim_decode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = anim_decode.c; sourceTree = "<group>"; };
+		33E3AF922BC3E6E000366D4E /* io_dec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = io_dec.c; sourceTree = "<group>"; };
+		33E3AF932BC3E6E000366D4E /* frame_dec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = frame_dec.c; sourceTree = "<group>"; };
+		33E3AF942BC3E6E000366D4E /* tree_dec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tree_dec.c; sourceTree = "<group>"; };
+		33E3AF952BC3E6E000366D4E /* vp8i_dec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vp8i_dec.h; sourceTree = "<group>"; };
+		33E3AF962BC3E6E000366D4E /* vp8_dec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vp8_dec.h; sourceTree = "<group>"; };
+		33E3AF972BC3E6E000366D4E /* alpha_dec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = alpha_dec.c; sourceTree = "<group>"; };
+		33E3AF982BC3E6E000366D4E /* common_dec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common_dec.h; sourceTree = "<group>"; };
+		33E3AF992BC3E6E000366D4E /* buffer_dec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = buffer_dec.c; sourceTree = "<group>"; };
+		33E3AF9A2BC3E6E000366D4E /* quant_dec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = quant_dec.c; sourceTree = "<group>"; };
+		33E3AF9B2BC3E6E000366D4E /* vp8li_dec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vp8li_dec.h; sourceTree = "<group>"; };
+		33E3AF9C2BC3E6E000366D4E /* idec_dec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = idec_dec.c; sourceTree = "<group>"; };
+		33E3AF9D2BC3E6E000366D4E /* webp_dec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = webp_dec.c; sourceTree = "<group>"; };
+		33E3AF9E2BC3E6E000366D4E /* vp8l_dec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vp8l_dec.c; sourceTree = "<group>"; };
+		33E3AF9F2BC3E6E000366D4E /* alphai_dec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = alphai_dec.h; sourceTree = "<group>"; };
+		33E3AFA02BC3E6E000366D4E /* vp8_dec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vp8_dec.c; sourceTree = "<group>"; };
+		33E3AFA12BC3E6E000366D4E /* webpi_dec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webpi_dec.h; sourceTree = "<group>"; };
+		33E3AFA32BC3E6E000366D4E /* upsampling.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = upsampling.c; sourceTree = "<group>"; };
+		33E3AFA42BC3E6E000366D4E /* lossless_sse2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lossless_sse2.c; sourceTree = "<group>"; };
+		33E3AFA52BC3E6E000366D4E /* lossless.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lossless.h; sourceTree = "<group>"; };
+		33E3AFA62BC3E6E000366D4E /* lossless_enc_mips_dsp_r2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lossless_enc_mips_dsp_r2.c; sourceTree = "<group>"; };
+		33E3AFA72BC3E6E000366D4E /* enc_msa.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = enc_msa.c; sourceTree = "<group>"; };
+		33E3AFA82BC3E6E000366D4E /* msa_macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = msa_macro.h; sourceTree = "<group>"; };
+		33E3AFA92BC3E6E000366D4E /* neon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = neon.h; sourceTree = "<group>"; };
+		33E3AFAA2BC3E6E000366D4E /* filters_mips_dsp_r2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = filters_mips_dsp_r2.c; sourceTree = "<group>"; };
+		33E3AFAB2BC3E6E000366D4E /* rescaler.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rescaler.c; sourceTree = "<group>"; };
+		33E3AFAC2BC3E6E000366D4E /* dec_mips_dsp_r2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dec_mips_dsp_r2.c; sourceTree = "<group>"; };
+		33E3AFAD2BC3E6E000366D4E /* rescaler_neon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rescaler_neon.c; sourceTree = "<group>"; };
+		33E3AFAE2BC3E6E000366D4E /* cost_sse2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cost_sse2.c; sourceTree = "<group>"; };
+		33E3AFAF2BC3E6E000366D4E /* enc_sse41.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = enc_sse41.c; sourceTree = "<group>"; };
+		33E3AFB02BC3E6E000366D4E /* lossless_enc_sse41.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lossless_enc_sse41.c; sourceTree = "<group>"; };
+		33E3AFB12BC3E6E000366D4E /* upsampling_neon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = upsampling_neon.c; sourceTree = "<group>"; };
+		33E3AFB22BC3E6E000366D4E /* filters_sse2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = filters_sse2.c; sourceTree = "<group>"; };
+		33E3AFB32BC3E6E000366D4E /* lossless_mips_dsp_r2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lossless_mips_dsp_r2.c; sourceTree = "<group>"; };
+		33E3AFB42BC3E6E000366D4E /* enc_mips_dsp_r2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = enc_mips_dsp_r2.c; sourceTree = "<group>"; };
+		33E3AFB52BC3E6E000366D4E /* cpu.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cpu.c; sourceTree = "<group>"; };
+		33E3AFB62BC3E6E000366D4E /* yuv_neon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yuv_neon.c; sourceTree = "<group>"; };
+		33E3AFB72BC3E6E000366D4E /* alpha_processing.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = alpha_processing.c; sourceTree = "<group>"; };
+		33E3AFB82BC3E6E000366D4E /* yuv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yuv.h; sourceTree = "<group>"; };
+		33E3AFB92BC3E6E000366D4E /* enc_mips32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = enc_mips32.c; sourceTree = "<group>"; };
+		33E3AFBA2BC3E6E000366D4E /* filters_neon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = filters_neon.c; sourceTree = "<group>"; };
+		33E3AFBB2BC3E6E000366D4E /* upsampling_sse2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = upsampling_sse2.c; sourceTree = "<group>"; };
+		33E3AFBC2BC3E6E000366D4E /* yuv_sse2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yuv_sse2.c; sourceTree = "<group>"; };
+		33E3AFBD2BC3E6E000366D4E /* filters_msa.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = filters_msa.c; sourceTree = "<group>"; };
+		33E3AFBE2BC3E6E000366D4E /* mips_macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mips_macro.h; sourceTree = "<group>"; };
+		33E3AFBF2BC3E6E000366D4E /* rescaler_msa.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rescaler_msa.c; sourceTree = "<group>"; };
+		33E3AFC02BC3E6E000366D4E /* lossless_neon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lossless_neon.c; sourceTree = "<group>"; };
+		33E3AFC12BC3E6E000366D4E /* lossless_enc_msa.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lossless_enc_msa.c; sourceTree = "<group>"; };
+		33E3AFC22BC3E6E000366D4E /* filters.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = filters.c; sourceTree = "<group>"; };
+		33E3AFC32BC3E6E000366D4E /* alpha_processing_mips_dsp_r2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = alpha_processing_mips_dsp_r2.c; sourceTree = "<group>"; };
+		33E3AFC42BC3E6E000366D4E /* rescaler_mips_dsp_r2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rescaler_mips_dsp_r2.c; sourceTree = "<group>"; };
+		33E3AFC52BC3E6E000366D4E /* ssim_sse2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ssim_sse2.c; sourceTree = "<group>"; };
+		33E3AFC62BC3E6E000366D4E /* rescaler_mips32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rescaler_mips32.c; sourceTree = "<group>"; };
+		33E3AFC72BC3E6E000366D4E /* dec_sse41.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dec_sse41.c; sourceTree = "<group>"; };
+		33E3AFC82BC3E6E000366D4E /* rescaler_sse2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rescaler_sse2.c; sourceTree = "<group>"; };
+		33E3AFC92BC3E6E000366D4E /* lossless_enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lossless_enc.c; sourceTree = "<group>"; };
+		33E3AFCA2BC3E6E000366D4E /* yuv_mips_dsp_r2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yuv_mips_dsp_r2.c; sourceTree = "<group>"; };
+		33E3AFCB2BC3E6E000366D4E /* alpha_processing_neon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = alpha_processing_neon.c; sourceTree = "<group>"; };
+		33E3AFCC2BC3E6E000366D4E /* dec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dec.c; sourceTree = "<group>"; };
+		33E3AFCD2BC3E6E000366D4E /* lossless.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lossless.c; sourceTree = "<group>"; };
+		33E3AFCE2BC3E6E000366D4E /* ssim.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ssim.c; sourceTree = "<group>"; };
+		33E3AFCF2BC3E6E000366D4E /* upsampling_msa.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = upsampling_msa.c; sourceTree = "<group>"; };
+		33E3AFD02BC3E6E000366D4E /* lossless_enc_sse2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lossless_enc_sse2.c; sourceTree = "<group>"; };
+		33E3AFD12BC3E6E000366D4E /* yuv.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yuv.c; sourceTree = "<group>"; };
+		33E3AFD22BC3E6E000366D4E /* enc_neon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = enc_neon.c; sourceTree = "<group>"; };
+		33E3AFD32BC3E6E000366D4E /* dec_sse2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dec_sse2.c; sourceTree = "<group>"; };
+		33E3AFD42BC3E6E000366D4E /* enc_avx2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = enc_avx2.c; sourceTree = "<group>"; };
+		33E3AFD52BC3E6E000366D4E /* dsp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dsp.h; sourceTree = "<group>"; };
+		33E3AFD62BC3E6E000366D4E /* enc_sse2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = enc_sse2.c; sourceTree = "<group>"; };
+		33E3AFD72BC3E6E000366D4E /* lossless_enc_neon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lossless_enc_neon.c; sourceTree = "<group>"; };
+		33E3AFD82BC3E6E000366D4E /* lossless_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lossless_common.h; sourceTree = "<group>"; };
+		33E3AFD92BC3E6E000366D4E /* cost_mips32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cost_mips32.c; sourceTree = "<group>"; };
+		33E3AFDA2BC3E6E000366D4E /* alpha_processing_sse41.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = alpha_processing_sse41.c; sourceTree = "<group>"; };
+		33E3AFDB2BC3E6E000366D4E /* dec_neon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dec_neon.c; sourceTree = "<group>"; };
+		33E3AFDC2BC3E6E000366D4E /* cost.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cost.c; sourceTree = "<group>"; };
+		33E3AFDD2BC3E6E000366D4E /* dec_mips32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dec_mips32.c; sourceTree = "<group>"; };
+		33E3AFDE2BC3E6E000366D4E /* cost_mips_dsp_r2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cost_mips_dsp_r2.c; sourceTree = "<group>"; };
+		33E3AFDF2BC3E6E000366D4E /* alpha_processing_sse2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = alpha_processing_sse2.c; sourceTree = "<group>"; };
+		33E3AFE02BC3E6E000366D4E /* dec_clip_tables.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dec_clip_tables.c; sourceTree = "<group>"; };
+		33E3AFE12BC3E6E000366D4E /* lossless_msa.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lossless_msa.c; sourceTree = "<group>"; };
+		33E3AFE22BC3E6E000366D4E /* enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = enc.c; sourceTree = "<group>"; };
+		33E3AFE32BC3E6E000366D4E /* common_sse2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common_sse2.h; sourceTree = "<group>"; };
+		33E3AFE42BC3E6E000366D4E /* lossless_enc_mips32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lossless_enc_mips32.c; sourceTree = "<group>"; };
+		33E3AFE52BC3E6E000366D4E /* yuv_mips32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yuv_mips32.c; sourceTree = "<group>"; };
+		33E3AFE62BC3E6E000366D4E /* upsampling_mips_dsp_r2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = upsampling_mips_dsp_r2.c; sourceTree = "<group>"; };
+		33E3AFE72BC3E6E000366D4E /* dec_msa.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dec_msa.c; sourceTree = "<group>"; };
+		33E3B05D2BC4E1D100366D4E /* WH_PopularVideoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_PopularVideoVC.h; sourceTree = "<group>"; };
+		33E3B05E2BC4E1D100366D4E /* WH_PopularVideoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_PopularVideoVC.m; sourceTree = "<group>"; };
+		33E3B05F2BC4E1D100366D4E /* WH_PopularVideoVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_PopularVideoVC.xib; sourceTree = "<group>"; };
 		33E5914D2B16E6B900E578A3 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		33E5914E2B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
 		33E5914F2B16E6B900E578A3 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -7051,6 +7390,298 @@
 			path = TransitionAnim;
 			sourceTree = "<group>";
 		};
+		33E3AEF22BC3D33400366D4E /* AwemeList */ = {
+			isa = PBXGroup;
+			children = (
+				33E3AF3F2BC3E6DF00366D4E /* libwebp */,
+				33E3AF352BC3DD8300366D4E /* WebP */,
+				33E3AF162BC3DCB100366D4E /* Category */,
+				33E3AF152BC3D57700366D4E /* Constants.h */,
+				33E3AEF82BC3D3CC00366D4E /* AVPlayer */,
+				33E3AEF72BC3D3CC00366D4E /* AwemeListCell.h */,
+				33E3AEF52BC3D3CB00366D4E /* AwemeListCell.m */,
+				33E3AF062BC3D3D300366D4E /* AwemeListController.h */,
+				33E3AF032BC3D3D100366D4E /* AwemeListController.m */,
+			);
+			path = AwemeList;
+			sourceTree = "<group>";
+		};
+		33E3AEF82BC3D3CC00366D4E /* AVPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				33E3AEF92BC3D3CC00366D4E /* AVPlayerManager.h */,
+				33E3AEFB2BC3D3CC00366D4E /* AVPlayerManager.m */,
+				33E3AEFC2BC3D3CC00366D4E /* AVPlayerView.h */,
+				33E3AEFA2BC3D3CC00366D4E /* AVPlayerView.m */,
+				33E3AF332BC3DD1000366D4E /* WebCacheHelpler.h */,
+				33E3AF322BC3DD0E00366D4E /* WebCacheHelpler.m */,
+			);
+			path = AVPlayer;
+			sourceTree = "<group>";
+		};
+		33E3AF162BC3DCB100366D4E /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				33E3AF282BC3DCB100366D4E /* CADisplayLink+Tool.h */,
+				33E3AF1F2BC3DCB100366D4E /* CADisplayLink+Tool.m */,
+				33E3AF202BC3DCB100366D4E /* NSAttributedString+Extension.h */,
+				33E3AF172BC3DCB100366D4E /* NSAttributedString+Extension.m */,
+				33E3AF1C2BC3DCB100366D4E /* NSDate+Extension.h */,
+				33E3AF222BC3DCB100366D4E /* NSDate+Extension.m */,
+				33E3AF232BC3DCB100366D4E /* NSNotification+Extension.h */,
+				33E3AF1B2BC3DCB100366D4E /* NSNotification+Extension.m */,
+				33E3AF1A2BC3DCB100366D4E /* NSString+Extension.h */,
+				33E3AF242BC3DCB100366D4E /* NSString+Extension.m */,
+				33E3AF212BC3DCB100366D4E /* NSTextAttachment+Emotion.h */,
+				33E3AF1D2BC3DCB100366D4E /* NSTextAttachment+Emotion.m */,
+				33E3AF272BC3DCB100366D4E /* UIImage+Extension.h */,
+				33E3AF1E2BC3DCB100366D4E /* UIImage+Extension.m */,
+				33E3AF192BC3DCB100366D4E /* UIWindow+Extension.h */,
+				33E3AF252BC3DCB100366D4E /* UIWindow+Extension.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		33E3AF352BC3DD8300366D4E /* WebP */ = {
+			isa = PBXGroup;
+			children = (
+				33E3AF362BC3DD8300366D4E /* WebPImage.h */,
+				33E3AF372BC3DD8300366D4E /* WebPImageView.h */,
+				33E3AF382BC3DD8300366D4E /* WebPQueueManager.h */,
+				33E3AF392BC3DD8300366D4E /* WebPImage.m */,
+				33E3AF3A2BC3DD8300366D4E /* WebPImageView.m */,
+				33E3AF3B2BC3DD8300366D4E /* WebPQueueManager.m */,
+			);
+			path = WebP;
+			sourceTree = "<group>";
+		};
+		33E3AF3F2BC3E6DF00366D4E /* libwebp */ = {
+			isa = PBXGroup;
+			children = (
+				33E3AF442BC3E6DF00366D4E /* src */,
+			);
+			path = libwebp;
+			sourceTree = "<group>";
+		};
+		33E3AF442BC3E6DF00366D4E /* src */ = {
+			isa = PBXGroup;
+			children = (
+				33E3AF452BC3E6DF00366D4E /* mux */,
+				33E3AF4C2BC3E6DF00366D4E /* utils */,
+				33E3AF672BC3E6E000366D4E /* webp */,
+				33E3AF6F2BC3E6E000366D4E /* enc */,
+				33E3AF8E2BC3E6E000366D4E /* demux */,
+				33E3AF912BC3E6E000366D4E /* dec */,
+				33E3AFA22BC3E6E000366D4E /* dsp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		33E3AF452BC3E6DF00366D4E /* mux */ = {
+			isa = PBXGroup;
+			children = (
+				33E3AF462BC3E6DF00366D4E /* muxread.c */,
+				33E3AF472BC3E6DF00366D4E /* muxinternal.c */,
+				33E3AF482BC3E6DF00366D4E /* anim_encode.c */,
+				33E3AF492BC3E6DF00366D4E /* animi.h */,
+				33E3AF4A2BC3E6DF00366D4E /* muxedit.c */,
+				33E3AF4B2BC3E6DF00366D4E /* muxi.h */,
+			);
+			path = mux;
+			sourceTree = "<group>";
+		};
+		33E3AF4C2BC3E6DF00366D4E /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				33E3AF4D2BC3E6DF00366D4E /* bit_writer_utils.c */,
+				33E3AF4E2BC3E6DF00366D4E /* endian_inl_utils.h */,
+				33E3AF4F2BC3E6DF00366D4E /* thread_utils.c */,
+				33E3AF502BC3E6DF00366D4E /* utils.h */,
+				33E3AF512BC3E6DF00366D4E /* bit_reader_utils.h */,
+				33E3AF522BC3E6DF00366D4E /* bit_reader_inl_utils.h */,
+				33E3AF532BC3E6DF00366D4E /* rescaler_utils.c */,
+				33E3AF542BC3E6DF00366D4E /* quant_levels_utils.h */,
+				33E3AF552BC3E6E000366D4E /* quant_levels_dec_utils.h */,
+				33E3AF562BC3E6E000366D4E /* huffman_utils.c */,
+				33E3AF572BC3E6E000366D4E /* color_cache_utils.h */,
+				33E3AF582BC3E6E000366D4E /* filters_utils.h */,
+				33E3AF592BC3E6E000366D4E /* huffman_encode_utils.c */,
+				33E3AF5A2BC3E6E000366D4E /* random_utils.h */,
+				33E3AF5B2BC3E6E000366D4E /* rescaler_utils.h */,
+				33E3AF5C2BC3E6E000366D4E /* quant_levels_utils.c */,
+				33E3AF5D2BC3E6E000366D4E /* quant_levels_dec_utils.c */,
+				33E3AF5E2BC3E6E000366D4E /* bit_reader_utils.c */,
+				33E3AF5F2BC3E6E000366D4E /* thread_utils.h */,
+				33E3AF602BC3E6E000366D4E /* utils.c */,
+				33E3AF612BC3E6E000366D4E /* bit_writer_utils.h */,
+				33E3AF622BC3E6E000366D4E /* huffman_utils.h */,
+				33E3AF632BC3E6E000366D4E /* huffman_encode_utils.h */,
+				33E3AF642BC3E6E000366D4E /* color_cache_utils.c */,
+				33E3AF652BC3E6E000366D4E /* filters_utils.c */,
+				33E3AF662BC3E6E000366D4E /* random_utils.c */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		33E3AF672BC3E6E000366D4E /* webp */ = {
+			isa = PBXGroup;
+			children = (
+				33E3AF682BC3E6E000366D4E /* format_constants.h */,
+				33E3AF692BC3E6E000366D4E /* mux.h */,
+				33E3AF6A2BC3E6E000366D4E /* types.h */,
+				33E3AF6B2BC3E6E000366D4E /* demux.h */,
+				33E3AF6C2BC3E6E000366D4E /* mux_types.h */,
+				33E3AF6D2BC3E6E000366D4E /* encode.h */,
+				33E3AF6E2BC3E6E000366D4E /* decode.h */,
+			);
+			path = webp;
+			sourceTree = "<group>";
+		};
+		33E3AF6F2BC3E6E000366D4E /* enc */ = {
+			isa = PBXGroup;
+			children = (
+				33E3AF702BC3E6E000366D4E /* iterator_enc.c */,
+				33E3AF712BC3E6E000366D4E /* backward_references_enc.h */,
+				33E3AF722BC3E6E000366D4E /* cost_enc.c */,
+				33E3AF732BC3E6E000366D4E /* alpha_enc.c */,
+				33E3AF742BC3E6E000366D4E /* histogram_enc.h */,
+				33E3AF752BC3E6E000366D4E /* picture_psnr_enc.c */,
+				33E3AF762BC3E6E000366D4E /* token_enc.c */,
+				33E3AF772BC3E6E000366D4E /* vp8i_enc.h */,
+				33E3AF782BC3E6E000366D4E /* tree_enc.c */,
+				33E3AF792BC3E6E000366D4E /* delta_palettization_enc.c */,
+				33E3AF7A2BC3E6E000366D4E /* filter_enc.c */,
+				33E3AF7B2BC3E6E000366D4E /* picture_csp_enc.c */,
+				33E3AF7C2BC3E6E000366D4E /* frame_enc.c */,
+				33E3AF7D2BC3E6E000366D4E /* syntax_enc.c */,
+				33E3AF7E2BC3E6E000366D4E /* cost_enc.h */,
+				33E3AF7F2BC3E6E000366D4E /* predictor_enc.c */,
+				33E3AF802BC3E6E000366D4E /* config_enc.c */,
+				33E3AF812BC3E6E000366D4E /* backward_references_enc.c */,
+				33E3AF822BC3E6E000366D4E /* picture_tools_enc.c */,
+				33E3AF832BC3E6E000366D4E /* webp_enc.c */,
+				33E3AF842BC3E6E000366D4E /* vp8l_enc.c */,
+				33E3AF852BC3E6E000366D4E /* histogram_enc.c */,
+				33E3AF862BC3E6E000366D4E /* analysis_enc.c */,
+				33E3AF872BC3E6E000366D4E /* vp8li_enc.h */,
+				33E3AF882BC3E6E000366D4E /* delta_palettization_enc.h */,
+				33E3AF892BC3E6E000366D4E /* quant_enc.c */,
+				33E3AF8A2BC3E6E000366D4E /* near_lossless_enc.c */,
+				33E3AF8B2BC3E6E000366D4E /* picture_enc.c */,
+				33E3AF8C2BC3E6E000366D4E /* backward_references_cost_enc.c */,
+				33E3AF8D2BC3E6E000366D4E /* picture_rescale_enc.c */,
+			);
+			path = enc;
+			sourceTree = "<group>";
+		};
+		33E3AF8E2BC3E6E000366D4E /* demux */ = {
+			isa = PBXGroup;
+			children = (
+				33E3AF8F2BC3E6E000366D4E /* demux.c */,
+				33E3AF902BC3E6E000366D4E /* anim_decode.c */,
+			);
+			path = demux;
+			sourceTree = "<group>";
+		};
+		33E3AF912BC3E6E000366D4E /* dec */ = {
+			isa = PBXGroup;
+			children = (
+				33E3AF922BC3E6E000366D4E /* io_dec.c */,
+				33E3AF932BC3E6E000366D4E /* frame_dec.c */,
+				33E3AF942BC3E6E000366D4E /* tree_dec.c */,
+				33E3AF952BC3E6E000366D4E /* vp8i_dec.h */,
+				33E3AF962BC3E6E000366D4E /* vp8_dec.h */,
+				33E3AF972BC3E6E000366D4E /* alpha_dec.c */,
+				33E3AF982BC3E6E000366D4E /* common_dec.h */,
+				33E3AF992BC3E6E000366D4E /* buffer_dec.c */,
+				33E3AF9A2BC3E6E000366D4E /* quant_dec.c */,
+				33E3AF9B2BC3E6E000366D4E /* vp8li_dec.h */,
+				33E3AF9C2BC3E6E000366D4E /* idec_dec.c */,
+				33E3AF9D2BC3E6E000366D4E /* webp_dec.c */,
+				33E3AF9E2BC3E6E000366D4E /* vp8l_dec.c */,
+				33E3AF9F2BC3E6E000366D4E /* alphai_dec.h */,
+				33E3AFA02BC3E6E000366D4E /* vp8_dec.c */,
+				33E3AFA12BC3E6E000366D4E /* webpi_dec.h */,
+			);
+			path = dec;
+			sourceTree = "<group>";
+		};
+		33E3AFA22BC3E6E000366D4E /* dsp */ = {
+			isa = PBXGroup;
+			children = (
+				33E3AFA32BC3E6E000366D4E /* upsampling.c */,
+				33E3AFA42BC3E6E000366D4E /* lossless_sse2.c */,
+				33E3AFA52BC3E6E000366D4E /* lossless.h */,
+				33E3AFA62BC3E6E000366D4E /* lossless_enc_mips_dsp_r2.c */,
+				33E3AFA72BC3E6E000366D4E /* enc_msa.c */,
+				33E3AFA82BC3E6E000366D4E /* msa_macro.h */,
+				33E3AFA92BC3E6E000366D4E /* neon.h */,
+				33E3AFAA2BC3E6E000366D4E /* filters_mips_dsp_r2.c */,
+				33E3AFAB2BC3E6E000366D4E /* rescaler.c */,
+				33E3AFAC2BC3E6E000366D4E /* dec_mips_dsp_r2.c */,
+				33E3AFAD2BC3E6E000366D4E /* rescaler_neon.c */,
+				33E3AFAE2BC3E6E000366D4E /* cost_sse2.c */,
+				33E3AFAF2BC3E6E000366D4E /* enc_sse41.c */,
+				33E3AFB02BC3E6E000366D4E /* lossless_enc_sse41.c */,
+				33E3AFB12BC3E6E000366D4E /* upsampling_neon.c */,
+				33E3AFB22BC3E6E000366D4E /* filters_sse2.c */,
+				33E3AFB32BC3E6E000366D4E /* lossless_mips_dsp_r2.c */,
+				33E3AFB42BC3E6E000366D4E /* enc_mips_dsp_r2.c */,
+				33E3AFB52BC3E6E000366D4E /* cpu.c */,
+				33E3AFB62BC3E6E000366D4E /* yuv_neon.c */,
+				33E3AFB72BC3E6E000366D4E /* alpha_processing.c */,
+				33E3AFB82BC3E6E000366D4E /* yuv.h */,
+				33E3AFB92BC3E6E000366D4E /* enc_mips32.c */,
+				33E3AFBA2BC3E6E000366D4E /* filters_neon.c */,
+				33E3AFBB2BC3E6E000366D4E /* upsampling_sse2.c */,
+				33E3AFBC2BC3E6E000366D4E /* yuv_sse2.c */,
+				33E3AFBD2BC3E6E000366D4E /* filters_msa.c */,
+				33E3AFBE2BC3E6E000366D4E /* mips_macro.h */,
+				33E3AFBF2BC3E6E000366D4E /* rescaler_msa.c */,
+				33E3AFC02BC3E6E000366D4E /* lossless_neon.c */,
+				33E3AFC12BC3E6E000366D4E /* lossless_enc_msa.c */,
+				33E3AFC22BC3E6E000366D4E /* filters.c */,
+				33E3AFC32BC3E6E000366D4E /* alpha_processing_mips_dsp_r2.c */,
+				33E3AFC42BC3E6E000366D4E /* rescaler_mips_dsp_r2.c */,
+				33E3AFC52BC3E6E000366D4E /* ssim_sse2.c */,
+				33E3AFC62BC3E6E000366D4E /* rescaler_mips32.c */,
+				33E3AFC72BC3E6E000366D4E /* dec_sse41.c */,
+				33E3AFC82BC3E6E000366D4E /* rescaler_sse2.c */,
+				33E3AFC92BC3E6E000366D4E /* lossless_enc.c */,
+				33E3AFCA2BC3E6E000366D4E /* yuv_mips_dsp_r2.c */,
+				33E3AFCB2BC3E6E000366D4E /* alpha_processing_neon.c */,
+				33E3AFCC2BC3E6E000366D4E /* dec.c */,
+				33E3AFCD2BC3E6E000366D4E /* lossless.c */,
+				33E3AFCE2BC3E6E000366D4E /* ssim.c */,
+				33E3AFCF2BC3E6E000366D4E /* upsampling_msa.c */,
+				33E3AFD02BC3E6E000366D4E /* lossless_enc_sse2.c */,
+				33E3AFD12BC3E6E000366D4E /* yuv.c */,
+				33E3AFD22BC3E6E000366D4E /* enc_neon.c */,
+				33E3AFD32BC3E6E000366D4E /* dec_sse2.c */,
+				33E3AFD42BC3E6E000366D4E /* enc_avx2.c */,
+				33E3AFD52BC3E6E000366D4E /* dsp.h */,
+				33E3AFD62BC3E6E000366D4E /* enc_sse2.c */,
+				33E3AFD72BC3E6E000366D4E /* lossless_enc_neon.c */,
+				33E3AFD82BC3E6E000366D4E /* lossless_common.h */,
+				33E3AFD92BC3E6E000366D4E /* cost_mips32.c */,
+				33E3AFDA2BC3E6E000366D4E /* alpha_processing_sse41.c */,
+				33E3AFDB2BC3E6E000366D4E /* dec_neon.c */,
+				33E3AFDC2BC3E6E000366D4E /* cost.c */,
+				33E3AFDD2BC3E6E000366D4E /* dec_mips32.c */,
+				33E3AFDE2BC3E6E000366D4E /* cost_mips_dsp_r2.c */,
+				33E3AFDF2BC3E6E000366D4E /* alpha_processing_sse2.c */,
+				33E3AFE02BC3E6E000366D4E /* dec_clip_tables.c */,
+				33E3AFE12BC3E6E000366D4E /* lossless_msa.c */,
+				33E3AFE22BC3E6E000366D4E /* enc.c */,
+				33E3AFE32BC3E6E000366D4E /* common_sse2.h */,
+				33E3AFE42BC3E6E000366D4E /* lossless_enc_mips32.c */,
+				33E3AFE52BC3E6E000366D4E /* yuv_mips32.c */,
+				33E3AFE62BC3E6E000366D4E /* upsampling_mips_dsp_r2.c */,
+				33E3AFE72BC3E6E000366D4E /* dec_msa.c */,
+			);
+			path = dsp;
+			sourceTree = "<group>";
+		};
 		33E5914B2B16E6B900E578A3 /* Masonry */ = {
 			isa = PBXGroup;
 			children = (
@@ -7136,6 +7767,7 @@
 		4CABBBDD293F06F700C17F42 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				33E3AEF22BC3D33400366D4E /* AwemeList */,
 				4CABBBE7293F06F700C17F42 /* WH_GKDYBase_WHViewController.h */,
 				4CABBBE0293F06F700C17F42 /* WH_GKDYBase_WHViewController.m */,
 				4CABBBE6293F06F700C17F42 /* WH_GKDYHome_WHViewController.h */,
@@ -7152,6 +7784,12 @@
 				4CABBBEB293F06F700C17F42 /* WH_JXSelectMusic_WHVC.m */,
 				331AD11F2BAD824D008A9113 /* WH_Player_WHVC.h */,
 				331AD1202BAD824D008A9113 /* WH_Player_WHVC.m */,
+				331675522BC2884D002B7334 /* WH_playListVC.h */,
+				331675532BC2884D002B7334 /* WH_playListVC.m */,
+				331675542BC2884D002B7334 /* WH_playListVC.xib */,
+				33E3B05D2BC4E1D100366D4E /* WH_PopularVideoVC.h */,
+				33E3B05E2BC4E1D100366D4E /* WH_PopularVideoVC.m */,
+				33E3B05F2BC4E1D100366D4E /* WH_PopularVideoVC.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -7159,14 +7797,14 @@
 		4CABBBEC293F06F700C17F42 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4CABBBED293F06F700C17F42 /* WH_GKDYPersonalModel.m */,
-				4CABBBEE293F06F700C17F42 /* WH_JXSelectMusicModel.m */,
 				4CABBBEF293F06F700C17F42 /* WH_EditAudioVideo.h */,
+				4CABBBF3293F06F700C17F42 /* WH_EditAudioVideo.m */,
+				4CABBBF2293F06F700C17F42 /* WH_GKDYPersonalModel.h */,
+				4CABBBED293F06F700C17F42 /* WH_GKDYPersonalModel.m */,
+				4CABBBF4293F06F700C17F42 /* WH_GKDYVideoModel.h */,
 				4CABBBF0293F06F700C17F42 /* WH_GKDYVideoModel.m */,
 				4CABBBF1293F06F700C17F42 /* WH_JXSelectMusicModel.h */,
-				4CABBBF2293F06F700C17F42 /* WH_GKDYPersonalModel.h */,
-				4CABBBF3293F06F700C17F42 /* WH_EditAudioVideo.m */,
-				4CABBBF4293F06F700C17F42 /* WH_GKDYVideoModel.h */,
+				4CABBBEE293F06F700C17F42 /* WH_JXSelectMusicModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -7174,6 +7812,8 @@
 		4CABBBF5293F06F700C17F42 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				33234B3D2BC275F9009A36B2 /* CircleTextView.h */,
+				33234B3C2BC275F7009A36B2 /* CircleTextView.m */,
 				4CABBBFD293F06F700C17F42 /* GKDYScrollView.h */,
 				4CABBBFA293F06F700C17F42 /* GKDYScrollView.m */,
 				4CABBBFC293F06F700C17F42 /* GKDYVideoControlView.h */,
@@ -7188,6 +7828,9 @@
 				333B93482BAC21F800450220 /* JX_WHNoDataView.m */,
 				331AD0C02BAD7242008A9113 /* JX_WHVideoPlayCell.h */,
 				331AD0C12BAD7242008A9113 /* JX_WHVideoPlayCell.m */,
+				331675572BC28E3E002B7334 /* WH_playListCell.h */,
+				331675582BC28E3E002B7334 /* WH_playListCell.m */,
+				331675592BC28E3E002B7334 /* WH_playListCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -9116,6 +9759,8 @@
 				33BEF3072B4D171D0078B540 /* WH_JXNoticeView.m */,
 				33BEF3092B4E6DE30078B540 /* WH_JXNoticeModel.h */,
 				33BEF30A2B4E6DE30078B540 /* WH_JXNoticeModel.m */,
+				33234B392BC23A04009A36B2 /* WH_VideoMainVC.h */,
+				33234B3A2BC23A04009A36B2 /* WH_VideoMainVC.m */,
 			);
 			name = "systemAbout(系统相关)";
 			sourceTree = "<group>";
@@ -10505,6 +11150,7 @@
 				1851A3702307B09400BA24A1 /* biaoqing_setting@3x.png in Resources */,
 				0FA2D5731FB05CCC00D51BB9 /* lookup_miss_etikate.png in Resources */,
 				18ABD6BD1D07FDAE000F43FC /* title_back@2x.png in Resources */,
+				33E3B0612BC4E1D100366D4E /* WH_PopularVideoVC.xib in Resources */,
 				0F11158B2A594A4F00EF041B /* WH_JXGroupEnterAndOutVC.xib in Resources */,
 				CC3017541951BABF0059BADA /* f091.png in Resources */,
 				1851A3792307B09400BA24A1 /* biaoqing_btnbg1@3x.png in Resources */,
@@ -10574,9 +11220,11 @@
 				63E1E9A41F442927004548C5 /* accept@2x.png in Resources */,
 				18ABD6901D07FDAE000F43FC /* avatar_normal@2x.png in Resources */,
 				CC30173E1951BABF0059BADA /* f080.png in Resources */,
+				3316755B2BC28E3E002B7334 /* WH_playListCell.xib in Resources */,
 				88B96F4F1F43F93900FBB976 /* dial.m4a in Resources */,
 				1851A3782307B09400BA24A1 /* biaoqing_btnbg1@2x.png in Resources */,
 				4CABBC5D293F06F800C17F42 /* GKMessageTool.bundle in Resources */,
+				331675562BC2884D002B7334 /* WH_playListVC.xib in Resources */,
 				CC3017171951BABF0059BADA /* f060@2x.png in Resources */,
 				1851A37D2307B09400BA24A1 /* biaoqing_btnbg_sel@2x.png in Resources */,
 				18C732CC1D76E2B600013F20 /* WH_JXRPacketList_WHCell.xib in Resources */,
@@ -10923,6 +11571,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63DD4F5821314DB800DC45F8 /* RITLUtility.m in Sources */,
+				33234B3E2BC275F9009A36B2 /* CircleTextView.m in Sources */,
 				0FB2081E20C54C6F009AD1ED /* WH_JXBlackFriend_WHVC.m in Sources */,
 				1851A3422307A41E00BA24A1 /* WWEmoticonManagerViewController.m in Sources */,
 				0FA2D69B1FB05CCD00D51BB9 /* GPUImageTransformFilter.m in Sources */,
@@ -10932,16 +11581,21 @@
 				CC6E167719794906006ADA8A /* WH_JXMain_WHViewController.m in Sources */,
 				33CB6DAA2BB3EA01000D58DE /* ScaleDismissAnimation.m in Sources */,
 				63DD4F4321314DB800DC45F8 /* RITLImagePickerController.m in Sources */,
+				33E3B0522BC3E6E300366D4E /* cost.c in Sources */,
 				4CABBC57293F06F800C17F42 /* GKDYVideoView.m in Sources */,
 				63DD4F7321314DB800DC45F8 /* RITLPhotosCollectionViewController.m in Sources */,
 				63710B531FB97A1400C69611 /* WH_JXLiveGift_WHCell.m in Sources */,
 				63DD4F4121314DB800DC45F8 /* NSDate+RITLExtension.m in Sources */,
 				CC6E166F19794906006ADA8A /* WH_JX_WH2Cell.m in Sources */,
 				63B5446F2155F8E300B79A25 /* WH_JXMoneyMenu_WHViewController.m in Sources */,
+				33E3B0472BC3E6E300366D4E /* upsampling_msa.c in Sources */,
 				18CCF5391DAB9AED00ED20F7 /* WH_JXFile_WHCell.m in Sources */,
+				33E3AFEF2BC3E6E100366D4E /* muxedit.c in Sources */,
+				33E3B02A2BC3E6E200366D4E /* lossless_enc_sse41.c in Sources */,
 				DE5C6981232676B500321406 /* WH_BankRechargeStep_WHHeader.m in Sources */,
 				0F304DD02153AD0E001EC77E /* XMPPOneToOneChat.m in Sources */,
 				633976291F0E103A008AB1BF /* WH_JXShareFile_WHTableViewCell.m in Sources */,
+				33E3B0352BC3E6E200366D4E /* yuv_sse2.c in Sources */,
 				638F956E21410D0300FABA6F /* WH_JXMenuView.m in Sources */,
 				126D6633285228EE000BEF41 /* NSArray+AvoidCrash.m in Sources */,
 				0F304DE62153AD0E001EC77E /* NSXMLElement+XEP_0335.m in Sources */,
@@ -10955,6 +11609,7 @@
 				63DD4F3D21314DB800DC45F8 /* UITableView+RITLCellRegister.m in Sources */,
 				0F304DF62153AD0E001EC77E /* XMPPFileTransfer.m in Sources */,
 				E41DFC8D22E726DD00FB7C6B /* WH_RoomMemberListView.m in Sources */,
+				33E3AF342BC3DD1100366D4E /* WebCacheHelpler.m in Sources */,
 				CC6E16A219794B5A006ADA8A /* QBImagePickerController.m in Sources */,
 				63DD4F5E21314DB800DC45F8 /* RITLPhotosMaker.m in Sources */,
 				0F304DAE2153AD0D001EC77E /* XMPPRosterMemoryStorage.m in Sources */,
@@ -10978,26 +11633,35 @@
 				63F4E44A21C0AE7800C61204 /* WH_KKScaleButton.m in Sources */,
 				4CABBC54293F06F800C17F42 /* GKDYVideoControlView.m in Sources */,
 				6353D3F22182B70400CFBEA7 /* WH_RoomData.m in Sources */,
+				33E3AF3D2BC3DD8300366D4E /* WebPImageView.m in Sources */,
 				0F304DC52153AD0E001EC77E /* XMPPvCardTempModule.m in Sources */,
 				B22AA224233A0D3200906412 /* AppVersionControll.m in Sources */,
 				332DB1B82B8ED68E00B4D6D4 /* WH_JXChatDefaultBgVC.m in Sources */,
 				CC6E16A519794B5A006ADA8A /* QBImagePickerVideoInfoView.m in Sources */,
+				33E3AF302BC3DCB200366D4E /* UIWindow+Extension.m in Sources */,
 				0F745D96225B3061009FFEAD /* WH_JXSearchFileLog_WHVC.m in Sources */,
 				0F304DBF2153AD0E001EC77E /* XMPPJabberRPCModule.m in Sources */,
 				63710B501FB97A1400C69611 /* WH_CreateLiveRoomMXVC.m in Sources */,
+				33E3AF0C2BC3D3D600366D4E /* AVPlayerView.m in Sources */,
 				331AD0B12BAD6FE3008A9113 /* ZFAVPlayerManager.m in Sources */,
 				0FA2D64F1FB05CCD00D51BB9 /* GPUImagePolkaDotFilter.m in Sources */,
 				DE64B3D622AF3F7600FDDB15 /* WH_JXMyInvitationList_WHVC.m in Sources */,
 				12A955DD28A136E6008D7F12 /* WKWebViewViewController.m in Sources */,
+				33E3B04A2BC3E6E300366D4E /* enc_neon.c in Sources */,
 				63710B581FB97A1400C69611 /* WH_JXLiveMem_WHObject.m in Sources */,
+				33E3B0082BC3E6E200366D4E /* config_enc.c in Sources */,
 				4CABBC59293F06F800C17F42 /* WH_GKNetworking.m in Sources */,
+				33E3B0542BC3E6E300366D4E /* cost_mips_dsp_r2.c in Sources */,
 				CCC88B6E1E4C526E00180080 /* VoiceConverter.mm in Sources */,
 				DE5C6983232676B500321406 /* WH_RechargeBankInfo_WHCell.m in Sources */,
 				0FDCB5891FF22D9B00C1EA28 /* JXAVCallViewController.m in Sources */,
 				CCFD208E19592D1D00B98494 /* SNFCoreAudioUtils.c in Sources */,
 				18AE517722E313BF00C0DD54 /* WH_Signature_WHViewController.m in Sources */,
+				33E3B0332BC3E6E200366D4E /* filters_neon.c in Sources */,
+				33E3B0072BC3E6E200366D4E /* predictor_enc.c in Sources */,
 				0FA2D5A91FB05CCC00D51BB9 /* GPUImageColorPackingFilter.m in Sources */,
 				330F3B8C2B32853200E69B97 /* WH_JXCertainOrderVC.m in Sources */,
+				33E3B0282BC3E6E200366D4E /* cost_sse2.c in Sources */,
 				18C8DC1A1D0E643300BD8386 /* WH_FileList_WHCell.m in Sources */,
 				6386D8E72229167F0032C650 /* WH_JXTransfer_WHViewController.m in Sources */,
 				0FA2D61F1FB05CCC00D51BB9 /* GPUImageMaskFilter.m in Sources */,
@@ -11011,19 +11675,23 @@
 				0F8F58FC1F96F595004B1EEA /* SDWebImageManager.m in Sources */,
 				12A955E028A13713008D7F12 /* WH_JXMsgGroup_WHViewController.m in Sources */,
 				B2308C3B2336414A00E29E1E /* WH_AuthViewController.m in Sources */,
+				33E3B0362BC3E6E300366D4E /* filters_msa.c in Sources */,
 				CC30176D1951BABF0059BADA /* LKDB+Manager.m in Sources */,
 				63DD4F5121314DB800DC45F8 /* RITLFileDownloader.m in Sources */,
 				0F8672F1228D5E8100FBDC25 /* WH_JXSkPay_WHVC.m in Sources */,
+				33E3AFEE2BC3E6E100366D4E /* anim_encode.c in Sources */,
 				0FA2D6B51FB05CCD00D51BB9 /* GPUImageZoomBlurFilter.m in Sources */,
 				0F304DB22153AD0D001EC77E /* XMPPUserCoreDataStorageObject.m in Sources */,
 				63B3126D2193038E00332368 /* JXSquareViewController.m in Sources */,
 				0FA2D58D1FB05CCC00D51BB9 /* GPUImageBoxBlurFilter.m in Sources */,
+				33E3B05A2BC3E6E300366D4E /* yuv_mips32.c in Sources */,
 				18CCF5481DAB9C6E00ED20F7 /* WH_JXRedPacket_WHCell.m in Sources */,
 				63DD4F4021314DB800DC45F8 /* UISearchBar+RITLCustomColor.m in Sources */,
 				0F304DA82153AD0D001EC77E /* NSDate+XMPPDateTimeProfiles.m in Sources */,
 				0FA2D6291FB05CCC00D51BB9 /* GPUImageMotionBlurFilter.m in Sources */,
 				63DD4F5321314DB800DC45F8 /* AppleReachability.m in Sources */,
 				330F3B912B32BF2500E69B97 /* WH_JXOrderDetaileVC.m in Sources */,
+				33E3B05B2BC3E6E300366D4E /* upsampling_mips_dsp_r2.c in Sources */,
 				0FA2D6A51FB05CCD00D51BB9 /* GPUImageUIElement.m in Sources */,
 				0FA2D6271FB05CCC00D51BB9 /* GPUImageMosaicFilter.m in Sources */,
 				63F4E44521C0AE7800C61204 /* WH_KKImageEditorTheme.m in Sources */,
@@ -11034,14 +11702,18 @@
 				20745B221EADD42B0058687B /* WH_JXTelArea_WHCell.m in Sources */,
 				333825002B36E48900AC4B06 /* WH_JXAppealModel.m in Sources */,
 				634668EC1EC405BD00BE6112 /* WH_EmployeObject.m in Sources */,
+				33E3B05C2BC3E6E300366D4E /* dec_msa.c in Sources */,
 				CC30178A1951BABF0059BADA /* UIImage+HBClass.m in Sources */,
+				33E3B0342BC3E6E200366D4E /* upsampling_sse2.c in Sources */,
 				0F30AA8820B2ADDB001CC39C /* WH_JXSetChatTextFont_WHVC.m in Sources */,
+				33E3B00C2BC3E6E200366D4E /* vp8l_enc.c in Sources */,
 				0FA2D6BB1FB05CCD00D51BB9 /* GPUImagePicture+TextureSubimage.m in Sources */,
 				0FA2D60D1FB05CCC00D51BB9 /* GPUImageLinearBurnBlendFilter.m in Sources */,
 				B203A8A82323AB08001B2575 /* WH_PwsSecSettingViewController.m in Sources */,
 				0F304E082153AD0E001EC77E /* OMEMOSignedPreKey.m in Sources */,
 				626F825F2488FAD900D0D4CF /* ContactSelectViewController.m in Sources */,
 				626F826B248A716C00D0D4CF /* WH_WeiboDetailViewController.m in Sources */,
+				33E3AFFE2BC3E6E100366D4E /* alpha_enc.c in Sources */,
 				205D03351EA1AEA000ABC959 /* JXMyTools.m in Sources */,
 				CCC88B951E4C526F00180080 /* QBPlasticPopupMenu.m in Sources */,
 				CC3016901951BABF0059BADA /* JastorRuntimeHelper.m in Sources */,
@@ -11058,8 +11730,10 @@
 				0F91A94C1FB42B6E0037443E /* WH_JXCommonService.m in Sources */,
 				0F8F59001F96F595004B1EEA /* UIButton+WebCache.m in Sources */,
 				0F5A70C11FCD07EA00547904 /* AFAutoPurgingImageCache.m in Sources */,
+				33E3B03B2BC3E6E300366D4E /* alpha_processing_mips_dsp_r2.c in Sources */,
 				63DD4F6021314DB800DC45F8 /* RITLPhotosConfiguration.m in Sources */,
 				6346692D1EC406E400BE6112 /* WH_OrganizTree_WHViewController.m in Sources */,
+				33E3B0422BC3E6E300366D4E /* yuv_mips_dsp_r2.c in Sources */,
 				63DD4F3121314DB800DC45F8 /* NSObject+RITLExtension.m in Sources */,
 				DE5C695F232666D400321406 /* WH_OrderListModel.m in Sources */,
 				CCB774D11AD80AA30019DA4C /* WH_JXNewRoom_WHVC.m in Sources */,
@@ -11075,6 +11749,7 @@
 				0FA2D6491FB05CCD00D51BB9 /* GPUImagePixellatePositionFilter.m in Sources */,
 				63F4E44721C0AE7800C61204 /* WH_KKToolBarItem.m in Sources */,
 				0F304DED2153AD0E001EC77E /* XMPPCoreDataStorage.m in Sources */,
+				33E3B0412BC3E6E300366D4E /* lossless_enc.c in Sources */,
 				CCFCF5611A1770DF00F2917E /* WH_selectCountry_WHVC.m in Sources */,
 				0F28D2092A5A55D700B9DD92 /* WH_JXGroupRedPacketSetupMemberVC.m in Sources */,
 				0F8F59081F96F596004B1EEA /* UIImageView+HighlightedWebCache.m in Sources */,
@@ -11090,12 +11765,14 @@
 				CCC88CAD1E4C5AB300180080 /* DMScaleTransition.m in Sources */,
 				0FA2D5831FB05CCC00D51BB9 /* GPUImageAlphaBlendFilter.m in Sources */,
 				CCC88C3B1E4C53AF00180080 /* WH_JX_SelectMenuView.m in Sources */,
+				33E3B01A2BC3E6E200366D4E /* buffer_dec.c in Sources */,
 				1851A3412307A41E00BA24A1 /* WWMyEmotViewController.m in Sources */,
 				0F304E462153AD0E001EC77E /* rfc3454.c in Sources */,
 				639ACA0E1FB1BFC800B3DF6A /* WhoCanSeeViewController.m in Sources */,
 				CC6E168319794906006ADA8A /* WH_JXMediaObject.m in Sources */,
 				0F304DC02153AD0E001EC77E /* XMPPIQ+JabberRPC.m in Sources */,
 				CC3017891951BABF0059BADA /* TimeUtil.m in Sources */,
+				33E3AFFC2BC3E6E100366D4E /* iterator_enc.c in Sources */,
 				63CC4653213CDE3800133AD3 /* WH_JXActionSheet_WHVC.m in Sources */,
 				6336AA851E52F11B00F831D8 /* WH_JXConvertMedia.m in Sources */,
 				CC3017721951BABF0059BADA /* NSObject+LKModel.m in Sources */,
@@ -11123,10 +11800,12 @@
 				0F304DB02153AD0D001EC77E /* XMPPResourceMemoryStorageObject.m in Sources */,
 				6346690F1EC405F700BE6112 /* WH_RABatchChangeEntity.m in Sources */,
 				18DC424D1D7588D7005EA299 /* WH_JXGetPacketList.m in Sources */,
+				33E3B0552BC3E6E300366D4E /* alpha_processing_sse2.c in Sources */,
 				0FA2D5AF1FB05CCC00D51BB9 /* GPUImageCrosshairGenerator.m in Sources */,
 				18AE518622E3173800C0DD54 /* UICountingLabel.m in Sources */,
 				18D9621F22CF45D900C0519B /* WH_BlackList_WHController.m in Sources */,
 				88FBB8A31F3868B3004A530A /* AskCallViewController.mm in Sources */,
+				33E3B0302BC3E6E200366D4E /* yuv_neon.c in Sources */,
 				63DD4F5021314DB800DC45F8 /* LLSegmentBarVC.m in Sources */,
 				0F77DCE62A30C12B00CF8D54 /* WH_JXGroupRedPacketCell.m in Sources */,
 				0F304DF22153AD0E001EC77E /* XMPPCapabilities+XEP_0359.m in Sources */,
@@ -11140,6 +11819,7 @@
 				CCFD208F19592D1D00B98494 /* TPCircularBuffer.c in Sources */,
 				63B517DF222A2EBA00EFBE03 /* WH_JXTransferDeatil_WHVC.m in Sources */,
 				6317CCB11FB9798500CEF9EF /* LFLiveSession.m in Sources */,
+				33E3B04F2BC3E6E300366D4E /* cost_mips32.c in Sources */,
 				4CABBC6B293F06F800C17F42 /* UINavigationItem+GKCategory.m in Sources */,
 				33946A8B2B22B2310002A8D6 /* WH_WithDreawCell.m in Sources */,
 				0FA2D66D1FB05CCD00D51BB9 /* GPUImageShiTomasiFeatureDetectionFilter.m in Sources */,
@@ -11169,7 +11849,9 @@
 				DE5C69292326031E00321406 /* WH_forgetPayPasswordVC.m in Sources */,
 				0F304E272153AD0E001EC77E /* NSNumber+XMPP.m in Sources */,
 				63DD4F6C21314DB800DC45F8 /* RITLPhotosBrowseVideoCell.m in Sources */,
+				33E3AF2E2BC3DCB200366D4E /* NSDate+Extension.m in Sources */,
 				63AF5482225ADF6C0021EEBC /* WH_JXWebviewProgress.m in Sources */,
+				33E3B0092BC3E6E200366D4E /* backward_references_enc.c in Sources */,
 				0FA2D59F1FB05CCC00D51BB9 /* GPUImageColorBlendFilter.m in Sources */,
 				B22AA2102339B60C00906412 /* WW_StrongReminderView.m in Sources */,
 				63DD4F6A21314DB800DC45F8 /* UICollectionViewCell+RITLPhotosAsset.m in Sources */,
@@ -11180,10 +11862,13 @@
 				0F8F58F61F96F595004B1EEA /* SDWebImageDecoder.m in Sources */,
 				0F8F59021F96F595004B1EEA /* UIImage+GIF.m in Sources */,
 				18CCF5431DAB9C2900ED20F7 /* WH_JXCard_WHCell.m in Sources */,
+				33E3B0122BC3E6E200366D4E /* backward_references_cost_enc.c in Sources */,
 				0F304DB62153AD0D001EC77E /* XMPPMessage+XEP_0308.m in Sources */,
 				6317CCB41FB9798500CEF9EF /* LFLiveDebug.m in Sources */,
+				33E3B0482BC3E6E300366D4E /* lossless_enc_sse2.c in Sources */,
 				CC3017751951BABF0059BADA /* HBHttpCacheData.m in Sources */,
 				0F7AF26820B40C060033C8AE /* JXMultipleLogin.m in Sources */,
+				33E3AFFD2BC3E6E100366D4E /* cost_enc.c in Sources */,
 				6336AA881E52F11B00F831D8 /* WH_MyPlayerLayerView.m in Sources */,
 				DE99D0FB22E84C6600D363DC /* JX_NewWithdrawViewController.m in Sources */,
 				0F304E2E2153AD0E001EC77E /* XMPPDeprecatedDigestAuthentication.m in Sources */,
@@ -11212,6 +11897,7 @@
 				63B0E2FA22360A4200D3F2BA /* WH_JXLinksShare_WHVC.m in Sources */,
 				B24FF8CF23409FC000AD89A9 /* BindTelephoneChecker.m in Sources */,
 				0FA2D5FF1FB05CCC00D51BB9 /* GPUImageJFAVoronoiFilter.m in Sources */,
+				33E3AF292BC3DCB200366D4E /* NSAttributedString+Extension.m in Sources */,
 				0FAB27212A35748300EDFE8D /* WH_JXGroupMemberRedPacketCell.m in Sources */,
 				0FA9E95821A664DB0074416D /* MBProgressHUD.m in Sources */,
 				CC28559F1A60DE9E00F21DAC /* WH_JXUserInfo_WHVC.m in Sources */,
@@ -11226,13 +11912,17 @@
 				4CABBC69293F06F800C17F42 /* UIBarButtonItem+GKCategory.m in Sources */,
 				B203A87D232394C7001B2575 /* WH_LoginTextField.m in Sources */,
 				0FA2D6631FB05CCD00D51BB9 /* GPUImageSaturationBlendFilter.m in Sources */,
+				33E3B00B2BC3E6E200366D4E /* webp_enc.c in Sources */,
 				126D6639285228EE000BEF41 /* NSMutableArray+AvoidCrash.m in Sources */,
 				0FA2D5D31FB05CCC00D51BB9 /* GPUImageFramebuffer.m in Sources */,
 				0F304E232153AD0E001EC77E /* XMPPIDTracker.m in Sources */,
+				33E3AFF12BC3E6E100366D4E /* thread_utils.c in Sources */,
 				63DD4F7221314DB800DC45F8 /* RITLPhotosPreviewController.m in Sources */,
+				33E3AF0D2BC3D3D600366D4E /* AVPlayerManager.m in Sources */,
 				63F4E43C21C0AE7800C61204 /* WH_KKMosaicTool.m in Sources */,
 				CCC88B971E4C526F00180080 /* QBPopupMenuItem.m in Sources */,
 				0F304DDF2153AD0E001EC77E /* XMPPRoomHybridStorage.m in Sources */,
+				33E3B00E2BC3E6E200366D4E /* analysis_enc.c in Sources */,
 				63DD4F3E21314DB800DC45F8 /* UITableView+RITLExtension.m in Sources */,
 				0FA2D6971FB05CCD00D51BB9 /* GPUImageToneCurveFilter.m in Sources */,
 				0F304DE32153AD0E001EC77E /* XMPPRoomMessageCoreDataStorageObject.m in Sources */,
@@ -11249,6 +11939,7 @@
 				0FA2D6671FB05CCD00D51BB9 /* GPUImageScreenBlendFilter.m in Sources */,
 				0FA2D5AD1FB05CCC00D51BB9 /* GPUImageCropFilter.m in Sources */,
 				63F4E44321C0AE7800C61204 /* WH_KKTextView.m in Sources */,
+				3316755A2BC28E3E002B7334 /* WH_playListCell.m in Sources */,
 				63710B591FB97A1400C69611 /* WH_JXLiveRoom_WHViewController.m in Sources */,
 				B22AA21F2339BF8300906412 /* WH_JXSetNoteAndLabel_WHVC.m in Sources */,
 				0FA2D6A71FB05CCD00D51BB9 /* GPUImageUnsharpMaskFilter.m in Sources */,
@@ -11267,12 +11958,14 @@
 				63DD4F4421314DB800DC45F8 /* RITLScriptMessageHandler.m in Sources */,
 				0FA9BF8120F73A120070B26C /* FLAnimatedImageView.m in Sources */,
 				880ADA7B1F6F7B50009C920C /* acceptCallViewController.m in Sources */,
+				33E3AF2D2BC3DCB200366D4E /* CADisplayLink+Tool.m in Sources */,
 				B2308C382336377E00E29E1E /* AppDelegate+ShareSDK.m in Sources */,
 				B203A8A52323A966001B2575 /* WH_SettingHeadImgViewController.m in Sources */,
 				CC8FCA631E4B01CE0058686C /* WH_JXOpenRedPacket_WHVC.m in Sources */,
 				0FA2D5B71FB05CCC00D51BB9 /* GPUImageDilationFilter.m in Sources */,
 				0F304E022153AD0E001EC77E /* XMPPAutoPing.m in Sources */,
 				18C86BC422BB8D6200C398EA /* WH_StrongReminderView.m in Sources */,
+				33E3B0132BC3E6E200366D4E /* picture_rescale_enc.c in Sources */,
 				0F304DA62153AD0D001EC77E /* XMPPIQ+LastActivity.m in Sources */,
 				CC875A4519361892007D2DA1 /* WH_VersionManageTool.m in Sources */,
 				33F643CB2B908F1200988523 /* WH_JXDownloadUrlVC.m in Sources */,
@@ -11280,6 +11973,7 @@
 				0FA2D6431FB05CCC00D51BB9 /* GPUImagePerlinNoiseFilter.m in Sources */,
 				0F304E142153AD0E001EC77E /* XMPPRoomLightCoreDataStorage.m in Sources */,
 				CC8759D119361892007D2DA1 /* WH_JXImageView.m in Sources */,
+				33E3AF2F2BC3DCB200366D4E /* NSString+Extension.m in Sources */,
 				0F304E2B2153AD0E001EC77E /* XMPPPlainAuthentication.m in Sources */,
 				CC8FCA791E4B07040058686C /* WH_AudioPlayerTool.m in Sources */,
 				0FA2D58B1FB05CCC00D51BB9 /* GPUImageBilateralFilter.m in Sources */,
@@ -11299,16 +11993,20 @@
 				B203A84E23238E94001B2575 /* WH_CountryCodeViewController.m in Sources */,
 				0FA2D64D1FB05CCD00D51BB9 /* GPUImagePolarPixellateFilter.m in Sources */,
 				0F304DB32153AD0D001EC77E /* XMPPRosterCoreDataStorage.m in Sources */,
+				33E3B04E2BC3E6E300366D4E /* lossless_enc_neon.c in Sources */,
 				4CABBC5B293F06F800C17F42 /* WH_GKSliderView.m in Sources */,
 				6372A49A2126801E000980CD /* WH_JXAnnounce_WHCell.m in Sources */,
 				0F304E372153AD0E001EC77E /* DDMultiFormatter.m in Sources */,
 				63EF37CA1F6AA28300F0A250 /* WH_JXQRCode_WHViewController.m in Sources */,
 				4CABBC60293F06F800C17F42 /* WMMenuItem.m in Sources */,
 				0FA2D6011FB05CCC00D51BB9 /* GPUImageKuwaharaFilter.m in Sources */,
+				33E3AF2B2BC3DCB200366D4E /* NSTextAttachment+Emotion.m in Sources */,
+				33E3AF2A2BC3DCB200366D4E /* NSNotification+Extension.m in Sources */,
 				0F304DF12153AD0E001EC77E /* NSXMLElement+XEP_0359.m in Sources */,
 				63710B601FB97A1400C69611 /* ShakeLabel.m in Sources */,
 				63DD4F3521314DB800DC45F8 /* UIColor+RITLExtension.m in Sources */,
 				0FA2D5D11FB05CCC00D51BB9 /* GPUImageFilterPipeline.m in Sources */,
+				33E3B0402BC3E6E300366D4E /* rescaler_sse2.c in Sources */,
 				CC2D53971E4EAD3400D259D2 /* WH_JXMeetingObject.mm in Sources */,
 				0FA2D5A31FB05CCC00D51BB9 /* GPUImageColorDodgeBlendFilter.m in Sources */,
 				0FA2D6991FB05CCD00D51BB9 /* GPUImageToonFilter.m in Sources */,
@@ -11333,10 +12031,12 @@
 				0F304DA32153AD0D001EC77E /* XMPPMessageCarbons.m in Sources */,
 				DE5C696C232666D400321406 /* MiXin_WithdrawCoin_MiXinVC.m in Sources */,
 				1812A8AA22F2C559005BBD23 /* WH_Recharge_TableViewCell.m in Sources */,
+				33E3B02D2BC3E6E200366D4E /* lossless_mips_dsp_r2.c in Sources */,
 				63DD4F6921314DB800DC45F8 /* UIViewController+RITLUpdateCachedAssets.m in Sources */,
 				0F304D9F2153AD0D001EC77E /* XMPPBookmark.m in Sources */,
 				CC2701B01A2C6FB800826BD0 /* WH_JXConstant.m in Sources */,
 				634669151EC405F700BE6112 /* WH_RATreeNode.m in Sources */,
+				33E3AFF42BC3E6E100366D4E /* huffman_encode_utils.c in Sources */,
 				63DD4F3821314DB800DC45F8 /* NSDictionary+RITLExtension.m in Sources */,
 				CC7B36AD1942F9060012DDE4 /* WH_JXSelectImageView.m in Sources */,
 				33E5916E2B16E6B900E578A3 /* MASConstraint.m in Sources */,
@@ -11348,6 +12048,7 @@
 				63710B521FB97A1400C69611 /* WH_JXLiveChat_WHCell.m in Sources */,
 				0F5A70C71FCD07EA00547904 /* UIProgressView+AFNetworking.m in Sources */,
 				634DCDCC2230ABDA000F4206 /* WH_JXInputMoney_WHVC.m in Sources */,
+				33E3B03A2BC3E6E300366D4E /* filters.c in Sources */,
 				63F4E43A21C0AE7800C61204 /* WH_KKTextTool.m in Sources */,
 				88BDA8771F4726260013ED83 /* WH_JXLink_WHCell.m in Sources */,
 				0FA2D6251FB05CCC00D51BB9 /* GPUImageMonochromeFilter.m in Sources */,
@@ -11367,11 +12068,13 @@
 				0FA2D6B91FB05CCD00D51BB9 /* GPUImageMovieWriter.m in Sources */,
 				0FA2D69F1FB05CCD00D51BB9 /* GPUImageTwoInputFilter.m in Sources */,
 				0F5A70BA1FCD07EA00547904 /* AFNetworkReachabilityManager.m in Sources */,
+				33E3B0202BC3E6E200366D4E /* upsampling.c in Sources */,
 				0FA2D5C11FB05CCC00D51BB9 /* GPUImageEmbossFilter.m in Sources */,
 				0F618F181FE3B2B500333249 /* WH_JXShareList_WHVC.m in Sources */,
 				0FA2D6BF1FB05CCD00D51BB9 /* GPUImageView.m in Sources */,
 				0F5A70BC1FCD07EA00547904 /* AFURLRequestSerialization.m in Sources */,
 				6346691F1EC405F700BE6112 /* RATreeView+Enums.m in Sources */,
+				33E3B02F2BC3E6E200366D4E /* cpu.c in Sources */,
 				33E591692B16E6B900E578A3 /* MASCompositeConstraint.m in Sources */,
 				CCC88B5E1E4C526E00180080 /* CustomWindow.m in Sources */,
 				330F3B862B31867200E69B97 /* WH_PayOrderCell.m in Sources */,
@@ -11379,7 +12082,9 @@
 				626F825C2488EC7900D0D4CF /* WH_ContactCell.m in Sources */,
 				4CABBC5A293F06F800C17F42 /* GH_GKDYVideoPlayer.m in Sources */,
 				0F304DDA2153AD0E001EC77E /* XMPPRoomMessageMemoryStorageObject.m in Sources */,
+				33E3B02C2BC3E6E200366D4E /* filters_sse2.c in Sources */,
 				4CABBC56293F06F800C17F42 /* GKDYScrollView.m in Sources */,
+				33E3B0062BC3E6E200366D4E /* syntax_enc.c in Sources */,
 				331AD0B62BAD6FE3008A9113 /* ZFLandScapeControlView.m in Sources */,
 				331AD0BB2BAD6FE3008A9113 /* ZFSmallFloatControlView.m in Sources */,
 				0F8F58FE1F96F595004B1EEA /* SDWebImagePrefetcher.m in Sources */,
@@ -11388,9 +12093,11 @@
 				633268BC1F00F3E200FF06C7 /* WH_JXReportUser_WHVC.m in Sources */,
 				6317CCAF1FB9798500CEF9EF /* LFGPUImageBeautyFilter.m in Sources */,
 				18AE518222E3161800C0DD54 /* LDCalendarView.m in Sources */,
+				33234B3B2BC23A04009A36B2 /* WH_VideoMainVC.m in Sources */,
 				B2A8A1CF23274EBB003A3254 /* WH_JXChatSetting_WHVC.m in Sources */,
 				63710B5E1FB97A1400C69611 /* GiftModel.m in Sources */,
 				4CABBC63293F06F800C17F42 /* WMProgressView.m in Sources */,
+				33E3B04C2BC3E6E300366D4E /* enc_avx2.c in Sources */,
 				0F304DCB2153AD0E001EC77E /* XMPPvCardCoreDataStorage.m in Sources */,
 				6317CCBA1FB9798500CEF9EF /* NSMutableArray+LFAdd.m in Sources */,
 				632F9AD71EC56C7D00A15914 /* WH_Organiz_WHTableViewCell.m in Sources */,
@@ -11411,16 +12118,22 @@
 				0F304E312153AD0E001EC77E /* DDTTYLogger.m in Sources */,
 				63775112223224FB005C14ED /* WH_JXTransferNotice_WHCell.m in Sources */,
 				CC8759CC19361892007D2DA1 /* WH_ConfirmView.m in Sources */,
+				33E3B01F2BC3E6E200366D4E /* vp8_dec.c in Sources */,
+				33E3B0462BC3E6E300366D4E /* ssim.c in Sources */,
 				CCC88CAB1E4C5AB300180080 /* DMAlphaTransition.m in Sources */,
 				626F826E248B33F200D0D4CF /* WH_JXWeiboDetailViewController.m in Sources */,
 				0F304DC12153AD0E001EC77E /* XMPPIQ+JabberRPCResonse.m in Sources */,
+				33E3B0272BC3E6E200366D4E /* rescaler_neon.c in Sources */,
 				6336AA891E52F11B00F831D8 /* WH_recordVideo_WHViewController.m in Sources */,
 				63251BBA1F0F2B430064DB48 /* WH_JXFileDetail_WHViewController.m in Sources */,
 				63710B551FB97A1400C69611 /* WH_JXLiveJid_WHManager.m in Sources */,
+				331675552BC2884D002B7334 /* WH_playListVC.m in Sources */,
 				0F11158A2A594A4F00EF041B /* WH_JXGroupEnterAndOutVC.m in Sources */,
 				0F304DE12153AD0E001EC77E /* XMPPRoom.xcdatamodeld in Sources */,
+				33E3B0532BC3E6E300366D4E /* dec_mips32.c in Sources */,
 				CC875A4119361892007D2DA1 /* WH_JXConnection.m in Sources */,
 				336B7DCA2BB180AE00699E10 /* WH_JXGroupMemberEarningCell.m in Sources */,
+				33E3B0232BC3E6E200366D4E /* enc_msa.c in Sources */,
 				1843126522CB4AFD0029CBAF /* UIButton+WH_Button.m in Sources */,
 				0F304DC72153AD0E001EC77E /* XMPPvCardTempAdr.m in Sources */,
 				0F304DEA2153AD0E001EC77E /* XMPPMessageArchiving.xcdatamodeld in Sources */,
@@ -11441,6 +12154,7 @@
 				CCEBFFED196EB63800BC2E0E /* ATMHud.m in Sources */,
 				63DD4F6221314DB800DC45F8 /* NSString+RITLPhotos.m in Sources */,
 				6346691B1EC405F700BE6112 /* RATreeNodeItem+Private.m in Sources */,
+				33E3B0222BC3E6E200366D4E /* lossless_enc_mips_dsp_r2.c in Sources */,
 				0F304D972153AD0D001EC77E /* XMPPPresence.m in Sources */,
 				0FCE24E91FF33D7F0098713E /* JSONKit.m in Sources */,
 				6317CCB51FB9798500CEF9EF /* LFLiveStreamInfo.m in Sources */,
@@ -11461,9 +12175,11 @@
 				0F304DD52153AD0E001EC77E /* XMPPPrivacy.m in Sources */,
 				0F28D20E2A5A588A00B9DD92 /* WH_JXGroupRedPacketSetupMemberCell.m in Sources */,
 				63DD4F6821314DB800DC45F8 /* NSBundle+RITLPhotos.m in Sources */,
+				33E3B03F2BC3E6E300366D4E /* dec_sse41.c in Sources */,
 				4CABBC4B293F06F800C17F42 /* WH_GKDYBase_WHViewController.m in Sources */,
 				0FA2D5C71FB05CCC00D51BB9 /* GPUImageExposureFilter.m in Sources */,
 				0FA2D6651FB05CCD00D51BB9 /* GPUImageSaturationFilter.m in Sources */,
+				33E3AFEC2BC3E6E100366D4E /* muxread.c in Sources */,
 				331AD0BE2BAD6FE3008A9113 /* ZFPortraitControlView.m in Sources */,
 				18F9D1822423239600878AFF /* WH_WithdrawThreeAccountViewController.m in Sources */,
 				331AD11E2BAD81D3008A9113 /* MJRefreshFooterView.m in Sources */,
@@ -11477,6 +12193,7 @@
 				0FA2D5EF1FB05CCC00D51BB9 /* GPUImageHistogramEqualizationFilter.m in Sources */,
 				0FAE417A225C851900F5E5B4 /* WH_JXSearchImageLog_WHVC.m in Sources */,
 				0F199DCE225F20EB003973B1 /* WH_JXSetShikuNum_WHVC.m in Sources */,
+				33E3AF2C2BC3DCB200366D4E /* UIImage+Extension.m in Sources */,
 				333824FC2B367C5900AC4B06 /* WH_JXAppealAddCell.m in Sources */,
 				0F304DD92153AD0E001EC77E /* XMPPMessage+XEP0045.m in Sources */,
 				63C624AF1EC0280C00CE3216 /* WH_JXLocation.m in Sources */,
@@ -11496,6 +12213,7 @@
 				18CCF53E1DAB9B0B00ED20F7 /* WH_JXLocation_WHCell.m in Sources */,
 				18D6A18E22CDF10500A6DAB3 /* WH_AddFriend_WHCell.m in Sources */,
 				126D6634285228EE000BEF41 /* NSString+AvoidCrash.m in Sources */,
+				33E3B01E2BC3E6E200366D4E /* vp8l_dec.c in Sources */,
 				63710B561FB97A1400C69611 /* WH_JXLiveMember_WHCell.m in Sources */,
 				6386D8E3222912CD0032C650 /* WH_JXTransfer_WHCell.m in Sources */,
 				CC75F8471E514E620072BD54 /* WH_ResumeData.m in Sources */,
@@ -11510,6 +12228,8 @@
 				4CABBC50293F06F800C17F42 /* WH_GKDYPersonalModel.m in Sources */,
 				0F8F58FA1F96F595004B1EEA /* SDWebImageDownloaderOperation.m in Sources */,
 				DE5C6982232676B500321406 /* WH_PayCard_WHCell.m in Sources */,
+				33E3B0562BC3E6E300366D4E /* dec_clip_tables.c in Sources */,
+				33E3B0512BC3E6E300366D4E /* dec_neon.c in Sources */,
 				4CABBC6C293F06F800C17F42 /* UIViewController+GKCategory.m in Sources */,
 				CC6E168519794906006ADA8A /* WH_JXMsgAndUserObject.m in Sources */,
 				6353D3E12182B57900CFBEA7 /* WH_JXInputValue_WHVC.m in Sources */,
@@ -11522,18 +12242,22 @@
 				0F5A70BB1FCD07EA00547904 /* AFSecurityPolicy.m in Sources */,
 				4CABBC6A293F06F800C17F42 /* UIScrollView+GKCategory.m in Sources */,
 				634669111EC405F700BE6112 /* RABatchChanges.m in Sources */,
+				33E3B02B2BC3E6E200366D4E /* upsampling_neon.c in Sources */,
 				4CABBC5E293F06F800C17F42 /* WMPageController.m in Sources */,
 				0FA2D5871FB05CCC00D51BB9 /* GPUImageAverageColor.m in Sources */,
 				0FA2D5E31FB05CCC00D51BB9 /* GPUImageHalftoneFilter.m in Sources */,
 				63F4E44821C0AE7800C61204 /* WH_KKImageToolBase.m in Sources */,
 				0F304E132153AD0E001EC77E /* XMPPRoomLightMessageCoreDataStorageObject.m in Sources */,
 				0F304E3E2153AD0E001EC77E /* GCDAsyncUdpSocket.m in Sources */,
+				33E3B0152BC3E6E200366D4E /* anim_decode.c in Sources */,
 				0F304E1D2153AD0E001EC77E /* XMPPIQ+XEP_0060.m in Sources */,
 				CC6E15DF19791A84006ADA8A /* WH_webpage_WHVC.m in Sources */,
 				189A23F224494DBE00288EC9 /* WH_DeleteRoomMembers_ViewController.m in Sources */,
 				63DD4F4221314DB800DC45F8 /* NSObject+RITLMutable.m in Sources */,
 				6317CCAE1FB9798500CEF9EF /* LFLiveVideoConfiguration.m in Sources */,
+				33E3AFED2BC3E6E100366D4E /* muxinternal.c in Sources */,
 				63F4E44621C0AE7800C61204 /* WH_KKImageEditor_WHViewController.m in Sources */,
+				33E3B04D2BC3E6E300366D4E /* enc_sse2.c in Sources */,
 				0FB736961F21E03D0057FB15 /* WH_GDataXMLNode.m in Sources */,
 				0F304DFE2153AD0E001EC77E /* NSString+XEP_0106.m in Sources */,
 				0FA2D59B1FB05CCC00D51BB9 /* GPUImageChromaKeyFilter.m in Sources */,
@@ -11542,6 +12266,7 @@
 				0F304E4D2153AD0E001EC77E /* DDXMLNode.m in Sources */,
 				0F5A70C61FCD07EA00547904 /* UIImageView+AFNetworking.m in Sources */,
 				CC5AD39B1942B5F20083B236 /* WH_admob_WHViewController.m in Sources */,
+				33E3B0142BC3E6E200366D4E /* demux.c in Sources */,
 				63DD4F5421314DB800DC45F8 /* RITLFilter.m in Sources */,
 				33946A902B22B2640002A8D6 /* WH_WithDreawVC.m in Sources */,
 				CCFD208D19592D1D00B98494 /* smbPitchShift.m in Sources */,
@@ -11549,6 +12274,7 @@
 				625C1473248BA16D00493825 /* WH_WeiboSearchViewController.m in Sources */,
 				0F304DBD2153AD0E001EC77E /* NSXMLElement+XEP_0203.m in Sources */,
 				0F304DBB2153AD0E001EC77E /* XMPPPresence+XEP_0172.m in Sources */,
+				33E3B0582BC3E6E300366D4E /* enc.c in Sources */,
 				0F304E4E2153AD0E001EC77E /* DDXMLDocument.m in Sources */,
 				0F304DC92153AD0E001EC77E /* XMPPvCardTempCoreDataStorageObject.m in Sources */,
 				63710B541FB97A1400C69611 /* WH_JXLiveGift_WHObject.m in Sources */,
@@ -11558,6 +12284,7 @@
 				12A955DC28A136E6008D7F12 /* UIView+LK.m in Sources */,
 				0FA2D65F1FB05CCD00D51BB9 /* GPUImageRGBFilter.m in Sources */,
 				0FA2D5B31FB05CCC00D51BB9 /* GPUImageDarkenBlendFilter.m in Sources */,
+				33E3B0442BC3E6E300366D4E /* dec.c in Sources */,
 				63DD4F6421314DB800DC45F8 /* UICollectionView+RITLIndexPathsForElements.m in Sources */,
 				638A6F281FA3147C00D6D17C /* UIImage+WH_Color.m in Sources */,
 				1851A3462307A5BB00BA24A1 /* emojiViewController.m in Sources */,
@@ -11571,6 +12298,7 @@
 				0FA2D67D1FB05CCD00D51BB9 /* GPUImageSourceOverBlendFilter.m in Sources */,
 				0FA2D6A31FB05CCD00D51BB9 /* GPUImageTwoPassTextureSamplingFilter.m in Sources */,
 				63238DF11ED51B300093574C /* WH_JX_DownListView.m in Sources */,
+				33E3B0572BC3E6E300366D4E /* lossless_msa.c in Sources */,
 				CC1D1924195455710029F7FD /* JXTextView.m in Sources */,
 				63DD4F6B21314DB800DC45F8 /* RITLPhotosBrowseLiveCell.m in Sources */,
 				331AD0B92BAD6FE3008A9113 /* ZFSliderView.m in Sources */,
@@ -11578,6 +12306,7 @@
 				18521F571D1E74C500246381 /* ReplyCell.m in Sources */,
 				0FA2D69D1FB05CCD00D51BB9 /* GPUImageTwoInputCrossTextureSamplingFilter.m in Sources */,
 				18D253671DAC76C600FDA9EF /* WH_JXRemind_WHCell.m in Sources */,
+				33E3AF0B2BC3D3D600366D4E /* AwemeListCell.m in Sources */,
 				33E591672B16E6B900E578A3 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				634669231EC405F700BE6112 /* RATreeView+RATreeNodeCollectionControllerDataSource.m in Sources */,
 				0FA2D60B1FB05CCC00D51BB9 /* GPUImageLightenBlendFilter.m in Sources */,
@@ -11618,6 +12347,8 @@
 				0FA2D68F1FB05CCD00D51BB9 /* GPUImageThresholdEdgeDetectionFilter.m in Sources */,
 				0FA2D62D1FB05CCC00D51BB9 /* GPUImageMovie.m in Sources */,
 				CC875A3F19361892007D2DA1 /* FileInfo.m in Sources */,
+				33E3AFFA2BC3E6E100366D4E /* filters_utils.c in Sources */,
+				33E3B0292BC3E6E200366D4E /* enc_sse41.c in Sources */,
 				0FA2D6C11FB05D5100D51BB9 /* WH_GPUImageBeautifyFilter.m in Sources */,
 				0F304DC82153AD0E001EC77E /* XMPPvCard.xcdatamodeld in Sources */,
 				0F304E302153AD0E001EC77E /* XMPPXOAuth2Google.m in Sources */,
@@ -11636,8 +12367,10 @@
 				0FA2D6571FB05CCD00D51BB9 /* GPUImageRawDataOutput.m in Sources */,
 				DE5C6961232666D400321406 /* MiXin_BtnInCenter_MiXinCell.m in Sources */,
 				DE5E40E122F0678000D98B8F /* UIDevice+FCUUID.m in Sources */,
+				33E3B0052BC3E6E200366D4E /* frame_enc.c in Sources */,
 				63DD4F5C21314DB800DC45F8 /* RITLPhotosGroupTableViewController.m in Sources */,
 				0FC8CF062137DFAB00E18867 /* WH_JXAddressBook_WHVC.m in Sources */,
+				33E3B0252BC3E6E200366D4E /* rescaler.c in Sources */,
 				63F4E43B21C0AE7800C61204 /* WH_KKEmoticonTool.m in Sources */,
 				6322E8751F131EEF003AB149 /* MCDownloadOperation.m in Sources */,
 				1851A3302307A32200BA24A1 /* WWShowEmotCollectionViewCell.m in Sources */,
@@ -11659,6 +12392,7 @@
 				0F304E222153AD0E001EC77E /* XMPPTimer.m in Sources */,
 				33BEF30B2B4E6DE30078B540 /* WH_JXNoticeModel.m in Sources */,
 				63DD4F6121314DB800DC45F8 /* RITLPhotosBottomView.m in Sources */,
+				33E3B01B2BC3E6E200366D4E /* quant_dec.c in Sources */,
 				336B7DCF2BB27A0B00699E10 /* WH_JXGroupRedPacketTotalVC.m in Sources */,
 				0F304E392153AD0E001EC77E /* DDAbstractDatabaseLogger.m in Sources */,
 				63710B5A1FB97A1400C69611 /* WH_JXLive_WHViewController.m in Sources */,
@@ -11666,12 +12400,15 @@
 				33CB6DB62BB3ED28000D58DE /* UserInfoHeader.m in Sources */,
 				0F304E2F2153AD0E001EC77E /* XMPPDeprecatedPlainAuthentication.m in Sources */,
 				0F304DA42153AD0D001EC77E /* XMPPMessage+XEP_0280.m in Sources */,
+				33E3B0312BC3E6E200366D4E /* alpha_processing.c in Sources */,
+				33E3B0172BC3E6E200366D4E /* frame_dec.c in Sources */,
 				186874AB22C36D30000D5428 /* WH_FindTableViewCell.m in Sources */,
 				0F9F3B9620DB31E60029353A /* WH_JXLabelObject.m in Sources */,
 				4CABBC6F293F06F800C17F42 /* GKNavigationBarViewController.m in Sources */,
 				0F304DFF2153AD0E001EC77E /* XMPPMessage+XEP_0334.m in Sources */,
 				0FA2D6131FB05CCC00D51BB9 /* GPUImageLookupFilter.m in Sources */,
 				DE5E40D422F03A5B00D98B8F /* WH_BtnInCenter_WHCell.m in Sources */,
+				33E3AFF52BC3E6E100366D4E /* quant_levels_utils.c in Sources */,
 				0F304DAF2153AD0D001EC77E /* XMPPUserMemoryStorageObject.m in Sources */,
 				0FA2D5CD1FB05CCC00D51BB9 /* GPUImageFilter.m in Sources */,
 				0FA2D5B51FB05CCC00D51BB9 /* GPUImageDifferenceBlendFilter.m in Sources */,
@@ -11684,22 +12421,27 @@
 				0F304DF42153AD0E001EC77E /* XMPPStanzaIdModule.m in Sources */,
 				CC3017861951BABF0059BADA /* MatchParser.m in Sources */,
 				4CABBC53293F06F800C17F42 /* WH_EditAudioVideo.m in Sources */,
+				33E3AF122BC3D3D600366D4E /* AwemeListController.m in Sources */,
 				18EA2D7B240DF92D0043D020 /* WH_WKWebView_JXViewController.m in Sources */,
 				634669271EC405F700BE6112 /* RATreeView+TableViewDelegate.m in Sources */,
 				63DD4F3B21314DB800DC45F8 /* UIImage+RITLExtension.m in Sources */,
 				DE5C696B232666D400321406 /* MiXin_ConfirmWithdraw_MiXinVC.m in Sources */,
 				33CB6DA92BB3EA01000D58DE /* ScalePresentAnimation.m in Sources */,
+				33E3B0242BC3E6E200366D4E /* filters_mips_dsp_r2.c in Sources */,
 				DE040C8622C1109600153BFA /* WH_JX_WHCell.m in Sources */,
 				0FB2081B20C546BD009AD1ED /* WH_JXPublicNumber_WHVC.m in Sources */,
+				33E3AFF22BC3E6E100366D4E /* rescaler_utils.c in Sources */,
 				0F304DA52153AD0D001EC77E /* XMPPLastActivity.m in Sources */,
 				0F304DCD2153AD0E001EC77E /* XMPPvCardTempLabel.m in Sources */,
 				DED9FA2B22EEFDB5008C89EE /* WH_TopPrompt_WHView.m in Sources */,
 				DE39FF8324371A0E00E90FE5 /* EventSource.swift in Sources */,
 				0FB628A221280B3800E35A49 /* JXSynTask.m in Sources */,
 				18BCFFDD23853025001F49AC /* WH_AddWithdrawalAccount_WHVC.m in Sources */,
+				33E3B0032BC3E6E200366D4E /* filter_enc.c in Sources */,
 				CC8FD3321E4B399E0058686C /* WH_Gif_GHViewController.m in Sources */,
 				63F4E44021C0AE7800C61204 /* WH_KKCutCircle.m in Sources */,
 				63DD4F4521314DB800DC45F8 /* RITLWebScriptMessageHandler.m in Sources */,
+				33E3B0492BC3E6E300366D4E /* yuv.c in Sources */,
 				6317CCB81FB9798500CEF9EF /* LFStreamingBuffer.m in Sources */,
 				CCE242D518FFB8EB00A3CB5A /* main.m in Sources */,
 				B2A8A1C923273430003A3254 /* WH_ReadDelTimeCell.m in Sources */,
@@ -11708,10 +12450,12 @@
 				0F304E3B2153AD0E001EC77E /* DDASLLogCapture.m in Sources */,
 				DE5C698F2326812E00321406 /* WH_SuccessfulWithdrawal_WHViewController.m in Sources */,
 				636E434D1F9DE23800BCBA9F /* WH_SkinManage.m in Sources */,
+				33E3B0102BC3E6E200366D4E /* near_lossless_enc.c in Sources */,
 				CC6E167919794906006ADA8A /* WH_JXNewFriend_WHViewController.m in Sources */,
 				6353D3E42182B64700CFBEA7 /* WH_JXRoomMemberList_WHVC.m in Sources */,
 				0F304DA02153AD0D001EC77E /* NSXMLElement+XEP_0048.m in Sources */,
 				63C087AF21CB352500393EFF /* UILabel+WH_YBAttributeTextTapAction.m in Sources */,
+				33E3B0502BC3E6E300366D4E /* alpha_processing_sse41.c in Sources */,
 				DEE708B422D4B7EF005FE40C /* WBPopOverView.m in Sources */,
 				18BCFFD72384E5A3001F49AC /* WH_RechargeSelectAccount_WHCell.m in Sources */,
 				0F304E4C2153AD0E001EC77E /* DDXMLElementAdditions.m in Sources */,
@@ -11725,9 +12469,13 @@
 				0F8027E81F0B3BB500AB0133 /* JXBlogRemindCell.m in Sources */,
 				0FA2D68B1FB05CCD00D51BB9 /* GPUImageTextureOutput.m in Sources */,
 				0FA2D57B1FB05CCC00D51BB9 /* GPUImage3x3ConvolutionFilter.m in Sources */,
+				33E3AFF92BC3E6E100366D4E /* color_cache_utils.c in Sources */,
 				0FA2D6191FB05CCC00D51BB9 /* GPUImageLuminanceThresholdFilter.m in Sources */,
 				CC30168F1951BABF0059BADA /* Jastor.m in Sources */,
 				CC6E168719794906006ADA8A /* WH_JXRoomPool.m in Sources */,
+				33E3B03D2BC3E6E300366D4E /* ssim_sse2.c in Sources */,
+				33E3B0192BC3E6E200366D4E /* alpha_dec.c in Sources */,
+				33E3B0022BC3E6E100366D4E /* delta_palettization_enc.c in Sources */,
 				1882C69E22CCA9C30070ED55 /* WH_QRCode_WHViewController.m in Sources */,
 				63DD4F4F21314DB800DC45F8 /* LLSegmentBar.m in Sources */,
 				0FA2D5B11FB05CCC00D51BB9 /* GPUImageCrosshatchFilter.m in Sources */,
@@ -11735,8 +12483,10 @@
 				12A955D828A136E6008D7F12 /* XMGTitleButton.m in Sources */,
 				0FA2D6591FB05CCD00D51BB9 /* GPUImageRGBClosingFilter.m in Sources */,
 				0FA2D6B31FB05CCD00D51BB9 /* GPUImageXYDerivativeFilter.m in Sources */,
+				33E3B01D2BC3E6E200366D4E /* webp_dec.c in Sources */,
 				DE5C6985232676B500321406 /* WH_RechargeTime_WHCell.m in Sources */,
 				0FC127C620E383EE00A78B8E /* WH_JXWhoCanSee_WHCell.m in Sources */,
+				33E3B04B2BC3E6E300366D4E /* dec_sse2.c in Sources */,
 				6317CCAA1FB9798500CEF9EF /* LFVideoCapture.m in Sources */,
 				CCC88B7F1E4C526F00180080 /* FMResultSet.m in Sources */,
 				0FA2D6B11FB05CCD00D51BB9 /* GPUImageWhiteBalanceFilter.m in Sources */,
@@ -11759,6 +12509,7 @@
 				0F8F590C1F96F596004B1EEA /* UIView+WebCache.m in Sources */,
 				126D6635285228EE000BEF41 /* NSDictionary+AvoidCrash.m in Sources */,
 				0FA32A0D2265838B00926C5E /* WH_JXFaceCreateRoom_WHVC.m in Sources */,
+				33E3B0372BC3E6E300366D4E /* rescaler_msa.c in Sources */,
 				0FA2D65B1FB05CCD00D51BB9 /* GPUImageRGBDilationFilter.m in Sources */,
 				0FA2D6811FB05CCD00D51BB9 /* GPUImageStillCamera.m in Sources */,
 				331AD0BD2BAD6FE3008A9113 /* ZFSpeedLoadingView.m in Sources */,
@@ -11771,12 +12522,15 @@
 				631EEDD92265F5EA00BA95C7 /* WH_JXMoreSelect_WHVC.m in Sources */,
 				6336AA8D1E52F26900F831D8 /* WH_JXCollectionView.m in Sources */,
 				63B517E2222A654600EFBE03 /* WH_JXTransferModel.m in Sources */,
+				33E3B0162BC3E6E200366D4E /* io_dec.c in Sources */,
 				CCC88B7B1E4C526F00180080 /* FMDatabase.m in Sources */,
 				0F649460228A615E00CF650B /* WH_JXDidPushObj.m in Sources */,
 				6347CB3A1F690FAE00CD4F1F /* BMChineseSort.m in Sources */,
 				63D4E4D6226B03B7003C5972 /* WH_JXRecord_WHCell.m in Sources */,
+				33E3B0382BC3E6E300366D4E /* lossless_neon.c in Sources */,
 				4CABBC5C293F06F800C17F42 /* GKMessageTool.m in Sources */,
 				0FA2D6BD1FB05CCD00D51BB9 /* GPUImagePicture.m in Sources */,
+				33E3B03C2BC3E6E300366D4E /* rescaler_mips_dsp_r2.c in Sources */,
 				0F304DB72153AD0D001EC77E /* XMPPProcessOne.m in Sources */,
 				63274F0D1F41B91800734B1B /* WH_JXSendRedPacket_WHViewController.m in Sources */,
 				0F8B0F4320BD59D0002D30B1 /* WH_JXVerifyDetail_WHVC.m in Sources */,
@@ -11828,6 +12582,7 @@
 				CC6E168819794906006ADA8A /* WH_JXUserBaseObj.m in Sources */,
 				634669131EC405F700BE6112 /* WH_RATableView.m in Sources */,
 				0FA2D6211FB05CCC00D51BB9 /* GPUImageMedianFilter.m in Sources */,
+				33E3B0182BC3E6E200366D4E /* tree_dec.c in Sources */,
 				33CD3C712B650ED7001BFBFF /* WH_UserRedData.m in Sources */,
 				0F304DEC2153AD0E001EC77E /* XMPPMessageArchiving.m in Sources */,
 				CC3017711951BABF0059BADA /* NSObject+LKDBHelper.m in Sources */,
@@ -11837,6 +12592,7 @@
 				0F304E122153AD0E001EC77E /* XMPPRoomLight.m in Sources */,
 				185BF85522DD7E140010A509 /* WH_SelectNode_WHView.m in Sources */,
 				33CB6DB52BB3ED28000D58DE /* SlideTabBar.m in Sources */,
+				33E3AFFF2BC3E6E100366D4E /* picture_psnr_enc.c in Sources */,
 				DE5E40D122F034B200D98B8F /* WH_ForgetPayPsw_WHVC.m in Sources */,
 				18A0A12322CF5B270061B2B4 /* WH_Collect_WHViewController.m in Sources */,
 				0F304DE02153AD0E001EC77E /* XMPPRoomOccupantHybridMemoryStorageObject.m in Sources */,
@@ -11852,18 +12608,24 @@
 				0F304DF92153AD0E001EC77E /* XMPPStreamManagement.m in Sources */,
 				0FA2D5D91FB05CCC00D51BB9 /* GPUImageGaussianBlurFilter.m in Sources */,
 				B2A8A1CE23274EBB003A3254 /* WH_JXChat_WHViewController.mm in Sources */,
+				33E3B0012BC3E6E100366D4E /* tree_enc.c in Sources */,
 				0FA2D57D1FB05CCC00D51BB9 /* GPUImage3x3TextureSamplingFilter.m in Sources */,
+				33E3B0432BC3E6E300366D4E /* alpha_processing_neon.c in Sources */,
 				0FA2D5CB1FB05CCC00D51BB9 /* GPUImageFASTCornerDetectionFilter.m in Sources */,
 				4CABBC58293F06F800C17F42 /* JXSelectMusicCell.m in Sources */,
 				CC6E168919794906006ADA8A /* WH_JXUserObject.m in Sources */,
 				0F304DFB2153AD0E001EC77E /* XMPPStreamManagementStanzas.m in Sources */,
+				33E3B00D2BC3E6E200366D4E /* histogram_enc.c in Sources */,
+				33E3AF3E2BC3DD8300366D4E /* WebPQueueManager.m in Sources */,
 				18791BB41CDC3040009F9429 /* WH_JXSettings_WHViewController.m in Sources */,
 				63F4E43D21C0AE7800C61204 /* WH_KKDrawTool.m in Sources */,
+				33E3B00A2BC3E6E200366D4E /* picture_tools_enc.c in Sources */,
 				DED864DA22E5604600E9F9EB /* WH_AudioSessionControl.m in Sources */,
 				63B077061E7AA7C200047B7A /* WH_PhotoView.m in Sources */,
 				63DD4F5A21314DB800DC45F8 /* RITLRuntimeTool.m in Sources */,
 				6346691D1EC405F700BE6112 /* WH_RATreeNodeItem.m in Sources */,
 				4CABBC5F293F06F800C17F42 /* UIViewController+WMPageController.m in Sources */,
+				33E3B0602BC4E1D100366D4E /* WH_PopularVideoVC.m in Sources */,
 				0FA2D6751FB05CCD00D51BB9 /* GPUImageSobelEdgeDetectionFilter.m in Sources */,
 				0F304D9D2153AD0D001EC77E /* XMPPElement.m in Sources */,
 				1851A3402307A41E00BA24A1 /* WWEmoticonDetailViewController.m in Sources */,
@@ -11918,6 +12680,8 @@
 				0FA2D5F51FB05CCC00D51BB9 /* GPUImageHoughTransformLineDetector.m in Sources */,
 				0FA2D6391FB05CCC00D51BB9 /* GPUImageOpacityFilter.m in Sources */,
 				63DD4F4621314DB800DC45F8 /* RITLWebViewController.m in Sources */,
+				33E3AFF02BC3E6E100366D4E /* bit_writer_utils.c in Sources */,
+				33E3AFF72BC3E6E100366D4E /* bit_reader_utils.c in Sources */,
 				4CABBC65293F06F800C17F42 /* GKDelegateHandler.m in Sources */,
 				0FA2D64B1FB05CCD00D51BB9 /* GPUImagePoissonBlendFilter.m in Sources */,
 				63DD4F6E21314DB800DC45F8 /* RITLPhotosBrowseDataSource.m in Sources */,
@@ -11926,9 +12690,11 @@
 				CC30168D1951BABF0059BADA /* WH_HBShowImageControl.m in Sources */,
 				6353D3DE2182B51200CFBEA7 /* WH_JXRoomMemberList_WHCell.m in Sources */,
 				0FA2D5A51FB05CCC00D51BB9 /* GPUImageColorInvertFilter.m in Sources */,
+				33E3B0042BC3E6E200366D4E /* picture_csp_enc.c in Sources */,
 				33BEF3232B5121CB0078B540 /* WH_JXRoomDiamoundRechargeVC.m in Sources */,
 				12A955DA28A136E6008D7F12 /* TFJunYou_desiPageVc.m in Sources */,
 				0F8921EE20E1CCCF0030E744 /* WH_JXSetLabel_WHVC.m in Sources */,
+				33E3AFF32BC3E6E100366D4E /* huffman_utils.c in Sources */,
 				58CD794A22DDA69D00D09E10 /* OBSHanderTool.m in Sources */,
 				0F304D9A2153AD0D001EC77E /* XMPPIQ.m in Sources */,
 				0F304DA92153AD0D001EC77E /* XMPPMessage+XEP_0085.m in Sources */,
@@ -11958,6 +12724,8 @@
 				CCEBFFEE196EB63800BC2E0E /* ATMHudQueueItem.m in Sources */,
 				0FAB271C2A356C1B00EDFE8D /* WH_JXGroupMemberRedPacketVC.m in Sources */,
 				CCC88CAE1E4C5AB300180080 /* DMSlideTransition.m in Sources */,
+				33E3B0002BC3E6E100366D4E /* token_enc.c in Sources */,
+				33E3B0212BC3E6E200366D4E /* lossless_sse2.c in Sources */,
 				CCEBFFF5196ED83800BC2E0E /* userWeiboVC.m in Sources */,
 				33CB6DBE2BB3EF5A000D58DE /* WH_MineCell.m in Sources */,
 				0F304DD12153AD0E001EC77E /* XMPPAutoTime.m in Sources */,
@@ -11979,12 +12747,15 @@
 				33872AE62B9FF99D004CF3C7 /* WH_JXLoginVC.m in Sources */,
 				0F304E492153AD0E001EC77E /* u8-check.c in Sources */,
 				0F304E102153AD0E001EC77E /* XMPPCapsCoreDataStorageObject.m in Sources */,
+				33E3B0392BC3E6E300366D4E /* lossless_enc_msa.c in Sources */,
 				CC7B36AE1942F9060012DDE4 /* JXTableView.m in Sources */,
 				0F304DB42153AD0D001EC77E /* XMPPGroupCoreDataStorageObject.m in Sources */,
 				0F304E472153AD0E001EC77E /* stringprep.c in Sources */,
 				0F77DCE12A30B9C900CF8D54 /* WH_JXGroupRedPacketVC.m in Sources */,
+				33E3AFF62BC3E6E100366D4E /* quant_levels_dec_utils.c in Sources */,
 				63DD4F4821314DB800DC45F8 /* RITLSearchView.m in Sources */,
 				0FA2D66F1FB05CCD00D51BB9 /* GPUImageSingleComponentGaussianBlurFilter.m in Sources */,
+				33E3B03E2BC3E6E300366D4E /* rescaler_mips32.c in Sources */,
 				CC8FCA6A1E4B01CE0058686C /* WH_JXredPacketDetail_WHVC.m in Sources */,
 				0F6D75661FDA404D003CD7A2 /* WH_JXSetChatBackground_WHVC.m in Sources */,
 				63DD4F4E21314DB800DC45F8 /* LLSegmentBarConfig.m in Sources */,
@@ -12007,8 +12778,10 @@
 				CC3017871951BABF0059BADA /* NSImageUtil.m in Sources */,
 				0FA2D5E71FB05CCC00D51BB9 /* GPUImageHarrisCornerDetectionFilter.m in Sources */,
 				0F304E452153AD0E001EC77E /* profiles.c in Sources */,
+				33E3AF3C2BC3DD8300366D4E /* WebPImage.m in Sources */,
 				4CABBC4E293F06F800C17F42 /* WH_JXRecordVideo_WHVC.m in Sources */,
 				63710B4E1FB97A1400C69611 /* WH_ChooseGiftView.m in Sources */,
+				33E3B0322BC3E6E200366D4E /* enc_mips32.c in Sources */,
 				18F8D2C522CE0BA800B87B79 /* WH_PersonalData_WHViewController.m in Sources */,
 				CC6E168119794906006ADA8A /* WH_JXBlogObject.m in Sources */,
 				0F304E062153AD0E001EC77E /* OMEMOBundle.m in Sources */,
@@ -12022,6 +12795,8 @@
 				332DB1BB2B8EDC1A00B4D6D4 /* WH_JXChatDefaultBgCell.m in Sources */,
 				33CB6D9F2BB3E604000D58DE /* WH_MineVC.m in Sources */,
 				CCC88D061E4C772200180080 /* WH_JXSettings_WHCell.m in Sources */,
+				33E3B02E2BC3E6E200366D4E /* enc_mips_dsp_r2.c in Sources */,
+				33E3B0112BC3E6E200366D4E /* picture_enc.c in Sources */,
 				CC1D191E1954527F0029F7FD /* addMsgVC.m in Sources */,
 				B203A84F23238E94001B2575 /* WH_PSRegisterBaseVC.m in Sources */,
 				0F304E282153AD0E001EC77E /* NSXMLElement+XMPP.m in Sources */,
@@ -12043,10 +12818,12 @@
 				0FA2D5A11FB05CCC00D51BB9 /* GPUImageColorBurnBlendFilter.m in Sources */,
 				0FA0D7FC1F5ABB890017D522 /* WH_JXReadList_WHVC.m in Sources */,
 				6317CCB61FB9798500CEF9EF /* LFVideoFrame.m in Sources */,
+				33E3AFF82BC3E6E100366D4E /* utils.c in Sources */,
 				63DD4F4921314DB800DC45F8 /* RITLButtonItem.m in Sources */,
 				333824F22B35702D00AC4B06 /* WH_JXAppealListCell.m in Sources */,
 				B203A86A232394A2001B2575 /* TagView.m in Sources */,
 				B203A87C232394C7001B2575 /* WH_RoundCornerCell.m in Sources */,
+				33E3B01C2BC3E6E200366D4E /* idec_dec.c in Sources */,
 				0F304D962153AD0D001EC77E /* XMPPMessage.m in Sources */,
 				B297785323385EBB0027F4FD /* WH_JXUserObject+GetCurrentUser.m in Sources */,
 				0FA2D6911FB05CCD00D51BB9 /* GPUImageThresholdedNonMaximumSuppressionFilter.m in Sources */,
@@ -12065,6 +12842,7 @@
 				CCEBFFF1196EB63800BC2E0E /* ATMSoundFX.m in Sources */,
 				6317CCAB1FB9798500CEF9EF /* LFHardwareAudioEncoder.m in Sources */,
 				63DD4F3621314DB800DC45F8 /* UIView+RITLExtension.m in Sources */,
+				33E3B00F2BC3E6E200366D4E /* quant_enc.c in Sources */,
 				0F6143052251EC2F00F0A0B1 /* WH_JXCommonInputWHVC.m in Sources */,
 				0F304DFC2153AD0E001EC77E /* XMPPvCardAvatarModule.m in Sources */,
 				18CCF5201DAB2E0500ED20F7 /* WH_JXProgress_WHVC.m in Sources */,
@@ -12093,12 +12871,16 @@
 				0FA2D5D71FB05CCC00D51BB9 /* GPUImageGammaFilter.m in Sources */,
 				DE64B3DA22AF506E00FDDB15 /* WH_JXHaveInverted_WHCell.m in Sources */,
 				CC4DD7421A5E2A660002FFEB /* WH_JXSetting_WHVC.mm in Sources */,
+				33E3B0592BC3E6E300366D4E /* lossless_enc_mips32.c in Sources */,
 				0FCB3BBC21368D2C00563B5A /* JXAddressBook.m in Sources */,
+				33E3AFFB2BC3E6E100366D4E /* random_utils.c in Sources */,
 				1887A10B234F4E7900E1C89F /* WH_AdvertisingView.m in Sources */,
 				0F304DC32153AD0E001EC77E /* XMPPvCardTempTel.m in Sources */,
 				638A6F2C1FA3372F00D6D17C /* WH_JXMyMoney_WHViewController.m in Sources */,
 				CC6E169F19794B5A006ADA8A /* QBImagePickerAssetCell.m in Sources */,
 				0F304DDB2153AD0E001EC77E /* XMPPRoomMemoryStorage.m in Sources */,
+				33E3B0452BC3E6E300366D4E /* lossless.c in Sources */,
+				33E3B0262BC3E6E200366D4E /* dec_mips_dsp_r2.c in Sources */,
 				63AFEAA221CA6C050022A1CB /* JXLikeListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -34,6 +34,7 @@
 #import "TFJunYou_desiPageVc.h"
 #import "WH_Player_WHVC.h"
 #import "WH_GKDYPlayer_WHViewController.h"
+#import "WH_VideoMainVC.h"
 #import "WHUploadCoverVC.h"
 
 @implementation WH_JXMain_WHViewController
@@ -80,8 +81,9 @@
 #ifdef IS_SHOW_MENU
 //        _squareVC = [[JXSquareViewController alloc] init];
         
-        self.homeVC = [[WH_Player_WHVC alloc] init];
+//        self.homeVC = [[WH_Player_WHVC alloc] init];
 //        self.homeVC = [[WH_GKDYPlayer_WHViewController alloc] init];
+        self.homeVC = [[WH_VideoMainVC alloc] init];
         
 //        self.findVC = [[WH_FindViewController alloc] init];///发现
 #else

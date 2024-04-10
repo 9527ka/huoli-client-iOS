@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,strong)void(^stopPlayBlock)(void);//暂停播放
 
+@property (nonatomic,copy)void(^lookAllPlayletBlock)(void);
+
 - (void)setDelegate:(id<ZFTableViewCellDelegate>)delegate withIndexPath:(NSIndexPath *)indexPath scroller:(UIScrollView *)scrollView;
 
 @end

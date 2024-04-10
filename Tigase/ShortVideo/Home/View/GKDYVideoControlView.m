@@ -16,6 +16,7 @@
 #import "WH_JXReportUser_WHVC.h"
 #import "NSString+ContainStr.h"
 #import "JX_WHNoDataView.h"
+#import "WH_PopularVideoVC.h"
 
 #define commentY 200
 
@@ -54,6 +55,7 @@
 @property (nonatomic, strong) GKDYVideoItemButton   *commentBtn;
 @property (nonatomic, strong) GKDYVideoItemButton   *shareBtn;
 @property (nonatomic, strong) GKDYVideoItemButton   *reportBtn;
+@property (nonatomic, strong) UIButton   *popularBtn;
 
 @property (nonatomic, strong) UILabel               *nameLabel;
 @property (nonatomic, strong) UILabel               *contentLabel;
@@ -70,7 +72,8 @@
 //@property(nonatomic,strong)WH_WeiboCell* selectWH_WeiboCell;
 @property(nonatomic,strong)WeiboReplyData * replyDataTemp;
 @property(nonatomic,strong)JX_WHNoDataView *noDataView;
-
+@property(nonatomic,strong)UIView *playletView;//短剧的背景
+@property (nonatomic, strong) UILabel *playletCountLab;//短剧的集数
 
 /**
  输入条
@@ -78,6 +81,8 @@
 @property (nonatomic, strong) UIView * inputView;
 @property (nonatomic, strong) UITextView * chatTextView;
 @property (nonatomic, strong) UILabel * placeHolder;
+
+@property (nonatomic, strong) UIButton   *automPlayBtn;
 
 @end
 
@@ -87,10 +92,12 @@
     if (self = [super init]) {
         [self addSubview:self.wh_coverImgView];
         [self addSubview:self.iconView];
+        [self addSubview:self.automPlayBtn];
         [self addSubview:self.praiseBtn];
         [self addSubview:self.commentBtn];
         [self addSubview:self.shareBtn];
         [self addSubview:self.reportBtn];
+        [self addSubview:self.popularBtn];
         [self addSubview:self.nameLabel];
         [self addSubview:self.contentLabel];
         [self addSubview:self.sliderView];
@@ -98,21 +105,32 @@
         [self addSubview:self.loadingView];
         [self addSubview:self.playBtn];
         
+        [self addSubview:self.playletView];
+        [self addSubview:self.playletCountLab];
+
+        
         [self.wh_coverImgView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);
         }];
         
-        CGFloat bottomM = THE_DEVICE_HAVE_HEAD ? (34.0f + ADAPTATIONRATIO * 40.0f) : ADAPTATIONRATIO * 40.0f;
+        [self.automPlayBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self);
+        }];
+//        CGFloat bottomM = THE_DEVICE_HAVE_HEAD ? (34.0f + ADAPTATIONRATIO * 40.0f) : ADAPTATIONRATIO * 40.0f;
+        
+        CGFloat bottomM = JX_SCREEN_BOTTOM;
         
         [self.sliderView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(self);
             make.bottom.equalTo(self).offset(-bottomM);
-            make.height.mas_equalTo(ADAPTATIONRATIO * 2.0f);
+//            make.height.mas_equalTo(ADAPTATIONRATIO * 2.0f);
+            make.height.mas_equalTo(0.0f);
         }];
         
         [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self).offset(ADAPTATIONRATIO * 30.0f);
-            make.bottom.equalTo(self.sliderView).offset(-ADAPTATIONRATIO * 16.0f - JX_SCREEN_BOTTOM);
+//            make.bottom.equalTo(self.sliderView).offset(-ADAPTATIONRATIO * 16.0f - JX_SCREEN_BOTTOM - 24);
+            make.bottom.equalTo(self).offset(-ADAPTATIONRATIO * 4.0f - JX_SCREEN_BOTTOM - 24 - 34);
             make.width.mas_equalTo(ADAPTATIONRATIO * 504.0f);
         }];
         
@@ -125,6 +143,12 @@
             make.right.equalTo(self).offset(-ADAPTATIONRATIO * 20.0f);
             make.bottom.equalTo(self.nameLabel.mas_top).offset(-ADAPTATIONRATIO * 16.0f);
             make.height.mas_equalTo(ADAPTATIONRATIO * 110.0f);
+        }];
+        
+        [self.popularBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.height.mas_equalTo(48);
+            make.centerX.equalTo(self.reportBtn);
+            make.top.equalTo(self.reportBtn.mas_bottom).offset(4);
         }];
         
         [self.shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -159,11 +183,43 @@
             make.center.equalTo(self);
         }];
         
+        _musicName = [[CircleTextView alloc]init];
+        _musicName.textColor = [UIColor whiteColor];
+        _musicName.font = [UIFont systemFontOfSize:14];
+        [self addSubview:_musicName];
+        
+        [_musicName mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.contentLabel.mas_left);
+            make.top.equalTo(self.contentLabel.mas_bottom);
+            make.width.mas_equalTo(JX_SCREEN_WIDTH/2);
+            make.height.mas_equalTo(24);
+        }];
+        
+        [self.playletView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(self);
+            make.bottom.equalTo(self).offset(-JX_SCREEN_BOTTOM);
+            make.width.mas_equalTo(JX_SCREEN_WIDTH);
+            make.height.mas_equalTo(34);
+        }];
+        [self.playletCountLab mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.playletView).offset(13);
+            make.right.equalTo(self.playletView).offset(-13);
+            make.top.bottom.equalTo(self.playletView);
+        }];
+        [self.playletView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(lookAllPlayletAction)]];
+        
+        
+        
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(controlViewDidClick:)];
         [self addGestureRecognizer:tap];
         
     }
     return self;
+}
+-(void)lookAllPlayletAction{
+    if(self.lookAllPlayletBlock){
+        self.lookAllPlayletBlock();
+    }
 }
 
 - (void) createCommentView {
@@ -302,7 +358,7 @@
     self.replyDataTemp.userId    = MY_USER_ID;
     self.replyDataTemp.userNickName    = g_myself.userNickname;
     
-    [[JXServer sharedServer] WH_addCommentWithData:self.replyDataTemp toView:self];
+    [[JXServer sharedServer] WH_addCommentWithData:self.replyDataTemp type:self.wh_model.type.intValue + 1 toView:self];
 }
 
 
@@ -393,6 +449,8 @@
     
     self.contentLabel.text = model.title;
     
+    [_musicName setText:[NSString stringWithFormat:@"%@原创音乐", model.author.wh_name_show]];
+    
     // shadow
     NSShadow *shadow = [[NSShadow alloc] init];
     shadow.shadowBlurRadius = 0;
@@ -401,10 +459,28 @@
     [self.praiseBtn setAttributedTitle:[[NSMutableAttributedString alloc] initWithString:model.agree_num attributes: @{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size: 13],NSForegroundColorAttributeName: [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0], NSShadowAttributeName: shadow}] forState:UIControlStateNormal];
     [self.commentBtn setAttributedTitle:[[NSMutableAttributedString alloc] initWithString:model.comment_num attributes: @{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size: 13],NSForegroundColorAttributeName: [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0], NSShadowAttributeName: shadow}] forState:UIControlStateNormal];
     [self.shareBtn setAttributedTitle:[[NSMutableAttributedString alloc] initWithString:Localized(@"JX_small_share") attributes: @{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size: 13],NSForegroundColorAttributeName: [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0], NSShadowAttributeName: shadow}] forState:UIControlStateNormal];
-    [self.reportBtn setAttributedTitle:[[NSMutableAttributedString alloc] initWithString:Localized(@"WaHu_JXUserInfo_WaHuVC_Report") attributes: @{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size: 13],NSForegroundColorAttributeName: [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0], NSShadowAttributeName: shadow}] forState:UIControlStateNormal]; 
+    [self.reportBtn setAttributedTitle:[[NSMutableAttributedString alloc] initWithString:model.collect attributes: @{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size: 13],NSForegroundColorAttributeName: [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0], NSShadowAttributeName: shadow}] forState:UIControlStateNormal];
     
     self.praiseBtn.selected = model.isPraise;
+    self.reportBtn.selected = model.collected;
     self.commentNum.text = [NSString stringWithFormat:Localized(@"JX_%ldComments"),self.wh_model.replys.count];
+    
+    float bottom = -ADAPTATIONRATIO * 4.0f - JX_SCREEN_BOTTOM - 24 - 34;
+    
+    //判断是不是短剧  ,1短剧,２用户发的视频
+    if(model.type.intValue == 1){
+        self.playletView.hidden = self.playletCountLab.hidden = NO;
+        self.playletCountLab.text = [NSString stringWithFormat:@"短剧·%@【%@集全】》",model.shortName,model.totalSeries];
+    }else{
+        self.playletView.hidden = self.playletCountLab.hidden = YES;
+        bottom = -ADAPTATIONRATIO * 4.0f - JX_SCREEN_BOTTOM - 24;
+    }
+    
+    [self.contentLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self).offset(ADAPTATIONRATIO * 30.0f);
+        make.bottom.equalTo(self).offset(bottom);
+        make.width.mas_equalTo(ADAPTATIONRATIO * 504.0f);
+    }];
         
     [self.commentTable reloadData];
 }
@@ -452,8 +528,8 @@
     _praiseBtn.selected = !_praiseBtn.selected;
     if (_praiseBtn.selected) {
         self.wh_model.agree_num = [NSString stringWithFormat:@"%ld",[self.wh_model.agree_num integerValue] + 1];
-        
-        [[JXServer sharedServer] WH_addPraiseWithMsgId:self.wh_model.msgId toView:self];
+        ////1短剧,２用户发的视频  入参收藏类型,type:1-朋友圈点赞(参数默认值1),2-短剧,3-短视频
+        [[JXServer sharedServer] WH_addPraiseWithMsgId:self.wh_model.msgId type:self.wh_model.type.integerValue + 1 toView:self];
     }else {
         self.wh_model.agree_num = [NSString stringWithFormat:@"%ld",[self.wh_model.agree_num integerValue] - 1];
         if ([self.wh_model.agree_num integerValue] <= 0) {
@@ -463,7 +539,13 @@
         [[JXServer sharedServer] WH_delPraiseWithMsgId:self.wh_model.msgId toView:self];
     }
     self.wh_model.isPraise = _praiseBtn.selected;
-    [self.praiseBtn setTitle:self.wh_model.agree_num forState:UIControlStateNormal];
+//    [self.praiseBtn setTitle:self.wh_model.agree_num forState:UIControlStateNormal];jjjj
+    NSShadow *shadow = [[NSShadow alloc] init];
+    shadow.shadowBlurRadius = 0;
+    shadow.shadowColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0];
+    shadow.shadowOffset =CGSizeMake(0.5,1);
+    [self.praiseBtn setAttributedTitle:[[NSMutableAttributedString alloc] initWithString:self.wh_model.agree_num attributes: @{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size: 13],NSForegroundColorAttributeName: [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0], NSShadowAttributeName: shadow}] forState:UIControlStateNormal];
+    
     if ([self.delegate respondsToSelector:@selector(controlViewDidClickPriase:)]) {
 //        [self.delegate controlViewDidClickPriase:self];
     }
@@ -503,13 +585,38 @@
     }
 }
 
-- (void)reportClick:(id)sender {
-    WH_JXReportUser_WHVC * reportVC = [[WH_JXReportUser_WHVC alloc] init];
-    WH_JXUserObject *user = [[WH_JXUserObject alloc]init];
-    user.userId = self.wh_model.userId;
-    reportVC.user = user;
-    reportVC.delegate = self;
-    [g_navigation pushViewController:reportVC animated:YES];
+- (void)reportClick:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    if(sender.selected){//收藏
+        self.wh_model.collect = [NSString stringWithFormat:@"%ld",[self.wh_model.collect integerValue] + 1];
+        [g_server WH_VideoCollectWithId:self.wh_model.msgId toView:self];
+    }else{//取消收藏
+        self.wh_model.collect = [NSString stringWithFormat:@"%ld",[self.wh_model.collect integerValue] - 1];
+        if ([self.wh_model.collect integerValue] <= 0) {
+            self.wh_model.collect = @"0";
+        }
+        [g_server WH_VideoCancleCollectWithId:self.wh_model.msgId toView:self];
+    }
+
+    self.wh_model.collected = sender.selected;
+    NSShadow *shadow = [[NSShadow alloc] init];
+    shadow.shadowBlurRadius = 0;
+    shadow.shadowColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0];
+    shadow.shadowOffset =CGSizeMake(0.5,1);
+    [self.reportBtn setAttributedTitle:[[NSMutableAttributedString alloc] initWithString:self.wh_model.collect attributes: @{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size: 13],NSForegroundColorAttributeName: [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0], NSShadowAttributeName: shadow}] forState:UIControlStateNormal];
+    
+    
+//    WH_JXReportUser_WHVC * reportVC = [[WH_JXReportUser_WHVC alloc] init];
+//    WH_JXUserObject *user = [[WH_JXUserObject alloc]init];
+//    user.userId = self.wh_model.userId;
+//    reportVC.user = user;
+//    reportVC.delegate = self;
+//    [g_navigation pushViewController:reportVC animated:YES];
+}
+//帮上热门
+-(void)popularBtnClick:(UIButton *)sender{
+    WH_PopularVideoVC *vc = [[WH_PopularVideoVC alloc] init];
+    [g_navigation pushViewController:vc animated:YES];
 }
 
 - (void)report:(WH_JXUserObject *)reportUser reasonId:(NSNumber *)reasonId {
@@ -538,6 +645,19 @@
         [_iconView addGestureRecognizer:iconTap];
     }
     return _iconView;
+}
+-(UIButton *)automPlayBtn{
+    if(!_automPlayBtn){
+        _automPlayBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _automPlayBtn.backgroundColor = [UIColor clearColor];
+        [_automPlayBtn addTarget:self action:@selector(stopAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _automPlayBtn;
+}
+-(void)stopAction{
+    if(self.stopActionBlock){
+        self.stopActionBlock();
+    }
 }
 
 - (GKDYVideoItemButton *)praiseBtn {
@@ -577,12 +697,21 @@
 - (GKDYVideoItemButton *)reportBtn {
     if (!_reportBtn) {
         _reportBtn = [GKDYVideoItemButton new];
-        [_reportBtn setImage:[UIImage imageNamed:@"WH_Report_WHIcon"] forState:UIControlStateNormal];
+        [_reportBtn setImage:[UIImage imageNamed:@"collect_normal_big"] forState:UIControlStateNormal];
+        [_reportBtn setImage:[UIImage imageNamed:@"collect_select_big"] forState:UIControlStateSelected];
         _reportBtn.titleLabel.font = [UIFont systemFontOfSize:13.0f];
         [_reportBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_reportBtn addTarget:self action:@selector(reportClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _reportBtn;
+}
+-(UIButton *)popularBtn{
+    if(!_popularBtn){
+        _popularBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_popularBtn setImage:[UIImage imageNamed:@"popular_icon"] forState:UIControlStateNormal];
+        [_popularBtn addTarget:self action:@selector(popularBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _popularBtn;
 }
 
 - (UILabel *)nameLabel {
@@ -845,8 +974,23 @@
 -(void) WH_didServerConnect_WHStart:(WH_JXConnection*)aDownload{
     
 }
-
-
+-(UIView *)playletView{
+    if(!_playletView){
+        _playletView = [[UIView alloc] init];
+        _playletView.backgroundColor = HEXCOLOR(0xffffff);
+        _playletView.alpha = 0.18;
+    }
+    return _playletView;
+}
+-(UILabel *)playletCountLab{
+    if(!_playletCountLab){
+        _playletCountLab = [[UILabel alloc] init];
+        _playletCountLab.font = [UIFont systemFontOfSize:14];
+        _playletCountLab.textColor = [UIColor whiteColor];
+        _playletCountLab.text = @"短剧·掉水后夫君与我拔刀相向【77集全】》";
+    }
+    return _playletCountLab;
+}
 
 
 @end

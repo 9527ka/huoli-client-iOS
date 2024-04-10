@@ -971,7 +971,7 @@
     wh_replyDataTemp.userId    = MY_USER_ID;
     wh_replyDataTemp.userNickName    = g_myself.userNickname;
     
-    [[JXServer sharedServer] WH_addCommentWithData:wh_replyDataTemp toView:self];
+    [[JXServer sharedServer] WH_addCommentWithData:wh_replyDataTemp type:1 toView:self];
 }
 
 -(void)delBtnAction:(WeiboData *)cellData{
@@ -1272,7 +1272,7 @@
 
 -(void)praiseAddAction{
     if(!wh_selectWeiboData.isPraise)
-        [[JXServer sharedServer] WH_addPraiseWithMsgId:wh_selectWeiboData.messageId toView:self];
+        [[JXServer sharedServer] WH_addPraiseWithMsgId:wh_selectWeiboData.messageId type:1 toView:self];
 }
 
 -(void)praiseDelAction{

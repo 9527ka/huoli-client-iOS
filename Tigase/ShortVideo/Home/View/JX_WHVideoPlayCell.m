@@ -98,6 +98,12 @@
     if(!_infoView){
         _infoView = [GKDYVideoControlView new];
         _infoView.wh_coverImgView.hidden = YES;
+        __weak typeof (&*self)weakSelf = self;
+        _infoView.lookAllPlayletBlock = ^{
+            if(weakSelf.lookAllPlayletBlock){
+                weakSelf.lookAllPlayletBlock();
+            }
+        };
     }
     return _infoView;
 }

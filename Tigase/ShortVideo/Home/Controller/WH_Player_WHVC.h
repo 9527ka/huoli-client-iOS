@@ -8,13 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "WH_GKDYBase_WHViewController.h"
+#import "ZFAVPlayerManager.h"
+#import "ZFPlayerControlView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WH_Player_WHVC : WH_GKDYBase_WHViewController
 
+@property (nonatomic, strong) ZFPlayerController *player;
 @property(nonatomic,strong)UICollectionView *collectionView;
 @property(nonatomic,strong)NSMutableArray *dataArray;
+@property(nonatomic,assign)NSInteger type;
+
+//暂停播放
+-(void)stopPlayVideoAction;
 
 @end
 

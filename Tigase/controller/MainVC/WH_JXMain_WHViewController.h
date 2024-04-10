@@ -38,6 +38,7 @@
 @class WH_GKDYHome_WHViewController;
 @class WH_Player_WHVC;
 @class WH_GKDYPlayer_WHViewController;
+@class WH_VideoMainVC;
 
 
 
@@ -65,8 +66,10 @@
 @property (assign) BOOL IS_HR_MODE;
 
 @property (nonatomic ,strong) WH_FindViewController *findVC;
-@property (nonatomic ,strong) WH_Player_WHVC *homeVC;
+//@property (nonatomic ,strong) WH_Player_WHVC *homeVC;
 //@property (nonatomic ,strong) WH_GKDYPlayer_WHViewController *homeVC;
+@property (nonatomic ,strong) WH_VideoMainVC *homeVC;
+
 
 
 @property (nonatomic ,strong) WH_MineVC *mineVC;

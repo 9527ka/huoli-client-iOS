@@ -335,6 +335,7 @@
                     
                     self.playerVC = [[AVPlayerViewController alloc] init];
                     self.playerVC.player = [AVPlayer playerWithURL:[NSURL fileURLWithPath:[self.videoArray firstObject]]];
+                    
                     self.playerVC.showsPlaybackControls = YES;
                     self.playerVC.view.frame = self.imgV.bounds;
                     [self.Playerview addSubview:self.playerVC.view];

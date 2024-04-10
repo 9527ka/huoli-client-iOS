@@ -7,19 +7,18 @@
 //
 
 #import "WH_Player_WHVC.h"
-#import "ZFAVPlayerManager.h"
-#import "ZFPlayerControlView.h"
 #import "JX_WHVideoPlayCell.h"
 #import "MJRefresh.h"
 #import "WH_GKDYVideoModel.h"
+#import "WH_playListVC.h"
 
 @interface WH_Player_WHVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,ZFTableViewCellDelegate>
 
 @property (nonatomic, strong) ZFPlayerControlView *controlView;
-@property (nonatomic, strong) ZFPlayerController *player;
 @property(nonatomic,assign)NSInteger pageIndex;
 @property(nonatomic,strong)NSIndexPath *currentIndex;//要删除的cell
 @property(nonatomic,strong)JX_WHVideoPlayCell *currentCell;
+@property(nonatomic,assign)BOOL isEnd;
 
 @end
 
@@ -48,7 +47,7 @@
 // 控制器生命周期方法(view加载完成)
 - (void)viewDidLoad{
     [super viewDidLoad];
-    
+    self.isEnd = YES;
     self.view.backgroundColor = [UIColor blackColor];
     self.gk_navigationBar.hidden = YES;
     self.gk_statusBarHidden = YES;
@@ -64,7 +63,13 @@
     [self receiveListData];
 }
 -(void)receiveListData{
-    [g_server WH_circleMsgPureVideoPageIndex:self.pageIndex lable:nil toView:self];
+    if(self.type == 0){//推荐
+        [g_server receiveRecordList:self];
+    }else if (self.type == 1){//短剧
+        [g_server WH_receiveSeriesListWithIndex:self.pageIndex type:1 toView:self];
+    }else{//短视频
+        [g_server WH_receiveSeriesListWithIndex:self.pageIndex type:2 toView:self];
+    }
 }
 /// *设置视频数据
 -(void)receiveVideoData{
@@ -73,6 +78,7 @@
 //    playerManager.muted = YES;//静音播放
     /// player的tag值必须在cell里设置
     self.player = [ZFPlayerController playerWithScrollView:self.collectionView playerManager:playerManager containerViewTag:100100];
+//    self.player.pla.automaticallyWaitsToMinimizeStalling
     self.player.controlView = self.controlView;
     /// 0.4是消失40%时候
     self.player.playerDisapperaPercent = 0.4;
@@ -81,7 +87,7 @@
     /// 移动网络依然自动播放
     self.player.WWANAutoPlay = YES;
     /// 续播
-    self.player.resumePlayRecord = NO;
+    self.player.resumePlayRecord = YES;
 
     @zf_weakify(self)
     self.player.orientationWillChange = ^(ZFPlayerController * _Nonnull player, BOOL isFullScreen) {
@@ -151,6 +157,9 @@
     __weak typeof (&*self)weakSelf = self;
     cell.stopPlayBlock = ^{
         [weakSelf stopPlayVideoAction];
+    };
+    cell.lookAllPlayletBlock = ^{
+        [weakSelf lookAllPlaerletWithIndex:indexPath];
     };
     return cell;
 }
@@ -247,19 +256,18 @@
                      coverURLString:videoModel.thumbnail_url
                      fullScreenMode:ZFFullScreenModePortrait];
         
+        //标记已经看过 recommended可选参数,默认值为０　１表示来源于推荐中的视频,０表求非推荐中的视频
+        [g_server WH_SeriesShortFlipWithId:videoModel.msgId recommended:self.type == 0?1:0 toView:self];
     }
 }
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
     // 列表中是否存在更多数据
-//    if (self.isEnd) {
-//        return;
-//    }
-//    if (indexPath.item > self.dataArray.count * 0.8) {//加载数据
-//        self.pageIndex ++;
-//        self.request.currentDynamicId = @"";
-//        self.request.hasSlide = @(1);
-//        [self receiveData];
-//    }
+    if (!self.isEnd) {
+        return;
+    }
+    if (indexPath.item > self.dataArray.count * 0.8) {//加载数据
+        [self receiveListData];
+    }
 }
 -(UICollectionView *)collectionView{
     if (!_collectionView) {
@@ -349,9 +357,17 @@
 
 #pragma mark - 请求成功回调
 -(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{
+    self.isEnd = YES;
     //    [_wait hide];
-    if( [aDownload.action isEqualToString:wh_act_CircleMsgPureVideo] ){
-        [self.dataArray removeAllObjects];
+    if([aDownload.action isEqualToString:wh_act_ShortRecommended]){
+        for (int i = 0; i < array1.count; i++) {
+            WH_GKDYVideoModel *model = [[WH_GKDYVideoModel alloc] init];
+            [model WH_getDataFromDict:array1[i]];
+            [self.dataArray addObject:model];
+        }
+        [self.collectionView reloadData];
+    }else if ([aDownload.action isEqualToString:wh_act_SeriesList]){
+        self.pageIndex ++;
         for (int i = 0; i < array1.count; i++) {
             WH_GKDYVideoModel *model = [[WH_GKDYVideoModel alloc] init];
             [model WH_getDataFromDict:array1[i]];
@@ -360,21 +376,41 @@
         [self.collectionView reloadData];
     }
 }
-
 #pragma mark - 请求失败回调
 - (int) WH_didServerResult_WHFailed:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict{
     //    [_wait hide];
-    
+    self.isEnd = YES;
     return WH_show_error;
 }
 
 #pragma mark - 请求出错回调
 -(int) WH_didServerConnect_WHError:(WH_JXConnection*)aDownload error:(NSError *)error{//error为空时，代表超时
     //    [_wait hide];
-    
+    self.isEnd = YES;
     return WH_show_error;
 }
+#pragma mark - 开始请求服务器回调
+-(void) WH_didServerConnect_WHStart:(WH_JXConnection*)aDownload{
+    self.isEnd = NO;
+}
 
+//查看所有剧情
+-(void)lookAllPlaerletWithIndex:(NSIndexPath *)indexPath{
+    if(self.dataArray.count > indexPath.item){
+        WH_GKDYVideoModel *currentModel = self.dataArray[indexPath.item];
+        WH_playListVC *vc = [[WH_playListVC alloc] init];
+        vc.videoId = currentModel.msgId;
+        __weak typeof (&*self)weakSelf = self;
+        vc.chooseVideoPlayBlock = ^(WH_GKDYVideoModel * _Nonnull model) {
+            [weakSelf.dataArray replaceObjectAtIndex:indexPath.item withObject:model];
+            [weakSelf.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+            [weakSelf playTheVideoAtIndexPath:indexPath];
+            
+        };
+        vc.modalPresentationStyle = UIModalPresentationCustom;
+        [self presentViewController:vc animated:YES completion:nil];
+    }
+}
 
 
 @end

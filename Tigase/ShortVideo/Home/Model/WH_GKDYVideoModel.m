@@ -19,22 +19,51 @@
 }
 
 - (void)WH_getDataFromDict:(NSDictionary *)dict {
-    self.title = [[dict objectForKey:@"body"] objectForKey:@"text"];
-    NSArray *images = [[dict objectForKey:@"body"] objectForKey:@"images"];
-    self.first_frame_cover = [images.firstObject objectForKey:@"oUrl"];
+//    self.title = [[dict objectForKey:@"body"] objectForKey:@"text"];
+    self.title = [dict objectForKey:@"desc"];
+//    NSArray *images = [[dict objectForKey:@"body"] objectForKey:@"images"];
+//    self.first_frame_cover = [images.firstObject objectForKey:@"oUrl"];
+    
+    self.first_frame_cover = [dict objectForKey:@"tUrl"];
     self.thumbnail_url = self.first_frame_cover;
     
-    NSArray *videos = [[dict objectForKey:@"body"] objectForKey:@"videos"];
-    self.video_url = [videos.firstObject objectForKey:@"oUrl"];
-    self.video_length = [videos.firstObject objectForKey:@"size"];
-    self.video_duration = [NSString stringWithFormat:@"%ld",[[videos.firstObject objectForKey:@"length"] integerValue] / 1000];
-    self.post_id = [dict objectForKey:@"msgId"];
-    self.agree_num = [NSString stringWithFormat:@"%@",[[dict objectForKey:@"count"] objectForKey:@"praise"]];
-    self.comment_num = [NSString stringWithFormat:@"%@",[[dict objectForKey:@"count"] objectForKey:@"comment"]];
-    self.share_num = [NSString stringWithFormat:@"%@",[[dict objectForKey:@"count"] objectForKey:@"share"]];
+//    NSArray *videos = [[dict objectForKey:@"body"] objectForKey:@"videos"];
+//    self.video_url = [videos.firstObject objectForKey:@"oUrl"];
+//    self.video_length = [videos.firstObject objectForKey:@"size"];
+//    self.video_duration = [NSString stringWithFormat:@"%ld",[[videos.firstObject objectForKey:@"length"] integerValue] / 1000];
     
-    self.isPraise = [[dict objectForKey:@"isPraise"] boolValue];
-    self.msgId = [NSString stringWithFormat:@"%@",[dict objectForKey:@"msgId"]];
+    self.video_url = [dict objectForKey:@"oUrl"];
+    self.video_length = [dict objectForKey:@"size"];
+    self.video_duration = [NSString stringWithFormat:@"%ld",[[dict objectForKey:@"length"] integerValue]];
+    self.play = [NSString stringWithFormat:@"%@",[dict objectForKey:@"play"]];
+    
+    
+//    self.post_id = [dict objectForKey:@"msgId"];
+//    self.agree_num = [NSString stringWithFormat:@"%@",[[dict objectForKey:@"count"] objectForKey:@"praise"]];
+//    self.comment_num = [NSString stringWithFormat:@"%@",[[dict objectForKey:@"count"] objectForKey:@"comment"]];
+//    self.share_num = [NSString stringWithFormat:@"%@",[[dict objectForKey:@"count"] objectForKey:@"share"]];
+//
+//    self.isPraise = [[dict objectForKey:@"isPraise"] boolValue];
+//    self.msgId = [NSString stringWithFormat:@"%@",[dict objectForKey:@"msgId"]];
+    
+    
+    self.post_id = [dict objectForKey:@"videoId"];
+    self.collect = [NSString stringWithFormat:@"%@",[dict objectForKey:@"collect"]];
+    self.agree_num = [NSString stringWithFormat:@"%@",[dict objectForKey:@"praise"]];
+    self.comment_num = [NSString stringWithFormat:@"%@",[dict objectForKey:@"comment"]];
+    self.share_num = [NSString stringWithFormat:@"%@",[dict objectForKey:@"forward"]];
+    self.isPraise = [[dict objectForKey:@"praised"] boolValue];
+    self.msgId = [NSString stringWithFormat:@"%@",[dict objectForKey:@"videoId"]];
+    self.collected = [[dict objectForKey:@"collected"] boolValue];
+    self.index = [NSString stringWithFormat:@"%@",[dict objectForKey:@"index"]];
+    self.totalSeries = [NSString stringWithFormat:@"%@",[dict objectForKey:@"totalSeries"]];
+    self.type = [NSString stringWithFormat:@"%@",[dict objectForKey:@"type"]];
+    self.shortName = [NSString stringWithFormat:@"%@",[dict objectForKey:@"title"]];
+    
+    
+    
+//    self.isPraise = [[dict objectForKey:@"isPraise"] boolValue];
+//    self.msgId = [NSString stringWithFormat:@"%@",[dict objectForKey:@"msgId"]];
     
     NSString *s = [dict objectForKey:@"userId"];
     self.userId = s;

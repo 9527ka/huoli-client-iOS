@@ -150,7 +150,7 @@
 
 #define wh_act_MsgGet @"b/circle/msg/get" //获取单条生活圈
 #define wh_act_MsgList @"b/circle/msg/list" //获取生活圈列表
-#define wh_act_MsgAdd @"b/circle/msg/add" //加生活圈
+#define wh_act_MsgAdd @"series/short/publish" //发送生活圈 b/circle/msg/add
 #define wh_act_MsgDel @"b/circle/msg/delete" //删除生活圈
 #define wh_act_PraiseList @"b/circle/msg/praise/list" //赞列表
 #define wh_act_PraiseAdd @"b/circle/msg/praise/add" //加赞
@@ -326,6 +326,9 @@
 #define wh_act_UserOpenMeet @"user/openMeet"   // 获取音视频域名
 
 #define wh_act_CircleMsgPureVideo  @"b/circle/msg/pureVideo"  // 朋友圈纯视频接口
+#define wh_act_ShortRecommended  @"series/short/recommended"  // 推荐视频列表
+#define wh_act_SeriesList  @"series/short/list"  // 短剧列表
+#define wh_act_SeriesFlip  @"series/short/flip"  // 标记看过或播放过的视频接口
 #define wh_act_MusicList @"music/list"    // 获取音乐接口
 
 #define wh_act_OpenAuthInterface   @"open/authInterface"  // 第三方权限认证
@@ -477,9 +480,11 @@
 #define wh_login_send @"log/send"    //调用接口不是预期的,或报错时,上传错误接口
 #define wh_room_ClearRecord @"room/resetTime"    //删除群成员红包记录
 #define wh_bill_Detaile @"user/consumeRecord/detail"    //账单详情
-
-
-
+#define wh_series_collect @"series/short/collect"    //视频收藏接口
+#define wh_series_Canclecollect @"series/short/collect/delete"    //视频取消收藏接口
+#define wh_series_info @"series/short/info"    //查询视频全集
+#define wh_myvideos @"series/short/myvideos"    //作品
+#define wh_mycollects @"series/short/mycollects"    //我的收藏
 
 
 
@@ -645,12 +650,12 @@
 -(void)WH_listPraiseWithMsgId:(NSString*)messageId pageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize praiseId:(NSString*)praiseId toView:(id)toView;
 
 //使用msgId添加评论
--(void)WH_addPraiseWithMsgId:(NSString*)messageId toView:(id)toView;
+-(void)WH_addPraiseWithMsgId:(NSString*)messageId type:(NSInteger)type toView:(id)toView;
 //使用msgId删除评论
 -(void)WH_delPraiseWithMsgId:(NSString*)messageId toView:(id)toView;
 
 //使用data添加评论
--(void)WH_addCommentWithData:(WeiboReplyData*)reply toView:(id)toView;
+-(void)WH_addCommentWithData:(WeiboReplyData*)reply type:(NSInteger)type toView:(id)toView;
 //根据msgid删除评论
 -(void)WH_delCommentWithMsgId:(NSString*)messageId commentId:(NSString*)commentId toView:(id)toView;
 
@@ -1007,6 +1012,12 @@
 
 // 朋友圈纯视频接口
 - (void)WH_circleMsgPureVideoPageIndex:(NSInteger)pageIndex lable:(NSString *)lable toView:(id)toView;
+//推荐视频列表
+-(void)receiveRecordList:(id)toView;
+//.短剧列表(type=1)/用户视频列表(type=2)
+-(void)WH_receiveSeriesListWithIndex:(NSInteger)pageIndex type:(NSInteger)type toView:(id)toView;
+//标记看过或播放过的视频接口 recommended可选参数,默认值为０　１表示来源于推荐中的视频,０表求非推荐中的视频
+-(void)WH_SeriesShortFlipWithId:(NSString *)videoId recommended:(NSInteger)recommended toView:(id)toView;
 // 获取音乐列表
 - (void)WH_musicListPageIndex:(NSInteger)pageIndex keyword:(NSString *)keyword toView:(id)toView;
 
@@ -1384,9 +1395,14 @@
 -(void)WH_clearRedRecordWithId:(NSString *)roomId toView:(id)toView;
 #pragma mark -- 账单详情
 -(void)WH_getRedRecordWithId:(NSString *)bilId toView:(id)toView;
-
-
-
+#pragma mark -- 视频收藏
+-(void)WH_VideoCollectWithId:(NSString *)videoId toView:(id)toView;
+#pragma mark -- 视频取消收藏
+-(void)WH_VideoCancleCollectWithId:(NSString *)videoId toView:(id)toView;
+#pragma mark -- 视频全集
+-(void)WH_VideoAllWithId:(NSString *)videoId toView:(id)toView;
+#pragma mark -- 查看自己的收藏跟作品 type 0收藏  1作品
+-(void)WH_LookMyVideoWithPageIndex:(NSInteger)pageIndex type:(NSInteger)type toView:(id)toView;
 
 
 

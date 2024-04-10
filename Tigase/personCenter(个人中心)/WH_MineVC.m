@@ -21,6 +21,7 @@
 #import "WH_JXImageScroll_WHVC.h"
 #import "DMScaleTransition.h"
 #import "WH_PersonalData_WHViewController.h"
+#import "WH_GKDYVideoModel.h"
 
 #define kUserInfoHeaderHeight          433
 #define kSlideTabBarHeight             57
@@ -57,10 +58,10 @@ NSString * const kWH_MineCell  = @"WH_MineCell";
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _pageIndex = 0;
+        _pageIndex = 1;
         _pageSize = 21;
         
-        _tabIndex = 0;
+        _tabIndex = 1;
         
         _scalePresentAnimation = [ScalePresentAnimation new];
         _scaleDismissAnimation = [ScaleDismissAnimation new];
@@ -85,20 +86,20 @@ NSString * const kWH_MineCell  = @"WH_MineCell";
     [super viewDidLoad];
     _wait = [ATMHud sharedInstance];
     [self initCollectionView];
-    [self.dataArray addObjectsFromArray:@[@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@""]];
-    [self.collectsArr addObjectsFromArray:@[@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@""]];
-    
-    [self loadData:1 pageSize:21];
-    
+
+    [self receiveListData];
     
     [self getCurrentUserInfo];
-    
     
     
     [g_notify addObserver:self selector:@selector(WH_doRefresh:) name:kUpdateUser_WHNotifaction object:nil];
     
     [g_notify addObserver:self selector:@selector(wh_updateUserInfo:) name:kXMPPMessageUpdateUserInfo_WHNotification object:nil];
     
+}
+-(void)receiveListData{
+    
+    [g_server WH_LookMyVideoWithPageIndex:self.pageIndex type:_tabIndex toView:self];
 }
 - (void)getCurrentUserInfo {
     [[WH_JXUserObject sharedUserInstance] getCurrentUser];
@@ -168,7 +169,7 @@ NSString * const kWH_MineCell  = @"WH_MineCell";
     [_loadMore startLoading];
     __weak __typeof(self) wself = self;
     [_loadMore setOnLoad:^{
-        [wself loadData:wself.pageIndex pageSize:wself.pageSize];
+        [wself receiveListData];
     }];
     [_collectionView addSubview:_loadMore];
 }
@@ -203,12 +204,21 @@ NSString * const kWH_MineCell  = @"WH_MineCell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     WH_MineCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kWH_MineCell forIndexPath:indexPath];
+    WH_GKDYVideoModel *model;
     if(_tabIndex == 0) {
+        if(self.collectsArr.count > indexPath.item){
+            model = self.collectsArr[indexPath.item];
+        }
 
     }else {
-
+        if(self.dataArray.count > indexPath.item){
+            model = self.dataArray[indexPath.item];
+        }
     }
-//    [cell initData:aweme];
+    if(model){
+        [cell.coverImage sd_setImageWithURL:[NSURL URLWithString:model.thumbnail_url]];
+        [cell.playCountBtn setTitle:model.play forState:UIControlStateNormal];
+    }
     return cell;
 }
 
@@ -217,7 +227,9 @@ NSString * const kWH_MineCell  = @"WH_MineCell";
     _selectIndex = indexPath.row;
     
     if(_tabIndex == 0) {
+        
     }else {
+        
     }
     
 }
@@ -273,12 +285,10 @@ NSString * const kWH_MineCell  = @"WH_MineCell";
         return;
     }
     _tabIndex = index;
-    _pageIndex = 0;
+    _pageIndex = 1;
     
     [UIView setAnimationsEnabled:NO];
     [self.collectionView performBatchUpdates:^{
-//        [self.workAwemes removeAllObjects];
-//        [self.favoriteAwemes removeAllObjects];
         
         if([self.collectionView numberOfItemsInSection:1]) {
             [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:1]];
@@ -288,8 +298,7 @@ NSString * const kWH_MineCell  = @"WH_MineCell";
         
         [self.loadMore reset];
         [self.loadMore startLoading];
-        
-        [self loadData:self.pageIndex pageSize:self.pageSize];
+        [self receiveListData];
     }];
     
 }
@@ -316,44 +325,18 @@ NSString * const kWH_MineCell  = @"WH_MineCell";
 - (void)loadData:(NSInteger)pageIndex pageSize:(NSInteger)pageSize {
     __weak typeof (self) wself = self;
     
-    NSMutableArray<NSIndexPath *> *indexPaths = [NSMutableArray array];
-    for(NSInteger row = 0; row<self.dataArray.count; row++) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:1];
-        [indexPaths addObject:indexPath];
-    }
-    [wself.collectionView insertItemsAtIndexPaths:indexPaths];
+//    NSMutableArray<NSIndexPath *> *indexPaths = [NSMutableArray array];
+//    for(NSInteger row = 0; row<_tabIndex == 0?self.collectsArr.count:self.dataArray.count; row++) {
+//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:1];
+//        [indexPaths addObject:indexPath];
+//    }
+//    [wself.collectionView insertItemsAtIndexPaths:indexPaths];
     
     [self.collectionView reloadData];
-//    if(_tabIndex == 0) {
-//        [NetworkHelper getWithUrlPath:FindAwemePostByPagePath request:request success:^(id data) {
-//            if(wself.tabIndex != 0) {
-//                return;
-//            }
-//            AwemeListResponse *response = [[AwemeListResponse alloc] initWithDictionary:data error:nil];
-//            NSArray<Aweme *> *array = response.data;
-//            wself.pageIndex++;
-//
-//            [UIView setAnimationsEnabled:NO];
-//            [wself.collectionView performBatchUpdates:^{
-//                [wself.workAwemes addObjectsFromArray:array];
-//                NSMutableArray<NSIndexPath *> *indexPaths = [NSMutableArray array];
-//                for(NSInteger row = wself.workAwemes.count - array.count; row<wself.workAwemes.count; row++) {
-//                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:1];
-//                    [indexPaths addObject:indexPath];
-//                }
-//                [wself.collectionView insertItemsAtIndexPaths:indexPaths];
-//            } completion:^(BOOL finished) {
-//                [UIView setAnimationsEnabled:YES];
-//            }];
-//
-//            [wself.loadMore endLoading];
-//            if(!response.has_more) {
-//                [wself.loadMore loadingAll];
-//            }
-//        } failure:^(NSError *error) {
-//            [wself.loadMore loadingFailed];
-//        }];
-//    }
+    
+    [self.loadMore endLoading];
+   
+
 }
 -(void)jumpWithType:(FunctionType)type{
     if (type == FunctionType_Wallet) {
@@ -446,6 +429,30 @@ NSString * const kWH_MineCell  = @"WH_MineCell";
         vc.dataSorce = dict;
         [g_navigation pushViewController:vc animated:YES];
         [_wait stop];
+    }else if ([aDownload.action isEqualToString:wh_myvideos] || [aDownload.action isEqualToString:wh_mycollects]){
+        
+        if(self.pageIndex == 1){
+            if(_tabIndex == 0){
+                [self.collectsArr removeAllObjects];
+            }else{
+                [self.dataArray removeAllObjects];
+            }
+        }
+        
+        for (int i = 0; i < array1.count; i++) {
+            WH_GKDYVideoModel *model = [[WH_GKDYVideoModel alloc] init];
+            [model WH_getDataFromDict:array1[i]];
+            if(_tabIndex == 0){
+                [self.collectsArr addObject:model];
+            }else{
+                [self.dataArray addObject:model];
+            }
+        }
+        self.pageIndex++;
+        [self loadData:self.pageIndex pageSize:self.pageSize];
+        if(array1.count < 20){
+            [self.loadMore loadingAll];
+        }
     }
 }
 #pragma mark - 请求失败回调

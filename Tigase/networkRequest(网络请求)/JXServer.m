@@ -2518,12 +2518,76 @@
     NSString * jsonImages = nil;
     NSString * jsonAudios=nil;
     
+    
+//    tUrl　            缩略图地址
+//    oUrl              视频地址
+//    duration          视频时长,单位秒
+//    size               文件大小,单位字节
+//    fileName         文件名称,可以传时间戳名字,如202404081212.mp4
+//    remark             描述
+//    title             主题
+    
+    WH_JXConnection* p = [self addTask:wh_act_MsgAdd param:nil toView:toView];
+    [p setPostValue:[NSNumber numberWithInt:type] forKey:@"type"];
+    [p setPostValue:[NSNumber numberWithInt:flag] forKey:@"flag"];
+    [p setPostValue:[NSNumber numberWithInt:visible] forKey:@"visible"];
+    [p setPostValue:[NSNumber numberWithInt:1] forKey:@"cityId"];
+    [p setPostValue:access_token forKey:@"access_token"];
+    [p setPostValue:text forKey:@"title"];
+    
+//    if(dict.count == 2){//包含图片
+        NSArray *keyArr = [dict allKeys];
+        for (NSString *key in keyArr) {
+            if([key isEqualToString:@"videos"]){
+                NSArray *videosAr = [dict objectForKey:@"videos"];
+                if (videosAr.count >0) {
+                    [array removeAllObjects];
+                    for (NSDictionary *dic in videosAr) {
+                        
+                        NSMutableDictionary *tempDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+                        [array addObject:tempDic];
+                        
+                        NSString *oUrl = [NSString stringWithFormat:@"%@",[tempDic objectForKey:@"oUrl"]];
+                        
+                        [p setPostValue:oUrl forKey:@"oUrl"];
+                        //获取视频时长，大小
+                        NSURL*movieURL = [NSURL URLWithString:oUrl];
+                        
+                          NSDictionary *opts = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
+                        
+                           AVURLAsset*urlAsset = [AVURLAsset URLAssetWithURL:movieURL options:opts];// 初始化视频媒体文件
+                            int minute =0, second =0;
+                        
+                            second = urlAsset.duration.value/ (float)urlAsset.duration.timescale;// 获取视频总时长,单位秒
+                        
+                        [p setPostValue:[NSString stringWithFormat:@"%d",second] forKey:@"duration"];
+                        
+                        [p setPostValue:[NSString stringWithFormat:@"%@",[tempDic objectForKey:@"oFileName"]] forKey:@"fileName"];
+                    }
+                }
+            }else{
+                id data = [dict objectForKey:key];
+                if([data isKindOfClass:[NSDictionary class]]){
+                    NSDictionary *imageDic = (NSDictionary *)data;
+                    NSString *oUrl = [NSString stringWithFormat:@"%@",[imageDic objectForKey:@"oUrl"]];
+                    
+                    [p setPostValue:oUrl forKey:@"tUrl"];
+                }
+            }
+        }
+//    }
+    
+    
     NSArray *imagAr = [dict objectForKey:@"images"];
     if (imagAr.count > 0) {
         [array removeAllObjects];
         for (NSDictionary *dic in imagAr) {
             NSMutableDictionary *tempDic = [NSMutableDictionary dictionaryWithDictionary:dic];
             [array addObject:tempDic];
+            
+            NSString *oUrl = [NSString stringWithFormat:@"%@",[tempDic objectForKey:@"oUrl"]];
+    
+            [p setPostValue:oUrl forKey:@"tUrl"];
         }
         
         if([array count]>0){
@@ -2532,8 +2596,6 @@
             jsonFiles = jsonImages;
         }
     }
-    
-    //2
     
     NSArray *videosAr = [dict objectForKey:@"videos"];
     if (videosAr.count >0) {
@@ -2550,6 +2612,7 @@
             jsonFiles = jsonVideos;
         }
     }
+    
     //3
     //    array = [dict objectForKey:@"audios"];
     NSArray *audiosAr = [dict objectForKey:@"audios"];
@@ -2587,25 +2650,19 @@
     
     array = nil;
     
-    WH_JXConnection* p = [self addTask:wh_act_MsgAdd param:nil toView:toView];
-    [p setPostValue:[NSNumber numberWithInt:type] forKey:@"type"];
-    [p setPostValue:[NSNumber numberWithInt:flag] forKey:@"flag"];
-    [p setPostValue:[NSNumber numberWithInt:visible] forKey:@"visible"];
-    [p setPostValue:[NSNumber numberWithInt:1] forKey:@"cityId"];
-    [p setPostValue:access_token forKey:@"access_token"];
-    [p setPostValue:text forKey:@"text"];
-    if (type == 5) {
-        [p setPostValue:jsonFiles forKey:@"files"];
-    }else if (type == 6) {
-        [p setPostValue:[dict objectForKey:@"sdkUrl"] forKey:@"sdkUrl"];
-        [p setPostValue:[dict objectForKey:@"sdkIcon"] forKey:@"sdkIcon"];
-        [p setPostValue:[dict objectForKey:@"sdkTitle"] forKey:@"sdkTitle"];
-    }
-    else {
-        [p setPostValue:jsonImages forKey:@"images"];
-        [p setPostValue:jsonAudios forKey:@"audios"];
-        [p setPostValue:jsonVideos forKey:@"videos"];
-    }
+    
+//    if (type == 5) {
+//        [p setPostValue:jsonFiles forKey:@"files"];
+//    }else if (type == 6) {
+//        [p setPostValue:[dict objectForKey:@"sdkUrl"] forKey:@"sdkUrl"];
+//        [p setPostValue:[dict objectForKey:@"sdkIcon"] forKey:@"sdkIcon"];
+//        [p setPostValue:[dict objectForKey:@"sdkTitle"] forKey:@"sdkTitle"];
+//    }
+//    else {
+//        [p setPostValue:jsonImages forKey:@"images"];
+//        [p setPostValue:jsonAudios forKey:@"audios"];
+//        [p setPostValue:jsonVideos forKey:@"videos"];
+//    }
     [p setPostValue:myself.model forKey:@"model"];
     [p setPostValue:myself.osVersion forKey:@"osVersion"];
     [p setPostValue:myself.serialNumber forKey:@"serialNumber"];
@@ -2681,12 +2738,13 @@
 }
 
 
-//点赞操作
--(void)WH_addPraiseWithMsgId:(NSString*)messageId toView:(id)toView{
+//点赞操作 收藏类型,type:1-朋友圈点赞(参数默认值1),2-短剧,3-短视频
+-(void)WH_addPraiseWithMsgId:(NSString*)messageId type:(NSInteger)type toView:(id)toView{
     if(messageId==nil)
         return;
     WH_JXConnection* p = [self addTask:wh_act_PraiseAdd param:nil toView:toView];
     [p setPostValue:messageId forKey:@"messageId"];
+    [p setPostValue:@(type) forKey:@"type"];
     [p setPostValue:access_token forKey:@"access_token"];
     [p go];
 }
@@ -2701,8 +2759,8 @@
     [p go];
 }
 
-//使用数据添加评论
--(void)WH_addCommentWithData:(WeiboReplyData*)reply toView:(id)toView{
+//使用数据添加评论type:1-朋友圈点赞(参数默认值1),2-短剧,3-短视频
+-(void)WH_addCommentWithData:(WeiboReplyData*)reply type:(NSInteger)type toView:(id)toView{
     if(reply.messageId==nil)
         return;
     WH_JXConnection* p = [self addTask:wh_act_CommentAdd param:nil toView:toView];
@@ -2711,6 +2769,7 @@
     [p setPostValue:reply.toUserId forKey:@"toUserId"];
     [p setPostValue:reply.toNickName forKey:@"toNickname"];
     [p setPostValue:reply.toBody forKey:@"toBody"];
+    [p setPostValue:@(type) forKey:@"type"];
     [p setPostValue:access_token forKey:@"access_token"];
     [p go];
 }
@@ -3831,6 +3890,34 @@
     [p setPostValue:[NSNumber numberWithInteger:pageIndex] forKey:@"pageIndex"];
     [p setPostValue:lable forKey:@"lable"];
     [p setPostValue:[NSNumber numberWithInteger:20] forKey:@"pageSize"];
+    [p go];
+}
+//推荐视频列表
+-(void)receiveRecordList:(id)toView{
+    WH_JXConnection* p = [self addTask:wh_act_ShortRecommended param:nil toView:toView];
+
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:[NSNumber numberWithInteger:10] forKey:@"pageSize"];
+    [p go];
+}
+//.短剧列表(type=1)/用户视频列表(type=2)
+-(void)WH_receiveSeriesListWithIndex:(NSInteger)pageIndex type:(NSInteger)type toView:(id)toView{
+    WH_JXConnection* p = [self addTask:wh_act_SeriesList param:nil toView:toView];
+
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:[NSNumber numberWithInteger:10] forKey:@"pageSize"];
+    [p setPostValue:[NSNumber numberWithInteger:pageIndex] forKey:@"pageIndex"];
+    [p setPostValue:[NSNumber numberWithInteger:type] forKey:@"type"];
+    [p go];
+}
+
+//标记看过或播放过的视频接口 recommended可选参数,默认值为０　１表示来源于推荐中的视频,０表求非推荐中的视频
+-(void)WH_SeriesShortFlipWithId:(NSString *)videoId recommended:(NSInteger)recommended toView:(id)toView{
+    WH_JXConnection* p = [self addTask:wh_act_SeriesFlip param:nil toView:toView];
+
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:videoId forKey:@"id"];
+    [p setPostValue:[NSNumber numberWithInteger:recommended] forKey:@"recommended"];
     [p go];
 }
 
@@ -5167,6 +5254,39 @@
     WH_JXConnection* p = [self addTask:wh_bill_Detaile param:nil toView:toView];
     [p setPostValue:self.access_token forKey:@"access_token"];
     [p setPostValue:bilId forKey:@"id"];
+    
+    [p go];
+}
+#pragma mark -- 视频收藏
+-(void)WH_VideoCollectWithId:(NSString *)videoId toView:(id)toView{
+    WH_JXConnection* p = [self addTask:wh_series_collect param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:videoId forKey:@"videoId"];
+    
+    [p go];
+}
+#pragma mark -- 视频取消收藏
+-(void)WH_VideoCancleCollectWithId:(NSString *)videoId toView:(id)toView{
+    WH_JXConnection* p = [self addTask:wh_series_Canclecollect param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:videoId forKey:@"videoId"];
+    
+    [p go];
+}
+#pragma mark -- 视频全集
+-(void)WH_VideoAllWithId:(NSString *)videoId toView:(id)toView{
+    WH_JXConnection* p = [self addTask:wh_series_info param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:videoId forKey:@"videoId"];
+    
+    [p go];
+}
+#pragma mark -- 查看自己的收藏跟作品 type 0收藏  1作品
+-(void)WH_LookMyVideoWithPageIndex:(NSInteger)pageIndex type:(NSInteger)type toView:(id)toView{
+    WH_JXConnection* p = [self addTask:type != 0?wh_myvideos:wh_mycollects param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:@(20) forKey:@"pageSize"];
+    [p setPostValue:@(pageIndex) forKey:@"pageIndex"];
     
     [p go];
 }

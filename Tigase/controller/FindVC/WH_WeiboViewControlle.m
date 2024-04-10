@@ -1307,7 +1307,7 @@
     wh_replyDataTemp.userId    = MY_USER_ID;
     wh_replyDataTemp.userNickName    = g_myself.userNickname;
     
-    [[JXServer sharedServer] WH_addCommentWithData:wh_replyDataTemp toView:self];
+    [[JXServer sharedServer] WH_addCommentWithData:wh_replyDataTemp type:1 toView:self];
 }
 
 -(void)delBtnAction:(WeiboData *)cellData{
@@ -1617,7 +1617,8 @@
 
 -(void)praiseAddAction{
     if(!wh_selectWeiboData.isPraise)
-        [[JXServer sharedServer] WH_addPraiseWithMsgId:wh_selectWeiboData.messageId toView:self];
+        ////1短剧,２用户发的视频  入参收藏类型,type:1-朋友圈点赞(参数默认值1),2-短剧,3-短视频
+        [[JXServer sharedServer] WH_addPraiseWithMsgId:wh_selectWeiboData.messageId type:1 toView:self];
 }
 
 -(void)praiseDelAction{

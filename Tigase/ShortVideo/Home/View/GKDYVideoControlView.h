@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WH_GKDYVideoModel.h"
+#import "CircleTextView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -36,6 +37,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) WH_GKDYVideoModel    *wh_model;
 @property (nonatomic, strong) UIScrollView *wh_scrollView;
+@property (nonatomic, strong) CircleTextView   *musicName;
+@property (nonatomic,copy)void(^lookAllPlayletBlock)(void);
+@property (nonatomic,copy)void(^stopActionBlock)(void);
 
 - (void)setProgress:(float)progress;
 

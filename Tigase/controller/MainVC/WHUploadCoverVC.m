@@ -24,12 +24,12 @@
 
 -(void)uploadAction{
     
-    int cout = 64;
+    int cout = 82;
     
-    for (int i = 14; i < 100; i++) {
-        for (int j = i==14?cout:1; j < 101; j++) {
+    for (int i = 8; i < 10; i++) {
+        for (int j = i==8?cout:1; j < 101; j++) {
             
-            NSString *videoUrl = [NSString stringWithFormat:@"https://huoli-1324081351.cos.ap-hongkong.myqcloud.com/videos/short/%2d/%d.mp4",i,j];
+            NSString *videoUrl = [NSString stringWithFormat:@"https://huoli-1324081351.cos.ap-hongkong.myqcloud.com/videos/short/%02d/%d.mp4",i,j];
             UIImage *coverImage = [FileInfo getVideoFirstViewImage:[NSURL URLWithString:videoUrl]];
             if(coverImage){
                 

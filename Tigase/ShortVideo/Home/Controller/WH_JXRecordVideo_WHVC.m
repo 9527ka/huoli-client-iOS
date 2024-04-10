@@ -17,10 +17,21 @@
 #import "WH_JXConvertMedia.h"
 #import "WH_JXSelectMusicModel.h"
 #import "UIButton+WH_Button.h"
+#import "RITLPhotosViewController.h"
+#import "WH_JXMediaObject.h"
+#import <Photos/Photos.h>
+#import <UIKit/UIKit.h>
+#import <photos/PHAssetResource.h>
+#import <photos/PHFetchOptions.h>
+#import <photos/PHFetchResult.h>
+#import <Photos/PHAsset.h>
+#import <Photos/PHImageManager.h>
+#import <AssetsLibrary/ALAssetsLibrary.h>
+#import <AssetsLibrary/ALAssetRepresentation.h>
 
 #define kCameraVideoPath [FileInfo getUUIDFileName:@"mp4"]
 
-@interface WH_JXRecordVideo_WHVC ()<JXSelectMusicVCDelegate>
+@interface WH_JXRecordVideo_WHVC ()<JXSelectMusicVCDelegate,RITLPhotosViewControllerDelegate>
 
 @property (nonatomic, strong) GPUImageVideoCamera *videoCamera; // 錄像
 @property (nonatomic, strong) GPUImageMovieWriter *movieWriter; // 存錄像
@@ -85,6 +96,8 @@
 
 @property (nonatomic, strong) UIImageView *lastSelImgView;
 
+@property (nonatomic, strong) UIButton *photoBtn;
+
 @end
 
 @implementation WH_JXRecordVideo_WHVC
@@ -142,7 +155,8 @@
     [_photoCaptureButton setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
     [primaryView addSubview:_photoCaptureButton];
     
-    UIButton *cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(15, THE_DEVICE_HAVE_HEAD ? 34+65 : 65, 30, 30)];
+    
+    UIButton *cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(15, THE_DEVICE_HAVE_HEAD ? 34+23 : 23, 30, 30)];
     [cancelBtn setImage:[UIImage imageNamed:@"WH_WhiteClose_WHIcon"] forState:UIControlStateNormal];
     [cancelBtn addTarget:self action:@selector(WaHu_cancelBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [cancelBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -155,6 +169,14 @@
     [_completeBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     _completeBtn.hidden = YES;
     [primaryView addSubview:_completeBtn];
+    
+    
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary] && [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]){
+        
+        [self setAlbumImage];
+        [primaryView addSubview:_photoBtn];
+       }
+    
     
     NSShadow *shadow = [[NSShadow alloc] init];
     shadow.shadowBlurRadius = 0;
@@ -245,6 +267,100 @@
     
     [self isVideoCustomView];
     [g_notify addObserver:self selector:@selector(didEnterBackground:) name:kApplicationDidEnterBackground object:nil];
+}
+
+-(void)setAlbumImage{
+    _photoBtn = [[UIButton alloc] initWithFrame:CGRectMake((JX_SCREEN_WIDTH - 80)/4, JX_SCREEN_HEIGHT - 67 - 40, 40, 40)];
+    _photoBtn.custom_acceptEventInterval = 1;
+    _photoBtn.layer.masksToBounds = YES;
+    _photoBtn.layer.cornerRadius = 6.0f;
+    _photoBtn.layer.borderColor = HEXCOLOR(0xD8D8D8).CGColor;
+    _photoBtn.layer.borderWidth = 1.0f;
+    
+    // 获取所有资源的集合，并按资源的创建时间排序  获取最近的一张照片
+    PHFetchOptions *optionsFirst = [[PHFetchOptions alloc] init];
+    optionsFirst.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+    PHFetchResult *assetsFetchResults = [PHAsset fetchAssetsWithOptions:optionsFirst];
+    PHAsset *phAsset =  [assetsFetchResults firstObject];
+    
+    PHVideoRequestOptions *options = [[PHVideoRequestOptions alloc] init];
+    options.version = PHImageRequestOptionsVersionCurrent;
+    options.deliveryMode = PHVideoRequestOptionsDeliveryModeAutomatic;
+    
+    PHImageManager *manager = [PHImageManager defaultManager];
+    
+    [manager requestAVAssetForVideo:phAsset options:options resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            AVURLAsset *urlAsset = (AVURLAsset *)asset;
+            //获取视频本地URL
+            NSURL *url = urlAsset.URL;
+            //本地URL存在并且没有保存在数据库
+            if (url && ![[WH_JXMediaObject sharedInstance] haveTheMediaWithPhotoPath:url.absoluteString]) {
+                // 获取视频data
+                NSData *data = [NSData dataWithContentsOfURL:url];
+                //获取视频拍摄时间
+//                NSDate *date = [self getAudioCreatDate:url];
+                //新建一个路径并写入视频data
+                NSString *dataPath = kCameraVideoPath;
+                [data writeToFile:dataPath atomically:YES];
+                // 获取视频时长
+                AVURLAsset *urlAsset = [AVURLAsset URLAssetWithURL:url options:nil];
+                NSInteger second = 0;
+                second = (NSInteger)urlAsset.duration.value / urlAsset.duration.timescale;
+                // 主线程更新界面
+                WH_JXMediaObject* p = [[WH_JXMediaObject alloc] init];
+                p.userId = MY_USER_ID;
+                p.fileName = dataPath;
+                p.isVideo = [NSNumber numberWithBool:YES];
+                p.timeLen = [NSNumber numberWithInteger:second];
+//                p.createTime = date;
+                p.photoPath = url.absoluteString;
+                
+            }
+        });
+    }];
+    
+    [_photoBtn setImage:[self getImageFromPHAsset:phAsset] forState:UIControlStateNormal];
+    [_photoBtn addTarget:self action:@selector(choosePhotoAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+}
+- (UIImage *) getImageFromPHAsset: (PHAsset * )asset{
+
+         __block NSData * data;
+         PHAssetResource * resource = [[PHAssetResource assetResourcesForAsset: asset] firstObject];
+         if (asset.mediaType == PHAssetMediaTypeImage) {
+             PHImageRequestOptions * options = [[PHImageRequestOptions alloc] init];
+             options.version = PHImageRequestOptionsVersionCurrent;
+             options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+             options.synchronous = YES;
+            [[PHImageManager defaultManager] requestImageDataForAsset:asset options:options resultHandler: ^(NSData * imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary * info) {
+                 data = [NSData dataWithData: imageData];
+             }];
+          }
+    return [UIImage imageWithData:data];
+    
+    
+//    resource.originalFilename
+}
+//选择图库
+-(void)choosePhotoAction:(UIButton *)sender{
+    RITLPhotosViewController *photoController = RITLPhotosViewController.photosViewController;
+    photoController.configuration.maxCount = 1;//最大的选择数目
+    photoController.configuration.containVideo = YES;//选择类型，目前只选择图片不选择视频
+    photoController.configuration.containImage = NO;
+    
+    photoController.photo_delegate = self;
+    photoController.thumbnailSize = CGSizeMake(320, 320);//缩略图的尺寸
+//    photoController.defaultIdentifers = self.saveAssetIds;//记录已经选择过的资源
+    photoController.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:photoController animated:true completion:^{}];
+}
+#pragma mark - 发送视频
+- (void)photosViewController:(UIViewController *)viewController media:(WH_JXMediaObject *)media {
+//    [_urlArray addObject:[NSURL URLWithString:[media.fileName copy]]];
+    self.outputFileName = [media.fileName copy];
+    [_urlArray addObject:[NSURL URLWithString:[NSString stringWithFormat:@"file://%@",self.outputFileName]]];
+    [self completeBtnAction:_completeBtn];
 }
 
 - (void)setFilterGroup {
@@ -629,13 +745,12 @@
     _timeBGView.image = [UIImage imageNamed:@"time_axis"];
 //    [self.view addSubview:_timeBGView];
     
-    _progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(10, THE_DEVICE_HAVE_HEAD ? 34+39 : 39, JX_SCREEN_WIDTH - 20, 50)];
-//    _progressView.backgroundColor = [UIColor redColor];
-    _progressView.progressTintColor = HEXCOLOR(0xFACE15);
-    _progressView.trackTintColor = [UIColor colorWithWhite:0 alpha:0.5];
+    _progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(16, THE_DEVICE_HAVE_HEAD ? 34+4 : 4, JX_SCREEN_WIDTH - 32, 2)];
+    _progressView.progressTintColor = THEMECOLOR;
+    _progressView.trackTintColor = [UIColor colorWithWhite:0 alpha:0.3];
     _progressView.progress = 0.0;
-    _progressView.transform = CGAffineTransformMakeScale(1.0f, 3.0f);
-    _progressView.layer.cornerRadius = 3.f;
+    _progressView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+    _progressView.layer.cornerRadius = 1.f;
     _progressView.layer.masksToBounds = YES;
     [self.view addSubview:_progressView];
     
@@ -650,13 +765,16 @@
 //    [self.view addSubview:_timeLabel];
     
     
-    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, THE_DEVICE_HAVE_HEAD ? 34 + 66 : 66, 100, 30)];
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, THE_DEVICE_HAVE_HEAD ? 34 + 23 : 23, 100, 32)];
     btn.center = CGPointMake(self.view.center.x, btn.center.y);
     [btn addTarget:self action:@selector(selectMusicBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    btn.backgroundColor = [UIColor blackColor];
+    btn.layer.cornerRadius = 16.0f;
+    btn.alpha = 0.45;
     [self.view addSubview:btn];
     [btn setTitle:Localized(@"JX_ChooseMusic") forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    btn.titleLabel.font = sysFontWithSize(13);
+    btn.titleLabel.font = sysFontWithSize(12);
     [btn setImage:[UIImage imageNamed:@"WH_Music_WHIcon"] forState:UIControlStateNormal];
     [btn layoutButtonWithEdgeInsetsStyle:LLButtonStyleTextRight imageTitleSpace:2];
     

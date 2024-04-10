@@ -125,16 +125,17 @@ typedef enum {
 #endif
     
     _finishBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    [_finishBtn setTitle:Localized(@"New_send") forState:UIControlStateNormal];
-    [_finishBtn setTitle:Localized(@"New_send") forState:UIControlStateHighlighted];
+    [_finishBtn setTitle:@"发布" forState:UIControlStateNormal];
+    [_finishBtn setTitle:@"发布" forState:UIControlStateHighlighted];
     [_finishBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    _finishBtn.frame = CGRectMake(JX_SCREEN_WIDTH - 43 - 10, JX_SCREEN_TOP - 8 - 28, 43, 28);
+    
     [_finishBtn addTarget:self action:@selector(actionSave) forControlEvents:UIControlEventTouchUpInside];
-    _finishBtn.layer.cornerRadius = CGRectGetHeight(_finishBtn.frame) / 2.f;
+    _finishBtn.layer.cornerRadius = 24;
     _finishBtn.layer.masksToBounds = YES;
-    _finishBtn.backgroundColor = HEXCOLOR(0x0093FF);
-    _finishBtn.titleLabel.font = sysFontWithSize(14);
-    [self.wh_tableHeader addSubview:_finishBtn];
+    _finishBtn.backgroundColor = THEMECOLOR;
+    _finishBtn.titleLabel.font = sysFontWithSize(17);
+//    _finishBtn.frame = CGRectMake(JX_SCREEN_WIDTH - 43 - 10, JX_SCREEN_TOP - 8 - 28, 43, 28);
+//    [self.wh_tableHeader addSubview:_finishBtn];
     
 
 	return self;
@@ -190,6 +191,14 @@ typedef enum {
             UIImage *image = [FileInfo getFirstImageFromVideo:wh_videoFile];
             if (image) {
                 [_images addObject:image];
+                if ([g_config.isOpenOSStatus integerValue]) {
+                       NSString *name = @"jpg";
+                       NSString *imagefile = [FileInfo getUUIDFileName:name];
+                       //图片存储到本地
+                       [g_server WH_saveImageToFileWithImage:image file:imagefile isOriginal:YES];
+                       [_imageStrings addObject:imagefile];
+                       
+                   }
             }
         }
         [self showVideos];
@@ -210,41 +219,45 @@ typedef enum {
     int h=9,w=JX_SCREEN_WIDTH-9*2;
     CGFloat maxY = 0;
     
+    _finishBtn.frame = CGRectMake(37, JX_SCREEN_TOP + 240, JX_SCREEN_WIDTH - 74, 48);
+    [self.wh_tableBody addSubview:_finishBtn];
+    //    self.canSeeBtn.frame = CGRectMake(10, h+_buildHeight, JX_SCREEN_WIDTH-20, 50);
+    
     
     //可见
     
-    [self.wh_tableBody addSubview:self.canSeeBtn];
-    self.canSeeBtn.frame = CGRectMake(10, h+_buildHeight, JX_SCREEN_WIDTH-20, 50);
-    maxY = CGRectGetMaxY(self.canSeeBtn.frame);
-    
-    
-    //提醒
-    [self.wh_tableBody addSubview:self.remindWhoBtn];
-    self.remindWhoBtn.frame = CGRectMake(10, h+CGRectGetMaxY(self.canSeeBtn.frame), JX_SCREEN_WIDTH-20, 50);
-    maxY = CGRectGetMaxY(self.remindWhoBtn.frame);
-    
-    if (self.wh_isShortVideo) {
-        //标签
-        [self.wh_tableBody addSubview:self.lableBtn];
-        self.lableBtn.frame = CGRectMake(10, h+CGRectGetMaxY(self.remindWhoBtn.frame), JX_SCREEN_WIDTH-20, 50);
-        maxY = CGRectGetMaxY(self.lableBtn.frame);
-    }
-    
-    if ([g_config.isOpenPositionService intValue] == 0) {
-        //位置
-        [self.wh_tableBody addSubview:self.locBtn];
-        if (self.wh_isShortVideo) {
-            self.locBtn.frame = CGRectMake(10, h+CGRectGetMaxY(self.lableBtn.frame), JX_SCREEN_WIDTH-20, 50);
-        }else {
-            self.locBtn.frame = CGRectMake(10, h+CGRectGetMaxY(self.remindWhoBtn.frame), JX_SCREEN_WIDTH-20, 50);
-        }
-        maxY = CGRectGetMaxY(self.locBtn.frame);
-    }
-    
-    //禁止他人评论
-    [self.wh_tableBody addSubview:self.replybanBtn];
-    self.replybanBtn.frame = CGRectMake(10, maxY, JX_SCREEN_WIDTH-20, 50);
-    maxY = CGRectGetMaxY(self.replybanBtn.frame);
+//    [self.wh_tableBody addSubview:self.canSeeBtn];
+//    self.canSeeBtn.frame = CGRectMake(10, h+_buildHeight, JX_SCREEN_WIDTH-20, 50);
+//    maxY = CGRectGetMaxY(self.canSeeBtn.frame);
+//
+//
+//    //提醒
+//    [self.wh_tableBody addSubview:self.remindWhoBtn];
+//    self.remindWhoBtn.frame = CGRectMake(10, h+CGRectGetMaxY(self.canSeeBtn.frame), JX_SCREEN_WIDTH-20, 50);
+//    maxY = CGRectGetMaxY(self.remindWhoBtn.frame);
+//
+//    if (self.wh_isShortVideo) {
+//        //标签
+//        [self.wh_tableBody addSubview:self.lableBtn];
+//        self.lableBtn.frame = CGRectMake(10, h+CGRectGetMaxY(self.remindWhoBtn.frame), JX_SCREEN_WIDTH-20, 50);
+//        maxY = CGRectGetMaxY(self.lableBtn.frame);
+//    }
+//
+//    if ([g_config.isOpenPositionService intValue] == 0) {
+//        //位置
+//        [self.wh_tableBody addSubview:self.locBtn];
+//        if (self.wh_isShortVideo) {
+//            self.locBtn.frame = CGRectMake(10, h+CGRectGetMaxY(self.lableBtn.frame), JX_SCREEN_WIDTH-20, 50);
+//        }else {
+//            self.locBtn.frame = CGRectMake(10, h+CGRectGetMaxY(self.remindWhoBtn.frame), JX_SCREEN_WIDTH-20, 50);
+//        }
+//        maxY = CGRectGetMaxY(self.locBtn.frame);
+//    }
+//
+//    //禁止他人评论
+//    [self.wh_tableBody addSubview:self.replybanBtn];
+//    self.replybanBtn.frame = CGRectMake(10, maxY, JX_SCREEN_WIDTH-20, 50);
+//    maxY = CGRectGetMaxY(self.replybanBtn.frame);
     
     
 //    UIButton* btn;
