@@ -9,8 +9,9 @@
 #import "AwemeListController.h"
 
 typedef NS_ENUM(NSUInteger, AwemeType) {
-    AwemeWork        = 0,
-    AwemeFavorite    = 1
+    AwemeColoct    = 3,
+    AwemeMyShort        = 4,
+   
 };
 
 @class Aweme;
@@ -24,6 +25,6 @@ typedef NS_ENUM(NSUInteger, AwemeType) {
 - (void)applicationEnterBackground;
 - (void)applicationBecomeActive;
 
--(instancetype)initWithVideoData:(NSMutableArray<Aweme *> *)data currentIndex:(NSInteger)currentIndex pageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize awemeType:(AwemeType)type uid:(NSString *)uid;
+-(instancetype)initWithVideoData:(NSMutableArray *)data currentIndex:(NSInteger)currentIndex pageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize awemeType:(AwemeType)type uid:(NSString *)uid;
 
 @end

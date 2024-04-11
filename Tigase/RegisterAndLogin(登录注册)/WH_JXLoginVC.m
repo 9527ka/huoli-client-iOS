@@ -12,6 +12,7 @@
 #import "MiXin_forgetPwd_MiXinVC.h"
 #import "WH_ForgetPwdForUserViewController.h"
 #import "WH_CodeLoginVC.h"
+#import "WH_PhoneForgetPwdVC.h"
 
 @interface WH_JXLoginVC ()<JXLocationDelegate, UITextFieldDelegate>{
     BOOL isRegistSuccess; //!< 是否注册成功
@@ -170,16 +171,18 @@
 
 - (IBAction)forgetPasswordAction:(id)sender {
     [self.view endEditing:YES];
-    if (currentLoginType == 1) {
-        WH_ForgetPwdForUserViewController *pwsVC = [[WH_ForgetPwdForUserViewController alloc] init];
-        pwsVC.forgetStep = 1;
-        [g_navigation pushViewController:pwsVC animated:YES];
-        return;
-    }
-    MiXin_forgetPwd_MiXinVC* vc = [[MiXin_forgetPwd_MiXinVC alloc] init];
-    vc.isModify = NO;
-    vc.forgetType = currentLoginType;
+    WH_PhoneForgetPwdVC *vc = [[WH_PhoneForgetPwdVC alloc] init];
     [g_navigation pushViewController:vc animated:YES];
+//    if (currentLoginType == 1) {ddddd
+//        WH_ForgetPwdForUserViewController *pwsVC = [[WH_ForgetPwdForUserViewController alloc] init];
+//        pwsVC.forgetStep = 1;
+//        [g_navigation pushViewController:pwsVC animated:YES];
+//        return;
+//    }
+//    MiXin_forgetPwd_MiXinVC* vc = [[MiXin_forgetPwd_MiXinVC alloc] init];
+//    vc.isModify = NO;
+//    vc.forgetType = currentLoginType;
+//    [g_navigation pushViewController:vc animated:YES];
 }
 - (IBAction)regiestAction:(id)sender {
     [self.view endEditing:YES];

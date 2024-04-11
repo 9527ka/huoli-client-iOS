@@ -49,7 +49,7 @@
 - (void) getPhoneCode:(UIButton *)sender{
     //    act_SendSMS
         NSString *areaCode = [_areaBtn.titleLabel.text stringByReplacingOccurrencesOfString:@"+" withString:@""];
-    [g_server WH_sendSMSCodeWithTel:[NSString stringWithFormat:@"%@",_phone.text] areaCode:areaCode isRegister:NO imgCode:_imgCode.text toView:self];
+    [g_server WH_sendSMSCodeWithTel:[NSString stringWithFormat:@"%@",_phone.text] areaCode:areaCode isRegister:0 imgCode:_imgCode.text toView:self];
 }
 
 

@@ -11,9 +11,11 @@
 #import "MiXin_forgetPwd_MiXinVC.h"
 #import "WH_ForgetPwdForUserViewController.h"
 #import "WH_JXLoginVC.h"
+#import "WH_PhoneForgetPwdVC.h"
 
 @interface WH_CodeLoginVC (){
     ATMHud *_wait;
+    WH_JXUserObject *userObject;
 }
 
 @property (weak, nonatomic) IBOutlet UIImageView *logoImage;
@@ -55,6 +57,9 @@
         [g_server showMsg:@"请输入正确格式的手机号码"];
         return;
     }
+    //type;//0登录  1注册   isRegister,    数字类型, 1-注册,2-登录
+    [g_server WH_sendSMSCodeWithTel:[NSString stringWithFormat:@"%@",self.phoneField.text] areaCode:@"" isRegister:self.type == 1?1:2 imgCode:@"" toView:self];
+    
     self.codeBtn.userInteractionEnabled = NO;
        //同时创建计时器 开始倒计时
         [self createTimer];
@@ -120,10 +125,12 @@
 
 - (IBAction)forgetPasswordAction:(id)sender {
     [self.view endEditing:YES];
+    WH_PhoneForgetPwdVC *vc = [[WH_PhoneForgetPwdVC alloc] init];
+    [g_navigation pushViewController:vc animated:YES];
 //    if (currentLoginType == 1) {
-        WH_ForgetPwdForUserViewController *pwsVC = [[WH_ForgetPwdForUserViewController alloc] init];
-        pwsVC.forgetStep = 1;
-        [g_navigation pushViewController:pwsVC animated:YES];
+//        WH_ForgetPwdForUserViewController *pwsVC = [[WH_ForgetPwdForUserViewController alloc] init];
+//        pwsVC.forgetStep = 1;
+//        [g_navigation pushViewController:pwsVC animated:YES];
 //        return;
 //    }
 //    MiXin_forgetPwd_MiXinVC* vc = [[MiXin_forgetPwd_MiXinVC alloc] init];
@@ -164,14 +171,16 @@
         [GKMessageTool showTips:@"验证码格式不正确"];
         return;
     }
-//    userObject.areaCode = g_myself.areaCode.length > 0?g_myself.areaCode:@"86";
-//    userObject.password = [g_server WH_getMD5StringWithStr:self.codeField.text];
-//    userObject.phone = self.phoneField.text;
-//    userObject.telephone = self.phoneField.text;
-//    userObject.account = self.phoneField.text;
-//
-//    [_wait start];
-//    [[JXServer sharedServer] login:userObject loginType:currentLoginType toView:self];
+    userObject = [[WH_JXUserObject alloc] init];
+    userObject.areaCode = g_myself.areaCode.length > 0?g_myself.areaCode:@"86";
+    userObject.password = [g_server WH_getMD5StringWithStr:self.codeField.text];
+    userObject.phone = self.phoneField.text;
+    userObject.telephone = self.phoneField.text;
+    userObject.account = self.phoneField.text;
+    userObject.verificationCode = self.codeField.text;
+
+    [_wait start];
+    [[JXServer sharedServer] login:userObject loginType:1 toView:self];
 }
 -(void)actionQuit{
     [_wait stop];
@@ -183,59 +192,26 @@
 #pragma mark ------ 网络请求
 -(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{
     [_wait stop];
-//  if( [aDownload.action isEqualToString:wh_act_Config]){
-//
-//        [g_config didReceive:dict];
-//
-//
-//        AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
-//        [manager stopMonitoring];
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//        });
-//        return;
-//    }
-//
-//    if( [aDownload.action isEqualToString:wh_act_UserLogin]){//所有登录类型
-//        [g_default setObject:[dict objectForKey:@"payPassword"] forKey:PayPasswordKey];//登录成功时,保存一下支付密码的设置状态
-//        if (isRegistSuccess) {
-//            [g_App showMainUI];
-//            [self actionQuit];
-//
-//            return;
-//        }
-//        [g_default setBool:NO forKey:kTHIRD_LOGIN_AUTO];
-//        [g_default setBool:YES forKey:kIsAutoLogin];
-//        [g_default setObject:currentLoginType == 0 ? userObject.telephone : userObject.account forKey:kMY_USER_LoginName];
-//        [g_server doLoginOK:dict user:userObject];
-//
-//
-////        if([aDownload.action isEqualToString:wh_act_UserLogin]) {
-//            [g_default setBool:NO forKey:WH_ThirdPartyLogins];
-//            g_config.lastLoginType = [NSNumber numberWithInteger:currentLoginType];
-//
-//            g_myself.password = [[g_server WH_getMD5StringWithStr:self.codeField.text] copy];
-//            [[WH_JXUserObject sharedUserInstance] getCurrentUser];
-//            [WH_JXUserObject sharedUserInstance].complete = ^(HttpRequestStatus status, NSDictionary * _Nullable userInfo, NSError * _Nullable error) {
-//                [g_App showMainUI];
-//                [self actionQuit];
-//                [lunchImageView removeFromSuperview];
-//            };
-////        }
-//        return;
-//    }
-//    if([aDownload.action isEqualToString:wh_act_UserLoginAuto]){
-//        [lunchImageView removeFromSuperview];
-//        [g_server doLoginOK:dict user:nil];
-//        NSString *passwordsalt = [NSString stringWithFormat:@"%@",[dict objectForKey:@"salt"]];
-//        if (passwordsalt.length) {
-//            [g_default setObject:passwordsalt forKey:kMY_USER_PASSWORDSalt];
-//            [g_default synchronize];
-//        }
-//
-//        [g_App showMainUI];
-//        [self actionQuit];
-//        [_wait stop];
-//    }
+
+    if( [aDownload.action isEqualToString:wh_act_UserLogin]){//所有登录类型
+        [g_default setObject:[dict objectForKey:@"payPassword"] forKey:PayPasswordKey];//登录成功时,保存一下支付密码的设置状态
+        [g_default setBool:NO forKey:kTHIRD_LOGIN_AUTO];
+        [g_default setBool:YES forKey:kIsAutoLogin];
+        [g_default setObject:self.phoneField.text forKey:kMY_USER_LoginName];
+        [g_server doLoginOK:dict user:userObject];
+        
+        
+        [g_default setBool:NO forKey:WH_ThirdPartyLogins];
+        g_config.lastLoginType = [NSNumber numberWithInteger:0];
+        
+        g_myself.password = [[g_server WH_getMD5StringWithStr:self.codeField.text] copy];
+        [[WH_JXUserObject sharedUserInstance] getCurrentUser];
+        [WH_JXUserObject sharedUserInstance].complete = ^(HttpRequestStatus status, NSDictionary * _Nullable userInfo, NSError * _Nullable error) {
+            [g_App showMainUI];
+            [self actionQuit];
+        };
+        return;
+    }
    
 }
 

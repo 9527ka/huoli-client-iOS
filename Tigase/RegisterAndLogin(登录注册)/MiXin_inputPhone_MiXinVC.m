@@ -819,7 +819,7 @@
         _user = [WH_JXUserObject sharedUserInstance];
         _user.areaCode = areaCode;
         
-        [g_server WH_sendSMSCodeWithTel:_phone.text areaCode:areaCode isRegister:NO imgCode:_imgCode.text toView:self];
+        [g_server WH_sendSMSCodeWithTel:_phone.text areaCode:areaCode isRegister:0 imgCode:_imgCode.text toView:self];
         [_send setTitle:Localized(@"JX_Sending") forState:UIControlStateNormal];
         //[_wait start:Localized(@"JX_SendNow")];
         //[g_server checkPhone:_phone.text areaCode:areaCode toView:self];

@@ -30,23 +30,25 @@ NSString * const kAwemeListCell   = @"AwemeListCell";
 @property (nonatomic, strong) NSMutableArray           *awemes;
 @property (nonatomic, strong) LoadMoreControl                      *loadMore;
 @property(nonatomic,assign)BOOL isEnd;
+@property(nonatomic,strong)UIButton *backBtn;
 
 @end
 
 @implementation AwemeListController
 
--(instancetype)initWithVideoData:(NSMutableArray<Aweme *> *)data currentIndex:(NSInteger)currentIndex pageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize awemeType:(AwemeType)type uid:(NSString *)uid {
+-(instancetype)initWithVideoData:(NSMutableArray *)data currentIndex:(NSInteger)currentIndex pageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize awemeType:(AwemeType)type uid:(NSString *)uid {
     self = [super init];
     if(self) {
-//        _isCurPlayerPause = NO;
-//        _currentIndex = currentIndex;
-//        _pageIndex = pageIndex;
-//        _pageSize = pageSize;
-//        _awemeType = type;
-//        _uid = uid;
-//
-//        _awemes = [data mutableCopy];
-//        _data = [[NSMutableArray alloc] initWithObjects:[_awemes objectAtIndex:_currentIndex], nil];
+        NSArray *list = [data mutableCopy];
+        _data = [NSMutableArray arrayWithArray:list];
+        
+        _isCurPlayerPause = NO;
+        _currentIndex = currentIndex;
+        _pageIndex = pageIndex;
+        _pageSize = pageSize;
+        _type = type;
+        _uid = uid;
+        
 //
 //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarTouchBegin) name:@"StatusBarTouchBeginNotification" object:nil];
 //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationBecomeActive) name:UIApplicationWillEnterForegroundNotification object:nil];
@@ -58,12 +60,23 @@ NSString * const kAwemeListCell   = @"AwemeListCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
-    _isCurPlayerPause = NO;
-    _currentIndex = 0;
-    _pageIndex = 0;
-    _pageSize = 20;
-    
-    _data = [[NSMutableArray alloc] init];
+    [self setUpView];
+    if(!self.data){
+        _isCurPlayerPause = NO;
+        _currentIndex = 0;
+        _pageIndex = 0;
+        _pageSize = 20;
+        
+        _data = [[NSMutableArray alloc] init];
+        //请求数据
+        [self receiveListData];
+    }else{
+        _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _backBtn.frame = CGRectMake(12, JX_SCREEN_TOP - 44, 32, 44);
+        [_backBtn setImage:[UIImage imageNamed:@"ic_back"] forState:UIControlStateNormal];
+        [_backBtn addTarget:self action:@selector(goBackAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:self.backBtn];
+    }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarTouchBegin) name:@"StatusBarTouchBeginNotification" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationBecomeActive) name:UIApplicationWillEnterForegroundNotification object:nil];
@@ -71,11 +84,10 @@ NSString * const kAwemeListCell   = @"AwemeListCell";
     
     
 //    [self setBackgroundImage:@"img_video_loading"];
-    [self setUpView];
+   
 //    [self setLeftButton:@"icon_titlebar_whiteback"];
     
-    //请求数据
-    [self receiveListData];
+    
     
     
 }
@@ -84,8 +96,12 @@ NSString * const kAwemeListCell   = @"AwemeListCell";
         [g_server receiveRecordList:self];
     }else if (self.type == 1){//短剧
         [g_server WH_receiveSeriesListWithIndex:self.pageIndex type:1 toView:self];
-    }else{//短视频
+    }else if (self.type == 2){//短视频
         [g_server WH_receiveSeriesListWithIndex:self.pageIndex type:2 toView:self];
+    }else if (self.type == 3){//收藏
+        [g_server WH_LookMyVideoWithPageIndex:self.pageIndex type:0 toView:self];
+    }else if (self.type == 4){//作品
+        [g_server WH_LookMyVideoWithPageIndex:self.pageIndex type:1 toView:self];
     }
 }
 
@@ -115,6 +131,10 @@ NSString * const kAwemeListCell   = @"AwemeListCell";
     [self.view addSubview:self.tableView];
     
     [self addObserver:self forKeyPath:@"currentIndex" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:nil];
+    
+}
+-(void)goBackAction:(id)sender{
+    [g_navigation WH_dismiss_WHViewController:self animated:YES];
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
@@ -147,7 +167,12 @@ NSString * const kAwemeListCell   = @"AwemeListCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     //填充视频数据
     AwemeListCell *cell = [tableView dequeueReusableCellWithIdentifier:kAwemeListCell];
-    [cell initData:[_data objectAtIndex:indexPath.row] scroller:tableView];
+    if(self.data.count > indexPath.row){
+        WH_GKDYVideoModel *model = [_data objectAtIndex:indexPath.row];
+        model.dataType = self.type;
+        [cell initData:model scroller:tableView];
+    }
+   
     __weak typeof (&*self)weakSelf = self;
     cell.lookAllPlayletBlock = ^{
         [weakSelf lookAllPlaerletWithIndex:indexPath];
@@ -294,6 +319,21 @@ NSString * const kAwemeListCell   = @"AwemeListCell";
         }
         [self.tableView reloadData];
         
+        if(self.data.count == array1.count){
+            [self performSelector:@selector(showVideo) withObject:nil afterDelay:1.0];
+        }
+    }else if ([aDownload.action isEqualToString:wh_myvideos] || [aDownload.action isEqualToString:wh_mycollects]){
+        
+        if(self.pageIndex == 1){
+            [self.data removeAllObjects];
+        }
+        
+        for (int i = 0; i < array1.count; i++) {
+            WH_GKDYVideoModel *model = [[WH_GKDYVideoModel alloc] init];
+            [model WH_getDataFromDict:array1[i]];
+            [self.data addObject:model];
+        }
+        self.pageIndex++;
         if(self.data.count == array1.count){
             [self performSelector:@selector(showVideo) withObject:nil afterDelay:1.0];
         }

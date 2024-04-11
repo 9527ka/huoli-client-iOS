@@ -66,7 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString        *play;//播放次数
 @property (nonatomic, copy) NSString        *totalSeries;//157,总集数
 @property (nonatomic, copy) NSString        *type;//1短剧,２用户发的视频
-
+@property (nonatomic, assign) NSInteger dataType; //数据类型 推荐，短剧，短视频，收藏，作品
 
 
 

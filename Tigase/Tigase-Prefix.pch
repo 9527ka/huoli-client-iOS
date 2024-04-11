@@ -343,6 +343,7 @@
 #define WIDTH_PAGE JX_SCREEN_WIDTH
 #define JX_SCREEN_TOP (THE_DEVICE_HAVE_HEAD ? 88 : (44+20))     //顶部状态栏加导航栏高度
 #define JX_SCREEN_BOTTOM (THE_DEVICE_HAVE_HEAD ? 85 : 52)     //底部tabbar高度
+#define JX_SCREEN_Safe (THE_DEVICE_HAVE_HEAD ? 34 : 0)     //底部安全距离
 #define self_width self.view.frame.size.width   //self.view宽度
 #define self_height self.view.frame.size.height //self.view高度
 

@@ -22,6 +22,7 @@
 #import "DMScaleTransition.h"
 #import "WH_PersonalData_WHViewController.h"
 #import "WH_GKDYVideoModel.h"
+#import "AwemeListController.h"
 
 #define kUserInfoHeaderHeight          433
 #define kSlideTabBarHeight             57
@@ -222,15 +223,26 @@ NSString * const kWH_MineCell  = @"WH_MineCell";
     return cell;
 }
 
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+
 //UICollectionViewDelegate Delegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     _selectIndex = indexPath.row;
     
+    AwemeListController *controller;
     if(_tabIndex == 0) {
-        
+        controller = [[AwemeListController alloc] initWithVideoData:self.collectsArr currentIndex:indexPath.row pageIndex:_pageIndex pageSize:_pageSize awemeType:AwemeColoct uid:@""];
     }else {
-        
+        controller = [[AwemeListController alloc] initWithVideoData:self.dataArray currentIndex:indexPath.row pageIndex:_pageIndex pageSize:_pageSize awemeType:AwemeMyShort uid:@""];
     }
+//    controller.transitioningDelegate = self;
+//
+//    controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+//    self.modalPresentationStyle = UIModalPresentationCurrentContext;
+//    [self presentViewController:controller animated:YES completion:nil];
+    [g_navigation pushViewController:controller animated:YES];
     
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout: (UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex: (NSInteger)section {

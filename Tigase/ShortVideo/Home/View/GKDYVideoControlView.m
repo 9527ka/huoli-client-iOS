@@ -475,14 +475,24 @@
         self.playletView.hidden = self.playletCountLab.hidden = YES;
         bottom = -ADAPTATIONRATIO * 4.0f - JX_SCREEN_BOTTOM - 24;
     }
+        
+    [self.commentTable reloadData];
     
+    if(model.dataType == 3 || model.dataType == 4){//判断是不是全屏
+        bottom+=(JX_SCREEN_BOTTOM-JX_SCREEN_Safe);
+        
+        [self.playletView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(self);
+            make.bottom.equalTo(self).offset(-JX_SCREEN_Safe);
+            make.width.mas_equalTo(JX_SCREEN_WIDTH);
+            make.height.mas_equalTo(34);
+        }];
+    }
     [self.contentLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(ADAPTATIONRATIO * 30.0f);
         make.bottom.equalTo(self).offset(bottom);
         make.width.mas_equalTo(ADAPTATIONRATIO * 504.0f);
     }];
-        
-    [self.commentTable reloadData];
 }
 
 #pragma mark - Public Methods

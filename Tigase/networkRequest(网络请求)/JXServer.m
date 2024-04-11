@@ -1509,6 +1509,26 @@
     [p setPostValue:inviteCode forKey:@"inviteCode"];
     [p go];
 }
+-(void)phoneRegiestWithTelephone:(NSString *)telephone password:(NSString *)password smsCode:(NSString *)smsCode toView:(id)toView{
+    WH_JXConnection* p = [self addTask:wh_act_RegisterPhone param:nil toView:toView];
+  
+    [p setPostValue:smsCode forKey:@"smsCode"];
+    [p setPostValue:[NSNumber numberWithInteger:0] forKey:@"registerType"];////0(手机号 + 验证码 注册)　　1(手机号 + 密码 注册)
+    [p setPostValue:telephone forKey:@"telephone"];
+    [p setPostValue:[g_server WH_getMD5StringWithStr:password] forKey:@"password"];
+    [p setPostValue:@"86" forKey:@"areaCode"];
+   
+    NSString *buildStr = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+    
+    NSString *currentVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    
+    [p setPostValue:currentVersion forKey:@"apiVersion"];
+    [p setPostValue:[JXDevice getDeviceModelName] forKey:@"model"];
+    [p setPostValue:buildStr forKey:@"osVersion"];
+    
+    [p setPostValue:[NSNumber numberWithInt:1] forKey:@"xmppVersion"];
+    [p go];
+}
 -(void)registerUser:(WH_JXUserObject*)user inviteCode:(NSString *)inviteCode  isSmsRegister:(BOOL)isSmsRegister registType:(NSInteger)registType passSecurity:(NSString *)passSecurity smsCode:(NSString *)smsCode toView:(id)toView{
     WH_JXConnection* p;
     if (self.openId.length <= 0) {
@@ -2240,8 +2260,8 @@
     [p go];
 }
 
-#pragma mark---发送验证码
--(void)WH_sendSMSCodeWithTel:(NSString*)telephone areaCode:(NSString *)areaCode isRegister:(BOOL)isRegister imgCode:(NSString *)imgCode toView:(id)toView{
+#pragma mark---发送验证码 数字类型, 1-注册,2-登录 3-重置密码
+-(void)WH_sendSMSCodeWithTel:(NSString*)telephone areaCode:(NSString *)areaCode isRegister:(NSInteger)isRegister imgCode:(NSString *)imgCode toView:(id)toView{
     if(telephone==nil)
         return;
     WH_JXConnection* p = [self addTask:wh_act_SendSMS param:nil toView:toView];
@@ -2255,9 +2275,9 @@
     }
     [p setPostValue:language forKey:@"language"];
     p.timeout = 30;
-    [p setPostValue:[NSNumber numberWithBool:isRegister] forKey:@"isRegister"];
-    if(imgCode==nil || imgCode.length <= 0)
-        return;
+    [p setPostValue:@(isRegister) forKey:@"isRegister"];
+//    if(imgCode==nil || imgCode.length <= 0)
+//        return;
     [p setPostValue:imgCode forKey:@"imgCode"];
     [p setPostValue:@"1" forKey:@"version"];
     [p go];
@@ -5290,7 +5310,6 @@
     
     [p go];
 }
-
 
 
 

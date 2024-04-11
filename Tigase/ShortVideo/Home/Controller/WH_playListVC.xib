@@ -50,14 +50,14 @@
                             </connections>
                         </button>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="gzA-Eb-tfv">
-                            <rect key="frame" x="0.0" y="15" width="393" height="498"/>
+                            <rect key="frame" x="0.0" y="15" width="393" height="569"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="P7j-kL-gnC"/>
                                 <outlet property="delegate" destination="-1" id="T9e-uF-ivw"/>
                             </connections>
                         </tableView>
-                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j8t-od-I42">
+                        <button hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j8t-od-I42">
                             <rect key="frame" x="37" y="526" width="319" height="48"/>
                             <color key="backgroundColor" red="0.16862745100000001" green="0.68627450980000004" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -87,6 +87,7 @@
                         <constraint firstItem="DUY-EA-KS0" firstAttribute="centerX" secondItem="bSM-hg-7qF" secondAttribute="centerX" id="137-eF-VLB"/>
                         <constraint firstItem="j8t-od-I42" firstAttribute="top" secondItem="ORO-dJ-COq" secondAttribute="bottom" constant="13" id="1TR-Yh-AbY"/>
                         <constraint firstItem="DUY-EA-KS0" firstAttribute="top" secondItem="bSM-hg-7qF" secondAttribute="top" constant="10" id="3al-SD-ppL"/>
+                        <constraint firstAttribute="bottom" secondItem="gzA-Eb-tfv" secondAttribute="bottom" id="7aS-0P-yQ0"/>
                         <constraint firstItem="gzA-Eb-tfv" firstAttribute="top" secondItem="DUY-EA-KS0" secondAttribute="bottom" constant="5" id="94K-rF-5Ki"/>
                         <constraint firstAttribute="bottom" secondItem="j8t-od-I42" secondAttribute="bottom" constant="10" id="ENI-vv-7CV"/>
                         <constraint firstAttribute="trailing" secondItem="ORO-dJ-COq" secondAttribute="trailing" id="MOV-aj-6Yg"/>
@@ -95,7 +96,6 @@
                         <constraint firstItem="uDI-3O-CqF" firstAttribute="top" secondItem="bSM-hg-7qF" secondAttribute="top" id="ZPb-hO-M0W"/>
                         <constraint firstAttribute="trailing" secondItem="j8t-od-I42" secondAttribute="trailing" constant="37" id="Ziq-lP-Ca7"/>
                         <constraint firstAttribute="trailing" secondItem="uDI-3O-CqF" secondAttribute="trailing" id="dxv-Je-Fap"/>
-                        <constraint firstItem="j8t-od-I42" firstAttribute="top" secondItem="gzA-Eb-tfv" secondAttribute="bottom" constant="13" id="qiU-AG-Peo"/>
                         <constraint firstAttribute="trailing" secondItem="gzA-Eb-tfv" secondAttribute="trailing" id="yZg-KX-IAj"/>
                         <constraint firstItem="j8t-od-I42" firstAttribute="leading" secondItem="bSM-hg-7qF" secondAttribute="leading" constant="37" id="zJD-FY-C8h"/>
                     </constraints>

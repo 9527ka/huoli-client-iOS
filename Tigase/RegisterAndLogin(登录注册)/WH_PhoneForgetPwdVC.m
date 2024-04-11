@@ -19,6 +19,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 @property (weak, nonatomic) IBOutlet UIButton *forgetBtn;
 
+@property (weak, nonatomic) IBOutlet UIView *codeBgView;
+@property (weak, nonatomic) IBOutlet UIView *certainPassWordBgView;
+@property (weak, nonatomic) IBOutlet UITextField *passWordField;
+@property (weak, nonatomic) IBOutlet UITextField *certainPassField;
+
 @end
 
 @implementation WH_PhoneForgetPwdVC
@@ -32,6 +37,8 @@
 -(void)makeUI{
     self.accountBgView.layer.cornerRadius = 6.0f;
     self.passWordBgView.layer.cornerRadius = 6.0f;
+    self.codeBgView.layer.cornerRadius = 6.0f;
+    self.certainPassWordBgView.layer.cornerRadius = 6.0f;
     self.loginBtn.layer.cornerRadius = 24.0f;
 
 }
@@ -43,6 +50,9 @@
         [g_server showMsg:@"请输入正确格式的手机号码"];
         return;
     }
+    
+
+    [g_server WH_sendSMSCodeWithTel:[NSString stringWithFormat:@"%@",self.phoneField.text] areaCode:@"" isRegister:3 imgCode:@"" toView:self];
     
     self.codeBtn.userInteractionEnabled = NO;
        //同时创建计时器 开始倒计时
@@ -119,21 +129,31 @@
         [GKMessageTool showTips:@"验证码格式不正确"];
         return;
     }
+    if (self.passWordField.text.length < 6 || self.certainPassField.text.length < 6) {
+        [GKMessageTool showTips:Localized(@"PasswordRegistFomatError")];
+        return;
+    }
+    if(![self.passWordField.text isEqualToString:self.certainPassField.text]){
+        [GKMessageTool showTips:@"两次密码不一致"];
+        return;
+    }
+    
+    if(self.codeField.text.length == 0){
+        [GKMessageTool showTips:@"请输入验证码"];
+        return;
+    }
+    [g_server resetPwd:self.phoneField.text areaCode:@"86" randcode:self.codeField.text newPwd:self.passWordField.text registerType:0 toView:self];
 }
 #pragma mark ------ 网络请求
 -(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{
     [_wait stop];
-//  if( [aDownload.action isEqualToString:wh_act_Config]){
-//
-//        [g_config didReceive:dict];
-//
-//
-//        AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
-//        [manager stopMonitoring];
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//        });
-//        return;
-//    }
+    if([aDownload.action isEqualToString:wh_act_PwdReset]){
+       [GKMessageTool showText:Localized(@"JX_UpdatePassWordOK")];
+       g_myself.password = [g_server WH_getMD5StringWithStr:self.passWordField.text];
+       [g_default setObject:[g_server WH_getMD5StringWithStr:self.passWordField.text] forKey:kMY_USER_PASSWORD];
+       [g_default synchronize];
+    [g_navigation WH_dismiss_WHViewController:self animated:YES];
+    }
 }
 
 #pragma mark - 请求失败回调
@@ -145,7 +165,7 @@
 
 #pragma mark - 请求出错回调
 -(int) WH_didServerConnect_WHError:(WH_JXConnection*)aDownload error:(NSError *)error{//error为空时，代表超时
-    
+    [_wait stop];
     return WH_show_error;
 }
 

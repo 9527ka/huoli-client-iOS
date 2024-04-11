@@ -204,7 +204,7 @@
         NSString *areaCode = [_wh_areaCodeBtn.titleLabel.text stringByReplacingOccurrencesOfString:@"+" withString:@""];
         //      _user = [WH_JXUserObject sharedUserInstance];
         _wh_user.areaCode = areaCode;
-        [g_server WH_sendSMSCodeWithTel:[NSString stringWithFormat:@"%@",_wh_phone.text] areaCode:areaCode isRegister:NO imgCode:_wh_imgCode.text toView:self];
+        [g_server WH_sendSMSCodeWithTel:[NSString stringWithFormat:@"%@",_wh_phone.text] areaCode:areaCode isRegister:0 imgCode:_wh_imgCode.text toView:self];
     }
     
 }

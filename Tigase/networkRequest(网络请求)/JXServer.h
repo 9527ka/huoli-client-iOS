@@ -62,6 +62,7 @@
 
 
 #define wh_act_Register @"user/register" //注册
+#define wh_act_RegisterPhone @"user/reg" //注册
 #define wh_act_UserLogin @"user/login" //登录
 #define wh_act_UserLogout @"user/logout" //登出
 #define wh_act_AppStartupImage @"basic/media/startup"    //获取启动图片
@@ -603,7 +604,7 @@
 -(void)WH_updatePwd:(NSString*)telephone areaCode:(NSString *)areaCode oldPwd:(NSString*)oldPassword newPwd:(NSString*)newPassword toView:(id)toView;
 
 //发送验证码
--(void)WH_sendSMSCodeWithTel:(NSString*)telephone areaCode:(NSString *)areaCode isRegister:(BOOL)isRegister imgCode:(NSString *)imgCode toView:(id)toView;
+-(void)WH_sendSMSCodeWithTel:(NSString*)telephone areaCode:(NSString *)areaCode isRegister:(NSInteger)isRegister imgCode:(NSString *)imgCode toView:(id)toView;
 
 //验证手机号
 -(void)WH_checkPhoneWithPhoneNum:(NSString*)phone toView:(id)toView NS_DEPRECATED_IOS(2_0, 7_0,"使用checkUser或checkPhoneNum");
@@ -620,6 +621,7 @@
 -(NSString *)getImgCode:(NSString*)telephone areaCode:(NSString *)areaCode;
 //注册用户
 -(void)WH_registerUserWithUserData:(WH_JXUserObject*)user inviteCode:(NSString *)inviteCode workexp:(int)workexp diploma:(int)diploma isSmsRegister:(BOOL)isSmsRegister toView:(id)toView;
+-(void)phoneRegiestWithTelephone:(NSString *)telephone password:(NSString *)password smsCode:(NSString *)smsCode toView:(id)toView;
 -(void)registerUser:(WH_JXUserObject*)user inviteCode:(NSString *)inviteCode  isSmsRegister:(BOOL)isSmsRegister registType:(NSInteger)registType passSecurity:(NSString *)passSecurity smsCode:(NSString *)smsCode toView:(id)toView;
 //更新用户
 -(void)WH_updateUser:(WH_JXUserObject*)user toView:(id)toView;
