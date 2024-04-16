@@ -245,6 +245,10 @@
     if ([p objectForKey:@"accessSecretKey"]) {
         self.accessSecretKey = [p objectForKey:@"accessSecretKey"];
     }
+    if ([p objectForKey:@"unit"]) {
+        self.unit = [NSString stringWithFormat:@"%@",[p objectForKey:@"unit"]];
+    }
+    
     if ([p objectForKey:@"accessKeyId"]) {
         self.accessKeyId = [p objectForKey:@"accessKeyId"];
     }

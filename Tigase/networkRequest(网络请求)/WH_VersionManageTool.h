@@ -60,6 +60,8 @@
 @property(strong,nonatomic) NSString *jitsiServer;//!<jitsi音视频
 
 @property (nonatomic, strong) NSString *fileValidTime;
+@property (nonatomic, strong) NSString *unit;
+
 
 @property(strong,nonatomic) NSString* version;//!<目前版本
 @property(strong,nonatomic) NSString* theNewVersion;//!<最新版本

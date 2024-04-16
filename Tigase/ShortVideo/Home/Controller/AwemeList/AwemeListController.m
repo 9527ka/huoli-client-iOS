@@ -72,10 +72,11 @@ NSString * const kAwemeListCell   = @"AwemeListCell";
         [self receiveListData];
     }else{
         _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _backBtn.frame = CGRectMake(12, JX_SCREEN_TOP - 44, 32, 44);
+        _backBtn.frame = CGRectMake(12, JX_SCREEN_TOP - 32, 32, 32);
         [_backBtn setImage:[UIImage imageNamed:@"ic_back"] forState:UIControlStateNormal];
         [_backBtn addTarget:self action:@selector(goBackAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:self.backBtn];
+        self.currentIndex = self.currentIndex;
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarTouchBegin) name:@"StatusBarTouchBeginNotification" object:nil];
@@ -322,7 +323,7 @@ NSString * const kAwemeListCell   = @"AwemeListCell";
         if(self.data.count == array1.count){
             [self performSelector:@selector(showVideo) withObject:nil afterDelay:1.0];
         }
-    }else if ([aDownload.action isEqualToString:wh_myvideos] || [aDownload.action isEqualToString:wh_mycollects]){
+    }else if ([aDownload.action isEqualToString:wh_myvideos] || [aDownload.action isEqualToString:wh_mycollects] || [aDownload.action isEqualToString:wh_myLike]){
         
         if(self.pageIndex == 1){
             [self.data removeAllObjects];

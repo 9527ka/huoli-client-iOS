@@ -68,7 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString        *type;//1短剧,２用户发的视频
 @property (nonatomic, assign) NSInteger dataType; //数据类型 推荐，短剧，短视频，收藏，作品
 
-
+@property (nonatomic, assign) BOOL        isSelect;//是否选中
 
 
 

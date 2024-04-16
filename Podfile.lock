@@ -1,4 +1,5 @@
 PODS:
+  - AlipaySDK-iOS (15.8.16)
   - IQKeyboardManager (6.5.18)
   - MJExtension (3.4.1)
   - YYModel (1.0.4)
@@ -7,6 +8,7 @@ PODS:
   - ZFPlayer/Core (4.1.4)
 
 DEPENDENCIES:
+  - AlipaySDK-iOS
   - IQKeyboardManager
   - MJExtension
   - YYModel
@@ -14,17 +16,19 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - AlipaySDK-iOS
     - IQKeyboardManager
     - MJExtension
     - YYModel
     - ZFPlayer
 
 SPEC CHECKSUMS:
+  AlipaySDK-iOS: 5e6011fbd546e7db6b43c1f527d164ee63f3d7cb
   IQKeyboardManager: 67f92bb29b650c094c40bd11c0545b47bdd25c5b
   MJExtension: 21c5f6f8c4d5d8844b7ae8fbae08fed0b501f961
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
   ZFPlayer: 5cf39e8d9f0c2394a014b0db4767b5b5a6bffe13
 
-PODFILE CHECKSUM: 86629e9d2f02bc6abbd1320696b98573b1c1501c
+PODFILE CHECKSUM: b8f96dff27139d72d2d17a6be5a7f16daa35bc96
 
 COCOAPODS: 1.14.3

@@ -29,8 +29,8 @@
 
         [self makeUI];
         
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(videoStopePlayAction)];
-        [self.infoView addGestureRecognizer:tap];
+//        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(videoStopePlayAction)];
+//        [self.infoView addGestureRecognizer:tap];
     }
     return self;
 }
@@ -43,7 +43,7 @@
 //    [self.videoBtn mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.top.bottom.left.right.equalTo(self.contentView);
 //    }];
-    
+//
     self.backgroundColor = [UIColor blackColor];
     
     [self.playImageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -60,10 +60,9 @@
     if (!_videoBtn) {
         _videoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_videoBtn addTarget:self action:@selector(videoStopePlayAction) forControlEvents:UIControlEventTouchUpInside];
-        _videoBtn.frame = CGRectMake(0, -34, JX_SCREEN_WIDTH, JX_SCREEN_HEIGHT);
+        _videoBtn.frame = CGRectMake(0, -JX_SCREEN_NavH, JX_SCREEN_WIDTH, JX_SCREEN_HEIGHT + JX_SCREEN_NavH);
         _videoBtn.layer.masksToBounds = YES;
         _videoBtn.imageView.contentMode = UIViewContentModeScaleAspectFill;
-        _videoBtn.tag = 100100;
     }
     return _videoBtn;
 }
@@ -111,6 +110,7 @@
     _wh_model = wh_model;
     self.infoView.wh_model = wh_model;
     [self.videoBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:wh_model.thumbnail_url] forState:UIControlStateNormal];
+    self.videoBtn.tag = 100100 + self.wh_model.dataType;
 }
 
 @end

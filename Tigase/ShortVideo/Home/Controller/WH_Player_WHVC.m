@@ -15,10 +15,10 @@
 @interface WH_Player_WHVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,ZFTableViewCellDelegate>
 
 @property (nonatomic, strong) ZFPlayerControlView *controlView;
-@property(nonatomic,assign)NSInteger pageIndex;
-@property(nonatomic,strong)NSIndexPath *currentIndex;//要删除的cell
 @property(nonatomic,strong)JX_WHVideoPlayCell *currentCell;
 @property(nonatomic,assign)BOOL isEnd;
+@property(nonatomic,assign)BOOL isAll;
+@property(nonatomic,strong)UIButton *backBtn;
 
 @end
 
@@ -59,16 +59,41 @@
     
     //设置video数据
     [self receiveVideoData];
-    //请求数据
-    [self receiveListData];
+    
+    [self receiveDetaileDataIndex];
+    
+    if(self.dataArray.count > 0){
+        [self.collectionView reloadData];
+        self.collectionView.contentOffset = CGPointMake(0, JX_SCREEN_HEIGHT*self.selectIndex);
+        
+        _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _backBtn.frame = CGRectMake(12, JX_SCREEN_TOP - 32, 32, 32);
+        [_backBtn setImage:[UIImage imageNamed:@"ic_back"] forState:UIControlStateNormal];
+        [_backBtn addTarget:self action:@selector(goBackAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:self.backBtn];
+        
+    }else{
+        //请求数据
+        [self receiveListData];
+    }
+    
+}
+-(void)goBackAction:(id)sender{
+    [g_navigation WH_dismiss_WHViewController:self animated:YES];
 }
 -(void)receiveListData{
     if(self.type == 0){//推荐
         [g_server receiveRecordList:self];
     }else if (self.type == 1){//短剧
         [g_server WH_receiveSeriesListWithIndex:self.pageIndex type:1 toView:self];
-    }else{//短视频
+    }else if (self.type == 2){//短视频
         [g_server WH_receiveSeriesListWithIndex:self.pageIndex type:2 toView:self];
+    }else if (self.type == 3){//收藏
+        [g_server WH_LookMyVideoWithPageIndex:self.pageIndex type:0 toView:self];
+    }else if (self.type == 4){//作品
+        [g_server WH_LookMyVideoWithPageIndex:self.pageIndex type:2 toView:self];
+    }else if (self.type == 5){//喜欢
+        [g_server WH_LookMyVideoWithPageIndex:self.pageIndex type:1 toView:self];
     }
 }
 /// *设置视频数据
@@ -77,8 +102,7 @@
     ZFAVPlayerManager *playerManager = [[ZFAVPlayerManager alloc] init];
 //    playerManager.muted = YES;//静音播放
     /// player的tag值必须在cell里设置
-    self.player = [ZFPlayerController playerWithScrollView:self.collectionView playerManager:playerManager containerViewTag:100100];
-//    self.player.pla.automaticallyWaitsToMinimizeStalling
+    self.player = [ZFPlayerController playerWithScrollView:self.collectionView playerManager:playerManager containerViewTag:100100 + self.type];
     self.player.controlView = self.controlView;
     /// 0.4是消失40%时候
     self.player.playerDisapperaPercent = 0.4;
@@ -151,6 +175,7 @@
     JX_WHVideoPlayCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
     if (indexPath.item < self.dataArray.count) {
         WH_GKDYVideoModel *model = self.dataArray[indexPath.item];
+        model.dataType = self.type;
         [cell setDelegate:self withIndexPath:indexPath scroller:collectionView];
         cell.wh_model = model;
     }
@@ -262,7 +287,7 @@
 }
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
     // 列表中是否存在更多数据
-    if (!self.isEnd) {
+    if (!self.isEnd || self.isAll) {
         return;
     }
     if (indexPath.item > self.dataArray.count * 0.8) {//加载数据
@@ -311,11 +336,12 @@
 - (ZFPlayerControlView *)controlView {
     if (!_controlView) {
         _controlView = [ZFPlayerControlView new];
-        _controlView.prepareShowControlView = YES;
+//        _controlView.prepareShowControlView = YES;
         _controlView.fastViewAnimated = YES;
         UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesture:)];
         [singleTap setNumberOfTapsRequired:1];
-        [_controlView addGestureRecognizer:singleTap];
+        [self.view addGestureRecognizer:singleTap];
+        
 //        UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
 //        doubleTap.numberOfTapsRequired = 2;//需要点两下h
 //        [_controlView addGestureRecognizer:doubleTap];
@@ -366,6 +392,9 @@
             [self.dataArray addObject:model];
         }
         [self.collectionView reloadData];
+        
+        self.isAll = array1.count<20?YES:NO;
+        
     }else if ([aDownload.action isEqualToString:wh_act_SeriesList]){
         self.pageIndex ++;
         for (int i = 0; i < array1.count; i++) {
@@ -374,6 +403,34 @@
             [self.dataArray addObject:model];
         }
         [self.collectionView reloadData];
+        self.isAll = array1.count<20?YES:NO;
+    }else if ([aDownload.action isEqualToString:wh_myvideos] || [aDownload.action isEqualToString:wh_mycollects] || [aDownload.action isEqualToString:wh_myLike]){
+        
+        if(self.pageIndex == 1){
+            [self.dataArray removeAllObjects];
+        }
+        
+        for (int i = 0; i < array1.count; i++) {
+            WH_GKDYVideoModel *model = [[WH_GKDYVideoModel alloc] init];
+            [model WH_getDataFromDict:array1[i]];
+            [self.dataArray addObject:model];
+        }
+        self.isAll = array1.count<20?YES:NO;
+        self.pageIndex++;
+        [self.collectionView reloadData];
+    }
+    
+    //判断当前是不是第一个视频
+    if(self.dataArray.count == array1.count){
+        
+        self.collectionView.contentOffset = CGPointMake(0, 3);
+        dispatch_time_t timer = dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC);
+        dispatch_after(timer, dispatch_get_main_queue(), ^{
+            self.collectionView.contentOffset = CGPointMake(0, 0);
+            if(self.requestFinishBlock){
+                self.requestFinishBlock();
+            }
+        });
     }
 }
 #pragma mark - 请求失败回调

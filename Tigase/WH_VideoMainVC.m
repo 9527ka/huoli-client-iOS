@@ -19,11 +19,12 @@
 @property (strong, nonatomic) MASConstraint *sliderViewCenterX;
 @property (strong, nonatomic) UIButton *searchBtn;
 @property (nonatomic,assign) NSInteger index;
-//@property (strong, nonatomic)WH_Player_WHVC *mainVC;
-@property (strong, nonatomic)AwemeListController *shortVC;
-@property (strong, nonatomic)AwemeListController *videoVC;
-@property (strong, nonatomic)AwemeListController *mainVC;
-
+@property (strong, nonatomic)WH_Player_WHVC *mainVC;
+@property (strong, nonatomic)WH_Player_WHVC *shortVC;
+@property (strong, nonatomic)WH_Player_WHVC *videoVC;
+//@property (strong, nonatomic)AwemeListController *shortVC;
+//@property (strong, nonatomic)AwemeListController *videoVC;
+//@property (strong, nonatomic)AwemeListController *mainVC;
 
 @end
 
@@ -41,6 +42,10 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    dispatch_time_t timer = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
+    dispatch_after(timer, dispatch_get_main_queue(), ^{
+        [self titleClick:self.titlesView.subviews[self.index]];
+    });
 }
 
 
@@ -50,6 +55,8 @@
     self.wh_heightHeader = JX_SCREEN_TOP;
     self.wh_heightFooter = 0;
     [self createHeadAndFoot];
+    
+    
 
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH - NAV_INSETS - 24-BTN_RANG_UP*2, JX_SCREEN_TOP - 44, 34, 34)];
     [btn setImage:[UIImage imageNamed:@"search_publicNumber"] forState:UIControlStateNormal];
@@ -173,18 +180,32 @@
      [self.contentView setContentOffset:CGPointMake(index * self.contentView.frame.size.width, self.contentView.contentOffset.y) animated:YES];
     
     if (index == 0) {
-        [self.shortVC applicationEnterBackground];
-        [self.videoVC applicationEnterBackground];
-        [self.mainVC applicationBecomeActive];
+        [self.shortVC.player.currentPlayerManager pause];
+        [self.videoVC.player.currentPlayerManager pause];
+        [self.mainVC.player.currentPlayerManager play];
+        
+//        [self.shortVC applicationEnterBackground];
+//        [self.videoVC applicationEnterBackground];
+//        [self.mainVC applicationBecomeActive];
     }else if (index == 1){
-        [self.shortVC applicationBecomeActive];
-        [self.videoVC applicationEnterBackground];
-//        [self.mainVC.player.currentPlayerManager pause];
-        [self.mainVC applicationEnterBackground];
+//        [self.shortVC applicationBecomeActive];
+//        [self.videoVC applicationEnterBackground];
+////        [self.mainVC.player.currentPlayerManager pause];
+//        [self.mainVC applicationEnterBackground];
+        
+        [self.shortVC.player.currentPlayerManager play];
+        [self.videoVC.player.currentPlayerManager pause];
+        [self.mainVC.player.currentPlayerManager pause];
+        
     }else{
-        [self.shortVC applicationBecomeActive];
-        [self.videoVC applicationEnterBackground];
-        [self.mainVC applicationEnterBackground];
+        
+        [self.shortVC.player.currentPlayerManager pause];
+        [self.videoVC.player.currentPlayerManager play];
+        [self.mainVC.player.currentPlayerManager pause];
+        
+//        [self.shortVC applicationBecomeActive];
+//        [self.videoVC applicationEnterBackground];
+//        [self.mainVC applicationEnterBackground];
 //        [self.mainVC.player.currentPlayerManager pause];
     }
 }
@@ -195,35 +216,43 @@
 
 - (void)setupChildViewControllers {
     
-    _mainVC = [AwemeListController alloc];
-    _mainVC.type = 0;
-    _mainVC = [_mainVC init];
-    [self addChildViewController:_mainVC];
-    
-    _shortVC = [AwemeListController alloc];
-    _shortVC.type = 1;
-    _shortVC = [_shortVC init];
-    [self addChildViewController:_shortVC];
-    
-    _videoVC = [AwemeListController alloc];
-    _videoVC.type = 2;
-    _videoVC = [_videoVC init];
-    [self addChildViewController:_videoVC];
-    
-//    _mainVC = [WH_Player_WHVC alloc];
+//    _mainVC = [AwemeListController alloc];
 //    _mainVC.type = 0;
 //    _mainVC = [_mainVC init];
 //    [self addChildViewController:_mainVC];
-    
-//    _shortVC = [WH_Player_WHVC alloc];
+//
+//    _shortVC = [AwemeListController alloc];
 //    _shortVC.type = 1;
 //    _shortVC = [_shortVC init];
 //    [self addChildViewController:_shortVC];
 //
-//    _videoVC = [WH_Player_WHVC alloc];
+//    _videoVC = [AwemeListController alloc];
 //    _videoVC.type = 2;
 //    _videoVC = [_videoVC init];
 //    [self addChildViewController:_videoVC];
+    __weak typeof (&*self)weakSelf = self;
+    _videoVC = [WH_Player_WHVC alloc];
+    _videoVC.requestFinishBlock = ^{
+        [weakSelf titleClick:weakSelf.titlesView.subviews[weakSelf.index]];
+    };
+    _videoVC.type = 2;
+    _videoVC = [_videoVC init];
+    [self addChildViewController:_videoVC];
+    
+    _shortVC = [WH_Player_WHVC alloc];
+    _shortVC.requestFinishBlock = ^{
+        [weakSelf titleClick:weakSelf.titlesView.subviews[weakSelf.index]];
+    };
+    _shortVC.type = 1;
+    _shortVC = [_shortVC init];
+    [self addChildViewController:_shortVC];
+    
+    _mainVC = [WH_Player_WHVC alloc];
+    _mainVC.type = 0;
+    _mainVC = [_mainVC init];
+    [self addChildViewController:_mainVC];
+    
+    
      
     _mainVC.view.xmg_y = 0;
     _mainVC.view.xmg_width = self.contentView.xmg_width;
@@ -243,12 +272,12 @@
     _videoVC.view.xmg_x = _videoVC.view.xmg_width * 2;
     [self.contentView addSubview:_videoVC.view];
         
-    [self performSelector:@selector(stopAction) withObject:nil afterDelay:1];
+//    [self performSelector:@selector(stopAction) withObject:nil afterDelay:1];
 }
--(void)stopAction{
-    [self.shortVC applicationEnterBackground];
-    [self.videoVC applicationEnterBackground];
-}
+//-(void)stopAction{
+//    [self.shortVC applicationEnterBackground];
+//    [self.videoVC applicationEnterBackground];
+//}
 
 - (void)switchController:(NSInteger)index {
     if (self.childViewControllers.count>1) {

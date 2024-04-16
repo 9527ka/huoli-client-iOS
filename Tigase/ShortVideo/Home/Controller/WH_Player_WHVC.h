@@ -18,8 +18,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) ZFPlayerController *player;
 @property(nonatomic,strong)UICollectionView *collectionView;
 @property(nonatomic,strong)NSMutableArray *dataArray;
+@property(nonatomic,assign)NSInteger pageIndex;
 @property(nonatomic,assign)NSInteger type;
-
+@property(nonatomic,strong)NSIndexPath *currentIndex;//要删除的cell
+@property(nonatomic,assign)NSInteger selectIndex;
+@property(nonatomic,copy)void(^requestFinishBlock)(void);
 //暂停播放
 -(void)stopPlayVideoAction;
 

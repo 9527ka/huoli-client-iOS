@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WH_PopularVideoVC : UIViewController
 
+@property(nonatomic,copy)NSString *userId;
+@property(nonatomic,copy)NSString *videoId;
+
 @end
 
 NS_ASSUME_NONNULL_END

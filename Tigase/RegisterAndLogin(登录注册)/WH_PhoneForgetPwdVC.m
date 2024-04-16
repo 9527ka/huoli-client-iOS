@@ -53,10 +53,7 @@
     
 
     [g_server WH_sendSMSCodeWithTel:[NSString stringWithFormat:@"%@",self.phoneField.text] areaCode:@"" isRegister:3 imgCode:@"" toView:self];
-    
-    self.codeBtn.userInteractionEnabled = NO;
-       //同时创建计时器 开始倒计时
-        [self createTimer];
+ 
 }
 #pragma mark - 定时器 (GCD)
 - (void)createTimer {
@@ -153,6 +150,10 @@
        [g_default setObject:[g_server WH_getMD5StringWithStr:self.passWordField.text] forKey:kMY_USER_PASSWORD];
        [g_default synchronize];
     [g_navigation WH_dismiss_WHViewController:self animated:YES];
+    }else if ([aDownload.action isEqualToString:wh_act_SendSMS]){
+        self.codeBtn.userInteractionEnabled = NO;
+           //同时创建计时器 开始倒计时
+            [self createTimer];
     }
 }
 

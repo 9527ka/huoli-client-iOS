@@ -486,6 +486,9 @@
 #define wh_series_info @"series/short/info"    //查询视频全集
 #define wh_myvideos @"series/short/myvideos"    //作品
 #define wh_mycollects @"series/short/mycollects"    //我的收藏
+#define wh_myLike @"series/short/praiselist"    //我的喜欢
+#define wh_seriesVideos @"series/short/videos"    //
+#define wh_hotPlan @"video/hot/plan"    //视频加热
 
 
 
@@ -1405,7 +1408,10 @@
 -(void)WH_VideoAllWithId:(NSString *)videoId toView:(id)toView;
 #pragma mark -- 查看自己的收藏跟作品 type 0收藏  1作品
 -(void)WH_LookMyVideoWithPageIndex:(NSInteger)pageIndex type:(NSInteger)type toView:(id)toView;
-
+#pragma mark -- 列表显示待帮上热的视频
+-(void)WH_LookMyVideoWithUserId:(NSString *)userId videoId:(NSString *)videoId toView:(id)toView;
+#pragma mark -- 帮上热搜接口
+-(void)WH_VideoHotWithVideoIds:(NSString *)videoIds amount:(NSString *)amount content:(NSString *)content toView:(id)toView;
 
 
 

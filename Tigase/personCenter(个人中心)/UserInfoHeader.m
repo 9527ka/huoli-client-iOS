@@ -251,7 +251,7 @@
         make.right.equalTo(self).offset(-20);
         make.top.equalTo(bgSliderView).offset(8);
     }];
-    [_slideTabBar setLabels:@[@"收藏",@"作品"] tabIndex:1];
+    [_slideTabBar setLabels:@[@"收藏",@"喜欢",@"作品"] tabIndex:0];
 }
 
 - (void)onTapAction:(UITapGestureRecognizer *)sender {

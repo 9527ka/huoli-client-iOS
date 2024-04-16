@@ -10,7 +10,8 @@
 
 typedef NS_ENUM(NSUInteger, AwemeType) {
     AwemeColoct    = 3,
-    AwemeMyShort        = 4,
+    AwemeMyLike        = 4,
+    AwemeMyShort        = 5,
    
 };
 

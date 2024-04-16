@@ -25,6 +25,7 @@
 #import "WH_webpage_WHVC.h"
 #import "AvoidCrash.h"
 #import <IQKeyboardManager/IQKeyboardManager.h>
+# import <AlipaySDK/AlipaySDK.h>
 
 
 /**
@@ -494,8 +495,45 @@ static  WH_webpage_WHVC *webVC;
 #endif
 #endif
     
+    if ([url.host isEqualToString:@"safepay"]) {
+        //跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            NSLog(@"result = %@",resultDic);
+            [self payStatueWithDic:resultDic];
+        }];
+    }
+    
     return YES;
 }
+// NOTE: 9.0以后使用新API接口
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
+{
+    if ([url.host isEqualToString:@"safepay"]) {
+        //跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            NSLog(@"result = %@",resultDic);
+            [self payStatueWithDic:resultDic];
+        }];
+    }
+    return YES;
+}
+//处理支付结果
+-(void)payStatueWithDic:(NSDictionary *)resultDic{
+    NSInteger resCode = [resultDic[@"resultStatus"]integerValue];
+    
+//    if(resCode ==9000) {//支付成功
+//        //发送支付成功的通知
+//        [[NSNotificationCenter defaultCenter] postNotificationName:NoticePaySuccess object:nil];
+//
+//    }else if(resCode ==6001){//用户中途取消
+//        //发送支付取消的通知
+//        [[NSNotificationCenter defaultCenter] postNotificationName:NoticePayCancel object:nil];
+//
+//    }else{
+//        [[NSNotificationCenter defaultCenter] postNotificationName:NoticePayFailure object:nil];
+//    }
+}
+
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler{
    
 //    if ([userActivity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb]) {
@@ -504,12 +542,6 @@ static  WH_webpage_WHVC *webVC;
 //       }
      return YES;
 }
-
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
-                
-        return YES;
-}
-
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {

@@ -210,8 +210,8 @@
         
         
         
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(controlViewDidClick:)];
-        [self addGestureRecognizer:tap];
+//        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(controlViewDidClick:)];
+//        [self addGestureRecognizer:tap];
         
     }
     return self;
@@ -434,6 +434,15 @@
         [_commentBackView removeFromSuperview];
         _commentBackView = nil;
     }];
+    //重新设置评论量
+    NSShadow *shadow = [[NSShadow alloc] init];
+    shadow.shadowBlurRadius = 0;
+    shadow.shadowColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0];
+    shadow.shadowOffset =CGSizeMake(0.5,1);
+    
+    self.wh_model.comment_num = [NSString stringWithFormat:@"%ld",self.wh_model.replys.count];
+    
+    [self.commentBtn setAttributedTitle:[[NSMutableAttributedString alloc] initWithString:self.wh_model.comment_num attributes: @{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size: 13],NSForegroundColorAttributeName: [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0], NSShadowAttributeName: shadow}] forState:UIControlStateNormal];
 }
 
 - (void)setWh_model:(WH_GKDYVideoModel *)model {
@@ -626,6 +635,8 @@
 //帮上热门
 -(void)popularBtnClick:(UIButton *)sender{
     WH_PopularVideoVC *vc = [[WH_PopularVideoVC alloc] init];
+    vc.videoId = self.wh_model.msgId;
+    vc.userId = self.wh_model.userId;
     [g_navigation pushViewController:vc animated:YES];
 }
 
@@ -661,6 +672,7 @@
         _automPlayBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _automPlayBtn.backgroundColor = [UIColor clearColor];
         [_automPlayBtn addTarget:self action:@selector(stopAction) forControlEvents:UIControlEventTouchUpInside];
+        _automPlayBtn.hidden = YES;
     }
     return _automPlayBtn;
 }

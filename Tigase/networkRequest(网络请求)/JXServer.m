@@ -3933,6 +3933,10 @@
 
 //标记看过或播放过的视频接口 recommended可选参数,默认值为０　１表示来源于推荐中的视频,０表求非推荐中的视频
 -(void)WH_SeriesShortFlipWithId:(NSString *)videoId recommended:(NSInteger)recommended toView:(id)toView{
+    if(videoId.length == 0){
+        return;
+    }
+    
     WH_JXConnection* p = [self addTask:wh_act_SeriesFlip param:nil toView:toView];
 
     [p setPostValue:self.access_token forKey:@"access_token"];
@@ -5303,7 +5307,16 @@
 }
 #pragma mark -- 查看自己的收藏跟作品 type 0收藏  1作品
 -(void)WH_LookMyVideoWithPageIndex:(NSInteger)pageIndex type:(NSInteger)type toView:(id)toView{
-    WH_JXConnection* p = [self addTask:type != 0?wh_myvideos:wh_mycollects param:nil toView:toView];
+    NSString *url = @"";
+    if(type == 0){
+        url = wh_mycollects;
+    }else if (type == 1){
+        url = wh_myLike;
+    }else if (type == 2){
+        url = wh_myvideos;
+    }
+    
+    WH_JXConnection* p = [self addTask:url param:nil toView:toView];
     [p setPostValue:self.access_token forKey:@"access_token"];
     [p setPostValue:@(20) forKey:@"pageSize"];
     [p setPostValue:@(pageIndex) forKey:@"pageIndex"];
@@ -5311,7 +5324,30 @@
     [p go];
 }
 
-
+#pragma mark -- 列表显示待帮上热的视频
+-(void)WH_LookMyVideoWithUserId:(NSString *)userId videoId:(NSString *)videoId toView:(id)toView{
+    
+    WH_JXConnection* p = [self addTask:wh_seriesVideos param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:userId forKey:@"userId"];
+    [p setPostValue:videoId forKey:@"videoId"];
+    [p setPostValue:@(5) forKey:@"size"];
+    
+    
+    [p go];
+}
+#pragma mark -- 帮上热搜接口
+-(void)WH_VideoHotWithVideoIds:(NSString *)videoIds amount:(NSString *)amount content:(NSString *)content toView:(id)toView{
+    
+    WH_JXConnection* p = [self addTask:wh_hotPlan param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:videoIds forKey:@"videoIds"];
+    [p setPostValue:amount forKey:@"amount"];
+    [p setPostValue:content forKey:@"content"];
+    
+    
+    [p go];
+}
 
 
 

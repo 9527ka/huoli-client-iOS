@@ -195,12 +195,12 @@
 //    self.wh_cView.layer.borderColor = g_factory.cardBorderColor.CGColor ;
 //    self.wh_cView.layer.borderWidth = g_factory.cardBorderWithd;
     
-    // 生活圈
-    iv = [self WH_createMiXinButton:Localized(@"JX_LifeCircle") drawTop:NO drawBottom:YES must:NO click:@selector(onMyBlog) superView:self.wh_cView];
-    iv.frame = CGRectMake(0, 0, CGRectGetWidth(self.wh_cView.frame), HEIGHT);
-    
-//    h+=iv.frame.size.height;
-    _lifeImgV = iv;
+//    // 生活圈
+//    iv = [self WH_createMiXinButton:Localized(@"JX_LifeCircle") drawTop:NO drawBottom:YES must:NO click:@selector(onMyBlog) superView:self.wh_cView];
+//    iv.frame = CGRectMake(0, 0, CGRectGetWidth(self.wh_cView.frame), HEIGHT);
+//
+////    h+=iv.frame.size.height;
+//    _lifeImgV = iv;
     
     // 生日
     iv = [self WH_createMiXinButton:Localized(@"JX_BirthDay") drawTop:NO drawBottom:YES must:NO click:nil superView:self.wh_cView];
@@ -367,8 +367,8 @@
         [_birthdayImgV setFrame:CGRectMake(0, 0, CGRectGetWidth(self.wh_cView.frame), HEIGHT)];
         
     }else{
-        [_lifeImgV setHidden:NO];
-        self.wh_cView.frame = CGRectMake(g_factory.globelEdgeInset, CGRectGetMaxY(self.wh_markAndTagView.frame) + TopSpace, CGRectGetWidth(self.wh_headView.frame), viewHight);
+//        [_lifeImgV setHidden:NO];
+        self.wh_cView.frame = CGRectMake(g_factory.globelEdgeInset, CGRectGetMaxY(self.wh_markAndTagView.frame) + TopSpace, CGRectGetWidth(self.wh_headView.frame), viewHight - 55);
         [_birthdayImgV setFrame:CGRectMake(0, CGRectGetMaxY(_lifeImgV.frame), CGRectGetWidth(self.wh_cView.frame), HEIGHT)];
     }
     self.cViewOrginY = CGRectGetMaxY(self.wh_markAndTagView.frame) + TopSpace;

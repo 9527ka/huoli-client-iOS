@@ -59,10 +59,6 @@
     }
     //type;//0登录  1注册   isRegister,    数字类型, 1-注册,2-登录
     [g_server WH_sendSMSCodeWithTel:[NSString stringWithFormat:@"%@",self.phoneField.text] areaCode:@"" isRegister:self.type == 1?1:2 imgCode:@"" toView:self];
-    
-    self.codeBtn.userInteractionEnabled = NO;
-       //同时创建计时器 开始倒计时
-        [self createTimer];
 }
 #pragma mark - 定时器 (GCD)
 - (void)createTimer {
@@ -211,6 +207,10 @@
             [self actionQuit];
         };
         return;
+    }else if ([aDownload.action isEqualToString:wh_act_SendSMS]){
+        self.codeBtn.userInteractionEnabled = NO;
+           //同时创建计时器 开始倒计时
+            [self createTimer];
     }
    
 }

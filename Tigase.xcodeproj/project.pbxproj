@@ -748,6 +748,8 @@
 		332DB1B52B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 332DB1B32B8DCDED00B4D6D4 /* WH_JXGroupMemberEarningVC.xib */; };
 		332DB1B82B8ED68E00B4D6D4 /* WH_JXChatDefaultBgVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 332DB1B72B8ED68E00B4D6D4 /* WH_JXChatDefaultBgVC.m */; };
 		332DB1BB2B8EDC1A00B4D6D4 /* WH_JXChatDefaultBgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 332DB1BA2B8EDC1A00B4D6D4 /* WH_JXChatDefaultBgCell.m */; };
+		33349E692BC7CED300D2AE3C /* WH_PopularVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33349E672BC7CED300D2AE3C /* WH_PopularVideoCell.m */; };
+		33349E6A2BC7CED300D2AE3C /* WH_PopularVideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33349E682BC7CED300D2AE3C /* WH_PopularVideoCell.xib */; };
 		333824ED2B353C4A00AC4B06 /* WH_JXAppealListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 333824EB2B353C4A00AC4B06 /* WH_JXAppealListVC.m */; };
 		333824EE2B353C4A00AC4B06 /* WH_JXAppealListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 333824EC2B353C4A00AC4B06 /* WH_JXAppealListVC.xib */; };
 		333824F22B35702D00AC4B06 /* WH_JXAppealListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 333824F02B35702D00AC4B06 /* WH_JXAppealListCell.m */; };
@@ -3267,6 +3269,9 @@
 		332DB1B72B8ED68E00B4D6D4 /* WH_JXChatDefaultBgVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXChatDefaultBgVC.m; sourceTree = "<group>"; };
 		332DB1B92B8EDC1A00B4D6D4 /* WH_JXChatDefaultBgCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXChatDefaultBgCell.h; sourceTree = "<group>"; };
 		332DB1BA2B8EDC1A00B4D6D4 /* WH_JXChatDefaultBgCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXChatDefaultBgCell.m; sourceTree = "<group>"; };
+		33349E662BC7CED300D2AE3C /* WH_PopularVideoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_PopularVideoCell.h; sourceTree = "<group>"; };
+		33349E672BC7CED300D2AE3C /* WH_PopularVideoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_PopularVideoCell.m; sourceTree = "<group>"; };
+		33349E682BC7CED300D2AE3C /* WH_PopularVideoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_PopularVideoCell.xib; sourceTree = "<group>"; };
 		333824EA2B353C4A00AC4B06 /* WH_JXAppealListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXAppealListVC.h; sourceTree = "<group>"; };
 		333824EB2B353C4A00AC4B06 /* WH_JXAppealListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXAppealListVC.m; sourceTree = "<group>"; };
 		333824EC2B353C4A00AC4B06 /* WH_JXAppealListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXAppealListVC.xib; sourceTree = "<group>"; };
@@ -7831,6 +7836,9 @@
 				331675572BC28E3E002B7334 /* WH_playListCell.h */,
 				331675582BC28E3E002B7334 /* WH_playListCell.m */,
 				331675592BC28E3E002B7334 /* WH_playListCell.xib */,
+				33349E662BC7CED300D2AE3C /* WH_PopularVideoCell.h */,
+				33349E672BC7CED300D2AE3C /* WH_PopularVideoCell.m */,
+				33349E682BC7CED300D2AE3C /* WH_PopularVideoCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -10916,6 +10924,7 @@
 				0F4C12EE2151DF0200A4E09C /* Embed Frameworks */,
 				DE24B77C23331D460023F9A1 /* CopyFiles */,
 				754EBF9F516436351B5C6A11 /* [CP] Embed Pods Frameworks */,
+				60D38DAB79416FD2A69632E5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -11132,6 +11141,7 @@
 				1851A3652307B09400BA24A1 /* biaoqing_shoucang@3x.png in Resources */,
 				CC3016FC1951BABF0059BADA /* f047.png in Resources */,
 				1851A3352307A32200BA24A1 /* WWAddEmoticonCell.xib in Resources */,
+				33349E6A2BC7CED300D2AE3C /* WH_PopularVideoCell.xib in Resources */,
 				CC3017531951BABF0059BADA /* f090@2x.png in Resources */,
 				CCC88B5F1E4C526E00180080 /* recorder_trash_can0.png in Resources */,
 				CC3016AC1951BABF0059BADA /* f007.png in Resources */,
@@ -11507,6 +11517,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		60D38DAB79416FD2A69632E5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Tigase/Pods-Tigase-resources.sh",
+				"${PODS_ROOT}/AlipaySDK-iOS/AlipaySDK.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AlipaySDK.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Tigase/Pods-Tigase-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		754EBF9F516436351B5C6A11 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -11704,6 +11732,7 @@
 				634668EC1EC405BD00BE6112 /* WH_EmployeObject.m in Sources */,
 				33E3B05C2BC3E6E300366D4E /* dec_msa.c in Sources */,
 				CC30178A1951BABF0059BADA /* UIImage+HBClass.m in Sources */,
+				33349E692BC7CED300D2AE3C /* WH_PopularVideoCell.m in Sources */,
 				33E3B0342BC3E6E200366D4E /* upsampling_sse2.c in Sources */,
 				0F30AA8820B2ADDB001CC39C /* WH_JXSetChatTextFont_WHVC.m in Sources */,
 				33E3B00C2BC3E6E200366D4E /* vp8l_enc.c in Sources */,
@@ -13119,7 +13148,7 @@
 				CODE_SIGN_ENTITLEMENTS = Tigase/Tigase.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 6QM4SXGT4R;
 				DOUBANGO_HOME = "";
@@ -13165,7 +13194,7 @@
 					/Users/p/Desktop/KuLiao_jitsi_Z/Tigase/3rd/XMPP/libidn,
 				);
 				INFOPLIST_FILE = "Tigase/Tigase-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "火力";
+				INFOPLIST_KEY_CFBundleDisplayName = "悦介";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -13227,7 +13256,7 @@
 				CODE_SIGN_ENTITLEMENTS = Tigase/Tigase.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 6QM4SXGT4R;
 				DOUBANGO_HOME = "";
@@ -13270,7 +13299,7 @@
 					/Users/p/Desktop/KuLiao_jitsi_Z/Tigase/3rd/XMPP/libidn,
 				);
 				INFOPLIST_FILE = "Tigase/Tigase-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "火力";
+				INFOPLIST_KEY_CFBundleDisplayName = "悦介";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (

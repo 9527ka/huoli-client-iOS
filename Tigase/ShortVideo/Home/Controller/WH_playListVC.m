@@ -32,7 +32,7 @@
     _wait = [ATMHud sharedInstance];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dissMissAction)];
     [self.zzView addGestureRecognizer:tap];
-    
+
     self.colectBtn.layer.cornerRadius = 24.0f;
     self.bgView.layer.cornerRadius = 8.0f;
     self.dataSource = [NSMutableArray array];

@@ -23,6 +23,7 @@
 #import "WH_PersonalData_WHViewController.h"
 #import "WH_GKDYVideoModel.h"
 #import "AwemeListController.h"
+#import "WH_Player_WHVC.h"
 
 #define kUserInfoHeaderHeight          433
 #define kSlideTabBarHeight             57
@@ -62,7 +63,7 @@ NSString * const kWH_MineCell  = @"WH_MineCell";
         _pageIndex = 1;
         _pageSize = 21;
         
-        _tabIndex = 1;
+        _tabIndex = 0;
         
         _scalePresentAnimation = [ScalePresentAnimation new];
         _scaleDismissAnimation = [ScaleDismissAnimation new];
@@ -99,7 +100,7 @@ NSString * const kWH_MineCell  = @"WH_MineCell";
     
 }
 -(void)receiveListData{
-    
+    [g_server WH_LookMyVideoWithPageIndex:self.pageIndex type:2 toView:self];
     [g_server WH_LookMyVideoWithPageIndex:self.pageIndex type:_tabIndex toView:self];
 }
 - (void)getCurrentUserInfo {
@@ -229,20 +230,33 @@ NSString * const kWH_MineCell  = @"WH_MineCell";
 
 //UICollectionViewDelegate Delegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    _selectIndex = indexPath.row;
-    
-    AwemeListController *controller;
-    if(_tabIndex == 0) {
-        controller = [[AwemeListController alloc] initWithVideoData:self.collectsArr currentIndex:indexPath.row pageIndex:_pageIndex pageSize:_pageSize awemeType:AwemeColoct uid:@""];
-    }else {
-        controller = [[AwemeListController alloc] initWithVideoData:self.dataArray currentIndex:indexPath.row pageIndex:_pageIndex pageSize:_pageSize awemeType:AwemeMyShort uid:@""];
+    _selectIndex = indexPath.item;
+    AwemeType type = AwemeMyLike;
+    if(_tabIndex == 0){
+        type = AwemeColoct;
+    }else if (_tabIndex == 1){
+        type = AwemeMyLike;
+    }else if (_tabIndex == 2){
+        type = AwemeMyShort;
     }
-//    controller.transitioningDelegate = self;
-//
-//    controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-//    self.modalPresentationStyle = UIModalPresentationCurrentContext;
-//    [self presentViewController:controller animated:YES completion:nil];
-    [g_navigation pushViewController:controller animated:YES];
+    
+    WH_Player_WHVC *vc = [[WH_Player_WHVC alloc] init];
+    vc.pageIndex = _pageIndex;
+    vc.type = type;
+    vc.selectIndex = indexPath.item;
+    vc.dataArray = _tabIndex == 0?self.collectsArr:self.dataArray;
+    [g_navigation pushViewController:vc animated:YES];
+    
+//    AwemeListController *controller;
+//    if(_tabIndex == 0) {
+//        controller = [[AwemeListController alloc] initWithVideoData:self.collectsArr currentIndex:indexPath.row pageIndex:_pageIndex pageSize:_pageSize awemeType:AwemeColoct uid:@""];
+//    }else {
+//        controller = [[AwemeListController alloc] initWithVideoData:self.dataArray currentIndex:indexPath.row pageIndex:_pageIndex pageSize:_pageSize awemeType:AwemeMyShort uid:@""];
+//    }
+//    [g_navigation pushViewController:controller animated:YES];
+    
+    
+    
     
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout: (UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex: (NSInteger)section {
@@ -441,7 +455,7 @@ NSString * const kWH_MineCell  = @"WH_MineCell";
         vc.dataSorce = dict;
         [g_navigation pushViewController:vc animated:YES];
         [_wait stop];
-    }else if ([aDownload.action isEqualToString:wh_myvideos] || [aDownload.action isEqualToString:wh_mycollects]){
+    }else if ([aDownload.action isEqualToString:wh_myvideos] || [aDownload.action isEqualToString:wh_mycollects] || [aDownload.action isEqualToString:wh_myLike]){
         
         if(self.pageIndex == 1){
             if(_tabIndex == 0){

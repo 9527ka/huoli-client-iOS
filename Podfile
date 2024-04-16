@@ -16,7 +16,7 @@ pod 'YYModel'
 pod 'IQKeyboardManager'
 pod 'MJExtension'
 pod 'ZFPlayer'
-
+pod  'AlipaySDK-iOS'
 
 
 
