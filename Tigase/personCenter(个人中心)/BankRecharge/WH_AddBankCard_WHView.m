@@ -168,7 +168,7 @@
         make.top.equalTo(lineView2.mas_bottom).offset(14);
         make.height.offset(44);
     }];
-    _submitBtn.backgroundColor = HEXCOLOR(0x0093FF);
+    _submitBtn.backgroundColor = THEMECOLOR;
     _submitBtn.layer.cornerRadius = 10;
     _submitBtn.layer.masksToBounds = YES;
     [_submitBtn addTarget:self action:@selector(clickSubmitBtn:) forControlEvents:UIControlEventTouchUpInside];

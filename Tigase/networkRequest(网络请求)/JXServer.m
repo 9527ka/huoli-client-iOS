@@ -5301,7 +5301,7 @@
 -(void)WH_VideoAllWithId:(NSString *)videoId toView:(id)toView{
     WH_JXConnection* p = [self addTask:wh_series_info param:nil toView:toView];
     [p setPostValue:self.access_token forKey:@"access_token"];
-    [p setPostValue:videoId forKey:@"videoId"];
+    [p setPostValue:videoId forKey:@"shortVideoId"];
     
     [p go];
 }

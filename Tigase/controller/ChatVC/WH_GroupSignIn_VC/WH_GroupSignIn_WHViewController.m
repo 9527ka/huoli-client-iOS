@@ -105,7 +105,7 @@
     self.signInButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [signInView addSubview:self.signInButton];
     [self.signInButton setFrame:CGRectMake(25, CGRectGetMaxY(self.signInReminder.frame) + 13, CGRectGetWidth(signInView.frame) - 50, 44)];
-    [self.signInButton setBackgroundColor:HEXCOLOR(0x0093FF)];
+    [self.signInButton setBackgroundColor:THEMECOLOR];
     [self.signInButton setTitle:@"立即签到" forState:UIControlStateNormal];
     [self.signInButton setTitleColor:HEXCOLOR(0xffffff) forState:UIControlStateNormal];
     [self.signInButton.titleLabel setFont:sysFontWithSize(16)];

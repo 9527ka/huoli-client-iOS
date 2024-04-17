@@ -48,7 +48,7 @@
 
 -(void)buildTop{
     
-    _addressSwitch = [[WH_SegmentSwitch alloc] initWithFrame:CGRectMake(92, JX_SCREEN_TOP - 8 - 28, 192, 28) titles:@[@"全部",@"群组",@"新朋友"] slideColor:HEXCOLOR(0x0093FF)];
+    _addressSwitch = [[WH_SegmentSwitch alloc] initWithFrame:CGRectMake(92, JX_SCREEN_TOP - 8 - 28, 192, 28) titles:@[@"全部",@"群组",@"新朋友"] slideColor:THEMECOLOR];
     //[self.wh_tableHeader addSubview:_addressSwitch];//隐藏切换按钮
     __weak typeof(self) weakSelf = self;
     _addressSwitch.WH_onClickBtn = ^(NSInteger index) {

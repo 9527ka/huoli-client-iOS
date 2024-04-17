@@ -291,6 +291,7 @@
 {
      
      int index = scrollView.contentOffset.x / scrollView.frame.size.width;
+    self.index = index;
   
      [self titleClick:self.titlesView.subviews[index]];
      [self switchController:index];
@@ -300,6 +301,7 @@
 - (void)scrollViewDidEndScrollingAnimation:(nonnull UIScrollView *)scrollView
 {
      int a=(int)(scrollView.contentOffset.x / scrollView.frame.size.width);
+    self.index = a;
      
      [self switchController:a];
    

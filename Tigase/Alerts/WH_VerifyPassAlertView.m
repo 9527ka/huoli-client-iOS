@@ -102,7 +102,7 @@
     [sureBtn setTitle:Localized(@"JX_Send") forState:UIControlStateNormal];
     [sureBtn setTitleColor:HEXCOLOR(0xffffff) forState:UIControlStateNormal];
     [sureBtn.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 16]];
-    [sureBtn setBackgroundColor:HEXCOLOR(0x0093FF)];
+    [sureBtn setBackgroundColor:THEMECOLOR];
     sureBtn.layer.masksToBounds = YES;
     sureBtn.layer.cornerRadius = g_factory.cardCornerRadius;
     [sureBtn addTarget:self action:@selector(confirmAction) forControlEvents:UIControlEventTouchUpInside];

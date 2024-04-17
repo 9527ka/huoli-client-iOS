@@ -36,7 +36,7 @@
     self.video_length = [dict objectForKey:@"size"];
     self.video_duration = [NSString stringWithFormat:@"%ld",[[dict objectForKey:@"length"] integerValue]];
     self.play = [NSString stringWithFormat:@"%@",[dict objectForKey:@"play"]];
-    
+    self.shortVideoId = [NSString stringWithFormat:@"%@",[dict objectForKey:@"shortVideoId"]];
     
 //    self.post_id = [dict objectForKey:@"msgId"];
 //    self.agree_num = [NSString stringWithFormat:@"%@",[[dict objectForKey:@"count"] objectForKey:@"praise"]];

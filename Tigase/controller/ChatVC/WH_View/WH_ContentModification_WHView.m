@@ -87,7 +87,7 @@
                 btn.layer.borderWidth = g_factory.cardBorderWithd;
             }else{
                 [btn setTitleColor:HEXCOLOR(0xffffff) forState:UIControlStateNormal];
-                [btn setBackgroundColor:HEXCOLOR(0x0093FF)];
+                [btn setBackgroundColor:THEMECOLOR];
             }
             btn.layer.masksToBounds = YES;
             btn.layer.cornerRadius = g_factory.cardCornerRadius;
@@ -187,7 +187,7 @@
                 btn.layer.borderWidth = g_factory.cardBorderWithd;
             }else{
                 [btn setTitleColor:HEXCOLOR(0xffffff) forState:UIControlStateNormal];
-                [btn setBackgroundColor:HEXCOLOR(0x0093FF)];
+                [btn setBackgroundColor:THEMECOLOR];
             }
             btn.layer.masksToBounds = YES;
             btn.layer.cornerRadius = g_factory.cardCornerRadius;

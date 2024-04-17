@@ -265,15 +265,15 @@
         cell.remarkLabel.hidden = YES;
         cell.contentLabel.hidden = NO;
         cell.contentLabel.text = model.toNickname;
-        [JXXMPP getAttributeTextWithLabel:cell.contentLabel textString:self.searchBar.text color:HEXCOLOR(0x0093FF)];
+        [JXXMPP getAttributeTextWithLabel:cell.contentLabel textString:self.searchBar.text color:THEMECOLOR];
     } else {
         cell.nicknameLabel.hidden = NO;
         cell.remarkLabel.hidden = NO;
         cell.contentLabel.hidden = YES;
         cell.remarkLabel.text = model.remarkName;
         cell.nicknameLabel.text = [NSString stringWithFormat:@"昵称：%@", model.toNickname];
-        [JXXMPP getAttributeTextWithLabel:cell.remarkLabel textString:self.searchBar.text color:HEXCOLOR(0x0093FF)];
-        [JXXMPP getAttributeTextWithLabel:cell.nicknameLabel textString:self.searchBar.text color:HEXCOLOR(0x0093FF)];
+        [JXXMPP getAttributeTextWithLabel:cell.remarkLabel textString:self.searchBar.text color:THEMECOLOR];
+        [JXXMPP getAttributeTextWithLabel:cell.nicknameLabel textString:self.searchBar.text color:THEMECOLOR];
     }
     return cell;
     } else {
@@ -317,9 +317,9 @@
         subLabel.tag = 1314;
             [cell.content addSubview:subLabel];
         
-//        [JXXMPP getAttributeTextWithLabel:subLabel textString:self.searchBar.text color:HEXCOLOR(0x0093FF)];
+//        [JXXMPP getAttributeTextWithLabel:subLabel textString:self.searchBar.text color:THEMECOLOR];
         NSMutableAttributedString *text = [subLabel.attributedText mutableCopy];
-        [text addAttribute:NSForegroundColorAttributeName value:HEXCOLOR(0x0093FF) range:[subLabel.text rangeOfString:self.searchBar.text]];
+        [text addAttribute:NSForegroundColorAttributeName value:THEMECOLOR range:[subLabel.text rangeOfString:self.searchBar.text]];
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
         paragraphStyle.lineSpacing = 5.0; // 设置行间距
         [text addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, text.length)];
@@ -414,7 +414,7 @@
         }
         UITextField *searchField = [self.searchBar valueForKey:@"searchField"];
         if (searchField) {
-            searchField.textColor = HEXCOLOR(0x0093FF);
+            searchField.textColor = THEMECOLOR;
         }
 //        self.searchBar.e = NO;
         self.currentUserId = model.toUserId;
@@ -501,8 +501,8 @@
         cell.nicknameLabel.text = model.remarkName;
         cell.remarkLabel.text = [NSString stringWithFormat:@"昵称:%@", model.toNickname];
     }
-    [JXXMPP getAttributeTextWithLabel:cell.nicknameLabel textString:self.searchBar.text color:HEXCOLOR(0x0093FF)];
-    [JXXMPP getAttributeTextWithLabel:cell.remarkLabel textString:self.searchBar.text color:HEXCOLOR(0x0093FF)];
+    [JXXMPP getAttributeTextWithLabel:cell.nicknameLabel textString:self.searchBar.text color:THEMECOLOR];
+    [JXXMPP getAttributeTextWithLabel:cell.remarkLabel textString:self.searchBar.text color:THEMECOLOR];
         
     return cell;
 }
@@ -518,7 +518,7 @@
             }
             UITextField *searchField = [self.searchBar valueForKey:@"searchField"];
             if (searchField) {
-                searchField.textColor = HEXCOLOR(0x0093FF);
+                searchField.textColor = THEMECOLOR;
             }
     _table.tableHeaderView = self.headView;
         self.headView.frame = CGRectMake(0, 0, JX_SCREEN_WIDTH, 40);
@@ -762,7 +762,7 @@
 {
     UITextField *searchField = [self.searchBar valueForKey:@"searchField"];
     if (searchField) {
-        searchField.textColor = HEXCOLOR(0x0093FF);
+        searchField.textColor = THEMECOLOR;
     }
     _table.tableHeaderView = self.headView;
     if (self.currentArray.count == 0) {
@@ -827,7 +827,7 @@
         UIButton *finish = [UIButton buttonWithType:UIButtonTypeCustom];
         finish.frame = CGRectMake(JX_SCREEN_WIDTH - 55, 15, 55, 28);
         [finish setTitle:@"完成" forState:UIControlStateNormal];
-        [finish setTitleColor:HEXCOLOR(0x0093FF) forState:UIControlStateNormal];
+        [finish setTitleColor:THEMECOLOR forState:UIControlStateNormal];
         [finish addTarget:self action:@selector(finishAction) forControlEvents:UIControlEventTouchUpInside];
         [top addSubview:finish];
         

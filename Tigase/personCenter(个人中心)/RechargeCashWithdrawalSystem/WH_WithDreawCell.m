@@ -42,12 +42,14 @@
     self.monyField.placeholder = [NSString stringWithFormat:@"请输入至少%@元",g_config.minTransferAmount];
     
     
-    NSString *contentStr = [NSString stringWithFormat:@"友情提示\n1.每次提币金额在%@~%@元之间。\n2.提现手续费为%@%@。\n3.提现时间为0-24小时。\n4.此处为USDT加密货币提现（什么是加密货币提现？）",g_config.minTransferAmount,g_config.maxTransferAmount,g_config.transferRate,@"%"];
+//    NSString *contentStr = [NSString stringWithFormat:@"友情提示\n1.每次提币金额在%@~%@元之间。\n2.提现手续费为%@%@。\n3.提现时间为0-24小时。\n4.此处为USDT加密货币提现（什么是加密货币提现？）",g_config.minTransferAmount,g_config.maxTransferAmount,g_config.transferRate,@"%"];
+    
+    NSString *contentStr = [NSString stringWithFormat:@"友情提示\n1.每次提币金额在%@~%@元之间。\n2.提现手续费为%@%@。\n3.提现时间为0-24小时。",g_config.minTransferAmount,g_config.maxTransferAmount,g_config.transferRate,@"%"];
     
     NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:contentStr];
     [attributedText addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14.0f]  range:NSMakeRange(0, 4)];
     [attributedText addAttribute:NSForegroundColorAttributeName value:HEXCOLOR(0x161819) range:NSMakeRange(0, 4)];
-    [attributedText addAttribute:NSForegroundColorAttributeName value:THEMECOLOR range:NSMakeRange(contentStr.length - 12, 12)];
+//    [attributedText addAttribute:NSForegroundColorAttributeName value:THEMECOLOR range:NSMakeRange(contentStr.length - 12, 12)];
     
     //段落格式
     NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
@@ -116,10 +118,10 @@
         [g_server showMsg:[NSString stringWithFormat:@"请输入%@以内金额",g_config.maxTransferAmount]];
         return;
     }
-    if(self.orderNoField.text.length == 0){
-        [g_server showMsg:@"请填写USDT-TRC20"];
-        return;
-    }
+//    if(self.orderNoField.text.length == 0){
+//        [g_server showMsg:@"请填写USDT-TRC20"];
+//        return;
+//    }
     if(self.certainBlock){
         self.certainBlock(self.monyField.text, self.orderNoField.text);
     }

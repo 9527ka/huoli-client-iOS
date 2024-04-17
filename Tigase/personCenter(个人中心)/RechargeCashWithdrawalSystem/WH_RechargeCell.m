@@ -127,10 +127,10 @@
         [g_server showMsg:@"请输入充值的金额"];
         return;
     }
-    if(self.orderNoField.text.length == 0){
-        [g_server showMsg:@"请填写交易TXID或者交易HASH"];
-        return;
-    }
+//    if(self.orderNoField.text.length == 0){
+//        [g_server showMsg:@"请填写交易TXID或者交易HASH"];
+//        return;
+//    }
     if(self.certainBlock){
         self.certainBlock(self.monyField.text, self.orderNoField.text);
     }

@@ -146,7 +146,7 @@
     
     UIButton *bBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [bBtn setFrame:CGRectMake(g_factory.globelEdgeInset, tempLocation + 20, JX_SCREEN_WIDTH - 2*g_factory.globelEdgeInset, 44)];
-    [bBtn setBackgroundColor:HEXCOLOR(0x0093FF)];
+    [bBtn setBackgroundColor:THEMECOLOR];
     if ([self.topTitle isEqualToString:@"设置手机号"]) {
         [bBtn setTitle:@"绑定" forState:UIControlStateNormal];
     }else{

@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface WH_playListVC : UIViewController
 
 @property(nonatomic,copy)NSString *videoId;
+@property(nonatomic,copy)NSString *shortVideoId;
 @property(nonatomic,copy)void(^chooseVideoPlayBlock)(WH_GKDYVideoModel *model);
 
 @end

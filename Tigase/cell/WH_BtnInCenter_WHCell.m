@@ -27,7 +27,7 @@
         make.centerY.offset(0);
         make.height.offset(44);
     }];
-    _button.backgroundColor = HEXCOLOR(0x0093ff);
+    _button.backgroundColor = THEMECOLOR;
     [_button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     _button.titleLabel.font = sysFontWithSize(16);
     [_button addTarget:self action:@selector(clickButton) forControlEvents:UIControlEventTouchUpInside];

@@ -69,11 +69,11 @@
     [self.wh_tableBody addSubview:detail];
     
     UIButton *confirm = [tt createBtn:CGRectMake(JX_SCREEN_WIDTH/2-80, icon.bottom+230, 160, 35) font:sysFontWithSize(16) color:[UIColor whiteColor] text:@"同意" img:nil target:self sel:@selector(clickLoginBtn:)];
-    confirm.backgroundColor = HEXCOLOR(0x0093FF);
+    confirm.backgroundColor = THEMECOLOR;
     [confirm setRadiu:10 color:nil];
     [self.wh_tableBody addSubview:confirm];
     
-    UIButton *cancel = [tt createBtn:CGRectMake(JX_SCREEN_WIDTH/2-80, confirm.bottom+20, 160, 35) font:sysFontWithSize(16) color:HEXCOLOR(0x0093FF) text:@"拒绝" img:nil target:self sel:@selector(clickCancelLoginBtn:)];
+    UIButton *cancel = [tt createBtn:CGRectMake(JX_SCREEN_WIDTH/2-80, confirm.bottom+20, 160, 35) font:sysFontWithSize(16) color:THEMECOLOR text:@"拒绝" img:nil target:self sel:@selector(clickCancelLoginBtn:)];
     cancel.backgroundColor = HEXCOLOR(0xEDEDED);
     [cancel setRadiu:10 color:nil];
     [self.wh_tableBody addSubview:cancel];

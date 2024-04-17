@@ -74,7 +74,7 @@
     
     
     UILabel *name = [self.wh_tableBody createLab:CGRectMake(0, 0, JX_SCREEN_WIDTH, 305) font:[UIFont boldSystemFontOfSize:36] color:[UIColor whiteColor] text:_model.nickname];
-    name.backgroundColor = HEXCOLOR(0x0093FF);
+    name.backgroundColor = THEMECOLOR;
     name.textAlignment = NSTextAlignmentCenter;
     [self.wh_tableBody addSubview:name];
     
@@ -138,7 +138,7 @@
         fff.tag = 2351+i;
         [self.wh_tableBody addSubview:fff];
         
-        UILabel *lab = [fff createLab:CGRectMake(i*JX_SCREEN_WIDTH/4, fff.bottom+10, JX_SCREEN_WIDTH/4, 20) font:sysFontWithSize(15) color:HEXCOLOR(0x0093FF) text:arr[i]];
+        UILabel *lab = [fff createLab:CGRectMake(i*JX_SCREEN_WIDTH/4, fff.bottom+10, JX_SCREEN_WIDTH/4, 20) font:sysFontWithSize(15) color:THEMECOLOR text:arr[i]];
         lab.textAlignment = NSTextAlignmentCenter;
         [self.wh_tableBody addSubview:lab];
         

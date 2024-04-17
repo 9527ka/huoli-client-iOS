@@ -8,7 +8,7 @@
 
 #import "WH_playListVC.h"
 #import "WH_playListCell.h"
-
+#import "WH_Player_WHVC.h"
 
 @interface WH_playListVC ()<UITableViewDataSource, UITableViewDelegate> {
     MJRefreshFooterView *_footer;
@@ -66,7 +66,7 @@
 }
 - (void) WH_getServerData {
   
-    [g_server WH_VideoAllWithId:self.videoId toView:self];
+    [g_server WH_VideoAllWithId:self.shortVideoId toView:self];
     
 }
 - (IBAction)coloctAction:(UIButton *)sender {
@@ -102,6 +102,7 @@
         NSInteger sec = model.video_duration.integerValue%60;
         cell.timeLab.text = [NSString stringWithFormat:@"%02ld:%02ld",(long)min,(long)sec];
         [cell.likeCount setTitle:model.agree_num forState:UIControlStateNormal];
+        cell.backgroundColor = model.isSelect?HEXCOLOR(0xf8f8f8):[UIColor whiteColor];
         
         self.titleLab.text = [NSString stringWithFormat:@"短剧·%@【%lu集全】",model.shortName,(unsigned long)self.dataSource.count];
 
@@ -111,11 +112,21 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if(self.dataSource.count > indexPath.row){
-        WH_GKDYVideoModel *model = self.dataSource[indexPath.row];
-        if(self.chooseVideoPlayBlock){
-            self.chooseVideoPlayBlock(model);
-        }
+//        WH_GKDYVideoModel *model = self.dataSource[indexPath.row];
+//        if(self.chooseVideoPlayBlock){
+//            self.chooseVideoPlayBlock(model);
+//        }
+        
+        
+        WH_Player_WHVC *vc = [[WH_Player_WHVC alloc] init];
+        vc.pageIndex = 0;
+        vc.type = 7;
+        vc.selectIndex = indexPath.row;
+        vc.dataArray = self.dataSource;
+        [g_navigation pushViewController:vc animated:YES];
+        
         [self dissMissAction];
+        
     }
 }
 #pragma mark - 请求成功回调
@@ -124,15 +135,20 @@
     [self WH_stopLoading];
     
     if([aDownload.action isEqualToString:wh_series_info]){
+        NSInteger index = 0;
         for (int i = 0; i < array1.count; i++) {
             WH_GKDYVideoModel *model = [[WH_GKDYVideoModel alloc] init];
             [model WH_getDataFromDict:array1[i]];
             if([model.msgId isEqualToString:self.videoId]){
                 self.colectBtn.selected = model.collect;
+                index = i;
             }
+            model.isSelect = [model.msgId isEqualToString:self.videoId];
             [self.dataSource addObject:model];
         }
         [self.tableView reloadData];
+        
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
     }
 }
 #pragma mark - 请求失败回调

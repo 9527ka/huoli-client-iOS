@@ -42,7 +42,7 @@
         [self.vip setRadiu:10 color:nil];
         self.vip.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:self.vip];
-        self.vip.backgroundColor = HEXCOLOR(0x0093FF);
+        self.vip.backgroundColor = THEMECOLOR;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
 
     }
@@ -125,7 +125,7 @@
     [_seekTextField addTarget:self action:@selector(textFieldDidEnd:) forControlEvents:UIControlEventEditingDidEnd];
     NSArray *arrw = @[@"我的同事",_comname?:@"",_tname?:@""];
     for (int i = 0; i < arrw.count; i++) {
-        UIButton *btn = [bgView createBtn:CGRectMake(i*103, 46, 80, 44) font:sysFontWithSize(15) color:HEXCOLOR(0x0093FF) text:arrw[i] img:nil target:self sel:@selector(clickGrade:)];
+        UIButton *btn = [bgView createBtn:CGRectMake(i*103, 46, 80, 44) font:sysFontWithSize(15) color:THEMECOLOR text:arrw[i] img:nil target:self sel:@selector(clickGrade:)];
         btn.tag = 5203+i;
         [bgView addSubview:btn];
         if (i<2) {

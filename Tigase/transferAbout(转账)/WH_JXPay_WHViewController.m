@@ -84,7 +84,7 @@ static dispatch_source_t _timer;
 
 - (void)WH_setupViews {
 //    self.wh_tableBody.backgroundColor = HEXCOLOR(0x00ceb3);
-    [self.wh_tableBody setBackgroundColor:HEXCOLOR(0x0093FF)];
+    [self.wh_tableBody setBackgroundColor:THEMECOLOR];
 
     UIView *baseView = [[UIView alloc] initWithFrame:CGRectMake(12, JX_SCREEN_TOP + 40, JX_SCREEN_WIDTH-24, 405)];
     baseView.backgroundColor = [UIColor whiteColor];

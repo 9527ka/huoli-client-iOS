@@ -41,7 +41,7 @@
         p = [self WH_createLabel:self.wh_tableHeader default:Localized(@"JX_Confirm") selector:@selector(onSave)];
         p.textColor = [UIColor whiteColor];
         p.textAlignment = NSTextAlignmentCenter;
-        p.backgroundColor = HEXCOLOR(0x0093FF);
+        p.backgroundColor = THEMECOLOR;
         p.frame = CGRectMake(JX_SCREEN_WIDTH -53, JX_SCREEN_TOP - 28 - 8, 43, 28);
         p.layer.masksToBounds = YES;
         p.layer.cornerRadius = 14;

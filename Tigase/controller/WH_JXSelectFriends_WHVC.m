@@ -89,7 +89,7 @@
         [_finishBtn addTarget:self action:@selector(onAdd:) forControlEvents:UIControlEventTouchUpInside];
         _finishBtn.layer.cornerRadius = CGRectGetHeight(_finishBtn.frame) / 2.f;
         _finishBtn.layer.masksToBounds = YES;
-//        _finishBtn.backgroundColor = HEXCOLOR(0x0093FF);
+//        _finishBtn.backgroundColor = THEMECOLOR;
         _finishBtn.titleLabel.font = sysFontWithSize(14);
         [self.wh_tableHeader addSubview:_finishBtn];
     }

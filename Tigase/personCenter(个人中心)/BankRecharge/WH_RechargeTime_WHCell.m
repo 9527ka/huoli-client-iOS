@@ -55,7 +55,7 @@
         make.centerX.equalTo(_iconImgView);
         make.top.equalTo(_promptLabel.mas_bottom).offset(5);
     }];
-    _timeLabel.textColor = HEXCOLOR(0x0093FF);
+    _timeLabel.textColor = THEMECOLOR;
     _timeLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 20];
 }
 

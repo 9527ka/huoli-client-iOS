@@ -63,7 +63,7 @@
 - (void)customView {
     JXLabel *p = [self WH_createLabel:self.wh_tableHeader default:Localized(@"JX_Confirm") selector:@selector(onSave)];
     p.textColor = [UIColor whiteColor];
-    p.backgroundColor = HEXCOLOR(0x0093FF);
+    p.backgroundColor = THEMECOLOR;
     p.textAlignment = NSTextAlignmentCenter;
     p.layer.masksToBounds = YES;
     p.layer.cornerRadius = 14;

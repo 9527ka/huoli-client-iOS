@@ -117,7 +117,7 @@
         [_finishBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _finishBtn.layer.cornerRadius = CGRectGetHeight(_finishBtn.frame) / 2.f;
         _finishBtn.layer.masksToBounds = YES;
-        _finishBtn.backgroundColor = HEXCOLOR(0x0093FF);
+        _finishBtn.backgroundColor = THEMECOLOR;
         _finishBtn.titleLabel.font = sysFontWithSize(14);
         
         [_finishBtn addTarget:self action:@selector(finishBtnAction) forControlEvents:UIControlEventTouchUpInside];

@@ -22,7 +22,7 @@ static const NSInteger kRowCount = 1; //每页显示行数
         [_checkBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.insets(UIEdgeInsetsZero);
         }];
-        [_checkBtn setTitleColor:HEXCOLOR(0x0093FF) forState:UIControlStateSelected];
+        [_checkBtn setTitleColor:THEMECOLOR forState:UIControlStateSelected];
         [_checkBtn setTitleColor:HEXCOLOR(0x3A404C) forState:UIControlStateNormal];
         _checkBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 15];
         _checkBtn.userInteractionEnabled = NO;

@@ -137,7 +137,7 @@ static NSString *const reuseIdentifier = @"photo";
     
     // NavigationItem
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(Localized(@"JX_Cencal"), @"") style:UIBarButtonItemStyleDone target:self action:@selector(dismissPhotoControllers)];
-    [self.navigationItem.rightBarButtonItem setTintColor:HEXCOLOR(0x0093FF)];
+    [self.navigationItem.rightBarButtonItem setTintColor:THEMECOLOR];
     
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(g_factory.globelEdgeInset, JX_SCREEN_TOP - 36, 28, 28)];
     [btn setBackgroundImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];

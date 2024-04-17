@@ -184,6 +184,7 @@
         [weakSelf stopPlayVideoAction];
     };
     cell.lookAllPlayletBlock = ^{
+        [weakSelf stopPlayVideoAction];
         [weakSelf lookAllPlaerletWithIndex:indexPath];
     };
     return cell;
@@ -457,6 +458,7 @@
         WH_GKDYVideoModel *currentModel = self.dataArray[indexPath.item];
         WH_playListVC *vc = [[WH_playListVC alloc] init];
         vc.videoId = currentModel.msgId;
+        vc.shortVideoId = currentModel.shortVideoId;
         __weak typeof (&*self)weakSelf = self;
         vc.chooseVideoPlayBlock = ^(WH_GKDYVideoModel * _Nonnull model) {
             [weakSelf.dataArray replaceObjectAtIndex:indexPath.item withObject:model];

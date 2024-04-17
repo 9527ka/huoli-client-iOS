@@ -151,8 +151,8 @@
     _transferBtn = [UIFactory WH_create_WHButtonWithRect:CGRectZero title:self.type ==JXInputMoneyTypeSetMoney ? Localized(@"JX_Confirm") : self.title titleFont:sysFontWithSize(17) titleColor:[UIColor whiteColor] normal:nil selected:nil selector:@selector(transferBtnAction:) target:self];
     _transferBtn.tag = 1000;
     _transferBtn.frame = CGRectMake(drawMarginX, CGRectGetMaxY(_addDscLab.frame)+20, JX_SCREEN_WIDTH-20-drawMarginX*2, 50);
-    [_transferBtn setBackgroundImage:[UIImage createImageWithColor:HEXCOLOR(0x0093FF)] forState:UIControlStateNormal];
-    [_transferBtn setBackgroundImage:[UIImage createImageWithColor:[HEXCOLOR(0x0093FF) colorWithAlphaComponent:0.6f]] forState:UIControlStateDisabled];
+    [_transferBtn setBackgroundImage:[UIImage createImageWithColor:THEMECOLOR] forState:UIControlStateNormal];
+    [_transferBtn setBackgroundImage:[UIImage createImageWithColor:[THEMECOLOR colorWithAlphaComponent:0.6f]] forState:UIControlStateDisabled];
     _transferBtn.layer.cornerRadius = g_factory.cardCornerRadius;
     _transferBtn.clipsToBounds = YES;
     _transferBtn.enabled = self.wh_money.length > 0;

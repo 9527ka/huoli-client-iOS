@@ -79,7 +79,7 @@
     [self.view addSubview:_doneBtn];
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, JX_SCREEN_WIDTH, 49)];
     [btn setTitle:Localized(@"JX_Confirm") forState:UIControlStateNormal];
-    [btn setTitleColor:HEXCOLOR(0x0093FF) forState:UIControlStateNormal];
+    [btn setTitleColor:THEMECOLOR forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(WH_doneBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     btn.titleLabel.font = sysFontWithSize(15);
 //    btn.backgroundColor = HEXCOLOR(0xf0f0f0);

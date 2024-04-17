@@ -330,7 +330,7 @@
     [sureBtn setTitle:Localized(@"JX_Send") forState:UIControlStateNormal];
     [sureBtn setTitleColor:HEXCOLOR(0xffffff) forState:UIControlStateNormal];
     [sureBtn.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 16]];
-    [sureBtn setBackgroundColor:HEXCOLOR(0x0093FF)];
+    [sureBtn setBackgroundColor:THEMECOLOR];
     sureBtn.layer.masksToBounds = YES;
     sureBtn.layer.cornerRadius = g_factory.cardCornerRadius;
     [sureBtn addTarget:self action:@selector(onRelease) forControlEvents:UIControlEventTouchUpInside];
@@ -1179,9 +1179,10 @@
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
             [indexPaths addObject:indexPath];
             
-            [_table beginUpdates];
+//            [_table beginUpdates];
             [_table insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
-            [_table endUpdates];
+//            [_table endUpdates];
+            [_table reloadData];
             [_table WH_gotoFirstRow:YES];
         }
         

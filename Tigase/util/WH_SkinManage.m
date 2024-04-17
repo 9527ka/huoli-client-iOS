@@ -74,7 +74,7 @@ static WH_SkinManage * _shareInstance = nil;
  */
 -(void)makeThemeList{
     NSMutableArray * skinList = [NSMutableArray array];
-    [skinList addObject:[self makeASkin:@"默认白" themeColor:HEXCOLOR(0x0093FF) startColor:HEXCOLOR(0x0093FF) endColor:HEXCOLOR(0x0093FF) index:SkinType_BusinessBlue imageSuffix:@""]];
+    [skinList addObject:[self makeASkin:@"默认白" themeColor:THEMECOLOR startColor:THEMECOLOR endColor:THEMECOLOR index:SkinType_BusinessBlue imageSuffix:@""]];
     [skinList addObject:[self makeASkin:@"薰衣草紫" themeColor:HEXCOLOR(0xB57FDE) startColor:HEXCOLOR(0xB57FDE) endColor:HEXCOLOR(0xD7B2F2) index:SkinType_LavenderPurple imageSuffix:@""]];
     [skinList addObject:[self makeASkin:@"橘黄色" themeColor:HEXCOLOR(0xFFAD69) startColor:HEXCOLOR(0xFFAD69) endColor:HEXCOLOR(0xFAE3BC) index:SkinType_OrangePurple imageSuffix:@"_2"]];
     [skinList addObject:[self makeASkin:@"马尔斯绿" themeColor:HEXCOLOR(0x00CEB2) startColor:HEXCOLOR(0x00CEB2) endColor:HEXCOLOR(0x83FFEE) index:SkinType_MESGreen imageSuffix:@"_3"]];

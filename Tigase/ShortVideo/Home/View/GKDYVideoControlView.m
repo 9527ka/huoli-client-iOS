@@ -479,7 +479,7 @@
     //判断是不是短剧  ,1短剧,２用户发的视频
     if(model.type.intValue == 1){
         self.playletView.hidden = self.playletCountLab.hidden = NO;
-        self.playletCountLab.text = [NSString stringWithFormat:@"短剧·%@【%@集全】》",model.shortName,model.totalSeries];
+        self.playletCountLab.text = [NSString stringWithFormat:@"第%@集|短剧·%@【%@集全】》",model.index,model.shortName,model.totalSeries];
     }else{
         self.playletView.hidden = self.playletCountLab.hidden = YES;
         bottom = -ADAPTATIONRATIO * 4.0f - JX_SCREEN_BOTTOM - 24;
@@ -487,7 +487,7 @@
         
     [self.commentTable reloadData];
     
-    if(model.dataType == 3 || model.dataType == 4){//判断是不是全屏
+    if(model.dataType  > 2){//判断是不是全屏
         bottom+=(JX_SCREEN_BOTTOM-JX_SCREEN_Safe);
         
         [self.playletView mas_remakeConstraints:^(MASConstraintMaker *make) {

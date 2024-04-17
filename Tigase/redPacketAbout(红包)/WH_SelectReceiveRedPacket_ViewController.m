@@ -45,7 +45,7 @@
     [confirm addTarget:self action:@selector(confirmMethod) forControlEvents:UIControlEventTouchUpInside];
     confirm.layer.cornerRadius = CGRectGetHeight(confirm.frame) / 2.f;
     confirm.layer.masksToBounds = YES;
-    confirm.backgroundColor = HEXCOLOR(0x0093FF);
+    confirm.backgroundColor = THEMECOLOR;
     confirm.titleLabel.font = sysFontWithSize(14);
     [self.wh_tableHeader addSubview:confirm];
     

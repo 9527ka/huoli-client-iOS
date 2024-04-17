@@ -55,7 +55,7 @@
         make.size.mas_equalTo(CGSizeMake(147, 44));
         make.center.equalTo(bottmView);
     }];
-    [sBtn setBackgroundColor:HEXCOLOR(0x0093FF)];
+    [sBtn setBackgroundColor:THEMECOLOR];
     [sBtn setTitle:@"奖品兑换" forState:UIControlStateNormal];
     [sBtn setTitleColor:HEXCOLOR(0xffffff) forState:UIControlStateNormal];
     [sBtn.titleLabel setFont:sysFontWithSize(16)];

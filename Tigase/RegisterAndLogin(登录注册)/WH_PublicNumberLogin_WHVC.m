@@ -73,7 +73,7 @@
     loginBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 16];
     loginBtn.layer.cornerRadius = 5.f;
     loginBtn.layer.masksToBounds = YES;
-    loginBtn.backgroundColor = HEXCOLOR(0x0093FF);
+    loginBtn.backgroundColor = THEMECOLOR;
     [loginBtn setTitle:@"登录" forState:UIControlStateNormal];
     [loginBtn addTarget:self action:@selector(clickLoginBtn:) forControlEvents:UIControlEventTouchUpInside];
     

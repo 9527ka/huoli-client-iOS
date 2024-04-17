@@ -207,7 +207,7 @@
             NSString *waySort = [wayDict objectForKey:@"withdrawWaySort"];
             
             if ([[wayDict objectForKey:@"withdrawWayStatus"] intValue] == 1) {
-                UIButton *wh_addAliPayButton = [wh_tableHeaderView createBtn:CGRectMake(10, orginY, JX_SCREEN_WIDTH - 20, 55) font:[UIFont fontWithName:@"PingFangSC-Medium" size:15] color:HEXCOLOR(0x0093FF) text:[NSString stringWithFormat:@"添加新的%@" ,[wayDict objectForKey:@"withdrawWayName"]?:@""] img:@"WH_AddWithdrawalAccount" target:self sel:@selector(WH_AddWithdrawalAccountAction:)];
+                UIButton *wh_addAliPayButton = [wh_tableHeaderView createBtn:CGRectMake(10, orginY, JX_SCREEN_WIDTH - 20, 55) font:[UIFont fontWithName:@"PingFangSC-Medium" size:15] color:THEMECOLOR text:[NSString stringWithFormat:@"添加新的%@" ,[wayDict objectForKey:@"withdrawWayName"]?:@""] img:@"WH_AddWithdrawalAccount" target:self sel:@selector(WH_AddWithdrawalAccountAction:)];
                 wh_addAliPayButton.tag = [waySort intValue];
                 wh_addAliPayButton.backgroundColor = [UIColor whiteColor];
                 wh_addAliPayButton.layer.cornerRadius = 10;
@@ -222,7 +222,7 @@
     }else{
         wh_tableHeaderView.frame = CGRectMake(0, 0, JX_SCREEN_WIDTH, (55 + 12)*2 );
         //添加支付宝
-        UIButton *wh_addAliPayButton = [wh_tableHeaderView createBtn:CGRectMake(10, 12, JX_SCREEN_WIDTH - 20, 55) font:[UIFont fontWithName:@"PingFangSC-Medium" size:15] color:HEXCOLOR(0x0093FF) text:@"添加新的支付宝" img:@"WH_AddWithdrawalAccount" target:self sel:@selector(WH_AddWithdrawalAccountAction:)];
+        UIButton *wh_addAliPayButton = [wh_tableHeaderView createBtn:CGRectMake(10, 12, JX_SCREEN_WIDTH - 20, 55) font:[UIFont fontWithName:@"PingFangSC-Medium" size:15] color:THEMECOLOR text:@"添加新的支付宝" img:@"WH_AddWithdrawalAccount" target:self sel:@selector(WH_AddWithdrawalAccountAction:)];
         wh_addAliPayButton.tag = 1000;
         wh_addAliPayButton.backgroundColor = [UIColor whiteColor];
         wh_addAliPayButton.layer.cornerRadius = 10;
@@ -230,7 +230,7 @@
         [self setButton:wh_addAliPayButton imageTitleSpace:10];
         [wh_tableHeaderView addSubview:wh_addAliPayButton];
         //添加银行卡
-        UIButton *wh_addBankCardButton = [wh_tableHeaderView createBtn:CGRectMake(10, 12 + 55 + 12, JX_SCREEN_WIDTH - 20, 55) font:[UIFont fontWithName:@"PingFangSC-Medium" size:15] color:HEXCOLOR(0x0093FF) text:@"添加新的银行卡" img:@"WH_AddWithdrawalAccount" target:self sel:@selector(WH_AddWithdrawalAccountAction:)];
+        UIButton *wh_addBankCardButton = [wh_tableHeaderView createBtn:CGRectMake(10, 12 + 55 + 12, JX_SCREEN_WIDTH - 20, 55) font:[UIFont fontWithName:@"PingFangSC-Medium" size:15] color:THEMECOLOR text:@"添加新的银行卡" img:@"WH_AddWithdrawalAccount" target:self sel:@selector(WH_AddWithdrawalAccountAction:)];
         wh_addBankCardButton.tag = 1000 + 1;
         wh_addBankCardButton.backgroundColor = [UIColor whiteColor];
         wh_addBankCardButton.layer.cornerRadius = 10;

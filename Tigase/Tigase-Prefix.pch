@@ -612,7 +612,7 @@
 
 #define Message_PlaceholderImage [UIImage imageNamed:@"message_placeholder"]
 
-#define kColorThemeColor HEXCOLOR(0x0093ff)
+#define kColorThemeColor THEMECOLOR
 
 
 #endif

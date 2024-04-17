@@ -4027,7 +4027,7 @@
         if (THE_DEVICE_HAVE_HEAD) {
             viewH = 226+24;
         }
-        WH_CustomActionSheetView *share = [[WH_CustomActionSheetView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, viewH) WithTitle:Localized(@"New_withdraw_all_chat") sureBtnColor:HEXCOLOR(0x0093FF)];
+        WH_CustomActionSheetView *share = [[WH_CustomActionSheetView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, viewH) WithTitle:Localized(@"New_withdraw_all_chat") sureBtnColor:THEMECOLOR];
         
         [share showInWindowWithMode:CustomAnimationModeShare inView:nil bgAlpha:0.5 needEffectView:NO];
         

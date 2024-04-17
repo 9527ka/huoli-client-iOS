@@ -396,7 +396,7 @@
         [_nextBtn setTitle:Localized(@"JX_Finish") forState:UIControlStateNormal];
         
 //        [_nextBtn setBackgroundColor:[THEMECOLOR colorWithAlphaComponent:0.6]];
-        [_nextBtn setBackgroundColor:HEXCOLOR(0x0093FF)];
+        [_nextBtn setBackgroundColor:THEMECOLOR];
         _nextBtn.userInteractionEnabled = NO;
         _nextBtn.layer.masksToBounds = YES;
         _nextBtn.layer.cornerRadius = g_factory.cardCornerRadius;

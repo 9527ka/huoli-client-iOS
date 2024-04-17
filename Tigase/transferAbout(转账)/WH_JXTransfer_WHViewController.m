@@ -161,8 +161,8 @@
     _transferBtn.frame = CGRectMake(INSETS, CGRectGetMaxY(_moneyLabel.frame)+16, JX_SCREEN_WIDTH-INSETS*2, 44);
    [_transferBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
    _transferBtn.titleLabel.font = sysFontWithSize(16);
-    [_transferBtn setBackgroundImage:[UIImage createImageWithColor:HEXCOLOR(0x0093FF)] forState:UIControlStateNormal];
-    [_transferBtn setBackgroundImage:[UIImage createImageWithColor:[HEXCOLOR(0x0093FF) colorWithAlphaComponent:0.8f]] forState:UIControlStateDisabled];
+    [_transferBtn setBackgroundImage:[UIImage createImageWithColor:THEMECOLOR] forState:UIControlStateNormal];
+    [_transferBtn setBackgroundImage:[UIImage createImageWithColor:[THEMECOLOR colorWithAlphaComponent:0.8f]] forState:UIControlStateDisabled];
     _transferBtn.layer.cornerRadius = 10;
     _transferBtn.clipsToBounds = YES;
    _transferBtn.enabled = NO;

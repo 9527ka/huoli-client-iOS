@@ -55,7 +55,9 @@
         [weakSelf chooseImageAction];
     };
     cell.certainBlock = ^(NSString * _Nonnull amountStr, NSString * _Nonnull orderNoStr) {
-        [weakSelf rechargeWithNum:amountStr context:orderNoStr];
+        //直接调取支付
+        [weakSelf payAction];
+//        [weakSelf rechargeWithNum:amountStr context:orderNoStr];
     };
     if(self.image){
         cell.uploadImage.image = self.image;
@@ -66,6 +68,9 @@
     
         
     return cell;
+}
+-(void)payAction{
+    
 }
 //确认的点击事件
 -(void)rechargeWithNum:(NSString *)amount context:(NSString *)context{

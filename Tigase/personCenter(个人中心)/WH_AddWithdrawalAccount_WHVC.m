@@ -174,7 +174,7 @@
        
     //添加支付宝
     UIButton *wh_addAliPayButton = [footerView createBtn:CGRectMake(10, 20, JX_SCREEN_WIDTH - 20, 44) font:[UIFont fontWithName:@"PingFangSC-Medium" size:16] color:[UIColor whiteColor] text:@"绑定" img:@"" target:self sel:@selector(WH_bindWithdrawalAccountAction)];
-    wh_addAliPayButton.backgroundColor = HEXCOLOR(0x0093FF);
+    wh_addAliPayButton.backgroundColor = THEMECOLOR;
     wh_addAliPayButton.layer.cornerRadius = 10;
     wh_addAliPayButton.layer.masksToBounds = YES;
     [footerView addSubview:wh_addAliPayButton];

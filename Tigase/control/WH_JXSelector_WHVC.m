@@ -37,7 +37,7 @@
 
     //保存按钮
     UIButton *resaveBtn = [[UIButton alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH - g_factory.globelEdgeInset - 45, JX_SCREEN_TOP - 36, 45, 28)];
-    [resaveBtn setBackgroundColor:HEXCOLOR(0x0093FF)];
+    [resaveBtn setBackgroundColor:THEMECOLOR];
 //    resaveBtn.translatesAutoresizingMaskIntoConstraints = NO;
     [resaveBtn setTitle:Localized(@"JX_Confirm") forState:UIControlStateNormal];
     resaveBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size: 14];

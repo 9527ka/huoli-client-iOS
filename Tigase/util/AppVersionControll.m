@@ -75,7 +75,7 @@
     [confirmButton setTitle:Localized(@"JX_Confirm") forState:UIControlStateNormal];
     [confirmButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
     [confirmButton addTarget:self action:@selector(openSafari) forControlEvents:UIControlEventTouchUpInside];
-    confirmButton.backgroundColor = HEXCOLOR(0x0093FF);
+    confirmButton.backgroundColor = THEMECOLOR;
     confirmButton.layer.masksToBounds = YES;
     confirmButton.layer.borderColor = g_factory.cardBorderColor.CGColor;
     confirmButton.layer.borderWidth = g_factory.cardBorderWithd;

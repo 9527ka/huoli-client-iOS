@@ -81,7 +81,7 @@
     
     UIButton *payBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [payBtn setFrame:CGRectMake(g_factory.globelEdgeInset, CGRectGetMaxY(zfView.frame) + 20, JX_SCREEN_WIDTH - 2*g_factory.globelEdgeInset, 44)];
-    [payBtn setBackgroundColor:HEXCOLOR(0x0093FF)];
+    [payBtn setBackgroundColor:THEMECOLOR];
     [payBtn setTitle:(self.transactionType == 1)?Localized(@"JXLiveVC_Recharge"):@"提现" forState:UIControlStateNormal];
     [payBtn setTitleColor:HEXCOLOR(0xffffff) forState:UIControlStateNormal];
     [payBtn.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 16]];

@@ -269,8 +269,8 @@
         
         float n = 0;
         float wide = (JX_SCREEN_WIDTH/375.0f)*232.0;
-//        float height = wide*95.0;
-        float height = JX_SCREEN_WIDTH/3;
+        float height = (JX_SCREEN_WIDTH/375.0f)*95.0 + 40;
+//        float height = JX_SCREEN_WIDTH/3;
         
         if (msg.isGroup && !msg.isMySend) {
             if (msg.isShowTime) {

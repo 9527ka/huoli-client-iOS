@@ -76,7 +76,7 @@
 //    self.wh_tableBody.backgroundColor = HEXCOLOR(0x449ad4);
 //    [self setupView:self.view colors:@[(__bridge id)HEXCOLOR(0x449ad4).CGColor,(__bridge id)HEXCOLOR(0x1953AF).CGColor]];
 
-    [self.wh_tableBody setBackgroundColor:HEXCOLOR(0x0093FF)];
+    [self.wh_tableBody setBackgroundColor:THEMECOLOR];
     
     _baseView = [[UIView alloc] initWithFrame:CGRectMake(12, JX_SCREEN_TOP+40, JX_SCREEN_WIDTH-24, 451)];
     _baseView.backgroundColor = [UIColor whiteColor];
@@ -184,7 +184,7 @@
     
     UILabel *sLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(sImgView.frame) + 12, 0, 60, CGRectGetHeight(scanView.frame))];
     [sLabel setText:Localized(@"New_to_pay")];
-    [sLabel setTextColor:HEXCOLOR(0x0093FF)];
+    [sLabel setTextColor:THEMECOLOR];
     [sLabel setFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 16]];
     [scanView addSubview:sLabel];
     

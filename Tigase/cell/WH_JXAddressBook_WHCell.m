@@ -79,7 +79,7 @@
         }];
         
         _addBtn = [[UIButton alloc] initWithFrame:CGRectMake(JX_SCREEN_WIDTH-10-56, 18, 56, 28)];
-        [_addBtn setBackgroundColor:HEXCOLOR(0x0093FF)];
+        [_addBtn setBackgroundColor:THEMECOLOR];
         [_addBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_addBtn setTitleColor:HEXCOLOR(0x666666) forState:UIControlStateDisabled];
         _addBtn.titleLabel.font = sysFontWithSize(12);
@@ -106,7 +106,7 @@
         _addBtn.backgroundColor = [UIColor clearColor];
     }else {
         _addBtn.enabled = YES;
-        _addBtn.backgroundColor = HEXCOLOR(0x0093FF);
+        _addBtn.backgroundColor = THEMECOLOR;
     }
     if (self.isShowSelect) {
         if (_addBtn.enabled) {

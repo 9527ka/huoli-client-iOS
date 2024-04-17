@@ -53,6 +53,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) BOOL isPraise;
 @property (nonatomic, copy) NSString *msgId;
+@property (nonatomic, copy) NSString *shortVideoId;
+
 @property (nonatomic, copy) NSString *userId;
 @property(nonatomic,strong) NSMutableArray * replys;
 @property (nonatomic, assign) CGFloat height; // 分类短视频cell 高度

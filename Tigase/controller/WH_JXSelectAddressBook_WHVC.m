@@ -60,7 +60,7 @@
     _selectBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     [_selectBtn setTitle:Localized(@"JX_Confirm") forState:UIControlStateNormal];
     [_selectBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    _selectBtn.backgroundColor = HEXCOLOR(0x0093FF);
+    _selectBtn.backgroundColor = THEMECOLOR;
     _selectBtn.frame = CGRectMake(JX_SCREEN_WIDTH - 10 - 43, JX_SCREEN_TOP - 8 - 28, 43, 28);
     _selectBtn.layer.cornerRadius = CGRectGetHeight(_selectBtn.frame) / 2.f;
     _selectBtn.layer.masksToBounds = YES;

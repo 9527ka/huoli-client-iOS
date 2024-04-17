@@ -107,7 +107,7 @@
     [loginBtn setFrame:CGRectMake(g_factory.globelEdgeInset, CGRectGetMaxY(cView.frame) + 20, JX_SCREEN_WIDTH - 2*g_factory.globelEdgeInset, 44)];
     [loginBtn setTitle:@"登陆" forState:UIControlStateNormal];
     [loginBtn setTitleColor:HEXCOLOR(0xffffff) forState:UIControlStateNormal];
-    [loginBtn setBackgroundColor:HEXCOLOR(0x0093FF)];
+    [loginBtn setBackgroundColor:THEMECOLOR];
     [loginBtn.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 16]];
     [self.wh_tableBody addSubview:loginBtn];
     loginBtn.layer.masksToBounds = YES;

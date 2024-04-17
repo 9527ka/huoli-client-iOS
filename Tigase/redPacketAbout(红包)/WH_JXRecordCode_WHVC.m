@@ -200,17 +200,17 @@
     switch (status) {
         case 0: //订单创建
             cell.titleLabel.textColor = HEXCOLOR(0x23B525);
-            cell.moneyLabel.textColor = HEXCOLOR(0x23B525);
+            cell.moneyLabel.textColor = HEXCOLOR(0x23B525);//绿色
             break;
         case 1: //支付  充值 成功
             cell.titleLabel.textColor = [UIColor blackColor];
             if (type == 1 || type == 3 || type == 5
                 || type == 6 || type == 8 || type == 9 || type == 11
                 || type == 13 || type == 14) {
-                cell.moneyLabel.textColor = HEXCOLOR(0xEEB026);
+                cell.moneyLabel.textColor = THEMECOLOR;
             } else if (type == 2 || type == 4 || type == 7
                        || type == 10 || type == 12 || type == 16) {
-                cell.moneyLabel.textColor = [UIColor blackColor];
+                cell.moneyLabel.textColor = [UIColor redColor];
             }
             break;
         case -1: //交易关闭:
@@ -227,13 +227,14 @@
             break;
         case 4:   //交易完成
             cell.titleLabel.textColor = [UIColor blackColor];
-            cell.moneyLabel.textColor = HEXCOLOR(0xEEB026);
+            cell.moneyLabel.textColor = THEMECOLOR;
             break;
         case 5:   //支付失败
             cell.titleLabel.textColor = HEXCOLOR(0xED6350);
             cell.moneyLabel.textColor = HEXCOLOR(0xED6350);
             break;
     }
+    cell.moneyLabel.textColor = endMoney > startMoney?THEMECOLOR:[UIColor redColor];
     
     return cell;
 }
@@ -241,10 +242,10 @@
     return 75;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 12;
+    return 1;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _table.frame.size.width, 12)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _table.frame.size.width, 8)];
     [view setBackgroundColor:_table.backgroundColor];
     return view;
 }

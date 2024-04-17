@@ -58,7 +58,7 @@
     self.relLabel = [self WH_createLabel:self.wh_tableHeader default:Localized(@"JX_Publish") selector:@selector(onSave)];
     self.relLabel.textColor = [UIColor whiteColor];
     self.relLabel.textAlignment = NSTextAlignmentCenter;
-    [self.relLabel setBackgroundColor:HEXCOLOR(0x0093FF)];
+    [self.relLabel setBackgroundColor:THEMECOLOR];
     self.relLabel.frame = CGRectMake(JX_SCREEN_WIDTH - 53, JX_SCREEN_TOP - 36, 43, 28);
     self.relLabel.layer.masksToBounds = YES;
     self.relLabel.layer.cornerRadius = 14;
@@ -66,7 +66,7 @@
 //    UIButton *relBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 //    [relBtn setFrame:CGRectMake(JX_SCREEN_WIDTH - 53, JX_SCREEN_TOP - 36, 43, 28)];
 //    [relBtn setTitle:Localized(@"JX_Publish") forState:UIControlStateNormal];
-//    [relBtn setBackgroundColor:HEXCOLOR(0x0093FF)];
+//    [relBtn setBackgroundColor:THEMECOLOR];
 //    [relBtn.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 14]];
 //    [relBtn.titleLabel setTextColor:HEXCOLOR(0xffffff)];
 //    relBtn.layer.masksToBounds = YES;
@@ -154,7 +154,7 @@
     [sureBtn setTitle:Localized(@"JX_Confirm") forState:UIControlStateNormal];
     [sureBtn setTitleColor:HEXCOLOR(0xffffff) forState:UIControlStateNormal];
     [sureBtn.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 16]];
-    [sureBtn setBackgroundColor:HEXCOLOR(0x0093FF)];
+    [sureBtn setBackgroundColor:THEMECOLOR];
     sureBtn.layer.masksToBounds = YES;
     sureBtn.layer.cornerRadius = g_factory.cardCornerRadius;
     [sureBtn addTarget:self action:@selector(onRelease) forControlEvents:UIControlEventTouchUpInside];

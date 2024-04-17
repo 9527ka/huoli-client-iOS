@@ -233,7 +233,7 @@
         return;
     }
     if (indexPath.item < self.dataArray.count) {
-        WH_GKDYVideoModel *model = self.dataArray[indexPath.item];
+//        WH_GKDYVideoModel *model = self.dataArray[indexPath.item];
         WH_Player_WHVC *vc = [[WH_Player_WHVC alloc] init];
         vc.pageIndex = 0;
         vc.type = 6;

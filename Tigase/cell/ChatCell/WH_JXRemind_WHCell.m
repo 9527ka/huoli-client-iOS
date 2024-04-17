@@ -67,7 +67,7 @@
         }
         if (range.location != NSNotFound) {
 //            [att addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:range];
-            [att addAttribute:NSForegroundColorAttributeName value:HEXCOLOR(0x0093FF) range:range];
+            [att addAttribute:NSForegroundColorAttributeName value:THEMECOLOR range:range];
             self.msg.remindType = [NSNumber numberWithInt:kRoomRemind_NeedVerify];
         }
         NSRange range2 = [content rangeOfString:Localized(@"JX_ShikuRedPacket")];
