@@ -27,7 +27,7 @@
     self.orderNoField.delegate = self;
     
     //添加圆角以及阴影
-    self.noticeBgView.layer.cornerRadius =  self.bgTopView.layer.cornerRadius = self.bgBottomView.layer.cornerRadius = 8.0f;
+    self.noticeBgView.layer.cornerRadius =  self.bgTopView.layer.cornerRadius = self.bgBottomView.layer.cornerRadius = self.accountBgView.layer.cornerRadius = 8.0f;
 //    self.bgTopView.layer.shadowColor = self.bgBottomView.layer.shadowColor = [UIColor grayColor].CGColor;
 //    self.bgTopView.layer.shadowOffset = self.bgBottomView.layer.shadowOffset = CGSizeMake(0, 0);
 //    self.bgTopView.layer.shadowOpacity = self.bgBottomView.layer.shadowOpacity = 0.5;
@@ -61,7 +61,8 @@
     
     self.detaileLab.attributedText = attributedText;
     
-    self.monyCountLab.text = [NSString stringWithFormat:@"USDT 1 = ￥ %@",g_App.rate];
+    self.monyCountLab.text = [NSString stringWithFormat:@" 1 = ￥ %@",g_App.rate];
+    self.accountField.text = g_myself.aliUserId;
     
 }
 -(void)showKeyBord:(NSNotification *)notifi{
@@ -92,7 +93,7 @@
     //实际到账
     float count = self.monyField.text.doubleValue - transferRateStr.floatValue;
     NSString *trealStr = [NSString stringWithFormat:@"%.2f",count/g_App.rate.floatValue];
-    self.realMoneyLab.text = [NSString stringWithFormat:@"实际到账：%@USDT",trealStr];
+    self.realMoneyLab.text = [NSString stringWithFormat:@"实际到账：%@",trealStr];
 }
 -(void)endEdtingAction{
     [self endEditing:YES];
@@ -118,12 +119,16 @@
         [g_server showMsg:[NSString stringWithFormat:@"请输入%@以内金额",g_config.maxTransferAmount]];
         return;
     }
+    if(self.accountField.text.length == 0){
+        [g_server showMsg:@"请输入提款账号"];
+        return;
+    }
 //    if(self.orderNoField.text.length == 0){
 //        [g_server showMsg:@"请填写USDT-TRC20"];
 //        return;
 //    }
     if(self.certainBlock){
-        self.certainBlock(self.monyField.text, self.orderNoField.text);
+        self.certainBlock(self.monyField.text, self.accountField.text);
     }
     
 }
@@ -139,7 +144,7 @@
 //        self.monyCountLab.text = [NSString stringWithFormat:@"余额HOTC%.2f = USDT%.2f",g_App.myMoney,g_App.myMoney/g_App.rate.doubleValue];
 //    }
     
-    self.monyCountLab.text = [NSString stringWithFormat:@"USDT 1 = ￥ %@",g_App.rate];
+    self.monyCountLab.text = [NSString stringWithFormat:@" 1 = ￥ %@",g_App.rate];
     
 }
 //400+

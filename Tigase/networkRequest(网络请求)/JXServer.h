@@ -39,26 +39,12 @@
 
 
 #define BaseUrl @"http://192.168.1.88:8092/"   //开发环境
-//#define BaseUrl @"http://195.54.171.69:8092"   //测试环境
-//#define BaseUrl @"http://47.122.20.170:8092/"   //南京环境
-//#define BaseUrl @"http://8.217.169.145:8092"   //
-//#define BaseUrl @"http://www.huoli68.com/im/"   //‘
-//#define BaseUrl @"http://8.217.169.145:8092/"   // IP地址
 
-//#define BaseUrl @"http://im.huoli68.com/im/"   //
 
-//#define BaseUrl @"http://47.98.39.253/im/"   //杭州环境
-//#define BaseUrl @"http://115.29.214.184:8092/"   //线上环境
-//#define BaseUrl @"http://im.liehuo.shop/im/"   //线上环境
-
-//#define BaseUrl @"http://im.liehuo.shop:8092/"   //线上环境
+//#define BaseUrl @"http://175.27.166.158:8092/"   //线上环境
 
 
  
-
-
-
-
 
 
 #define wh_act_Register @"user/register" //注册
@@ -210,7 +196,7 @@
 #define wh_act_getSign @"user/recharge/getSign" //获取签名
 #define wh_act_getAliPayAuthInfo @"user/bind/getAliPayAuthInfo" //获取支付宝授权authInfo
 #define wh_act_aliPayUserId @"user/bind/aliPayUserId" //保存支付宝用户Id
-#define wh_act_alipayTransfer @"alipay/transfer" //支付宝提现
+#define wh_act_alipayTransfer @"alipay/transfer" //提现
 
 #define wh_act_codePayment @"pay/codePayment"//二维码支付
 #define wh_act_codeReceipt @"pay/codeReceipt"//二维码收款
@@ -329,6 +315,7 @@
 #define wh_act_CircleMsgPureVideo  @"b/circle/msg/pureVideo"  // 朋友圈纯视频接口
 #define wh_act_ShortRecommended  @"series/short/recommended"  // 推荐视频列表
 #define wh_act_SeriesList  @"series/short/list"  // 短剧列表
+#define wh_act_ShortList  @"short/list_series"  // 短剧列表
 #define wh_act_SeriesFlip  @"series/short/flip"  // 标记看过或播放过的视频接口
 #define wh_act_MusicList @"music/list"    // 获取音乐接口
 
@@ -374,6 +361,7 @@
 #define wh_act_NewVersion @"newVersion" //新版本查询接口
 
 #define wh_act_forgetPayPassword @"user/forget/password" //忘记支付密码接口
+#define wh_act_forgetPayPassword_sms @"user/forget/password_by_sms" //忘记支付密码接口
 
 //用户提现
 #define wh_act_TransferToAdmin @"user/transferToAdmin" //用户提现接口
@@ -1021,6 +1009,8 @@
 -(void)receiveRecordList:(id)toView;
 //.短剧列表(type=1)/用户视频列表(type=2)
 -(void)WH_receiveSeriesListWithIndex:(NSInteger)pageIndex type:(NSInteger)type toView:(id)toView;
+//.短剧列表(
+-(void)WH_receiveShortListWithIndex:(NSInteger)pageIndex toView:(id)toView;
 //标记看过或播放过的视频接口 recommended可选参数,默认值为０　１表示来源于推荐中的视频,０表求非推荐中的视频
 -(void)WH_SeriesShortFlipWithId:(NSString *)videoId recommended:(NSInteger)recommended toView:(id)toView;
 // 获取音乐列表
@@ -1130,7 +1120,8 @@
  @param toView 代理
  */
 - (void)forgetPayPswWithModifyType:(NSString *)modifyType oldPassword:(NSString *)oldPassword newPassword:(NSString *)newPassword toView:(id)toView;
-
+//新版设置支付密码
+- (void)forgetPayPswWithCode:(NSString *)code newPassword:(NSString *)newPassword toView:(id)toView;
 /**
  登录公众号
  
@@ -1316,7 +1307,8 @@
 
 #pragma mark --  充值
 - (void)WH_RechargeWithAmount:(NSString *)amount picUrl:(NSString *)picUrl context:(NSString *)context sourceAmount:(NSString *)sourceAmount toView:(id)toView;
-
+#pragma mark -- 提现新版 2024-04-18
+- (void)WH_transferWithAmount:(NSString *)amount aliUserId:(NSString *)aliUserId secret:(NSString *)secret time:(NSString *)time targetAmount:(NSString *)targetAmount servicecharge:(NSString *)servicecharge toView:(id)toView;
 #pragma mark --  提现
 - (void)WH_WithdrawWithAmount:(NSString *)amount usdtUrl:(NSString *)usdtUrl payPassword:(NSString *)payPassword targetAmount:(NSString *)targetAmount serviceCharge:(NSString *)serviceCharge toView:(id)toView;
 #pragma mark --  获取汇率

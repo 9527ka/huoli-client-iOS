@@ -8,7 +8,7 @@
 
 #import "WH_PopularVideoVC.h"
 #import "WH_PopularVideoCell.h"
-# import <AlipaySDK/AlipaySDK.h>
+#import <AlipaySDK/AlipaySDK.h>
 #import "WH_GKDYVideoModel.h"
 #import "WH_Player_WHVC.h"
 

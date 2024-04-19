@@ -29,6 +29,9 @@
 @property (weak, nonatomic) IBOutlet UIView *codeBgView;
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 @property (weak, nonatomic) IBOutlet UIButton *regiestBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *codeImage;
+@property (weak, nonatomic) IBOutlet UITextField *imageField;
+@property (weak, nonatomic) IBOutlet UIView *codeImageBgView;
 
 @end
 
@@ -38,12 +41,14 @@
     [super viewDidLoad];
     _wait = [ATMHud sharedInstance];
     [self makeUI];
+    [self.phoneField addTarget:self action:@selector(textChangeAction:) forControlEvents:UIControlEventEditingChanged];
     
 }
 -(void)makeUI{
     self.logoImage.layer.cornerRadius = 16.0f;
     self.accountBgView.layer.cornerRadius = 24.0f;
     self.passWordBgView.layer.cornerRadius = 24.0f;
+    self.codeImageBgView.layer.cornerRadius = 24.0f;
     self.codeBgView.layer.cornerRadius = 24.0f;
     self.certainPassWordBgView.layer.cornerRadius = 24.0f;
     self.regiestBtn.layer.cornerRadius = 24.0f;
@@ -52,6 +57,40 @@
     [self.certainLockBtn setImage:[UIImage imageNamed:@"pass_look"] forState:UIControlStateSelected];
     [self.certainLockBtn setImage:[UIImage imageNamed:@"pass_lock"] forState:UIControlStateNormal];
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(getImgCodeImg)];
+    [self.codeImage addGestureRecognizer:tap];
+    
+}
+-(void)textChangeAction:(UITextField *)textField{
+    if(textField == self.phoneField){
+        if(self.phoneField.text.length > 11){
+            self.phoneField.text = [textField.text substringToIndex:11];
+        }
+        if(self.phoneField.text.length == 11){//获取图形验证码
+            [self getImgCodeImg];
+        }
+    }
+}
+
+-(void)getImgCodeImg{
+    if(self.phoneField.text.length == 11){
+        //    if ([self checkPhoneNum]) {
+        //请求图片验证码
+        NSString *areaCode = @"86";
+        NSString *codeUrl = [g_server getImgCode:self.phoneField.text areaCode:areaCode];
+
+        NSURLRequest * request = [NSURLRequest requestWithURL:[NSURL URLWithString:codeUrl] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:10.0];
+        
+        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+            if (!connectionError) {
+                UIImage * codeImage = [UIImage imageWithData:data];
+                self.codeImage.image = codeImage;
+            }else{
+                //NSLog(@"%@",connectionError);
+                [g_App showAlert:connectionError.localizedDescription];
+            }
+        }];
+    }
     
 }
 - (IBAction)codeAction:(id)sender {
@@ -59,9 +98,13 @@
         [g_server showMsg:@"请输入正确格式的手机号码"];
         return;
     }
+    if(self.imageField.text.length == 0){
+        [g_server showMsg:@"请输入图形码"];
+        return;
+    }
     
     //type;//0登录  1注册   isRegister,    数字类型, 1-注册,2-登录
-    [g_server WH_sendSMSCodeWithTel:[NSString stringWithFormat:@"%@",self.phoneField.text] areaCode:@"" isRegister:1 imgCode:@"" toView:self];
+    [g_server WH_sendSMSCodeWithTel:[NSString stringWithFormat:@"%@",self.phoneField.text] areaCode:@"" isRegister:1 imgCode:self.imageField.text toView:self];
 }
 #pragma mark - 定时器 (GCD)
 - (void)createTimer {

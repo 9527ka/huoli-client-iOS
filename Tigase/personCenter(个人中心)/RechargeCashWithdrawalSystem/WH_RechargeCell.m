@@ -87,9 +87,9 @@
 -(void)textFieldChanged:(UITextField *)textField{
     if(self.monyField.text.length > 0 && g_App.rate.doubleValue > 0.0){
         
-        self.monyCountLab.text = [NSString stringWithFormat:@"应付：USDT%.2f",self.monyField.text.doubleValue/g_App.rate.doubleValue];
+        self.monyCountLab.text = [NSString stringWithFormat:@"应付：%.2f",self.monyField.text.doubleValue/g_App.rate.doubleValue];
     }else{
-        self.monyCountLab.text = @"应付：USDT0.00";
+        self.monyCountLab.text = @"应付：0.00";
     }
 }
 -(void)endEdtingAction{
@@ -148,10 +148,10 @@
 }
 
 -(void)reSetRate{
-    self.rateLab.text = [NSString stringWithFormat:@"充值USDT 1 = ￥ %@",g_App.rate];
+    self.rateLab.text = [NSString stringWithFormat:@"充值 1 = ￥ %@",g_App.rate];
     if(self.monyField.text.length > 0){
         
-        self.monyCountLab.text = [NSString stringWithFormat:@"应付：USDT%.2f",self.monyField.text.doubleValue/g_App.rate.doubleValue];
+        self.monyCountLab.text = [NSString stringWithFormat:@"应付：%.2f",self.monyField.text.doubleValue/g_App.rate.doubleValue];
     }
 }
 

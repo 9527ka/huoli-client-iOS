@@ -453,6 +453,9 @@ static WH_JXUserObject *sharedUser;
     
     self.telephone = [NSString stringWithFormat:@"%@",[dict objectForKey:@"telephone"]];
     self.phone = [dict objectForKey:@"phone"];
+    self.payAccount = [dict objectForKey:@"payAccount"];
+    self.aliUserId = [dict objectForKey:@"aliUserId"];
+    
     self.password = [dict objectForKey:@"password"];
     self.userType = [dict objectForKey:@"userType"];
     self.birthday = [NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:@"birthday"] longLongValue]];

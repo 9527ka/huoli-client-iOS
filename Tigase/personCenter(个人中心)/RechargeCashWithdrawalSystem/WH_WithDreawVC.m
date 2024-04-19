@@ -85,8 +85,33 @@
     float count = self.amountStr.doubleValue - transferRateStr.floatValue;
     NSString *trealStr = [NSString stringWithFormat:@"%.2f",count/g_App.rate.floatValue];
     
-    [g_server WH_WithdrawWithAmount:self.amountStr usdtUrl:self.orderNoStr payPassword:payPassword targetAmount:trealStr serviceCharge:transferRateStr toView:self];
+    
+    long time = (long)[[NSDate date] timeIntervalSince1970] + (g_server.timeDifference / 1000);
+    NSString *timeStr = [NSString stringWithFormat:@"%ld",time];
+    NSString *secret = [self getSecretWithText:payPassword time:timeStr];
+    
+    [g_server WH_transferWithAmount:self.amountStr aliUserId:self.orderNoStr secret:secret time:timeStr targetAmount:trealStr servicecharge:transferRateStr toView:self];
+    
 
+    //    [g_server WH_WithdrawWithAmount:self.amountStr usdtUrl:self.orderNoStr payPassword:payPassword targetAmount:trealStr serviceCharge:transferRateStr toView:self];
+
+}
+- (NSString *)getSecretWithText:(NSString *)text time:(NSString *)time {
+    NSMutableString *str1 = [NSMutableString string];
+    [str1 appendString:APIKEY];
+    [str1 appendString:time];
+    [str1 appendString:[NSString stringWithFormat:@"%@",[NSNumber numberWithDouble:[self.amountStr doubleValue]]]];
+    str1 = [[g_server WH_getMD5StringWithStr:str1] mutableCopy];
+    
+    [str1 appendString:g_myself.userId];
+    [str1 appendString:g_server.access_token];
+    NSMutableString *str2 = [NSMutableString string];
+    str2 = [[g_server WH_getMD5StringWithStr:text] mutableCopy];
+    [str1 appendString:str2];
+    str1 = [[g_server WH_getMD5StringWithStr:str1] mutableCopy];
+    
+    return [str1 copy];
+    
 }
 - (void)WH_dismiss_WHVerifyPayVC {
     [self.verVC.view removeFromSuperview];
@@ -95,7 +120,7 @@
 #pragma mark - 请求成功回调
 -(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{
     [_wait hide];
-    if ([aDownload.action isEqualToString:wh_user_transferToAdmin]){
+    if ([aDownload.action isEqualToString:wh_act_TransferToAdmin]){
         [g_server showMsg:@"提交成功，请等待核实"];
         [g_navigation WH_dismiss_WHViewController:self animated:YES];
     }else if ([aDownload.action isEqualToString:wh_rate_current]){

@@ -62,12 +62,15 @@
     _accounLab.text = @"账号：";
     _accounLab.textColor = [UIColor whiteColor];
     _accounLab.font = [UIFont systemFontOfSize:14];
+    _accounLab.userInteractionEnabled = YES;
     [self addSubview:_accounLab];
     [_accounLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.nickName.mas_bottom).offset(6);
         make.left.equalTo(self.nickName);
     }];
     
+    UITapGestureRecognizer *tapCopy = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(copyAccountAction)];
+    [self.accounLab addGestureRecognizer:tapCopy];
     
     _editorBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_editorBtn setTitle:@"点击编辑资料" forState:UIControlStateNormal];
@@ -251,13 +254,19 @@
         make.right.equalTo(self).offset(-20);
         make.top.equalTo(bgSliderView).offset(8);
     }];
-    [_slideTabBar setLabels:@[@"收藏",@"喜欢",@"作品"] tabIndex:0];
+//    [_slideTabBar setLabels:@[@"收藏",@"喜欢",@"作品"] tabIndex:0];
+    [_slideTabBar setLabels:@[@"收藏",@"喜欢"] tabIndex:0];
 }
 
 - (void)onTapAction:(UITapGestureRecognizer *)sender {
     if (self.clickBlock) {
         self.clickBlock(FunctionType_Head);
     }
+}
+-(void)copyAccountAction{
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = g_myself.account;
+    [GKMessageTool showText:@"已复制"];
 }
 
 -(void)setUserInfo{

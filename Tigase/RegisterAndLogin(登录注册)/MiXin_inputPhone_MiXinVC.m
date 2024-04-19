@@ -572,7 +572,7 @@
         //    if ([self checkPhoneNum]) {
         //请求图片验证码
         NSString *areaCode = [_areaCodeBtn.titleLabel.text stringByReplacingOccurrencesOfString:@"+" withString:@""];
-        NSString * codeUrl = [g_server getImgCode:_phone.text areaCode:areaCode];
+        NSString *codeUrl = [g_server getImgCode:_phone.text areaCode:areaCode];
 
         NSURLRequest * request = [NSURLRequest requestWithURL:[NSURL URLWithString:codeUrl] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:10.0];
         

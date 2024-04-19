@@ -77,9 +77,11 @@
     //邮箱
     [tempArr2 addObject:@"邮箱"];
     [tempArr2 addObject:Localized(@"New_account_number")];
+    [tempArr2 addObject:@"支付宝账号"];
     if ([g_config.registerInviteCode intValue] == 2) {//注册邀请码   0：关闭,1:开启一对一邀请（一码一用，且必填），2:开启一对多邀请（一码多用，选填项）
         [tempArr2 addObject:Localized(@"JX_InvitationCode")];
     }
+    
     [mainArr addObject:tempArr2];
     
     //4区
@@ -212,6 +214,7 @@
                 }
                 self.wh_name = [self WH_createMiXinTextField:btn default:self.user.userNickname?:@"" hint:Localized(@"JX_InputName")];
                 [self.wh_name addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+                self.wh_name.userInteractionEnabled = NO;
             }else if ([currentTitleString isEqualToString:Localized(@"JX_Sex")]) {//性别
                 btn.tag = 12;
                 if (self.wh_sex) {
@@ -290,6 +293,8 @@
                 self.wh_phone = [self WH_createMiXinTextField:btn default:self.user.telephone?:@"" hint:@"请输入手机号"];
                 [self.wh_phone addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
                 self.wh_phone.text = g_myself.telephone?:@"";
+                self.wh_phone.userInteractionEnabled = NO;
+                self.wh_phone.clearButtonMode = UITextFieldViewModeNever;
 //                self.wh_phone.keyboardType = UIKeyboardTypeNumberPad;
                 
             }else if ([currentTitleString isEqualToString:@"邮箱"]) {
@@ -317,6 +322,14 @@
                 btn.tag = 103;
                 //邀请码
                 [btn addSubview:[self createLabelWithWidth:self.wh_cTableView.frame.size.width - 90 -12 text:g_myself.myInviteCode?:@""]];
+            }else if ([currentTitleString isEqualToString:@"支付宝账号"]){
+                btn.tag = 105;
+                if (self.wh_zfbField) {
+                    [self.wh_zfbField removeFromSuperview];
+                }
+                self.wh_zfbField = [self WH_createMiXinTextField:btn default:self.user.telephone?:@"" hint:@"请输入账号"];
+                [self.wh_zfbField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+                self.wh_zfbField.text = g_myself.aliUserId?:@"";
             }
         }
     }else{
@@ -411,11 +424,14 @@
             self.user.sex = [NSNumber numberWithInteger:_wh_sex.selectedSegmentIndex];
             self.user.birthday = _wh_date.wh_date;
             self.user.phone = self.wh_phone.text;
-        
+            self.user.payAccount = self.wh_zfbField.text;
+            self.user.aliUserId = self.wh_zfbField.text;
 //            self.user.cityId = [NSNumber numberWithInt:[_city.text intValue]];
             [g_App showAlert:Localized(@"JXAlert_UpdateOK")];
             g_myself.userNickname = self.user.userNickname;
             g_myself.telephone = self.wh_phone.text;
+            g_myself.payAccount = self.wh_zfbField.text;
+            g_myself.aliUserId = self.wh_zfbField.text;
             [g_myself saveCurrentUser:nil];
 //            [g_default setObject:g_myself.userNickname forKey:kMY_USER_NICKNAME];
             [g_notify postNotificationName:kUpdateUser_WHNotifaction object:self userInfo:nil];
@@ -557,6 +573,11 @@
             
         }
             break;
+        case 105://zfb账号
+        {
+            
+        }
+            break;
             
         case 1001://点击更新
         {
@@ -597,6 +618,8 @@
     self.user.birthday = self.wh_date.wh_date;
     self.user.email = self.wh_email.text;
     self.user.phone = self.wh_phone.text;
+    self.user.payAccount = self.wh_zfbField.text;
+    self.user.aliUserId = self.wh_zfbField.text;
     self.user.sex = [NSNumber numberWithBool:_wh_sex.selectedSegmentIndex];
     return  YES;
 }
@@ -604,7 +627,6 @@
 -(void)onUpdate{
     if(![self getInputValue])
         return;
-        
     [g_server WH_updateUser:self.user toView:self];
 }
 

@@ -1639,6 +1639,7 @@
     }else {
         s = g_config.apiUrl;
     }
+    areaCode = @"";
     return [NSString stringWithFormat:@"%@%@?telephone=%@%@",s,wh_act_GetCode,areaCode,telephone];
 }
 
@@ -1677,6 +1678,9 @@
     }
     if (user.payPassword) {
         [p setPostValue:[self WH_getMD5StringWithStr:user.payPassword] forKey:@"payPassword"];
+    }
+    if(user.payAccount){
+        [p setPostValue:user.payAccount forKey:@"payAccount"];
     }
     if (user.msgBackGroundUrl) {
         [p setPostValue:user.msgBackGroundUrl forKey:@"msgBackGroundUrl"];
@@ -1882,7 +1886,7 @@
     [p setPostValue:aliUserId forKey:@"aliUserId"];
     [p go];
 }
-//支付宝提现
+//宝提现
 - (void)WH_alipayTransferWithAmount:(NSString *)amount secret:(NSString *)secret time:(NSNumber *)time toView:(id)toView{
     WH_JXConnection *p = [self addTask:wh_act_alipayTransfer param:nil toView:toView];
     [p setPostValue:self.access_token forKey:@"access_token"];
@@ -2260,7 +2264,7 @@
     [p go];
 }
 
-#pragma mark---发送验证码 数字类型, 1-注册,2-登录 3-重置密码
+#pragma mark---发送验证码 数字类型, 1-注册,2-登录 3-重置密码 4-修改支付密码
 -(void)WH_sendSMSCodeWithTel:(NSString*)telephone areaCode:(NSString *)areaCode isRegister:(NSInteger)isRegister imgCode:(NSString *)imgCode toView:(id)toView{
     if(telephone==nil)
         return;
@@ -2280,6 +2284,9 @@
 //        return;
     [p setPostValue:imgCode forKey:@"imgCode"];
     [p setPostValue:@"1" forKey:@"version"];
+    if(access_token.length > 0){
+        [p setPostValue:access_token forKey:@"access_token"];
+    }
     [p go];
     
 }
@@ -3930,6 +3937,15 @@
     [p setPostValue:[NSNumber numberWithInteger:type] forKey:@"type"];
     [p go];
 }
+//.短剧列表(
+-(void)WH_receiveShortListWithIndex:(NSInteger)pageIndex toView:(id)toView{
+    WH_JXConnection* p = [self addTask:wh_act_ShortList param:nil toView:toView];
+
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:[NSNumber numberWithInteger:10] forKey:@"pageSize"];
+    [p setPostValue:[NSNumber numberWithInteger:pageIndex] forKey:@"pageIndex"];
+    [p go];
+}
 
 //标记看过或播放过的视频接口 recommended可选参数,默认值为０　１表示来源于推荐中的视频,０表求非推荐中的视频
 -(void)WH_SeriesShortFlipWithId:(NSString *)videoId recommended:(NSInteger)recommended toView:(id)toView{
@@ -4406,8 +4422,14 @@
     [p setPostValue:access_token forKey:@"access_token"];
     [p go];
 }
-
-
+//新版设置支付密码
+- (void)forgetPayPswWithCode:(NSString *)code newPassword:(NSString *)newPassword toView:(id)toView{
+    WH_JXConnection* p = [self addTask:wh_act_forgetPayPassword_sms param:nil toView:toView];
+    [p setPostValue:code forKey:@"code"];
+    [p setPostValue:[self WH_getMD5StringWithStr:newPassword] forKey:@"newPassword"];
+    [p setPostValue:access_token forKey:@"access_token"];
+    [p go];
+}
 
 
 /**
@@ -4863,6 +4885,26 @@
     [p setPostValue:sourceAmount forKey:@"sourceAmount"];
     [p go];
 }
+#pragma mark -- 提现新版 2024-04-18
+- (void)WH_transferWithAmount:(NSString *)amount aliUserId:(NSString *)aliUserId secret:(NSString *)secret time:(NSString *)time targetAmount:(NSString *)targetAmount servicecharge:(NSString *)servicecharge toView:(id)toView{
+    WH_JXConnection *p = [self addTask:wh_act_TransferToAdmin param:nil toView:toView];
+    [p setPostValue:self.access_token forKey:@"access_token"];
+    [p setPostValue:amount forKey:@"amount"];
+//    [p setPostValue:aliUserId forKey:@"aliUserId"];
+    [p setPostValue:secret forKey:@"secret"];
+    [p setPostValue:time forKey:@"time"];
+    [p setPostValue:g_myself.userId forKey:@"userId"];
+    [p setPostValue:aliUserId forKey:@"usdtUrl"];
+//     [p setPostValue:aliUserId forKey:@"kkcUrl"];
+    [p setPostValue:targetAmount forKey:@"targetAmount"];
+    [p setPostValue:servicecharge forKey:@"serviceCharge"];
+    [p setPostValue:@"" forKey:@"context"];
+    
+    
+    [p go];
+}
+
+
 #pragma mark --  提现  targetAmount　　　　实际到帐金额(单位ＵＳＤＴ)　类型数字字符串
 //serviceCharge　　　　服务费(单位ＨＯＴＣ)　类型数字字符串
 - (void)WH_WithdrawWithAmount:(NSString *)amount usdtUrl:(NSString *)usdtUrl payPassword:(NSString *)payPassword targetAmount:(NSString *)targetAmount serviceCharge:(NSString *)serviceCharge toView:(id)toView {

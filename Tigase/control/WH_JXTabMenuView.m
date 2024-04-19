@@ -17,8 +17,10 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        NSInteger count = wh_items.count + 1;
-        float width = JX_SCREEN_WIDTH/5.0;
+//        NSInteger count = wh_items.count + 1;
+//        float width = JX_SCREEN_WIDTH/5.0;
+        NSInteger count = wh_items.count;
+        float width = JX_SCREEN_WIDTH/4.0;
                 
         wh_height    = 49;
         self.backgroundColor = [UIColor whiteColor];
@@ -32,17 +34,18 @@
         for(i=0;i<count;i++){
             CGRect r = CGRectMake(width*i, 7, width, wh_height);
             
-            if(i == 2){//加号
-                _publishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-                _publishBtn.frame = r;
-                [_publishBtn setImage:[UIImage imageNamed:@"add_tab_icon"] forState:UIControlStateNormal];
-                [_publishBtn addTarget:self action:@selector(publishAction:) forControlEvents:UIControlEventTouchUpInside];
-                [self addSubview:self.publishBtn];
-            }else{
+//            if(i == 2){//加号
+//                _publishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//                _publishBtn.frame = r;
+//                [_publishBtn setImage:[UIImage imageNamed:@"add_tab_icon"] forState:UIControlStateNormal];
+//                [_publishBtn addTarget:self action:@selector(publishAction:) forControlEvents:UIControlEventTouchUpInside];
+//                [self addSubview:self.publishBtn];
+//            }else{
                 JXTabButton *btn = [JXTabButton buttonWithType:UIButtonTypeCustom];
     //            btn.wh_iconName = [wh_imagesNormal objectAtIndex:i];
     //            btn.wh_selectedIconName = [wh_imagesSelect objectAtIndex:i];
-                btn.wh_text  = [wh_items objectAtIndex:i<2?i:i - 1];
+//                btn.wh_text  = [wh_items objectAtIndex:i<2?i:i - 1];
+                btn.wh_text  = [wh_items objectAtIndex:i];
                 [btn.titleLabel setFont:pingFangRegularFontWithSize(14)];
                 btn.wh_textColor = HEXCOLOR(0x9B9B9B);
                 btn.wh_selectedTextColor = HEXCOLOR(0x161819);
@@ -51,13 +54,14 @@
     //            if(i==1)
     //                btn.bage = @"1";
                 btn.frame = r;
-                btn.tag = i<2?i:i - 1;
+//                btn.tag = i<2?i:i - 1;
+                btn.tag = i;
                 if ((wh_onClick != nil) && (wh_delegate != nil))
                     [btn addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
                 [btn textShow];
                 [self addSubview:btn];
                 [_arrayBtns addObject:btn];
-            }
+//            }
         }
 
         UIView* line = [[UIView alloc]initWithFrame:CGRectMake(0,0,JX_SCREEN_WIDTH,0.5)];

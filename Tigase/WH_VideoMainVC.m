@@ -11,6 +11,7 @@
 #import "XMGTitleButton.h"
 #import "WH_Player_WHVC.h"
 #import "AwemeListController.h"
+#import "WH_JXShortPlayVC.h"
 
 @interface WH_VideoMainVC ()<UIScrollViewDelegate>
 /** 当前选中的按钮 */
@@ -20,7 +21,8 @@
 @property (strong, nonatomic) UIButton *searchBtn;
 @property (nonatomic,assign) NSInteger index;
 @property (strong, nonatomic)WH_Player_WHVC *mainVC;
-@property (strong, nonatomic)WH_Player_WHVC *shortVC;
+//@property (strong, nonatomic)WH_Player_WHVC *shortVC;
+@property (strong, nonatomic)WH_JXShortPlayVC *shortVC;
 @property (strong, nonatomic)WH_Player_WHVC *videoVC;
 //@property (strong, nonatomic)AwemeListController *shortVC;
 //@property (strong, nonatomic)AwemeListController *videoVC;
@@ -135,8 +137,8 @@
     for (int i=0;i<lastUrl.count; i++) {
         XMGTitleButton *button = [[XMGTitleButton alloc]init];
         [button setTitle:lastUrl[i] forState:UIControlStateNormal];
-        [button setTitleColor:HEXCOLOR(0xffffff) forState:UIControlStateNormal];
-        [button setTitleColor:HEXCOLOR(0xffffff) forState:UIControlStateDisabled];
+        [button setTitleColor:HEXCOLOR(0x161819) forState:UIControlStateNormal];
+        [button setTitleColor:HEXCOLOR(0x161819) forState:UIControlStateDisabled];
         button.titleLabel.font = [UIFont systemFontOfSize:14];
         button.tag = i;
         [titlesView addSubview:button];
@@ -180,7 +182,7 @@
      [self.contentView setContentOffset:CGPointMake(index * self.contentView.frame.size.width, self.contentView.contentOffset.y) animated:YES];
     
     if (index == 0) {
-        [self.shortVC.player.currentPlayerManager pause];
+//        [self.shortVC.player.currentPlayerManager pause];
         [self.videoVC.player.currentPlayerManager pause];
         [self.mainVC.player.currentPlayerManager play];
         
@@ -193,13 +195,13 @@
 ////        [self.mainVC.player.currentPlayerManager pause];
 //        [self.mainVC applicationEnterBackground];
         
-        [self.shortVC.player.currentPlayerManager play];
+//        [self.shortVC.player.currentPlayerManager play];
         [self.videoVC.player.currentPlayerManager pause];
         [self.mainVC.player.currentPlayerManager pause];
         
     }else{
         
-        [self.shortVC.player.currentPlayerManager pause];
+//        [self.shortVC.player.currentPlayerManager pause];
         [self.videoVC.player.currentPlayerManager play];
         [self.mainVC.player.currentPlayerManager pause];
         
@@ -239,13 +241,18 @@
     _videoVC = [_videoVC init];
     [self addChildViewController:_videoVC];
     
-    _shortVC = [WH_Player_WHVC alloc];
-    _shortVC.requestFinishBlock = ^{
-        [weakSelf titleClick:weakSelf.titlesView.subviews[weakSelf.index]];
-    };
-    _shortVC.type = 1;
+    
+    _shortVC = [WH_JXShortPlayVC alloc];
     _shortVC = [_shortVC init];
     [self addChildViewController:_shortVC];
+    
+//    _shortVC = [WH_Player_WHVC alloc];
+//    _shortVC.requestFinishBlock = ^{
+//        [weakSelf titleClick:weakSelf.titlesView.subviews[weakSelf.index]];
+//    };
+//    _shortVC.type = 1;
+//    _shortVC = [_shortVC init];
+//    [self addChildViewController:_shortVC];
     
     _mainVC = [WH_Player_WHVC alloc];
     _mainVC.type = 0;

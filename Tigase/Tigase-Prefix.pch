@@ -75,11 +75,9 @@
 #define act_sdkLogin    @"user/sdkLogin"  // 第三方登录接口
 
 
-//#define APIKEY @"aaaim"//  之前的:IstjUekmfQk6FERj
+#define APIKEY @"yj#210*zah"
+//#define APIKEY @"apk123"
 
-#define APIKEY @"apk123"
-
-//#define APIKEY @"sssuuuvvv"//
 // app group id (share extension 数据分享绑定id)
 #define APP_GROUP_ID  @"group.com.shandianyun.wahu"
 

@@ -952,6 +952,12 @@
 		33F643CC2B908F1200988523 /* WH_JXDownloadUrlVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33F643CA2B908F1200988523 /* WH_JXDownloadUrlVC.xib */; };
 		33F643D02B9177DE00988523 /* WH_JXRecordCodeDetaileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F643CE2B9177DE00988523 /* WH_JXRecordCodeDetaileVC.m */; };
 		33F643D12B9177DE00988523 /* WH_JXRecordCodeDetaileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33F643CF2B9177DE00988523 /* WH_JXRecordCodeDetaileVC.xib */; };
+		33FE34272BD2438500B999B7 /* WH_ForgetPayPassWordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FE34252BD2438500B999B7 /* WH_ForgetPayPassWordVC.m */; };
+		33FE34282BD2438500B999B7 /* WH_ForgetPayPassWordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33FE34262BD2438500B999B7 /* WH_ForgetPayPassWordVC.xib */; };
+		33FE342C2BD25FEA00B999B7 /* WH_JXShortPlayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FE342A2BD25FEA00B999B7 /* WH_JXShortPlayVC.m */; };
+		33FE342D2BD25FEA00B999B7 /* WH_JXShortPlayVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33FE342B2BD25FEA00B999B7 /* WH_JXShortPlayVC.xib */; };
+		33FE34312BD2624800B999B7 /* WH_JXShortPlayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FE342F2BD2624800B999B7 /* WH_JXShortPlayCell.m */; };
+		33FE34322BD2624800B999B7 /* WH_JXShortPlayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33FE34302BD2624800B999B7 /* WH_JXShortPlayCell.xib */; };
 		4CA2D1B0293F23E500E29DA7 /* MISFloatingBall.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA2D1AF293F23E400E29DA7 /* MISFloatingBall.m */; };
 		4CABBBD7293EF69B00C17F42 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CABBBD6293EF69B00C17F42 /* StoreKit.framework */; };
 		4CABBC48293F06F800C17F42 /* WH_GKDYVideoViewModel_WH.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CABBBDC293F06F700C17F42 /* WH_GKDYVideoViewModel_WH.m */; };
@@ -3587,6 +3593,15 @@
 		33F643CD2B9177DE00988523 /* WH_JXRecordCodeDetaileVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXRecordCodeDetaileVC.h; sourceTree = "<group>"; };
 		33F643CE2B9177DE00988523 /* WH_JXRecordCodeDetaileVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXRecordCodeDetaileVC.m; sourceTree = "<group>"; };
 		33F643CF2B9177DE00988523 /* WH_JXRecordCodeDetaileVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXRecordCodeDetaileVC.xib; sourceTree = "<group>"; };
+		33FE34242BD2438500B999B7 /* WH_ForgetPayPassWordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_ForgetPayPassWordVC.h; sourceTree = "<group>"; };
+		33FE34252BD2438500B999B7 /* WH_ForgetPayPassWordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_ForgetPayPassWordVC.m; sourceTree = "<group>"; };
+		33FE34262BD2438500B999B7 /* WH_ForgetPayPassWordVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_ForgetPayPassWordVC.xib; sourceTree = "<group>"; };
+		33FE34292BD25FEA00B999B7 /* WH_JXShortPlayVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXShortPlayVC.h; sourceTree = "<group>"; };
+		33FE342A2BD25FEA00B999B7 /* WH_JXShortPlayVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXShortPlayVC.m; sourceTree = "<group>"; };
+		33FE342B2BD25FEA00B999B7 /* WH_JXShortPlayVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXShortPlayVC.xib; sourceTree = "<group>"; };
+		33FE342E2BD2624700B999B7 /* WH_JXShortPlayCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXShortPlayCell.h; sourceTree = "<group>"; };
+		33FE342F2BD2624800B999B7 /* WH_JXShortPlayCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXShortPlayCell.m; sourceTree = "<group>"; };
+		33FE34302BD2624800B999B7 /* WH_JXShortPlayCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXShortPlayCell.xib; sourceTree = "<group>"; };
 		4CA2D1AE293F23E400E29DA7 /* MISFloatingBall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISFloatingBall.h; sourceTree = "<group>"; };
 		4CA2D1AF293F23E400E29DA7 /* MISFloatingBall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISFloatingBall.m; sourceTree = "<group>"; };
 		4CABBBD6293EF69B00C17F42 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -7789,6 +7804,12 @@
 				4CABBBEB293F06F700C17F42 /* WH_JXSelectMusic_WHVC.m */,
 				331AD11F2BAD824D008A9113 /* WH_Player_WHVC.h */,
 				331AD1202BAD824D008A9113 /* WH_Player_WHVC.m */,
+				33FE34292BD25FEA00B999B7 /* WH_JXShortPlayVC.h */,
+				33FE342A2BD25FEA00B999B7 /* WH_JXShortPlayVC.m */,
+				33FE342B2BD25FEA00B999B7 /* WH_JXShortPlayVC.xib */,
+				33FE342E2BD2624700B999B7 /* WH_JXShortPlayCell.h */,
+				33FE342F2BD2624800B999B7 /* WH_JXShortPlayCell.m */,
+				33FE34302BD2624800B999B7 /* WH_JXShortPlayCell.xib */,
 				331675522BC2884D002B7334 /* WH_playListVC.h */,
 				331675532BC2884D002B7334 /* WH_playListVC.m */,
 				331675542BC2884D002B7334 /* WH_playListVC.xib */,
@@ -10046,6 +10067,9 @@
 				DE64B3D522AF3F7600FDDB15 /* WH_JXMyInvitationList_WHVC.m */,
 				DE5E40CF22F034B200D98B8F /* WH_ForgetPayPsw_WHVC.h */,
 				DE5E40D022F034B200D98B8F /* WH_ForgetPayPsw_WHVC.m */,
+				33FE34242BD2438500B999B7 /* WH_ForgetPayPassWordVC.h */,
+				33FE34252BD2438500B999B7 /* WH_ForgetPayPassWordVC.m */,
+				33FE34262BD2438500B999B7 /* WH_ForgetPayPassWordVC.xib */,
 				DE5E40D522F0589300D98B8F /* WH_NoInternet_WHController.h */,
 				DE5E40D622F0589300D98B8F /* WH_NoInternet_WHController.m */,
 				DEE07A7222A9254F00418A2F /* PromotionView */,
@@ -11328,6 +11352,7 @@
 				CC3016F11951BABF0059BADA /* f041@2x.png in Resources */,
 				CC30170C1951BABF0059BADA /* f055.png in Resources */,
 				DB1ACEC32921369700A27F20 /* en_send@3x.png in Resources */,
+				33FE34282BD2438500B999B7 /* WH_ForgetPayPassWordVC.xib in Resources */,
 				CC3016C01951BABF0059BADA /* f017.png in Resources */,
 				0FCC71871F69414C0026859D /* pub_microphone_volume@2x.png in Resources */,
 				336B7DD02BB27A0B00699E10 /* WH_JXGroupRedPacketTotalVC.xib in Resources */,
@@ -11338,6 +11363,7 @@
 				CC30173F1951BABF0059BADA /* f080@2x.png in Resources */,
 				63E1E9981F44291B004548C5 /* switchCamera@3x.png in Resources */,
 				0F5C92F01E4DD328005C31C2 /* title_button_left_press.png in Resources */,
+				33FE342D2BD25FEA00B999B7 /* WH_JXShortPlayVC.xib in Resources */,
 				18C981D61D35D3E400C53079 /* send@2x.png in Resources */,
 				185091381D12C26F00C98E17 /* Didn'tcheck@3x.png in Resources */,
 				88B111851F458CA300F53E23 /* playvideo@3x.png in Resources */,
@@ -11479,6 +11505,7 @@
 				63E1E9AC1F442927004548C5 /* switchCamera@2x.png in Resources */,
 				1851A32F2307A32200BA24A1 /* WWEmotManagerCell.xib in Resources */,
 				63036F3D1FCBC876003D0175 /* whynotyou.caf in Resources */,
+				33FE34322BD2624800B999B7 /* WH_JXShortPlayCell.xib in Resources */,
 				CC3017081951BABF0059BADA /* f053.png in Resources */,
 				CC3016971951BABF0059BADA /* AlbumOperateMoreHL@2x.png in Resources */,
 				CC3016CB1951BABF0059BADA /* f022@2x.png in Resources */,
@@ -12211,6 +12238,7 @@
 				33E3AFEC2BC3E6E100366D4E /* muxread.c in Sources */,
 				331AD0BE2BAD6FE3008A9113 /* ZFPortraitControlView.m in Sources */,
 				18F9D1822423239600878AFF /* WH_WithdrawThreeAccountViewController.m in Sources */,
+				33FE342C2BD25FEA00B999B7 /* WH_JXShortPlayVC.m in Sources */,
 				331AD11E2BAD81D3008A9113 /* MJRefreshFooterView.m in Sources */,
 				CC5CF8001E4CAA9A008719F0 /* QCheckBox.m in Sources */,
 				18AE518022E3161800C0DD54 /* UIColor+Extend.m in Sources */,
@@ -12446,6 +12474,7 @@
 				CC6E168219794906006ADA8A /* WH_JXFriendObject.m in Sources */,
 				126D663B285228EE000BEF41 /* NSAttributedString+AvoidCrash.m in Sources */,
 				6317CCB01FB9798500CEF9EF /* LFGPUImageEmptyFilter.m in Sources */,
+				33FE34312BD2624800B999B7 /* WH_JXShortPlayCell.m in Sources */,
 				0FA2D6831FB05CCD00D51BB9 /* GPUImageStretchDistortionFilter.m in Sources */,
 				0F304DF42153AD0E001EC77E /* XMPPStanzaIdModule.m in Sources */,
 				CC3017861951BABF0059BADA /* MatchParser.m in Sources */,
@@ -12604,6 +12633,7 @@
 				18F8D2C222CDAE4200B87B79 /* WH_ContentModification_WHView.m in Sources */,
 				0FA2D6731FB05CCD00D51BB9 /* GPUImageSmoothToonFilter.m in Sources */,
 				0FAB27262A357C5900EDFE8D /* WH_JXGroupMemberRedPacketUnclaimedVC.m in Sources */,
+				33FE34272BD2438500B999B7 /* WH_ForgetPayPassWordVC.m in Sources */,
 				CC3017881951BABF0059BADA /* NSStrUtil.m in Sources */,
 				0F304E0B2153AD0E001EC77E /* XMPPMessageDeliveryReceipts.m in Sources */,
 				18D253621DAC76B200FDA9EF /* WH_JXGif_WHCell.m in Sources */,

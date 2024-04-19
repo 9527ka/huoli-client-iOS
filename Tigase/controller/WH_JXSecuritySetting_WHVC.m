@@ -11,7 +11,7 @@
 #import "WH_JXAccountBinding_WHVC.h"
 #import "WH_AddFriend_WHCell.h"
 #import "WH_JXPayPassword_WHVC.h"
-#import "WH_ForgetPayPsw_WHVC.h"
+#import "WH_ForgetPayPassWordVC.h"
 #import "WH_VerifyPassAlertView.h"
 #import "WH_PwsSecSettingViewController.h"
 #import "WH_JXVerifyPay_WHVC.h"
@@ -226,7 +226,7 @@
             //忘记支付密码
             g_myself.isPayPassword = [g_default objectForKey:PayPasswordKey];
             if ([g_myself.isPayPassword boolValue]) {
-                WH_ForgetPayPsw_WHVC *forgetPayPsw = [[WH_ForgetPayPsw_WHVC alloc] init];
+                WH_ForgetPayPassWordVC *forgetPayPsw = [[WH_ForgetPayPassWordVC alloc] init];
                 [g_navigation pushViewController:forgetPayPsw animated:YES];
             }else if (![g_myself.isPayPassword boolValue]) {//不存在支付密码
                 [BindTelephoneChecker checkBindPhoneWithViewController:self entertype:JXEnterTypeForgetPayPsw];

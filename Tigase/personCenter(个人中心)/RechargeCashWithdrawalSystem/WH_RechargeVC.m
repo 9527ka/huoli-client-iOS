@@ -12,7 +12,7 @@
 #import "WH_JXCamera_WHVC.h"
 #import "WH_SetGroupHeads_WHView.h"
 #import "OBSHanderTool.h"
-
+#import <AlipaySDK/AlipaySDK.h>
 #import "UIView+WH_CustomAlertView.h"
 
 @interface WH_RechargeVC ()<UITableViewDataSource, UITableViewDelegate,WH_JXCamera_WHVCDelegate ,UIImagePickerControllerDelegate>{
@@ -56,7 +56,7 @@
     };
     cell.certainBlock = ^(NSString * _Nonnull amountStr, NSString * _Nonnull orderNoStr) {
         //直接调取支付
-        [weakSelf payAction];
+        [g_server WH_getPaySignWithPrice:amountStr payType:1 toView:self];
 //        [weakSelf rechargeWithNum:amountStr context:orderNoStr];
     };
     if(self.image){
@@ -140,7 +140,62 @@
         g_App.rate = rate;
         [self.tableView reloadData];
         
+    }else if ([aDownload.action isEqualToString:wh_act_getSign]){
+        NSString *orderInfo = [NSString stringWithFormat:@"%@",dict[@"orderInfo"]];
+        [self startPayWithOrderInfo:orderInfo];
+        
     }
+}
+-(void)startPayWithOrderInfo:(NSString *)orderInfo{
+    NSString *appScheme = @"comyuejiecn";
+    // NOTE: 将签名成功字符串格式化为订单字符串,请严格按照该格式
+    NSString *orderString = orderInfo;
+    
+    // NOTE: 调用支付结果开始支付
+    [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
+        
+        NSLog(@"reslut = %@",resultDic);
+        NSInteger resultStatus = [resultDic[@"resultStatus"]integerValue];
+        
+        switch (resultStatus) {
+            case 9000:{//订单支付成功
+                [g_server showMsg:@"支付成功"];
+            }
+                break;
+            case 8000:{//正在处理中，支付结果未知
+                [g_server showMsg:@"正在处理中..."];
+                
+            }
+                break;
+            case 4000:{//订单支付失败
+                [g_server showMsg:@"支付失败"];
+                
+            }
+                break;
+            case 5000:{//重复请求
+                [g_server showMsg:@"重复请求"];
+            }
+                break;
+            case 6001:{//用户中途取消
+                [g_server showMsg:@"中途取消"];
+            }
+                break;
+            case 6002:{//网络连接出错
+                [g_server showMsg:@"网络连接出错"];
+            }
+                break;
+            case 6004:{//支付结果未知
+                [g_server showMsg:@"支付结果未知"];
+            }
+                break;
+                
+            default:{//其他支付错误
+                [g_server showMsg:@"支付出错了"];
+                
+            }
+                break;
+        }
+    }];
 }
 -(void)goBackAction{
     [g_navigation WH_dismiss_WHViewController:self animated:YES];

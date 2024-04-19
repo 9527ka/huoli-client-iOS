@@ -52,7 +52,7 @@
         }else if ([g_App.isShowRedPacket intValue] == 1 && !self.wh_isGroupMessages && !self.wh_isDevice && !g_myself.isTestAccount) {
             // 发红包
             
-            button = [self WH_create_WHButtonWithImage:@"WH_awarda_a_bonus_normal" highlight:@"WH_awarda_a_bonus_normal" target:delegate selector:self.wh_onGift title:Localized(@"JX_SendGift")];
+            button = [self WH_create_WHButtonWithImage:@"WH_awarda_a_bonus_normal" highlight:@"WH_awarda_a_bonus_normal" target:delegate selector:self.wh_onGift title:@"发优惠券"];
             button.frame = CGRectMake(X, Y, SELECTIMAGE_WIDTH, h);
             
             if (!self.wh_isGroup) {
