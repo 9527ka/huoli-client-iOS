@@ -8,6 +8,9 @@
 
 #import "WH_JXShortPlayVC.h"
 #import "WH_JXShortPlayCell.h"
+#import "WH_ShortVideoModel.h"
+#import "WH_Player_WHVC.h"
+#import "WH_GKDYVideoModel.h"
 
 @interface WH_JXShortPlayVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
     ATMHud *_wait;
@@ -30,15 +33,14 @@
     [self.view addSubview:self.collectionView];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(JX_SCREEN_TOP);
-        make.left.right.bottom.equalTo(self.view);
+        make.left.right.equalTo(self.view);
+        make.bottom.equalTo(self.view).offset(-JX_SCREEN_BOTTOM);
     }];
     //请求数据
     [self receiveListData];
 }
 -(void)receiveListData{
-//    [g_server WH_receiveShortListWithIndex:self.pageIndex toView:self];
-    [self.dataArray addObjectsFromArray:@[@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@""]];
-    [self.collectionView reloadData];
+    [g_server WH_receiveShortListWithIndex:self.pageIndex toView:self];
 }
 #pragma mark  设置CollectionView每组所包含的个数
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -53,7 +55,11 @@
     static NSString *identify = @"cell";
     WH_JXShortPlayCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
     if (indexPath.item < self.dataArray.count) {
-       
+        WH_ShortVideoModel *model = self.dataArray[indexPath.item];
+        [cell.coverImage sd_setImageWithURL:[NSURL URLWithString:model.album]];
+        [cell.playCountBtn setTitle:[NSString stringWithFormat:@"%@",model.play] forState:UIControlStateNormal];
+        cell.nameLab.text = model.title;
+        cell.totalCountLab.text = [NSString stringWithFormat:@"%@集",model.totalSeries];
     }
     
     return cell;
@@ -80,6 +86,11 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if (self.dataArray.count == 0) {
         return;
+    }
+    if (indexPath.item < self.dataArray.count) {
+        WH_ShortVideoModel *model = self.dataArray[indexPath.item];
+        //获取全集
+        [g_server WH_VideoAllWithId:model.videoId toView:self];
     }
 }
 #pragma mark  设置CollectionViewCell是否可以被点击
@@ -145,16 +156,28 @@
 -(void) WH_didServerResult_WHSucces:(WH_JXConnection*)aDownload dict:(NSDictionary*)dict array:(NSArray*)array1{
     self.isEnd = YES;
     //    [_wait hide];
-    if([aDownload.action isEqualToString:wh_act_ShortRecommended]){
-//        for (int i = 0; i < array1.count; i++) {
-//            WH_GKDYVideoModel *model = [[WH_GKDYVideoModel alloc] init];
-//            [model WH_getDataFromDict:array1[i]];
-//            [self.dataArray addObject:model];
-//        }
+    if([aDownload.action isEqualToString:wh_act_ShortList]){
+        NSArray *list = [WH_ShortVideoModel mj_objectArrayWithKeyValuesArray:array1];
+        [self.dataArray addObjectsFromArray:list];
+        self.pageIndex++;
         [self.collectionView reloadData];
         
         self.isAll = array1.count<20?YES:NO;
         
+    }else if ([aDownload.action isEqualToString:wh_series_info]){
+        NSMutableArray *list = [NSMutableArray array];
+        for (int i = 0; i < array1.count; i++) {
+            WH_GKDYVideoModel *model = [[WH_GKDYVideoModel alloc] init];
+            [model WH_getDataFromDict:array1[i]];
+           
+            [list addObject:model];
+        }
+        WH_Player_WHVC *vc = [[WH_Player_WHVC alloc] init];
+        vc.pageIndex = 0;
+        vc.type = 7;
+        vc.selectIndex = 0;
+        vc.dataArray = list;
+        [g_navigation pushViewController:vc animated:YES];
     }
 }
 #pragma mark - 请求失败回调

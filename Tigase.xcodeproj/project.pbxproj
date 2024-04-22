@@ -958,6 +958,7 @@
 		33FE342D2BD25FEA00B999B7 /* WH_JXShortPlayVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33FE342B2BD25FEA00B999B7 /* WH_JXShortPlayVC.xib */; };
 		33FE34312BD2624800B999B7 /* WH_JXShortPlayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FE342F2BD2624800B999B7 /* WH_JXShortPlayCell.m */; };
 		33FE34322BD2624800B999B7 /* WH_JXShortPlayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33FE34302BD2624800B999B7 /* WH_JXShortPlayCell.xib */; };
+		33FE34352BD6163F00B999B7 /* WH_ShortVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FE34342BD6163F00B999B7 /* WH_ShortVideoModel.m */; };
 		4CA2D1B0293F23E500E29DA7 /* MISFloatingBall.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA2D1AF293F23E400E29DA7 /* MISFloatingBall.m */; };
 		4CABBBD7293EF69B00C17F42 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CABBBD6293EF69B00C17F42 /* StoreKit.framework */; };
 		4CABBC48293F06F800C17F42 /* WH_GKDYVideoViewModel_WH.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CABBBDC293F06F700C17F42 /* WH_GKDYVideoViewModel_WH.m */; };
@@ -3602,6 +3603,8 @@
 		33FE342E2BD2624700B999B7 /* WH_JXShortPlayCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_JXShortPlayCell.h; sourceTree = "<group>"; };
 		33FE342F2BD2624800B999B7 /* WH_JXShortPlayCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_JXShortPlayCell.m; sourceTree = "<group>"; };
 		33FE34302BD2624800B999B7 /* WH_JXShortPlayCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WH_JXShortPlayCell.xib; sourceTree = "<group>"; };
+		33FE34332BD6163F00B999B7 /* WH_ShortVideoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WH_ShortVideoModel.h; sourceTree = "<group>"; };
+		33FE34342BD6163F00B999B7 /* WH_ShortVideoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WH_ShortVideoModel.m; sourceTree = "<group>"; };
 		4CA2D1AE293F23E400E29DA7 /* MISFloatingBall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISFloatingBall.h; sourceTree = "<group>"; };
 		4CA2D1AF293F23E400E29DA7 /* MISFloatingBall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISFloatingBall.m; sourceTree = "<group>"; };
 		4CABBBD6293EF69B00C17F42 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -7829,6 +7832,8 @@
 				4CABBBED293F06F700C17F42 /* WH_GKDYPersonalModel.m */,
 				4CABBBF4293F06F700C17F42 /* WH_GKDYVideoModel.h */,
 				4CABBBF0293F06F700C17F42 /* WH_GKDYVideoModel.m */,
+				33FE34332BD6163F00B999B7 /* WH_ShortVideoModel.h */,
+				33FE34342BD6163F00B999B7 /* WH_ShortVideoModel.m */,
 				4CABBBF1293F06F700C17F42 /* WH_JXSelectMusicModel.h */,
 				4CABBBEE293F06F700C17F42 /* WH_JXSelectMusicModel.m */,
 			);
@@ -10984,7 +10989,7 @@
 						};
 					};
 					8409055517B693CF00F5C28D = {
-						DevelopmentTeam = 6QM4SXGT4R;
+						DevelopmentTeam = UC6YPY3P2G;
 						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -12303,6 +12308,7 @@
 				4CABBC5E293F06F800C17F42 /* WMPageController.m in Sources */,
 				0FA2D5871FB05CCC00D51BB9 /* GPUImageAverageColor.m in Sources */,
 				0FA2D5E31FB05CCC00D51BB9 /* GPUImageHalftoneFilter.m in Sources */,
+				33FE34352BD6163F00B999B7 /* WH_ShortVideoModel.m in Sources */,
 				63F4E44821C0AE7800C61204 /* WH_KKImageToolBase.m in Sources */,
 				0F304E132153AD0E001EC77E /* XMPPRoomLightMessageCoreDataStorageObject.m in Sources */,
 				0F304E3E2153AD0E001EC77E /* GCDAsyncUdpSocket.m in Sources */,
@@ -13180,7 +13186,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 6QM4SXGT4R;
+				DEVELOPMENT_TEAM = UC6YPY3P2G;
 				DOUBANGO_HOME = "";
 				DOUBANGO_LIBS = "";
 				"DOUBANGO_LIBS[arch=arm64]" = $DOUBANGO_HOME/thirdparties/iphone/lib/arm64;
@@ -13258,7 +13264,7 @@
 					"$(SRCROOT)/Tigase/3rd/OBS.framework/OBS",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.huoli.cn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuejie.cn;
 				PRODUCT_MODULE_NAME = wahu_2_0;
 				PRODUCT_NAME = "H-chat";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -13288,7 +13294,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 6QM4SXGT4R;
+				DEVELOPMENT_TEAM = UC6YPY3P2G;
 				DOUBANGO_HOME = "";
 				DOUBANGO_LIBS = "";
 				"DOUBANGO_LIBS[arch=arm64]" = $DOUBANGO_HOME/thirdparties/iphone/lib/arm64;
@@ -13360,7 +13366,7 @@
 					"$(SRCROOT)/Tigase/3rd/OBS.framework/OBS",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.huoli.cn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuejie.cn;
 				PRODUCT_MODULE_NAME = wahu_2_0;
 				PRODUCT_NAME = "H-chat";
 				PROVISIONING_PROFILE = "";

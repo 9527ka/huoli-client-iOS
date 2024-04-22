@@ -3,8 +3,8 @@
         "apps": [],
         "details": [
             {
-                "appID": "YSATK644U6.com.yuejie.cn",
-                "paths": ["/Tigase/*"]
+                "appID": "UC6YPY3P2G.com.yuejie.cn",
+                "paths": ["*"]
             }
         ]
     }

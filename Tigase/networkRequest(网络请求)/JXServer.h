@@ -315,7 +315,7 @@
 #define wh_act_CircleMsgPureVideo  @"b/circle/msg/pureVideo"  // 朋友圈纯视频接口
 #define wh_act_ShortRecommended  @"series/short/recommended"  // 推荐视频列表
 #define wh_act_SeriesList  @"series/short/list"  // 短剧列表
-#define wh_act_ShortList  @"short/list_series"  // 短剧列表
+#define wh_act_ShortList  @"series/short/list_series"  // 短剧列表
 #define wh_act_SeriesFlip  @"series/short/flip"  // 标记看过或播放过的视频接口
 #define wh_act_MusicList @"music/list"    // 获取音乐接口
 
@@ -473,6 +473,7 @@
 #define wh_series_Canclecollect @"series/short/collect/delete"    //视频取消收藏接口
 #define wh_series_info @"series/short/info"    //查询视频全集
 #define wh_myvideos @"series/short/myvideos"    //作品
+#define wh_myviewed @"series/short/viewed"    //我看过的
 #define wh_mycollects @"series/short/mycollects"    //我的收藏
 #define wh_myLike @"series/short/praiselist"    //我的喜欢
 #define wh_seriesVideos @"series/short/videos"    //

@@ -94,6 +94,8 @@
         [g_server WH_LookMyVideoWithPageIndex:self.pageIndex type:2 toView:self];
     }else if (self.type == 5){//喜欢
         [g_server WH_LookMyVideoWithPageIndex:self.pageIndex type:1 toView:self];
+    }else if (self.type == 8){//我看过 8
+        [g_server WH_LookMyVideoWithPageIndex:self.pageIndex type:3 toView:self];
     }
 }
 /// *设置视频数据
@@ -405,7 +407,7 @@
         }
         [self.collectionView reloadData];
         self.isAll = array1.count<20?YES:NO;
-    }else if ([aDownload.action isEqualToString:wh_myvideos] || [aDownload.action isEqualToString:wh_mycollects] || [aDownload.action isEqualToString:wh_myLike]){
+    }else if ([aDownload.action isEqualToString:wh_myvideos] || [aDownload.action isEqualToString:wh_mycollects] || [aDownload.action isEqualToString:wh_myLike]  || [aDownload.action isEqualToString:wh_myviewed]){
         
         if(self.pageIndex == 1){
             [self.dataArray removeAllObjects];

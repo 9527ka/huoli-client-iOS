@@ -5356,6 +5356,8 @@
         url = wh_myLike;
     }else if (type == 2){
         url = wh_myvideos;
+    }else if (type == 3){
+        url = wh_myviewed;
     }
     
     WH_JXConnection* p = [self addTask:url param:nil toView:toView];

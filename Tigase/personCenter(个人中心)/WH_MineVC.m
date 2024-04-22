@@ -100,8 +100,7 @@ NSString * const kWH_MineCell  = @"WH_MineCell";
     
 }
 -(void)receiveListData{
-    [g_server WH_LookMyVideoWithPageIndex:self.pageIndex type:2 toView:self];
-    [g_server WH_LookMyVideoWithPageIndex:self.pageIndex type:_tabIndex toView:self];
+    [g_server WH_LookMyVideoWithPageIndex:self.pageIndex type:_tabIndex == 2?3:_tabIndex toView:self];
 }
 - (void)getCurrentUserInfo {
     [[WH_JXUserObject sharedUserInstance] getCurrentUser];
@@ -237,7 +236,7 @@ NSString * const kWH_MineCell  = @"WH_MineCell";
     }else if (_tabIndex == 1){
         type = AwemeMyLike;
     }else if (_tabIndex == 2){
-        type = AwemeMyShort;
+        type = AwemeMyLookShort;
     }
     
     WH_Player_WHVC *vc = [[WH_Player_WHVC alloc] init];
@@ -455,7 +454,7 @@ NSString * const kWH_MineCell  = @"WH_MineCell";
         vc.dataSorce = dict;
         [g_navigation pushViewController:vc animated:YES];
         [_wait stop];
-    }else if ([aDownload.action isEqualToString:wh_myvideos] || [aDownload.action isEqualToString:wh_mycollects] || [aDownload.action isEqualToString:wh_myLike]){
+    }else if ([aDownload.action isEqualToString:wh_myvideos] || [aDownload.action isEqualToString:wh_mycollects] || [aDownload.action isEqualToString:wh_myLike] || [aDownload.action isEqualToString:wh_myviewed]){
         
         if(self.pageIndex == 1){
             if(_tabIndex == 0){
